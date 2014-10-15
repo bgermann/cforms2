@@ -23,12 +23,15 @@
 	        $disabled = 0;
 	        $readonly = 0;
 
-				if( in_array($type, array('cauthor','email','url','comment','send2author')) && !(substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2') ){
+			$isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
+
+
+				if( in_array($type, array('cauthor','email','url','comment','send2author')) && !($isTAF==2) ){
 					$allgood = $WPc?false:true;
 					$usermsg .= '<span class="exMsg">'.__('WP comment form fields only supported when <em>WP comment feature</em> turned on!', 'cforms').'</span>';
 					$WPc=true;
 				}
-				if( in_array($type, array('yourname','youremail','friendsname','friendsemail')) && !(substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1') ){
+				if( in_array($type, array('yourname','youremail','friendsname','friendsemail')) && !($isTAF==1) ){
 					$allgood = $taf?false:true;
 					$usermsg .= '<span class="exMsg">'.__('TAF fields only supported when <em>TAF feature</em> turned on!', 'cforms').'</span>';
 					$taf=true;
@@ -103,6 +106,12 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_rss'] = $_REQUEST['cforms_rss']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] = $_REQUEST['cforms_rsscount'];
 
+	if( isset($_REQUEST['cforms_rssfields']) ){
+		$i=1;
+		foreach($_REQUEST['cforms_rssfields'] as $e)
+        	$cformsSettings['form'.$no]['cforms'.$no.'_rss_fields'][$i++] = $e;
+	}
+
 	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] = $_REQUEST['cforms_dontclear']?true:false;
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] =  $_REQUEST['cforms_upload_dir'].'$#$'.$_REQUEST['cforms_upload_dir_url'];
@@ -147,21 +156,26 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_space'] =         $_REQUEST['cforms_space'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] = $_REQUEST['cforms_noattachments']?'1':'0';
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] =      $_REQUEST['cforms_redirect'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] =			 $_REQUEST['cforms_hide']?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] =      $_REQUEST['cforms_redirect']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] = preg_replace("/\\\+/", "\\",$_REQUEST['cforms_redirect_page']);
+
 	$cformsSettings['form'.$no]['cforms'.$no.'_action'] =        $_REQUEST['cforms_action']?'1':'0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] =   preg_replace("/\\\+/", "\\",$_REQUEST['cforms_action_page']);
 	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] =      preg_replace("/\\\+/", "\\",$_REQUEST['cforms_tracking']);
 
-	if ( isset($_REQUEST['cforms_taftrick']) && ($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']==0 || $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']==3) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '3';
-	else
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	($_REQUEST['cforms_tellafriend']?'1':'0').($_REQUEST['cforms_tafdefault']?'1':'0') ;
+	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '01'; ### default
+	if ( isset($_REQUEST['cforms_taftrick']) )
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '31';
+
+	if ( isset($_REQUEST['cforms_tellafriend']) )
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'1'.($_REQUEST['cforms_tafdefault']?'1':'0') ;
 
 	if ( isset($_REQUEST['cforms_commentrep']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	($_REQUEST['cforms_commentrep']?'2':'0').($_REQUEST['cforms_commentXnote']?'1':'0') ;
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'2'.($_REQUEST['cforms_commentXnote']?'1':'0') ;
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_dashboard'] =	($_REQUEST['cforms_dashboard']?'1':'0') ;
+	$cformsSettings['form'.$no]['cforms'.$no.'_emailoff'] =	($_REQUEST['cforms_emailoff']?'1':'0') ;
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] =	($_REQUEST['cforms_maxentries']==''?'':(int)$_REQUEST['cforms_maxentries']) ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_customnames'] =	($_REQUEST['cforms_customnames']?'1':'0') ;

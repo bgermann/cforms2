@@ -1,6 +1,6 @@
-Version@10.2@
-Message@<a href="http://www.deliciousdays.com/cforms-forum?forum=2&topic=2&page=1">GPL Compliance / Maintenance Release</a><br />(adding GPL compliance and a few bugfixes)
+Version@10.5@
+Message@<a style="font-size:11px" href="http://www.deliciousdays.com/cforms-forum/announcements/cforms-version-history">Feature & Maintenance Release</a>
 
-<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7;"><a href="http://www.deliciousdays.com/cforms-plugin">Download here.</a></div>
+<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin">Download here.</a></div>
 
-<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">MUST READ BEFORE UPDATING:</strong> BACKUP YOUR WP DATABASE! Do a manual upgrade with proper <strong>plugin deactivation</strong> and <strong>reactivation</strong>! Of course as usual, also backup *any* custom files you don't wan't to be overwritten (or leave them in your <strong>plugins/cforms-custom/</strong> dir)!</div>
+<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">NOTE: </strong> Please <strong>deactivate</strong> cforms before upgrading! Of course as usual, also backup *any* custom files you don't wan't to be overwritten (or leave them in your personal <strong>plugins/cforms-custom/</strong> dir)!</div>

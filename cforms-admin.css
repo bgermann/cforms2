@@ -12,6 +12,10 @@ font-size:12px;
 font-family:"Lucida Grande",Arial,Verdana,"Bitstream Vera Sans",sans-serif;
 }
 
+.corruptedsettings h3 {
+margin:2em 0 0;
+}
+
 .wrap h2 {
 /*preWP2.7*/
 clear:none;
@@ -696,6 +700,7 @@ width:4em;
 text-align:center;
 }
 
+input#cforms_rssfields,
 input#cforms_mp_backtext,input#cforms_mp_resettext {
 width:15em;
 }
@@ -703,6 +708,18 @@ width:15em;
 .ob input.allchk {
 width:auto;
 }
+
+select#cforms_rsscount{
+width:5em;
+text-align:center;
+}
+select#cforms_rssfields{
+width:330px;
+height:8em;
+overflow:auto;
+display:block;
+}
+
 
 /****************************************************************
   GLOBAL SETTINGS
@@ -867,10 +884,6 @@ font-weight:bold;
 margin:5px 0 2px 0;
 }
 
-#header {
-width:22px;
-}
-
 .dataheader,
 .showformfield {
 display:inline-block;
@@ -988,8 +1001,17 @@ font-weight:700;
 text-align:right;
 }
 
+.wrap table.hf td.apiH {
+font-size:13px;
+background:#d0f0ec;
+}
+
 .wrap table.hf td.bright {
 background:#DFE8FF;
+}
+
+.wrap table.hf td span.abbr {
+font-weight:bold;
 }
 
 .wrap table.hf td.ball {
@@ -1131,6 +1153,10 @@ padding:4px 3px 2px;
 
 .jqmWindow input.chkBox {
 width:16px;
+}
+
+.jqmWindow input.chkBoxW {
+width:22px;
 }
 
 .jqmWindow input:focus {
