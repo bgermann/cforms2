@@ -31,6 +31,47 @@
         and then migrate your settings (cforms will provide guidance!)
 
 
+WHAT's NEW in cformsII - v10.5
+
+******************************************
+  IMPORTANT NOTE:    PHP 5 is required !
+******************************************
+
+*) feature: redirect options: "hide" & "redirect" haven been split, allowing both
+            find 'hide' under 'core options' now
+            make sure to check both options, they may have been reset!
+
+*) feature: email: supporting mail server that strictly require CRLF
+            new option under GlobalSettings > Mail Server Settings
+
+*) bugfix:  field labels that would have an escaped character (e.g quotes) would not be
+            referenced correctly and required a slash until now (e.g. {Your friend\'s Name} ).
+*) bugfix:  fixed minor XSS cross site scripting vulnerability
+*) bugfix:  select boxes: fixes the "auto select" of the last drop down option
+*) bugfix:  email: fixes CR's in multi-line fields
+*) bugfix:  email: fixing SMTP / PHPMailer attachments
+*) bugfix:  email: MIME / boundary fix
+*) bugfix:  email: several cosmetic fixes
+*) bugfix:  WP comment: fixed Ajax submission of WP comments
+*) bugfix:  fixed get_cforms_entries() when using "form name" parameter
+*) bugfix:  fixed WP comment form 'comment id not found' error
+
+*) other:   plugin update notice has become smaller / can be toggled
+*) other:   updated Help page (API section)
+*) other:   enhanced API function   get_cforms_entries()
+            Parameters:
+            get_cforms_entries( $fname,$from,$to,$cfsort,$limit,$cfsortdir )
+               $fname     = [text]    : form name (case sensitive!)
+               $from      = [date]    : e.g. 2008-09-17 15:00:00
+               $to        = [date]    : e.g. 2008-09-17 17:00:00
+               $cfsort    = [text]    : any input field label, e.g. 'Your Name'
+                					      or 'date', 'ip', 'id', 'form', 'email'
+               $limit     = [numeric] : limits number of records retrieved
+               $cfsortdir = [text]    : sort direction 'asc' or 'desc'
+
+            (see updated Help page too!)
+
+
 WHAT's NEW in cformsII - v10.4
 
 *) feature: new my_cforms_logic() features:

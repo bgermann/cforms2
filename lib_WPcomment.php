@@ -1,7 +1,7 @@
 <?php
-//
-// WP comment feature
-//
+###
+### WP comment feature
+###
 ### supporting WP2.6 wp-load & custom wp-content / plugin dir
 if ( file_exists('abspath.php') )
 	include_once('abspath.php');
@@ -13,7 +13,7 @@ if ( file_exists( $abspath . 'wp-load.php') )
 else
 	require_once( $abspath . 'wp-config.php' );
 
-global $smtpsettings, $styles, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $comment_author_IP;
+global $WPsuccess, $smtpsettings, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $comment_author_IP;
 
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
@@ -23,7 +23,7 @@ $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 $content 	 = '';
 
 $err		 = 0;
-$filefield	 = 0;   // for multiple file upload fields
+$filefield	 = 0;   ### for multiple file upload fields
 
 $validations = array();
 $all_valid 	 = 1;
@@ -36,20 +36,19 @@ $usermessage_class='';
 
 global $comment;
 
-//
-// VALIDATE all fields
-//
+###
+### VALIDATE all fields
+###
 
 if ( $isAjaxWPcomment ){
-	//
-	// comment submission via Ajax WP
-	//
+	###
+	### comment submission via Ajax WP
+	###
 	$comment_post_ID = $Ajaxpid;
 
-		//
-		// Write Comment
-		//
-		$WPsuccess = false;
+		###
+		### Write Comment
+		###
 		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'");
 
 		if ( empty($status->comment_status) ) {
@@ -78,15 +77,15 @@ if ( $isAjaxWPcomment ){
 			if ( function_exists('comment_luv') && trim($track['luv'])=='luv' )
 				$_POST['luv'] = 'luv';
 
-			// If the user is logged in
+			### If the user is logged in
 			if ( $user->ID ) {
 				$comment_author       = $wpdb->escape($user->display_name);
 				$comment_author_email = $wpdb->escape($user->user_email);
 				$comment_author_url   = $wpdb->escape($user->user_url);
 				if ( current_user_can('unfiltered_html') ) {
 					if ( wp_create_nonce('unfiltered-html-comment_' . $comment_post_ID) != $_POST['_wp_unfiltered_html_comment'] ) {
-						kses_remove_filters(); // start with a clean slate
-						kses_init_filters(); // set up the filters
+						kses_remove_filters(); ### start with a clean slate
+						kses_init_filters(); ### set up the filters
 					}
 				}
 			} elseif ( get_option('comment_registration') ){
@@ -100,13 +99,13 @@ if ( $isAjaxWPcomment ){
 			$comment_type = '';
 			$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 
-			// Simple duplicate check
+			### Simple duplicate check
 			if($wpdb->get_var("SELECT comment_ID FROM {$wpdb->comments}	WHERE comment_post_ID = '".$wpdb->escape($comment_post_ID)."' AND ( comment_author = '".$wpdb->escape($comment_author)."' " .($comment_author_email?" OR comment_author_email = '".$wpdb->escape($comment_author_email)."'" : ""). ") AND comment_content = '".$wpdb->escape($comment_content)."' LIMIT 1;")){
 				$WPresp = __('You\'ve said that before. No need to repeat yourself.','cforms');
 				return;
 			}
 
-			// Simple flood-protection
+			### Simple flood-protection
 			if ( $lasttime = $wpdb->get_var("SELECT comment_date_gmt FROM $wpdb->comments WHERE comment_author_IP = '$comment_author_IP' OR comment_author_email = '".$wpdb->escape($comment_author_email)."' ORDER BY comment_date DESC LIMIT 1") ) {
 				$time_lastcomment = mysql2date('U', $lasttime);
 				$time_newcomment  = mysql2date('U', current_time('mysql', 1));
@@ -140,7 +139,7 @@ if ( $isAjaxWPcomment ){
 			### support for AjaxEditComments
 			if ( class_exists('WPrapAjaxEditComments') ){
 				$WPrapAjaxEditComments = new WPrapAjaxEditComments();
-				//$WPrapAjaxEditComments->commentClassName = '';
+				### $WPrapAjaxEditComments->commentClassName = '';
 				$comment->comment_content = $WPrapAjaxEditComments->add_edit_links($comment->comment_content);
 			}
 			$template = str_replace('{usercomment}',preg_replace ( '|\r?\n|', '<br />',$comment->comment_content),$template);
@@ -158,9 +157,9 @@ if ( $isAjaxWPcomment ){
 		}
 
 } else{
-	//
-	// non Ajax WP comment submission
-	//
+	###
+	### non Ajax WP comment submission
+	###
 	$keys = array_keys($_POST);
 
 	foreach ( $keys as $key ){
@@ -187,9 +186,9 @@ if ( $isAjaxWPcomment ){
 			exit;
 		}
 
-		//
-		// Filter first?
-		//
+		###
+		### Filter first?
+		###
 	    $CFfunctionsC = dirname(dirname(__FILE__)).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
 		$CFfunctions = dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
         if ( file_exists($CFfunctionsC) )
@@ -200,9 +199,9 @@ if ( $isAjaxWPcomment ){
 		if( function_exists('my_cforms_filter') )
 			$_POST = my_cforms_filter($_POST);
 
-		//
-		// Write Comment
-		//
+		###
+		### Write Comment
+		###
 		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'");
 
 		if ( empty($status->comment_status) ) {
@@ -221,15 +220,15 @@ if ( $isAjaxWPcomment ){
 		$comment_author_url   = trim($_POST['url']);
 		$comment_content      = trim($_POST['comment']);
 
-		// If the user is logged in
+		### If the user is logged in
 		if ( $user->ID ) {
 			$comment_author       = $wpdb->escape($user->display_name);
 			$comment_author_email = $wpdb->escape($user->user_email);
 			$comment_author_url   = $wpdb->escape($user->user_url);
 			if ( current_user_can('unfiltered_html') ) {
 				if ( wp_create_nonce('unfiltered-html-comment_' . $comment_post_ID) != $_POST['_wp_unfiltered_html_comment'] ) {
-					kses_remove_filters(); // start with a clean slate
-					kses_init_filters(); // set up the filters
+					kses_remove_filters(); ### start with a clean slate
+					kses_init_filters(); ### set up the filters
 				}
 			}
 		} else {
@@ -271,5 +270,5 @@ if ( $isAjaxWPcomment ){
 		header("HTTP/1.0 301 Temporary redirect");
 		header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=err'.$err. '#cforms'.$no.'form' );
 	}
-} // non Ajax
+} ### non Ajax
 ?>

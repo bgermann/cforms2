@@ -1,8 +1,7 @@
 <?php
-
-/*
-please see cforms.php for more information
-*/
+###
+### Please see cforms.php for more information
+###
 
 ### DB settings
 global $wpdb;

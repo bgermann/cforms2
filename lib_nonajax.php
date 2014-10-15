@@ -1,6 +1,6 @@
 <?php
 ###
-###  VALIDATE all fields
+###  Validate all fields
 ###
 
 $CFfunctionsC = dirname(dirname(__FILE__)).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
@@ -328,23 +328,20 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	###
 	###  ready to send email
-	###  email header
 	###
-	$eolH = "\r\n";
-    $eol = ($cformsSettings['global']['cforms_crlf']!=1)?"\r\n":"\n";
+	###
 
 	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
-	if ( $frommail=='' )
-		$frommail = '"'.get_option('blogname').'" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
 
-	$headers = 'From: '. $frommail . $eolH;
-	$headers.= 'Reply-To: ' . $field_email . $eolH;
+    ### logic: dynamic admin email address
+    if ( function_exists('my_cforms_logic') )
+        $to = my_cforms_logic($trackf, $to,'adminTO');  ### use trackf!
 
-	if ( ($tempBcc=stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc'])) != "")
-	    $headers.= 'Bcc: ' . $tempBcc . $eolH;
-
-	$headers.= 'MIME-Version: 1.0'  .$eolH;
-	$headers.= 'Content-Type: multipart/mixed; boundary="----MIME_BOUNDRY_main_message"';
+	### either use configured subject or user determined
+	### now replace the left over {xyz} variables with the input data
+	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
+	$vsubject = check_default_vars($vsubject,$no);
+	$vsubject = check_cust_vars($vsubject,$track,$no);
 
 	###  prep message text, replace variables
 	$message	= stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header']);
@@ -353,83 +350,36 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	$message	= check_default_vars($message,$no);
 	$message	= check_cust_vars($message,$track,$no);
 
-	###  text & html message
-	$fmessage = 'This is a multi-part message in MIME format.'  . $eol;
-	$fmessage .= '------MIME_BOUNDRY_main_message'  . $eol;
-
-
-	###  HTML message part?
-	$html_show = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' )?true:false;
-	$htmlmessage = '';
-
-	if ( $html_show ) {
-		$fmessage .= 'Content-Type: multipart/alternative; boundary="----MIME_BOUNDRY_sub_message"' . $eol . $eol;
-		$fmessage .= '------MIME_BOUNDRY_sub_message'  . $eol;
-		$fmessage .= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed' . $eol;
-		$fmessage .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
-    }
-	else
-		$fmessage .= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed' . $eol . $eol;
-
-	$fmessage .= $message . $eol;
-
-	###  need to add form data summary or is all in the header anyway?
-	if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1')
-		$fmessage .= $eol . $formdata . $eol;
-
-
-	###  HTML text
-	if ( $html_show ) {
-
-		###  actual user message
-		$htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
+    ###  actual user message
+    $htmlmessage='';
+    if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' ){
+	    $htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
 	    if ( function_exists('my_cforms_logic') )
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
-		$htmlmessage = check_default_vars($htmlmessage,$no);
-		$htmlmessage = str_replace('=','=3D', check_cust_vars($htmlmessage,$track,$no) );
-
-		$fmessage .= '------MIME_BOUNDRY_sub_message'  . $eol;
-		$fmessage .= 'Content-Type: text/html; charset="' . get_option('blog_charset') . '"' . $eol;
-		$fmessage .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
-
-		$fmessage .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'  . $eol;
-		$fmessage .= '<html><body>' . $eol;
-
-		$fmessage .= $htmlmessage;
-
-		###  need to add form data summary or is all in the header anyway?
-		if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1')
-			$fmessage .= $eol . $htmlformdata;
-
-		$fmessage .= '</body></html>'  . $eol . $eol;
-
-		$fmessage .= '------MIME_BOUNDRY_sub_message--'  . $eol;
-
+	    $htmlmessage = check_default_vars($htmlmessage,$no);
+	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no);
 	}
-	###  end of sub message
+
+	$mail = new cf_mail($no,$frommail,$to,$field_email, true);
+	$mail->subj  = $vsubject;
+	$mail->char_set = 'utf-8';
+
+	### HTML email
+	if ( $mail->html_show ) {
+	    $mail->is_html(true);
+	    $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	    $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+	}
+	else
+	    $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 
 
-	###
-	###  finally send mails
-	###
-
-	### either use configured subject or user determined
-	### now replace the left over {xyz} variables with the input data
-	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
-	$vsubject = check_default_vars($vsubject,$no);
-	$vsubject = check_cust_vars($vsubject,$track,$no);
-
-    ### logic: dynamic admin email address
-    if ( function_exists('my_cforms_logic') )
-        $to = my_cforms_logic($trackf, $to,'adminTO');  ### use trackf!
 
 
 	### Skip admin email when MP form
     $MPok = !$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] || ($cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] && !$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_email']);
 
 	if ( $MPok ){
-
-
 
 	    ###
 	    ### adding attachments now
@@ -454,66 +404,38 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                foreach ( array_keys($_SESSION['cforms']['upload'][$n]) as $m )
 						cf_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n][$m]));
 	        }
-
+			### parse through all files
             foreach ( $fdata as $file ) {
 				if ( $file[name] <> '' ){
-
 	                $n = substr( $file[name], strrpos($file[name],$cformsSettings['global']['cforms_IIS'])+1, strlen($file[name]) );
 	                $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
-
-	                $attached .= $eol . '------MIME_BOUNDRY_main_message' . $eol;
-	                $attached .= 'Content-Type: '.$m.';'.$eol."\t".'name="' . $n . '"' . $eol;
-	                $attached .= 'Content-Transfer-Encoding: base64' . $eol;
-	                $attached .= 'Content-Disposition: inline;'.$eol."\t".'filename="' . $n . '"' . $eol;
-	                $attached .= $eol . $file[data] . $eol;  ### The base64 encoded message
-
+                    $mail->add_file($file[name], $n,'base64',$m); ### optional name
 				}
-            } ### for
+            }
 
 	    }
 	    ### end adding attachments
-		else
-	   		$fmessage .= '------MIME_BOUNDRY_main_message--';
 
 
-		###  SMTP server or native PHP mail() ?
+
+		###
+		### Shoot:
+		###
+		###
 		if( $cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1' )
 	        $sentadmin = 1;
 	    else if ( $smtpsettings[0]=='1' )
-            $sentadmin = cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata, '1' );
+            $sentadmin = cforms_phpmailer( $no, $mail->frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata, '1' );
 	    else
-	        $sentadmin = @mail($to, encode_header($vsubject), $fmessage.$attached, $headers);
+	        $sentadmin = $mail->send();
 
-	    if( $sentadmin==1 ) {
+	    if( $sentadmin == 1 ) {
+
 	            ###  send copy or notification?
-	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[$ccme]<>'-') ){  ###  not if no email & already CC'ed
+                ###  not if no email & already CC'ed
+	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[$ccme]<>'-') ){
 
 	                $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
-	                if ( $frommail=='' )
-	                    $frommail = '"'.get_option('blogname').'" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
-
-	                ###  HTML message part?
-	                $html_show_ac = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' )?true:false;
-	                $automsg = '';
-
-	                $headers2 = 'From: '. $frommail . $eolH;
-	                $headers2.= 'Reply-To: ' . $replyto . $eolH;
-
-	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' ) ### TAF: add CC
-	                    $headers2.= 'CC: ' . $replyto . $eolH;
-
-	                $headers2.= 'MIME-Version: 1.0'  .$eolH;
-
-	                if( $html_show_ac || ($html_show && ($ccme&&$trackf[$ccme]<>'-')) ){
-	                    $headers2.= 'Content-Type: multipart/alternative; boundary="----MIME_BOUNDRY_main_message"';
-	                    $automsg .= 'This is a multi-part message in MIME format.'  . $eol;
-	                    $automsg .= '------MIME_BOUNDRY_main_message'  . $eol;
-	                    $automsg .= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed' . $eol;
-	                    $automsg .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
-	                }
-	                else
-	                    $headers2.= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed';
-
 
 	                ###  actual user message
 	                $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
@@ -522,66 +444,75 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                $cmsg = check_default_vars($cmsg,$no);
 	                $cmsg = check_cust_vars($cmsg,$track,$no);
 
-
-	                ###  text text
-	                $automsg .= $cmsg . $eol;
-
 	                ###  HTML text
-	                if ( $html_show_ac ) {
-
-	                    ###  actual user message
+					$cmsghtml='';
+					if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' ){
 	                    $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
 	                    if ( function_exists('my_cforms_logic') )
 	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
 	                    $cmsghtml = check_default_vars($cmsghtml,$no);
-	                    $cmsghtml = str_replace(array("=","\n"),array("=3D","<br />\r\n"), check_cust_vars($cmsghtml,$track,$no) );
+	                    $cmsghtml =	check_cust_vars($cmsghtml,$track,$no);
+                    }
 
-	                    $automsg .= $eol . '------MIME_BOUNDRY_main_message'  . $eol;
-	                    $automsg .= 'Content-Type: text/html; charset="' . get_option('blog_charset') . '"'  . $eol;
-	                    $automsg .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
-
-	                    $automsg .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'  . $eol;
-	                    $automsg .= '<html><body>'  . $eol;
-	                    $automsg .= $cmsghtml;
-	                    $automsg .= '</body></html>'  . $eol . $eol;
-
-	                    $automsg .= '------MIME_BOUNDRY_main_message--';
-	                }
-
+                    ### subject
 	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 	                $subject2 = check_default_vars($subject2,$no);
 	                $subject2 = check_cust_vars($subject2,$track,$no);
 
 	                ###  different cc & ac subjects?
-	                $t=explode('$#$',$subject2);
-	                $t[1] = ($t[1]<>'') ? $t[1] : $t[0];
+	                $s=explode('$#$',$subject2);
+	                $s[1] = ($s[1]<>'') ? $s[1] : $s[0];
 
 	                ###  email tracking via 3rd party?
-	                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
-
 	                ###  if in Tell-A-Friend Mode, then overwrite header stuff...
 	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
 	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
+					else
+		                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 
+	                $mail = new cf_mail($no,$frommail,$field_email,$replyto);
+	                $mail->char_set = 'utf-8';
+
+                    ### CC or auto conf?
 	                if ( $ccme&&$trackf[$ccme]<>'-' ) {
 	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $t[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
-	                    else
-	                        $sent = @mail($field_email, encode_header($t[1]), $fmessage, $headers2); ### the admin one
+	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
+	                    else{
+							$mail->subj = $s[1];
+	                        if ( $mail->html_show_ac ) {
+	                            $mail->is_html(true);
+	                            $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	                            $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+	                        }
+	                        else
+	                            $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+
+	                        $sent = $mail->send();
+                        }
 	                }
 	                else {
 	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $t[0] , $cmsg , '', $cmsghtml, '', 'ac' );
-	                    else
-	                        $sent = @mail($field_email, encode_header($t[0]), $automsg, $headers2); ### takes the above
+	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[0] , $cmsg , '', $cmsghtml, '', 'ac' );
+	                    else{
+							$mail->subj = $s[0];
+	                        if ( $mail->html_show_ac ) {
+	                            $mail->is_html(true);
+	                            $mail->body     =  "<html>".$mail->eol."<body>".$cmsghtml."</body></html>".$mail->eol;
+	                            $mail->body_alt  =  $cmsg;
+	                        }
+	                        else
+	                            $mail->body     =  $cmsg;
+
+	                        $sent = $mail->send();
+                        }
 	                }
 
 	                if( $sent<>'1' )
-	                        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms')." ($sent)";
+				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sent:$mail->ErrorInfo;
 	            }
 
 	        ###  redirect to a different page on suceess?
-	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1 && !$isWPcommentForm ) {
+	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] && !$isWPcommentForm ) {
 	            if ( function_exists('my_cforms_logic') )
 	                $rp = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
 	            else
@@ -596,10 +527,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	    } ###  if $sentadmin
 	    else
-	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sentadmin:'';
+	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sentadmin:$mail->ErrorInfo;
 	} ### if $MPok
 
-
 } ### if isset & valid sendbutton
-
 ?>

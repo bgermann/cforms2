@@ -626,6 +626,13 @@ abspath_check();
 		 			</td>
 				</tr>
 
+				<tr class="ob">
+					<td class="obL"></td>
+					<td class="obR">
+						<input class="allchk" type="checkbox" id="cforms_hide" name="cforms_hide" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_hide']) echo "checked=\"checked\""; ?>/><label for="cforms_hide"><?php echo sprintf(__('%sHide form%s after successful submission', 'cforms'),'<strong>','</strong>'); ?></label>
+		 			</td>
+				</tr>
+
 				<tr class="obSEP"><td colspan="2"></td></tr>
 
 				<tr class="ob">
@@ -685,9 +692,7 @@ abspath_check();
 				<tr class="ob">
 					<td class="obL"><label for="cforms_redirect"><?php _e('<strong>Redirect</strong><br />options:', 'cforms'); ?></label></td>
 					<td class="obR">
-						<input class="allchk" type="radio" id="cforms_redirect"  name="cforms_redirect" value="0" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==0) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Do nothing (default setting)', 'cforms'); ?></label><br />
-						<input class="allchk" type="radio" id="cforms_redirect2" name="cforms_redirect" value="2" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==2) echo "checked=\"checked\""; ?>/><label for="cforms_redirect2"><?php _e('Hide form after successful submission', 'cforms'); ?></label><br />
-						<input class="allchk" type="radio" id="cforms_redirect1" name="cforms_redirect" value="1" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1) echo "checked=\"checked\""; ?>/><label for="cforms_redirect1"><?php _e('Enable alternative success page (redirect)', 'cforms'); ?></label><br />
+						<input class="allchk" type="checkbox" id="cforms_redirect" name="cforms_redirect" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Enable alternative success page (redirect)', 'cforms'); ?></label><br />
 						<input name="cforms_redirect_page" id="cforms_redirect_page" value="<?php echo ($cformsSettings['form'.$no]['cforms'.$no.'_redirect_page']);  ?>" />
 		 			</td>
 				</tr>

@@ -129,27 +129,6 @@ function prep($v,$d) {
 
 
 
-### Special Character Suppoer in subject lines
-function encode_header ($str) {
-	$x = preg_match_all('/[\000-\010\013\014\016-\037\177-\377]/', $str, $matches);
-
-	if ($x == 0)
-		return ($str);
-
-	$maxlen = 75 - 7 - strlen( get_option('blog_charset') );
-
-	$encoded = base64_encode($str);
-	$maxlen -= $maxlen % 4;
-	$encoded = trim(chunk_split($encoded, $maxlen, "\n"));
-
-	$encoded = preg_replace('/^(.*)$/m', " =?".get_option('blog_charset')."?B?\\1?=", $encoded);
-	$encoded = trim($encoded);
-
-	return $encoded;
-}
-
-
-
 ### formatEmail data
 function allTracks($session){
 	$t = array(); $i = array();
@@ -173,7 +152,7 @@ function formatEmail($track,$no){
 
 	$t = $h = '';
 
-    $eol = ($cformsSettings['global']['cforms_crlf']!=1)?"\r\n":"\n";
+    $eol = ($cformsSettings['global']['cforms_crlf'][b]!=1)?"\r\n":"\n";
 
     foreach( array_keys($track) as $k){
 
@@ -186,7 +165,7 @@ function formatEmail($track,$no){
 		###  fieldsets
 	    if ( strpos($k,'FieldsetEnd')!==false ){
    			$t .= $eol;
-            $h .= '<tr><td style=3D"'.$cformsSettings['global']['cforms_style_fsend_td'].'" colspan=3D"2">&nbsp;</td></tr>' . $eol;
+            $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_fsend_td'].'" colspan="2">&nbsp;</td></tr>' . $eol;
 			continue;
 		}
 	    elseif ( strpos($k,'Fieldset')!==false ){
@@ -197,7 +176,7 @@ function formatEmail($track,$no){
 	            $space = str_repeat("-", $n );
 
    			$t .= substr($eol."$space".stripslashes($v)."$space",0,($customspace*2)) . $eol . $eol;
-            $h .= '<tr><td style=3D"'.$cformsSettings['global']['cforms_style_fs_td'].'" colspan=3D"2">' . $v . '</td></tr>' . $eol;
+            $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_fs_td'].'" colspan="2">' . $v . '</td></tr>' . $eol;
 			continue;
 		}
 
@@ -208,12 +187,13 @@ function formatEmail($track,$no){
 
 		### HTML = TEXT (key, value)
 		$hk = $k;
-		$hv = str_replace("=","=3D",htmlspecialchars($v));
+		$hv = htmlspecialchars($v);
 
-		###  CRs for textareas
-		if ( strpos($v,$eol)!==false ) {
+		###  CRs for textareas \r\n user input hardcoded!
+		if ( strpos($v,"\n")!==false ) {
 	        $k = $eol . $k;
-	        $hv = str_replace(array("=",$eol),array("=3D","<br />".$eol),$v);
+	        $hv = str_replace("\r\n","\n",$v);
+	        //$hv = str_replace("\n",'<br />'.$eol,$hv);
 	        $v = $eol . $v . $eol;
 		}
 
@@ -224,11 +204,11 @@ function formatEmail($track,$no){
 
         ###  create formdata block for email
         $t .= stripslashes( $k ). ': '. $space . $v . $eol;
-        $h .= '<tr><td style=3D"'.$cformsSettings['global']['cforms_style_key_td'].'">' . $hk . '</td><td style=3D"'.$cformsSettings['global']['cforms_style_val_td'].'">' . $hv . '</td></tr>' . $eol;
+        $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_key_td'].'">' . $hk . '</td><td style="'.$cformsSettings['global']['cforms_style_val_td'].'">' . $hv . '</td></tr>' . $eol;
 
 	}
 	$r['text'] = $t;
-    $r['html'] = '<p style=3D"'.$cformsSettings['global']['cforms_style_title'].'">'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'</p><table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"'.$cformsSettings['global']['cforms_style_table'].'">'.stripslashes($h).'</table><span style=3D"'.$cformsSettings['global']['cforms_style_cforms'].'">powered by <a href=3D"http://www.deliciousdays.com/cforms-plugin">cformsII</a></span>';
+    $r['html'] = '<p style="'.$cformsSettings['global']['cforms_style_title'].'">'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'</p><table width="100%" cellpadding="0" cellspacing="0" style="'.$cformsSettings['global']['cforms_style_table'].'">'.stripslashes($h).'</table><span style="'.$cformsSettings['global']['cforms_style_cforms'].'">powered by <a href="http://www.deliciousdays.com/cforms-plugin">cformsII</a></span>';
 	return $r;
 }
 
@@ -321,11 +301,7 @@ function cf_move_files($no, $subID){
 function cf_base64($fn){
 	global $fdata, $fpointer;
 	if( file_exists($fn) ){
-	    $fp = fopen($fn, "rb");
-	    $d  = fread($fp, filesize($fn));
 	    $fdata[$fpointer][name] = $fn;
-	    $fdata[$fpointer][data] = chunk_split(base64_encode($d));
-	    fclose($fp);
         $fpointer++;
 	}
 	return;
@@ -334,8 +310,8 @@ function cf_base64($fn){
 
 ### MIME / extensions
 function getMIME ($ext){
-    $all_mime = array('txt'=>'text/plain', 'htm'=>'text/html', 'html'=>'text/html', 'gif'=>'image/gif', 'png'=>'image/x-png',
-                 'jpeg'=>'image/jpeg', 'jpg'=>'image/jpeg', 'tif'=>'image/tiff', 'bmp'=>'image/x-ms-bmp', 'wav'=>'audio/x-wav',
+    $all_mime = array('txt'=>'text/plain', 'htm'=>'text/html', 'html'=>'text/html', 'gif'=>'image/gif', 'png'=>'image/png',
+                 'jpeg'=>'image/jpeg', 'jpg'=>'image/jpeg', 'tif'=>'image/tiff', 'bmp'=>'image/x-ms-bmp', 'wav'=>'audio/wav',
                  'mpeg'=>'video/mpeg', 'mpg'=>'video/mpeg', 'mov'=>'video/quicktime', 'avi'=>'video/x-msvideo',
                  'rtf'=>'application/rtf', 'pdf'=>'application/pdf', 'zip'=>'application/zip', 'hqx'=>'application/mac-binhex40',
                  'sit'=>'application/x-stuffit', 'exe'=>'application/octet-stream', 'ppz'=>'application/mspowerpoint',
@@ -355,8 +331,26 @@ function get_current_page($clean=false){
 	        $page = substr( $page, 0, strpos($page,'?'));
 
 	$page = (trim($page)=='' || strpos($page,'lib_ajax.php')!==false )?$_SERVER['HTTP_REFERER']:trim($page); // for ajax
-	return $page;
+	return htmlspecialchars($page);
 
+}
+
+
+
+### check for post custom fields in string
+function check_post_vars($fv){
+    preg_match_all('/\\{([^\\{]+)\\}/',$fv,$fall);
+
+    if ( count($fall[1]) > 0 ) {
+
+    	$custArr = get_post_custom( get_the_ID() );
+        foreach ( $fall[1] as $fvar ) {
+            if( $custArr[$fvar][0] <> '')
+                $fv = str_replace('{'.$fvar.'}', $custArr[$fvar][0], $fv);
+        }
+
+    }
+	return $fv;
 }
 
 
@@ -364,6 +358,8 @@ function get_current_page($clean=false){
 ### look for default/system variables
 function check_default_vars($m,$no) {
 		global $subID, $Ajaxpid, $AjaxURL, $post, $wpdb, $wp_db_version, $cformsSettings;
+
+	    $eol = ($cformsSettings['global']['cforms_crlf'][b]!=1)?"\r\n":"\n";
 
 		if ( $_POST['comment_post_ID'.$no] )
 			$pid = $_POST['comment_post_ID'.$no];
@@ -413,7 +409,12 @@ function check_default_vars($m,$no) {
 		$m 	= str_replace( '{Title}',		$find->post_title, $m );
 		$m 	= str_replace( '{Excerpt}',		$find->post_excerpt, $m );
 
-		$m 	= preg_replace( "/\r\n\./", "\r\n", $m );
+		$m 	= preg_replace( "/\r\n\./", "\n", $m );
+
+		### normalize
+		$m 	= str_replace( "\r\n", "\n", $m );
+		$m 	= str_replace( "\r", "\n", $m );
+		$m 	= str_replace( "\n", $eol, $m );
 
 		if  ( $cformsSettings['global']['cforms_database'] && $subID<>'' )
 			$m 	= str_replace( '{ID}', $subID, $m );
@@ -433,7 +434,7 @@ function check_cust_vars($m,$t,$no) {
 
 		foreach ( $findall[1] as $fvar ) {
 
-			$fTrackedVar = $fvar;
+			$fTrackedVar = addslashes($fvar);
 
 			### convert _fieldXYZ to actual label name tracked...
 			if ( strpos($fvar,'_field')!==false ){

@@ -19,14 +19,15 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 10.4.1
+Version: 10.5
 Author URI: http://www.deliciousdays.com
 
 
 
 */
 
-$localversion = '10.4.1';
+global $localversion;
+$localversion = '10.5';
 
 ### debug messages
 $cfdebug = false;
@@ -52,6 +53,7 @@ add_action('admin_notices', create_function('', 'global $plugindir, $cformsSetti
 
 ### activate cforms
 function cforms_activate() {
+	global $localversion;
 	cforms_init();
 	require_once(dirname(__FILE__) . '/lib_activate.php');
 }
@@ -82,6 +84,7 @@ function cforms_scripts_corrupted(){
 
 
 ### load add'l files
+require_once (dirname(__FILE__) . '/lib_email.php');
 require_once (dirname(__FILE__) . '/lib_aux.php');
 require_once (dirname(__FILE__) . '/lib_editor.php');
 
@@ -108,7 +111,7 @@ function start_cforms_session() {
 ###
 function cforms($args = '',$no = '') {
 
-	global $smtpsettings, $styles, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $cformsSettings;
+	global $smtpsettings, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $cformsSettings;
 
 	parse_str($args, $r);
 
@@ -310,8 +313,8 @@ function cforms($args = '',$no = '') {
 
 	### redirect == 2 : hide form?    || or if max entries reached! w/ SESSION support if#2
 	if (  $all_valid && (
-    		( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==2 && isset($_REQUEST['sendbutton'.$no]) ) ||
-    	  	( $cformsSettings['form'.$oldcurrent]['cforms'.$oldcurrent.'_redirect']==2 && isset($_REQUEST['sendbutton'.$oldcurrent]) )
+    		( $cformsSettings['form'.$no]['cforms'.$no.'_hide'] && isset($_REQUEST['sendbutton'.$no]) ) ||
+    	  	( $cformsSettings['form'.$oldcurrent]['cforms'.$oldcurrent.'_hide'] && isset($_REQUEST['sendbutton'.$oldcurrent]) )
           				)
        )
 		return $content;
@@ -682,6 +685,9 @@ function cforms($args = '',$no = '') {
 			case "friendsemail":
 			case "textfield":
 			case "pwfield":
+
+				$field_value = check_post_vars($field_value);
+
 				$type = ($field_type=='pwfield')?'password':'text';
 				$field_class = ($field_type=='datepicker')?$field_class.' cf_date':$field_class;
 
@@ -696,15 +702,7 @@ function cforms($args = '',$no = '') {
 
 			case "hidden":
 
-				preg_match_all('/\\{([^\\{]+)\\}/',$field_value,$findall);
-				if ( count($findall[1]) > 0 ) {
-				$allfields = get_post_custom( get_the_ID() );
-
-					foreach ( $findall[1] as $fvar ) {
-						if( $allfields[$fvar][0] <> '')
-							$field_value = str_replace('{'.$fvar.'}', $allfields[$fvar][0], $field_value);
-					}
-				}
+				$field_value = check_post_vars($field_value);
 
                 if ( preg_match('/^<([a-zA-Z0-9]+)>$/',$field_value,$getkey) )
                     $field_value = $_GET[$getkey[1]];
@@ -870,7 +868,7 @@ function cforms($args = '',$no = '') {
 
 						### email-to-box valid entry?
 				    if ( $field_type == 'emailtobox' && $opt[1]<>'-' )
-								$jj = $j++; else $jj = '-';
+								$jj = $j++; else $jj = '--';
 
 				    $checked = '';
 
@@ -1019,7 +1017,7 @@ function cforms($args = '',$no = '') {
 	$usermessage_text	= check_default_vars($usermessage_text,$no);
 	$usermessage_text	= check_cust_vars($usermessage_text,$track,$no);
 
-	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_redirect']==2))
+	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
 		$content .= $tt . '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>' . $nl;
 
 	### flush debug messages
@@ -1389,8 +1387,8 @@ function cf_check_plugin_version($plugin)
 
 			if( (version_compare(strval($theVersion), strval($version), '>') == 1) )
 			{
-				$msg = __("Latest version available:", "sforum").' <strong>'.$theVersion.'</strong> - '.$theMessage;
-				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px;">'.$msg.'</td>';
+				$msg = __("Latest version available:", "cforms").'<strong>'.$theVersion.'</strong> - '.$theMessage;
+				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(more info)", "cforms").'</a>.</div><div id="cf-update-msg" style="display:none; padding:10px;" >'.$msg.'</div></td>';
 			} else {
 				return;
 			}

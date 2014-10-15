@@ -111,7 +111,8 @@ if( isset($_REQUEST['Submit1']) || isset($_REQUEST['Submit2']) || isset($_REQUES
 	$cformsSettings['global']['cforms_commentInMod'] =	$_REQUEST['cforms_commentInMod'];
 	$cformsSettings['global']['cforms_avatar'] =	   	$_REQUEST['cforms_avatar'];
 
-	$cformsSettings['global']['cforms_crlf'] =	   	$_REQUEST['cforms_crlf']?'1':'0';
+	$cformsSettings['global']['cforms_crlf']['h'] =	   	$_REQUEST['cforms_crlfH']?'1':'0';
+	$cformsSettings['global']['cforms_crlf']['b'] =	   	$_REQUEST['cforms_crlf']?'1':'0';
 
 	$smtpsettings[0] = $_REQUEST['cforms_smtp_onoff']?'1':'0';
 	$smtpsettings[1] = $_REQUEST['cforms_smtp_host'];
@@ -414,7 +415,11 @@ abspath_check();
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><strong><?php _e('Separate lines in email body with LF only (CR suppressed)', 'cforms') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlfH" name="cforms_crlfH" <?php if($cformsSettings['global']['cforms_crlf']['h']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlfH"><?php echo sprintf(__('Separate lines in email %sheader%s with LF only (CR suppressed)', 'cforms'),'<strong>','</strong>') ?></label></td>
+				</tr>
+				<tr class="ob">
+					<td class="obL">&nbsp;</td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php echo sprintf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms'),'<strong>','</strong>') ?></label></td>
 				</tr>
 				<tr class="obSEP"><td colspan="2"></td></tr>
 				</table>

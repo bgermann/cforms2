@@ -1001,8 +1001,17 @@ font-weight:700;
 text-align:right;
 }
 
+.wrap table.hf td.apiH {
+font-size:13px;
+background:#d0f0ec;
+}
+
 .wrap table.hf td.bright {
 background:#DFE8FF;
+}
+
+.wrap table.hf td span.abbr {
+font-weight:bold;
 }
 
 .wrap table.hf td.ball {

@@ -9,6 +9,7 @@ $cformsSettings['global']['cforms_root'] = get_cf_plugindir() . $cformsSettings[
 $cformsSettings['global']['tinyURI'] = get_option('siteurl') . '/wp-includes/js/tinymce';
 $cformsSettings['global']['cforms_root_dir'] = dirname(__FILE__);
 $cformsSettings['global']['cforms_IIS'] = strpos(dirname(__FILE__), '\\') !==false ? '\\' : '/';
+$cformsSettings['global']['v'] = $localversion;
 
 ### Common HTML message information
 $cformsSettings['global']['cforms_style_title'] = 'font:normal 0.8em Verdana; text-align:right; color:#777; margin:3px 0';
@@ -40,7 +41,7 @@ setINI('form','cforms_count_fields', '5');
 setINI('form','cforms_count_field_1', __('My Fieldset', 'cforms').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0');
 setINI('form','cforms_count_field_2', __('Your Name|Your Name', 'cforms').'$#$textfield$#$1$#$0$#$1$#$0$#$0');
 setINI('form','cforms_count_field_3', __('Email', 'cforms').'$#$textfield$#$1$#$1$#$0$#$0$#$0');
-setINI('form','cforms_count_field_4', __('Website', 'cforms').'|http://$#$textfield$#$0$#$0$#$0$#$0$#$0');
+setINI('form','cforms_count_field_4', __('Website', 'cforms').'|http:###$#$textfield$#$0$#$0$#$0$#$0$#$0');
 setINI('form','cforms_count_field_5', __('Message', 'cforms').'$#$textarea$#$0$#$0$#$0$#$0$#$0');
 
 setINI('form','cforms_required', __('(required)', 'cforms'));
@@ -74,10 +75,12 @@ setINI('form','cforms_working', __('One moment please...', 'cforms'));
 setINI('form','cforms_popup', 'nn');
 setINI('form','cforms_showpos', 'ynyyy');
 
-setINI('form','cforms_redirect', '0');
-setINI('form','cforms_redirect_page', __('http://redirect.to.this.page', 'cforms'));
+setINI('form','cforms_hide', false);
+setINI('form','cforms_redirect', false);
+setINI('form','cforms_redirect_page', __('http:###redirect.to.this.page', 'cforms'));
+
 setINI('form','cforms_action', '0');
-setINI('form','cforms_action_page', 'http://');
+setINI('form','cforms_action_page', 'http:###');
 
 setINI('form','cforms_tracking', '');
 setINI('form','cforms_showdashboard', '1');
@@ -157,9 +160,9 @@ else
     add_option('cforms_settings',$cformsSettings);
 
 
-// updates existing tracking db
+### updates existing tracking db
 if ( $wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata ) {
-    // fetch table column structure from the database
+    ### fetch table column structure from the database
     $tablefields = $wpdb->get_results("DESCRIBE {$wpdb->cformsdata};");
 
     $afield = array();

@@ -33,23 +33,19 @@ $border_g		= hexdec(substr($border,2,2));
 $border_b		= hexdec(substr($border,4,2));
 
 $char_padding	= 2;
+$output_type	= 'png';
 
-# $output_type='jpeg';
-$output_type='png';
-
-//
-// dont't change anything below this comment
-//
-$no     = prep($_REQUEST['ts'],'');
+$no 			= prep($_REQUEST['ts'],'');
 
 ### captcha random code
 $srclen = strlen($src)-1;
 $length = mt_rand($min,$max);
+
 $turing = '';
 for($i=0; $i<$length; $i++)
 	$turing .= substr($src, mt_rand(0, $srclen), 1);
 
-$tu 	= ($_REQUEST['i']=='i')?strtolower($turing):$turing;
+$tu = ($_REQUEST['i']=='i')?strtolower($turing):$turing;
 
 setcookie('turing_string_'.$no, $_REQUEST['i'].'+'.md5($tu),(time()+60*60*5),"/");
 
@@ -59,7 +55,7 @@ if ($fontUsed == 1 ) {
 	}
 	else $font = $font_url;
 
-/* initialize variables */
+### initialize variables
 
 $length = strlen($turing);
 $data = array();
@@ -67,10 +63,9 @@ $image_width = $image_height = 0;
 
 $codelen = 0;
 
-/* build the data array of the characters, size, placement, etc. */
+### build the data array of the characters, size, placement, etc.
 
 for($i=0; $i<$length; $i++) {
-
   $char = substr($turing, $i, 1);
 
   $size = mt_rand($min_font_size, $max_font_size);
@@ -85,41 +80,30 @@ for($i=0; $i<$length; $i++) {
 
   $image_width += $char_width + $char_padding;
   $image_height = max($image_height, $char_height);
-
-  $data[] = array(
-    'char'    => $char,
-    'size'    => $size,
-    'angle'    => $angle,
-    'height'  => $char_height,
-    'width'    => $char_width,
-  );
+  $data[] = array('char'=>$char,'size'=>$size,'angle'=>$angle,'height'=>$char_height,'width'=>$char_width);
 }
 
-/* calculate the final image size, adding some padding */
+### calculate the final image size, adding some padding
 
 $x_padding = 12;
-
-if ( $img_sz_type == 1 )
-	{
+if ( $img_sz_type == 1 ) {
 	$image_width += ($x_padding * 2);
 	$image_height = ($image_height * 1.5) + 2;
-	}
-   else {
+} else {
 	$image_width = $img_sz_width;
 	$image_height = $img_sz_height;
-	}
+}
 
-/* build the image, and allocte the colors */
+### build the image, and allocte the colors
 
 $im = ImageCreate($image_width, $image_height);
 $cs = mt_rand(1,3);
 
 $d1 = $d2 = $d3 = 0;
-while ( ($d1<50) AND ($d2<50) AND ($d3<50) )
-	{
+while ( ($d1<50) AND ($d2<50) AND ($d3<50) ) {
 	$r = mt_rand(200,255);	$g = mt_rand(200,255);	$b = mt_rand(200,255);
 	$d1 = abs($r-$g);	$d2 = abs($r-$b);	$d3 = abs($g-$b);
-	}
+}
 
 $color_bg       = ImageColorAllocate($im, $r, $g, $b );
 $color_border   = ImageColorAllocate($im, $border_r, $border_g, $border_b);
@@ -132,100 +116,47 @@ $d1 = mt_rand(0,50); $d2 = mt_rand(0,50); $d3 = mt_rand(0,50);
 $color_line1  = ImageColorAllocate($im, $r-$d1, $g-$d2, $b-$d3 );
 
 $d1 = $d2 = $d3 = 0;
-while ( ($d1<100) AND ($d2<100) AND ($d3<100) )
-	{
+while ( ($d1<100) AND ($d2<100) AND ($d3<100) ) {
 	$r = mt_rand(0,150); $g = mt_rand(0,150); $b = mt_rand(0,150);
 	$d1 = abs($r-$g); $d2 = abs($r-$b); $d3 = abs($g-$b);
-	}
+}
 
-switch ( $col_txt_type )
-	{
+switch ( $col_txt_type ) {
 	case 1 : $col_txt    = ImageColorAllocate($im, $r, $g, $b ); break;
 	case 2 : $col_txt    = ImageColorAllocate($im, 0, 0, 0 ); break;
 	case 3 : $col_txt    = ImageColorAllocate($im, 255, 255, 255 );	break;
 	case 4 : $col_txt    = ImageColorAllocate($im, $col_txt_r, $col_txt_g, $col_txt_b ); break;
-	}
+}
 
 $noiset = mt_rand(1,2);
 
-if ( $im_bg == 1 )
-	{
-		switch ($noiset) {
-			case '1' :
-					/* make the random background elipses */
-				for($l=0; $l<10; $l++) {
+$image_data=getimagesize($im_bg_url);
+$image_type=$image_data[2];
 
-			  		$c = 'color_elipse' . ($l%2);
+if($image_type==1)      $img_src=imagecreatefromgif($im_bg_url);
+elseif($image_type==2)  $img_src=imagecreatefromjpeg($im_bg_url);
+elseif($image_type==3)  $img_src=imagecreatefrompng($im_bg_url);
 
-					$cx = mt_rand(0, $image_width);
-			  		$cy = mt_rand(0, $image_width);
-			  		$rx = mt_rand(10, $image_width);
-			  		$ry = mt_rand(10, $image_width);
-
-					ImageFilledEllipse($im, $cx, $cy, $rx, $ry, $$c );
-			  		}; break;
-			case '2' :
-					for($l=0; $l<10; $l++) {
-
-							$c = 'color_line' . ($l%2);
-
-					 	  	$lx = mt_rand(0, $image_width+$image_height);
-					  		$lw = mt_rand(0,3);
-					  		if ($lx > $image_width) {
-					    		  $lx -= $image_width;
-					    		  ImageFilledRectangle($im, 0, $lx, $image_width-1, $lx+$lw, $$c );
-					  		   } else ImageFilledRectangle($im, $lx, 0, $lx+$lw, $image_height-1, $$c );
-			  		}; break;
-			}
-}
-
-if ( $im_bg == 0 ){
-	  	$image_data=getimagesize($im_bg_url);
-	  	$image_type=$image_data[2];
-
-	  	if($image_type==1) 		$img_src=imagecreatefromgif($im_bg_url);
-	  	elseif($image_type==2)	$img_src=imagecreatefromjpeg($im_bg_url);
-	  	elseif($image_type==3)	$img_src=imagecreatefrompng($im_bg_url);
-
-		if ( $im_bg_type == 1 ) {
-		  imagesettile($im,$img_src);
-//		  imagefill($im,0,0,IMG_COLOR_TILED);
-	      imageFilledRectangle ($im, 0, 0, $image_width, $image_height, IMG_COLOR_TILED);
-		}
-		else imagecopyresampled($im,$img_src,0,0,0,0,$image_width,$image_height,$image_data[0],$image_data[1]);
-
-}
+if ( $im_bg_type == 1 ) {
+	imagesettile($im,$img_src);
+	imageFilledRectangle ($im, 0, 0, $image_width, $image_height, IMG_COLOR_TILED);
+} else
+	imagecopyresampled($im,$img_src,0,0,0,0,$image_width,$image_height,$image_data[0],$image_data[1]);
 
 $pos_x = ($image_width - $codelen) / 2;
 foreach($data as $d) {
-
 	$pos_y = ( ( $image_height + $d['height'] ) / 2 );
 	ImageTTFText($im, $d['size'], $d['angle'], $pos_x, $pos_y, $col_txt, $font, $d['char'] );
-
 	$pos_x += $d['width'] + $char_padding;
-
 }
 
-/* a nice border */
+### a nice border
 ImageRectangle($im, 0, 0, $image_width-1, $image_height-1, $color_border);
-
-	/* display it */
-	switch ($output_type) {
-			 case 'jpeg':
-//					  Header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-//					  Header('Cache-Control: no-cache, must-revalidate');
-					  Header('Content-type: image/jpeg');
-					  ImageJPEG($im,NULL,100);
-					  break;
-
-			 case 'png':
-			 default:
-//					  Header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-//					  Header('Cache-Control: no-cache, must-revalidate');
-					  Header('Content-type: image/png');
-					  ImagePNG($im);
-					  break;
-	 }
+switch ($output_type) {
+	case 'jpeg': Header('Content-type: image/jpeg'); ImageJPEG($im,NULL,100); break;
+	case 'png':
+    default:	Header('Content-type: image/png'); ImagePNG($im); break;
+}
 
 ImageDestroy($im);
 
@@ -233,5 +164,4 @@ ImageDestroy($im);
 function prep($v,$d) {
 	return ($v<>'') ? stripslashes($v) : $d;
 }
-
 ?>

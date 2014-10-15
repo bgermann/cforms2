@@ -916,52 +916,73 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 	    <p class="cflegend" id="hook"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b21" class="blindminus" onfocus="this.blur()" onclick="toggleui(21);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">5.</span><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms'); ?></p>
 
 		<div id="o21">
-
-			<p><?php _e('cforms currently supports one API call to retrieve stored form data from the cforms database tables.', 'cforms'); ?></p>
+			<br/ >
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="bright" colspan="2"><span class="abbr" title="<?php _e('API Function', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span></td>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: get_cforms_entries()', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span> &nbsp;&nbsp;&nbsp; <strong>get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;,$sortdir&nbsp;)</strong></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">&nbsp;get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;)&nbsp;</code></strong></td>
-					<td class="bright"><?php _e('This function will return a set of stored form submissions in a multi-dimensional array.', 'cforms'); ?></td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function allows to conveniently retrieve submitted data from the cforms tracking tables.', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$fname</code></strong></td>
-					<td class="bright"><?php _e('text string (regexp pattern) :: e.g. the form name', 'cforms'); ?></td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Parameters', 'cforms'); ?>:</span></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$from, $to</code></strong></td>
-					<td class="bright"><?php _e('DATETIME string (format: Y-m-d H:i:s) :: date &amp; time defining the target period, e.g.', 'cforms'); ?><strong style="color:red;"> 2008-09-17 15:00:00</strong></td>
+					<td class="bleft"><strong><code class="codehighlight">$fname&nbsp;::&nbsp;<?php _e('[text]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('text string (regexp pattern), e.g. the form name', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$sort</code></strong></td>
-					<td class="bright"><?php _e('text ::', 'cforms'); ?> <strong style="color:red;">form_id</strong>, <strong style="color:red;">id</strong>, <strong style="color:red;">sub_date</strong>, <strong style="color:red;">ip</strong> <?php _e('or', 'cforms'); ?> <strong style="color:red;">email</strong></td>
+					<td class="bleft"><strong><code class="codehighlight">$from,&nbsp;$to&nbsp;::&nbsp;<?php _e('[date]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('DATETIME string (format: Y-m-d H:i:s). Date &amp; time defining the target period, e.g.', 'cforms'); ?><strong style="color:red;"> 2008-09-17 15:00:00</strong></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$limit</code></strong></td>
-					<td class="bright"><?php _e('number :: limits the number of results, \'\' (empty) = no limits!', 'cforms'); ?></td>
+					<td class="bleft"><strong><code class="codehighlight">$sort&nbsp;::&nbsp;<?php _e('[text]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><strong style="color:red;">'form'</strong>, <strong style="color:red;">'id'</strong>, <strong style="color:red;">'date'</strong>, <strong style="color:red;">'ip'</strong> <?php _e('or', 'cforms'); ?> <strong style="color:red;">'email'</strong><?php _e(' or any other form input field, e.g. \'Your Name\'', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<strong><?php _e('Examples', 'cforms'); ?></strong>
-					</td>
+					<td class="bleft"><strong><code class="codehighlight">$limit&nbsp;::&nbsp;<?php _e('[number]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('limiting the number of results, \'\' (empty or false) = no limits!', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<code>$array = get_cforms_entries('','','','','')   /* all data, no filters */</code>
-					</td>
+					<td class="bleft"><strong><code class="codehighlight">$sortdir&nbsp;::&nbsp;<?php _e('[text]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><strong style="color:red;">asc</strong>, <strong style="color:red;">desc</strong></td>
+				</tr>
+				<tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms'); ?>:</span></td></tr>
+				<tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored form submissions in a multi-dimensional array.', 'cforms'); ?></td></tr>
+				<tr><td class="ball" colspan="2"><span class="abbr"><?php _e('Examples', 'cforms'); ?></span></td></tr>
+				<tr><td class="ball" colspan="2"><code>$array = get_cforms_entries();   /* all data, no filters */</code></td></tr>
+				<tr><td class="ball" colspan="2"><code>$array = get_cforms_entries('contact',false,false,'date',5,'desc');   /* last 5 submissions of "my contact form", order by date */</code></td></tr>
+				<tr><td class="ball" colspan="2"><code>$array = get_cforms_entries(false,date ("Y-m-d H:i:s", time()-(3600*2)));   /* all submissions in the last 2 hours */</code></td></tr>
+				<tr><td class="ball" colspan="2">
+                <span class="abbr"><?php _e('Example: Table Output', 'cforms'); ?></span><br /><br />
+                <pre style="font-size: 11px; background:#EAEAEA;">$array = get_cforms_entries();   /* all data, no filters */
+
+echo '&lt;table&gt;';
+echo '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Website&lt;/th&gt;&lt;/tr&gt;';
+foreach( $array as $e ){
+	echo '&lt;tr&gt;&lt;td&gt;' . $e['data']['Your Name'] . '&lt;/td&gt;&lt;td&gt;' . $e['data']['Email'] . '&lt;/td&gt;&lt;td&gt;' . $e['data']['Website'] . '&lt;/td&gt;&lt;tr&gt;';
+}
+echo '&lt;/table&gt;';</pre></td></tr>
+			</table>
+			<br />
+			<table class="hf" cellspacing="2" border="4" width="95%">
+				<tr>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: cf_extra_comment_data()', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span> &nbsp;&nbsp;&nbsp; <strong>cf_extra_comment_data(&nbsp;$commentID&nbsp;)</strong></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<code>$array = get_cforms_entries('contact','','','sub_date',5)   /* last 5 submissions of "my contact form", order by date */</code>
-					</td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function retrieves all extra data submitted (besides the default Author, Email, URL, Message fields) per a given comment context. This function should be called from within the "comment LOOP".', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<code>$array = get_cforms_entries('',date ("Y-m-d H:i:s", time()-(3600*2)),'','','')   /* all submissions in the last 2 hours */</code>
-					</td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Parameters', 'cforms'); ?>:</span></td>
 				</tr>
+				<tr>
+					<td class="bleft"><strong><code class="codehighlight">$commentID&nbsp;::&nbsp;<?php _e('[number]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('The comment ID is expected.', 'cforms'); ?></td>
+				</tr>
+				<tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms'); ?>:</span></td></tr>
+				<tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored comment data in a multi-dimensional array.', 'cforms'); ?></td></tr>
+				<tr><td class="ball" colspan="2"><span class="abbr"><?php _e('Example', 'cforms'); ?></span> <?php echo sprintf(__('(see also the %sonline tutorial%s in the cforms forum)', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/troubleshooting/tutorial-wp-comment-feature-adding-and-using-extra-fields/">','</a>'); ?></td></tr>
+				<tr><td class="ball" colspan="2"><code>$xtra_comment_data = cf_extra_comment_data( get_comment_ID() );   /* all data, no filters */</code></td></tr>
 			</table>
 
 			<p>
@@ -971,7 +992,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="bright" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms'); ?>"><?php _e('Available Functions', 'cforms'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php</strong> file (plugin root directory), including examples)', 'cforms');?></td>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms'); ?>"><?php _e('Available User Functions', 'cforms'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php</strong> file (plugin root directory), including examples)', 'cforms');?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_filter()</code></strong></td>
