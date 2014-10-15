@@ -22,7 +22,7 @@ ff~~~Note|||title:Anything you\'d like to share with us...?$#$textarea$#$0$#$0$#
 ff~~~CC me please$#$ccbox$#$0$#$0$#$0$#$0$#$0
 mx~~~30
 li~~~Sorry, no more seats available at this point.
-rd~~~2
+hd~~~1
 ri~~~(required)
 re~~~(email required)
 tf~~~0

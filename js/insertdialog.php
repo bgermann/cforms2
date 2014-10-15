@@ -3,6 +3,8 @@
 ### supporting WP2.6 wp-load & custom wp-content / plugin dir
 if ( file_exists('../abspath.php') )
 	require_once('../abspath.php');
+else
+	$abspath='../../../../';
 
 require_once($abspath.'wp-blog-header.php');
 
