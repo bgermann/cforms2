@@ -26,6 +26,9 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.5
+*) WP 3.0 compliance
+
 WHAT's NEW in cformsII - v11.4
 *) feature:  added Belarusian (be_BY) by Marcis G.
 *) feature:  NEW CORE OPTION : disables enctype, to support e.g. salesforce.com

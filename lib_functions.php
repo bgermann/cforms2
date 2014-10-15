@@ -232,9 +232,9 @@ function cforms_scripts() {
 	### global settings
 	$request_uri = get_request_uri();
 
-    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.3.2") ) === -1 ){
+    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.4.2") ) === -1 ){
 		wp_deregister_script('jquery');
-	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.3.2');
+	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.4.2');
     	wp_enqueue_script('jquery');
     }
 

@@ -304,7 +304,7 @@ function cf_move_files($no, $subID){
             	move_uploaded_file($tmpfile,$destfile );
       				$file[tmp_name][$i] = $destfile;
 
-              if($subID=='xx')
+              if( strpos($subID,'xx') !== false )
                   $_SESSION['cforms']['upload'][$no][] = $destfile;
 
             }
