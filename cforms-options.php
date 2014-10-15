@@ -809,7 +809,7 @@ abspath_check();
 					<td class="obL" style="padding-top:0"><?php _e('(Footer)','cforms')?></td>
 					<td class="obR" style="padding-top:0"><input class="allchk" type="checkbox" id="cforms_formdata_html" name="cforms_formdata_html" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_html"><?php _e('<strong>Include</strong> user input at the bottom of the admin email', 'cforms') ?></label></td>
 				</tr>
-				<tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it3"><?php _e('\'Don\'t like the default (blue) form data block in your admin email?  &raquo;', 'cforms'); ?></a></td></tr>
+				<tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it3"><?php _e('\'Don\'t like the default form data block in your admin email?  &raquo;', 'cforms'); ?></a></td></tr>
 				<tr id="it3" class="infotxt"><td>&nbsp;</td><td class="ex"><strong><u><?php _e('Note:','cforms')?></u></strong> <?php _e('To avoid sending ALL of the submitted user data (especially for very long forms) to the form admin simply <strong>uncheck</strong> "<em>Include user input ...</em>" and instead specify the fields you\'d like to receive via the use of <strong>custom variables</strong>.', 'cforms'); ?></td></tr>
 				</table>
 			</div>
@@ -1121,10 +1121,10 @@ function insert_cfmodal(){
 			<form enctype="multipart/form-data" action="" name="backupform" method="post">
 				<div class="controls">
 
-	                <input type="submit" id="savecformsdata" name="savecformsdata" class="allbuttons backupbutton"  value="<?php _e('Backup current form settings', 'cforms'); ?>" onclick="javascript:cforms('#cf_backupbox').jqmHide();" /><br />
+	                <input type="submit" id="savecformsdata" name="savecformsdata" class="allbuttons backupbutton"  value="<?php _e('Backup current form settings', 'cforms'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" /><br />
 	                <label for="upload"><?php _e(' or restore previously saved settings:', 'cforms'); ?></label>
 	                <input type="file" id="upload" name="importall" size="25" />
-	                <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms'); ?>" onclick="javascript:cforms('#cf_backupbox').jqmHide();" />
+	                <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
 
                     <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
 

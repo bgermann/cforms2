@@ -50,7 +50,7 @@ abspath_check();
 	?>
 
 <script type="text/javascript">
-cforms("#flex1").flexigrid ( {
+jQuery("#flex1").flexigrid ( {
 	url: '<?php echo $cforms_root.'/js/include/lib_database_overview.php'; ?>',
 	dataType: 'xml',
 	colModel : [
@@ -62,8 +62,8 @@ cforms("#flex1").flexigrid ( {
 		],
 	buttons : [
 		{name: '<?php _e('View records','cforms'); ?>', bclass: 'add', onpress : cf_tracking_view},
-		{name: '<?php _e('Delete records','cforms'); ?>', bclass: 'delete', onpress : function (){cforms('#cf_delete_dialog').jqmShow();} },
-		{name: '<?php _e('Download records','cforms'); ?>', bclass: 'dl', onpress : function (){cforms('#cf_dl_dialog').jqmShow();}},
+		{name: '<?php _e('Delete records','cforms'); ?>', bclass: 'delete', onpress : function (){jQuery('#cf_delete_dialog').jqmShow();} },
+		{name: '<?php _e('Download records','cforms'); ?>', bclass: 'dl', onpress : function (){jQuery('#cf_dl_dialog').jqmShow();}},
 		{separator: true}
 		],
 	searchitems : [

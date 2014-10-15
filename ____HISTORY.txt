@@ -26,6 +26,16 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.6
+*) added:  addded Form Name to <form> element for easier styling across sites
+*) other:  changed edit / delete icon for better distinction
+*) other:  plugged a potential (but unlikely to be exploited) security hole
+*) other:  changed MySQL calls from direct code to using $wpdb
+*) other:  updated included PHPMailer code to the latest release
+*) bugfix: fixed issue with undefined "file size limit"
+*) bugfix: sorting fixed for API call "get_cforms_entries()"
+*) bugfix: textual changes
+
 WHAT's NEW in cformsII - v11.5
 *) WP 3.0 compliance
 

@@ -627,16 +627,16 @@ if (!isset($SAJAX_INCLUDED)) {
 			###  always modified
 			header ("Cache-Control: no-cache, must-revalidate");  ###  HTTP/1.1
 			header ("Pragma: no-cache");                          ###  HTTP/1.0
-			$func_name = $_GET["rs"];
+			$func_name = sajax_sanitize( $_GET["rs"] );
 			if (! empty($_GET["rsargs"]))
-				$args = $_GET["rsargs"];
+				$args = sajax_sanitize( $_GET["rsargs"] );
 			else
 				$args = array();
 		}
 		else {
-			$func_name = $_POST["rs"];
+			$func_name = sajax_sanitize( $_POST["rs"] );
 			if (! empty($_POST["rsargs"]))
-				$args = $_POST["rsargs"];
+				$args = sajax_sanitize( $_POST["rsargs"] );
 			else
 				$args = array();
 		}
@@ -649,6 +649,14 @@ if (!isset($SAJAX_INCLUDED)) {
 			echo "var res = " . trim(sajax_get_js_repr($result)) . "; res;";
 		}
 		exit;
+	}
+
+	### sanitize
+	function sajax_sanitize($t) {
+		$t = preg_replace('/\s/', '', $t);
+		$t = str_replace('<php', '', $t);
+		$t = str_replace('<?', '', $t);
+		return $t;
 	}
 
 	###  javascript escape a value

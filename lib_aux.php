@@ -595,12 +595,14 @@ add_action('template_redirect', array('cformsRSS', 'outputRSS'));
 
 ### API function #1 : get tracked entries
 global $cfdata, $cfsort, $cfsortdir;
-$cfdata = array();
+
 function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=false,$sd='asc') {
 	global $wpdb, $cformsSettings, $cfdata, $cfsort, $cfsortdir;
 
-    unset($cfdata);
+	if( $s=='date' )
+		$s = 'timestamp';
 
+	$cfdata = array();
     $cfsort=$s;
     $cfsortdir=$sd;
 
@@ -623,7 +625,7 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     $limit = ($limit && $limit<>'')?'LIMIT 0,'.$limit:'';
 
     $in = '';
-    $sql = "SELECT * FROM {$wpdb->cformssubmissions} $where $limit";
+    $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $limit";
 	$all = $wpdb->get_results($sql);
 
 	foreach ( $all as $d ){
@@ -632,6 +634,7 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     	$cfdata[$d->id]['id'] = $d->id;
     	$cfdata[$d->id]['form'] = $fnames[$n];
     	$cfdata[$d->id]['date'] = $d->sub_date;
+    	$cfdata[$d->id]['timestamp'] = $d->rawdate;
     	$cfdata[$d->id]['email'] = $d->email;
     	$cfdata[$d->id]['ip'] = $d->ip;
 	}
@@ -670,33 +673,38 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 
 function cf_sort( $a,$b ){
 	global $cfdata, $cfsort, $cfsortdir;
+
+
 	if (!is_array($a) && !is_array($b)){
 
     	if( $cfdata[$a][$cfsort]<>'' && $cfdata[$b][$cfsort]<>'' ){
-	        $a = $cfdata[$a][$cfsort];
-	        $b = $cfdata[$b][$cfsort];
+	        $na = $cfdata[$a][$cfsort];
+	        $nb = $cfdata[$b][$cfsort];
 		}else if ( $cfdata[$a]['data'][$cfsort]<>'' && $cfdata[$b]['data'][$cfsort]<>'' ){
-	        $a = $cfdata[$a]['data'][$cfsort];
-	        $b = $cfdata[$b]['data'][$cfsort];
+	        $na = $cfdata[$a]['data'][$cfsort];
+	        $nb = $cfdata[$b]['data'][$cfsort];
         }
         else
         	return 0;
 
 	}
 
-    $tmp=(int)$a;
-
-    if ( is_int($tmp) && $tmp=trim($a) ){
-	    if ( stristr($cfsortdir,'asc')===false )
-	        return ($b > $a);
-	    else
-	        return ($a < $b);
+    $tmpA=(int)trim($na);
+    $tmpB=(int)trim($nb);
+    if ( is_numeric($na) && is_numeric($nb) ){
+	    if ( stristr($cfsortdir,'asc')===false ){
+	        return ($tmpB > $tmpA)?-1:1;
+	    } else {
+	        return ($tmpA < $tmpB)?-1:1;
+		}
     } else {
-	    if ( stristr($cfsortdir,'asc')===false )
-	        return strcasecmp($b, $a);
-	    else
-	        return strcasecmp($a, $b);
-    }
+	    if ( stristr($cfsortdir,'asc')===false ){
+	        return strcasecmp($nb, $na);
+	    }else{
+//	    	echo "$nb < $na = ".strcasecmp($nb, $na)."<br/>";
+	        return strcasecmp($na, $nb);
+    	}
+	}
 }
 
 

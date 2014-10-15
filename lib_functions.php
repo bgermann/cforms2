@@ -272,7 +272,7 @@ function cforms_options_page_style() {
          'Date.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
          'Date.firstDayOfWeek = 0;'."\n".
          'Date.fullYearStart = "20";'."\n".
-         'cforms.dpText = { TEXT_PREV_YEAR:"'.stripslashes($nav[0]).'",'. ### Previous year
+         'jQuery.dpText = { TEXT_PREV_YEAR:"'.stripslashes($nav[0]).'",'. ### Previous year
          'TEXT_PREV_MONTH:"'.stripslashes($nav[1]).'",'.
          'TEXT_NEXT_YEAR:"'.stripslashes($nav[2]).'",'.
          'TEXT_NEXT_MONTH:"'.stripslashes($nav[3]).'",'.
@@ -280,37 +280,37 @@ function cforms_options_page_style() {
          'TEXT_CHOOSE_DATE:"'.stripslashes($nav[5]).'",'.
          'ROOT:"'.$cformsSettings['global']['cforms_root'].'"};'."\n\n";
 ?>
-cforms(function() {
+jQuery(function() {
 
-if( cforms(".cf_timebutt1").length>0 && cforms(".cf_timebutt2").length>0 ){
-    cforms(".cf_timebutt1").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
-    cforms(".cf_timebutt2").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
+if( jQuery(".cf_timebutt1").length>0 && jQuery(".cf_timebutt2").length>0 ){
+    jQuery(".cf_timebutt1").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
+    jQuery(".cf_timebutt2").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
 }
 
-if( cforms(".cf_date").length>0 ){
+if( jQuery(".cf_date").length>0 ){
 
     Date.format = "dd/mm/yyyy";
-    cforms(".cf_date").datePicker( );
+    jQuery(".cf_date").datePicker( );
 
-    cforms('#cforms_startdate').bind(
+    jQuery('#cforms_startdate').bind(
         'dpClosed',
         function(e, selectedDates)
         {
             var d = selectedDates[0];
             if (d) {
                 d = new Date(d);
-                cforms('#cforms_enddate').dpSetStartDate(d.asString());
+                jQuery('#cforms_enddate').dpSetStartDate(d.asString());
             }
         }
     );
-    cforms('#cforms_enddate').bind(
+    jQuery('#cforms_enddate').bind(
         'dpClosed',
         function(e, selectedDates)
         {
             var d = selectedDates[0];
             if (d) {
                 d = new Date(d);
-                cforms('#cforms_startdate').dpSetEndDate(d.asString());
+                jQuery('#cforms_startdate').dpSetEndDate(d.asString());
             }
         }
     );

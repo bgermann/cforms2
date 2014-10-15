@@ -251,10 +251,11 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
               if ( !( $file['size'][$i] > 0 ) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err2'];
 
-              ### A non-empty file will pass this test.
-              if ( $file['size'][$i] >= (int)$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] * 1024 )
-                      $fileerr = $cformsSettings['global']['cforms_upload_err3'];
-
+				### A non-empty file will pass this test.
+				if ( (int)$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] > 0 ) {
+	            	if ( $file['size'][$i] >= (int)$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] * 1024 )
+						$fileerr = $cformsSettings['global']['cforms_upload_err3'];
+				}
 
               ### A properly uploaded file will pass this test. There should be no reason to override this one.
               if (! @ is_uploaded_file( $file['tmp_name'][$i] ) )

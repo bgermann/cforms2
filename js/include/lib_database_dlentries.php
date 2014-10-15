@@ -134,12 +134,19 @@ if ($sub_ids<>'') {
 function getCSVTAB($format='csv'){
 	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset;
 
+     $results = $wpdb->get_results(
+             "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC",
+             "ARRAY_A"
+     );
+
+	/*
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
 	@mysql_select_db(DB_NAME) or die( "Unable to select database");
 
  	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
 	$r = mysql_query($sql);
-
+	*/
+	
 	$br="\n";
 	$buffer=array();
 	$body='';
@@ -152,7 +159,9 @@ function getCSVTAB($format='csv'){
 
     $last_n = '';
 
-   while( $entry = mysql_fetch_array($r) ){
+	foreach( $results as $key => $entry ) {
+
+	### while( $entry = mysql_fetch_array($r) ){
 
 		if ( $entry[field_name]=='page' || strpos($entry[field_name],'Fieldset')!==false )
 			continue;
@@ -207,7 +216,7 @@ function getCSVTAB($format='csv'){
         $head .= ($_GET['header']=='true')?'"'.encData(stripslashes($entry[field_name])).'"' . $format . $urlTab:'';
 		$body .= '"' . str_replace('"','""', encData(stripslashes($entry[field_val]))) . '"' . $format . $url;
 
-	} ### while
+	} ### foreach
 
 
    	### clean up buffer
@@ -224,10 +233,10 @@ function getCSVTAB($format='csv'){
 	else
 	    fwrite($temp, $body . $br);
 
-
+/*
 	mysql_free_result($r);
 	mysql_close();
-
+*/
 	return;
 }
 
@@ -241,14 +250,21 @@ function getXML(){
 	else
 		fwrite($temp, "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<entries>\n");
 
+	$results = $wpdb->get_results(
+	       "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC",
+	       "ARRAY_A"
+	);
+	/*
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
 	@mysql_select_db(DB_NAME) or die( "Unable to select database");
 
  	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
 	$r = mysql_query($sql);
-
+	*/
+	
     $sub_id ='';
-    while( $entry = mysql_fetch_array($r) ){
+    foreach( $results as $key => $entry ) {
+	### while( $entry = mysql_fetch_array($r) ){
 
 	        if ( $entry[field_name]=='page' || strpos($entry[field_name],'Fieldset')!==false )
 	            continue;
@@ -267,9 +283,11 @@ function getXML(){
 
 	} ### while
 
+	/*
 	mysql_free_result($r);
 	mysql_close();
-
+	*/
+	
 	if($sub_id<>'')
 	 fwrite($temp, "</entry>\n</entries>\n");
 
