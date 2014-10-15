@@ -44,7 +44,20 @@
 	### Syntax: LoadArrayFromFile(Handle of a BINARY opened file);
 	function LoadArray($k, $vFile){
 	    $ForRet = array();
+
+/*		### corrupted file fix
+        if (  ftell($vFile)==0  ){
+        	while (  $Wert != "00"  ){
+	            $pos  = ftell($vFile);
+				$Wert = bin2hex( fread($vFile,1) );
+                if( $pos > 10 )
+					wp_die(__('Corrupted File detected. Restore process aborted.', 'cforms'));
+            }
+		    fseek($vFile, $pos+1);
+		}
+*/
 	    $Wert = fread($vFile,2);
+
 	    if ($Wert != "\0{") return;
 	    while (true) {
 	        if (NextMatches($vFile,"\0}")) {

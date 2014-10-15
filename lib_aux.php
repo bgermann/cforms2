@@ -599,6 +599,8 @@ $cfdata = array();
 function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=false,$sd='asc') {
 	global $wpdb, $cformsSettings, $cfdata, $cfsort, $cfsortdir;
 
+    unset($cfdata);
+
     $cfsort=$s;
     $cfsortdir=$sd;
 

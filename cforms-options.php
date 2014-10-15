@@ -470,7 +470,7 @@ abspath_check();
 
 				<tr class="ob">
 					<td class="obL"><label for="cforms_submit_text"><strong><?php _e('Submit button text', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" name="cforms_submit_text" id="cforms_submit_text" value="<?php echo ($cformsSettings['form'.$no]['cforms'.$no.'_submit_text']);  ?>" /></td>
+					<td class="obR"><input type="text" name="cforms_submit_text" id="cforms_submit_text" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text']));  ?>" /></td>
 				</tr>
 
 				<tr class="ob space15">
@@ -987,6 +987,10 @@ abspath_check();
 				</tr>
 
 				<?php if( $isTAF==1 ) : ?>
+				<tr class="ob">
+					<td class="obL">&nbsp;</td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tafCC" name="cforms_tafCC" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_tafCC']=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_tafCC"><strong><?php _e('CC: User submitting the form', 'cforms') ?></strong></label></td>
+				</tr>
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tafdefault" name="cforms_tafdefault" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],1,1)=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_tafdefault"><strong><?php _e('T-A-F enable <strong>new posts/pages</strong> by default', 'cforms') ?></strong></label></td>

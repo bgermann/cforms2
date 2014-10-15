@@ -71,7 +71,7 @@ function cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $messag
 		}
 
 		### TAF: add CC
-		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' && $file=='ac')
+		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' && $file=='ac' && $cformsSettings['form'.$no]['cforms'.$no.'_tafCC']=='1' )
 			$mail->AddCC($temp[0],str_replace('"','',$temp2[1]));
 
 

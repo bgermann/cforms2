@@ -30,24 +30,28 @@ function download_cforms(){
 	        if( $_REQUEST['noSub']<>'1' )
 	            $noDISP = $no = $_REQUEST['noSub'];
 
-	    	$buffer .= SaveArray($cformsSettings['form'.$no]).$br;
+	    	$buffer .= SaveArray($cformsSettings['form'.$no]);
+//	    	$buffer .= SaveArray($cformsSettings['form'.$no]).$br;
 			$filename = 'form-settings.txt';
 		}else{
-	    	$buffer .= SaveArray($cformsSettings).$br;
+	    	$buffer .= SaveArray($cformsSettings);
+//	    	$buffer .= SaveArray($cformsSettings).$br;
 			$filename = 'all-cforms-settings.txt';
 		}
 
-		header("Pragma: public");
-		header("Expires: 0");
-		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-		header("Content-Type: application/force-download");
-		header("Content-Type: application/octet-stream");
-		header("Content-Type: application/download");
-		header("Content-Disposition: attachment; filename=\"$filename\"");
-		header("Content-Transfer-Encoding: binary");
-		header("Content-Length: " .(string)(strlen($buffer)) );
+        ob_end_clean();
+		header('Pragma: public;');
+		header('Expires: 0;');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0;');
+		header('Content-Type: application/force-download;');
+		header('Content-Type: application/octet-stream;');
+		header('Content-Type: application/download;');
+		header('Content-Disposition: attachment; filename="'.$filename.'";');
+		header('Content-Transfer-Encoding: binary;');
+		header('Content-Length: ' .(string)(strlen($buffer)) . ';' );
+        flush();
 		print $buffer;
-		exit();
+		exit(0);
 	}
 }
 

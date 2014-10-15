@@ -410,110 +410,112 @@ function cforms_submitcomment($content) {
 	    if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[$ccme]<>'-') )  ###  not if no email & already CC'ed
 	    {
 
-	        $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	                $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 
-	        ###  actual user message
-	        $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
-	        if ( function_exists('my_cforms_logic') )
-	            $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
-	        $cmsg = check_default_vars($cmsg,$no);
-	        $cmsg = check_cust_vars($cmsg,$track,$no);
+	                ###  actual user message
+	                $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
+	                if ( function_exists('my_cforms_logic') )
+	                    $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
+	                $cmsg = check_default_vars($cmsg,$no);
+	                $cmsg = check_cust_vars($cmsg,$track,$no);
 
-	        ###  HTML text
-	        $cmsghtml='';
-	        if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' ){
-	            $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
-	            if ( function_exists('my_cforms_logic') )
-	                $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
-	            $cmsghtml = check_default_vars($cmsghtml,$no);
-	            $cmsghtml = check_cust_vars($cmsghtml,$track,$no);
-	        }
-
-	        ### subject
-	        $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
-	        $subject2 = check_default_vars($subject2,$no);
-	        $subject2 = check_cust_vars($subject2,$track,$no);
-
-	        ###  different cc & ac subjects?
-	        $s=explode('$#$',$subject2);
-	        $s[1] = ($s[1]<>'') ? $s[1] : $s[0];
-
-	        ###  email tracking via 3rd party?
-	        ###  if in Tell-A-Friend Mode, then overwrite header stuff...
-	        if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
-	            $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
-	        else
-	            $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
-
-	        $mail = new cf_mail($no,$frommail,$field_email,$replyto);
-
-            ### auto conf attachment?
-            $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-            $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
-            if ( $a<>'' && file_exists( $a ) ) {
-                $n = substr( $a, strrpos($a,$cformsSettings['global']['cforms_IIS'])+1, strlen($a) );
-                $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
-                $mail->add_file($a, $n,'base64',$m); ### optional name
-            }
-
-	        $mail->char_set = 'utf-8';
-
-	        ### CC or auto conf?
-	        if ( $ccme&&$trackf[$ccme]<>'-' ) {
-	            if ( $smtpsettings[0]=='1' )
-	                $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
-	            else{
-	                $mail->subj = $s[1];
-	                if ( $mail->html_show_ac ) {
-	                    $mail->is_html(true);
-	                    $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
-	                    $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+	                ###  HTML text
+	                $cmsghtml='';
+	                if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' ){
+	                    $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
+	                    if ( function_exists('my_cforms_logic') )
+	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
+	                    $cmsghtml = check_default_vars($cmsghtml,$no);
+	                    $cmsghtml = check_cust_vars($cmsghtml,$track,$no);
 	                }
-	                else
-	                    $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 
-	                $sent = $mail->send();
-	            }
-	        }
-	        else {
-	            if ( $smtpsettings[0]=='1' )
-	                $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[0] , $cmsg , '', $cmsghtml, '', 'ac' );
-	            else{
-	                $mail->subj = $s[0];
-	                if ( $mail->html_show_ac ) {
-	                    $mail->is_html(true);
-	                    $mail->body     =  "<html>".$mail->eol."<body>".$cmsghtml."</body></html>".$mail->eol;
-	                    $mail->body_alt  =  $cmsg;
+	                ### subject
+	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
+	                $subject2 = check_default_vars($subject2,$no);
+	                $subject2 = check_cust_vars($subject2,$track,$no);
+
+	                ###  different cc & ac subjects?
+	                $s=explode('$#$',$subject2);
+	                $s[1] = ($s[1]<>'') ? $s[1] : $s[0];
+
+	                ###  email tracking via 3rd party?
+	                ###  if in Tell-A-Friend Mode, then overwrite header stuff...
+	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
+	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
+	                else
+	                    $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
+
+	                $mail = new cf_mail($no,$frommail,$field_email,$replyto);
+
+	                ### auto conf attachment?
+	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
+	                if ( $a<>'' && file_exists( $a ) ) {
+	                    $n = substr( $a, strrpos($a,$cformsSettings['global']['cforms_IIS'])+1, strlen($a) );
+	                    $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+	                    $mail->add_file($a, $n,'base64',$m); ### optional name
 	                }
-	                else
-	                    $mail->body     =  $cmsg;
 
-	                $sent = $mail->send();
-	            }
-	        }
+	                $mail->char_set = 'utf-8';
 
-            if( $sent<>'1' ) {
-                $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sent:$mail->ErrorInfo;
-                $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-                return $pre . $err .'|!!!';
-		  	}
+	                ### CC or auto conf?
+	                if ( $ccme&&$trackf[$ccme]<>'-' ) {
+	                    if ( $smtpsettings[0]=='1' )
+	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
+	                    else{
+	                        $mail->subj = $s[1];
+	                        if ( $mail->html_show_ac ) {
+	                            $mail->is_html(true);
+	                            $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	                            $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+	                        }
+	                        else
+	                            $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+
+	                        $sent = $mail->send();
+	                    }
+	                }
+	                else {
+	                    if ( $smtpsettings[0]=='1' )
+	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[0] , $cmsg , '', $cmsghtml, '', 'ac' );
+	                    else{
+	                        $mail->subj = $s[0];
+	                        if ( $mail->html_show_ac ) {
+	                            $mail->is_html(true);
+	                            $mail->body     =  "<html>".$mail->eol."<body>".$cmsghtml."</body></html>".$mail->eol;
+	                            $mail->body_alt  =  $cmsg;
+	                        }
+	                        else
+	                            $mail->body     =  $cmsg;
+
+	                        $sent = $mail->send();
+	                    }
+	                }
+
+	                if( $sent<>'1' ) {
+	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sent:$mail->ErrorInfo;
+	                    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
+	                    return $pre . $err .'|!!!';
+	                }
 	    } ###  cc
 
 		###  return success msg
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
 
-		$successMsg	= check_default_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']),$no);
+		###  WP-Comment: override
+		if ( $WPsuccess )
+			$successMsg = $WPresp;
+		else{
+        	$successMsg	= check_default_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']),$no);
+			$successMsg	= str_replace ( $mail->eol, '<br />', $successMsg);
+		}
+
 		$successMsg	= check_cust_vars($successMsg,$track,$no);
-		$successMsg	= str_replace ( $mail->eol, '<br />', $successMsg);
 
 	    ### logic: possibly change usermessage
 	    if ( function_exists('my_cforms_logic') )
 	        $successMsg = my_cforms_logic($trackf, $successMsg,'successMessage');
 
-		###  WP-Comment: override
-		if ($WPsuccess && $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21'){
-			$successMsg = $WPresp;
-        }
 
 		$opt='';
 		###  hide?

@@ -27,6 +27,17 @@
  =====================================================================================
 
 
+WHAT's NEW in cformsII - v11.1
+
+*) bugfix:  SENDBUTTON: fixed support for quotes and single quotes in submit button text
+*) bugfix:  get_cforms_entries: fixed old data issue in $cfdata
+*) bugfix:  MULTI RECIPIENT: fix for non-valid '-' entries
+*) bugfix:  TELL A FRIEND: added option to turn off CC: for submitting user
+*) bugfix:  WP COMMENT FORM: major bugifx for ajax & non-ajax submission
+*) bugfix:  UTF8 tracking page downloads are now properly coded utf8
+*) bugfix:  Javascript for SAFARI optimized (no more time-outs)
+*) bugfix:  MULTI-RECIPIENT documentation on Help! page corrected
+
 WHAT's NEW in cformsII - v11
 
 *) feature: MULTIPLE RECIPIENTS support revamped (supporting multiple email accounts per option)!
