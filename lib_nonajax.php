@@ -102,11 +102,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			else
 				$current_field = 'cf'.$no.'_field_' . $i;
 
-			###  check if fields needs to be cleared
+			###  dissect field
 		    $obj = explode('|', $field_name,3);
 			$defaultval = stripslashes($obj[1]);
-			if ( $_POST[$current_field] == $defaultval && $field_stat[4]=='1')
-				$_POST[$current_field] = '';
 
 			###  strip out default value
 			$field_name = $obj[0];
@@ -227,20 +225,19 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 		}
 
-		### for db tracking
-		$inc='';
-		$trackname = trim( ($field_type == "upload")?$field_name.'[*]':$field_name );
-		if ( array_key_exists($trackname, $track) ){
-			if ( $trackinstance[$trackname]==''  )
-				$trackinstance[$trackname]=2;
-			$inc = '___'.($trackinstance[$trackname]++);
-		}
+		### determine tracked field name
+        $inc='';
+        $trackname = trim( ($field_type == "upload")?$field_name.'[*'.($no==''?1:$no).']':$field_name );
+        if ( array_key_exists($trackname, $track) ){
+            if ( $trackinstance[$trackname]==''  )
+                $trackinstance[$trackname]=2;
+            $inc = '___'.($trackinstance[$trackname]++);
+        }
 
-		$track['$$$'.$i] = $trackname.$inc;
-		$track[$trackname.$inc] = $value;
-		if( $customTrackingID<>'' )
-			$track['$$$'.$customTrackingID] = $trackname.$inc;
-
+        $track['$$$'.$i] = $trackname.$inc;
+        $track[$trackname.$inc] = $value;
+        if( $customTrackingID<>'' )
+            $track['$$$'.$customTrackingID] = $trackname.$inc;
 
 	} ### for all fields
 
@@ -266,8 +263,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
             $inSession = '0';
 		}
 
-    $r = formatEmail($track,$no);
 
+    $r = formatEmail($track,$no);
     $formdata = $r['text'];
     $htmlformdata = $r['html'];
 
@@ -275,7 +272,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	###  FIRST into the database is required!
 	###
-	$subID = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' && !$send2author )?'noid':write_tracking_record($no,$field_email);
+	$subID = ( $isTAF =='2' && !$send2author )?'noid':write_tracking_record($no,$field_email);
 
 
 	###
@@ -287,25 +284,45 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		my_cforms_action($trackf);
 
 
+
 	###
 	### set reply-to & watch out for T-A-F
 	###
 	$replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
 
-	###  multiple recipients? and to whom is the email sent?
-	if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' && $track['send2author']=='1'){
-			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = {$_POST['comment_post_ID']} AND U.ID=P.post_author");
+	###  WP comment form > email to author
+	if ( $isTAF=='2' && $track['send2author']=='1'){
+			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = ".($_POST['comment_post_ID'.$no])." AND U.ID=P.post_author");
 			$to = $replyto =  ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
+    ### multiple recipients? and to whom is the email sent?
 	else if ( $to_one <> "-1" ) {
 			$all_to_email = explode(',', $replyto);
 			$replyto = $to = $all_to_email[ $to_one ];
 	} else
 			$to = $replyto;
 
-	### T-A-F? then overwrite
-	if ( $taf_youremail && $taf_friendsemail && substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' )
+	### T-A-F overwrite
+	if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
 		$replyto = "\"{$taf_yourname}\" <{$taf_youremail}>";
+
+
+
+	###
+	###  Files attached??
+	###
+	if(is_array($file)){
+	    if( $subID<>-1 && $inSession!='0' )
+	        cf_move_files($no, $subID);
+	    else
+	        cf_move_files($no, 'xx');
+	}
+    if( $inSession=='0' && is_array($_SESSION['cforms']['upload']) ){
+    	foreach ( array_keys($_SESSION['cforms']['upload']) as $n )
+	    	foreach ( array_keys($_SESSION['cforms']['upload'][$n]) as $m )
+				if( file_exists($_SESSION['cforms']['upload'][$n][$m]) )
+	                rename($_SESSION['cforms']['upload'][$n][$m],str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n][$m]));
+    }
 
 
 
@@ -313,43 +330,46 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###  ready to send email
 	###  email header
 	###
-	$eol = "\n";
+	$eolH = "\r\n";
+    $eol = ($cformsSettings['global']['cforms_crlf']!=1)?"\r\n":"\n";
 
 	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 	if ( $frommail=='' )
 		$frommail = '"'.get_option('blogname').'" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
 
-	$headers = "From: ". $frommail . $eol;
-	$headers.= "Reply-To: " . $field_email . $eol;
+	$headers = 'From: '. $frommail . $eolH;
+	$headers.= 'Reply-To: ' . $field_email . $eolH;
 
 	if ( ($tempBcc=stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc'])) != "")
-	    $headers.= "Bcc: " . $tempBcc . $eol;
+	    $headers.= 'Bcc: ' . $tempBcc . $eolH;
 
-	$headers.= "MIME-Version: 1.0"  .$eol;
-	$headers.= "Content-Type: multipart/mixed; boundary=\"----MIME_BOUNDRY_main_message\"";
+	$headers.= 'MIME-Version: 1.0'  .$eolH;
+	$headers.= 'Content-Type: multipart/mixed; boundary="----MIME_BOUNDRY_main_message"';
 
 	###  prep message text, replace variables
-	$message	= $cformsSettings['form'.$no]['cforms'.$no.'_header'];
+	$message	= stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header']);
+	if ( function_exists('my_cforms_logic') )
+		$message = my_cforms_logic($trackf, $message,'adminEmailTXT');
 	$message	= check_default_vars($message,$no);
 	$message	= check_cust_vars($message,$track,$no);
 
 	###  text & html message
-	$fmessage = "This is a multi-part message in MIME format."  . $eol;
-	$fmessage .= "------MIME_BOUNDRY_main_message"  . $eol;
+	$fmessage = 'This is a multi-part message in MIME format.'  . $eol;
+	$fmessage .= '------MIME_BOUNDRY_main_message'  . $eol;
 
 
 	###  HTML message part?
 	$html_show = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' )?true:false;
 	$htmlmessage = '';
 
-	if ($html_show) {
-		$fmessage .= "Content-Type: multipart/alternative; boundary=\"----MIME_BOUNDRY_sub_message\"" . $eol . $eol;
-		$fmessage .= "------MIME_BOUNDRY_sub_message"  . $eol;
-		$fmessage .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"" . $eol;
-		$fmessage .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;
-	}
+	if ( $html_show ) {
+		$fmessage .= 'Content-Type: multipart/alternative; boundary="----MIME_BOUNDRY_sub_message"' . $eol . $eol;
+		$fmessage .= '------MIME_BOUNDRY_sub_message'  . $eol;
+		$fmessage .= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed' . $eol;
+		$fmessage .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
+    }
 	else
-		$fmessage .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"" . $eol . $eol;
+		$fmessage .= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed' . $eol . $eol;
 
 	$fmessage .= $message . $eol;
 
@@ -362,19 +382,18 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	if ( $html_show ) {
 
 		###  actual user message
-		$htmlmessage = $cformsSettings['form'.$no]['cforms'.$no.'_header_html'];
+		$htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
+	    if ( function_exists('my_cforms_logic') )
+	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
 		$htmlmessage = check_default_vars($htmlmessage,$no);
-		$htmlmessage = str_replace('=','=3D', stripslashes( check_cust_vars($htmlmessage,$track,$no) ) );
+		$htmlmessage = str_replace('=','=3D', check_cust_vars($htmlmessage,$track,$no) );
 
+		$fmessage .= '------MIME_BOUNDRY_sub_message'  . $eol;
+		$fmessage .= 'Content-Type: text/html; charset="' . get_option('blog_charset') . '"' . $eol;
+		$fmessage .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
 
-		$fmessage .= "------MIME_BOUNDRY_sub_message"  . $eol;
-		$fmessage .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"". $eol;
-		$fmessage .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;;
-
-		$fmessage .= "<!DOCTYPE HTML PUBLIC \"-### W3C### DTD HTML 4.0 Transitional### EN\">"  . $eol;
-
-		$fmessage .= "<HTML>" . $eol;
-		$fmessage .= "<BODY>" . $eol;
+		$fmessage .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'  . $eol;
+		$fmessage .= '<html><body>' . $eol;
 
 		$fmessage .= $htmlmessage;
 
@@ -382,43 +401,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1')
 			$fmessage .= $eol . $htmlformdata;
 
-		$fmessage .= "</BODY></HTML>"  . $eol . $eol;
-	}
+		$fmessage .= '</body></html>'  . $eol . $eol;
 
+		$fmessage .= '------MIME_BOUNDRY_sub_message--'  . $eol;
+
+	}
 	###  end of sub message
-
-	$attached='';
-	###  possibly add attachment
-	if ( isset($_FILES['cf_uploadfile'.$no]) && !$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] ) {
-
-			###  different header for attached files
-	 		###
-	 		$all_mime = array("txt"=>"text/plain", "htm"=>"text/html", "html"=>"text/html", "gif"=>"image/gif", "png"=>"image/x-png",
-	 						 "jpeg"=>"image/jpeg", "jpg"=>"image/jpeg", "tif"=>"image/tiff", "bmp"=>"image/x-ms-bmp", "wav"=>"audio/x-wav",
-	 						 "mpeg"=>"video/mpeg", "mpg"=>"video/mpeg", "mov"=>"video/quicktime", "avi"=>"video/x-msvideo",
-	 						 "rtf"=>"application/rtf", "pdf"=>"application/pdf", "zip"=>"application/zip", "hqx"=>"application/mac-binhex40",
-	 						 "sit"=>"application/x-stuffit", "exe"=>"application/octet-stream", "ppz"=>"application/mspowerpoint",
-							 "ppt"=>"application/vnd.ms-powerpoint", "ppj"=>"application/vnd.ms-project", "xls"=>"application/vnd.ms-excel",
-							 "doc"=>"application/msword");
-
-			if ( $html_show )
-				$fmessage .= "------MIME_BOUNDRY_sub_message--"  . $eol;
-
-			for ( $filefield=0; $filefield < count($_FILES['cf_uploadfile'.$no][name]); $filefield++) {
-
-				if ( $filedata[$filefield] <> '' ){
-					$mime = (!$all_mime[$fileext[$filefield]])?'application/octet-stream':$all_mime[$fileext[$filefield]];
-
-					$attached .= "------MIME_BOUNDRY_main_message" . $eol;
-					$attached .= "Content-Type: $mime;\n\tname=\"" . $file['name'][$filefield] . "\"" . $eol;
-					$attached .= "Content-Transfer-Encoding: base64" . $eol;
-					$attached .= "Content-Disposition: inline;\n\tfilename=\"" . $file['name'][$filefield] . "\"\n" . $eol;
-					$attached .= $eol . $filedata[$filefield]; 	### The base64 encoded message
-				}
-
-			}
-
-	}
 
 
 	###
@@ -427,21 +415,72 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	### either use configured subject or user determined
 	### now replace the left over {xyz} variables with the input data
-	$vsubject = $cformsSettings['form'.$no]['cforms'.$no.'_subject'];
+	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
 	$vsubject = check_default_vars($vsubject,$no);
-	$vsubject = stripslashes( check_cust_vars($vsubject,$track,$no) );
+	$vsubject = check_cust_vars($vsubject,$track,$no);
 
     ### logic: dynamic admin email address
     if ( function_exists('my_cforms_logic') )
         $to = my_cforms_logic($trackf, $to,'adminTO');  ### use trackf!
 
-	###  SMTP server or native PHP mail() ?
+
+	### Skip admin email when MP form
     $MPok = !$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] || ($cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] && !$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_email']);
 
 	if ( $MPok ){
 
-	    if (  $smtpsettings[0]=='1' )
-	        $sentadmin = cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata, $fileext );
+
+
+	    ###
+	    ### adding attachments now
+	    ###
+	    $attached='';
+		global $fdata,$fpointer;
+		$fdata = array();
+		$fpointer = 0;
+
+	    ###  attachments wanted?
+	    if ( !$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] ) {
+
+			### no session, single form w/ files
+        	if ( $inSession!='0' && is_array($file) ){
+				foreach( $file[tmp_name] as $fn ){
+						cf_base64($fn);
+                }
+            }
+			### session w/ files
+	        if( $inSession=='0' && is_array($_SESSION['cforms']['upload']) ){
+	            foreach ( array_keys($_SESSION['cforms']['upload']) as $n )
+	                foreach ( array_keys($_SESSION['cforms']['upload'][$n]) as $m )
+						cf_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n][$m]));
+	        }
+
+            foreach ( $fdata as $file ) {
+				if ( $file[name] <> '' ){
+
+	                $n = substr( $file[name], strrpos($file[name],$cformsSettings['global']['cforms_IIS'])+1, strlen($file[name]) );
+	                $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+
+	                $attached .= $eol . '------MIME_BOUNDRY_main_message' . $eol;
+	                $attached .= 'Content-Type: '.$m.';'.$eol."\t".'name="' . $n . '"' . $eol;
+	                $attached .= 'Content-Transfer-Encoding: base64' . $eol;
+	                $attached .= 'Content-Disposition: inline;'.$eol."\t".'filename="' . $n . '"' . $eol;
+	                $attached .= $eol . $file[data] . $eol;  ### The base64 encoded message
+
+				}
+            } ### for
+
+	    }
+	    ### end adding attachments
+		else
+	   		$fmessage .= '------MIME_BOUNDRY_main_message--';
+
+
+		###  SMTP server or native PHP mail() ?
+		if( $cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1' )
+	        $sentadmin = 1;
+	    else if ( $smtpsettings[0]=='1' )
+            $sentadmin = cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata, '1' );
 	    else
 	        $sentadmin = @mail($to, encode_header($vsubject), $fmessage.$attached, $headers);
 
@@ -457,27 +496,29 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                $html_show_ac = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' )?true:false;
 	                $automsg = '';
 
-	                $headers2 = "From: ". $frommail . $eol;
-	                $headers2.= "Reply-To: " . $replyto . $eol;
+	                $headers2 = 'From: '. $frommail . $eolH;
+	                $headers2.= 'Reply-To: ' . $replyto . $eolH;
 
-	                if ( $taf_youremail && $taf_friendsemail && substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' ) ### TAF: add CC
-	                    $headers2.= "CC: " . $replyto . $eol;
+	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' ) ### TAF: add CC
+	                    $headers2.= 'CC: ' . $replyto . $eolH;
 
-	                $headers2.= "MIME-Version: 1.0"  .$eol;
+	                $headers2.= 'MIME-Version: 1.0'  .$eolH;
 
 	                if( $html_show_ac || ($html_show && ($ccme&&$trackf[$ccme]<>'-')) ){
-	                    $headers2.= "Content-Type: multipart/alternative; boundary=\"----MIME_BOUNDRY_main_message\"";
-	                    $automsg .= "This is a multi-part message in MIME format."  . $eol;
-	                    $automsg .= "------MIME_BOUNDRY_main_message"  . $eol;
-	                    $automsg .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"; format=flowed" . $eol;
-	                    $automsg .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;
+	                    $headers2.= 'Content-Type: multipart/alternative; boundary="----MIME_BOUNDRY_main_message"';
+	                    $automsg .= 'This is a multi-part message in MIME format.'  . $eol;
+	                    $automsg .= '------MIME_BOUNDRY_main_message'  . $eol;
+	                    $automsg .= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed' . $eol;
+	                    $automsg .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
 	                }
 	                else
-	                    $headers2.= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"; format=flowed";
+	                    $headers2.= 'Content-Type: text/plain; charset="' . get_option('blog_charset') . '"; format=flowed';
 
 
 	                ###  actual user message
-	                $cmsg = $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'];
+	                $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
+	                if ( function_exists('my_cforms_logic') )
+	                    $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
 	                $cmsg = check_default_vars($cmsg,$no);
 	                $cmsg = check_cust_vars($cmsg,$track,$no);
 
@@ -489,21 +530,25 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                if ( $html_show_ac ) {
 
 	                    ###  actual user message
-	                    $cmsghtml = $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'];
+	                    $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
+	                    if ( function_exists('my_cforms_logic') )
+	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
 	                    $cmsghtml = check_default_vars($cmsghtml,$no);
-	                    $cmsghtml = str_replace(array("=","\n"),array("=3D","<br />\n"), check_cust_vars($cmsghtml,$track,$no) );
+	                    $cmsghtml = str_replace(array("=","\n"),array("=3D","<br />\r\n"), check_cust_vars($cmsghtml,$track,$no) );
 
-	                    $automsg .= "------MIME_BOUNDRY_main_message"  . $eol;
-	                    $automsg .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"". $eol;
-	                    $automsg .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;;
+	                    $automsg .= $eol . '------MIME_BOUNDRY_main_message'  . $eol;
+	                    $automsg .= 'Content-Type: text/html; charset="' . get_option('blog_charset') . '"'  . $eol;
+	                    $automsg .= 'Content-Transfer-Encoding: quoted-printable'  . $eol . $eol;
 
-	                    $automsg .= "<!DOCTYPE HTML PUBLIC \"-### W3C### DTD HTML 4.0 Transitional### EN\">"  . $eol;
-	                    $automsg .= "<HTML><BODY>"  . $eol;
+	                    $automsg .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'  . $eol;
+	                    $automsg .= '<html><body>'  . $eol;
 	                    $automsg .= $cmsghtml;
-	                    $automsg .= "</BODY></HTML>"  . $eol . $eol;
+	                    $automsg .= '</body></html>'  . $eol . $eol;
+
+	                    $automsg .= '------MIME_BOUNDRY_main_message--';
 	                }
 
-	                $subject2 = $cformsSettings['form'.$no]['cforms'.$no.'_csubject'];
+	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 	                $subject2 = check_default_vars($subject2,$no);
 	                $subject2 = check_cust_vars($subject2,$track,$no);
 
@@ -515,20 +560,20 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 
 	                ###  if in Tell-A-Friend Mode, then overwrite header stuff...
-	                if ( $taf_youremail && $taf_friendsemail && substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' )
+	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
 	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
 
 	                if ( $ccme&&$trackf[$ccme]<>'-' ) {
 	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, stripslashes($t[1]), $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
+	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $t[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
 	                    else
-	                        $sent = @mail($field_email, encode_header(stripslashes($t[1])), $fmessage, $headers2); ### the admin one
+	                        $sent = @mail($field_email, encode_header($t[1]), $fmessage, $headers2); ### the admin one
 	                }
 	                else {
 	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, stripslashes($t[0]) , $cmsg , '', $cmsghtml, '', 'ac' );
+	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $t[0] , $cmsg , '', $cmsghtml, '', 'ac' );
 	                    else
-	                        $sent = @mail($field_email, encode_header(stripslashes($t[0])), stripslashes($automsg), $headers2); ### takes the above
+	                        $sent = @mail($field_email, encode_header($t[0]), $automsg, $headers2); ### takes the above
 	                }
 
 	                if( $sent<>'1' )
@@ -536,7 +581,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	            }
 
 	        ###  redirect to a different page on suceess?
-	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1 ) {
+	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1 && !$isWPcommentForm ) {
 	            if ( function_exists('my_cforms_logic') )
 	                $rp = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
 	            else
@@ -553,20 +598,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    else
 	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sentadmin:'';
 	} ### if $MPok
-
-	###
-	###  Files attached??
-	###
-	if( $inSession=='noSess' )
-		cf_move_files($no, $subID, $file);
-    else if( $inSession=='1' && is_array($_FILES['cf_uploadfile'.$no]) )
-		cf_move_files($no, 'xx', $file);
-    else if( $inSession=='0' && is_array($_SESSION['cforms']['upload'] ) ){
-    	foreach ( array_keys($_SESSION['cforms']['upload']) as $n )
-	    	foreach ( array_keys($_SESSION['cforms']['upload'][$n]) as $m )
-				if( file_exists($_SESSION['cforms']['upload'][$n][$m]) )
-	                rename($_SESSION['cforms']['upload'][$n][$m],str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n][$m]));
-    }
 
 
 } ### if isset & valid sendbutton

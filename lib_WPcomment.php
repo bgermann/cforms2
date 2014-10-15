@@ -95,8 +95,10 @@ if ( $isAjaxWPcomment ){
 			}
 
 
+			$comment_parent = ($commentparent<>'')?absint($commentparent):0;
+
 			$comment_type = '';
-			$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'user_ID');
+			$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 
 			// Simple duplicate check
 			if($wpdb->get_var("SELECT comment_ID FROM {$wpdb->comments}	WHERE comment_post_ID = '".$wpdb->escape($comment_post_ID)."' AND ( comment_author = '".$wpdb->escape($comment_author)."' " .($comment_author_email?" OR comment_author_email = '".$wpdb->escape($comment_author_email)."'" : ""). ") AND comment_content = '".$wpdb->escape($comment_content)."' LIMIT 1;")){
@@ -124,6 +126,9 @@ if ( $isAjaxWPcomment ){
 				setcookie('comment_author_email_' . COOKIEHASH, $comment->comment_author_email, time() + 30000000, COOKIEPATH, COOKIE_DOMAIN);
 				setcookie('comment_author_url_' . COOKIEHASH, clean_url($comment->comment_author_url), time() + 30000000, COOKIEPATH, COOKIE_DOMAIN);
 			}
+
+	        ### keep track of custom comment fields
+	        write_tracking_record($no,$comment_author_email,$comment_id);
 
 			$template = stripslashes($cformsSettings['global']['cforms_commentHTML']);
 
@@ -170,8 +175,8 @@ if ( $isAjaxWPcomment ){
 
 	require_once (dirname(__FILE__) . '/lib_validate.php');
 
-	$comment_post_ID = (int) $_POST['comment_post_ID'];
-	$cfpre = ( strpos( get_permalink($_POST['comment_post_ID']) ,'?')!==false ) ? '&':'?';
+	$comment_post_ID = (int) $_POST['comment_post_ID'.$no];
+	$cfpre = ( strpos( get_permalink($_POST['comment_post_ID'.$no]) ,'?')!==false ) ? '&':'?';
 
 	if ( $all_valid ) {
 
@@ -232,8 +237,11 @@ if ( $isAjaxWPcomment ){
 				wp_die( __('Sorry, you must be logged in to post a comment.','cforms') );
 		}
 
-		$comment_type = '';
-		$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'user_ID');
+        $comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
+
+        $comment_type = '';
+        $commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
+
 		$comment_id = wp_new_comment( $commentdata );
 		$comment = get_comment( $comment_id );
 
@@ -247,7 +255,10 @@ if ( $isAjaxWPcomment ){
 		if ( $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21' )
 			cforms( '',$no );
 
-		$location = ( empty($_POST['redirect_to'] ) ? get_permalink($_POST['comment_post_ID']).$cfpre.'cfemail=posted'.'#cforms'.$no.'form' : $_POST['redirect_to'] );
+		### keep track of custom comment fields
+        write_tracking_record($no,$comment_author_email,$comment_id);
+
+		$location = ( empty($_POST['redirect_to'] ) ? get_permalink($_POST['comment_post_ID'.$no]).$cfpre.'cfemail=posted'.'#cforms'.$no.'form' : $_POST['redirect_to'] );
 		$location = apply_filters('comment_post_redirect', $location, $comment);
 		wp_redirect($location);
 

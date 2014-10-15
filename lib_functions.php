@@ -1,7 +1,9 @@
 <?php
-$buffer='';
-function download_cforms() {
 
+$buffer='';
+
+### backup/download cforms settings
+function download_cforms(){
 	global $buffer, $wpdb, $cformsSettings;
 	$br="\n";
 
@@ -30,14 +32,11 @@ function download_cforms() {
 		header("Content-Length: " .(string)(strlen($buffer)) );
 		print $buffer;
 		exit();
-
-	} ### saving form settings
-
+	}
 }
 
-### Save the array
-function SaveArray($vArray)
-{
+### backup/download cforms settings :: save the array
+function SaveArray($vArray){
 	global $buffer;
     // Every array starts with chr(1)+"{"
     $buffer .=  "\0{";
@@ -68,7 +67,8 @@ function SaveArray($vArray)
 }
 
 
-### admin message
+
+### check user access
 function check_access_priv($r='manage_cforms'){
 	if( !current_user_can($r) ){
 		$err = '<div class="wrap"><div id="icon-cforms-error" class="icon32"><br/></div><h2>'.__('cforms error','cforms').'</h2><div class="updated fade" id="message"><p>'.__('You do not have the proper privileges to access this page.','cforms').'</p></div></div>';
@@ -77,33 +77,38 @@ function check_access_priv($r='manage_cforms'){
 }
 
 
-### Add cforms menu to admin
+
+### add cforms menu
 function cforms_menu() {
 	global $wpdb, $submenu;
 
 	$cformsSettings = get_option('cforms_settings');
+    $p = $cformsSettings['global']['plugindir'];
 
 	$tablesup = ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)?true:false;
 
-	$optfile = $cformsSettings['global']['plugindir'].'/cforms-options.php';
+	$o = $p.'/cforms-options.php';
 
     if (function_exists('add_menu_page')) {
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $optfile, '', $cformsSettings['global']['cforms_root'].'/images/cformsicon.gif');
+		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o, '', $cformsSettings['global']['cforms_root'].'/images/cformsicon.gif');
 	}
 	elseif (function_exists('add_management_page')) {
-		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $optfile);
+		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o);
 	}
 
 	if (function_exists('add_submenu_page')) {
-		add_submenu_page($optfile, __('Form Settings', 'cforms'), __('Form Settings', 'cforms'), 'manage_cforms', $optfile);
-		add_submenu_page($optfile, __('Global Settings', 'cforms'), __('Global Settings', 'cforms'), 'manage_cforms', $cformsSettings['global']['plugindir'].'/cforms-global-settings.php');
+		add_submenu_page($o, __('Form Settings', 'cforms'), __('Form Settings', 'cforms'), 'manage_cforms', $o);
+		add_submenu_page($o, __('Global Settings', 'cforms'), __('Global Settings', 'cforms'), 'manage_cforms', $p.'/cforms-global-settings.php');
 		if ( ($tablesup || isset($_REQUEST['cforms_database'])) && !isset($_REQUEST['deletetables']) )
-			add_submenu_page($optfile, __('Tracking', 'cforms'), __('Tracking', 'cforms'), 'track_cforms', $cformsSettings['global']['plugindir'].'/cforms-database.php');
-		add_submenu_page($optfile, __('Styling', 'cforms'), __('Styling', 'cforms'), 'manage_cforms', $cformsSettings['global']['plugindir'].'/cforms-css.php');
-		add_submenu_page($optfile, __('Help!', 'cforms'), __('Help!', 'cforms'), 'manage_cforms', $cformsSettings['global']['plugindir'].'/cforms-help.php');
+			add_submenu_page($o, __('Tracking', 'cforms'), __('Tracking', 'cforms'), 'track_cforms', $p.'/cforms-database.php');
+		add_submenu_page($o, __('Styling', 'cforms'), __('Styling', 'cforms'), 'manage_cforms', $p.'/cforms-css.php');
+		add_submenu_page($o, __('Help!', 'cforms'), __('Help!', 'cforms'), 'manage_cforms', $p.'/cforms-help.php');
 	}
 }
 
+
+
+### cforms init
 function cforms_init() {
 	global $wpdb;
 
@@ -116,15 +121,6 @@ function cforms_init() {
 	}
 	if(!$role->has_cap('track_cforms')) {
 		$role->add_cap('track_cforms');
-	}
-
-	### alter tracking tables if needed
-	$tables = $wpdb->get_col("SHOW TABLES FROM `" . DB_NAME . "` LIKE '$wpdb->cformssubmissions'",0);
-
-	if( $tables[0]==$wpdb->cformssubmissions ) {
-		$columns = $wpdb->get_results("SHOW COLUMNS FROM {$wpdb->cformssubmissions}");
-		if ( $columns[2]->Field == 'date' )
-			$result = $wpdb->query("ALTER TABLE `{$wpdb->cformssubmissions}` CHANGE `date` `sub_date` TIMESTAMP");
 	}
 
 	### try to adjust cforms.js automatically
@@ -160,6 +156,8 @@ function cforms_init() {
 
 }
 
+
+
 ### check for abspath.php
 function abspath_check() {
 	global $cformsSettings;
@@ -173,6 +171,8 @@ function abspath_check() {
         }
 }
 
+
+
 ### get WP plugin dir
 function get_cf_plugindir(){
 	$cr = defined('PLUGINDIR') ? get_option('siteurl') .'/'. PLUGINDIR . '/' : get_option('siteurl') . '/wp-content/plugins/';
@@ -181,39 +181,42 @@ function get_cf_plugindir(){
 	return $cr;
 }
 
+
+
 ### cforms JS scripts
 function cforms_scripts() {
-
 	global $wp_scripts, $localversion;
 
 	### get options
 	$cformsSettings = get_option('cforms_settings');
+	$r=$cformsSettings['global']['cforms_root'];
 
 	### global settings
 	$request_uri = get_request_uri();
 
     if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.2.6") ) === -1 ){
 		wp_deregister_script('jquery');
-	    wp_register_script('jquery',$cformsSettings['global']['cforms_root'].'/js/jquery.js',false,'1.2.6');
+	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.2.6');
     	wp_enqueue_script('jquery');
     }
 
-   	echo '<link rel="stylesheet" type="text/css" href="' . $cformsSettings['global']['cforms_root'] . '/cforms-admin.css" />' . "\n";
+   	echo '<link rel="stylesheet" type="text/css" href="' . $r . '/cforms-admin.css" />' . "\n";
 
 	if ( strpos($request_uri,'cforms-options')!==false ){
-		echo '<link rel="stylesheet" type="text/css" href="' . $cformsSettings['global']['cforms_root'] . '/styling/calendar.css" />' . "\n";
-	    wp_register_script('cforms_admin_cal',$cformsSettings['global']['cforms_root'].'/js/cformsadmincal.js',false,$localversion);
+		echo '<link rel="stylesheet" type="text/css" href="' . $r . '/styling/calendar.css" />' . "\n";
+	    wp_register_script('cforms_admin_cal',$r.'/js/cformsadmincal.js',false,$localversion);
 	    wp_enqueue_script('cforms_admin_cal');
 	}
 
     wp_deregister_script('prototype');
 
-    wp_register_script('cforms_interface',$cformsSettings['global']['cforms_root'].'/js/interface.js',false,$localversion);
-    wp_register_script('cforms_admin',$cformsSettings['global']['cforms_root'].'/js/cformsadmin.js',false,$localversion);
+    wp_register_script('cforms_interface',$r.'/js/interface.js',false,$localversion);
+    wp_register_script('cforms_admin',$r.'/js/cformsadmin.js',false,$localversion);
 
     wp_enqueue_script('cforms_interface');
     wp_enqueue_script('cforms_admin');
 }
+
 
 
 ### some css for arranging the table fields in wp-admin
@@ -223,65 +226,67 @@ function cforms_options_page_style() {
 	$cformsSettings = get_option('cforms_settings');
 	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
-	echo "\n<!-- Start Of Script Generated By cforms v".$localversion." [Oliver Seidel | www.deliciousdays.com] -->\n";
+	echo "\n<!-- Start Of Script Generated By cformsII v".$localversion." [Oliver Seidel | www.deliciousdays.com] -->\n";
     echo '<script type="text/javascript">'."\n/* <![CDATA[ */\n".
-         "\t".'Date.dayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
-         "\t".'Date.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
-         "\t".'Date.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-         "\t".'Date.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-         "\t".'Date.firstDayOfWeek = 0;'."\n".
-         "\t".''."\n".
-         "\t".'Date.fullYearStart = "20";'."\n".
-         "\t".'cforms.dpText = { TEXT_PREV_YEAR:"'.stripslashes($nav[0]).'",'. ### Previous year
+         'Date.dayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
+         'Date.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
+         'Date.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
+         'Date.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
+         'Date.firstDayOfWeek = 0;'."\n".
+         'Date.fullYearStart = "20";'."\n".
+         'cforms.dpText = { TEXT_PREV_YEAR:"'.stripslashes($nav[0]).'",'. ### Previous year
          'TEXT_PREV_MONTH:"'.stripslashes($nav[1]).'",'.
          'TEXT_NEXT_YEAR:"'.stripslashes($nav[2]).'",'.
          'TEXT_NEXT_MONTH:"'.stripslashes($nav[3]).'",'.
          'TEXT_CLOSE:"'.stripslashes($nav[4]).'",'.
          'TEXT_CHOOSE_DATE:"'.stripslashes($nav[5]).'",'.
-         'ROOT:"'.$cformsSettings['global']['cforms_root'].'"};'."\n";
+         'ROOT:"'.$cformsSettings['global']['cforms_root'].'"};'."\n\n";
 ?>
-	cforms(function() {
+cforms(function() {
 
-    if( cforms(".cf_timebutt1").length>0 && cforms(".cf_timebutt2").length>0 ){
-	    cforms(".cf_timebutt1").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
-    	cforms(".cf_timebutt2").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
-	}
-
-    if( cforms(".cf_date").length>0 ){
-		Date.format = "dd/mm/yyyy";
-		cforms(".cf_date").datePicker( );
-
-	    cforms('#cforms_startdate').bind(
-	        'dpClosed',
-	        function(e, selectedDates)
-	        {
-	            var d = selectedDates[0];
-	            if (d) {
-	                d = new Date(d);
-	                cforms('#cforms_enddate').dpSetStartDate(d.asString());
-	            }
-	        }
-	    );
-	    cforms('#cforms_enddate').bind(
-	        'dpClosed',
-	        function(e, selectedDates)
-	        {
-	            var d = selectedDates[0];
-	            if (d) {
-	                d = new Date(d);
-	                cforms('#cforms_startdate').dpSetEndDate(d.asString());
-	            }
-	        }
-	    );
-	}
-
-	});
-<?php
-	echo  "\n/* ]]> */\n".'</script>'."\n";
-	echo '<!-- End Of Script Generated By cforms -->'."\n\n";
+if( cforms(".cf_timebutt1").length>0 && cforms(".cf_timebutt2").length>0 ){
+    cforms(".cf_timebutt1").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
+    cforms(".cf_timebutt2").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
 }
 
-### footer unbder all options pages
+if( cforms(".cf_date").length>0 ){
+
+    Date.format = "dd/mm/yyyy";
+    cforms(".cf_date").datePicker( );
+
+    cforms('#cforms_startdate').bind(
+        'dpClosed',
+        function(e, selectedDates)
+        {
+            var d = selectedDates[0];
+            if (d) {
+                d = new Date(d);
+                cforms('#cforms_enddate').dpSetStartDate(d.asString());
+            }
+        }
+    );
+    cforms('#cforms_enddate').bind(
+        'dpClosed',
+        function(e, selectedDates)
+        {
+            var d = selectedDates[0];
+            if (d) {
+                d = new Date(d);
+                cforms('#cforms_startdate').dpSetEndDate(d.asString());
+            }
+        }
+    );
+
+}
+});
+<?php
+	echo  "/* ]]> */\n".'</script>'."\n";
+	echo '<!-- End Of Script Generated By cformsII -->'."\n\n";
+}
+
+
+
+### footer
 function cforms_footer() {
 	global $localversion;
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
@@ -290,20 +295,21 @@ function cforms_footer() {
 			<?php _e('Translation provided by Oliver Seidel, for updates <a href="http://deliciousdays.com/cforms-plugin">check here.</a>', 'cforms') ?>
 		</em>
 	</p>
-
 	<p align="center">Version v<?php echo $localversion; ?></p>
 <?php
 }
 
-### if all data has been erased quit
+
+
+### plugin uninstalled?
 function check_erased() {
 	global $cformsSettings;
     if ( $cformsSettings['global']['cforms_formcount'] == '' ){
 		?>
-	    <div class="wrap">
-	    <h2><?php _e('All cforms data has been erased!', 'cforms') ?></h2>
-	    <p class="ex"><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms') ?></p>
-	    <p class="ex"><?php _e('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms') ?></p>
+		<div class="wrap">
+		<div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('All cforms data has been erased!', 'cforms') ?></h2>
+	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms') ?></p>
+	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms') ?></p>
 	    </div>
 		<?php
 	    return true;

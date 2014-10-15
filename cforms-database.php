@@ -4,7 +4,7 @@
 please see cforms.php for more information
 */
 
-### db settings
+### DB settings
 global $wpdb;
 $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
 $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
@@ -12,7 +12,7 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 ### Check Whether User Can Manage Database
 check_access_priv('track_cforms');
 
-### new global settings container, will eventually be the only one!
+### New global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 $plugindir   = $cformsSettings['global']['plugindir'];
 
@@ -60,6 +60,7 @@ cforms("#flex1").flexigrid ( {
 		{separator: true}
 		],
 	searchitems : [
+		{display: '<?php _e('# Number(s)','cforms'); ?>', name : 'id'},
 		{display: '<?php _e('Form Name','cforms'); ?>', name : 'form_id'},
 		{display: '<?php _e('e-mail Address','cforms'); ?>', name : 'email', isdefault: true},
 		{display: '<?php _e('Date','cforms'); ?>', name : 'sub_date'},
@@ -98,6 +99,9 @@ cforms_footer();
 add_action('admin_footer', 'insert_cfmodal_tracking');
 function insert_cfmodal_tracking(){
 	global $cforms_root,$noDISP;
+
+	### Temp storage for download data
+	$tempfile = dirname(__FILE__)."/js/include/data.tmp";
 ?>
 	<div class="jqmWindow" id="cf_delete_dialog">
 		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
@@ -112,16 +116,23 @@ function insert_cfmodal_tracking(){
 		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="downloadform" method="post" id="downloadform">
+				<?php if( is_writable($tempfile) ) : ?>
 				<div id="cf_target_dl">
-					<select id="pickDLformat" name="format">
-				   		<option value="xml">&nbsp;&nbsp;&nbsp;XML&nbsp;&nbsp;&nbsp;</option>
-	                    <option value="csv">&nbsp;&nbsp;&nbsp;CSV&nbsp;&nbsp;&nbsp;</option>
-	                    <option value="tab">&nbsp;&nbsp;&nbsp;TAB&nbsp;&nbsp;&nbsp;</option>
-					</select><label for="pickDLformat"><?php echo sprintf(__('Please pick a format!','cforms')); ?></label>
-					<br />
-					<input type="checkbox" class="chkBox" id="header" name="header" value="true"/><label for="header"><?php echo sprintf(__('Include field names/header.','cforms')); ?></label>
+                    <select id="pickDLformat" name="format">
+                        <option value="xml">&nbsp;&nbsp;&nbsp;XML&nbsp;&nbsp;&nbsp;</option>
+                        <option value="csv">&nbsp;&nbsp;&nbsp;CSV&nbsp;&nbsp;&nbsp;</option>
+                        <option value="tab">&nbsp;&nbsp;&nbsp;TAB&nbsp;&nbsp;&nbsp;</option>
+                    </select><label for="pickDLformat"><?php echo sprintf(__('Please pick a format!','cforms')); ?></label>
+                    <br />
+                    <input type="checkbox" class="chkBoxW" id="header" name="header" value="true"/><label for="header"><?php echo sprintf(__('Include field names / header','cforms')); ?></label><br />
+                    <input type="checkbox" class="chkBoxW" id="addip" name="addip" value="true"/><label for="addip"><?php echo sprintf(__('Include IP address of submitting user','cforms')); ?></label><br />
+                    <input type="checkbox" class="chkBoxW" id="addurl" name="addurl" value="true"/><label for="addurl"><?php echo sprintf(__('Add URL for upload fields','cforms')); ?></label>
 				</div>
-				<div class="controls"><a href="#" id="okDL" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+                <?php else :
+                    echo '<p><strong>'.sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),'<br />&nbsp;&nbsp;&nbsp;<code>'.dirname(__FILE__).'/js/include</code><br />','<br />').'</strong></p>';
+                    echo '<p><strong>'.sprintf( __('...and reload this page afterwards.','cforms')).'</strong></p>';
+                    endif; ?>
+				<div class="controls"><?php if( is_writable($tempfile) ) : ?><a href="#" id="okDL" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><?php endif; ?><a href="#" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
 			</form>
 		</div>
 	</div>
