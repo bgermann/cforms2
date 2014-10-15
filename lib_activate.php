@@ -9,6 +9,7 @@ $cformsSettings['global']['cforms_root'] = get_cf_plugindir() . $cformsSettings[
 $cformsSettings['global']['tinyURI'] = get_option('siteurl') . '/wp-includes/js/tinymce';
 $cformsSettings['global']['cforms_root_dir'] = dirname(__FILE__);
 $cformsSettings['global']['cforms_IIS'] = strpos(dirname(__FILE__), '\\') !==false ? '\\' : '/';
+$cformsSettings['global']['v'] = $localversion;
 
 ### Common HTML message information
 $cformsSettings['global']['cforms_style_title'] = 'font:normal 0.8em Verdana; text-align:right; color:#777; margin:3px 0';
@@ -48,6 +49,7 @@ setINI('form','cforms_emailrequired', __('(valid email required)', 'cforms'));
 
 setINI('form','cforms_confirm', '0');
 setINI('form','cforms_ajax', '1');
+setINI('form','cforms_emailpriority', '3');
 setINI('form','cforms_fname', __('Your default form', 'cforms'));
 setINI('form','cforms_csubject', __('Re: Your note', 'cforms').'$#$'.__('Re: Submitted form (copy)', 'cforms'));
 setINI('form','cforms_cmsg', __('Dear {Your Name},', 'cforms') . "\n" . __('Thank you for your note!', 'cforms') . "\n". __('We will get back to you as soon as possible.', 'cforms') . "\n\n");
@@ -74,15 +76,17 @@ setINI('form','cforms_working', __('One moment please...', 'cforms'));
 setINI('form','cforms_popup', 'nn');
 setINI('form','cforms_showpos', 'ynyyy');
 
-setINI('form','cforms_redirect', '0');
+setINI('form','cforms_hide', false);
+setINI('form','cforms_redirect', false);
 setINI('form','cforms_redirect_page', __('http://redirect.to.this.page', 'cforms'));
+
 setINI('form','cforms_action', '0');
 setINI('form','cforms_action_page', 'http://');
 
 setINI('form','cforms_tracking', '');
 setINI('form','cforms_showdashboard', '1');
 setINI('form','cforms_maxentries', '');
-setINI('form','cforms_tellafriend', '0');
+setINI('form','cforms_tellafriend', '01');
 setINI('form','cforms_dashboard', '0');
 
 $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_resettext'];
@@ -157,9 +161,9 @@ else
     add_option('cforms_settings',$cformsSettings);
 
 
-// updates existing tracking db
+### updates existing tracking db
 if ( $wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata ) {
-    // fetch table column structure from the database
+    ### fetch table column structure from the database
     $tablefields = $wpdb->get_results("DESCRIBE {$wpdb->cformsdata};");
 
     $afield = array();

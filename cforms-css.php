@@ -1,14 +1,13 @@
 <?php
-
 ###
-### please see cforms.php for more information
+### Please see cforms.php for more information
 ###
 
-### db settings
+### DB settings
 $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
 $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
-### new global settings container, will eventually be the only one!
+### New global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
 $cformsSettings = get_option('cforms_settings');
@@ -62,28 +61,28 @@ else if(isset($_POST['no-css'])){
 
 if(!empty($_POST['save_css'])){
 
-	    $newcss = stripslashes($_POST['csseditor']);
+	$newcss = stripslashes($_POST['csseditor']);
 
-		if(is_writeable($stylefile)) {
+	if(is_writeable($stylefile)) {
 
-		    $f = fopen($stylefile, 'w+');
-		    fwrite($f, $newcss);
-			fclose($f);
+	    $f = fopen($stylefile, 'w+');
+	    fwrite($f, $newcss);
+	    fclose($f);
 
-		    echo ' <div id="message" class="updated fade"><p><strong>'. __('The stylesheet has been updated.', 'cforms') .'</strong></p></div>'."\n";
+	    echo ' <div id="message" class="updated fade"><p><strong>'. __('The stylesheet has been updated.', 'cforms') .'</strong></p></div>'."\n";
 
-		} else
+	} else
 
-		    echo ' <div id="message" class="updated fade"><p><strong>'. __('Write Error! Please verify write permissions on the style file.', 'cforms') .'</strong></p></div>'."\n";
+	    echo ' <div id="message" class="updated fade"><p><strong>'. __('Write Error! Please verify write permissions on the style file.', 'cforms') .'</strong></p></div>'."\n";
 
 } else if ( !empty($_POST['chg_css']) ){
 
-			$cformsSettings['global']['cforms_css'] = $_POST['style'];
-            update_option('cforms_settings',$cformsSettings);
+	$cformsSettings['global']['cforms_css'] = $_POST['style'];
+	update_option('cforms_settings',$cformsSettings);
 
-			$style = $cformsSettings['global']['cforms_css'];
-			$stylefile	= $cformsSettings['global']['cforms_root_dir']."{$s}styling{$s}".$style;
-		    echo ' <div id="message" class="updated fade"><p><strong>'. __('New theme selected.', 'cforms') .'</strong></p></div>'."\n";
+	$style = $cformsSettings['global']['cforms_css'];
+	$stylefile  = $cformsSettings['global']['cforms_root_dir']."{$s}styling{$s}".$style;
+	echo ' <div id="message" class="updated fade"><p><strong>'. __('New theme selected.', 'cforms') .'</strong></p></div>'."\n";
 }
 
 
@@ -91,7 +90,6 @@ if(!empty($_POST['save_css'])){
 abspath_check();
 
 ?>
-
 <div class="wrap" id="top">
 		<div id="icon-cforms-css" class="icon32"><br/></div><h2><?php _e('Styling your forms','cforms')?></h2>
 
@@ -99,10 +97,8 @@ abspath_check();
 	<p><?php _e('This is <strong>optional</strong> of course, if you\'re happy with the default look and feel, no need to do anything here.', 'cforms') ?></p>
 
 	<form id="selectcss" method="post" action="" name="selectcss">
-
 			 <fieldset class="cformsoptions">
 				<p class="cflegend" style="margin:10px 0 20px;"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Select a form style', 'cforms') ?></p>
-
 				<table>
 				<tr valign="top">
 
@@ -206,9 +202,7 @@ abspath_check();
 
 				</tr>
 				</table>
-
 			</fieldset>
-
 	 </form>
 <?php
 ###
@@ -216,7 +210,6 @@ abspath_check();
 ###
 ?>
 	<form id="editcss" method="post" action="" name="editcss">
-
 			 <fieldset class="cformsoptions">
 				<p class="cflegend" style="margin-top:10px;"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><input type="submit" name="save_css" class="allbuttons updbutton" value="<?php _e('Update Changes &raquo;', 'cforms'); ?>"/><?php _e('Basic CSS editor: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?></p>
 
@@ -239,5 +232,4 @@ abspath_check();
 
 		  </fieldset>
 	</form>
-
 </div>

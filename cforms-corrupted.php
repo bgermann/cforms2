@@ -1,13 +1,11 @@
 <?php
-/*
-please see cforms.php for more information
-*/
+###
+### Please see cforms.php for more information
+###
 
 ### Check Whether User Can Manage Database
 check_access_priv();
-
 ?>
-
 <div class="wrap">
 	<div id="icon-cforms-corrupted" class="icon32"><br/></div><h2><?php _e('cforms error','cforms')?></h2>
 
@@ -31,7 +29,6 @@ check_access_priv();
     }
 
     update_option('cforms_settings',$nc);
-
 	die();
 ?>
 
@@ -39,7 +36,6 @@ check_access_priv();
 
 <div class="updated fade"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms'); ?></p></div>
 <?php
-	//$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name='cforms_settings'");
     delete_option('cforms_settings');
 	global $cformsSettings;
     $cformsSettings = array();

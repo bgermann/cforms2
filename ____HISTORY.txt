@@ -19,25 +19,133 @@
  =====================================================================================
  Donation Page:
  =====================================================================================
- http://www.deliciousdays.com/cforms-donation
 
+ http://www.deliciousdays.com/cforms-donation
 
  =====================================================================================
  Version History:
  =====================================================================================
 
-	        v9.0 introduces a completely new method of storing its settings,
-	            ***** please make a WP database backup first (!) *****
-	        and then migrate your settings (cforms will guide you!)
+WHAT's NEW in cformsII - v10.6   *** WP 2.8 compliance
 
-WHAT's NEW in cformsII - v10.2
+*) feature: completely rewritten sidebar WIDGET SUPPORT, pls recheck your widget setup!
+*) feature: auto confirmation messages now support an attachment
+*) feature: radio buttons can now be "required" when no radio box should be checked by default!
+*) feature: added strip_tags() to TEXT message part of the admin email
+            (to avoid HTML in plain TXT)
+*) other:   house keeping, cleaning up & rearranging admin UI
+*) feature: backwards compatible now: supporting PHP4
+*) bugfix:  label issues with "(" and ")", which would not show in the admin email (&tracking)
+*) bugfix:  minor code fixed, mostly cosmetic
+*) bugfix:  nonAjax form submission would not allow single quotes in custom field ID/NAME
+*) other:   amended Help section
+*) other:   typos/corrections on Help! page
 
-*) other: buttonsnap has been removed
+WHAT's NEW in cformsII - v10.5.2
+
+*) bugfix:  WP comment form feature:: fixed {custom var} replacement in admin email (ajax mode)
+*) bugfix:  WP comment form feature:: fixed "send to author" option in cforms'
+*) other:   admin email addresses now support "+" , e.g. john+janey@mail.com
+
+WHAT's NEW in cformsII - v10.5.1
+
+*) feature: Email Priority can now be set under "Core Options"
+*) bugfix:  insert_cform('1') would cause minor issues if your default form was a TAF form
+*) bugfix:  Limit Text is now saved even if no #-limit is provided
+*) bugfix:  fixed =3D issue for some users (admin email layout)
+
+WHAT's NEW in cformsII - v10.5
+
+*) feature: redirect options: "hide" & "redirect" have been split, allowing both
+            find 'hide' under 'core options' now
+            make sure to check both options, they may have been reset!
+
+*) feature: email: supporting mail server that strictly require CRLF
+            new option under GlobalSettings > Mail Server Settings
+
+*) bugfix:  field labels that would have an escaped character (e.g quotes) would not be
+            referenced correctly and required a slash until now (e.g. {Your friend\'s Name} ).
+*) bugfix:  fixed minor XSS cross site scripting vulnerability
+*) bugfix:  select boxes: fixes the "auto select" of the last drop down option
+*) bugfix:  email: fixes CR's in multi-line fields
+*) bugfix:  email: fixing SMTP / PHPMailer attachments
+*) bugfix:  email: MIME / boundary fix
+*) bugfix:  email: several cosmetic fixes
+*) bugfix:  WP comment: fixed Ajax submission of WP comments
+*) bugfix:  fixed get_cforms_entries() when using "form name" parameter
+*) bugfix:  fixed WP comment form 'comment id not found' error
+
+*) other:   plugin update notice has become smaller / can be toggled
+*) other:   updated Help page (API section)
+*) other:   enhanced API function   get_cforms_entries()
+            Parameters:
+            get_cforms_entries( $fname,$from,$to,$cfsort,$limit,$cfsortdir )
+               $fname     = [text]    : form name (case sensitive!)
+               $from      = [date]    : e.g. 2008-09-17 15:00:00
+               $to        = [date]    : e.g. 2008-09-17 17:00:00
+               $cfsort    = [text]    : any input field label, e.g. 'Your Name'
+                					      or 'date', 'ip', 'id', 'form', 'email'
+               $limit     = [numeric] : limits number of records retrieved
+               $cfsortdir = [text]    : sort direction 'asc' or 'desc'
+
+            (see updated Help page too!)
+
+
+WHAT's NEW in cformsII - v10.4
+
+*) feature: new my_cforms_logic() features:
+            "adminEmailTXT" & "adminEmailHTML", "autoConfTXT" & "autoConfHTML"
+            to support run-time changes in the email message part(s),
+            e.g. {user_variable} substitution supporting custom/one-off messages
+*) feature: tracking / download: revised and fixed downloads that include field headers
+            in several areas
+*) feature: tracking / download: added optional inclusion of attachment/file URLs
+*) feature: tracking / download: added optional inclusion of IP address in report
+*) feature: tracking / download: completely revised the tracking download function to
+            accommodate very large numbers of records, make sure that js/include/data.tmp
+            is writable!
+*) bugfix:  fixed access to $subID from within my-functions.php for Ajax post method
+*) bugfix:  file uploads/attachments: revised, better internal handling
+*) bugfix:  file uploads/attachments: fixed link/URL issue for MP forms
+*) bugfix:  file uploads/attachments: all files are now being attached to admin email for
+            MP forms
+*) bugfix:  WP comment form: fixed email to author in non Ajax mode
+*) bugfix:  Fixed "extra variables" (e.g. {Title}) to display again in admin email etc.
+*) bugfix:  success message: fixed buggy message display ('*$#..') in special cases
+*) other:   Javascript Date Picker updated to latest release
+*) other:   admin emails: turned upper case HTML tags to lower case
+*) other:   admin emails: swapped LF for CRLF (according to RFC822 Section 3)
+
+WHAT's NEW in cformsII - v10.3
+
+*) feature: RSS feed: revised and enhanced feeds (all & indivudal form feeds)
+			supporting inclusion of form fields in the feed
+*) feature: new API function: cf_extra_comment_data( $id )
+			will retrieve all extra fields per given comment ID in a data [array]
+            see tutorial online (troubleshooting forum)
+*) feature: enhanced option to keep input field data (no reset) after submission
+			(both ajax & nonajax)
+*) feature: cforms allows now to optionally turn off the admin email (and only track via DB)
+*) feature: "redirect on success" can now be used to jump to any location on your page after
+			form submission
+*) feature: threaded comment support for cforms' WP comment feature
+      note: nonAjax will work as is, for the Ajax method you need to adjust your WP theme to
+      		work nicely with cforms (dynamically set the parent container!)
+*) bugfix: multi-part forms: no more session resets / jumping to first form
+*) bugfix: multi-part forms: confusion of prev. entered field values when going to previous form
+*) bugfix: escaped '<' & '>' in input fields, which allows to properly send code in a form as well
+*) bugfix: a few admin CSS fixed (e.g. resizable text areas)
+*) other: smaller cosmetic fixes
+*) other: input field default values will now remain actual values and not be cleared!
+
+WHAT's NEW in cformsII - v10.2  GPL compliance!
+
 *) bugfix: WP comment form : fixed issues when form #1 was enabled as WP comment form replacement
 *) bugfix: fixed Cross-site_scripting security hole (rarely to be exploited but anyway)
 *) bugfix: multi-part form: fixed issue, when first form is the default form (#1)
 *) bugfix: multi-part form: fixed escaped quotes when going back
 *) bugfix: textarea fields: fixed carriage returns in HTML part of admin email
+*) other: buttonsnap has been removed
 
 
 WHAT's NEW in cformsII - v10.1
@@ -680,7 +788,7 @@ cforms II - v5.0
 *) feature: full [additional] HTML formatting support for email messages
 
 *) bugfix: BACKUP & RESTORE fixed (not all fields were backed-up prev.)
-*) bugfix: "spacing between labels & data" error when number < than length(field name)
+*) bugfix: "spacing between labels & data" error when number smaller than length(field name)
 *) bugfix: more CSS corrections
 *) bugfix: the use of single & double quotes fixed in FIELDSETS
 *) bugfix: one more single quote bug remedied in form labels

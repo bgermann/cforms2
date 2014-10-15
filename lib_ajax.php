@@ -14,6 +14,11 @@ if ( file_exists( $abspath . 'wp-load.php') )
 else
 	require_once( $abspath . 'wp-config.php' );
 
+if (version_compare(PHP_VERSION, '5.0.0', '>'))
+	require_once(dirname(__FILE__) . '/lib_email.php');
+else
+	require_once(dirname(__FILE__) . '/lib_email_php4.php');
+
 require_once(dirname(__FILE__) . '/lib_aux.php');
 
 ###
@@ -38,15 +43,26 @@ function reset_captcha( $no = '' ){
 ###  submit comment
 ###
 function cforms_submitcomment($content) {
-	global $cformsSettings, $wpdb, $subID, $styles, $smtpsettings, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale, $abspath;
+	global $cformsSettings, $wpdb, $subID, $smtpsettings, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale, $abspath;
 
+    $WPsuccess=false;
+
+	### WP Comment flag
 	$isAjaxWPcomment = strpos($content,'***');###  WP comment feature
+
 	$content = explode('***', $content);
 	$content = $content[0];
 
 	$content = explode('+++', $content); ###  Added special fields
-	$Ajaxpid = $content[1];
-	$AjaxURL = $content[2];
+
+	if ( count($content) > 3 ){
+	    $commentparent = $content[1];
+	    $Ajaxpid = $content[2];
+	    $AjaxURL = $content[3];
+    }else {
+	    $Ajaxpid = $content[1];
+	    $AjaxURL = $content[2];
+    }
 
 	$segments = explode('$#$', $content[0]);
 	$params = array();
@@ -72,6 +88,10 @@ function cforms_submitcomment($content) {
 
 	###  fix reference to first form
 	if ( $segments[0]=='1' ) $params['id'] = $no = ''; else $params['id'] = $no = $segments[0];
+
+
+	### TAF flag
+    $isTAF = substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
 
 
 	###  user filter ?
@@ -142,18 +162,20 @@ function cforms_submitcomment($content) {
 			###  filter all redundant WP comment fields if user is logged in
 			while ( in_array($field_stat[1],array('cauthor','email','url')) && $user->ID ) {
 
-			 		switch( $field_stat[1] ){
+			    $temp = explode('|', $field_stat[0],3); ### get field name
+			    $temp = explode('#', $temp[0],2);
+		 		switch( $field_stat[1] ){
 						case 'cauthor':
-							$track['cauthor'] = $user->display_name;
-							$track['$$$'.((int)$i+(int)$off)] = 'cauthor';
+							$track['cauthor'] = $track[$temp[0]] = $user->display_name;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
 							break;
 						case 'email':
-							$track['email'] = $field_email = $user->user_email;
-							$track['$$$'.((int)$i+(int)$off)] = 'email';
+							$track['email'] = $track[$temp[0]] = $field_email = $user->user_email;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
 							break;
 						case 'url':
-							$track['url'] = $user->user_url;
-							$track['$$$'.((int)$i+(int)$off)] = 'url';
+							$track['url'] = $track[$temp[0]] = $user->user_url;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
 							break;
 					}
 
@@ -178,11 +200,8 @@ function cforms_submitcomment($content) {
 				$customTrackingID='';
 
 
-			###  check if fields needs to be cleared
+			###  dissect field
 		    $obj = explode('|', $field_name,3);
-			$defaultval = stripslashes($obj[1]);
-			if ( $params ['field_' . $i] == $defaultval && $field_stat[4]=='1')
-				$params ['field_' . $i] = '';
 
 			###  strip out default value
 			$field_name = $obj[0];
@@ -190,7 +209,16 @@ function cforms_submitcomment($content) {
 
 			###  special WP comment fields
 			if( in_array($field_stat[1],array('luv','subscribe','cauthor','email','url','comment','send2author')) ){
-				$field_name = $field_stat[1];
+			    $temp = explode('#', $field_name,2);
+
+				if ( $temp[0] == '' )
+                	$field_name = $field_stat[1];
+				else
+                	$field_name = $temp[0];
+
+				### keep copy of values
+    			$track[$field_stat[1]] = stripslashes( $params['field_' . $i] );
+
 				if ( $field_stat[1] == 'email' )
 					$field_email = $params['field_' . $i];
 			}
@@ -233,15 +261,13 @@ function cforms_submitcomment($content) {
 			if ( $field_type == "emailtobox" ){  			### special case where the value needs to bet get from the DB!
 
 				$field_name = explode('#',$field_stat[0]);  ### can't use field_name, since '|' check earlier
-				$to_one = $params ['field_' . $i];
 
-				$tmp = explode('|set:', $field_name[1] );	###  remove possible |set:true
-				$offset = (strpos($tmp[0],'|')===false) ? 1 : 2; ###  names come usually right after the label
+                $to_one = $params ['field_' . $i];
 
+	            $tmp = explode('|', $field_name[$to_one+1] );   ###  remove possible |set:true
+	            $value  = $tmp[0];                              ###  values start from 0 or after!
 
-				$value = $field_name[(int)$to_one+$offset];  ###  values start from 0 or after!
 				$field_name = $field_name[0];
-
 	 		}
 			else {
 			    if ( strtoupper(get_option('blog_charset')) <> 'UTF-8' && function_exists('mb_convert_encoding'))
@@ -260,7 +286,7 @@ function cforms_submitcomment($content) {
 					$field_name = __('Q&A','cforms');
 
 
-			### for db tracking
+			### determine tracked field name
 			$inc='';
 			$trackname=trim($field_name);
 			if ( array_key_exists($trackname, $track) ){
@@ -283,13 +309,11 @@ function cforms_submitcomment($content) {
     $htmlformdata = $r['html'];
 
 
-    ### multi-form session
-    /*
-    $_SESSION['cforms']['count']++;
-    $_SESSION['cforms']['pos']++;
-    $_SESSION['cforms']['current']=$no;
-    $_SESSION['cforms']['cf_form'.$no] = $track;
-	*/
+	###
+	###  record:
+	###
+	$subID = ( $isTAF=='2' && $track['send2author']<>'1' )?'noid':write_tracking_record($no,$field_email);
+
 
 	###
 	###  allow the user to use form data for other apps
@@ -301,48 +325,19 @@ function cforms_submitcomment($content) {
 
 
 
-	###  Catch WP-Comment function
-	if ( $isAjaxWPcomment!==false && $track['send2author']=='0' ){
-
+    ###  Catch WP-Comment function | if send2author just continue
+    if ( $isAjaxWPcomment!==false && $track['send2author']=='0' ){
 		require_once (dirname(__FILE__) . '/lib_WPcomment.php');
 
-		if ($WPsuccess){
-
-			### send a notification if required
-			if ( $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21' )
-				ajaxMail($isAjaxWPcomment,$no,$field_email,$formdata,$htmlformdata,$taf_youremail,$taf_friendsemail,$taf_yourname,$taf_youremail,$ccme,$to_one,$segments);
-
-			$hide='';
-			###  redirect to a different page on suceess?
-			if      ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1 ){
-	            if ( function_exists('my_cforms_logic') )
-	                return my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
-	            else
-	            	return $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
-			} else if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==2 )	$hide = '|~~~';
-
-		    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
-		    return $pre . $WPresp . $hide;
-		}
-		else {
-		    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-		    return $pre . $WPresp .'|---';
-		}
-
-	}
-
-	return ajaxMail($isAjaxWPcomment,$no,$field_email,$formdata,$htmlformdata,$taf_youremail,$taf_friendsemail,$taf_yourname,$taf_youremail,$ccme,$to_one,$segments);
-
-} ### function
+	    ###  Catch WP-Comment function: error
+	    if ( !$WPsuccess )
+    	    return $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
+    } ### Catch WP-Comment function
 
 
-function ajaxMail($isAjaxWPcomment,$no,$field_email,$formdata,$htmlformdata,$taf_youremail,$taf_friendsemail,$taf_yourname,$taf_youremail,$ccme,$to_one,$segments){
 
-	global $wpdb, $subID, $styles, $smtpsettings, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale, $cformsSettings;
 
-	###
-	### reply to all email recipients
-	###
+	### reply-to
 	$replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
 
 	###  multiple recipients? and to whom is the email sent? to_one = picked recip.
@@ -356,104 +351,63 @@ function ajaxMail($isAjaxWPcomment,$no,$field_email,$formdata,$htmlformdata,$taf
 	} else
 			$to = $replyto;
 
-	###  T-A-F override?
-	if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' && $taf_youremail && $taf_friendsemail )
-		$replyto = "\"{$taf_yourname}\" <{$taf_youremail}>";
-
-
-
-	###
-	###  FIRST write into the cforms tables!
-	###
-	$subID = write_tracking_record($no,$field_email);
-
-	###
-	###  ready to send email
-	###  email header
-	###
-
-	$html_show = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' )?true:false;
-
-	$fmessage='';
-	$htmlmessage='';
-
-	$eol = "\n";
-
+	### from
 	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
-	if ( $frommail=='' )
-		$frommail = '"'.get_option('blogname').'" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
-
-	$headers = "From: ". $frommail . $eol;
-	$headers.= "Reply-To: " . $field_email . $eol;
-
-	if ( ($tempBcc = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc'])) != "")
-	    $headers.= "Bcc: " . $tempBcc . $eol;
-
-	$headers.= "MIME-Version: 1.0"  .$eol;
-	if ($html_show) {
-		$headers.= "Content-Type: multipart/alternative; boundary=\"----MIME_BOUNDRY_main_message\"";
-		$fmessage = "This is a multi-part message in MIME format."  . $eol;
-		$fmessage .= "------MIME_BOUNDRY_main_message"  . $eol;
-		$fmessage .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"" . $eol;
-		$fmessage .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;
-	}
-	else
-		$headers.= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"";
-
-	###  prep message text, replace variables
-	$message = $cformsSettings['form'.$no]['cforms'.$no.'_header'];
-	$message = check_default_vars($message,$no);
-	$message = stripslashes( check_cust_vars($message,$track,$no) );
-
-	###  text text
-	$fmessage .= $message . $eol;
-
-	###  need to add form data summary or is all in the header anyway?
-	if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1')
-		$fmessage .= $eol . $formdata . $eol;
 
 
-	###  HTML text
-	if ($html_show) {
-
-		###  actual user message
-		$htmlmessage = $cformsSettings['form'.$no]['cforms'.$no.'_header_html'];
-		$htmlmessage = check_default_vars($htmlmessage,$no);
-		$htmlmessage = str_replace(array("=","\n"),array("=3D","<br />\n"), stripslashes( check_cust_vars($htmlmessage,$track,$no) ) );
-
-		$fmessage .= "------MIME_BOUNDRY_main_message"  . $eol;
-		$fmessage .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"". $eol;
-		$fmessage .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;
-
-		$fmessage .= "<!DOCTYPE HTML PUBLIC \"-### W3C### DTD HTML 4.0 Transitional### EN\">"  . $eol;
-		$fmessage .= "<HTML>" . $eol;
-		$fmessage .= "<BODY>" . $eol;
-
-		$fmessage .= $htmlmessage;
-
-		###  need to add form data summary or is all in the header anyway?
-		if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1')
-			$fmessage .= $eol . $htmlformdata;
-
-		$fmessage .= "</BODY></HTML>"  . $eol . $eol;
-
-	}
-
-
-	### either use configured subject or user determined
-	$vsubject = $cformsSettings['form'.$no]['cforms'.$no.'_subject'];
-	$vsubject = check_default_vars($vsubject,$no);
-	$vsubject = stripslashes( check_cust_vars($vsubject,$track,$no) );
+	###  T-A-F override?
+	if ( $isTAF=='1' && $taf_youremail && $taf_friendsemail )
+		$replyto = "\"{$taf_yourname}\" <{$taf_youremail}>";
 
     ### logic: dynamic admin email address
     if ( function_exists('my_cforms_logic') )
         $to = my_cforms_logic($trackf, $to,'adminTO');  ### use trackf!
 
+	### either use configured subject or user determined
+	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
+	$vsubject = check_default_vars($vsubject,$no);
+	$vsubject = check_cust_vars($vsubject,$track,$no);
+
+
+	###  prep message text, replace variables
+	$message = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header']);
+	if ( function_exists('my_cforms_logic') )
+		$message = my_cforms_logic($trackf, $message,'adminEmailTXT');
+	$message = check_default_vars($message,$no);
+	$message = check_cust_vars($message,$track,$no);
+
+	###  actual user message
+    $htmlmessage='';
+    if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' ){
+		$htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
+	    if ( function_exists('my_cforms_logic') )
+	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
+		$htmlmessage = check_default_vars($htmlmessage,$no);
+	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no);
+
+	}
+
+	$mail = new cf_mail($no,$frommail,$to,$field_email, true);
+	$mail->subj  = $vsubject;
+	$mail->char_set = 'utf-8';
+
+	### HTML email
+	if ( $mail->html_show ) {
+	    $mail->is_html(true);
+	    $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	    $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+	}
+	else
+	    $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+
+
 	###  SMTP server or native PHP mail() ?
-	if ( $smtpsettings[0]=='1' )
+    if( $cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1' || ($WPsuccess && $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']!='21') )
+        $sentadmin = 1;
+	else if ( $smtpsettings[0]=='1' )
 		$sentadmin = cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata );
 	else
-		$sentadmin = @mail($to, encode_header($vsubject), $fmessage, $headers);
+	    $sentadmin = $mail->send();
 
 	if( $sentadmin==1 )
 	{
@@ -461,128 +415,134 @@ function ajaxMail($isAjaxWPcomment,$no,$field_email,$formdata,$htmlformdata,$taf
 	    if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[$ccme]<>'-') )  ###  not if no email & already CC'ed
 	    {
 
-					$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
-					if ( $frommail=='' )
-						$frommail = '"'.get_option('blogname').'" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
+	        $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 
-					###  HTML message part?
-					$html_show_ac = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' )?true:false;
+	        ###  actual user message
+	        $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
+	        if ( function_exists('my_cforms_logic') )
+	            $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
+	        $cmsg = check_default_vars($cmsg,$no);
+	        $cmsg = check_cust_vars($cmsg,$track,$no);
 
-					$automessage = '';
+	        ###  HTML text
+	        $cmsghtml='';
+	        if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' ){
+	            $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
+	            if ( function_exists('my_cforms_logic') )
+	                $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
+	            $cmsghtml = check_default_vars($cmsghtml,$no);
+	            $cmsghtml = check_cust_vars($cmsghtml,$track,$no);
+	        }
 
-					$headers2 = "From: ". $frommail . $eol;
-					$headers2.= "Reply-To: " . $replyto . $eol;
+	        ### subject
+	        $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
+	        $subject2 = check_default_vars($subject2,$no);
+	        $subject2 = check_cust_vars($subject2,$track,$no);
 
-					if ( $taf_youremail && $taf_friendsemail && substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' ) ### TAF: add CC
-						$headers2.= "CC: " . $replyto . $eol;
+	        ###  different cc & ac subjects?
+	        $s=explode('$#$',$subject2);
+	        $s[1] = ($s[1]<>'') ? $s[1] : $s[0];
 
-					$headers2.= "MIME-Version: 1.0"  .$eol;
-					if( $html_show_ac || ($html_show && ($ccme&&$trackf[$ccme]<>'-')) ){
-						$headers2.= "Content-Type: multipart/alternative; boundary=\"----MIME_BOUNDRY_main_message\"";
-						$automessage = "This is a multi-part message in MIME format."  . $eol;
-						$automessage .= "------MIME_BOUNDRY_main_message"  . $eol;
-						$automessage .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"" . $eol;
-						$automessage .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;
-					}
-					else
-						$headers2.= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"";
+	        ###  email tracking via 3rd party?
+	        ###  if in Tell-A-Friend Mode, then overwrite header stuff...
+	        if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
+	            $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
+	        else
+	            $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 
+	        $mail = new cf_mail($no,$frommail,$field_email,$replyto);
 
-					###  actual user message
-					$cmsg = $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'];
-					$cmsg = check_default_vars($cmsg,$no);
-					$cmsg = check_cust_vars($cmsg,$track,$no);
+            ### auto conf attachment?
+            $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
+            $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
+            if ( $a<>'' && file_exists( $a ) ) {
+                $n = substr( $a, strrpos($a,$cformsSettings['global']['cforms_IIS'])+1, strlen($a) );
+                $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+                $mail->add_file($a, $n,'base64',$m); ### optional name
+            }
 
-					###  text text
-					$automessage .= $cmsg  . $eol;
+	        $mail->char_set = 'utf-8';
 
-					###  HTML text
-					if ( $html_show_ac ) {
+	        ### CC or auto conf?
+	        if ( $ccme&&$trackf[$ccme]<>'-' ) {
+	            if ( $smtpsettings[0]=='1' )
+	                $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
+	            else{
+	                $mail->subj = $s[1];
+	                if ( $mail->html_show_ac ) {
+	                    $mail->is_html(true);
+	                    $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	                    $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
+	                }
+	                else
+	                    $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 
-						###  actual user message
-						$cmsghtml = $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'];
-						$cmsghtml = check_default_vars($cmsghtml,$no);
-						$cmsghtml = str_replace(array("=","\n"),array("=3D","<br />\n"), check_cust_vars($cmsghtml,$track,$no) );
+	                $sent = $mail->send();
+	            }
+	        }
+	        else {
+	            if ( $smtpsettings[0]=='1' )
+	                $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[0] , $cmsg , '', $cmsghtml, '', 'ac' );
+	            else{
+	                $mail->subj = $s[0];
+	                if ( $mail->html_show_ac ) {
+	                    $mail->is_html(true);
+	                    $mail->body     =  "<html>".$mail->eol."<body>".$cmsghtml."</body></html>".$mail->eol;
+	                    $mail->body_alt  =  $cmsg;
+	                }
+	                else
+	                    $mail->body     =  $cmsg;
 
-						$automessage .= "------MIME_BOUNDRY_main_message"  . $eol;
-						$automessage .= "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"". $eol;
-						$automessage .= "Content-Transfer-Encoding: quoted-printable"  . $eol . $eol;;
+	                $sent = $mail->send();
+	            }
+	        }
 
-						$automessage .= "<!DOCTYPE HTML PUBLIC \"-### W3C### DTD HTML 4.0 Transitional### EN\">"  . $eol;
-						$automessage .= "<HTML><BODY>"  . $eol;
-						$automessage .= $cmsghtml;
-						$automessage .= "</BODY></HTML>"  . $eol . $eol;
-					}
-
-					###  replace variables
-				    $subject2 = $cformsSettings['form'.$no]['cforms'.$no.'_csubject'];
-					$subject2 = check_default_vars($subject2,$no);
-					$subject2 = check_cust_vars($subject2,$track,$no);
-
-					###  different cc & ac subjects?
-					$t = explode('$#$',$subject2);
-					$t[1] = ($t[1]<>'') ? $t[1] : $t[0];
-
-
-					###  email tracking via 3rd party?
-					$field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
-
-					###  if in Tell-A-Friend Mode, then overwrite header stuff...
-					if ( $taf_youremail && $taf_friendsemail && substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' )
-						$field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
-
-
-					if ( $ccme&&$trackf[$ccme]<>'-' ) {
-						if ( $smtpsettings[0]=='1' )
-							$sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, stripslashes($t[1]), $message, $formdata, $htmlmessage, $htmlformdata,'ac' );
-						else
-							$sent = @mail($field_email, encode_header(stripslashes($t[1])), $fmessage, $headers2); ### takes $message!!
-					}
-					else {
-						if ( $smtpsettings[0]=='1' )
-							$sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, stripslashes($t[0]) , $cmsg , '', $cmsghtml, '','ac' );
-						else
-							$sent = @mail($field_email, encode_header(stripslashes($t[0])), stripslashes($automessage), $headers2);
-					}
-
-		  		if( $sent<>'1' ) {
-					$err = __('Error occurred while sending the auto confirmation message: ','cforms') . ($smtpsettings[0]?" ($sent)":'');
-				    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-				    return $pre . $err .'|!!!';
-
-		  		}
+            if( $sent<>'1' ) {
+                $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sent:$mail->ErrorInfo;
+                $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
+                return $pre . $err .'|!!!';
+		  	}
 	    } ###  cc
-
-		$hide='';
-		###  redirect to a different page on suceess?
-		if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1 ) {
-			if ( function_exists('my_cforms_logic') )
-            	return my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
-            else
-				return $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
-		}
-		else if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect']==2 || get_cforms_submission_left($no)==0 )
-			$hide = '|~~~';
 
 		###  return success msg
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
 
 		$successMsg	= check_default_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']),$no);
 		$successMsg	= check_cust_vars($successMsg,$track,$no);
+		$successMsg	= str_replace ( $mail->eol, '<br />', $successMsg);
 
-	    return $pre . preg_replace ( '|\r\n|', '<br />', $successMsg) . $hide;
+		###  WP-Comment: override
+		if ($WPsuccess && $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21'){
+			$successMsg = $WPresp;
+        }
 
-	} ###  no admin mail sent!
+		$opt='';
+		###  hide?
+        if ( $cformsSettings['form'.$no]['cforms'.$no.'_hide'] || get_cforms_submission_left($no)==0 )
+			$opt .= '|~~~';
 
-	else {
+		###  redirect to a different page on suceess?
+		if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] ) {
+			if ( function_exists('my_cforms_logic') )
+            	$opt .= '|>>>' . my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
+            else
+				$opt .= '|>>>' . $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
+		}
+
+	    return $pre.$successMsg.$opt;
+
+	}
+	else {  ###  no admin mail sent!
 
 		###  return error msg
-		$err = __('Error occurred while sending the message: ','cforms') . ($smtpsettings[0]?'<br />'.$sentadmin:'');
+		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sentadmin:$mail->ErrorInfo;
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
 	    return $pre . $err .'|!!!';
+
 	}
 
-}
+} ### function
+
 
 
 ###

@@ -5,6 +5,7 @@
 ###
 
 $cflimit = '';
+$filefield = 0;
 
 $captchaopt = $cformsSettings['global']['cforms_captcha_def'];
 
@@ -138,6 +139,10 @@ for($i = 1; $i <= $field_count; $i++) {
 
 						$validations[$i+$off] = ($_REQUEST[$field_type]=='')?false:true;
 
+				}else if( $field_type=="radiobuttons" ) {
+
+						$validations[$i+$off] = ($current_field=='')?false:true;
+
 				}
 
 				if ( !$validations[$i+$off] && $err==0 ) $err=1;
@@ -216,7 +221,9 @@ for($i = 1; $i <= $field_count; $i++) {
 ### have to upload a file?
 ###
 
-$filefield=0;   ### for multiple file upload fields
+global $file;
+$file='';
+$i=0;
 
 if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 
@@ -227,31 +234,31 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 		if(!empty($value)){   ### this will check if any blank field is entered
 
 			if ( function_exists('my_cforms_logic') )
-                $file[name][$filefield] = my_cforms_logic($_REQUEST,$_FILES['cf_uploadfile'.$no][name][$filefield],"filename");
+                $file[name][$i] = my_cforms_logic($_REQUEST,$_FILES['cf_uploadfile'.$no][name][$i],"filename");
 
             $fileerr = '';
               ### A successful upload will pass this test. It makes no sense to override this one.
-              if ( $file['error'][$filefield] > 0 )
+              if ( $file['error'][$i] > 0 )
                       $fileerr = $cformsSettings['global']['cforms_upload_err1'];
 
               ### A successful upload will pass this test. It makes no sense to override this one.
-              $fileext[$filefield] = strtolower( substr($value,strrpos($value, '.')+1,strlen($value)) );
+              $fileext[$i] = strtolower( substr($value,strrpos($value, '.')+1,strlen($value)) );
               $allextensions = explode(',' ,  preg_replace('/\s/', '', strtolower($cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'])) );
 
-              if ( $cformsSettings['form'.$no]['cforms'.$no.'_upload_ext']<>'' && !in_array($fileext[$filefield], $allextensions) )
+              if ( $cformsSettings['form'.$no]['cforms'.$no.'_upload_ext']<>'' && !in_array($fileext[$i], $allextensions) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err5'];
 
               ### A non-empty file will pass this test.
-              if ( !( $file['size'][$filefield] > 0 ) )
+              if ( !( $file['size'][$i] > 0 ) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err2'];
 
               ### A non-empty file will pass this test.
-              if ( $file['size'][$filefield] >= (int)$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] * 1024 )
+              if ( $file['size'][$i] >= (int)$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] * 1024 )
                       $fileerr = $cformsSettings['global']['cforms_upload_err3'];
 
 
               ### A properly uploaded file will pass this test. There should be no reason to override this one.
-              if (! @ is_uploaded_file( $file['tmp_name'][$filefield] ) )
+              if (! @ is_uploaded_file( $file['tmp_name'][$i] ) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err4'];
 
               if ( $fileerr <> '' ){
@@ -259,22 +266,10 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
                       $err = 3;
                       $all_valid = false;
 
-              } else {
-
-                      ### cool, got the file!
-                      if ( !$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] ) {
-                          ### $uploadedfile = file($file['tmp_name'][$filefield]);   ### what's that for??
-
-                          $fp = fopen($file['tmp_name'][$filefield], "rb"); ### Open it
-                          $fdata = fread($fp, filesize($file['tmp_name'][$filefield])); ### Read it
-                          $filedata[$filefield] = chunk_split(base64_encode($fdata)); ### Chunk it up and encode it as base64 so it can emailed
-                          fclose($fp);
-                      }
-
               } ### file uploaded
 
         } ### if !empty
-		$filefield++;
+		$i++;
 
     } ### while all file
 

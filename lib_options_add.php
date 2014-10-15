@@ -54,8 +54,10 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_popup'] = 'nn';
 	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] = 'ynyyy';
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] = '0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] = false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] = false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] = __('http://redirect.to.this.page', 'cforms');
+
 	$cformsSettings['form'.$no]['cforms'.$no.'_action'] = '0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] = 'http://';
 
@@ -71,11 +73,5 @@
 
     update_option('cforms_settings',$cformsSettings);
 	echo '<div id="message" class="updated fade"><p>'.__('A new form with default fields has been added.', 'cforms').'</p></div>';
-
-	###sorry, but WP2.2 doesn quickly enough flush the cache!
-	###if ( function_exists (wp_cache_init) ){
-	###	wp_cache_init();
-	###	wp_cache_flush();
-	###}
 
 ?>
