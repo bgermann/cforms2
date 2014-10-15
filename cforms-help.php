@@ -44,8 +44,8 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<li><a href="#troubles" onclick="setshow(25)"><?php _e('Need more help?', 'cforms'); ?></a> &raquo;</li>
 		</ul>
 
-        <div class="cflegend" id="p17" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            <a id="guide" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Basic steps, a small guide', 'cforms')?>
+        <div class="cflegend op-closed" id="p17" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            <a id="guide" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Basic steps, a small guide', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o17">
@@ -68,8 +68,8 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</div>
 
 
-		<div class="cflegend" id="p18" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="inserting" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Inserting a form', 'cforms')?>
+		<div class="cflegend op-closed" id="p18" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="inserting" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Inserting a form', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o18">
@@ -88,8 +88,8 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</div>
 
 
-		<div class="cflegend" id="p19" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="fields" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Configuring form input fields', 'cforms')?>
+		<div class="cflegend op-closed" id="p19" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="fields" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Configuring form input fields', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o19">
@@ -892,8 +892,8 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 	</div>
 
 
-		<div class="cflegend" id="p20" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="customerr" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Custom error messages &amp; input field titles', 'cforms')?>
+		<div class="cflegend op-closed" id="p20" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="customerr" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Custom error messages &amp; input field titles', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o20">
@@ -932,8 +932,8 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 		</div>
 
 
-		<div class="cflegend" id="p21" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="hook" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms')?>
+		<div class="cflegend op-closed" id="p21" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="hook" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o21">
@@ -1017,15 +1017,15 @@ echo '&lt;/table&gt;';</pre></td></tr>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_filter()</code></strong></td>
-					<td class="bright"><?php _e('function gets triggered <strong>after</strong> user input validation and cforms processing', 'cforms'); ?></td>
+					<td class="bright"><?php _e('function gets triggered <strong>after</strong> user input validation, but <strong>before</strong> processing input data', 'cforms'); ?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_ajax_filter()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before	</strong> further processing', 'cforms'); ?> <?php _e('(nonAjax)', 'cforms'); ?></td>
+					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> processing input data', 'cforms'); ?> <?php _e('(nonAjax)', 'cforms'); ?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_action()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> further processing', 'cforms'); ?> <?php _e('(Ajax)', 'cforms'); ?></td>
+					<td class="bright"><?php _e('function gets called <strong>just before</strong> sending the email', 'cforms'); ?> <?php _e('(Ajax)', 'cforms'); ?></td>
 				</tr>
                 <tr>
                     <td class="bleft"><strong><code class="codehighlight">my_cforms_logic()</code></strong></td>
@@ -1036,8 +1036,8 @@ echo '&lt;/table&gt;';</pre></td></tr>
 		</div>
 
 
-		<div class="cflegend" id="p22" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="dynamicforms" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms')?>
+		<div class="cflegend op-closed" id="p22" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="dynamicforms" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o22">
@@ -1180,8 +1180,8 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-		<div class="cflegend" id="p23" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="variables" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Using variables in email subject and messages', 'cforms')?>
+		<div class="cflegend op-closed" id="p23" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="variables" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Using variables in email subject and messages', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o23">
@@ -1409,8 +1409,8 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-		<div class="cflegend" id="p30" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="multipage" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Multi page forms', 'cforms')?>
+		<div class="cflegend op-closed" id="p30" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="multipage" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Multi page forms', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o30">
@@ -1476,8 +1476,8 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-		<div class="cflegend" id="p24" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Styling Your Forms (CSS theme files)', 'cforms')?>
+		<div class="cflegend op-closed" id="p24" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Styling Your Forms (CSS theme files)', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o24">
@@ -1489,8 +1489,8 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-		<div class="cflegend" id="p25" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-        	<a id="troubles" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Need more help?', 'cforms')?>
+		<div class="cflegend op-closed" id="p25" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="troubles" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Need more help?', 'cforms')?>
         </div>
 
 		<div class="cf-content" id="o25">

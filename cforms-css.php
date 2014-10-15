@@ -98,7 +98,7 @@ abspath_check();
 
 	<form id="selectcss" method="post" action="" name="selectcss">
 			 <fieldset class="cformsoptions">
-	            <div class="cflegend" style="padding-left:10px;" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+	            <div class="cflegend op-closed" style="padding-left:10px;" title="<?php _e('Expand/Collapse', 'cforms') ?>">
 	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Select a form style', 'cforms')?>
 	            </div>
 
@@ -216,8 +216,8 @@ abspath_check();
 ?>
 	<form id="editcss" method="post" action="" name="editcss">
 			 <fieldset class="cformsoptions">
-	            <div id="p15" class="cflegend" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Basic CSS editor: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?>
+	            <div id="p15" class="cflegend op-closed" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Basic CSS editor: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?>
 	            </div>
 
 				<div class="cf-content" id="o15">

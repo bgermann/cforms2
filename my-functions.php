@@ -5,11 +5,11 @@
 
 ### my_cforms_logic() : gets triggered throughout cforms, supporting real-time configuration
 ###
-### my_cforms_action() : gets triggered after user input validation and processing
+### my_cforms_action() : gets triggered just before sending the admin email
 ###
-### my_cforms_filter() : after validation, before processing (nonAJAX)
+### my_cforms_filter() : after validation, before processing/saving input data (nonAJAX)
 ###
-### my_cforms_ajax_filter() : after validation, before processing (AJAX)
+### my_cforms_ajax_filter() : after validation, before processing/saving input data (AJAX)
 ###
 
 

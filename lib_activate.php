@@ -170,6 +170,15 @@ for( $i=1; $i<=$cformsSettings['global']['cforms_formcount']; $i++ ){
 }
 
 
+
+### migrate include/exclude pre v11.2 !
+
+if( $cformsSettings['global']['cforms_include'] <> '' ){
+  $cformsSettings['global']['cforms_inexclude']['ids'] = $cformsSettings['global']['cforms_include'];
+  unset($cformsSettings['global']['cforms_include']);
+}
+
+
 ### UPDATE 'the one'
 if ( get_option('cforms_settings') )
     update_option('cforms_settings',$cformsSettings);

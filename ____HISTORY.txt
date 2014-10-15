@@ -27,6 +27,19 @@
  =====================================================================================
 
 
+WHAT's NEW in cformsII - v11.2
+
+*) FIXING WP 2.9 idiotic  $_REQUEST / get_magic_quotes_gpc()  override in wp-settings.php
+
+*) feature: cforms headers: can now also be *excluded* on certain pages (Global Settings))
+*) bugfix:  file upload: fixed renaming of multiple attachments (multiple '-' issue)
+*) bugfix:  file upload: fixed missing default upload path (absolute path))
+*) bugfix:  TAF: fixed *TAF show/noshow* for TAF forms in the sidebar and in a post/page
+*) bugfix:  auto confirmation settings: fixes saving of "subject" text
+*) bugfix:  drop down / select box: fixes "selection of last item" issue after form reload
+*) other:   "don't clear on reset" auto. turned off when enabling multi part/page forms
+*) other:   improved page load and UI experience, fixed some UI text areas
+
 WHAT's NEW in cformsII - v11.1
 
 *) bugfix:  SENDBUTTON: fixed support for quotes and single quotes in submit button text

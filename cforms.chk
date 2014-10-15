@@ -1,6 +1,5 @@
-Version@11.0@
-Message@<a style="font-size:11px" href="http://www.deliciousdays.com/cforms-forum/announcements/cforms-version-history">Major Update And Bugfix Release (incl. PHP6 support)</a>
-
-<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin#download">Download cforms v11.0 here.</a></div>
-
-<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">IMPORTANT: MULTILE RECIPIENTS support revamped, check the HELP! page for updated description.<br />PLEASE SEE THE __HISTORY.TXT file for <em>WHAT's NEW</em>!<br /></strong> Please <strong>deactivate</strong> cforms before upgrading! Of course as usual, also backup *any* custom files you don't want to be overwritten (or leave them in your personal <strong>plugins/cforms-custom/</strong> dir)!</div>
+Version@11.2@
+Message@<style>.z9{margin:10px auto; padding:10px; text-align:center; width:60%; font-size:11px; }</style>
+<b>Maintenance And Bugfix Release (WP-2.9 compliance)</b>
+<div class="z9" style="border:1px solid #7BF36D;background:#BDF9B7;font-weight:bold;"><a href="http://www.deliciousdays.com/cforms-plugin#download">Download cforms v11.2 here.</a></div>
+<div class="z9" style="border:1px solid #D58C8C;background:#F4E3E3;"><strong>NEW LOCALIZATION: Hindi by Ashish ** Portuguese (Brazilian) by Cátia & Pedro</strong></div>

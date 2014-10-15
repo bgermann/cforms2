@@ -620,6 +620,7 @@ fieldset.cformsoptions {
 }
 
 .cf-content {
+display:none;
 background-color:#FFFFFF;
 padding:0 5px;
 margin-bottom: 5px;
@@ -866,6 +867,11 @@ width:15em;
 .ob input.allchk {
 width:auto;
 }
+
+.inexclude td.obL{
+vertical-align:top;
+}
+
 
 select#emailprio,
 select#cforms_rsscount{

@@ -170,7 +170,7 @@ function cforms_init() {
 
 	### save ABSPATH for ajax routines
 	if ( defined('ABSPATH') && ($fhandle = fopen(dirname(__FILE__).$sep.'abspath.php', "w")) ) {
-	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) ."'; ?>\n");
+	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) . "'; ?>\n");
 	    fclose($fhandle);
 	}
 
@@ -179,7 +179,7 @@ function cforms_init() {
 
 
 ### check for abspath.php
-function abspath_check() {
+function abspath_check(){
 	global $cformsSettings;
 	if ( !file_exists( dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'abspath.php' ) ){
     	echo '<div class="updated fade"><p>'.
@@ -311,7 +311,7 @@ function cforms_footer() {
 	global $localversion;
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
-			<?php echo sprintf(__('For more information and support, visit the %s support forum %s. ', 'cforms'),'<strong>cforms</strong> <a href="http://www.deliciousdays.com/cforms-forum/" title="cforms support forum">','</a>') ?>
+			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/" title="cforms support forum">','</a>') ?>
 			<?php _e('Translation provided by Oliver Seidel, for updates <a href="http://deliciousdays.com/cforms-plugin">check here.</a>', 'cforms') ?>
 		</em>
 	</p>
@@ -338,7 +338,6 @@ function check_erased() {
 }
 
 
-
 ### get_magic_quotes_gpc() workaround
 if ( !function_exists(get_magic_quotes_gpc) ) {
 	function get_magic_quotes_gpc(){
@@ -346,6 +345,8 @@ if ( !function_exists(get_magic_quotes_gpc) ) {
 	}
 }
 function magic($v){
-	return get_magic_quotes_gpc()?$v:addslashes($v);
+  global $wp_version;
+  $vercomp = (version_compare(strval($wp_version), strval('2.9'), '>=') == 1);
+	return ( get_magic_quotes_gpc() || $vercomp ) ? $v : addslashes($v);
 }
 ?>

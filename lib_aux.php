@@ -287,25 +287,25 @@ function write_tracking_record($no,$field_email,$c=''){
 ### move uploaded files to local dir
 function cf_move_files($no, $subID){
 	global $cformsSettings,$file;
+	
     $temp = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
     $fileuploaddir = $temp[0];
+		$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$subID.'-';
 
     $file2 = $file;
-	$i=0;
-	if ( is_array($file2) && isset($file2[tmp_name]) ) {
-		foreach( $file2[tmp_name] as $tmpfile ) {
+  	$i=0;
+  	if ( is_array($file2) && isset($file2[tmp_name]) ) {
+  		foreach( $file2[tmp_name] as $tmpfile ) {
+		
             ### copy attachment to local server dir
-
             if ( is_uploaded_file($tmpfile) ){
-
-				$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$subID.'-';
 
             	$destfile = $fileuploaddir.'/'.$subID.str_replace(' ','_',$file2['name'][$i]);
             	move_uploaded_file($tmpfile,$destfile );
-				$file[tmp_name][$i] = $destfile;
+      				$file[tmp_name][$i] = $destfile;
 
-	            if($subID=='xx')
-	                $_SESSION['cforms']['upload'][$no][] = $destfile;
+              if($subID=='xx')
+                  $_SESSION['cforms']['upload'][$no][] = $destfile;
 
             }
         	$i++;

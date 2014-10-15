@@ -9,6 +9,7 @@
 	$emailtobox=false;
 	$WPc=false;
 	$taf=false;
+	$uploadfield=false;
 
 	for($i = 1; $i <= $field_count; $i++) {
 
@@ -23,8 +24,10 @@
 	        $disabled = 0;
 	        $readonly = 0;
 
-			$isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
+			     $isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
 
+        if( !$uploadfield )
+          $uploadfield = ($type == 'upload');
 
 				if( in_array($type, array('cauthor','email','url','comment','send2author')) && !($isTAF==2) ){
 					$allgood = $WPc?false:true;
@@ -92,10 +95,11 @@
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_noid'] =           $_REQUEST['cforms_upload_noid']?'1':'0';
+	if( $uploadfield && $_REQUEST['cforms_upload_dir']<>'' )
     $cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] =     magic($_REQUEST['cforms_upload_dir'].'$#$'.$_REQUEST['cforms_upload_dir_url']);
-    $cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] =     magic($_REQUEST['cforms_upload_ext']);
-    $cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] =    $_REQUEST['cforms_upload_size'];
-    $cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] =  $_REQUEST['cforms_noattachments']?'1':'0';
+  $cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] =     magic($_REQUEST['cforms_upload_ext']);
+  $cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] =    $_REQUEST['cforms_upload_size'];
+  $cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] =  $_REQUEST['cforms_noattachments']?'1':'0';
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] =   magic($_REQUEST['cforms_submit_text']);
@@ -153,15 +157,23 @@
     															 ($_REQUEST['cforms_admin_html']?'1':'0').($_REQUEST['cforms_user_html']?'1':'0') ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_space'] =         $_REQUEST['cforms_space'];
 
+    ## quickly get old vals
+    $t=explode('$#$',$cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 
-    $cformsSettings['form'.$no]['cforms'.$no.'_confirm'] =			  $_REQUEST['cforms_confirm']?'1':'0';
     if( $_REQUEST['cforms_confirm'] && $cformsSettings['form'.$no]['cforms'.$no.'_confirm']==1 ){
-	    $cformsSettings['form'.$no]['cforms'.$no.'_csubject'] = 	  preg_replace("/\\\+/", "\\",magic($_REQUEST['cforms_csubject'])).'$#$'.
-        															  preg_replace("/\\\+/", "\\",magic($_REQUEST['cforms_ccsubject'])) ;
+        $t[0] = 													  preg_replace("/\\\+/", "\\",magic($_REQUEST['cforms_csubject']));
 	    $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0] = $_REQUEST['cforms_cattachment'];
 	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     	  preg_replace("/\\\+/", "\\",magic($_REQUEST['cforms_cmsg']));
 	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] =	  preg_replace("/\\\+/", "\\",magic($_REQUEST['cforms_cmsg_html']));
+
 	}
+
+    $cformsSettings['form'.$no]['cforms'.$no.'_confirm'] =		$_REQUEST['cforms_confirm']?'1':'0';
+
+    if( $_REQUEST['cforms_ccsubject']!='' )
+		$t[1] = preg_replace("/\\\+/", "\\",magic($_REQUEST['cforms_ccsubject']));
+
+    $cformsSettings['form'.$no]['cforms'.$no.'_csubject'] =		$t[0].'$#$'.$t[1];
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] = 	 $_REQUEST['cforms_mp_form']?true:false;
@@ -174,11 +186,12 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email'] =  		$_REQUEST['cforms_mp_email']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_reset'] = 		$_REQUEST['cforms_mp_reset']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext']=	magic($_REQUEST['cforms_mp_resettext']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back'] = 		$_REQUEST['cforms_mp_back']?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back']     = 	$_REQUEST['cforms_mp_back']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] =	magic($_REQUEST['cforms_mp_backtext']);
-	if( $_REQUEST['cforms_mp_form'] )
-		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = '0';
-	else
+	if( $_REQUEST['cforms_mp_form'] ){
+		$cformsSettings['form'.$no]['cforms'.$no.'_ajax']       = '0';
+    $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']  = false;
+	} else
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = 			$_REQUEST['cforms_ajax']?'1':'0';
 
 

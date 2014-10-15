@@ -81,7 +81,11 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$nav[5]=magic($_REQUEST['cforms_dp_choose']);
 	$cformsSettings['global']['cforms_dp_nav'] = $nav;
 
-	$cformsSettings['global']['cforms_include'] = 		$_REQUEST['cforms_include'];
+ 	$cformsSettings['global']['cforms_inexclude']['ex'] = '';
+  if( $_REQUEST['cforms_inc-or-ex']=='exclude' )
+  	$cformsSettings['global']['cforms_inexclude']['ex'] = '1';
+
+ 	$cformsSettings['global']['cforms_inexclude']['ids'] = $_REQUEST['cforms_include'];
 
 	$cformsSettings['global']['cforms_commentsuccess'] =magic($_REQUEST['cforms_commentsuccess']);
 	$cformsSettings['global']['cforms_commentWait'] =  	$_REQUEST['cforms_commentWait'];
@@ -225,8 +229,8 @@ abspath_check();
 		<input type="hidden" name="cforms_database_new" value="<?php if($cformsSettings['global']['cforms_database']=="0") echo 'true'; ?>"/>
 
 		<fieldset id="wpcomment" class="cformsoptions">
-			<div class="cflegend" id="p28" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('WP Comment Feature Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p28" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature Settings', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o28">
@@ -311,25 +315,29 @@ abspath_check();
 		</fieldset>
 
 		<fieldset id="inandexclude" class="cformsoptions">
-			<div class="cflegend" id="p27" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Include cforms header data only on specific pages', 'cforms')?>
+			<div class="cflegend op-closed" id="p27" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Include cforms header data only on specific pages', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o27">
-				<p><?php _e('Specify the ID(s) of <strong>pages or posts</strong> separated by comma on which you\'d like to show cforms. The cforms header will only be included specifically on those pages, helping to maintain all other pages neat.', 'cforms') ?></p>
+				<p><?php _e('Specify the ID(s) of <strong>pages or posts</strong> separated by comma on which you\'d like to show or not show cforms. The cforms header will only be included specifically on those pages, helping to maintain all other pages neat.', 'cforms') ?></p>
 
 				<table class="form-table">
-				<tr class="ob">
-					<td class="obL"><label for="cforms_include"><strong><?php _e('Page/Post ID(s)', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_include" name="cforms_include" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_include'] )); ?>"/><br /><?php _e('Leave empty to enable for your entire blog', 'cforms') ?></td>
+				<tr class="ob inexclude">
+					<td class="obL"><label for="cforms_include"><strong><?php _e('Page / Post ID(s)', 'cforms'); $ex = ($cformsSettings['global']['cforms_inexclude']['ex']=='1'); ?></strong></label></td>
+					<td class="obR">
+              <input class="allchk"<?php echo !$ex?' checked="checked"':''; ?> type="radio" id="include" value="include" name="cforms_inc-or-ex"/><label for="include"><?php _e('include', 'cforms') ?></label>  <input class="allchk"<?php echo $ex?' checked="checked"':''; ?> type="radio" id="exclude" value="exclude" name="cforms_inc-or-ex"/><label for="exclude"><?php _e('exclude', 'cforms') ?></label><br />
+              <input type="text" id="cforms_include" name="cforms_include" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_inexclude']['ids'] )); ?>"/><br />
+              <?php _e('Leave empty to include cforms header files throughout your blog', 'cforms') ?>
+          </td>
 				</tr>
 				</table>
 			</div>
 		</fieldset>
 
 		<fieldset id="popupdate" class="cformsoptions">
-			<div class="cflegend" id="p9" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Popup Date Picker', 'cforms')?>
+			<div class="cflegend op-closed" id="p9" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Popup Date Picker', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o9">
@@ -389,8 +397,8 @@ abspath_check();
 
 
 		<fieldset id="smtp" class="cformsoptions">
-			<div class="cflegend" id="p10" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Mail Server Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p10" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Mail Server Settings', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o10">
@@ -491,8 +499,8 @@ abspath_check();
 
 
 		<fieldset id="upload" class="cformsoptions">
-			<div class="cflegend" id="p11" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Global File Upload Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p11" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Global File Upload Settings', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o11">
@@ -547,8 +555,8 @@ abspath_check();
 
 
 		<fieldset id="wpeditor" class="cformsoptions">
-			<div class="cflegend" id="p12" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('WP Editor Button support', 'cforms')?>
+			<div class="cflegend op-closed" id="p12" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('WP Editor Button support', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o12">
@@ -569,8 +577,8 @@ abspath_check();
 		</fieldset>
 
 		<fieldset id="captcha" class="cformsoptions">
-			<div class="cflegend" id="p26" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('CAPTCHA Image Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o26">
@@ -696,8 +704,8 @@ abspath_check();
 
 
 		<fieldset id="visitorv" class="cformsoptions">
-			<div class="cflegend" id="p13" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms')?>
+			<div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o13">
@@ -737,8 +745,8 @@ abspath_check();
 
 
 		<fieldset id="tracking" class="cformsoptions">
-			<div class="cflegend" id="p14" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Database Input Tracking', 'cforms')?>
+			<div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms')?>
             </div>
 
 			<div class="cf-content" id="o14">
@@ -790,7 +798,7 @@ abspath_check();
 		</fieldset>
 
 	    <div class="cf_actions" id="cf_actions">
-	        <div class="cflegend" id="p31"><div class="blindminus"></div><p><?php _e('Admin Actions','cforms'); ?></p></div>
+	        <div class="cflegend op-closed" id="p31"><div class="blindplus"></div><p><?php _e('Admin Actions','cforms'); ?></p></div>
 	        <div class="cf-content" id="o31">
 				<p class="m1"><input type="submit" name="showinfo" title="<?php _e('outputs -for debug purposes- all cforms settings', 'cforms') ?>" class="allbuttons addbutton" value="<?php _e('Produce Debug Output', 'cforms') ?>"/></p>
 
