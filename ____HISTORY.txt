@@ -26,6 +26,8 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.3
+*) bugfix:  MULTIPLE RECIPIENTS: fixed issue with 'required' & non-valid entries
 
 WHAT's NEW in cformsII - v11.2
 
