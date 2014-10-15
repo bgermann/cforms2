@@ -1,6 +1,6 @@
-Version@10.6@
-Message@<a style="font-size:11px" href="http://www.deliciousdays.com/cforms-forum/announcements/cforms-version-history">Maintenance and Compliance Release (PHP4 support now & WP2.8 compliance)</a>
+Version@11.0@
+Message@<a style="font-size:11px" href="http://www.deliciousdays.com/cforms-forum/announcements/cforms-version-history">Major Update And Bugfix Release (incl. PHP6 support)</a>
 
-<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin#download">Download v10.6 here.</a></div>
+<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin#download">Download cforms v11.0 here.</a></div>
 
-<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">IMPORTANT: SIDEBAR WIDGET support completely rewritten, <strong>please recheck your widget setup</strong> after upgrading!<br /></strong> Please <strong>deactivate</strong> cforms before upgrading! Of course as usual, also backup *any* custom files you don't want to be overwritten (or leave them in your personal <strong>plugins/cforms-custom/</strong> dir)!</div>
+<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">IMPORTANT: MULTILE RECIPIENTS support revamped, check the HELP! page for updated description.<br />PLEASE SEE THE __HISTORY.TXT file for <em>WHAT's NEW</em>!<br /></strong> Please <strong>deactivate</strong> cforms before upgrading! Of course as usual, also backup *any* custom files you don't want to be overwritten (or leave them in your personal <strong>plugins/cforms-custom/</strong> dir)!</div>

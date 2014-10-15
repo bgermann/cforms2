@@ -113,10 +113,14 @@ if ($showIDs<>'') {
 					$fileuploaddir = $temp[0];
 					$fileuploaddirurl = $temp[1];
 
+					$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$entry->sub_id.'-';
+
 					if ( $fileuploaddirurl=='' )
-	                    $fileurl = $cformsSettings['global']['cforms_root'].substr($fileuploaddir,strpos($fileuploaddir,$cformsSettings['global']['plugindir'])+strlen($cformsSettings['global']['plugindir']),strlen($fileuploaddir)).'/'.$entry->sub_id.'-'.strip_tags($val);
+	                    $fileurl = $cformsSettings['global']['cforms_root'].substr($fileuploaddir,strpos($fileuploaddir,$cformsSettings['global']['plugindir'])+strlen($cformsSettings['global']['plugindir']),strlen($fileuploaddir));
 					else
-	                    $fileurl = $fileuploaddirurl.'/'.$entry->sub_id.'-'.strip_tags($val);
+	                    $fileurl = $fileuploaddirurl;
+
+                    $fileurl .= '/'.$subID.strip_tags($val);
 
 					echo '<div class="showformfield" style="margin:4px 0;color:#3C575B;"><div class="L">';
 					echo substr($name, 0,strpos($name,'[*'));
@@ -134,7 +138,7 @@ if ($showIDs<>'') {
 
 					echo '<div class="showformfield" style="margin-bottom:10px;color:#3C575B;"><div class="L">';
 					_e('IP address', 'cforms');
-					echo 	'</div><div class="R"><a href="http://geomaplookup.cinnamonthoughts.org/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms').'">'.$entry->ip.'</a></div></div>' . "\n";
+					echo 	'</div><div class="R"><a href="http://geomaplookup.net/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms').'">'.$entry->ip.'</a></div></div>' . "\n";
 
 
 			} elseif ( strpos($name,'Fieldset')!==false ) {

@@ -23,7 +23,7 @@ $f_id   = $_POST['id'];
 if ( $f_id<>'' ) {
 
 	$sql="SELECT field_val FROM {$wpdb->cformsdata} WHERE f_id = '$f_id'";
-	echo $wpdb->get_var($sql);
+	echo stripslashes($wpdb->get_var($sql));
 
 }
 ?>

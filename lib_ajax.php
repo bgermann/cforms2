@@ -103,7 +103,7 @@ function cforms_submitcomment($content) {
 	$track = array();
 	$trackinstance = array();
 
- 	$to_one = "-1";
+ 	$to_one = -1;
   	$ccme = false;
 	$field_email = '';
 	$off = 0;
@@ -260,12 +260,12 @@ function cforms_submitcomment($content) {
 
 			if ( $field_type == "emailtobox" ){  			### special case where the value needs to bet get from the DB!
 
-				$field_name = explode('#',$field_stat[0]);  ### can't use field_name, since '|' check earlier
-
                 $to_one = $params ['field_' . $i];
+				$field_name = explode('#',$field_stat[0]);  ### can't use field_name, since '|' check earlier
 
 	            $tmp = explode('|', $field_name[$to_one+1] );   ###  remove possible |set:true
 	            $value  = $tmp[0];                              ###  values start from 0 or after!
+				$to = $replyto = stripslashes($tmp[1]);
 
 				$field_name = $field_name[0];
 	 		}
@@ -336,20 +336,15 @@ function cforms_submitcomment($content) {
 
 
 
-
-	### reply-to
-	$replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
-
 	###  multiple recipients? and to whom is the email sent? to_one = picked recip.
 	if ( $isAjaxWPcomment!==false && $track['send2author']=='1' ){
 			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = {$Ajaxpid} AND U.ID=P.post_author");
 			$to = $replyto = ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
-	else if ( $to_one <> "-1" ) {
-			$all_to_email = explode(',', $replyto);
-			$replyto = $to = $all_to_email[ $to_one ];
-	} else
-			$to = $replyto;
+	else if ( !($to_one<>-1 && $to<>'') )
+		$to = $replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
+
+
 
 	### from
 	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
@@ -511,6 +506,10 @@ function cforms_submitcomment($content) {
 		$successMsg	= check_cust_vars($successMsg,$track,$no);
 		$successMsg	= str_replace ( $mail->eol, '<br />', $successMsg);
 
+	    ### logic: possibly change usermessage
+	    if ( function_exists('my_cforms_logic') )
+	        $successMsg = my_cforms_logic($trackf, $successMsg,'successMessage');
+
 		###  WP-Comment: override
 		if ($WPsuccess && $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21'){
 			$successMsg = $WPresp;
@@ -523,9 +522,11 @@ function cforms_submitcomment($content) {
 
 		###  redirect to a different page on suceess?
 		if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] ) {
-			if ( function_exists('my_cforms_logic') )
-            	$opt .= '|>>>' . my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
-            else
+			if ( function_exists('my_cforms_logic') ){
+				$red = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');
+            	if ( $red<>'' )
+                	$opt .= '|>>>' . $red;  ### use trackf!
+            } else
 				$opt .= '|>>>' . $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 		}
 

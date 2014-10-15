@@ -26,6 +26,41 @@
  Version History:
  =====================================================================================
 
+
+WHAT's NEW in cformsII - v11
+
+*) feature: MULTIPLE RECIPIENTS support revamped (supporting multiple email accounts per option)!
+            PLEASE DOUBLE CHECK YOUR SETUP! see HELP! page as well.
+*) feature: admin UI revamped (please note the new fixed 'action box', right hand side!)
+*) feature: PHP 6 compliance: added input processing support to accomodate PHP's DEPRECATED
+            get_magic_quotes_gpc()
+*) feature: added a new my-functions.php logic routine: "successMessage"
+*) feature: UPLOAD field noid- (or ID) prefix can be turned off
+*) feature: enabled Email-Priority for the SMTP feature
+*) feature: admin UI option boxes: supporting clickable option titles bars
+*) feature: added two new system variables: {CurUserFirstName} & {CurUserLastName}
+*) feature: supporting multiple form fields with the same name in get_cforms_entries()
+*) feature: BCC field now supports multiple email addresses
+*) feature: conditional redirection (my-functions.php) can now return "" (empty string) to cancel
+            redirection altogether
+
+*) bugfix:  fixed "magic deletion" of \ (backslashes) for some users when updating settings
+*) bugfix:  fixed popup time entry for "submission limit"
+*) bugfix:  form deletion: fixed error when having more than 10 forms.
+*) bugfix:  fixed deletion of auto confirmation settings when turning off this feature
+*) bugfix:  fixed form duplication bug that would prevent 'Multi-part settings' to be copied
+*) bugfix:  form deletion: fixed proper consolidation of remaining forms / settings array
+*) bugifx:  TAF: fixed WP quickedit; now keeping the TAF setting when updating post
+*) bugfix:  fixed sorting for int() values in get_cforms_entries()
+*) bugfix:  "geomaplookup" call adjusted to new URL
+*) bugfix:  RSS title missed a stripslashes()
+*) bugfix:  Admin email missed a stripslashes() for the form data title
+*) bugfix:  Tracking/download of CSV: "Add URL for upload fields" option fixed for MP forms
+
+*) other:   plugin removal code enhanced (turns off plugin automatically now)
+
+
+
 WHAT's NEW in cformsII - v10.6   *** WP 2.8 compliance
 
 *) feature: completely rewritten sidebar WIDGET SUPPORT, pls recheck your widget setup!

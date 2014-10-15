@@ -89,7 +89,7 @@ setINI('form','cforms_maxentries', '');
 setINI('form','cforms_tellafriend', '01');
 setINI('form','cforms_dashboard', '0');
 
-$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_resettext'];
+### $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext'];
 
 ### global file settings
 
@@ -154,11 +154,28 @@ $nav[4]=__('Close', 'cforms');
 $nav[5]=__('Choose Date', 'cforms');
 setINI('global','cforms_dp_nav', $nav);
 
+
+### migrate previous MP settings
+for( $i=1; $i<=$cformsSettings['global']['cforms_formcount']; $i++ ){
+
+	$no = ($i=='1')?'':$i;
+    if( is_array($cformsSettings['form'.$no]['mp']) && !is_array($cformsSettings['form'.$no]['cforms'.$no.'_mp']) ){
+
+	    foreach( array_keys($cformsSettings['form'.$no]['mp']) as $k ){
+	        $tmp = preg_match('/cforms\d*_(.*)/',$k, $kk);
+            $cformsSettings['form'.$no]['cforms'.$no.'_mp'][$kk[1]] = $cformsSettings['form'.$no]['mp'][$k];
+	    }
+
+	}
+}
+
+
 ### UPDATE 'the one'
 if ( get_option('cforms_settings') )
     update_option('cforms_settings',$cformsSettings);
 else
     add_option('cforms_settings',$cformsSettings);
+
 
 
 ### updates existing tracking db

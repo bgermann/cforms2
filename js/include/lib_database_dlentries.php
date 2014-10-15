@@ -34,6 +34,7 @@ $format = $_GET['format'];
 $sub_ids = $_GET['ids'];
 $sortBy = $_GET['sortBy'];
 $sortOrder = $_GET['sortOrder'];
+$charset = $_GET['enc'];
 
 $qtype = $_GET['qtype'];
 $query = $_GET['query'];
@@ -168,7 +169,7 @@ function getCSVTAB($format='csv'){
             $buffer[last2_n]= $buffer[last_n];
             $buffer[last_n] = $last_n;
 
-			$body  = __('Form','cforms').': "' . utf8_decode($fnames[$next_n]). '"'. $format .'"'. utf8_decode($entry[sub_date]) .'"' . $format . ($_GET['addip']?$entry[ip].$format:'');
+			$body  = __('Form','cforms').': "' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry[sub_date]) .'"' . $format . ($_GET['addip']?$entry[ip].$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 			$last_n = $next_n;
 
@@ -179,23 +180,29 @@ function getCSVTAB($format='csv'){
         $urlTab='';
         if( $_GET['addurl'] && strpos($entry[field_name],'[*') ){
 
+            preg_match('/.*\[\*(.*)\]$/i',$entry[field_name],$t);
+            $no   = $t[1]==''?$entry[form_id]:($t[1]==1?'':$t[1]);
+
 		    $urlTab = $format;
 			$entry[field_name] = substr($entry[field_name],0,strpos($entry[field_name],'[*'));
 
-            preg_match('/.*\[\*(.*)\]$/i',$entry[field_name],$t);
-            $no   = $t[1]==''?$entry[form_id]:($t[1]==1?'':$t[1]);
             $t = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
-            $fileuploaddir = $t[0];
-            $fileuploaddirurl = $t[1];
+            $fdir = $t[0];
+            $fdirURL = $t[1];
 
-            if ( $fileuploaddirurl=='' )
-                $url = $cformsSettings['global']['cforms_root'].substr($fileuploaddir,strpos($fileuploaddir,$cformsSettings['global']['plugindir'])+strlen($cformsSettings['global']['plugindir']),strlen($fileuploaddir)).'/'.$entry[id].'-'.strip_tags($entry[field_val]).$format;
+			$subID = $cformsSettings['form'.$no]['cforms'.$no.'_noid'] ? '' : $entry[id].'-';
+
+            if ( $fdirURL=='' )
+                $url = $cformsSettings['global']['cforms_root'].
+                		substr( $fdir, strpos($fdir,$cformsSettings['global']['plugindir']) + strlen($cformsSettings['global']['plugindir']),  strlen($fdir) );
             else
-                $url = $fileuploaddirurl.'/'.$entry[id].'-'.strip_tags($entry[field_val]).$format;
+                $url = $fdirURL;
+
+			$url .= '/'.$subID.strip_tags($entry[field_val]) .$format;
 		}
 
-        $head .= ($_GET['header']=='true')?'"'.utf8_decode(stripslashes($entry[field_name])).'"' . $format . $urlTab:'';
-		$body .= '"' . str_replace('"','""', utf8_decode(stripslashes($entry[field_val]))) . '"' . $format . $url;
+        $head .= ($_GET['header']=='true')?'"'.encData(stripslashes($entry[field_name])).'"' . $format . $urlTab:'';
+		$body .= '"' . str_replace('"','""', encData(stripslashes($entry[field_val]))) . '"' . $format . $url;
 
 	} ### while
 
@@ -223,9 +230,12 @@ function getCSVTAB($format='csv'){
 
 
 function getXML(){
-	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings;
+	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset;
 
-	fwrite($temp, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<entries>\n");
+	if( $charset=='utf-8' )
+		fwrite($temp, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<entries>\n");
+	else
+		fwrite($temp, "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<entries>\n");
 
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
 	@mysql_select_db(DB_NAME) or die( "Unable to select database");
@@ -245,11 +255,11 @@ function getXML(){
 	            if ( $sub_id<>'' )
 	            	fwrite($temp, "</entry>\n");
 
-	            fwrite($temp, '<entry form="'.utf8_decode( $fnames[$n]).'" date="'.utf8_decode( $entry[sub_date] ).'"'.($_GET['addip']?' ip="'.$entry[ip].'"':'').">\n");
+	            fwrite($temp, '<entry form="'.encData( $fnames[$n]).'" date="'.encData( $entry[sub_date] ).'"'.($_GET['addip']?' ip="'.$entry[ip].'"':'').">\n");
 
 	            $sub_id = $entry[id];
 	        }
-	        fwrite($temp, '<data col="'.utf8_decode( stripslashes($entry[field_name]) ).'"><![CDATA['.utf8_decode( stripslashes($entry[field_val]) ).']]></data>'."\n");
+	        fwrite($temp, '<data col="'.encData( stripslashes($entry[field_name]) ).'"><![CDATA['.encData( stripslashes($entry[field_val]) ).']]></data>'."\n");
 
 	} ### while
 
@@ -260,6 +270,11 @@ function getXML(){
 	 fwrite($temp, "</entry>\n</entries>\n");
 
 	return;
+}
+
+function encData ( $d ){
+	global $charset;
+	return ( $charset=='utf-8' ) ? $d : utf8_decode($d);
 }
 
 ?>

@@ -61,7 +61,7 @@ else if(isset($_POST['no-css'])){
 
 if(!empty($_POST['save_css'])){
 
-	$newcss = stripslashes($_POST['csseditor']);
+	$newcss = stripslashes( $_POST['csseditor'] );
 
 	if(is_writeable($stylefile)) {
 
@@ -98,7 +98,11 @@ abspath_check();
 
 	<form id="selectcss" method="post" action="" name="selectcss">
 			 <fieldset class="cformsoptions">
-				<p class="cflegend" style="margin:10px 0 20px;"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Select a form style', 'cforms') ?></p>
+	            <div class="cflegend" style="padding-left:10px;" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Select a form style', 'cforms')?>
+	            </div>
+
+			<div class="cf-content">
 				<table>
 				<tr valign="top">
 
@@ -202,6 +206,7 @@ abspath_check();
 
 				</tr>
 				</table>
+                </div>
 			</fieldset>
 	 </form>
 <?php
@@ -211,24 +216,29 @@ abspath_check();
 ?>
 	<form id="editcss" method="post" action="" name="editcss">
 			 <fieldset class="cformsoptions">
-				<p class="cflegend" style="margin-top:10px;"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><input type="submit" name="save_css" class="allbuttons updbutton" value="<?php _e('Update Changes &raquo;', 'cforms'); ?>"/><?php _e('Basic CSS editor: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?></p>
+	            <div id="p15" class="cflegend" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Basic CSS editor: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?>
+	            </div>
 
-				<p><?php _e('Use this simple editor to further tailor your forms\' style to meet your requirements. Currently you\'re editing: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?></p>
+				<div class="cf-content" id="o15">
+	                <p><?php _e('Use this simple editor to further tailor your forms\' style to meet your requirements. Currently you\'re editing: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?></p>
+	                <p><input type="submit" name="save_css" class="allbuttons updbutton" value="<?php _e('Update Settings &raquo;', 'cforms'); ?>" onclick="javascript:document.mainform.action='#fileupload';" /></p>
 
-			    <textarea rows="16" cols="118" id="stylebox" name="csseditor"><?php
+	                <textarea rows="16" cols="118" id="stylebox" name="csseditor"><?php
 
-					if( is_file($stylefile) && filesize($stylefile) > 0) {
+	                    if( is_file($stylefile) && filesize($stylefile) > 0) {
 
-						$f = "";
-						$f = fopen($stylefile, 'r');
-						$file = fread($f, filesize($stylefile));
-						echo $file;
-						fclose($f);
+	                        $f = "";
+	                        $f = fopen($stylefile, 'r');
+	                        $file = fread($f, filesize($stylefile));
+	                        echo $file;
+	                        fclose($f);
 
-					} else
-					    echo __('Sorry. The file you are looking for doesn\'t exist.', 'cforms');
+	                    } else
+	                        echo __('Sorry. The file you are looking for doesn\'t exist.', 'cforms');
 
-				?></textarea>
+	                ?></textarea>
+				</div>
 
 		  </fieldset>
 	</form>

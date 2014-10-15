@@ -99,12 +99,17 @@ class cf_mail {
 	    ### bcc
 	    $te=array();
 	    $t=array();
-	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$te) && $adminEmail) {
-	        if ( preg_match('/(.*)\s+(([\w-\+\.]+@|<)).*/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$t) )
-	            $this->add_bcc($te[0] ,str_replace('"','',$t[1]) );
-	        else
-	            $this->add_bcc($te[0]);
-	    }
+
+	    $addresses = explode(',',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']) );
+	    foreach( $addresses as $a ){
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) && $adminEmail) {
+	            if ( preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/',$a,$t) )
+	                $this->add_bcc($te[0] ,str_replace('"','',$t[1]) );
+	            else
+		            $this->add_bcc($te[0]);
+	        }
+		}
+
 
 	    ### to
 	    $addresses = explode(',',$to);

@@ -32,7 +32,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$track = array();
 		$trackinstance = array();
 
-  		$to_one = "-1";
+  		$to_one = -1;
 		$ccme = false;
 		$field_email = '';
 
@@ -158,11 +158,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 		if ( $field_type == "emailtobox" ){  				### special case where the value needs to bet get from the DB!
 
-            $field_name = explode('#',$field_stat[0]);  	### can't use field_name, since '|' check earlier
             $to_one = $_POST[$current_field];
+            $field_name = explode('#',$field_stat[0]);  	### can't use field_name, since '|' check earlier
 
 			$tmp = explode('|', $field_name[$to_one+1] );	###  remove possible |set:true
             $value 	= $tmp[0];								###  values start from 0 or after!
+			$to = $replyto = stripslashes($tmp[1]);
 
             $field_name = $field_name[0];
  		}
@@ -242,7 +243,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
     ### multi-form session
 	$inSession = 'noSess';
-	if( $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] ){
+	if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] ){
 		if( $field_email<>'' )
        		$_SESSION['cforms']['email']=$field_email;
 		$_SESSION['cforms']['list'][$_SESSION['cforms']['pos']++]=$no;
@@ -254,9 +255,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 
 	###  assemble text & html email
-	if( $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] &&
-    	!$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_email'] &&
-    	$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_next']==-1 &&
+	if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] &&
+    	!$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email'] &&
+    	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']==-1 &&
         is_array($_SESSION['cforms']) ){
 			$track = allTracks($_SESSION['cforms']);
             $inSession = '0';
@@ -294,12 +295,10 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = ".($_POST['comment_post_ID'.$no])." AND U.ID=P.post_author");
 			$to = $replyto =  ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
-    ### multiple recipients? and to whom is the email sent?
-	else if ( $to_one <> "-1" ) {
-			$all_to_email = explode(',', $replyto);
-			$replyto = $to = $all_to_email[ $to_one ];
-	} else
-			$to = $replyto;
+	else if ( !($to_one<>-1 && $to<>'') )
+		$to = $replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
+
+
 
 	### T-A-F overwrite
 	if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
@@ -376,7 +375,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 
 	### Skip admin email when MP form
-    $MPok = !$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] || ($cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] && !$cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_email']);
+    $MPok = !$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] || ($cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && !$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email']);
 
 	if ( $MPok ){
 
@@ -527,11 +526,13 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	            else
 	                $rp = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 
-	            ?>
-	            <script type="text/javascript">
-	                location.href = '<?php echo $rp; ?>';
-	            </script>
-	            <?php
+	            if ( $rp <> '' ){
+	                ?>
+	                <script type="text/javascript">
+	                    location.href = '<?php echo $rp; ?>';
+	                </script>
+	                <?php
+				}
 	        }
 
 	    } ###  if $sentadmin

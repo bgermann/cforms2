@@ -217,7 +217,7 @@ function formatEmail($track,$no){
 
 	}
 	$r['text'] = $t;
-    $r['html'] = '<p style="'.$cformsSettings['global']['cforms_style_title'].'">'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'</p><table width="100%" cellpadding="0" cellspacing="0" style="'.$cformsSettings['global']['cforms_style_table'].'">'.stripslashes($h).'</table><span style="'.$cformsSettings['global']['cforms_style_cforms'].'">powered by <a href="http://www.deliciousdays.com/cforms-plugin">cformsII</a></span>';
+    $r['html'] = '<p style="'.$cformsSettings['global']['cforms_style_title'].'">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'</p><table width="100%" cellpadding="0" cellspacing="0" style="'.$cformsSettings['global']['cforms_style_table'].'">'.stripslashes($h).'</table><span style="'.$cformsSettings['global']['cforms_style_cforms'].'">powered by <a href="http://www.deliciousdays.com/cforms-plugin">cformsII</a></span>';
 	return $r;
 }
 
@@ -227,7 +227,7 @@ function formatEmail($track,$no){
 function write_tracking_record($no,$field_email,$c=''){
 		global $wpdb, $track, $cformsSettings;
 
-        if ( $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] || ($cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] && $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_email']) )
+        if ( $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] || ($cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email']) )
 			return -1; ### bail out
 
 		if ( $cformsSettings['global']['cforms_database'] == '1' ) {
@@ -298,7 +298,9 @@ function cf_move_files($no, $subID){
 
             if ( is_uploaded_file($tmpfile) ){
 
-            	$destfile = $fileuploaddir.'/'.$subID.'-'.str_replace(' ','_',$file2['name'][$i]);
+				$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$subID.'-';
+
+            	$destfile = $fileuploaddir.'/'.$subID.str_replace(' ','_',$file2['name'][$i]);
             	move_uploaded_file($tmpfile,$destfile );
 				$file[tmp_name][$i] = $destfile;
 
@@ -403,7 +405,7 @@ function check_default_vars($m,$no) {
 		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
 			$page = $permalink;
 
-		$find = $wpdb->get_row("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID='$pid'");
+		$find    = $wpdb->get_row("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID='$pid'");
 
 		$CurrUser = wp_get_current_user();
 
@@ -420,6 +422,8 @@ function check_default_vars($m,$no) {
 		$m 	= str_replace( '{CurUserID}',	$CurrUser->ID, $m );
 		$m 	= str_replace( '{CurUserName}',	$CurrUser->display_name, $m );
 		$m 	= str_replace( '{CurUserEmail}',$CurrUser->user_email, $m );
+		$m 	= str_replace( '{CurUserFirstName}', $CurrUser->user_firstname, $m );
+		$m 	= str_replace( '{CurUserLastName}',	$CurrUser->user_lastname, $m );
 
 		$m 	= str_replace( '{Permalink}',	$permalink, $m );
 		$m 	= str_replace( '{Title}',		$find->post_title, $m );
@@ -563,7 +567,7 @@ class cformsRSS {
 
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-	<title><?php if ($single) echo __('New submissions for >>', 'cforms').' '.$cformsSettings['form'.$no]['cforms'.$no.'_fname']; else _e('All new form submissions', 'cforms'); ?></title>
+	<title><?php if ($single) echo __('New submissions for >>', 'cforms').' '.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']); else _e('All new form submissions', 'cforms'); ?></title>
 	<atom:link href="<?php echo get_option('siteurl').'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?>" rel="self" type="application/rss+xml" />
 	<link><?php echo get_option('siteurl'); ?></link>
 	<description><?php _e('This RSS feed provides you with the most recent form submissions.', 'cforms') ?></description>
@@ -637,8 +641,22 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE $where";
 	$all = $wpdb->get_results($sql);
 
-	foreach ( $all as $d )
-    	$cfdata[$d->sub_id]['data'][$d->field_name] = $d->field_val;
+
+	$offsets = array();
+	foreach ( $all as $d ){
+
+		if( $offsets[$d->sub_id][$d->field_name]<>'')
+	    	$offsets[$d->sub_id][$d->field_name]++;
+        else
+			$offsets[$d->sub_id][$d->field_name]=1;
+
+        $tmp = '';
+		if( $offsets[$d->sub_id][$d->field_name]>1)
+        	$tmp = '-'.$offsets[$d->sub_id][$d->field_name];
+
+        $cfdata[$d->sub_id]['data'][$d->field_name.$tmp] = $d->field_val;
+
+    }
 
 	if ( $cfsort <> '' ) ;
 		uksort ($cfdata, "cf_sort");
@@ -663,10 +681,20 @@ function cf_sort( $a,$b ){
         	return 0;
 
 	}
-    if ( stristr($cfsortdir,'asc')===false )
-		return strcasecmp($b, $a);
-    else
-		return strcasecmp($a, $b);
+
+    $tmp=(int)$a;
+
+    if ( is_int($tmp) && $tmp=trim($a) ){
+	    if ( stristr($cfsortdir,'asc')===false )
+	        return ($b > $a);
+	    else
+	        return ($a < $b);
+    } else {
+	    if ( stristr($cfsortdir,'asc')===false )
+	        return strcasecmp($b, $a);
+	    else
+	        return strcasecmp($a, $b);
+    }
 }
 
 

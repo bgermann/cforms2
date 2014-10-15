@@ -1,8 +1,24 @@
 <?php
 
-$buffer='';
+
+### plugin removal
+if( isset($_REQUEST['cfdeleteall']) ) {
+
+	$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%'");
+	$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformssubmissions");
+	$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformsdata");
+
+    ### deactivate cforms plugin
+	$curPlugs = get_settings('active_plugins');
+	array_splice($curPlugs, array_search( 'cforms', $curPlugs), 1 ); // Array-function!
+	update_option('active_plugins', $curPlugs);
+	header('Location: plugins.php?deactivate=true');
+
+}
+
 
 ### backup/download cforms settings
+$buffer='';
 function download_cforms(){
 	global $buffer, $wpdb, $cformsSettings;
 	$br="\n";
@@ -194,9 +210,9 @@ function cforms_scripts() {
 	### global settings
 	$request_uri = get_request_uri();
 
-    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.2.6") ) === -1 ){
+    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.3.2") ) === -1 ){
 		wp_deregister_script('jquery');
-	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.2.6');
+	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.3.2');
     	wp_enqueue_script('jquery');
     }
 
@@ -315,5 +331,17 @@ function check_erased() {
 	    return true;
 	}
 	return false;
+}
+
+
+
+### get_magic_quotes_gpc() workaround
+if ( !function_exists(get_magic_quotes_gpc) ) {
+	function get_magic_quotes_gpc(){
+		return false;
+	}
+}
+function magic($v){
+	return get_magic_quotes_gpc()?$v:addslashes($v);
 }
 ?>

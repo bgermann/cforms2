@@ -22,6 +22,7 @@
 ###
 ### Your custom application logic features
 ###
+### "successMessage" 	$cformsdata = cforms datablock
 ### "redirection"  		$cformsdata = cforms datablock
 ### "filename"     		$cformsdata = $_REQUEST
 ### "adminTO"  	  		$cformsdata = cforms datablock
@@ -41,6 +42,22 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
 	### If you're unsure how to reference $cformsdata use the below @mail call to send you the data array
 	### @mail('your@email.com', 'cforms my_action test', print_r($cformsdata,1), 'From: your@email.com');
+
+
+
+	###
+	### example: the below code changes the original Success Message
+
+    if ( $setting == "successMessage" && $oldvalue<>'' ){
+
+        ### only form #1 (default form) should be affected:
+		if ( $cformsdata['id']=='' ){
+
+			return $oldvalue . '<br />Form submitted on '.date('D, d M Y H:i:s');
+
+		}
+
+    }
 
 
 

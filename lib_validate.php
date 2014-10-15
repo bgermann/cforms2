@@ -106,7 +106,7 @@ for($i = 1; $i <= $field_count; $i++) {
 				if ( !$validations[$i+$off] && $err==0 ) $err=1;
 
 		}
-		else if( $field_required ) { ### just required
+		else if( $field_required && !in_array($field_type,array('verification','captcha'))  ) { ### just required
 
 				if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
 

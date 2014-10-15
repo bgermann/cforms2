@@ -34,6 +34,9 @@ function cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $messag
 		$mail->IsSMTP();
 		$mail->Host	= $smtpsettings[1];
 
+        if( (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] > 0 )
+	        $mail->Priority = (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'];
+
 		### $mail->SMTPDebug = true;
 
 		if ( $smtpsettings[4]<>'' ){
@@ -72,9 +75,16 @@ function cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $messag
 			$mail->AddCC($temp[0],str_replace('"','',$temp2[1]));
 
 
-		### bcc
-		if( preg_match('/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$temp) )
-			$mail->AddBCC($temp[0]);
+	    ### bcc
+	    $te=array();
+	    $t=array();
+	    $addresses = explode(',',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']) );
+	    foreach( $addresses as $a ){
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) )
+					$mail->AddBCC($te[0]);
+		}
+
+
 
 		###to
 		###if( preg_match('/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/',$to,$temp) )

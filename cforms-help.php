@@ -45,10 +45,11 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<li><a href="#troubles" onclick="setshow(25)"><?php _e('Need more help?', 'cforms'); ?></a> &raquo;</li>
 		</ul>
 
+        <div class="cflegend" id="p17" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            <a id="guide" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Basic steps, a small guide', 'cforms')?>
+        </div>
 
-	    <p class="cflegend space20" id="guide"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b17" class="blindminus" onfocus="this.blur()" onclick="toggleui(17);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">1.</span><?php _e('Basic steps, a small guide', 'cforms'); ?></p>
-
-		<div id="o17">
+		<div class="cf-content" id="o17">
 			<p><?php _e('Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin but it may be the most flexible. The below outline should help you get started with the default form.', 'cforms'); ?></p>
 			<ol style="margin:10px 0 0 100px;">
 				<li><?php echo sprintf(__('First take a look at the <a href="%s">default form</a>', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
@@ -68,9 +69,11 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</div>
 
 
-	    <p class="cflegend" id="inserting"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b18" class="blindminus" onfocus="this.blur()" onclick="toggleui(18);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">2.</span><?php _e('Inserting a form', 'cforms'); ?></p>
+		<div class="cflegend" id="p18" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="inserting" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Inserting a form', 'cforms')?>
+        </div>
 
-		<div id="o18">
+		<div class="cf-content" id="o18">
 			<h3><strong><?php _e('Editing posts and pages:', 'cforms'); ?></strong></h3>
 
 			<p class="helpimg"><img src="<?php echo $cforms_root; ?>/images/example-tiny.png"  alt=""/><br /><?php _e('TinyMCE Support', 'cforms'); ?></p>
@@ -86,9 +89,11 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</div>
 
 
-	    <p class="cflegend" id="fields"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b19" class="blindminus" onfocus="this.blur()" onclick="toggleui(19);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">3.</span><?php _e('Configuring form input fields', 'cforms'); ?></p>
+		<div class="cflegend" id="p19" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="fields" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Configuring form input fields', 'cforms')?>
+        </div>
 
-		<div id="o19">
+		<div class="cf-content" id="o19">
 			<p><?php echo sprintf(__('All supported input fields are listed below, highlighting the expected <em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, see examples below.', 'cforms'),'<a class="infobutton" href="#" name="it14">','</a>'); ?></p>
 
 			<p class="ex" style="display:none; width:400px;" id="it14"><?php _e('While the <em>Field Names</em> are usually just the label of a field (e.g. "Your Name"), they can contain additional information to support special functionality (e.g. default values, regular expressions for extended field validation etc.)', 'cforms'); ?></p>
@@ -411,7 +416,6 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<span class="h4ff"><?php _e('form<br />field', 'cforms'); ?></span>
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Multiple form mail recipients', 'cforms'); ?>
-			<span style="font-size:10px; color:#fff; margin-left:15px"><strong><?php _e('Note:', 'cforms'); ?></strong> <?php echo sprintf(__('This requires corresponding email addresses <a href="%s" %s>here</a>!!', 'cforms'),'?page='.$plugindir.'/cforms-options.php#anchoremail','onclick="setshow(2)"'); ?></span>
 		</p>
 
 
@@ -419,11 +423,15 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s Name1 %1$s Name2 %1$s Name3...', 'cforms'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
+				<td class="bright"><?php echo sprintf(__('field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s Name3...', 'cforms'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms'); ?></td><td class="bright">
-					<code><?php _e('Send to#Joe#Pete#Hillary', 'cforms'); ?></code></td>
+					<code><?php _e('Send to#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com', 'cforms'); ?></code></td>
+			</tr>
+			<tr>
+				<td class="bleft"></td><td class="bright">
+					<code><?php _e('Send to#Sales|sales1@mail.com, sales2@mail.com, sales3@mail.com#Support|admin@mail.com#HR|hr1@mail.scom, hr2@mail.com', 'cforms'); ?></code></td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
@@ -885,9 +893,11 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 	</div>
 
 
-	    <p class="cflegend" id="customerr"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b20" class="blindminus" onfocus="this.blur()" onclick="toggleui(20);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">4.</span><?php _e('Custom error messages &amp; input field titles', 'cforms'); ?></p>
+		<div class="cflegend" id="p20" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="customerr" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Custom error messages &amp; input field titles', 'cforms')?>
+        </div>
 
-		<div id="o20">
+		<div class="cf-content" id="o20">
 			<p><?php echo sprintf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms'),'<code>|title:XXX</code>'); ?></p>
 			<p><?php echo sprintf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#cforms_success','onclick="setshow(1)"','?page=' . $plugindir . '/cforms-options.php#cforms_failure','onclick="setshow(1)"','<code>|err:XXX</code>'); ?></p>
 			<p class="ex"><?php echo sprintf(__('Please note the order of these special attributes, first %s (if applicable), then %s.', 'cforms'),'<code>|title:XXX</code>','<code>|err:XXX</code>');?></p>
@@ -923,9 +933,11 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 		</div>
 
 
-	    <p class="cflegend" id="hook"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b21" class="blindminus" onfocus="this.blur()" onclick="toggleui(21);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">5.</span><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms'); ?></p>
+		<div class="cflegend" id="p21" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="hook" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms')?>
+        </div>
 
-		<div id="o21">
+		<div class="cf-content" id="o21">
 			<br/ >
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
@@ -1025,9 +1037,11 @@ echo '&lt;/table&gt;';</pre></td></tr>
 		</div>
 
 
-	    <p class="cflegend" id="dynamicforms"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b22" class="blindminus" onfocus="this.blur()" onclick="toggleui(22);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">6.</span><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms'); ?></p>
+		<div class="cflegend" id="p22" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="dynamicforms" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms')?>
+        </div>
 
-		<div id="o22">
+		<div class="cf-content" id="o22">
 			<p><?php _e('Again, this is for the advanced user who requires ad-hoc creation of forms.', 'cforms'); ?></p>
 
 			<p><strong><?php _e('A few things to note on dynamic forms:', 'cforms'); ?></strong></p>
@@ -1167,9 +1181,11 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-	    <p class="cflegend" id="variables"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b23" class="blindminus" onfocus="this.blur()" onclick="toggleui(23);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">7.</span><?php _e('Using variables in email subject and messages', 'cforms'); ?></p>
+		<div class="cflegend" id="p23" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="variables" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Using variables in email subject and messages', 'cforms')?>
+        </div>
 
-		<div id="o23">
+		<div class="cf-content" id="o23">
 			<p>
 				<?php echo sprintf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"','?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?>
 			</p>
@@ -1227,6 +1243,14 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 					<td class="bleft"><code>{CurUserEmail}</code></td>
 					<td class="bright"><?php _e('Inserts the Email Address of the currently logged-in user.', 'cforms'); ?></td>
 				</tr>
+                <tr>
+                    <td class="bleft"><code>{CurUserFirstName}</code></td>
+                    <td class="bright"><?php _e('Inserts the First Name of the currently logged-in user.', 'cforms'); ?></td>
+                </tr>
+                <tr>
+                    <td class="bleft"><code>{CurUserLastName}</code></td>
+                    <td class="bright"><?php _e('Inserts the Last Name Address of the currently logged-in user.', 'cforms'); ?></td>
+                </tr>
 
 				<tr>
 					<td class="bleft"><em><?php _e('Special:', 'cforms'); ?></em></td>
@@ -1385,9 +1409,12 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			</table>
 		</div>
 
-	    <p class="cflegend" id="multipage"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b30" class="blindminus" onfocus="this.blur()" onclick="toggleui(30);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">8.</span><?php _e('Multi page forms', 'cforms'); ?></p>
 
-		<div id="o30">
+		<div class="cflegend" id="p30" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="multipage" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Multi page forms', 'cforms')?>
+        </div>
+
+		<div class="cf-content" id="o30">
 			<p><?php echo sprintf(__('Multi-page-forms support chaining of several forms and gather user input across all linked forms. Inserting a multi page form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms'),'<strong>','</strong>'); ?></p>
 
 			<p align="center" style="margin: 20px 0px 20px 10px; float: right; width: 410px;"><img src="<?php echo $cforms_root; ?>/images/example-mp.png"  alt=""/></p>
@@ -1450,9 +1477,11 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-	    <p class="cflegend" id="CSS"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b24" class="blindminus" onfocus="this.blur()" onclick="toggleui(24);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">9.</span><?php _e('Styling Your Forms (CSS theme files)', 'cforms'); ?></p>
+		<div class="cflegend" id="p24" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Styling Your Forms (CSS theme files)', 'cforms')?>
+        </div>
 
-		<div id="o24">
+		<div class="cf-content" id="o24">
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
 			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
 			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
@@ -1460,12 +1489,14 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>
 
-	    <p class="cflegend" id="troubles"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b25" class="blindminus" onfocus="this.blur()" onclick="toggleui(25);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">10.</span><?php _e('Need more help?', 'cforms'); ?></p>
 
-		<div id="o25">
+		<div class="cflegend" id="p25" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="troubles" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Need more help?', 'cforms')?>
+        </div>
+
+		<div class="cf-content" id="o25">
 			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/?forum=3&amp;topic=4&amp;page=1">','</a>','<a href="http://www.deliciousdays.com/cforms-forum">','</a>'); ?></p>
 		</div>
-
 
 	<?php cforms_footer(); ?>
 </div>

@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 10.6
+Version: 11.0
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '10.6';
+$localversion = '11.0';
 
 ### debug messages
 $cfdebug = false;
@@ -126,7 +126,7 @@ function cforms($args = '',$no = '') {
 
 	### multi page form: overwrite $no
     $isWPcommentForm = (substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1)=='2');
-    $isMPform = $cformsSettings['form'.$oldno]['mp']['cforms'.$oldno.'_mp_form'];
+    $isMPform = $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_form'];
     $isTAF = substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
 
     ##debug
@@ -162,7 +162,7 @@ function cforms($args = '',$no = '') {
 	    db("Back-Button pressed");
 	}
 	else ### mp init: must be mp, first & not submitted!
-	if( $isMPform && $cformsSettings['form'.$oldno]['mp']['cforms'.$oldno.'_mp_first'] && !isset($_REQUEST['sendbutton'.$no]) ){
+	if( $isMPform && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] && !isset($_REQUEST['sendbutton'.$no]) ){
 	    ##debug
 	    db("Current form is *first* MP-form");
         db("Session found, you're on the first form and session is reset!");
@@ -252,6 +252,10 @@ function cforms($args = '',$no = '') {
 	### either show info message above or below
 	$usermessage_text	= check_default_vars($usermessage_text,$no);
 	$usermessage_text	= check_cust_vars($usermessage_text,$track,$no);
+	### logic: possibly change usermessage
+	if ( function_exists('my_cforms_logic') )
+	    $usermessage_text = my_cforms_logic($trackf, $usermessage_text,'successMessage');
+
    	$umc = ($usermessage_class<>''&&$no>1)?' '.$usermessage_class.$no:'';
 
     ##debug
@@ -271,10 +275,10 @@ function cforms($args = '',$no = '') {
 		$isMPformNext=false; ### default
     	$oldcurrent = $no;
 
-		if( $isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_next']<>-1 ){
+		if( $isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']<>-1 ){
 
         	$isMPformNext=true;
-            $no = check_form_name( $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_next'] );
+            $no = check_form_name( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] );
 
 	        ##debug
 	        db("Session active and now moving on to form #$no");
@@ -288,7 +292,7 @@ function cforms($args = '',$no = '') {
 
 			$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 
-	    }elseif( $isMPform && $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_next']==-1 ){
+	    }elseif( $isMPform && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']==-1 ){
 
 	        ##debug
 	        db("Session was active but is being reset now");
@@ -998,14 +1002,14 @@ function cforms($args = '',$no = '') {
 
     ### multi page form: reset
 	$reset='';
-    if( $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] && $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_reset'] )
-		$reset = '<input tabindex="999" type="submit" name="resetbutton'.$no.'" id="resetbutton'.$no.'" class="resetbutton" value="' . $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_resettext'] . '" onclick="return confirm(\''.__('Note: This will reset all your input!', 'cforms').'\')">';
+    if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_reset'] )
+		$reset = '<input tabindex="999" type="submit" name="resetbutton'.$no.'" id="resetbutton'.$no.'" class="resetbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext'] . '" onclick="return confirm(\''.__('Note: This will reset all your input!', 'cforms').'\')">';
 
 
     ### multi page form: back
 	$back='';
-    if( $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_form'] && $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_back'] )
-		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_backtext'] . '">';
+    if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back'] )
+		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] . '">';
 
 
 	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] . '"'.
@@ -1273,7 +1277,7 @@ function taf_admin() {
 function enable_tellafriend($post_ID) {
 	global $wpdb;
 
-	if ( isset($_POST['action']) && $_POST['action']=='autosave' )
+	if ( isset($_POST['action']) && ($_POST['action']=='autosave' || $_POST['action']=='inline-save')  )
     	return;
 
 	$tellafriend_status = isset($_POST['tellafriend']);
@@ -1483,8 +1487,8 @@ function cf_check_plugin_version($plugin)
 
 			if( (version_compare(strval($theVersion), strval($version), '>') == 1) )
 			{
-				$msg = __("Latest version available:", "cforms").'<strong>'.$theVersion.'</strong> - '.$theMessage;
-				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(more info)", "cforms").'</a>.</div><div id="cf-update-msg" style="display:none; padding:10px;" >'.$msg.'</div></td>';
+				$msg = __("Latest version available: ", "cforms").'<strong>v'.$theVersion.'</strong> - '.$theMessage;
+				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(more info)", "cforms").'</a>.</div><div id="cf-update-msg" style="display:none; padding:10px; text-align:center;" >'.$msg.'</div></td>';
 			} else {
 				return;
 			}

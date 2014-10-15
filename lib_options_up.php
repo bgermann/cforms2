@@ -3,6 +3,10 @@
 	$file = $_FILES['importall'];
 	$err = '';
 
+    $noDISP = '1'; $no='';
+    if( $_REQUEST['noSub']<>'1' )
+        $noDISP = $no = $_REQUEST['noSub'];
+
 	// A successful upload will pass this test. It makes no sense to override this one.
 	if ( $file['error'] > 0 )
 			$err = $file['error'];
@@ -20,10 +24,6 @@
 	  echo '<div id="message" class="updated fade"><p>'.__('Error:', 'cforms').' '.$err.'</p></div>';
 
 	} else if( isset($_REQUEST['uploadcformsdata']) ) {
-
-		$noDISP = '1'; $no='';
-		if( $_REQUEST['noSub']<>'1' )
-			$noDISP = $no = $_REQUEST['noSub'];
 
 		$fo = fopen($file['tmp_name'],"rb");
 		$cformsSettings['form'.$no] = LoadArray( $no , $fo );

@@ -5,7 +5,7 @@
 
 	Wordpress version 2.1 or higher
 
-	PHP version 5 or higher
+	PHP version 4 or higher
 
 	MySQL version 4.x or higher
 

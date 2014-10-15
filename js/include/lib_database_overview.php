@@ -76,8 +76,12 @@ for ($i=1; $i <= $cformsSettings['global']['cforms_formcount']; $i++){
 
 
 ### total count
-$sql = "SELECT count(id) FROM {$wpdb->cformssubmissions} $where";
-$total = $wpdb->get_var($sql);
+if ( $qtype=='id' )
+	$total = 1;
+else{
+	$sql = "SELECT count(id) FROM {$wpdb->cformssubmissions} $where";
+	$total = $wpdb->get_var($sql);
+}
 
 ### get results
 $sql="SELECT * FROM {$wpdb->cformssubmissions} $where $sort $limit";
