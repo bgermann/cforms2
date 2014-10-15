@@ -709,10 +709,12 @@ width:15em;
 width:auto;
 }
 
+select#emailprio,
 select#cforms_rsscount{
 width:5em;
 text-align:center;
 }
+
 select#cforms_rssfields{
 width:330px;
 height:8em;

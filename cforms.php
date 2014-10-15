@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 10.5
+Version: 10.5.1
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '10.5';
+$localversion = '10.5.1';
 
 ### debug messages
 $cfdebug = false;
@@ -123,7 +123,7 @@ function cforms($args = '',$no = '') {
 	### multi page form: overwrite $no
     $isWPcommentForm = (substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1)=='2');
     $isMPform = $cformsSettings['form'.$oldno]['mp']['cforms'.$oldno.'_mp_form'];
-    $isTAF = substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
+    $isTAF = substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
 
     ##debug
     db("Comment form = $isWPcommentForm");
@@ -1169,7 +1169,7 @@ function build_fstat($f) {
 function insert_cform($no='',$custom='',$c='') {
 	global $post;
 
-	$no = ($no=='0')?'':$no;  ### safety net
+	$no = ($no=='1')?'':$no;  ### safety net
 	$no = check_form_name($no);
 
 	if ( isset($_GET['pid']) )

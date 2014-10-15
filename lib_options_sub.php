@@ -138,7 +138,7 @@
   	$cformsSettings['form'.$no]['cforms'.$no.'_emailrequired'] = $_REQUEST['cforms_emailrequired'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_success'] =       $_REQUEST['cforms_success'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] =       $_REQUEST['cforms_failure'];
-	if( $_REQUEST['cforms_maxentries']<>'' && isset($_REQUEST['cforms_limittxt']) )
+	if( isset($_REQUEST['cforms_limittxt']) )
 		$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] =      $_REQUEST['cforms_limittxt'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_working'] =       $_REQUEST['cforms_working'];
 
@@ -156,6 +156,7 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_space'] =         $_REQUEST['cforms_space'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] = $_REQUEST['cforms_noattachments']?'1':'0';
 
+	$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] = $_REQUEST['emailprio'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] =			 $_REQUEST['cforms_hide']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] =      $_REQUEST['cforms_redirect']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] = preg_replace("/\\\+/", "\\",$_REQUEST['cforms_redirect_page']);

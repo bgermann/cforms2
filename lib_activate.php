@@ -49,6 +49,7 @@ setINI('form','cforms_emailrequired', __('(valid email required)', 'cforms'));
 
 setINI('form','cforms_confirm', '0');
 setINI('form','cforms_ajax', '1');
+setINI('form','cforms_emailpriority', '3');
 setINI('form','cforms_fname', __('Your default form', 'cforms'));
 setINI('form','cforms_csubject', __('Re: Your note', 'cforms').'$#$'.__('Re: Submitted form (copy)', 'cforms'));
 setINI('form','cforms_cmsg', __('Dear {Your Name},', 'cforms') . "\n" . __('Thank you for your note!', 'cforms') . "\n". __('We will get back to you as soon as possible.', 'cforms') . "\n\n");

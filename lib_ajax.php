@@ -364,14 +364,14 @@ function cforms_submitcomment($content) {
 	$message = check_default_vars($message,$no);
 	$message = check_cust_vars($message,$track,$no);
 
+	###  actual user message
     $htmlmessage='';
     if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' ){
-		###  actual user message
 		$htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
 	    if ( function_exists('my_cforms_logic') )
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
 		$htmlmessage = check_default_vars($htmlmessage,$no);
-		$htmlmessage = str_replace(array('=',$eol),array('=3D','<br />'.$eol), check_cust_vars($htmlmessage,$track,$no) );
+	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no);
 	}
 
 	$mail = new cf_mail($no,$frommail,$to,$field_email, true);

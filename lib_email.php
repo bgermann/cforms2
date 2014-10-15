@@ -9,7 +9,7 @@ class cf_mail {
 	public $f_html;
 	public $frommail;
 
-	public $priority = 2;
+	public $priority = 3;
 	public $char_set = 'utf-8';
 	public $content_type = 'text/plain';
 	public $enc = '8bit';
@@ -51,6 +51,9 @@ class cf_mail {
 
 	    $this->eolH = ($cformsSettings['global']['cforms_crlf'][h]!=1)?"\r\n":"\n";
 	    $this->eol  = ($cformsSettings['global']['cforms_crlf'][b]!=1)?"\r\n":"\n";
+
+        if( (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] > 0 )
+	        $this->priority = (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'];
 
 		$this->html_show    = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' )?true:false;
 		$this->html_show_ac = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' )?true:false;
@@ -603,7 +606,6 @@ class cf_mail {
 	private function enc_qp( $input = '', $line_max = 76, $space_conv = false ) {
 	    $hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
 	    $lines = preg_split('/(?:\r\n|\r|\n)/', $input);
-	    $eol = "\r\n";
 	    $escape = '=';
 	    $output = '';
 	    while( list(, $line) = each($lines) ) {
@@ -624,13 +626,13 @@ class cf_mail {
 	          $c = $escape.$hex[$h2].$hex[$h1];
 	        }
 	        if ( (strlen($newline) + strlen($c)) >= $line_max ) {
-	          $output .= $newline.$escape.$eol;
+	          $output .= $newline.$escape.$this->eol;
 	          $newline = '';
 	          if ( $dec == 46 ) $c = '=2E';
 	        }
 	        $newline .= $c;
 	      }
-	      $output .= $newline.$eol;
+	      $output .= $newline.$this->eol;
 	    }
 	    return trim($output);
 	}

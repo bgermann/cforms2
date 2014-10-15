@@ -26,16 +26,19 @@
  Version History:
  =====================================================================================
 
-        v9.0+ introduces a completely new method of storing its settings,
-            ***** please make a WP database backup first (!) *****
-        and then migrate your settings (cforms will provide guidance!)
 
-
-WHAT's NEW in cformsII - v10.5
+WHAT's NEW in cformsII - v10.5.1
 
 ******************************************
   IMPORTANT NOTE:    PHP 5 is required !
 ******************************************
+
+*) feature: Email Priority can now be set under "Core Options"
+*) bugfix:  insert_cform('1') would cause minor issues if your default form was a TAF form
+*) bugfix:  Limit Text is now saved even if no #-limit is provided
+*) bugfix:  fixed =3D issue for some users (admin email layout)
+
+WHAT's NEW in cformsII - v10.5
 
 *) feature: redirect options: "hide" & "redirect" haven been split, allowing both
             find 'hide' under 'core options' now

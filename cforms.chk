@@ -1,6 +1,8 @@
-Version@10.5@
-Message@<a style="font-size:11px" href="http://www.deliciousdays.com/cforms-forum/announcements/cforms-version-history">Feature & Maintenance Release</a>
+Version@10.5.1@
+Message@<a style="font-size:11px" href="http://www.deliciousdays.com/cforms-forum/announcements/cforms-version-history">Bug Fix Release</a>
 
-<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin">Download here.</a></div>
+<div style="border:1px solid #b7f93c;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#c5fa61; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin#download">Download Patch_10.5.1 here.</a></div>
 
-<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">NOTE: </strong> Please <strong>deactivate</strong> cforms before upgrading! Of course as usual, also backup *any* custom files you don't wan't to be overwritten (or leave them in your personal <strong>plugins/cforms-custom/</strong> dir)!</div>
+<div style="border:1px solid #7BF36D;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#BDF9B7; font-weight:bold;"><a style="font-size:11px" href="http://www.deliciousdays.com/cforms-plugin#download">Download v10.5 here.</a></div>
+
+<div style="border:1px solid #D58C8C;margin:10px auto 0;padding:10px;text-align:center;width:54%;background-color:#F4E3E3;"><strong style="color:red">IMPORTANT: cforms v10.5 (and up) <strong>requires PHP 5</strong>!<br /></strong> Please <strong>deactivate</strong> cforms before upgrading! Of course as usual, also backup *any* custom files you don't wan't to be overwritten (or leave them in your personal <strong>plugins/cforms-custom/</strong> dir)!</div>
