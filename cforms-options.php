@@ -248,6 +248,10 @@ abspath_check();
    		<div id="allfields" class="groupWrapper">
 
                     <?php
+
+                    $isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
+					$ti = 1;
+
                     ### pre-check for verification field
                     $ccboxused=false;
                     $emailtoboxused=false;
@@ -314,7 +318,7 @@ abspath_check();
 	                            <span class="itemHeader<?php echo ($alternate<>'')?' altmove':''; ?>" title="<?php _e('Drag me','cforms')?>">&nbsp;</span>
 	                            <strong class="fieldno"><?php echo (($i<10)?'0':'').$i; ?></strong>
 
-	                            <input title="<?php _e('Please enter field definition', 'cforms'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend')?'--':$field_name; ?>" /><span title="<?php echo $cforms_root.'/js/include/'; ?>"><input value="" type="submit" onfocus="this.blur()" class="wrench jqModal" title="<?php _e('Edit', 'cforms'); ?>"/></span><select title="<?php _e('Pick a field type', 'cforms'); ?>" class="fieldtype selfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_type" id="field_<?php echo($i); ?>_type">
+	                            <input tabindex="<?php echo $ti++ ?>" title="<?php _e('Please enter field definition', 'cforms'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend')?'--':$field_name; ?>" /><span title="<?php echo $cforms_root.'/js/include/'; ?>"><input value="" type="submit" onfocus="this.blur()" class="wrench jqModal" title="<?php _e('Edit', 'cforms'); ?>"/></span><select tabindex="<?php echo $ti++ ?>" title="<?php _e('Pick a field type', 'cforms'); ?>" class="fieldtype selfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_type" id="field_<?php echo($i); ?>_type">
 
                                 <option value="fieldsetstart" <?php echo($field_type == 'fieldsetstart'?' selected="selected"':''); ?>><?php _e('New Fieldset', 'cforms'); ?></option>
                                 <option value="textonly" <?php echo($field_type == 'textonly'?' selected="selected"':''); ?>>&nbsp;&nbsp;<?php _e('Text only (no input)', 'cforms'); ?></option>
@@ -337,14 +341,14 @@ abspath_check();
                                 <option<?php if ( $verificationused && $field_type<>"verification" ) echo ' disabled="disabled" class="disabled"'; ?>  value="verification" <?php echo($field_type == 'verification'?' selected="selected"':''); ?>>&nbsp;&nbsp;<?php _e('Visitor verification (Q&amp;A)', 'cforms'); ?></option>
                                 <option<?php if ( $captchaused && $field_type<>"captcha" ) echo ' disabled="disabled" class="disabled"'; ?>  value="captcha" <?php echo($field_type == 'captcha'?' selected="selected"':''); ?>>&nbsp;&nbsp;<?php _e('Captcha verification (image)', 'cforms'); ?></option>
 
-                                <?php if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)<>'1' ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
+                                <?php if ( $isTAF<>1 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
                                 <option value="" class="disabled" disabled="disabled"><?php _e('----- T-A-F form fields ------', 'cforms'); ?></option>
                                 <option<?php echo $dis; ?> value="yourname" <?php echo($field_type == 'yourname'?' selected="selected"':''); ?>><?php _e('T-A-F * Your Name', 'cforms'); ?></option>
                                 <option<?php echo $dis; ?> value="youremail" <?php echo($field_type == 'youremail'?' selected="selected"':''); ?>><?php _e('T-A-F * Your Email', 'cforms'); ?></option>
                                 <option<?php echo $dis; ?> value="friendsname" <?php echo($field_type == 'friendsname'?' selected="selected"':''); ?>><?php _e('T-A-F * Friend\'s Name', 'cforms'); ?></option>
                                 <option<?php echo $dis; ?> value="friendsemail" <?php echo($field_type == 'friendsemail'?' selected="selected"':''); ?>><?php _e('T-A-F * Friend\'s Email', 'cforms'); ?></option>
 
-                                <?php if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)<>'2' ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
+                                <?php if ( $isTAF<>'2' ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
                                 <option value="" class="disabled" disabled="disabled"><?php _e('--- WP comment form fields ---', 'cforms'); ?></option>
                                 <option<?php echo $dis; ?> value="cauthor" <?php echo($field_type == 'cauthor'?' selected="selected"':''); ?>><?php _e('Comment Author', 'cforms'); ?></option>
                                 <option<?php echo $dis; ?> value="email" <?php echo($field_type == 'email'?' selected="selected"':''); ?>><?php _e('Author\'s Email', 'cforms'); ?></option>
@@ -361,36 +365,36 @@ abspath_check();
 
                             	</select><?php
 
-                            echo '<input '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
+                            echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
 
                             if( in_array($field_type,array('hidden','checkboxgroup', 'radiobuttons','fieldsetstart','fieldsetend','ccbox','captcha','verification','textonly')) )
                                 echo '<img class="chkno" src="'.$cforms_root.'/images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
-                                echo '<input class="allchk fieldisreq chkfld" type="checkbox" title="'.__('input required', 'cforms').'" name="field_'.($i).'_required" value="required"'.($field_required == '1'?' checked="checked"':'').'/>';
+                                echo '<input tabindex="'.($ti++).'" class="allchk fieldisreq chkfld" type="checkbox" title="'.__('input required', 'cforms').'" name="field_'.($i).'_required" value="required"'.($field_required == '1'?' checked="checked"':'').'/>';
 
 
                             if( ! in_array($field_type,array('textfield','youremail','friendsemail','email')) )
                                 echo '<img class="chkno" src="'.$cforms_root.'/images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
-                                echo '<input class="allchk fieldisemail chkfld" type="checkbox" title="'.__('email required', 'cforms').'" name="field_'.($i).'_emailcheck" value="required"'.($field_emailcheck == '1'?' checked="checked"':'').'/>';
+                                echo '<input tabindex="'.($ti++).'" class="allchk fieldisemail chkfld" type="checkbox" title="'.__('email required', 'cforms').'" name="field_'.($i).'_emailcheck" value="required"'.($field_emailcheck == '1'?' checked="checked"':'').'/>';
 
 
                             if( ! in_array($field_type,array('pwfield','textarea','textfield','datepicker','yourname','youremail','friendsname','friendsemail','email','author','url','comment')) )
                                 echo '<img class="chkno" src="'.$cforms_root.'/images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
-                                echo '<input class="allchk fieldclear chkfld" type="checkbox" title="'.__('clear field', 'cforms').'" name="field_'.($i).'_clear" value="required"'.($field_clear == '1'?' checked="checked"':'').'/>';
+                                echo '<input tabindex="'.($ti++).'" class="allchk fieldclear chkfld" type="checkbox" title="'.__('clear field', 'cforms').'" name="field_'.($i).'_clear" value="required"'.($field_clear == '1'?' checked="checked"':'').'/>';
 
 
                             if( ! in_array($field_type,array('pwfield','textarea','textfield','datepicker','checkbox','checkboxgroup','selectbox','multiselectbox','radiobuttons','upload')) )
                                 echo '<img class="chkno" src="'.$cforms_root.'/images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
-                                echo '<input class="allchk fielddisabled chkfld" type="checkbox" title="'.__('disabled', 'cforms').'" name="field_'.($i).'_disabled" value="required"'.($field_disabled == '1'?' checked="checked"':'').'/>';
+                                echo '<input tabindex="'.($ti++).'" class="allchk fielddisabled chkfld" type="checkbox" title="'.__('disabled', 'cforms').'" name="field_'.($i).'_disabled" value="required"'.($field_disabled == '1'?' checked="checked"':'').'/>';
 
 
                             if( ! in_array($field_type,array('pwfield','textarea','textfield','datepicker','checkbox','checkboxgroup','selectbox','multiselectbox','radiobuttons','upload')) )
                                 echo '<img class="chkno" src="'.$cforms_root.'/images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
-                                echo '<input class="allchk fieldreadonly chkfld" type="checkbox" title="'.__('read-only', 'cforms').'" name="field_'.($i).'_readonly" value="required"'.($field_readonly == '1'?' checked="checked"':'').'/>';
+                                echo '<input tabindex="'.($ti++).'" class="allchk fieldreadonly chkfld" type="checkbox" title="'.__('read-only', 'cforms').'" name="field_'.($i).'_readonly" value="required"'.($field_readonly == '1'?' checked="checked"':'').'/>';
 
                         ?></div> <!--itemContent-->
 
@@ -403,9 +407,9 @@ abspath_check();
 		</div> <!--groupWrapper-->
 
 		<p class="addfieldbox">
-            <input type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms'); ?>" value="** <?php _e('Add', 'cforms'); ?> **" onfocus="this.blur()" onclick="javascript:document.mainform.action='#anchorfields';" />
-        	<input type="text" name="AddFieldNo" value="1" class="addfieldno"/><?php _e('new field(s) @ position', 'cforms'); ?>
-			<select name="AddFieldPos" class="addfieldno">
+            <input tabindex="'.($ti++).'" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms'); ?>" value="** <?php _e('Add', 'cforms'); ?> **" onfocus="this.blur()" onclick="javascript:document.mainform.action='#anchorfields';" />
+        	<input tabindex="'.($ti++).'" type="text" name="AddFieldNo" value="1" class="addfieldno"/><?php _e('new field(s) @ position', 'cforms'); ?>
+			<select tabindex="'.($ti++).'" name="AddFieldPos" class="addfieldno">
 			<?php
 	            for($i = 1; $i <= $field_count; $i++)
     	        	echo '<option value="'.$i.'">'.$i.'</option>';
@@ -416,10 +420,10 @@ abspath_check();
 	        <input type="hidden" name="field_count_submit" value="<?php echo($field_count); ?>" />
         </p>
 		<p class="backup">
-				<input type="submit" name="savecformsdata" class="allbuttons backupbutton"  value="<?php _e('Backup This Form', 'cforms'); ?>" onclick="javascript:document.mainform.action='#';" />
+				<input tabindex="'.($ti++).'" type="submit" name="savecformsdata" class="allbuttons backupbutton"  value="<?php _e('Backup This Form', 'cforms'); ?>" onclick="javascript:document.mainform.action='#';" />
 				<label for="upload"><?php _e(' or restore previously saved settings:', 'cforms'); ?></label>
-				<input type="file" id="upload" name="importall" size="25" />
-				<input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore Settings', 'cforms'); ?>" onclick="javascript:document.mainform.action='#';" />
+				<input tabindex="'.($ti++).'" type="file" id="upload" name="importall" size="25" />
+				<input tabindex="'.($ti++).'" type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore Settings', 'cforms'); ?>" onclick="javascript:document.mainform.action='#';" />
 		</p>
 
 	</fieldset>
@@ -444,13 +448,13 @@ abspath_check();
 				?>
 				<table class="form-table">
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_upload_dir"><strong><?php _e('Upload directory', 'cforms') ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_upload_dir" name="cforms_upload_dir" value="<?php echo $fileuploaddir; ?>"/> <?php _e('[make sure the dir exists!]', 'cforms') ?></td>
+					<td class="obL"><label for="cforms_upload_dir"><strong><?php _e('Upload directory (absolute path)', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" id="cforms_upload_dir" name="cforms_upload_dir" value="<?php echo $fileuploaddir; ?>"/> <?php _e('e.g. /home/user/www/wp-content/my-upload-dir', 'cforms') ?></td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_upload_dir_url"><strong><?php _e('Upload directory', 'cforms') ?> URL</strong></label></td>
-					<td class="obR"><input type="text" id="cforms_upload_dir_url" name="cforms_upload_dir_url" value="<?php echo $fileuploaddirurl; ?>"/> <?php _e('[if outside of ../wp-content/..]', 'cforms') ?></td>
+					<td class="obL"><label for="cforms_upload_dir_url"><strong><?php _e('Upload directory URL (relative path/URL)', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" id="cforms_upload_dir_url" name="cforms_upload_dir_url" value="<?php echo $fileuploaddirurl; ?>"/> <?php _e('e.g. /wp-content/my-upload-dir', 'cforms') ?></td>
 				</tr>
 
 				<tr class="ob space15">
@@ -580,40 +584,52 @@ abspath_check();
 					<td class="obR"><input type="text" name="cforms_subject" id="cforms_subject" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_subject'])); ?>" /> <?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
 				</tr>
 
+				<tr class="obSEP"><td colspan="2"></td></tr>
+
+                <tr class="ob">
+                    <td class="obL"><strong><?php _e('Core options', 'cforms') ?></strong></td>
+                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_emailoff" name="cforms_emailoff" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_emailoff"><?php echo sprintf(__('%sTurn off%s admin email', 'cforms'),'<strong>','</strong>') ?></label></td>
+                </tr>
+
 				<?php if( $cformsSettings['global']['cforms_showdashboard'] == '1' ) : ?>
-					<tr class="ob space15">
+					<tr class="ob space10">
 						<td class="obL"></td>
-						<td class="obR"><input class="allchk" type="checkbox" id="cforms_dashboard" name="cforms_dashboard" <?php if($o=$cformsSettings['form'.$no]['cforms'.$no.'_dashboard']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_dashboard"><?php _e('Include in <strong>last 5 entries shown</strong> on the dashboard.', 'cforms') ?></label></td>
+						<td class="obR"><input class="allchk" type="checkbox" id="cforms_dashboard" name="cforms_dashboard" <?php if($o=$cformsSettings['form'.$no]['cforms'.$no.'_dashboard']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_dashboard"><?php echo sprintf(__('Show new entries on %sdashboard%s', 'cforms'),'<strong>','</strong>') ?></label></td>
 		  			</tr>
 				<?php endif; ?>
 
 				<?php if( $cformsSettings['global']['cforms_database'] == '1' ) : ?>
-					<tr class="ob space15">
+					<tr class="ob">
 						<td class="obL"></td>
-						<td class="obR"><input class="allchk" type="checkbox" id="cforms_notracking" name="cforms_notracking" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] ) echo "checked=\"checked\""; ?>/><label for="cforms_notracking"><?php _e('Exclude this form from tracking', 'cforms') ?></label></td>
+						<td class="obR"><input class="allchk" type="checkbox" id="cforms_notracking" name="cforms_notracking" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] ) echo "checked=\"checked\""; ?>/><label for="cforms_notracking"><?php echo sprintf(__('%sExclude this form%s from database tracking', 'cforms'),'<strong>','</strong>') ?></label></td>
 		  			</tr>
 				<?php endif; ?>
 
-				<tr class="obSEP"><td colspan="2"></td></tr>
-
 				<tr class="ob">
-					<td class="obL"><label for="cforms_customnames"><strong><?php _e('Use custom input<br />field NAMES &amp; ID\'s', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_customnames" name="cforms_customnames" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1') echo "checked=\"checked\""; ?>/> <a class="infobutton" href="#" name="it4"><?php _e('Please read note &raquo;', 'cforms'); ?></a></td>
+					<td class="obL"></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_customnames" name="cforms_customnames" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_customnames"><?php echo sprintf(__('Use %scustom input field NAMES &amp; ID\'s%s', 'cforms'),'<strong>','</strong>') ?></label> <a class="infobutton" href="#" name="it4"><?php _e('Read note &raquo;', 'cforms'); ?></a></td>
 				</tr>
 
 				<tr id="it4" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('This feature replaces the default NAMEs/IDs (e.g. <strong>cf_field_12</strong>) with <em>custom ones</em>, either derived from the field label you have provided or by specifically declaring it via <strong>[id:XYZ]</strong>,e.g. <em>Your Name[id:the-name]</em>. This will for instance help to feed data to third party systems (requiring certain input field names in the $_POST variable).', 'cforms') ?></td></tr>
 
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_taftrick"><strong><?php _e('Extra variables<br />e.g. {Title}', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='3') echo "checked=\"checked\""; ?>/> <a class="infobutton" href="#" name="it5"><?php _e('Please read note &raquo;', 'cforms'); ?></a></td>
+				<tr class="ob">
+					<td class="obL"></td>
+					<td class="obR"><input <?php echo ($isTAF==1||$isTAF==2)?'disabled="disabled" class="allchk disabled"':'class="allchk"'; ?> type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if($isTAF=='3') echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php echo sprintf(__('%sExtra variables%s e.g. {Title}', 'cforms'),'<strong>','</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms'); ?></a></td>
 				</tr>
 
-				<tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('There a <a href="%s" %s>three additional</a>, <em>predefined variables</em> that belong to the Tell-A-Friend feature but can be enabled here without actually turning on T-A-F.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#tafvariables','onclick="setshow(23)"'); ?><strong><u><?php _e('Note:','cforms')?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.','cforms')?></td></tr>
+				<tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that belong to the Tell-A-Friend feature but can be enabled here without actually turning on T-A-F.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#tafvariables','onclick="setshow(23)"'); ?> <strong><u><?php _e('Note:','cforms')?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.','cforms')?></td></tr>
+
+				<tr class="ob">
+					<td class="obL"></td>
+					<td class="obR">
+						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
+		 			</td>
+				</tr>
 
 				<tr class="obSEP"><td colspan="2"></td></tr>
 
 				<tr class="ob">
-					<td class="obL"><strong><?php _e('Limit', 'cforms'); ?></strong></td>
+					<td class="obL"><strong><?php _e('Submission Limit', 'cforms'); ?></strong></td>
 					<td class="obR"><input type="text" id="cforms_maxentries" name="cforms_maxentries" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_maxentries'])); ?>"/><label for="cforms_maxentries"><?php _e('<u>total</u> # of submissions accepted [<strong>empty or 0 (zero) = off</strong>] (tracking must be enabled!)', 'cforms') ?></label></td>
 				</tr>
 
@@ -660,7 +676,7 @@ abspath_check();
 				<?php if( $cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] <> '' || $cformsSettings['form'.$no]['cforms'.$no.'_startdate'] <> '' || $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] <> '' ) : ?>
 				<tr class="ob">
 	            	<td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms'); ?></strong></label></td>
-	                <td class="obR"><textarea class="resizable" rows="80px" cols="200px" name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])); ?></textarea></td>
+	                <td class="obR"><table><tr><td><textarea class="resizable" rows="80px" cols="200px" name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])); ?></textarea></td></tr></table></td>
 				</tr>
 				<?php endif; ?>
 
@@ -669,19 +685,10 @@ abspath_check();
 				<tr class="ob">
 					<td class="obL"><label for="cforms_redirect"><?php _e('<strong>Redirect</strong><br />options:', 'cforms'); ?></label></td>
 					<td class="obR">
-						<input class="allchk" type="radio" id="cforms_redirect"  name="cforms_redirect" value="0" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==0) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Disabled (default setting)', 'cforms'); ?></label><br />
+						<input class="allchk" type="radio" id="cforms_redirect"  name="cforms_redirect" value="0" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==0) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Do nothing (default setting)', 'cforms'); ?></label><br />
 						<input class="allchk" type="radio" id="cforms_redirect2" name="cforms_redirect" value="2" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==2) echo "checked=\"checked\""; ?>/><label for="cforms_redirect2"><?php _e('Hide form after successful submission', 'cforms'); ?></label><br />
 						<input class="allchk" type="radio" id="cforms_redirect1" name="cforms_redirect" value="1" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_redirect']==1) echo "checked=\"checked\""; ?>/><label for="cforms_redirect1"><?php _e('Enable alternative success page (redirect)', 'cforms'); ?></label><br />
 						<input name="cforms_redirect_page" id="cforms_redirect_page" value="<?php echo ($cformsSettings['form'.$no]['cforms'.$no.'_redirect_page']);  ?>" />
-		 			</td>
-				</tr>
-
-				<tr class="obSEP"><td colspan="2"></td></tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_dontclear"><strong><?php _e('Don\'t reset fields', 'cforms'); ?></strong></label></td>
-					<td class="obR">
-						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php _e('Re-display user input after form submission.', 'cforms'); ?><br/><?php _e('(currently not available for Ajax submissions)', 'cforms');?></label>
 		 			</td>
 				</tr>
 
@@ -700,22 +707,48 @@ abspath_check();
 				<tr class="obSEP"><td colspan="2"></td></tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_rss"><strong><?php _e('Enable RSS', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enables an RSS feed to track new submissions.', 'cforms'); ?></td>
+					<td class="obL"><label for="cforms_rss"><strong><?php _e('RSS feed', 'cforms'); ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enable RSS feed to track new submissions', 'cforms'); ?>  <a class="infobutton" href="#" name="it10"><?php _e('Please read note &raquo;', 'cforms'); ?></a></td>
 				</tr>
+
+				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('For the RSS feed to work you must have %sDatabase Tracking%s turned on under <em>Global-Settings</em>! In order to pick & include input fields in your feed you must have at least on submission in the database for reference.', 'cforms'),'<strong>','</strong>'); ?></td></tr>
 
 				<?php if( current_user_can('track_cforms') && $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) : ?>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_rsscount"><strong><?php _e('RSS entries', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input name="cforms_rsscount" id="cforms_rsscount" value="<?php echo $cformsSettings['form'.$no]['cforms'.$no.'_rss_count'];  ?>" /></td>
+					<td class="obL"></td>
+					<td class="obR">
+						<?php $j = $cformsSettings['form'.$no]['cforms'.$no.'_rss_count']; $j = (int)abs($j)>20 ? 20:(int)abs($j); ?>
+						<select name="cforms_rsscount" id="cforms_rsscount"><?php for ($i=1;$i<=20;$i++) echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>'; ?></select>
+                    	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms'); ?></label>
+                    </td>
 				</tr>
+
+				<tr class="ob">
+					<td class="obL"></td>
+					<td class="obR">
+						<label for="cforms_rssfields[]"><?php _e('Form fields included in feed:', 'cforms'); ?></label>
+                    	<select name="cforms_rssfields[]" id="cforms_rssfields"  multiple="multiple">
+                        <?php
+                        	$f = $cformsSettings['form'.$no]['cforms'.$no.'_rss_fields'];
+							$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT id FROM {$wpdb->cformssubmissions} WHERE form_id='$no' LIMIT 0,1)");
+							foreach($entries as $e){
+                            	if ($e->field_name <> 'page') echo '<option value="'.$e->field_name.'"'.( array_search($e->field_name,$f)!==false?' selected="selected"':'' ).'>'.stripslashes($e->field_name).'</option>';
+                            }
+                        ?>
+						</select>
+                    </td>
+				</tr>
+
 				<tr class="ob">
 					<td class="obL"><label for="cforms_rsskey"><strong><?php _e('RSS Feed Security Key', 'cforms'); ?></strong></label></td>
 					<td class="obR">
 						<input name="cforms_rsskey" id="cforms_rsskey" value="<?php echo $cformsSettings['form'.$no]['cforms'.$no.'_rsskey'];  ?>" />
 						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#anchoremail';"/>
-						<br /><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_option('siteurl').'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?>
-		 			</td>
+                    </td>
+				</tr>
+				<tr class="ob">
+					<td class="obL"></td>
+					<td class="obR"><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_option('siteurl').'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?></td>
 				</tr>
 				<?php endif; ?>
 				</table>
@@ -930,10 +963,10 @@ abspath_check();
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tellafriend" name="cforms_tellafriend" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_tellafriend"><strong><?php _e('Enable Tell-A-Friend', 'cforms') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tellafriend" name="cforms_tellafriend" <?php if( $isTAF==1 ) echo "checked=\"checked\""; ?>/><label for="cforms_tellafriend"><strong><?php _e('Enable Tell-A-Friend', 'cforms') ?></strong></label></td>
 				</tr>
 
-				<?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' ) : ?>
+				<?php if( $isTAF==1 ) : ?>
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tafdefault" name="cforms_tafdefault" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],1,1)=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_tafdefault"><strong><?php _e('T-A-F enable <strong>new posts/pages</strong> by default', 'cforms') ?></strong></label></td>
@@ -967,14 +1000,14 @@ abspath_check();
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL"><label for="cforms_commentrep"><strong><?php _e('WP comment form', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentrep" name="cforms_commentrep" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) echo "checked=\"checked\""; ?>/><label for="cforms_commentrep"><?php _e('Enable this form to optionally (user determined) act as a WP comment form', 'cforms') ?></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentrep" name="cforms_commentrep" <?php if( $isTAF==2 ) echo "checked=\"checked\""; ?>/><label for="cforms_commentrep"><?php _e('Enable this form to optionally (user determined) act as a WP comment form', 'cforms') ?></label></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_commentXnote"><strong><?php _e('Comment notification', 'cforms') ?></strong></label></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentXnote" name="cforms_commentXnote" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],1,1)=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_commentXnote"><?php _e('Extra comment notification (check your autoresponder setting, too!)', 'cforms') ?></label></td>
 				</tr>
 
-	            <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) : ?>
+	            <?php if( $isTAF==2 ) : ?>
 	                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it6"><?php _e('<em>Tell a friend</em> or <em>WP comment</em>? &raquo;', 'cforms'); ?></a></td></tr>
 					<tr id="it6" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('This feature and T-A-F (above) are mutually exclusive. If you need both features, please create a new form for T-A-F.<br />Again, see the <a href="%s" %s>help section</a> on proper use.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#commentrep','onclick="setshow(19)"'); ?></td></tr>
 	                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it7"><?php _e('Important additional configuration requirements &raquo;', 'cforms'); ?></a></td></tr>

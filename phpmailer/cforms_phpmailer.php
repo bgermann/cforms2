@@ -94,9 +94,9 @@ function cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $messag
 			$htmlmessage = str_replace('=3D','=',$htmlmessage);  //remove 3D's
 			$htmlformdata = str_replace('=3D','=',$htmlformdata);  //remove 3D's,
 			$mail->IsHTML(true);
-			$mail->Body     =  "<HTML>\n".$styles."<BODY>".stripslashes($htmlmessage).
+			$mail->Body     =  "<html>\r\n".$styles."<body>".stripslashes($htmlmessage).
             					( (substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1' && $htmlformdata<>'') ? $eol.$htmlformdata : '' ).
-                                "\n</BODY></HTML>\n";
+                                "\r\n</body></html>\r\n";
 			$mail->AltBody  =  stripslashes($message).((substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1'&&$formdata<>'')?$eol.$formdata:'');
 		}
 		else

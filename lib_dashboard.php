@@ -7,7 +7,6 @@ function cforms_dashboard_27_setup() {
 
 ### Show entries on dashboard
 function cforms_dashboard() {
-	// Daten lesen von Funktion fs_getfeeds()
 	global $wpdb, $plugindir, $wp_db_version, $cformsSettings;
 
 	if (!current_user_can('track_cforms')) return;

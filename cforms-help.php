@@ -13,8 +13,15 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 <div class="wrap" id="top">
 		<div id="icon-cforms-help" class="icon32"><br/></div><h2><?php _e('Help','cforms')?></h2>
 
-		<p><?php _e('Here you\'ll find plenty of examples and documentation that should help you configure <strong>cforms</strong>.', 'cforms'); ?></p>
-		<p><?php echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img src="'.$cforms_root.'/images/adobe.gif"/>'); ?></p>
+		<p>
+        	<?php _e('Here you\'ll find plenty of examples and documentation that should help you configure <strong>cforms</strong>.', 'cforms'); ?>
+			<?php echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img style="vertical-align:middle;" src="'.$cforms_root.'/images/adobe.gif"/>'); ?>
+		</p>
+		<p>
+        	<?php _e('If cforms provides great services to you and/or your business, please consider making a donation to support future development.', 'cforms'); ?>
+        	<a href="http://www.deliciousdays.com/cforms-plugin/#donation"><img style="vertical-align:middle;" src="<?php echo $cforms_root; ?>/images/donate.png" alt="<?php _e('Thank you!', 'cforms'); ?>" title="<?php _e('Thank you!', 'cforms'); ?>"/></a>
+            <?php _e('Thank you!', 'cforms'); ?>
+		</p>
 
 		<p class="cftoctitle"><?php _e('Table of Contents', 'cforms'); ?></p>
 		<ul class="cftoc">

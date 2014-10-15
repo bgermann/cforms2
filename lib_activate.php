@@ -82,7 +82,7 @@ setINI('form','cforms_action_page', 'http://');
 setINI('form','cforms_tracking', '');
 setINI('form','cforms_showdashboard', '1');
 setINI('form','cforms_maxentries', '');
-setINI('form','cforms_tellafriend', '0');
+setINI('form','cforms_tellafriend', '01');
 setINI('form','cforms_dashboard', '0');
 
 $cformsSettings['form'.$no]['mp']['cforms'.$no.'_mp_resettext'];
