@@ -653,7 +653,7 @@ if (!isset($SAJAX_INCLUDED)) {
 
 	### sanitize
 	function sajax_sanitize($t) {
-		$t = preg_replace('/\s/', '', $t);
+		//$t = preg_replace('/\s/', '', $t);
 		$t = str_replace('<php', '', $t);
 		$t = str_replace('<?', '', $t);
 		return $t;

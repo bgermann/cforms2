@@ -27,6 +27,9 @@
  =====================================================================================
 
 WHAT's NEW in cformsII - v11.6
+*) bugfix: fixed missing spaces in multi-line text fields
+
+WHAT's NEW in cformsII - v11.6
 *) added:  addded Form Name to <form> element for easier styling across sites
 *) other:  changed edit / delete icon for better distinction
 *) other:  plugged a potential (but unlikely to be exploited) security hole
