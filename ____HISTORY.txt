@@ -26,11 +26,23 @@
  Version History:
  =====================================================================================
 
-******************************************
-  IMPORTANT NOTE:    PHP 5 is required !
-******************************************
+WHAT's NEW in cformsII - v10.6   *** WP 2.8 compliance
+
+*) feature: completely rewritten sidebar WIDGET SUPPORT, pls recheck your widget setup!
+*) feature: auto confirmation messages now support an attachment
+*) feature: radio buttons can now be "required" when no radio box should be checked by default!
+*) feature: added strip_tags() to TEXT message part of the admin email
+            (to avoid HTML in plain TXT)
+*) other:   house keeping, cleaning up & rearranging admin UI
+*) feature: backwards compatible now: supporting PHP4
+*) bugfix:  label issues with "(" and ")", which would not show in the admin email (&tracking)
+*) bugfix:  minor code fixed, mostly cosmetic
+*) bugfix:  nonAjax form submission would not allow single quotes in custom field ID/NAME
+*) other:   amended Help section
+*) other:   typos/corrections on Help! page
 
 WHAT's NEW in cformsII - v10.5.2
+
 *) bugfix:  WP comment form feature:: fixed {custom var} replacement in admin email (ajax mode)
 *) bugfix:  WP comment form feature:: fixed "send to author" option in cforms'
 *) other:   admin email addresses now support "+" , e.g. john+janey@mail.com
@@ -44,7 +56,7 @@ WHAT's NEW in cformsII - v10.5.1
 
 WHAT's NEW in cformsII - v10.5
 
-*) feature: redirect options: "hide" & "redirect" haven been split, allowing both
+*) feature: redirect options: "hide" & "redirect" have been split, allowing both
             find 'hide' under 'core options' now
             make sure to check both options, they may have been reset!
 

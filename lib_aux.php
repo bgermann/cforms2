@@ -115,6 +115,7 @@ function cf_sanitize_ids($t) {
 	$t = preg_replace('/&.+?;/', '', $t); // kill entities
 	$t = preg_replace('/\s+/', '-', $t);
 	$t = preg_replace('|-+|', '-', $t);
+	$t = preg_replace("|'|", '-', $t);
 	$t = trim($t, '-');
 
 	return $t;
@@ -161,7 +162,14 @@ function formatEmail($track,$no){
         ### fix labels
 	 	if ( in_array($k,array('luv','subscribe','cauthor','email','url','comment','send2author')) ) continue;
 		if ( preg_match('/\$\$\$/',$k) ) continue;
-		if ( preg_match('/(cf_form\d*_){0,1}([^(___)]*)(___\d+){0,1}/',$k, $r) ) $k = $r[2];
+
+
+		if ( strpos($k, 'cf_form') !== false && preg_match('/^cf_form\d*_(.+)/',$k, $r) )
+        	$k = $r[1];
+
+		if ( strpos($k, '___') !== false && preg_match('/^(.+)___\d+/',$k, $r) )
+        	$k = $r[1];
+
 
 		###  fieldsets
 	    if ( strpos($k,'FieldsetEnd')!==false ){
@@ -171,12 +179,12 @@ function formatEmail($track,$no){
 		}
 	    elseif ( strpos($k,'Fieldset')!==false ){
 	        $space='-';
-	        $n = ((($customspace*2)+2) - strlen($v)) / 2;
+	        $n = ((($customspace*2)+2) - strlen(strip_tags($v))) / 2;
 	        $n = ($n<0)?0:$n;
-	        if ( strlen($v) < (($customspace*2)-2) )
+	        if ( strlen(strip_tags($v)) < (($customspace*2)-2) )
 	            $space = str_repeat("-", $n );
 
-   			$t .= substr($eol."$space".stripslashes($v)."$space",0,($customspace*2)) . $eol . $eol;
+   			$t .= substr($eol."$space".stripslashes( strip_tags($v) )."$space",0,($customspace*2)) . $eol . $eol;
             $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_fs_td'].'" colspan="2">' . $v . '</td></tr>' . $eol;
 			continue;
 		}
@@ -204,7 +212,7 @@ function formatEmail($track,$no){
               $space = str_repeat(" ",$customspace-strlen(stripslashes($k)));
 
         ###  create formdata block for email
-        $t .= stripslashes( $k ). ': '. $space . $v . $eol;
+        $t .= stripslashes( strip_tags($k) ). ': '. $space . $v . $eol;
         $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_key_td'].'">' . $hk . '</td><td style="'.$cformsSettings['global']['cforms_style_val_td'].'">' . $hv . '</td></tr>' . $eol;
 
 	}
@@ -239,7 +247,14 @@ function write_tracking_record($no,$field_email,$c=''){
 
                 ### clean up keys
                 if ( preg_match('/\$\$\$/',$k) ) continue;
-                if ( preg_match('/(cf_form\d*_){0,1}([^(___)]*)(___\d+){0,1}/',$k, $r) ) $k = $r[2];
+
+	            if ( strpos($k, 'cf_form') !== false && preg_match('/^cf_form\d*_(.+)/',$k, $r) )
+	                $k = $r[1];
+
+	            if ( strpos($k, '___') !== false && preg_match('/^(.+)___\d+/',$k, $r) )
+	                $k = $r[1];
+
+
                 $sql .= "('-XXX-','".addslashes($k)."','".addslashes($v)."'),";
                	$dosave=true;
             }

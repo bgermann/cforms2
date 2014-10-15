@@ -1,50 +1,50 @@
 <?php
 class cf_mail {
-	public $eolH;
-	public $eol;
-	public $html_show;
-	public $html_show_ac;
+	var $eolH;
+	var $eol;
+	var $html_show;
+	var $html_show_ac;
 
-	public $f_txt;
-	public $f_html;
-	public $frommail;
+	var $f_txt;
+	var $f_html;
+	var $frommail;
 
-	public $priority = 3;
-	public $char_set = 'utf-8';
-	public $content_type = 'text/plain';
-	public $enc = '8bit';
-	public $err  = '';
-	public $ver  = '';
+	var $priority = 3;
+	var $char_set = 'utf-8';
+	var $content_type = 'text/plain';
+	var $enc = '8bit';
+	var $err  = '';
+	var $ver  = '';
 
-	public $from = '';
-	public $fname = 'cforms';
-	public $split_to  = false;
-    public $confirm_to = '';
+	var $from = '';
+	var $fname = 'cforms';
+	var $split_to  = false;
+    var $confirm_to = '';
 
-	public $sender = '';
-	public $subj  = '';
+	var $sender = '';
+	var $subj  = '';
 
-	public $body = '';
-	public $body_alt  = '';
+	var $body = '';
+	var $body_alt  = '';
 
-	public $host = '';
-	public $msg_id = '';
+	var $host = '';
+	var $msg_id = '';
 
-	private $to = array();
-	private $cc = array();
-	private $bcc = array();
-	private $replyto = array();
+	var $to = array();
+	var $cc = array();
+	var $bcc = array();
+	var $replyto = array();
 
-	private $up = array();
-	private $msg_type = '';
-	private $boundary = array();
+	var $up = array();
+	var $msg_type = '';
+	var $boundary = array();
 
-	private $err_count = 0;
+	var $err_count = 0;
 
 	###
 	### setup
 	###
-    public function __construct($no, $from, $to, $replyto='',$adminEmail=false){
+    function cf_mail($no, $from, $to, $replyto='',$adminEmail=false){
 		$cformsSettings = get_option('cforms_settings');
 
         $this->ver = $cformsSettings['global']['v'];
@@ -122,13 +122,13 @@ class cf_mail {
 	###
 	### General Functions
 	###
-	public function is_html($bool) {
+	function is_html($bool) {
 		$this->content_type = $bool?'text/html':'text/plain';
 	}
-	public function is_err() {
+	function is_err() {
 		return ($this->err_count > 0);
 	}
-	public function has_inline_img() {
+	function has_inline_img() {
 	    $r = false;
 	    for($i = 0; $i < count($this->up); $i++) {
 	      if($this->up[$i][6] == 'inline') {
@@ -142,27 +142,27 @@ class cf_mail {
 	###
 	### Header Functions
 	###
-	public function add_addr($address, $name = '') {
+	function add_addr($address, $name = '') {
 	    $t = count($this->to);
 	    $this->to[$t][0] = trim($address);
 	    $this->to[$t][1] = $name;
 	}
-	public function add_cc($address, $name = '') {
+	function add_cc($address, $name = '') {
 	    $t = count($this->cc);
 	    $this->cc[$t][0] = trim($address);
 	    $this->cc[$t][1] = $name;
 	}
-	public function add_bcc($address, $name = '') {
+	function add_bcc($address, $name = '') {
 	    $t = count($this->bcc);
 	    $this->bcc[$t][0] = trim($address);
 	    $this->bcc[$t][1] = $name;
 	}
-	public function add_reply($address, $name = '') {
+	function add_reply($address, $name = '') {
 	    $t = count($this->replyto);
 	    $this->replyto[$t][0] = trim($address);
 	    $this->replyto[$t][1] = $name;
 	}
-	private function addr_add($type, $addr) {
+	function addr_add($type, $addr) {
 		$addr_str = $type . ': ';
 	    $addr_str .= $this->addr_fmt($addr[0]);
 	    if(count($addr)>1) {
@@ -171,15 +171,15 @@ class cf_mail {
 	    }
 		return $addr_str . $this->eolH;
 	}
-	private function addr_fmt($addr) {
+	function addr_fmt($addr) {
 		return empty($addr[1]) ? $this->fix_header($addr[0]) : $this->enc_h($this->fix_header($addr[1]), 'phrase') . " <" . $this->fix_header($addr[0]) . ">";
 	}
-	private function fix_header($t) {
+	function fix_header($t) {
 	    $t = trim($t);
 	    $t = str_replace("\r", "", $t);
 	    return str_replace("\n", "", $t);
 	}
-	private function mail_header() {
+	function mail_header() {
 	    $r = $this->h_line('Date', $this->get_date());
 	    $r .= ($this->sender == '')?$this->h_line('Return-Path', trim($this->from)):$this->h_line('Return-Path', trim($this->sender));
 
@@ -220,14 +220,14 @@ class cf_mail {
 	    }
 	    return $r;
 	}
-	private function h_line($n, $v) {
+	function h_line($n, $v) {
 		return $n . ': ' . $v . $this->eolH;
 	}
 
 	###
 	### Body Functions
 	###
-	private function mail_body() {
+	function mail_body() {
 	    switch($this->msg_type) {
 	      case 'plain':
 	        $r = $this->enc_str($this->body, $this->enc);
@@ -257,7 +257,7 @@ class cf_mail {
 	    }
 	    return $this->is_err() ? '' : $r;
 	}
-	private function begin_b($boundary, $char_set, $content_type, $encoding) {
+	function begin_b($boundary, $char_set, $content_type, $encoding) {
 	    if($char_set == '')
 	      $char_set = $this->char_set;
 	    if($content_type == '')
@@ -269,13 +269,13 @@ class cf_mail {
 	    $r .= sprintf("Content-Type: %s; charset = \"%s\"", $content_type, $char_set) . $this->eol;
 	    return $r . $this->h_line('Content-Transfer-Encoding', $encoding) . $this->eol;
 	}
-	private function end_b($b) {
+	function end_b($b) {
 		return $this->eol . '--' . $b . '--' . $this->eol;
 	}
-	private function t_line($v) {
+	function t_line($v) {
 		return $v . $this->eol;
 	}
-	private function wrap_t($message, $length, $qp_mode = false) {
+	function wrap_t($message, $length, $qp_mode = false) {
 
 	    $message = $this->fix_eol($message);
 	    if (substr($message, -1) == $this->eol)
@@ -342,7 +342,7 @@ class cf_mail {
 	    }
 	    return $message;
 	}
-	private function utf8_char_b($t, $max_len) {
+	function utf8_char_b($t, $max_len) {
 	    $foundSplitPos = false;
 	    $chk_back = 3;
 
@@ -371,7 +371,7 @@ class cf_mail {
 	###
 	### Send Functions
 	###
-	public function send() {
+	function send() {
 	    $this->err_count = 0;
 
 	    if((count($this->to) + count($this->cc) + count($this->bcc)) < 1) {
@@ -433,7 +433,7 @@ class cf_mail {
 	    return true;
 	}
 
-	public function add_file($path, $name = '', $encoding = 'base64', $type = 'application/octet-stream') {
+	function add_file($path, $name = '', $encoding = 'base64', $type = 'application/octet-stream') {
 	    if(!@is_file($path)) {
 	      $this->set_err(__('Could not access file: ','cforms'));
 	      return false;
@@ -453,7 +453,7 @@ class cf_mail {
 	    return true;
 	}
 
-	private function attach_files() {
+	function attach_files() {
 	    $mime_arr = array();
 	    for($i = 0; $i < count($this->up); $i++) {
 
@@ -492,7 +492,7 @@ class cf_mail {
 	    return join('', $mime_arr);
 	}
 
-	private function enc_file ($path, $encoding = 'base64') {
+	function enc_file ($path, $encoding = 'base64') {
 	    if(!@$fd = fopen($path, 'rb')) {
 	      $this->set_err(__('File Error: Could not open file: ','cforms'));
 	      return '';
@@ -514,7 +514,7 @@ class cf_mail {
 	    return $buffer;
 	}
 
-	private function enc_str ($str, $e = 'base64') {
+	function enc_str ($str, $e = 'base64') {
 	    $enc_t = '';
 	    switch(strtolower($e)) {
 	      case 'base64':			$enc_t = chunk_split(base64_encode($str), 76, $this->eol); break;
@@ -527,7 +527,7 @@ class cf_mail {
 	    return $enc_t;
 	}
 
-	private function enc_h ($str, $position = 'text') {
+	function enc_h ($str, $position = 'text') {
 	    $x = 0;
 
 	    switch (strtolower($position)) {
@@ -574,7 +574,7 @@ class cf_mail {
 	    return trim(str_replace("\n", $this->eol, $enc_t));
 	}
 
-	private function enc_special($str) {
+	function enc_special($str) {
 	    $start = "=?".$this->char_set."?B?";
 	    $end = "?=";
 	    $enc_t = "";
@@ -600,7 +600,7 @@ class cf_mail {
 	    return substr($enc_t, 0, -strlen($this->eol));
 	}
 
-	private function enc_qp( $input = '', $line_max = 76, $space_conv = false ) {
+	function enc_qp( $input = '', $line_max = 76, $space_conv = false ) {
 	    $hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
 	    $lines = preg_split('/(?:\r\n|\r|\n)/', $input);
 	    $escape = '=';
@@ -633,7 +633,7 @@ class cf_mail {
 	    }
 	    return trim($output);
 	}
-	private function enc_q ($str, $position = 'text') {
+	function enc_q ($str, $position = 'text') {
 		$enc_t = preg_replace("[\r\n]", '', $str);
 	    switch (strtolower($position)) {
 	      case 'phrase':	$enc_t = preg_replace("/([^A-Za-z0-9!*+\/ -])/e", "'='.sprintf('%02X', ord('\\1'))", $enc_t); break;
@@ -643,11 +643,11 @@ class cf_mail {
 	    }
 	    return str_replace(' ', '_', $enc_t);
 	}
-	private function set_err($m) {
+	function set_err($m) {
 	    $this->err = $m;
 	    $this->err_count++;
 	}
-	private static function get_date() {
+	 function get_date() {
 	    $d = date('Z');
 	    $ds = ($d < 0) ? '-' : '+';
 	    $d = abs($d);
@@ -655,12 +655,12 @@ class cf_mail {
 	    $r = sprintf("%s %s%04d", date('D, j M Y H:i:s'), $ds, $d);
 	    return $r;
 	}
-	private function server_name() {
+	function server_name() {
         if (!empty($this->host))				return $this->host;
 		elseif (isset($_SERVER['SERVER_NAME']))	return $_SERVER['SERVER_NAME'];
 		else									return "localhost.localdomain";
     }
-    private function fix_eol($s) {
+    function fix_eol($s) {
 	    $s = str_replace("\r\n", "\n", $s);
 	    $s = str_replace("\r", "\n", $s);
 	    $s = str_replace("\n", $this->eol, $s);

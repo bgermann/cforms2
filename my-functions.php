@@ -11,11 +11,12 @@
 ###
 ### my_cforms_ajax_filter() : after validation, before processing (AJAX)
 ###
-###   >>>   uncomment the code below if you require custom processing and modify
-###   >>>   the below examples to meet your requirements
 
 
-/*  <--- move or remove this line to uncomment functions below! (and check the end as well) !
+### TO USE THE FUNCTIOS:
+###   >>>   uncomment the functions as required
+###   >>>   and provide your custom code where appropriate
+
 
 
 ###
@@ -31,6 +32,8 @@
 ### "autoConfTXT"		$cformsdata = cforms datablock
 ### "autoConfHTML" 		$cformsdata = cforms datablock
 ###
+
+/*  <--- move or remove this line to uncomment functions below (and check the end as well!)
 
 function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
@@ -89,7 +92,7 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 	### example: changes the name of the uploaded file in the email (adding a prefix taken form a form field)
 
     if ( $setting == "filename" ){
-		return $cformsdata['filetype'] . $oldvalue;
+		return $_POST['filetype'] . $oldvalue;
 	}
 
 
@@ -116,6 +119,9 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 }
 
 
+ ending comment line for: my_cforms_logic -------------------->  */
+
+
 
 
 
@@ -125,6 +131,8 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 ### Your custom user data input filter
 ###
 ###
+
+/*  <--- move or remove this line to uncomment functions below (and check the end as well!)
 
 function my_cforms_action($cformsdata) {
 
@@ -147,6 +155,8 @@ function my_cforms_action($cformsdata) {
 
 }
 
+ ending comment line for: my_cforms_action -------------------->  */
+
 
 
 
@@ -157,6 +167,8 @@ function my_cforms_action($cformsdata) {
 ### Your custom user data input filter (non ajax)
 ###
 ###
+
+/*  <--- move or remove this line to uncomment functions below (and check the end as well!)
 
 function my_cforms_filter($POSTdata) {
 
@@ -174,6 +186,8 @@ function my_cforms_filter($POSTdata) {
 
 }
 
+ ending comment line for: my_cforms_filter -------------------->  */
+
 
 
 
@@ -184,6 +198,8 @@ function my_cforms_filter($POSTdata) {
 ### Your custom user data input filter (ajax)
 ###
 ###
+
+/*  <--- move or remove this line to uncomment functions below (and check the end as well!)
 
 function my_cforms_ajax_filter($params) {
 
@@ -203,7 +219,7 @@ function my_cforms_ajax_filter($params) {
 }
 
 
-*/  /* <--- move or remove as required  */
+ ending comment line for: my_cforms_ajax_filter -------------------->  */
 
 
 ?>

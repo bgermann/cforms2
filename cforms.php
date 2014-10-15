@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 10.5.2
+Version: 10.6
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '10.5.2';
+$localversion = '10.6';
 
 ### debug messages
 $cfdebug = false;
@@ -84,7 +84,11 @@ function cforms_scripts_corrupted(){
 
 
 ### load add'l files
-require_once (dirname(__FILE__) . '/lib_email.php');
+if (version_compare(PHP_VERSION, '5.0.0', '>'))
+	require_once(dirname(__FILE__) . '/lib_email.php');
+else
+	require_once(dirname(__FILE__) . '/lib_email_php4.php');
+
 require_once (dirname(__FILE__) . '/lib_aux.php');
 require_once (dirname(__FILE__) . '/lib_editor.php');
 
@@ -491,7 +495,7 @@ function cforms($args = '',$no = '') {
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
 
 			} else
-				$input_id = $input_name = cf_sanitize_ids($field_name);
+				$input_id = $input_name = cf_sanitize_ids(stripslashes($field_name));
 
 		} else
 			$input_id = $input_name = 'cf'.$no.'_field_'.$i;
@@ -574,7 +578,7 @@ function cforms($args = '',$no = '') {
 
 				### enhanced error display
 				if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1)=="y")
-					$liERR = ' class="cf_li_err"';
+					$liERR = 'cf_li_err';
 				if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1)=="y")
 					$insertErr = ($fielderr<>'')?'<ul class="cf_li_text_err"><li>'.stripslashes($fielderr).'</li></ul>':'';
 			}
@@ -599,7 +603,7 @@ function cforms($args = '',$no = '') {
 
 		### print label only for non "textonly" fields! Skip some others too, and handle them below indiv.
 		if( ! in_array($field_type,array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','luv','subscribe','checkbox','checkboxgroup','send2author','radiobuttons')) )
-			$content .= $nttt . '<li'.$liID.$liERR.'>'.$insertErr.'<label' . $labelID . ' for="'.$input_id.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
+			$content .= $nttt . '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_id.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
 
 
 		### if not reloaded (due to err) then use default values
@@ -754,13 +758,13 @@ function cforms($args = '',$no = '') {
 
 				if ( $options[1]<>'' ) {
 					    $opt = explode('|', $options[1],2);
-				 		$before = '<li'.$liID.$liERR.'>'.$insertErr;
+				 		$before = '<li'.$liID.' class="'.$liERR.'">'.$insertErr;
 						$after  = '<label'. $labelID . ' for="'.$input_id.'" class="cf-after'.$err.'"><span>' . $opt[0] . '</span></label></li>';
 				 		$ba = 'a';
 				}
 				else {
 					    $opt = explode('|', $field_name,2);
-						$before = '<li'.$liID.$liERR.'>'.$insertErr.'<label' . $labelID . ' for="'.$input_name.'" class="cf-before'. $err .'"><span>' . $opt[0] . '</span></label>';
+						$before = '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_name.'" class="cf-before'. $err .'"><span>' . $opt[0] . '</span></label>';
 				 		$after  = '</li>';
 				 		$ba = 'b';
 				}
@@ -891,8 +895,9 @@ function cforms($args = '',$no = '') {
 				$liID_b = ($liID <>'')?substr($liID,0,-1) . 'items"':'';	### only if label ID's active
 
 				array_shift($options);
-				$field .= $nttt . '<li'.$liID.' class="cf-box-title">' . (($field_name)) . '</li>' .
+				$field .= $nttt . '<li'.$liID.' class="'.$liERR.' cf-box-title">'. $insertErr . (($field_name)) . '</li>' .
 						  $nttt . '<li'.$liID_b.' class="cf-box-group">';
+
 				$id=1;
 				foreach( $options as $option  ) {
 				    $checked = '';
@@ -916,7 +921,7 @@ function cforms($args = '',$no = '') {
 							$field .= $nttt . $tab . '<br />';
 						else
 							$field .= $nttt . $tab .
-								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b'.(($second)?' cformradioplus':'').'"'.$fieldTitle.'/>'.
+								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b' . ($second?' cformradioplus':'') . ($field_required?' fldrequired':'') .'"'.$fieldTitle.'/>'.
 								  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-after"><span>'.$opt[0] . "</span></label>";
 
 					}
@@ -931,7 +936,7 @@ function cforms($args = '',$no = '') {
 		### adding "required" text if needed
 		if($field_emailcheck == 1)
 			$content .= '<span class="emailreqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_emailrequired']).'</span>';
-		else if($field_required == 1 && !in_array($field_type,array('ccbox','luv','subscribe','checkbox')) )
+		else if($field_required == 1 && !in_array($field_type,array('ccbox','luv','subscribe','checkbox','radiobuttons')) )
 			$content .= '<span class="reqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_required']).'</span>';
 
 		### close out li item
@@ -1285,51 +1290,142 @@ function widget_cforms_init() {
 
 	global $cforms_root, $wp_registered_widgets, $cformsSettings;
 
-	if (! function_exists("register_sidebar_widget")) {
+    $cformsSettings = get_option('cforms_settings');
+    $options = $cformsSettings['global']['widgets'];
+    $prefix = 'cforms';
+
+	if (! function_exists("wp_register_sidebar_widget")) {
 		return;
 	}
 
-	function widget_cforms($args) {
-		$cformsSettings = get_option('cforms_settings');
+	        function widget_cforms($args) {
+	            $cformsSettings = get_option('cforms_settings');
+	            $options = $cformsSettings['global']['widgets'];
+	            extract($args);
 
-		extract($args);
-		preg_match('/^.*widgetcform([^"]*)".*$/',$before_widget,$form_no);
-		$no = ($form_no[1]=='0')?'':(int)($form_no[1]);
-		$title = htmlspecialchars(stripslashes($cformsSettings['global']['widget_title'][$form_no[1]]));
-		echo $before_widget.$before_title.$title.$after_title;;
-		insert_cform($no);
-		echo $after_widget;
-	}
+	            $prefix = 'cforms';
 
-	### Function: WP-Polls Widget Options
-	function widget_cforms_options($no) {
-		global $wpdb;
-		$cformsSettings = get_option('cforms_settings');
+	            $id = substr($widget_id, 7);
+	            $no = ($options[$id]['form']=='1')?'':$options[$id]['form'];
+	            $title = htmlspecialchars(stripslashes($options[$id]['title']));
 
-		if ( isset($_POST['cforms-title'.$no]) ) {
-			$cformsSettings['global']['widget_title'][$no] = strip_tags($_POST['cforms-title'.$no]);
-			update_option('cforms_settings',$cformsSettings);
+	            echo $before_widget.$before_title.$title.$after_title;
+	            insert_cform($no);
+	            echo $after_widget;
+	        }
+
+	        function widget_cforms_options($args) {
+	            global $wpdb;
+
+	            $cformsSettings = get_option('cforms_settings');
+	            $options = $cformsSettings['global']['widgets'];
+	            $prefix = 'cforms';
+
+	            if(empty($options)) $options = array();
+	            if(isset($options[0])) unset($options[0]);
+
+	           // update options array
+	            if( is_array($_POST) && !empty($_POST[$prefix]) ){
+	                foreach($_POST[$prefix] as $widget_number => $values){
+	                    if(empty($values) && isset($options[$widget_number])) // user clicked cancel
+	                        continue;
+
+	                    if(!isset($options[$widget_number]) && $args['number'] == -1){
+	                        $args['number'] = $widget_number;
+	                        $options['last_number'] = $widget_number;
+	                    }
+	                    $options[$widget_number] = $values;
+	                }
+
+	                // update number
+	                if($args['number'] == -1 && !empty($options['last_number'])){
+	                    $args['number'] = $options['last_number'];
+	                }
+
+	                // clear unused options and update options in DB. return actual options array
+	                $options = cforms_widget_update($prefix, $options, $_POST[$prefix], $_POST['sidebar'], 'widget_cforms');
+
+	            }
+
+	            $number = ($args['number'] == -1)? '%i%' : $args['number'];
+
+	            // stored data
+	            $opts  = @$options[$number];
+	            $title = @$opts['title'];
+	            $form = @$opts['form'];
+
+
+                $opt = '';
+                $forms = $cformsSettings['global']['cforms_formcount'];
+                for ($i=1;$i<=$forms;$i++) {
+                    $no = ($i==1)?'':($i);
+                    $selected = ( $i==$form )? ' selected="selected"':'';
+                    $name = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']);
+                    $name = (strlen($name)>40) ? substr($name,0,40).'&#133':$name;
+                    $opt .= '<option value="'.$i.'"'. $selected .'>'.$name.'</option>';
+                }
+
+	            echo '<label for="' .$prefix. '-' . $number. '-title">' . __('Title', 'cforms') . ':</label>'.
+	                 '<input type="text" id="' .$prefix. '-' . $number. '-title" name="' .$prefix. '[' . $number. '][title]" value="' .$title. '" /><br />';
+
+				echo '<label for="' .$prefix. '-' . $number. '-form">' . __('Form', 'cforms') . ':</label>'.
+                	 '<select id="' .$prefix. '-' . $number. '-form" name="' .$prefix. '[' . $number. '][form]" style="width:220px; font-size:10px; font-family:Arial;">'. $opt .'</select>';
+
+	        }
+
+	        function cforms_widget_update($id_prefix, $options, $post, $sidebar, $option_name = ''){
+
+	                global $wp_registered_widgets;
+	                static $updated = false;
+
+				    $cformsSettings = get_option('cforms_settings');
+
+	                // get active sidebar
+	                $sidebars_widgets = wp_get_sidebars_widgets();
+	                if ( isset($sidebars_widgets[$sidebar]) )
+	                    $this_sidebar =& $sidebars_widgets[$sidebar];
+	                else
+	                    $this_sidebar = array();
+
+	                // search unused options
+	                foreach ( $this_sidebar as $_widget_id ) {
+	                    if(preg_match('/'.$id_prefix.'-([0-9]+)/i', $_widget_id, $match)){
+	                        $widget_number = $match[1];
+
+	                        if(!in_array($match[0], $_POST['widget-id'])){
+	                            unset($options[$widget_number]);
+	                        }
+	                    }
+	                }
+
+	                // update database
+	                $cformsSettings['global']['widgets'] = $options;
+                    update_option('cforms_settings',$cformsSettings);
+                    $updated = true;
+
+	                // return updated array
+	                return $options;
+
+            }
+
+
+    $widget_ops = array('classname' => 'widgetcform', 'description' => __('Add any cforms form to your sidebar', 'cforms') );
+    $control_ops = array('width' => 200, 'height' => 200, 'id_base' => 'cforms' );
+	$name = 'cforms';
+
+	if(isset($options[0])) unset($options[0]);
+
+	if(!empty($options)){
+		foreach(array_keys($options) as $widget_number){
+			wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'widget_cforms', $widget_ops, array( 'number' => $widget_number ));
+			wp_register_widget_control($prefix.'-'.$widget_number, $name, 'widget_cforms_options', $control_ops, array( 'number' => $widget_number ));
 		}
-
-		echo '<p style="text-align: left;"><label for="cforms-title'.$no.'">';
-		_e('Title', 'cforms');
-		echo ': </label><input type="text" id="cforms-title'.$no.'" name="cforms-title'.$no.'" value="'.htmlspecialchars(stripslashes($cformsSettings['global']['widget_title'][$no])).'" /></p>'."\n";
-		echo '<input type="hidden" id="cforms-submit'.$no.'" name="cforms-submit'.$no.'" value="'.$no.'" />'."\n";
-
+	} else{
+		$options = array();
+		$widget_number = 1;
+		wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'widget_cforms', $widget_ops, array( 'number' => $widget_number ));
+		wp_register_widget_control($prefix.'-'.$widget_number, $name, 'widget_cforms_options', $control_ops, array( 'number' => $widget_number ));
 	}
-
-	for ( $i=0;$i<$cformsSettings['global']['cforms_formcount'];$i++ ) {
-
-		$no = ($i==0)?'0':($i+1);
-		$name = 'cformsII'. (($i==0)?'':' no.'.($i+1));
-		$form = substr($cformsSettings['form'.$no]['cforms'.$no.'_fname'],0,10).'...';
-
-		register_sidebar_widget($name, 'widget_cforms','widgetcform'.$no);
-		register_widget_control($name, 'widget_cforms_options', 200, 300, $no);
-
-		$wp_registered_widgets[sanitize_title($name)]['description'] = ($i==0)?__('Add cforms default form', 'cforms'):__('Add form', 'cforms').' "'.$form.'"';
-	}
-
 }
 
 

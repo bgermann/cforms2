@@ -158,13 +158,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 		if ( $field_type == "emailtobox" ){  				### special case where the value needs to bet get from the DB!
 
-            $field_name = explode('#',$field_stat[0]);  ### can't use field_name, since '|' check earlier
+            $field_name = explode('#',$field_stat[0]);  	### can't use field_name, since '|' check earlier
             $to_one = $_POST[$current_field];
 
-			$tmp = explode('|set:', $field_name[1] );	###  remove possible |set:true
-            $offset = (strpos($tmp[0],'|')===false) ? 1 : 2; ###  names come usually right after the label
+			$tmp = explode('|', $field_name[$to_one+1] );	###  remove possible |set:true
+            $value 	= $tmp[0];								###  values start from 0 or after!
 
-            $value 	= $field_name[(int)$to_one+$offset];  ###  values start from 0 or after!
             $field_name = $field_name[0];
  		}
  		else if ( $field_type == "upload" ){
@@ -471,6 +470,16 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 
 	                $mail = new cf_mail($no,$frommail,$field_email,$replyto);
+
+					### auto conf attachment?
+	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
+	                if ( $a<>'' && file_exists( $a ) ) {
+	                    $n = substr( $a, strrpos($a,$cformsSettings['global']['cforms_IIS'])+1, strlen($a) );
+	                    $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+	                    $mail->add_file($a, $n,'base64',$m); ### optional name
+                    }
+
 	                $mail->char_set = 'utf-8';
 
                     ### CC or auto conf?

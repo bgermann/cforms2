@@ -139,6 +139,10 @@ for($i = 1; $i <= $field_count; $i++) {
 
 						$validations[$i+$off] = ($_REQUEST[$field_type]=='')?false:true;
 
+				}else if( $field_type=="radiobuttons" ) {
+
+						$validations[$i+$off] = ($current_field=='')?false:true;
+
 				}
 
 				if ( !$validations[$i+$off] && $err==0 ) $err=1;

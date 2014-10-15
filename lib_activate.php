@@ -41,7 +41,7 @@ setINI('form','cforms_count_fields', '5');
 setINI('form','cforms_count_field_1', __('My Fieldset', 'cforms').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0');
 setINI('form','cforms_count_field_2', __('Your Name|Your Name', 'cforms').'$#$textfield$#$1$#$0$#$1$#$0$#$0');
 setINI('form','cforms_count_field_3', __('Email', 'cforms').'$#$textfield$#$1$#$1$#$0$#$0$#$0');
-setINI('form','cforms_count_field_4', __('Website', 'cforms').'|http:###$#$textfield$#$0$#$0$#$0$#$0$#$0');
+setINI('form','cforms_count_field_4', __('Website', 'cforms').'|http://$#$textfield$#$0$#$0$#$0$#$0$#$0');
 setINI('form','cforms_count_field_5', __('Message', 'cforms').'$#$textarea$#$0$#$0$#$0$#$0$#$0');
 
 setINI('form','cforms_required', __('(required)', 'cforms'));
@@ -78,10 +78,10 @@ setINI('form','cforms_showpos', 'ynyyy');
 
 setINI('form','cforms_hide', false);
 setINI('form','cforms_redirect', false);
-setINI('form','cforms_redirect_page', __('http:###redirect.to.this.page', 'cforms'));
+setINI('form','cforms_redirect_page', __('http://redirect.to.this.page', 'cforms'));
 
 setINI('form','cforms_action', '0');
-setINI('form','cforms_action_page', 'http:###');
+setINI('form','cforms_action_page', 'http://');
 
 setINI('form','cforms_tracking', '');
 setINI('form','cforms_showdashboard', '1');

@@ -411,7 +411,7 @@ abspath_check();
 
 			<div id="o10">
 
-				<p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you way want to try and turn on the below option.', 'cforms') ?>
+				<p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you may want to try and turn on the below option.', 'cforms') ?>
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>

@@ -367,7 +367,7 @@ abspath_check();
 
                             echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
 
-                            if( in_array($field_type,array('hidden','checkboxgroup', 'radiobuttons','fieldsetstart','fieldsetend','ccbox','captcha','verification','textonly')) )
+                            if( in_array($field_type,array('hidden','checkboxgroup', 'fieldsetstart','fieldsetend','ccbox','captcha','verification','textonly')) )
                                 echo '<img class="chkno" src="'.$cforms_root.'/images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
                                 echo '<input tabindex="'.($ti++).'" class="allchk fieldisreq chkfld" type="checkbox" title="'.__('input required', 'cforms').'" name="field_'.($i).'_required" value="required"'.($field_required == '1'?' checked="checked"':'').'/>';
@@ -484,6 +484,7 @@ abspath_check();
 				<p><?php echo sprintf(__('These are the messages displayed to the user on successful (or failed) form submission. These messages are form specific, a general message for entering a wrong <strong>visitor verification code</strong> can be found <a href="%s" %s>here</a>.', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></p>
 
 				<table class="form-table">
+
 				<tr class="ob">
 					<td class="obL"><label for="cforms_submit_text"><strong><?php _e('Submit button text', 'cforms'); ?></strong></label></td>
 					<td class="obR"><input type="text" name="cforms_submit_text" id="cforms_submit_text" value="<?php echo ($cformsSettings['form'.$no]['cforms'.$no.'_submit_text']);  ?>" /></td>
@@ -563,41 +564,12 @@ abspath_check();
 				<p><?php _e('The default FROM: address is based on your blog\'s name and the WP default address. It can be changed, but I highly recommend you do not, as it may render the plugin useless. If you do change the FROM: address, triple check if all admin emails are being sent/received! ', 'cforms') ?></p>
 
 				<table class="form-table">
-				<tr class="ob">
-					<td class="obL"><label for="cforms_fromemail"><strong><?php _e('FROM: email address', 'cforms') ?></strong></label></td>
-					<td class="obR"><input type="text" name="cforms_fromemail" id="cforms_fromemail" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_fromemail'])); ?>" /></td>
-				</tr>
-
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_email"><strong><?php _e('Admin email address(es)', 'cforms') ?></strong></label></td>
-					<td class="obR"><input type="text" name="cforms_email" id="cforms_email" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_email'])); ?>" /> <a class="infobutton" href="#" name="it1"><?php _e('More than one "<strong>form admin</strong>"? &raquo;', 'cforms'); ?></a></td>
-				</tr>
-
-				<tr id="it1" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('Simply add additional email addresses separated by a <strong style="color:red">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the visitor to choose from any of these per select box, you need to add a corresponding "<code>Multiple Recipients</code>" input field <a href="#anchorfields">above</a> (see the HELP section for <a href="%s" %s>details</a> on the <em>field name</em> format expected!). If <strong>no</strong> "Multiple Recipients" input field is defined above, the submitted form data will go out to <strong>every address listed</strong>!', 'cforms'),'?page='.$plugindir.'/cforms-help.php#multirecipients','onclick="setshow(19)"'); ?></td></tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_bcc"><strong><?php _e('BCC', 'cforms') ?></strong></label></td>
-					<td class="obR"><input type="text" name="cforms_bcc" id="cforms_bcc" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_bcc'])); ?>" /></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_subject"><strong><?php _e('Subject admin email', 'cforms') ?></strong></label></td>
-					<td class="obR"><input type="text" name="cforms_subject" id="cforms_subject" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_subject'])); ?>" /> <?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
-				</tr>
-
-				<tr class="obSEP"><td colspan="2"></td></tr>
 
                 <tr class="ob">
                     <td class="obL"><strong><?php _e('Core options', 'cforms') ?></strong></td>
-                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_emailoff" name="cforms_emailoff" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_emailoff"><?php echo sprintf(__('%sTurn off%s admin email', 'cforms'),'<strong>','</strong>') ?></label></td>
-                </tr>
-
-                <tr class="ob">
-                    <td class="obL"></td>
-                    <td class="obR">
-						<?php $p = ((int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']>0)?(int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']:3; ?>
-						<select name="emailprio" id="emailprio"><?php for ($i=1;$i<=5;$i++) echo '<option'.(($i==$p)?' selected="selected"':'').'>' .$i. '</option>'; ?></select>
-                        <label for="emailprio"><?php echo sprintf(__('Email %spriority%s (1 = High, 3 = Normal, 5 = Low)', 'cforms'),'<strong>','</strong>') ?></label>
-                    </td>
+					<td class="obR">
+						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
+		 			</td>
                 </tr>
 
 				<?php if( $cformsSettings['global']['cforms_showdashboard'] == '1' ) : ?>
@@ -627,13 +599,6 @@ abspath_check();
 				</tr>
 
 				<tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that belong to the Tell-A-Friend feature but can be enabled here without actually turning on T-A-F.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#tafvariables','onclick="setshow(23)"'); ?> <strong><u><?php _e('Note:','cforms')?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.','cforms')?></td></tr>
-
-				<tr class="ob">
-					<td class="obL"></td>
-					<td class="obR">
-						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
-		 			</td>
-				</tr>
 
 				<tr class="ob">
 					<td class="obL"></td>
@@ -725,7 +690,7 @@ abspath_check();
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enable RSS feed to track new submissions', 'cforms'); ?>  <a class="infobutton" href="#" name="it10"><?php _e('Please read note &raquo;', 'cforms'); ?></a></td>
 				</tr>
 
-				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('For the RSS feed to work you must have %sDatabase Tracking%s turned on under <em>Global-Settings</em>! In order to pick & include input fields in your feed you must have at least on submission in the database for reference.', 'cforms'),'<strong>','</strong>'); ?></td></tr>
+				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('For the RSS feed to work you must have %sDatabase Tracking%s turned on under <em>Global-Settings</em>! In order to pick & include input fields in your feed your Tracking page must show at least one record for reference.', 'cforms'),'<strong>','</strong>'); ?></td></tr>
 
 				<?php if( current_user_can('track_cforms') && $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) : ?>
 				<tr class="ob">
@@ -779,7 +744,44 @@ abspath_check();
 				<p><?php echo sprintf(__('Below you\'ll find the settings for both the <strong>TXT part</strong> of the admin email as well as the <strong>optional HTML part</strong> of the message. Both areas permit the use of any of the <strong>pre-defined variables</strong> or <strong>data from input fields</strong>. <a href="%s" %s>Please see the documentation on the HELP page</a> (including HTML message examples!).', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></p>
 
 				<table class="form-table">
-				<tr class="ob space20">
+                <tr class="ob space15">
+                    <td class="obL"></td>
+                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_emailoff" name="cforms_emailoff" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_emailoff"><?php echo sprintf(__('%sTurn off%s admin email', 'cforms'),'<strong>','</strong>') ?></label></td>
+                </tr>
+				</table>
+
+				<table class="form-table<?php if( $cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1' ) echo " hidden"; ?>">
+                <tr class="ob space15">
+					<td class="obL"><label for="cforms_fromemail"><strong><?php _e('FROM: email address', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" name="cforms_fromemail" id="cforms_fromemail" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_fromemail'])); ?>" /></td>
+				</tr>
+
+				<tr class="ob space15">
+					<td class="obL"><label for="cforms_email"><strong><?php _e('Admin email address(es)', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" name="cforms_email" id="cforms_email" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_email'])); ?>" /> <a class="infobutton" href="#" name="it1"><?php _e('More than one "<strong>form admin</strong>"? &raquo;', 'cforms'); ?></a></td>
+				</tr>
+
+				<tr id="it1" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('Simply add additional email addresses separated by a <strong style="color:red">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the visitor to choose from any of these per select box, you need to add a corresponding "<code>Multiple Recipients</code>" input field <a href="#anchorfields">above</a> (see the HELP section for <a href="%s" %s>details</a> on the <em>field name</em> format expected!). If <strong>no</strong> "Multiple Recipients" input field is defined above, the submitted form data will go out to <strong>every address listed</strong>!', 'cforms'),'?page='.$plugindir.'/cforms-help.php#multirecipients','onclick="setshow(19)"'); ?></td></tr>
+
+				<tr class="ob">
+					<td class="obL"><label for="cforms_bcc"><strong><?php _e('BCC', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" name="cforms_bcc" id="cforms_bcc" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_bcc'])); ?>" /></td>
+				</tr>
+				<tr class="ob">
+					<td class="obL"><label for="cforms_subject"><strong><?php _e('Subject admin email', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" name="cforms_subject" id="cforms_subject" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_subject'])); ?>" /> <?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
+				</tr>
+
+                <tr class="ob">
+                    <td class="obL"></td>
+                    <td class="obR">
+						<?php $p = ((int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']>0)?(int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']:3; ?>
+						<select name="emailprio" id="emailprio"><?php for ($i=1;$i<=5;$i++) echo '<option'.(($i==$p)?' selected="selected"':'').'>' .$i. '</option>'; ?></select>
+                        <label for="emailprio"><?php echo sprintf(__('Email %spriority%s (1 = High, 3 = Normal, 5 = Low)', 'cforms'),'<strong>','</strong>') ?></label>
+                    </td>
+                </tr>
+
+				<tr class="ob space15">
 					<td class="obL" style="padding-bottom:0"><label for="cforms_header"><?php _e('<strong>Admin TEXT message</strong><br />(Header)', 'cforms') ?></label></td>
 					<td class="obR" style="padding-bottom:0">
                     	<table><tr>
@@ -882,6 +884,20 @@ abspath_check();
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
+				</tr>
+
+			    <?php
+			    $a=$cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
+                $err='';
+				$t = (substr($a,0,1)=='/')?$a:dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
+				if ( $t<>'' && !file_exists( $t ) ) {
+			        $err = '<br /><p class="error">' . sprintf(__('Can\'t find the specified <strong>Attachment</strong> (%s)! Please verify the server path!', 'cforms' ),$t) . '</p>';
+			    }
+				?>
+
+				<tr class="ob">
+					<td class="obL"><label for="cforms_cattachment"><strong><?php _e('Attachment', 'cforms') ?></strong></label></td>
+					<td class="obR"><input type="text" name="cforms_cattachment" id="cforms_cattachment" value="<?php echo stripslashes(htmlspecialchars($a)); ?>" /> <?php echo sprintf(__('File path: relative to the cforms plugin folder or an absolute path.', 'cforms')); ?><?php echo $err; ?></td>
 				</tr>
                 <?php endif; ?>
 

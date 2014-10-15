@@ -58,7 +58,7 @@
 					$emailtobox=true;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_required']) && in_array($type,array('pwfield','textfield','datepicker','textarea','checkbox','multiselectbox','selectbox','emailtobox','upload','yourname','youremail','friendsname','friendsemail','email','cauthor','url','comment')) ) {
+				if(isset($_REQUEST['field_' . $i . '_required']) && in_array($type,array('pwfield','textfield','datepicker','textarea','checkbox','multiselectbox','selectbox','emailtobox','upload','yourname','youremail','friendsname','friendsemail','email','cauthor','url','comment','radiobuttons')) ) {
 					$required = 1;
 				}
 
@@ -131,6 +131,7 @@
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_fname'] =    preg_replace(array('/\\\+/','/\//','/"/'), array('\\','-','\''), $_REQUEST['cforms_fname']) ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_csubject'] = preg_replace("/\\\+/", "\\",$_REQUEST['cforms_csubject']).'$#$'.preg_replace("/\\\+/", "\\",$_REQUEST['cforms_ccsubject']) ;
+    $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0] = $_REQUEST['cforms_cattachment'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     preg_replace("/\\\+/", "\\",$_REQUEST['cforms_cmsg']);
 	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] =preg_replace("/\\\+/", "\\",$_REQUEST['cforms_cmsg_html']);
 

@@ -3,7 +3,7 @@
 please see cforms.php for more information
 */
 
-### new global settings container, will eventually be the only one!
+### new Global Settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
 $plugindir   = $cformsSettings['global']['plugindir'];
@@ -246,7 +246,12 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('<strong>Select box marked "Required":</strong> Using a minus symbol %1$s for the value (after %2$s), will mark an option as invalid! Example:<br /><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. <br />"Please pick..." is shown but not considered a valid value.', 'cforms'),'<code>-</code>','<span style="color:red; font-weight:bold;">|</span>'); ?>
+					<?php _e('Note:', 'cforms'); ?><br /><?php echo sprintf(__('<strong>Select box marked "Required":</strong> Using a minus symbol %1$s for the value (after %2$s), will mark an option as invalid! Example:<br /><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. <br />"Please pick..." is shown but not considered a valid value.', 'cforms'),'<code>-</code>','<span style="color:red; font-weight:bold;">|</span>'); ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="ball" colspan="2">
+					<?php _e('Note:', 'cforms'); ?><br /><?php echo sprintf(__('<strong>Radio buttons marked "Required":</strong> You can choose to not preselect a radio button upon form load, yet make a user selection mandatory for the form to validate.', 'cforms')); ?>
 				</td>
 			</tr>
 		</table>
@@ -486,7 +491,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under global settings.', 'cforms'); ?>
+					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under Global Settings.', 'cforms'); ?>
 				</td>
 			</tr>
 		</table>
@@ -521,7 +526,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under global settings.', 'cforms'); ?>
+					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under Global Settings.', 'cforms'); ?>
 				</td>
 			</tr>
 		</table>
@@ -547,7 +552,12 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('Please double-check the <a href="%s" %s>general settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#upload','onclick="setshow(11)"'); ?>
+					<?php echo sprintf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#upload','onclick="setshow(11)"'); ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="ball" colspan="2">
+					<?php echo sprintf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#tracking','onclick="setshow(14)"'); ?>
 				</td>
 			</tr>
 		</table>
@@ -1064,7 +1074,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('\'CC\' check box', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Subscribe To Comments', 'cforms'); ?>:</td><td> <code>subscribe</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Comment Luv', 'cforms'); ?>:</td><td> <code>luv</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>verification</code></td></tr>
-	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>captcha</code></td></tr>
+	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?>:</td><td> <code>captcha</code></td></tr>
 	                <tr><td><?php _e('File upload fields', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>upload</code></td></tr>
 	                <tr><td><?php _e('Begin of a fieldset', 'cforms'); ?>:</td><td> <code>fieldsetstart</code></td></tr>
 	                <tr><td><?php _e('End of a fieldset', 'cforms'); ?>:</td><td> <code>fieldsetend</code></td></tr>
