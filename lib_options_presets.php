@@ -29,8 +29,8 @@
 		else if( $data[0]=='lt' ){
 			$cformsSettings['form'.$no]["cforms{$no}_limittxt"] = str_replace(array("\n","\r"),array('',''),$data[1]);
 		}
-		else if( $data[0]=='rd' ){
-			$cformsSettings['form'.$no]["cforms{$no}_redirect"] = str_replace(array("\n","\r"),array('',''),$data[1]);
+		else if( $data[0]=='hd' ){
+			$cformsSettings['form'.$no]["cforms{$no}_hide"] = str_replace(array("\n","\r"),array('',''),$data[1]);
 		}
 		else if( $data[0]=='ri' ){
 			$cformsSettings['form'.$no]["cforms{$no}_required"] = str_replace(array("\n","\r"),array('',''),$data[1]);
@@ -43,7 +43,7 @@
 		}
 		else if( $data[0]=='tt' ){
 			$cformsSettings['form'.$no]["cforms{$no}_cmsg"] =  str_replace('|nl|',"\r\n",$data[1]) ;
-			$cformsSettings['form'.$no]["cforms{$no}_cmsg_html"] =  str_replace('|nl|',"\r\n",$data[1]) ;
+			$cformsSettings['form'.$no]["cforms{$no}_cmsg_html"] =  str_replace('|nl|',"<br />\r\n",$data[1]) ;
 			$cformsSettings['form'.$no]["cforms{$no}_confirm"] =  '1';
 			$taf = str_replace(array("\n","\r"),array('',''),$data[1]);
 		}

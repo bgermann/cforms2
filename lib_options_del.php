@@ -10,7 +10,7 @@
 		unset( $cformsSettings['form'.$n] );
 
 		foreach(array_keys($cformsSettings['form'.($i+1)]) as $key){
-            $newkey = ( strpos($key,'2_')!==false )?str_replace('2_','_',$key):str_replace(($i+1).'_',$i.'_',$key);
+            $newkey = ( strpos($key,'form2_')!==false )?str_replace('2_','_',$key):str_replace(($i+1).'_',$i.'_',$key);
 			$cformsSettings['form'.$n][$newkey] = $cformsSettings['form'.($i+1)][$key];
 		}
 

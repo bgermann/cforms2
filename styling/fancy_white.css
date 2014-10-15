@@ -3,48 +3,48 @@
 /*                                                    */
 @import "calendar.css";
 
-.cform { 
-	margin:10px auto 0 auto; 
-	width: 450px; 
+.cform {
+	margin:10px auto 0 auto;
+	width: 450px;
 }
 
-.cform fieldset	{ 
-	margin-top:20px; 
-	padding:4px 0 10px 0; 
-	border:0px solid #adadad; 
-	border-left-color:#ececec; 
-	border-top-color:#ececec; 
-	background:none; 
+.cform fieldset	{
+	margin-top:20px;
+	padding:4px 0 10px 0;
+	border:0px solid #adadad;
+	border-left-color:#ececec;
+	border-top-color:#ececec;
+	background:none;
 }
 
 .cform .cf_hidden {
-	display:none; 
+	display:none;
 	border:none!important;
 	background:none!important;
 	padding:0!important;
 	margin:0!important;
 }
 
-.cform legend { 
+.cform legend {
 	margin-left:10px;
-	padding: 0 2px; 
-	font:normal 20px monospace; 
+	padding: 0 2px;
+	font:normal 20px monospace;
 	color:#666666;
 	letter-spacing:5px;
 }
 
-ol.cf-ol { 
+ol.cf-ol {
 	margin:0pt!important;
 	padding:10px 0pt 0pt!important;
 }
 ol.cf-ol li	{
-	background:none!important; 
+	background:none!important;
 	margin:0 10px!important; /*some themes may interfere otherwise*/
-	padding:0; 
-	list-style:none!important; 
+	padding:0;
+	list-style:none!important;
 	text-align:left;
 	line-height:1.3em;
-	font:normal 12px monospace; 
+	font:normal 12px monospace;
 }
 
 
@@ -55,7 +55,7 @@ ol.cf-ol li	{
 ol.cf-ol li.textonly {
 	letter-spacing:2px;
 	margin:6px 0pt !important;
-	padding:3px 0; 
+	padding:3px 0;
 	text-align:center;
 }
 
@@ -65,25 +65,25 @@ ol.cf-ol li.textonly {
 /*                                                    */
 
 .cform label {
-	width:200px; 
-	margin:0px 10px 0 0; 
+	width:200px;
+	margin:0px 10px 0 0;
 	text-align:left;
 	font-size: 10px;
 	display:block;
 	color:#888888;
 	background:none;
 	padding:2px;
-	font:normal 12px monospace; 
+	font:normal 12px monospace;
 }
 
 label.cf-before {
 	display:-moz-inline-box; /*for mozilla*/
 	display:inline-block; /*for Opera & IE*/
-	margin:4px 5px 0 0; 
+	margin:4px 5px 0 0;
 }
 
 label.cf-before span{
-	width:200px; 
+	width:200px;
 	display:block;
 }
 
@@ -118,7 +118,7 @@ label.cf-group-after span {
 
 .cform input,
 .cform textarea,
-.cform select { 
+.cform select {
 	margin:0 0 8px 0;
 	border:none;
 	vertical-align:top;
@@ -128,31 +128,31 @@ label.cf-group-after span {
 .cform input:hover,
 .cform textarea:hover,
 .cform select:hover	{
-	bbackground:white; 
+	/* background:white; */
 }
 
 .cform input:focus,
 .cform textarea:focus,
-.cform select:focus	{ 
-	bbackground:white; 
+.cform select:focus	{
+	/* background:white; */
 }
 
 .cform textarea,
 .cform input {
 	padding:2px 10px 12px;
-	border-top: 1px solid #f0f0f0; 
-	background:url(fancy_white_inp_bg.gif) no-repeat bottom left; 
-	width:400px; 
+	border-top: 1px solid #f0f0f0;
+	background:url(fancy_white_inp_bg.gif) no-repeat bottom left;
+	width:400px;
 }
 .cform select {
 	padding:4px;
-	background:white; 
+	background:white;
 	border:1px solid #f0f0f0;
 	width:420px; /* attempt to have equal length */
-}  
+}
 
-.cform select.cfselectmulti	{ 
-	height:6.5em; 
+.cform select.cfselectmulti	{
+	height:6.5em;
 }
 
 .cform textarea {
@@ -181,12 +181,12 @@ ol.cf-ol li.cf-box-title {
 /*                                                    */
 
 input.cf-box-a,
-input.cf-box-b 	{ 
-	margin:3px 0 0 0; 
-	width:16px; 
+input.cf-box-b 	{
+	margin:3px 0 0 0;
+	width:16px;
 	height:22px;
 	border:none!important;
-	background:none!important; 
+	background:none!important;
 }
 
 
@@ -195,8 +195,8 @@ input.cf-box-b 	{
 /*                                                    */
 
 ol.cf-ol li.cf-box-group {
-	padding: 0 0 12px 0; 
-} 
+	padding: 0 0 12px 0;
+}
 
 
 /*                                                    */
@@ -204,7 +204,7 @@ ol.cf-ol li.cf-box-group {
 /*                                                    */
 
 span.reqtxt,
-span.emailreqtxt { 
+span.emailreqtxt {
 	display:block; /*for mozilla*/
 	width:421px;
 	font-size:9px;
@@ -214,7 +214,7 @@ span.emailreqtxt {
 	margin:0;
 	height:13px;
 	line-height:13px;
-	font:normal 10px monospace; 
+	font:normal 10px monospace;
 }
 
 .cform textarea.fldemail,
@@ -234,17 +234,17 @@ p.cf-sb {
 }
 .cform input.backbutton,
 .cform input.resetbutton,
-.cform input.sendbutton	{ 
+.cform input.sendbutton	{
 	font-size:13px;
 	height:46px;
 	margin:5px 3px 4px 0pt;
 	padding:0px 5px 5px 5px;
 	width:144px;
-	background:url(fancy_white_submit.gif) no-repeat; 
+	background:url(fancy_white_submit.gif) no-repeat;
 	border:none;
 	cursor:pointer;
 }
-.cform input.sendbutton:hover	{ 
+.cform input.sendbutton:hover	{
 	background:white;
 	border:1px solid #e5e5e5;
 	height:40px;
@@ -385,15 +385,15 @@ div.waiting {
 /*                                                    */
 /*   formatting for invalid user inputs               */
 /*                                                    */
-.cform .cf_error { 
-	color:#ad2929; 
+.cform .cf_error {
+	color:#ad2929;
 }
 div.mailerr {
 	display:block;
 }
 .mailerr,
 .cform .cf_errortxt {
-	color:#ad2929; 
+	color:#ad2929;
 }
 
 /*                                                    */
@@ -427,7 +427,7 @@ div.mailerr {
 .linklove {
 	width:410px;
 	margin:0 auto 10px!important;
-	padding:0!important;	
+	padding:0!important;
 	text-align:center!important;
 }
 .linklove a,
@@ -437,20 +437,20 @@ div.mailerr {
 	color:#aaaaaa!important;
 }
 
-  
+
 /*                                                    */
 /*  Other: browser hacks                              */
 /*                                                    */
-* html .cform legend { 
-	position:absolute; 
-	top: -10px; 
-	left: 10px; 
+* html .cform legend {
+	position:absolute;
+	top: -10px;
+	left: 10px;
 	margin-left:0;
 }
 * html .cform fieldset {
 	position: relative;
 	margin-top:15px;
-	padding-top:25px; 
+	padding-top:25px;
 }
 * html ol.cf-ol 	{
 	display:inline-block; /*for IE6!!*/
@@ -461,4 +461,3 @@ div.mailerr {
 *+html img.captcha	{
 	margin-top:1px!important;
 }
-

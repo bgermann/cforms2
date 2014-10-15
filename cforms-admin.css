@@ -10,6 +10,11 @@ font-family:Arial,Verdana,sans-serif;
 .wrap {
 font-size:12px;
 font-family:"Lucida Grande",Arial,Verdana,"Bitstream Vera Sans",sans-serif;
+overflow:hidden;
+}
+
+.corruptedsettings h3 {
+margin:2em 0 0;
 }
 
 .wrap h2 {
@@ -67,6 +72,7 @@ font-size:8px;
 line-height:1em;
 float:right;
 margin-top:13px;
+margin-right:8px;
 color:#888;
 text-decoration:none;
 border-bottom:1px solid #2583AD;
@@ -128,6 +134,10 @@ display:block;
 margin-bottom:0;
 width:95%;
 height:20%;
+-moz-border-radius:4px 4px 0 0;
+-khtml-border-radius:4px 4px 0 0;
+-webkit-border-radius:4px 4px 0 0;
+border-radius:4px 4px 0 0;
 }
 
 .ob textarea {
@@ -144,9 +154,10 @@ height:45px;
 *****************************************************************/
 input {
 line-height:1em;
-padding:5px;
+padding:5px;   /* content-box padding-box border-box*/
 }
 
+.jqmWindow .allbuttons,
 a.allbuttons,
 input.allbuttons {
 color:#333;
@@ -156,11 +167,10 @@ padding:2px 8px;
 font-weight:700;
 font-size:9px;
 overflow:visible;
--moz-border-radius-bottomleft:11px;
--moz-border-radius-bottomright:11px;
--moz-border-radius-topleft:11px;
--moz-border-radius-topright:11px;
--moz-box-sizing:content-box;
+-moz-border-radius:11px;
+-khtml-border-radius: 11px;
+-webkit-border-radius: 11px;
+border-radius: 11px;
 border-style:solid;
 border-width:1px;
 cursor:pointer;
@@ -171,7 +181,7 @@ background:url(images/fade-butt-lightgreen.png);
 }
 
 input.deleteall {
-background:url(images/fade-butt-red.png);
+background:url(images/fade-butt-red.png)!important;
 }
 
 .chgformbox input.chgbutton {
@@ -184,9 +194,6 @@ background:url(images/fade-butt-lightblue.png);
 }
 
 input.updbutton {
-float:right;
-margin-right:15px;
-margin-top:7px;
 }
 
 input.formupd {
@@ -237,16 +244,33 @@ width:158px;
 /****************************************************************
   form settings
 *****************************************************************/
-.mainoptions,.chgformbox {
+.mainoptions, .chgformbox {
 margin:10px 0 0;
-background:#ECF2F4;
+width:100%;
+overflow:hidden;
+line-height:34px;
+margin:5px 0 0;
+padding:0;
+background:#6d6d6d url(images/nav-bg.gif) repeat-x scroll left top;
+border: 1px solid #aaa;
+border-bottom: none;
+-moz-border-radius: 6px 6px;
+-khtml-border-radius: 6px 6px;
+-webkit-border-radius: 6px 6px;
+border-radius: 6px 6px;
 }
 
-.chgL,.chgR {
-white-space:nowrap;
+.mainoptions{
+border: 1px solid #eee;
+background:#dfdfdf url(images/gray-grad.png) repeat-x scroll left top;
+-moz-border-radius: 6px 6px 0 0;
+-khtml-border-radius: 6px 6px 0 0;
+-webkit-border-radius: 6px 6px 0 0;
+border-radius: 6px 6px 0 0;
 }
 
 .chgL {
+white-space:nowrap;
 padding:5px 4px;
 }
 
@@ -255,13 +279,12 @@ text-align:center;
 width:100%;
 }
 
-.chgR {
-padding:5px 4px;
-text-align:right;
-}
-
 .mainoptions label,.mainoptions input,.chgformbox select,.chgformbox input {
 vertical-align:middle!important;
+}
+
+#anchorfields {
+border-top:0;
 }
 
 input.go {
@@ -277,7 +300,7 @@ overflow:visible;
 
 .bignumber {
 font-size:18px;
-color:#888;
+color:#aaa;
 }
 
 #cforms_fname {
@@ -291,13 +314,16 @@ background:#fefefe;
 
 #preset {
 background:url(images/fade-butt-lightbrown.png);
-margin-left:40px;
 }
 
 #formpresets {
 margin:0 2px 0 0;
 font-size:11px;
-padding:2px 0 4px;
+padding:3px 2px 3px;
+}
+
+#formpresets option{
+padding:0;
 }
 
 p.descPreset span {
@@ -320,14 +346,6 @@ padding:0 35px 2px 40px;
 margin:5px 0 20px;
 }
 
-p.backup {
-background:#F7F8FD;
-border:1px solid #EEE;
-padding:6px 0;
-margin:12px auto 20px;
-text-align:center;
-width:810px;
-}
 
 p.addfieldbox {
 background:#F5FAFA;
@@ -339,7 +357,7 @@ clear:both;
 border:1px solid #ECF2F4;
 }
 
-p.backup input,p.addfieldbox input, #wpcontent p.addfieldbox select.addfieldno {
+p.addfieldbox input, #wpcontent p.addfieldbox select.addfieldno {
 vertical-align:middle;
 }
 
@@ -390,7 +408,7 @@ input.addfieldno:focus {
 background:#fff!important;
 }
 
-#cformswarning td {
+#cformswarning {
 background:url(images/attn.gif) no-repeat;
 padding:2px 35px 10px 41px;
 font-size:11px;
@@ -403,25 +421,25 @@ text-align:left;
 
 /****************************************************************
 	  HIDE blocks
-	*****************************************************************/
+*****************************************************************/
 .blindminus,.blindplus {
 overflow:hidden;
-width:18px;
-height:18px;
-margin:.3em .25em 0 0;
+width:20px;
+height:34px;
+margin:0 6px 0 0;
 display:block;
 float:left;
-background:url(images/plusminus.gif) no-repeat 0 0;
+background:transparent url(images/menu-bits.gif) no-repeat scroll left 0px;
 border:none;
 text-decoration:none;
 }
 
 .blindminus {
-background-position:0 -18px;
+background-position:0 -34px;
 }
 
 #o0,#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,#o17,#o18,#o19,#o20,#o20,#o21,#o22,#o23,#o24,#o25,#o26,#o27,#o28,#o29,#o30 {
-padding-bottom:40px;
+padding-bottom:10px;
 }
 
 /****************************************************************
@@ -429,56 +447,65 @@ padding-bottom:40px;
 	*****************************************************************/
 .tableheader {
 margin:2px auto;
-width:785px;
+width:690px;
 overflow:hidden;
 }
 
-.tableheader td {
+.tableheader div {
 vertical-align:bottom;
 text-align:center;
 }
 
-* html .tableheader td {
-}
-
-td.field1th {
-width:39px;
-text-align:right;
-}
-
-td.field2th {
-width:287px;
-}
-
-td.field3th {
-width:190px;
-}
-
-td.field4th,td.field5th,td.field6th,td.field7th,td.field8th {
-width:52px;
+.tableheader div div {
+width:42px;
 font-family:Arial, Tahoma;
-font-size:9px;
+font-size:8px;
 color:#888;
+float:left;
+}
+
+.tableheader div div.fh1,
+.tableheader div div.fh2 {
+font-size:11px;
+padding-left:30px;
+text-align:left;
+width:227px;
+}
+
+.tableheader div div.fh2 {
+width:174px;
+}
+
+.tableheader div div img{
+cursor: help;
 }
 
 .itemContent a {
 border:0;
 }
 
-.fieldno {
-font:normal 8px Tahoma;
-}
-
-#wpcontent select.fieldtype, .itemContent input.inpfld,.itemContent select.fieldtype {
+#wpcontent select.fieldtype, .itemContent input.inpfld {
 font:normal 10px Tahoma;
-width:248px;
+width:230px;
 background:#F4F4F4;
 border:0;
+padding:5px;
+display:inline-box;
+-moz-box-sizing: border-box!important;
+-webkit-box-sizing: border-box!important;
+-ms-box-sizing: border-box!important; /* ie8 only */
+box-sizing: border-box!important;
+}
+
+#wpcontent select.fieldtype {
+font:normal 9px Arial;
+height:22px;
+padding:5px 0 1px;
 }
 
 .itemContent select.fieldtype,
 #wpcontent .itemContent select.fieldtype {
-width:174px;
+width:160px;
 margin-left:3px;
 }
 
@@ -516,9 +543,10 @@ color:#999;
 }
 
 .chkno,.fieldisreq,.fieldisemail,.fielddisabled,.fieldreadonly,.fieldclear {
-margin:0 23px 0 16px;
+margin:0 9px 0 19px;
 width:13px;
-overflow:hidden;
+height:13px;
+padding:0;
 }
 
 .chkno {
@@ -543,7 +571,8 @@ overflow:hidden;
 }
 
 .groupWrapper {
-width:790px;
+clear:both;
+width:690px;
 margin:0 auto;
 }
 
@@ -562,14 +591,13 @@ padding:2px 0;
 }
 
 .altmove {
-background:url(images/move.gif) no-repeat top right!important;
 }
 
 .groupItem .itemHeader {
-padding:3px 18px 3px 3px;
+padding:3px 4px;
 cursor:move;
-font-size:10px;
-background:url(images/move.gif) no-repeat top right;
+background:url(images/move.gif) no-repeat top center;
+font:normal 8px Tahoma;
 }
 
 .sortHelper {
@@ -584,12 +612,134 @@ margin:0;
 padding:0;
 }
 
+fieldset.cformsoptions {
+}
+
+.cf-content {
+background-color:#FFFFFF;
+padding:0 5px;
+margin-bottom: 5px;
+border: 1px solid #eee;
+-moz-border-radius: 0 0 6px 6px;
+-khtml-border-radius: 0 0 6px 6px;
+-webkit-border-radius: 0 0 6px 6px;
+border-radius: 0 0 6px 6px;
+}
+
+#cf_actions .cf-content{
+background:#F9F9F9;
+text-align:center;
+-moz-border-radius: 0 0 0 6px;
+-khtml-border-radius: 0 0 0 6px;
+-webkit-border-radius: 0 0 0 6px;
+border-radius: 0 0 0 6px;
+border:2px solid #888888;
+border-top:0;
+border-right:0;
+}
+
 .cflegend {
-font-size:24px;
+cursor:pointer;
+font-size:20px;
 color:#888;
-background:#ECF2F4;
+overflow:hidden;
+line-height:34px;
 margin:5px 0 0;
-padding:4px 15px 4px 8px;
+padding:0;
+background:#DFDFDF url(images/gray-grad.png) repeat-x scroll left top;
+border: 1px solid #eee;
+border-bottom: none;
+-moz-border-radius: 6px 6px 0 0;
+-khtml-border-radius: 6px 6px 0 0;
+-webkit-border-radius: 6px 6px 0 0;
+border-radius: 6px 6px 0 0;
+}
+
+
+#cf_actions {
+width:190px;
+}
+
+#cf_actions input {
+width:100%;
+}
+
+#cf_actions .cflegend {
+height:20px;
+font-size:11px;
+-moz-border-radius: 6px 0 0 0;
+-khtml-border-radius: 6px 0 0 0;
+-webkit-border-radius: 6px 0 0 0;
+border-radius: 6px 0 0 0;
+border:2px solid #888888;
+border-right:0;
+border-bottom:0;
+}
+
+#cf_actions .cflegend p {
+font-weight:bold;
+white-space:nowrap;
+text-align:right;
+margin:2px 0 0 0;
+padding:0 3px 0 0;
+}
+
+#cf_actions .blindminus, #cf_actions .blindplus {
+height:20px;
+}
+
+#cf_actions .blindminus {
+background-position:0 -40px;
+}
+#cf_actions .blindplus {
+background-position:0 -6px;
+}
+
+#o31{
+padding:7px 7px 9px 6px;
+}
+
+#cf_actions .m1{
+padding:0;
+margin:0 0 5px;
+}
+
+#cf_actions .m2{
+padding:0;
+margin:5px 0 10px;
+}
+
+#cf_actions .m3{
+padding:0;
+margin:10px 0 10px;
+}
+
+#cf_actions .m4{
+padding:0;
+margin:20px 0 5px;
+}
+
+#cf_actions .m5{
+padding:0;
+margin:0;
+}
+
+
+.op-closed {
+border: 1px solid #eee;
+-moz-border-radius: 6px;
+-khtml-border-radius: 6px;
+-webkit-border-radius: 6px;
+border-radius:6px;
+}
+
+#cf_actions .op-closed {
+-moz-border-radius:6px 0 0 6px;
+-khtml-border-radius:6px 0 0 6px;
+-webkit-border-radius:6px 0 0 6px;
+border-radius:6px 0 0 6px;
+border:2px solid #888888;
+border-right:0;
 }
 
 tr.obSEP {
@@ -623,6 +773,10 @@ border:1px solid #ececec;
 .ob input {
 width:320px;
 line-height:1em;
+}
+
+.ob textarea:focus, .ob input:focus {
+border:1px solid #aaa;
 }
 
 .ob input.cap {
@@ -696,6 +850,7 @@ width:4em;
 text-align:center;
 }
 
+input#cforms_rssfields,
 input#cforms_mp_backtext,input#cforms_mp_resettext {
 width:15em;
 }
@@ -703,6 +858,25 @@ width:15em;
 .ob input.allchk {
 width:auto;
 }
+
+select#emailprio,
+select#cforms_rsscount{
+width:5em;
+text-align:center;
+}
+
+select#cforms_rssfields{
+width:330px;
+height:8em;
+overflow:auto;
+display:block;
+}
+
+.sub{
+text-align:right;
+margin:5px 6px 2px;
+}
+
 
 /****************************************************************
   GLOBAL SETTINGS
@@ -867,10 +1041,6 @@ font-weight:bold;
 margin:5px 0 2px 0;
 }
 
-#header {
-width:22px;
-}
-
 .dataheader,
 .showformfield {
 display:inline-block;
@@ -988,8 +1158,17 @@ font-weight:700;
 text-align:right;
 }
 
+.wrap table.hf td.apiH {
+font-size:13px;
+background:#d0f0ec;
+}
+
 .wrap table.hf td.bright {
 background:#DFE8FF;
+}
+
+.wrap table.hf td span.abbr {
+font-weight:bold;
 }
 
 .wrap table.hf td.ball {
@@ -1056,6 +1235,10 @@ width:600px;
 background:#FFF url(images/cf_edit_bg.jpg) no-repeat right 20px;
 color:#333;
 border:3px solid #E7423A;
+-moz-box-shadow: #333 0 0px 22px;
+-webkit-box-shadow: #333 0 0px 22px;
+-khtml-box-shadow: #333 0 0px 22px;
+box-shadow: #333 0 0px 22px;
 }
 
 .jqmOverlay {
@@ -1079,6 +1262,21 @@ position:absolute;
 top:expression((document.documentElement.scrollTop||document.body.scrollTop) + Math.round(25*(document.documentElement.offsetHeight||document.body.clientHeight) / 100) + 'px');
 }
 
+#cf_target_del{
+text-align:center;
+font-weight:bold;
+margin:10px 0 0 0;
+}
+
+#cf_delall_dialog #cf_target_del{
+letter-spacing:2px;
+font-size:18px
+}
+
+#cf_delall_dialog p{
+text-align:left;
+}
+
 .jqmWindow .cf_ed_header {
 margin:0;
 text-align:center;
@@ -1091,9 +1289,12 @@ padding:3px;
 
 .jqmWindow .cf_ed_main {
 padding:12px;
-background:url(images/spinner.gif) no-repeat center center;
+background:url(images/ajax-loader-lg.gif) no-repeat center center;
 }
 
+.jqmWindow .cf_ed_main_backup {
+padding:12px;
+}
 .jqmWindow .ajaxloaded {
 background:none!important;
 }
@@ -1111,12 +1312,11 @@ border:0;
 }
 
 .jqmWindow input {
-background:#fde0ce;
 width:568px;
-border:1px solid #6a2300;
 font-size:11px;
 margin-left:0;
 line-height:1em;
+background:#fbfbfb;
 }
 
 * html .jqmWindow input {
@@ -1133,8 +1333,12 @@ padding:4px 3px 2px;
 width:16px;
 }
 
+.jqmWindow input.chkBoxW {
+width:22px;
+}
+
 .jqmWindow input:focus {
-background:#fff2ec;
+border:1px solid #aaa;
 }
 
 .jqmWindow label {
@@ -1145,7 +1349,7 @@ display:block;
 
 .jqmWindow .cf_edit_groups_header {
 margin-top:5px;
-padding-left:14px;
+padding-left:20px;
 }
 
 .jqmWindow .cf_edit_groups_header span,.jqmWindow #cf_edit_groups input {
@@ -1173,11 +1377,11 @@ margin-left:3px;
 }
 
 .jqmWindow .cf_edit_groups_header span.cf_option {
-width:231px;
+width:224px;
 }
 
 .jqmWindow .cf_edit_groups_header span.cf_optVal {
-width:210px;
+width:196px;
 }
 
 .jqmWindow .cf_edit_groups_header span.cf_chked {
@@ -1251,6 +1455,25 @@ margin-top:1px;
 .jqmWindow .add_group_item {
 padding:1px 0 0 20px;
 }
+
+/* Backup Dialog */
+#cf_backupbox input {
+width:auto;
+padding:3px 10px;
+}
+
+#cf_backupbox .controls {
+padding:0 8px;
+text-align:left;
+}
+
+#cf_delall_dialog .controls p.cancel,
+#cf_backupbox .controls p.cancel {
+text-align:right;
+margin:0;
+padding:0;
+}
+
 
 /****************************************************************
   COLOR PICKER

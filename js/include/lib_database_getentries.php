@@ -104,23 +104,26 @@ if ($showIDs<>'') {
 			$name = $entry->field_name==''?'':stripslashes($entry->field_name);
 			$val  = $entry->field_val ==''?'':stripslashes($entry->field_val);
 
-			if (strpos($name,'[*]')!==false) {  // attachments?
+			if (strpos($name,'[*')!==false) {  // attachments?
 
-					$no   = $entry->form_id;
+					preg_match('/.*\[\*(.*)\]$/i',$name,$r);
+					$no   = $r[1]==''?$entry->form_id:($r[1]==1?'':$r[1]);
 
 					$temp = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
 					$fileuploaddir = $temp[0];
 					$fileuploaddirurl = $temp[1];
 
-					if ( $fileuploaddirurl=='' ){
-	                    //$fileurl = $fileuploaddir.'/'.$entry->sub_id.'-'.strip_tags($val);
-	                    $fileurl = $cformsSettings['global']['cforms_root'].'/attachments/'.$entry->sub_id.'-'.strip_tags($val);
-					}
+					$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$entry->sub_id.'-';
+
+					if ( $fileuploaddirurl=='' )
+	                    $fileurl = $cformsSettings['global']['cforms_root'].substr($fileuploaddir,strpos($fileuploaddir,$cformsSettings['global']['plugindir'])+strlen($cformsSettings['global']['plugindir']),strlen($fileuploaddir));
 					else
-	                    $fileurl = $fileuploaddirurl.'/'.$entry->sub_id.'-'.strip_tags($val);
+	                    $fileurl = $fileuploaddirurl;
+
+                    $fileurl .= '/'.$subID.strip_tags($val);
 
 					echo '<div class="showformfield" style="margin:4px 0;color:#3C575B;"><div class="L">';
-					_e('Attached file:', 'cforms');
+					echo substr($name, 0,strpos($name,'[*'));
 					if ( $entry->field_val == '' )
 						echo 	'</div><div class="R">' . __('-','cforms') . '</div></div>' . "\n";
 					else
@@ -135,7 +138,7 @@ if ($showIDs<>'') {
 
 					echo '<div class="showformfield" style="margin-bottom:10px;color:#3C575B;"><div class="L">';
 					_e('IP address', 'cforms');
-					echo 	'</div><div class="R"><a href="http://geomaplookup.cinnamonthoughts.org/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms').'">'.$entry->ip.'</a></div></div>' . "\n";
+					echo 	'</div><div class="R"><a href="http://geomaplookup.net/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms').'">'.$entry->ip.'</a></div></div>' . "\n";
 
 
 			} elseif ( strpos($name,'Fieldset')!==false ) {

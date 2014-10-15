@@ -3,7 +3,7 @@
 please see cforms.php for more information
 */
 
-### new global settings container, will eventually be the only one!
+### new Global Settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
 $plugindir   = $cformsSettings['global']['plugindir'];
@@ -13,8 +13,15 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 <div class="wrap" id="top">
 		<div id="icon-cforms-help" class="icon32"><br/></div><h2><?php _e('Help','cforms')?></h2>
 
-		<p><?php _e('Here you\'ll find plenty of examples and documentation that should help you configure <strong>cforms</strong>.', 'cforms'); ?></p>
-		<p><?php echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img src="'.$cforms_root.'/images/adobe.gif"/>'); ?></p>
+		<p>
+        	<?php _e('Here you\'ll find plenty of examples and documentation that should help you configure <strong>cforms</strong>.', 'cforms'); ?>
+			<?php echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img style="vertical-align:middle;" src="'.$cforms_root.'/images/adobe.gif"/>'); ?>
+		</p>
+		<p>
+        	<?php _e('If cforms provides great services to you and/or your business, please consider making a donation to support future development.', 'cforms'); ?>
+        	<a href="http://www.deliciousdays.com/cforms-plugin/#donation"><img style="vertical-align:middle;" src="<?php echo $cforms_root; ?>/images/donate.png" alt="<?php _e('Thank you!', 'cforms'); ?>" title="<?php _e('Thank you!', 'cforms'); ?>"/></a>
+            <?php _e('Thank you!', 'cforms'); ?>
+		</p>
 
 		<p class="cftoctitle"><?php _e('Table of Contents', 'cforms'); ?></p>
 		<ul class="cftoc">
@@ -38,10 +45,11 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<li><a href="#troubles" onclick="setshow(25)"><?php _e('Need more help?', 'cforms'); ?></a> &raquo;</li>
 		</ul>
 
+        <div class="cflegend" id="p17" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            <a id="guide" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Basic steps, a small guide', 'cforms')?>
+        </div>
 
-	    <p class="cflegend space20" id="guide"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b17" class="blindminus" onfocus="this.blur()" onclick="toggleui(17);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">1.</span><?php _e('Basic steps, a small guide', 'cforms'); ?></p>
-
-		<div id="o17">
+		<div class="cf-content" id="o17">
 			<p><?php _e('Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin but it may be the most flexible. The below outline should help you get started with the default form.', 'cforms'); ?></p>
 			<ol style="margin:10px 0 0 100px;">
 				<li><?php echo sprintf(__('First take a look at the <a href="%s">default form</a>', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
@@ -61,9 +69,11 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</div>
 
 
-	    <p class="cflegend" id="inserting"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b18" class="blindminus" onfocus="this.blur()" onclick="toggleui(18);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">2.</span><?php _e('Inserting a form', 'cforms'); ?></p>
+		<div class="cflegend" id="p18" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="inserting" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Inserting a form', 'cforms')?>
+        </div>
 
-		<div id="o18">
+		<div class="cf-content" id="o18">
 			<h3><strong><?php _e('Editing posts and pages:', 'cforms'); ?></strong></h3>
 
 			<p class="helpimg"><img src="<?php echo $cforms_root; ?>/images/example-tiny.png"  alt=""/><br /><?php _e('TinyMCE Support', 'cforms'); ?></p>
@@ -79,9 +89,11 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</div>
 
 
-	    <p class="cflegend" id="fields"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b19" class="blindminus" onfocus="this.blur()" onclick="toggleui(19);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">3.</span><?php _e('Configuring form input fields', 'cforms'); ?></p>
+		<div class="cflegend" id="p19" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="fields" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Configuring form input fields', 'cforms')?>
+        </div>
 
-		<div id="o19">
+		<div class="cf-content" id="o19">
 			<p><?php echo sprintf(__('All supported input fields are listed below, highlighting the expected <em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, see examples below.', 'cforms'),'<a class="infobutton" href="#" name="it14">','</a>'); ?></p>
 
 			<p class="ex" style="display:none; width:400px;" id="it14"><?php _e('While the <em>Field Names</em> are usually just the label of a field (e.g. "Your Name"), they can contain additional information to support special functionality (e.g. default values, regular expressions for extended field validation etc.)', 'cforms'); ?></p>
@@ -239,7 +251,12 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('<strong>Select box marked "Required":</strong> Using a minus symbol %1$s for the value (after %2$s), will mark an option as invalid! Example:<br /><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. <br />"Please pick..." is shown but not considered a valid value.', 'cforms'),'<code>-</code>','<span style="color:red; font-weight:bold;">|</span>'); ?>
+					<?php _e('Note:', 'cforms'); ?><br /><?php echo sprintf(__('<strong>Select box marked "Required":</strong> Using a minus symbol %1$s for the value (after %2$s), will mark an option as invalid! Example:<br /><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. <br />"Please pick..." is shown but not considered a valid value.', 'cforms'),'<code>-</code>','<span style="color:red; font-weight:bold;">|</span>'); ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="ball" colspan="2">
+					<?php _e('Note:', 'cforms'); ?><br /><?php echo sprintf(__('<strong>Radio buttons marked "Required":</strong> You can choose to not preselect a radio button upon form load, yet make a user selection mandatory for the form to validate.', 'cforms')); ?>
 				</td>
 			</tr>
 		</table>
@@ -399,7 +416,6 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<span class="h4ff"><?php _e('form<br />field', 'cforms'); ?></span>
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Multiple form mail recipients', 'cforms'); ?>
-			<span style="font-size:10px; color:#fff; margin-left:15px"><strong><?php _e('Note:', 'cforms'); ?></strong> <?php echo sprintf(__('This requires corresponding email addresses <a href="%s" %s>here</a>!!', 'cforms'),'?page='.$plugindir.'/cforms-options.php#anchoremail','onclick="setshow(2)"'); ?></span>
 		</p>
 
 
@@ -407,11 +423,15 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s Name1 %1$s Name2 %1$s Name3...', 'cforms'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
+				<td class="bright"><?php echo sprintf(__('field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s Name3...', 'cforms'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms'); ?></td><td class="bright">
-					<code><?php _e('Send to#Joe#Pete#Hillary', 'cforms'); ?></code></td>
+					<code><?php _e('Send to#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com', 'cforms'); ?></code></td>
+			</tr>
+			<tr>
+				<td class="bleft"></td><td class="bright">
+					<code><?php _e('Send to#Sales|sales1@mail.com, sales2@mail.com, sales3@mail.com#Support|admin@mail.com#HR|hr1@mail.scom, hr2@mail.com', 'cforms'); ?></code></td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
@@ -479,7 +499,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under global settings.', 'cforms'); ?>
+					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under Global Settings.', 'cforms'); ?>
 				</td>
 			</tr>
 		</table>
@@ -514,7 +534,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under global settings.', 'cforms'); ?>
+					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under Global Settings.', 'cforms'); ?>
 				</td>
 			</tr>
 		</table>
@@ -540,7 +560,12 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('Please double-check the <a href="%s" %s>general settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#upload','onclick="setshow(11)"'); ?>
+					<?php echo sprintf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#upload','onclick="setshow(11)"'); ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="ball" colspan="2">
+					<?php echo sprintf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#tracking','onclick="setshow(14)"'); ?>
 				</td>
 			</tr>
 		</table>
@@ -868,9 +893,11 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 	</div>
 
 
-	    <p class="cflegend" id="customerr"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b20" class="blindminus" onfocus="this.blur()" onclick="toggleui(20);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">4.</span><?php _e('Custom error messages &amp; input field titles', 'cforms'); ?></p>
+		<div class="cflegend" id="p20" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="customerr" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Custom error messages &amp; input field titles', 'cforms')?>
+        </div>
 
-		<div id="o20">
+		<div class="cf-content" id="o20">
 			<p><?php echo sprintf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms'),'<code>|title:XXX</code>'); ?></p>
 			<p><?php echo sprintf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#cforms_success','onclick="setshow(1)"','?page=' . $plugindir . '/cforms-options.php#cforms_failure','onclick="setshow(1)"','<code>|err:XXX</code>'); ?></p>
 			<p class="ex"><?php echo sprintf(__('Please note the order of these special attributes, first %s (if applicable), then %s.', 'cforms'),'<code>|title:XXX</code>','<code>|err:XXX</code>');?></p>
@@ -906,55 +933,78 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 		</div>
 
 
-	    <p class="cflegend" id="hook"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b21" class="blindminus" onfocus="this.blur()" onclick="toggleui(21);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">5.</span><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms'); ?></p>
+		<div class="cflegend" id="p21" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="hook" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms')?>
+        </div>
 
-		<div id="o21">
-
-			<p><?php _e('cforms currently supports one API call to retrieve stored form data from the cforms database tables.', 'cforms'); ?></p>
+		<div class="cf-content" id="o21">
+			<br/ >
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="bright" colspan="2"><span class="abbr" title="<?php _e('API Function', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span></td>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: get_cforms_entries()', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span> &nbsp;&nbsp;&nbsp; <strong>get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;,$sortdir&nbsp;)</strong></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">&nbsp;get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;)&nbsp;</code></strong></td>
-					<td class="bright"><?php _e('This function will return a set of stored form submissions in a multi-dimensional array.', 'cforms'); ?></td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function allows to conveniently retrieve submitted data from the cforms tracking tables.', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$fname</code></strong></td>
-					<td class="bright"><?php _e('text string (regexp pattern) :: e.g. the form name', 'cforms'); ?></td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Parameters', 'cforms'); ?>:</span></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$from, $to</code></strong></td>
-					<td class="bright"><?php _e('DATETIME string (format: Y-m-d H:i:s) :: date &amp; time defining the target period, e.g.', 'cforms'); ?><strong style="color:red;"> 2008-09-17 15:00:00</strong></td>
+					<td class="bleft"><strong><code class="codehighlight">$fname&nbsp;::&nbsp;<?php _e('[text]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('text string (regexp pattern), e.g. the form name', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$sort</code></strong></td>
-					<td class="bright"><?php _e('text ::', 'cforms'); ?> <strong style="color:red;">form_id</strong>, <strong style="color:red;">id</strong>, <strong style="color:red;">sub_date</strong>, <strong style="color:red;">ip</strong> <?php _e('or', 'cforms'); ?> <strong style="color:red;">email</strong></td>
+					<td class="bleft"><strong><code class="codehighlight">$from,&nbsp;$to&nbsp;::&nbsp;<?php _e('[date]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('DATETIME string (format: Y-m-d H:i:s). Date &amp; time defining the target period, e.g.', 'cforms'); ?><strong style="color:red;"> 2008-09-17 15:00:00</strong></td>
 				</tr>
 				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$limit</code></strong></td>
-					<td class="bright"><?php _e('number :: limits the number of results, \'\' (empty) = no limits!', 'cforms'); ?></td>
+					<td class="bleft"><strong><code class="codehighlight">$sort&nbsp;::&nbsp;<?php _e('[text]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><strong style="color:red;">'form'</strong>, <strong style="color:red;">'id'</strong>, <strong style="color:red;">'date'</strong>, <strong style="color:red;">'ip'</strong> <?php _e('or', 'cforms'); ?> <strong style="color:red;">'email'</strong><?php _e(' or any other form input field, e.g. \'Your Name\'', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<strong><?php _e('Examples', 'cforms'); ?></strong>
-					</td>
+					<td class="bleft"><strong><code class="codehighlight">$limit&nbsp;::&nbsp;<?php _e('[number]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('limiting the number of results, \'\' (empty or false) = no limits!', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<code>$array = get_cforms_entries('','','','','')   /* all data, no filters */</code>
-					</td>
+					<td class="bleft"><strong><code class="codehighlight">$sortdir&nbsp;::&nbsp;<?php _e('[text]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><strong style="color:red;">asc</strong>, <strong style="color:red;">desc</strong></td>
+				</tr>
+				<tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms'); ?>:</span></td></tr>
+				<tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored form submissions in a multi-dimensional array.', 'cforms'); ?></td></tr>
+				<tr><td class="ball" colspan="2"><span class="abbr"><?php _e('Examples', 'cforms'); ?></span></td></tr>
+				<tr><td class="ball" colspan="2"><code>$array = get_cforms_entries();   /* all data, no filters */</code></td></tr>
+				<tr><td class="ball" colspan="2"><code>$array = get_cforms_entries('contact',false,false,'date',5,'desc');   /* last 5 submissions of "my contact form", order by date */</code></td></tr>
+				<tr><td class="ball" colspan="2"><code>$array = get_cforms_entries(false,date ("Y-m-d H:i:s", time()-(3600*2)));   /* all submissions in the last 2 hours */</code></td></tr>
+				<tr><td class="ball" colspan="2">
+                <span class="abbr"><?php _e('Example: Table Output', 'cforms'); ?></span><br /><br />
+                <pre style="font-size: 11px; background:#EAEAEA;">$array = get_cforms_entries();   /* all data, no filters */
+
+echo '&lt;table&gt;';
+echo '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Website&lt;/th&gt;&lt;/tr&gt;';
+foreach( $array as $e ){
+	echo '&lt;tr&gt;&lt;td&gt;' . $e['data']['Your Name'] . '&lt;/td&gt;&lt;td&gt;' . $e['data']['Email'] . '&lt;/td&gt;&lt;td&gt;' . $e['data']['Website'] . '&lt;/td&gt;&lt;tr&gt;';
+}
+echo '&lt;/table&gt;';</pre></td></tr>
+			</table>
+			<br />
+			<table class="hf" cellspacing="2" border="4" width="95%">
+				<tr>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: cf_extra_comment_data()', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span> &nbsp;&nbsp;&nbsp; <strong>cf_extra_comment_data(&nbsp;$commentID&nbsp;)</strong></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<code>$array = get_cforms_entries('contact','','','sub_date',5)   /* last 5 submissions of "my contact form", order by date */</code>
-					</td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function retrieves all extra data submitted (besides the default Author, Email, URL, Message fields) per a given comment context. This function should be called from within the "comment LOOP".', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2">
-						<code>$array = get_cforms_entries('',date ("Y-m-d H:i:s", time()-(3600*2)),'','','')   /* all submissions in the last 2 hours */</code>
-					</td>
+					<td class="bright" colspan="2"><span class="abbr"><?php _e('Parameters', 'cforms'); ?>:</span></td>
 				</tr>
+				<tr>
+					<td class="bleft"><strong><code class="codehighlight">$commentID&nbsp;::&nbsp;<?php _e('[number]', 'cforms'); ?></code></strong></td>
+					<td class="bright"><?php _e('The comment ID is expected.', 'cforms'); ?></td>
+				</tr>
+				<tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms'); ?>:</span></td></tr>
+				<tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored comment data in a multi-dimensional array.', 'cforms'); ?></td></tr>
+				<tr><td class="ball" colspan="2"><span class="abbr"><?php _e('Example', 'cforms'); ?></span> <?php echo sprintf(__('(see also the %sonline tutorial%s in the cforms forum)', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/troubleshooting/tutorial-wp-comment-feature-adding-and-using-extra-fields/">','</a>'); ?></td></tr>
+				<tr><td class="ball" colspan="2"><code>$xtra_comment_data = cf_extra_comment_data( get_comment_ID() );   /* all data, no filters */</code></td></tr>
 			</table>
 
 			<p>
@@ -964,7 +1014,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="bright" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms'); ?>"><?php _e('Available Functions', 'cforms'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php</strong> file (plugin root directory), including examples)', 'cforms');?></td>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms'); ?>"><?php _e('Available User Functions', 'cforms'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php</strong> file (plugin root directory), including examples)', 'cforms');?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_filter()</code></strong></td>
@@ -987,9 +1037,11 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 		</div>
 
 
-	    <p class="cflegend" id="dynamicforms"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b22" class="blindminus" onfocus="this.blur()" onclick="toggleui(22);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">6.</span><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms'); ?></p>
+		<div class="cflegend" id="p22" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="dynamicforms" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms')?>
+        </div>
 
-		<div id="o22">
+		<div class="cf-content" id="o22">
 			<p><?php _e('Again, this is for the advanced user who requires ad-hoc creation of forms.', 'cforms'); ?></p>
 
 			<p><strong><?php _e('A few things to note on dynamic forms:', 'cforms'); ?></strong></p>
@@ -1036,7 +1088,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 	                <tr><td><?php _e('\'CC\' check box', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Subscribe To Comments', 'cforms'); ?>:</td><td> <code>subscribe</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Comment Luv', 'cforms'); ?>:</td><td> <code>luv</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>verification</code></td></tr>
-	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>captcha</code></td></tr>
+	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?>:</td><td> <code>captcha</code></td></tr>
 	                <tr><td><?php _e('File upload fields', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>upload</code></td></tr>
 	                <tr><td><?php _e('Begin of a fieldset', 'cforms'); ?>:</td><td> <code>fieldsetstart</code></td></tr>
 	                <tr><td><?php _e('End of a fieldset', 'cforms'); ?>:</td><td> <code>fieldsetend</code></td></tr>
@@ -1129,9 +1181,11 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-	    <p class="cflegend" id="variables"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b23" class="blindminus" onfocus="this.blur()" onclick="toggleui(23);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">7.</span><?php _e('Using variables in email subject and messages', 'cforms'); ?></p>
+		<div class="cflegend" id="p23" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="variables" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Using variables in email subject and messages', 'cforms')?>
+        </div>
 
-		<div id="o23">
+		<div class="cf-content" id="o23">
 			<p>
 				<?php echo sprintf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"','?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?>
 			</p>
@@ -1189,6 +1243,14 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 					<td class="bleft"><code>{CurUserEmail}</code></td>
 					<td class="bright"><?php _e('Inserts the Email Address of the currently logged-in user.', 'cforms'); ?></td>
 				</tr>
+                <tr>
+                    <td class="bleft"><code>{CurUserFirstName}</code></td>
+                    <td class="bright"><?php _e('Inserts the First Name of the currently logged-in user.', 'cforms'); ?></td>
+                </tr>
+                <tr>
+                    <td class="bleft"><code>{CurUserLastName}</code></td>
+                    <td class="bright"><?php _e('Inserts the Last Name Address of the currently logged-in user.', 'cforms'); ?></td>
+                </tr>
 
 				<tr>
 					<td class="bleft"><em><?php _e('Special:', 'cforms'); ?></em></td>
@@ -1347,9 +1409,12 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			</table>
 		</div>
 
-	    <p class="cflegend" id="multipage"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b30" class="blindminus" onfocus="this.blur()" onclick="toggleui(30);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">8.</span><?php _e('Multi page forms', 'cforms'); ?></p>
 
-		<div id="o30">
+		<div class="cflegend" id="p30" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="multipage" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Multi page forms', 'cforms')?>
+        </div>
+
+		<div class="cf-content" id="o30">
 			<p><?php echo sprintf(__('Multi-page-forms support chaining of several forms and gather user input across all linked forms. Inserting a multi page form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms'),'<strong>','</strong>'); ?></p>
 
 			<p align="center" style="margin: 20px 0px 20px 10px; float: right; width: 410px;"><img src="<?php echo $cforms_root; ?>/images/example-mp.png"  alt=""/></p>
@@ -1412,9 +1477,11 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		</div>
 
 
-	    <p class="cflegend" id="CSS"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b24" class="blindminus" onfocus="this.blur()" onclick="toggleui(24);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">9.</span><?php _e('Styling Your Forms (CSS theme files)', 'cforms'); ?></p>
+		<div class="cflegend" id="p24" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Styling Your Forms (CSS theme files)', 'cforms')?>
+        </div>
 
-		<div id="o24">
+		<div class="cf-content" id="o24">
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
 			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
 			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
@@ -1422,12 +1489,14 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>
 
-	    <p class="cflegend" id="troubles"><a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><a id="b25" class="blindminus" onfocus="this.blur()" onclick="toggleui(25);return false;" href="#" title="<?php _e('Expand/Collapse', 'cforms') ?>"></a><span class="h3title-no">10.</span><?php _e('Need more help?', 'cforms'); ?></p>
 
-		<div id="o25">
+		<div class="cflegend" id="p25" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+        	<a id="troubles" class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindminus"></div><?php _e('Need more help?', 'cforms')?>
+        </div>
+
+		<div class="cf-content" id="o25">
 			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/?forum=3&amp;topic=4&amp;page=1">','</a>','<a href="http://www.deliciousdays.com/cforms-forum">','</a>'); ?></p>
 		</div>
-
 
 	<?php cforms_footer(); ?>
 </div>
