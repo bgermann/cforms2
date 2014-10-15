@@ -134,7 +134,6 @@ for($i = 1; $i <= $field_count; $i++) {
 							$validations[$i+$off] = !($_FILES['cf_uploadfile'.$no][name][$filefield++]=='');
 							if ( !$validations[$i+$off] && $err==0 )
 									{ $err=3; $fileerr = $cformsSettings['global']['cforms_upload_err2']; }
-
 				}else if( in_array($field_type,array('cauthor','url','email','comment')) ) {
 
 						$validations[$i+$off] = ($_REQUEST[$field_type]=='')?false:true;

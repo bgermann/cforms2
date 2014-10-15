@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 11.3
+Version: 11.4
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '11.3';
+$localversion = '11.4';
 
 ### debug messages
 $cfdebug = false;
@@ -349,9 +349,10 @@ function cforms($args = '',$no = '') {
 		$action = get_current_page(false) . '#usermessage'. $no . $actiontarget;
 
 
+	$enctype = $cformsSettings['form'.$no]['cforms'.$no.'_formaction'] ? 'enctype="application/x-www-form-urlencoded"':'enctype="multipart/form-data"';
 
 	### start with form tag
-	$content .= $ntt . '<form enctype="multipart/form-data" action="' . $action . '" method="post" class="cform'.( $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']?' cfnoreset':'' ).'" id="cforms'.$no.'form">' . $nl;
+	$content .= $ntt . '<form '.$enctype.' action="' . $action . '" method="post" class="cform'.( $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']?' cfnoreset':'' ).'" id="cforms'.$no.'form">' . $nl;
 
     ### Session item counter (for default values)
     $sItem=1;
@@ -1013,15 +1014,7 @@ function cforms($args = '',$no = '') {
 		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] . '">';
 
 
-	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.
-				$ajaxenabled.'/></p>';
-
-	$content .= $ntt . '</form>';
-
-
-	### Thank you for leaving this in place
-	$content .= $ntt . '<p class="linklove" id="ll'. $no .'"><a href="http://www.deliciousdays.com/cforms-plugin"><em>cforms</em> contact form by delicious:days</a></p>';
-
+	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form><p class="linklove" id="ll'. $no .'"><a href="http://www.deliciousdays.com/cforms-plugin"><em>cforms</em> contact form by delicious:days</a></p>';
 
 	### either show message above or below
 	$usermessage_text	= check_default_vars($usermessage_text,$no);
@@ -1480,7 +1473,7 @@ function get_request_uri() {
 
 
 ### PLUGIN VERSION CHECK ON PLUGINS PAGE
-add_action( 'after_plugin_row', 'cf_check_plugin_version' );
+//add_action( 'after_plugin_row', 'cf_check_plugin_version' );
 function cf_check_plugin_version($plugin)
 {
 	global $plugindir,$localversion;

@@ -68,7 +68,7 @@ if ( $sub_ids<>'' ){
 		else
 			$sub_id = '1';
 
-		$sql = "SELECT field_val,form_id,sub_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE $sub_id $doquery AND id=sub_id AND field_name LIKE '%[*]%'";
+		$sql = "SELECT field_val,form_id,sub_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE $sub_id $doquery AND id=sub_id AND field_name LIKE '%[*%'";
 		$filevalues = $wpdb->get_results($sql);
 
 		$del='';

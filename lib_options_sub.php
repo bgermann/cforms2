@@ -113,7 +113,7 @@
 																 ($_REQUEST['cforms_errorLI']?'y':'n').($_REQUEST['cforms_errorINS']?'y':'n').
 																 ($_REQUEST['cforms_jump']?'y':'n') ;
 
-
+	$cformsSettings['form'.$no]['cforms'.$no.'_formaction'] =     $_REQUEST['cforms_formaction']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] =     $_REQUEST['cforms_dontclear']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_dashboard'] =	 $_REQUEST['cforms_dashboard']?'1':'0';
     $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] =    $_REQUEST['cforms_notracking']?true:false;

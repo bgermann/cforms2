@@ -25,7 +25,8 @@ $sub_id = $_POST['id'];
 
 if ( $sub_id<>'' && $sub_id >= 0){
 
-	$filevalues = $wpdb->get_results("SELECT field_val,form_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id = '$sub_id' AND id=sub_id AND field_name LIKE '%[*]%'");
+	$sql 		= "SELECT field_val,form_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id = '$sub_id' AND id=sub_id AND field_name LIKE '%[*%'";
+	$filevalues = $wpdb->get_results($sql);
 
 	$del='';
 	$found = 0;

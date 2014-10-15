@@ -278,6 +278,7 @@ function getXML(){
 
 function encData ( $d ){
 	global $charset;
+	$d = str_replace('"','&quot;',$d);
 	return ( $charset=='utf-8' ) ? $d : utf8_decode($d);
 }
 

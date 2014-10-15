@@ -2,11 +2,29 @@
 
 
 ### plugin removal
-if( isset($_REQUEST['cfdeleteall']) ) {
+if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
 
-	$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%'");
-	$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformssubmissions");
-	$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformsdata");
+	### supporting WP2.6 wp-load & custom wp-content / plugin dir
+	if ( file_exists('abspath.php') )
+		include_once('abspath.php');
+	else
+		$abspath = dirname(__FILE__) . '/../../../';
+
+	if ( file_exists( $abspath . 'wp-load.php') )
+		require_once( $abspath . 'wp-load.php' );
+	else
+		require_once( $abspath . 'wp-config.php' );
+
+	require (ABSPATH . WPINC . '/pluggable.php');
+
+	global $current_user,$user_ID;
+	$u = get_currentuserinfo();
+
+	if( is_user_logged_in() && in_array('administrator',$current_user->roles) ) {
+		$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%'");
+		$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformssubmissions");
+		$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformsdata");
+	}
 
     ### deactivate cforms plugin
 	$curPlugs = get_settings('active_plugins');

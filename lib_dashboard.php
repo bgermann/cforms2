@@ -36,7 +36,7 @@ function cforms_dashboard() {
 
 	if( count($entries)>0 ){
 		foreach($entries as $entry)
-				$content.= '<li><img style="vertical-align:middle;" alt="" src="'.$cformsSettings['global']['cforms_root'].'/images/cformsicon.gif">'.$cformsSettings['form'.$no]['cforms'.$entry->form_id.'_fname']." [<a href='admin.php?page=".$plugindir."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a>] @ $entry->sub_date</li>";
+				$content.= '<li><img style="vertical-align:middle;" alt="" src="'.$cformsSettings['global']['cforms_root'].'/images/cformsicon.gif">'.$cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']." [<a href='admin.php?page=".$plugindir."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a>] @ $entry->sub_date</li>";
 	}
 	else
 		$content.= '<li>'.__('No entries yet','cforms').'</li>';

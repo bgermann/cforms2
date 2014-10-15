@@ -10,7 +10,6 @@ if ( file_exists($CFfunctionsC) )
 else if ( file_exists($CFfunctions) )
     include_once($CFfunctions);
 
-
 require_once (dirname(__FILE__) . '/lib_validate.php');
 
 

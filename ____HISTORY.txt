@@ -26,6 +26,19 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.4
+*) feature:  added Belarusian (be_BY) by Marcis G.
+*) feature:  NEW CORE OPTION : disables enctype, to support e.g. salesforce.com
+*) feature:  enhanced JS regular expression validation, supporting multi-line searches/
+			 prevention from using spam words, e.g. ^(?:(?!spam-word|seo).)*$
+*) feature:  on UPLOAD forms, submit button gets disabled to prevent false resubmission
+*) bugfix:   fixed double quote "" issue in XML tracking downloads
+*) bugfix:   fixed loading issues of the TRACKING page
+*) bugfix:   fixed deletion of ATTACHMENTS on server when deleting tracked submission
+*) bugfix:   form names for recent submissions show accuratly now on WP DASHBOARD
+*) security: added security around "remove/delete plugin" function
+
+
 WHAT's NEW in cformsII - v11.3
 *) bugfix:  MULTIPLE RECIPIENTS: fixed issue with 'required' & non-valid entries
 

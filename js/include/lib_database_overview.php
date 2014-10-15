@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 ### supporting WP2.6 wp-load & custom wp-content / plugin dir
 if ( file_exists('../../abspath.php') )
 	include_once('../../abspath.php');
@@ -111,5 +111,6 @@ foreach ($result as $entry) {
 }
 
 $xml .= "</rows>";
+ob_end_clean();
 echo $xml;
 ?>
