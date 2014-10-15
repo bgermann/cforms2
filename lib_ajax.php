@@ -158,18 +158,20 @@ function cforms_submitcomment($content) {
 			###  filter all redundant WP comment fields if user is logged in
 			while ( in_array($field_stat[1],array('cauthor','email','url')) && $user->ID ) {
 
-			 		switch( $field_stat[1] ){
+			    $temp = explode('|', $field_stat[0],3); ### get field name
+			    $temp = explode('#', $temp[0],2);
+		 		switch( $field_stat[1] ){
 						case 'cauthor':
-							$track['cauthor'] = $user->display_name;
-							$track['$$$'.((int)$i+(int)$off)] = 'cauthor';
+							$track['cauthor'] = $track[$temp[0]] = $user->display_name;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
 							break;
 						case 'email':
-							$track['email'] = $field_email = $user->user_email;
-							$track['$$$'.((int)$i+(int)$off)] = 'email';
+							$track['email'] = $track[$temp[0]] = $field_email = $user->user_email;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
 							break;
 						case 'url':
-							$track['url'] = $user->user_url;
-							$track['$$$'.((int)$i+(int)$off)] = 'url';
+							$track['url'] = $track[$temp[0]] = $user->user_url;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
 							break;
 					}
 
@@ -203,7 +205,16 @@ function cforms_submitcomment($content) {
 
 			###  special WP comment fields
 			if( in_array($field_stat[1],array('luv','subscribe','cauthor','email','url','comment','send2author')) ){
-				$field_name = $field_stat[1];
+			    $temp = explode('#', $field_name,2);
+
+				if ( $temp[0] == '' )
+                	$field_name = $field_stat[1];
+				else
+                	$field_name = $temp[0];
+
+				### keep copy of values
+    			$track[$field_stat[1]] = stripslashes( $params['field_' . $i] );
+
 				if ( $field_stat[1] == 'email' )
 					$field_email = $params['field_' . $i];
 			}
@@ -315,12 +326,12 @@ function cforms_submitcomment($content) {
     ###  Catch WP-Comment function | if send2author just continue
     if ( $isAjaxWPcomment!==false && $track['send2author']=='0' ){
 		require_once (dirname(__FILE__) . '/lib_WPcomment.php');
+
+	    ###  Catch WP-Comment function: error
+	    if ( !$WPsuccess )
+    	    return $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
     } ### Catch WP-Comment function
 
-
-    ###  Catch WP-Comment function: error
-    if ( $isAjaxWPcomment!==false && !$WPsuccess )
-        return $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
 
 
 
@@ -337,7 +348,6 @@ function cforms_submitcomment($content) {
 			$replyto = $to = $all_to_email[ $to_one ];
 	} else
 			$to = $replyto;
-
 
 	### from
 	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
@@ -372,6 +382,7 @@ function cforms_submitcomment($content) {
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
 		$htmlmessage = check_default_vars($htmlmessage,$no);
 	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no);
+
 	}
 
 	$mail = new cf_mail($no,$frommail,$to,$field_email, true);

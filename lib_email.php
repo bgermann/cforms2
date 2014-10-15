@@ -77,7 +77,7 @@ class cf_mail {
 
 	    $fe=array();
 	    $f=array();
-	    if( preg_match('/([\w-\.]+@([\w-]+\.)+[\w-]{2,4})/',$from,$fe) )
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',$from,$fe) )
 	        $this->from = $fe[0];
 
 	    if( preg_match('/(.*)\s+(([\w-\.]+@|<)).*/',$from,$f) )
@@ -88,8 +88,8 @@ class cf_mail {
 	    ### reply-to
 	    $te=array();
 	    $t=array();
-	    if( preg_match('/([\w-\.]+@([\w-]+\.)+[\w-]{2,4})/',$replyto,$te) ) {
-	        if ( preg_match('/(.*)\s+(([\w-\.]+@|<)).*/',$replyto,$t) )
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',$replyto,$te) ) {
+	        if ( preg_match('/(.*)\s+(([\w-\+\.]+@|<)).*/',$replyto,$t) )
 	            $this->add_reply($te[0] ,str_replace('"','',$t[1]) );
 	        else
 	            $this->add_reply($te[0]);
@@ -102,8 +102,8 @@ class cf_mail {
 	    ### bcc
 	    $te=array();
 	    $t=array();
-	    if( preg_match('/([\w-\.]+@([\w-]+\.)+[\w-]{2,4})/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$te) && $adminEmail) {
-	        if ( preg_match('/(.*)\s+(([\w-\.]+@|<)).*/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$t) )
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$te) && $adminEmail) {
+	        if ( preg_match('/(.*)\s+(([\w-\+\.]+@|<)).*/',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']),$t) )
 	            $this->add_bcc($te[0] ,str_replace('"','',$t[1]) );
 	        else
 	            $this->add_bcc($te[0]);
@@ -112,8 +112,8 @@ class cf_mail {
 	    ### to
 	    $addresses = explode(',',$to);
 	    foreach( $addresses as $a ){
-	        if( preg_match('/([\w-\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) ) {
-	            if ( preg_match('/(.*)\s+(([\w-\.]+@|<)).*/',$a,$t) )
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) ) {
+	            if ( preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/',$a,$t) )
 	                $this->add_addr($te[0] ,str_replace('"','',$t[1]) );
 	            else
 	                $this->add_addr($te[0]);

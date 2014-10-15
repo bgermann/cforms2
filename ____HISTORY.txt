@@ -26,12 +26,16 @@
  Version History:
  =====================================================================================
 
-
-WHAT's NEW in cformsII - v10.5.1
-
 ******************************************
   IMPORTANT NOTE:    PHP 5 is required !
 ******************************************
+
+WHAT's NEW in cformsII - v10.5.2
+*) bugfix:  WP comment form feature:: fixed {custom var} replacement in admin email (ajax mode)
+*) bugfix:  WP comment form feature:: fixed "send to author" option in cforms'
+*) other:   admin email addresses now support "+" , e.g. john+janey@mail.com
+
+WHAT's NEW in cformsII - v10.5.1
 
 *) feature: Email Priority can now be set under "Core Options"
 *) bugfix:  insert_cform('1') would cause minor issues if your default form was a TAF form

@@ -159,6 +159,7 @@ function formatEmail($track,$no){
 		$v = stripslashes($track[$k]);
 
         ### fix labels
+	 	if ( in_array($k,array('luv','subscribe','cauthor','email','url','comment','send2author')) ) continue;
 		if ( preg_match('/\$\$\$/',$k) ) continue;
 		if ( preg_match('/(cf_form\d*_){0,1}([^(___)]*)(___\d+){0,1}/',$k, $r) ) $k = $r[2];
 
@@ -193,7 +194,7 @@ function formatEmail($track,$no){
 		if ( strpos($v,"\n")!==false ) {
 	        $k = $eol . $k;
 	        $hv = str_replace("\r\n","\n",$v);
-	        //$hv = str_replace("\n",'<br />'.$eol,$hv);
+	        $hv = str_replace("\n",'<br />'.$eol,$hv);
 	        $v = $eol . $v . $eol;
 		}
 
@@ -428,7 +429,6 @@ function check_default_vars($m,$no) {
 function check_cust_vars($m,$t,$no) {
 
 	preg_match_all('/\\{([^\\{]+)\\}/',$m,$findall);
-
 	if ( count($findall[1]) > 0 ) {
 		$allvars = array_keys($t);
 
