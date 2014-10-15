@@ -18,9 +18,8 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<?php echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img style="vertical-align:middle;" src="'.$cforms_root.'/images/adobe.gif"/>'); ?>
 		</p>
 		<p>
-        	<?php _e('If cforms provides great services to you and/or your business, please consider making a donation to support future development.', 'cforms'); ?>
-        	<a href="http://www.deliciousdays.com/cforms-plugin/#donation"><img style="vertical-align:middle;" src="<?php echo $cforms_root; ?>/images/donate.png" alt="<?php _e('Thank you!', 'cforms'); ?>" title="<?php _e('Thank you!', 'cforms'); ?>"/></a>
-            <?php _e('Thank you!', 'cforms'); ?>
+        	<?php _e('If cforms provides great services to you and/or your business, please consider making a donation to support future development.', 'cforms'); ?>:
+        	<form action="http://www.deliciousdays.com/cforms-plugin/#donation"><input type="submit" class="button" id="donatebutton" value="<?php _e('Thank you!', 'cforms'); ?>" title="<?php _e('Thank you!', 'cforms'); ?>"/></form>
 		</p>
 
 		<p class="cftoctitle"><?php _e('Table of Contents', 'cforms'); ?></p>
@@ -435,7 +434,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('The order of the names (1,2,3...) provided in the input field <strong>directly</strong> corresponds with the order of email addresses configured <a href="%s" %s>here</a>.', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"'); ?>
+					<?php _e('Adding the above field to a form, disables the form\'s specific admin email address setting.', 'cforms'); ?>
 				</td>
 			</tr>
 		</table>
@@ -1249,7 +1248,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
                 </tr>
                 <tr>
                     <td class="bleft"><code>{CurUserLastName}</code></td>
-                    <td class="bright"><?php _e('Inserts the Last Name Address of the currently logged-in user.', 'cforms'); ?></td>
+                    <td class="bright"><?php _e('Inserts the Last Name of the currently logged-in user.', 'cforms'); ?></td>
                 </tr>
 
 				<tr>

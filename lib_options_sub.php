@@ -183,6 +183,8 @@
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 		'01'; ### default
+	$cformsSettings['form'.$no]['cforms'.$no.'_tafCC'] = 	   		$_REQUEST['cforms_tafCC']?'1':'0';
+
 	if ( isset($_REQUEST['cforms_taftrick']) )
 		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 	'31';
 

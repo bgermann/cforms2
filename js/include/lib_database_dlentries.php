@@ -98,6 +98,10 @@ if ($sub_ids<>'') {
 
     $temp = fopen($tempfile, "w");
 
+    ### UTF8 header
+    if ( $charset=='utf-8' )
+        fwrite($temp, pack("CCC",0xef,0xbb,0xbf));
+
 	switch ( $format ){
 		case 'xml': getXML(); break;
 		case 'csv': getCSVTAB('csv'); break;
@@ -128,7 +132,7 @@ if ($sub_ids<>'') {
 }
 
 function getCSVTAB($format='csv'){
-	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings;
+	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset;
 
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
 	@mysql_select_db(DB_NAME) or die( "Unable to select database");
@@ -154,7 +158,6 @@ function getCSVTAB($format='csv'){
 			continue;
 
         $next_n = ( $entry[form_id]=='' )?'1':$entry[form_id];
-
 
 		if( $sub_id<>$entry[id] ){   ### new record starts
 
@@ -206,7 +209,8 @@ function getCSVTAB($format='csv'){
 
 	} ### while
 
-	### clean up buffer
+
+   	### clean up buffer
     if ( $buffer[body]<>'' ){
         if( $_GET['header']=='true' && $buffer[last_n]<>$buffer[last2_n])
             fwrite($temp, $buffer[head] . $br . $buffer[body] . $br);

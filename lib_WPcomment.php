@@ -174,8 +174,8 @@ if ( $isAjaxWPcomment ){
 
 	require_once (dirname(__FILE__) . '/lib_validate.php');
 
-	$comment_post_ID = (int) $_POST['comment_post_ID'.$no];
-	$cfpre = ( strpos( get_permalink($_POST['comment_post_ID'.$no]) ,'?')!==false ) ? '&':'?';
+	$comment_post_ID = (int) $_POST['comment_post_ID'];
+	$cfpre = ( strpos( get_permalink($_POST['comment_post_ID']) ,'?')!==false ) ? '&':'?';
 
 	if ( $all_valid ) {
 
@@ -257,7 +257,7 @@ if ( $isAjaxWPcomment ){
 		### keep track of custom comment fields
         write_tracking_record($no,$comment_author_email,$comment_id);
 
-		$location = ( empty($_POST['redirect_to'] ) ? get_permalink($_POST['comment_post_ID'.$no]).$cfpre.'cfemail=posted'.'#cforms'.$no.'form' : $_POST['redirect_to'] );
+		$location = ( empty($_POST['redirect_to'] ) ? get_permalink($_POST['comment_post_ID']).$cfpre.'cfemail=posted'.'#cforms'.$no.'form' : $_POST['redirect_to'] );
 		$location = apply_filters('comment_post_redirect', $location, $comment);
 		wp_redirect($location);
 

@@ -83,6 +83,10 @@ width:750px;
 font-size:10px;
 }
 
+#fixsettings{
+margin-bottom:10px;
+}
+
 .form-table {
 width:80%;
 }
@@ -733,6 +737,10 @@ border: 1px solid #eee;
 border-radius:6px;
 }
 
+#cf_actions{
+display:none;
+}
+
 #cf_actions .op-closed {
 -moz-border-radius:6px 0 0 6px;
 -khtml-border-radius:6px 0 0 6px;
@@ -1070,6 +1078,13 @@ display:block;
 /****************************************************************
   HELP PAGE
 *****************************************************************/
+#donatebutton{
+box-shadow:0px 0px 7px #ddd;
+-moz-box-shadow:0px 0px 7px #ddd;
+-webkit-box-shadow:0px 0px 7px #ddd;
+margin-bottom:20px;
+}
+
 h4 a.helptop {
 color:#fff!important;
 border-bottom:1px solid #fff;
