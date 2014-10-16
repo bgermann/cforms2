@@ -12,7 +12,7 @@ $filefield = 0;
 $captchaopt = $cformsSettings['global']['cforms_captcha_def'];
 
 ###debug
-db("lib_validate.php: validating fields for form no. $no");
+cforms2_dbg("lib_validate.php: validating fields for form no. $no");
 
 for($i = 1; $i <= $field_count; $i++) {
 
@@ -45,7 +45,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		$field_emailcheck = $field_stat[3];
 
 		###debug
-		db("\t ...validating field $field_name");
+		cforms2_dbg("\t ...validating field $field_name");
 
 		### ommit certain fields; validation only!
 		if( in_array($field_type,array('cauthor','url','email')) ){
@@ -62,7 +62,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		if( $jump )	continue;
 
 		### if subscribe not shown, skip
-		$isSubscribed=='';
+		$isSubscribed='';
 		if ( class_exists('sg_subscribe') ){
 			global $sg_subscribe;
 			sg_subscribe_start();
@@ -89,7 +89,7 @@ for($i = 1; $i <= $field_count; $i++) {
 			$tmpName = $field_name; ###hardcoded for now
 
 			###debug
-			db("\t\t ...custom names/id's...($tmpName)");
+			cforms2_dbg("\t\t ...custom names/id's...($tmpName)");
 
 			if ( strpos($tmpName,'[id:')!==false ){
 
@@ -97,7 +97,7 @@ for($i = 1; $i <= $field_count; $i++) {
 				
 				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
-				$trackingID	= cf_sanitize_ids( $input_name[2] );
+				$trackingID	= cforms2_sanitize_ids( $input_name[2] );
 
 //		 	echo '<br><pre>'.$tmpName . print_r($input_name,1).'</pre>';
 
@@ -121,7 +121,7 @@ for($i = 1; $i <= $field_count; $i++) {
 				} else 
 					$current_field	= $_REQUEST[ $trackingID ];
 
-				db("\t\t\t ...currentField field_name = \"$field_name\", current_field = $current_field, request-id = $trackingID");
+				cforms2_dbg("\t\t\t ...currentField field_name = \"$field_name\", current_field = $current_field, request-id = $trackingID");
 
 				
 			} else {
@@ -129,7 +129,7 @@ for($i = 1; $i <= $field_count; $i++) {
 						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
 					else
 						preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
-					$current_field = $_REQUEST[ cf_sanitize_ids($input_name[1]) ];
+					$current_field = $_REQUEST[ cforms2_sanitize_ids($input_name[1]) ];
 			}
 			
 		}
@@ -144,13 +144,13 @@ for($i = 1; $i <= $field_count; $i++) {
 		if( $field_emailcheck ) {  ### email field
 
 				###debug
-				db("\t\t ...found email field ($current_field) is_email = ".cforms_is_email( $current_field ));
+				cforms2_dbg("\t\t ...found email field ($current_field) is_email = ".cforms2_is_email( $current_field ));
 
 				### special email field in WP Commente
 				if ( $field_type=='email' )
-					$validations[$i+$off] = cforms_is_email( $_REQUEST['email']) || (!$field_required && $_REQUEST['email']=='');
+					$validations[$i+$off] = cforms2_is_email( $_REQUEST['email']) || (!$field_required && $_REQUEST['email']=='');
 				else
-					$validations[$i+$off] = cforms_is_email( $current_field ) || (!$field_required && $current_field=='');
+					$validations[$i+$off] = cforms2_is_email( $current_field ) || (!$field_required && $current_field=='');
 
 				if ( !$validations[$i+$off] && $err==0 ) $err=1;
 
@@ -158,7 +158,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		else if( $field_required && !in_array($field_type,array('verification','captcha'))  ) { ### just required
 
 				###debug
-				db("\t\t ...is required! check: current_field=$current_field");
+				cforms2_dbg("\t\t ...is required! check: current_field=$current_field");
 
 				if( in_array($field_type,array( 'html5color','html5date','html5datetime','html5datetime-local','html5email','html5month','html5number','html5range','html5search','html5tel','html5time','html5url','html5week',
 												'cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
@@ -246,7 +246,7 @@ for($i = 1; $i <= $field_count; $i++) {
 						$reg_exp = str_replace('/','\/',stripslashes($obj[2]) );
 
 						###debug
-						db("\t\t ...REGEXP check content: $current_field =? $reg_exp");
+						cforms2_dbg("\t\t ...REGEXP check content: $current_field =? $reg_exp");
 				
 						### multi-line textarea regexp trick
 						if( $field_type == 'textarea' )
@@ -321,7 +321,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 				}
 
               ### A properly uploaded file will pass this test. There should be no reason to override this one.
-              if (! @ is_uploaded_file( $file['tmp_name'][$i] ) )
+              if (! is_uploaded_file( $file['tmp_name'][$i] ) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err4'];
 
               if ( $fileerr <> '' ){
@@ -361,8 +361,6 @@ if ( $err<>0 && $c_errflag )
 	$usermessage_text .= '<ol>'.$custom_error.'</ol>';
 
 ### proxy functions
-function cforms_is_email($string){
+function cforms2_is_email($string){
 	return preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i", $string);
 }
-
-?>

@@ -1,5 +1,5 @@
 <?php
-class cf_mail {
+class cforms2_mail {
 	public $eolH;
 	public $eol;
 	public $html_show;
@@ -206,7 +206,6 @@ class cf_mail {
 	    $r .= ($this->msg_id != '') ? $this->h_line('Message-ID',$this->msg_id):sprintf("Message-ID: <%s@%s>%s", $u_id, $this->server_name(), $this->eolH);
 
 	    $r .= $this->h_line('X-Priority', $this->priority);
-	    $r .= $this->h_line('X-Mailer', 'cformsII (deliciousdays.com) [version '. $this->ver . ']');
 	    $r .= ($this->confirm_to != '') ? $this->h_line('Disposition-Notification-To', '<' . trim($this->confirm_to) . '>'):'';
 	    $r .= $this->h_line('MIME-Version', '1.0');
 
@@ -412,29 +411,15 @@ class cf_mail {
           $to .= (($i != 0) ? ', ':'' ) . $this->addr_fmt($this->to[$i]);
 
 	    $to_all = explode(',', $to);
-	    $params = sprintf("-oi -f %s", $this->sender);
 
-	    if ($this->sender != '' && strlen(ini_get('safe_mode'))< 1) {
-	      $old_from = ini_get('sendmail_from');
-	      ini_set('sendmail_from', $this->sender);
-	      if ($this->split_to === true && count($to_all) > 1) {
+	    if ($this->split_to === true && count($to_all) > 1) {
 	        foreach ($to_all as $key => $val)
-	          $rt = @mail($val, $this->enc_h($this->fix_header($this->subj)), $body, $header, $params);
-	      } else
-	        $rt = @mail($to, $this->enc_h($this->fix_header($this->subj)), $body, $header, $params);
-	    } else {
-	      if ($this->split_to === true && count($to_all) > 1) {
-	        foreach ($to_all as $key => $val)
-	          $rt = @mail($val, $this->enc_h($this->fix_header($this->subj)), $body, $header, $params);
-	      } else
-	        $rt = @mail($to, $this->enc_h($this->fix_header($this->subj)), $body, $header);
-	    }
-
-	    if (isset($old_from))
-	      ini_set('sendmail_from', $old_from);
+	          $rt = wp_mail($val, $this->enc_h($this->fix_header($this->subj)), $body, $header);
+	    } else
+	        $rt = wp_mail($to, $this->enc_h($this->fix_header($this->subj)), $body, $header);
 
 	    if(!$rt) {
-	      $this->set_err(__('Could not instantiate mail function.','cforms'));
+	      $this->set_err(__('Could not instantiate wp_mail function.','cforms'));
 	      return false;
 	    }
 
@@ -510,7 +495,7 @@ class cf_mail {
 	            return false;
 	        }
 	    }
-	    if (PHP_VERSION < 6) {
+	    if (version_compare(PHP_VERSION, '5.4', '<')) {
 	      $magic_q = get_magic_quotes_runtime();
 	      set_magic_quotes_runtime(0);
 	    }
@@ -518,7 +503,7 @@ class cf_mail {
 	    $buffer  = $this->enc_str($buffer, $encoding);
 	    fclose($fd);
 
-	    if (PHP_VERSION < 6) { set_magic_quotes_runtime($magic_q); }
+	    if (version_compare(PHP_VERSION, '5.4', '<')) { set_magic_quotes_runtime($magic_q); }
 	    return $buffer;
 	}
 
@@ -675,4 +660,3 @@ class cf_mail {
 	    return $s;
 	}
 }
-?>

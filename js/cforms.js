@@ -1,33 +1,981 @@
 /*
-Copyright 2007-2011 OLIVER SEIDEL  (email : oliver.seidel @ deliciousdays.com)
+  Copyright (c) 2007-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+  Copyright (c) 2014      Bastian Germann
 
-  This program is free software: you can redistribute it and/or modify it under the
-  terms of the GNU General Public License as published by the Free Software Foundation,
-  either version 3 of the License, or (at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  This program is distributed in the hope that it will be useful, but
-  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License along with this
-  program. If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-// ONLY in case AJAX DOESN'T work you may want to double-check this path:
-// If you do change this setting: CLEAR your BROWSER CACHE & RESTART you BROWSER!
-
-
-// OLD SETTING: var sajax_uri = '/wp-content/plugins/cforms/lib_ajax.php';
-
-// DYNAMIC NEW SETTING, if the below doesn't work, please try the above
-var sajax_uri = window.location.protocol + "//" + window.location.host+'/wp-content/plugins/cforms/lib_ajax.php';
+function reset_captcha(no){
+	no = no || '';
+	document.getElementById('cf_captcha_img'+no).src = cforms2_ajax.url+'?action=cforms2_reset_captcha&_wpnonce='+cforms2_ajax.nonces['reset_captcha']+'&ts='+no+'&rnd='+Math.round(Math.random()*999999);
+}
 
 
-// No need to change anything here:
-var sajax_debug_mode = false;
-var sajax_request_type = 'POST';
-var sajax_target_id = '';
-var sajax_failure_redirect = '';
+function call_err(no,err,custom_error,popFlag){
 
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('C 1v(5f){f(5k)2o(5f)}C 3p(){1v("3p() 5l..");l A;l 3I=1e 1u(\'3P.2W.6.0\',\'3P.2W.3.0\',\'3P.2W\',\'7x.2W\');O(l i=0;i<3I.D;i++){2S{A=1e 5o(3I[i])}2E(e){A=2c}}f(!A&&3T 58!="40")A=1e 58();f(!A)1v("5b 5a 8e 7f 3S.");v A}l 2x=1e 1u();C 7n(){O(l i=0;i<2x.D;i++)2x[i].5t()}C 2D(29,1d){l i,x,n;l 1g;l 1B;l 2H;1v("5u 2D().."+1y+"/"+2T);2H=2T;f(3T(1y)=="40"||1y=="")1y="4G";1g=5w;f(1y=="4G"){f(1g.2B("?")==-1)1g+="?3G="+1K(29);u 1g+="&3G="+1K(29);1g+="&41="+1K(2T);1g+="&4C="+1e 42().43();O(i=0;i<1d.D-1;i++)1g+="&44[]="+1K(1d[i]);1B=2c}u f(1y=="3b"){1B="3G="+1K(29);1B+="&41="+1K(2T);1B+="&4C="+1e 42().43();O(i=0;i<1d.D-1;i++)1B=1B+"&44[]="+1K(1d[i])}u{2o("5z 5A 2b: "+1y)}x=3p();f(x==2c){f(45!=""){38.2Z=45;v J}u{1v("5B 5C 3S O 5c 6n:\\n"+5F.62);v J}}u{x.5G(1y,1g,1b);2x[2x.D]=x;f(1y=="3b"){x.48("5I","3b "+1g+" 5J/1.1");x.48("6F-5K","5M/x-5N-1o-5O")}x.5P=C(){f(x.89!=4)v;1v("88 "+x.5i);l 34;l 19;l 35=56(x.5i.M(/^\\s*|\\s*$/g,""));l 1N=(35.49(0)>5R)?1:0;34=35.1G(0+1N);19=35.1m(2+1N);f(34==""){}u f(34=="-"){2o("5U: "+19)}u{f(2H!=""){k.o(2H).1T=3j(19)}u{2S{l 2z;l 33=J;f(3T 1d[1d.D-1]=="3S"){2z=1d[1d.D-1].2z;33=1d[1d.D-1].33}u{2z=1d[1d.D-1]}2z(3j(19),33)}2E(e){1v("5Y 5Z "+e+": 5b 5a 3j "+19)}}}}}1v(29+" 1g = "+1g+"*/7P = "+1B);x.66(1B);1v(29+" 1O..");69 x;v 1b}C 56(54){v 54}C 3X(){2D("39",3X.4c)}C 3L(){2D("4d",3L.4c)}C 4d(m){3L(m,59)}C 59(4e){m=4e.2e(\'|\');k.o(\'7B\'+m[1]).6c=m[2]+\'&7z=\'+4f.6e(4f.6f()*6h)}C 3z(m,R,L,52){k.o(\'1A\'+m).1V.2K="4V";k.o(\'1A\'+m).37=J;f(L!=\'\')L=\'<4Z>\'+L+\'</4Z>\';R=3n(4Y(R.E))+L;T=R.M(/(\\r\\n)/g,\'<4k />\');1h=\'1F\'+m;26=(4b(m)>1)?\' 36\'+m:\'\';f(k.o(1h+\'a\'))k.o(1h+\'a\').F="2g 36"+26;f(k.o(1h+\'b\'))k.o(1h+\'b\').F="2g 36"+26;2X(1h,T.M(/\\\\/g,""),\'\');R=R.M(/\\\\/g,"");f(k.o(\'6i\'+m).E.1G(52)==\'y\'){R=R.M(/<Y>/g,"\\r\\n");R=R.M(/<.?4m>/g,\'*\');R=R.M(/(<([^>]+)>)/3o,\'\');R=R.M(/&3H;/3o,\'\');2o(R)}}C 6k(1C){f(1C.4g==1C.E)1C.E=\'\'};C 6l(1C){f(1C.E==\'\')1C.E=1C.4g};C 6o(m,3k){f(!m)m=\'\';1h=\'1F\'+m;f(k.o(1h+\'a\')){k.o(1h+\'a\').F="2g 1O"}f(k.o(1h+\'b\')){k.o(1h+\'b\').F="2g 1O"}1O=3n(4Y(k.o(\'4J\'+m).E));1O=1O.M(/\\\\/g,"");C 4I(2U,2m){l 1p="";2S{f(k.3E&&k.3E.4R){1p=k.3E.4R(2U,"").6r(2m)}u f(2U.4j){2m=2m.M(/\\-(\\w)/g,C(6t,4h){v 4h.6u()});1p=2U.4j[2m]}}2E(55){1p=""}f(1p&&(1p.B(/6v/)||1p.B(/6w/)))v 1p.1m(0,1p.D-2);u v 1p}C 4O(3F,1l){f(1l){l 4l=4I(1l,\'77-6z\');f(4l==3F)v 1b;u f(1l.1c&&1l.1c.4n.1j()!="6A")v 4O(3F,1l.1c)}v J}l 2Y=1e 1u();l 1P=1e 1u();l 2w=0;l 24=1e 1u();4o=k.o(\'2R\'+m).E.1D(3);3B=k.o(\'2R\'+m).E.1D(0,1);2P=k.o(\'2R\'+m).E.1D(1,1);4H=k.o(\'2R\'+m).E.1D(2,1);l 2p=6B(4o);2p=2p.2e(\'|\');O(i=0;i<2p.D;i++){3m=2p[i].2e(\'$#$\');24[3m[0]]=3m[1]}L=\'\';l 6D=1e 2C(\'^.*6E([0-9]{1,3})$\');f(2X(1h,1O)){l 1a=1b;l 2J=J;l 4A=1e 2C(\'^[4p-2N-9+-]+(\\\\.[4p-2N-9+-]+)*@[a-2N-9-]+(\\\\.[a-2N-9-]+)*(\\\\.[a-z]{2,4})$\',\'i\');h=k.o(\'1r\'+m+\'1o\').30(\'Y\');O(l i=0;i<h.D;i++){f(h[i].F.B(/3f/)){f(h[i].F.B(/1k-1i-3i/))h[i].F=\'1k-1i-3i\';u h[i].F=\'\'}}h=k.o(\'1r\'+m+\'1o\').30(\'1t\');27(h.D>0)h[0].1c.6G(h[0]);h=k.o(\'1r\'+m+\'1o\').30(\'*\');P=J;O(l i=0,j=h.D;i<j;i++){N=h[i].F;f(N.B(/2L/))I=\'2L\';u f(N.B(/1k-1i-./))I=N.B(/1k-1i-./);u f(N.B(/3s/))I=\'3s\';u f(N.B(/3k/))I=\'6H\';u f(N.B(/4z/))I=\'3q 4z\';u f(N.B(/3q/))I=\'3q\';u f(N.B(/4q/))I=\'4q\';u f(N.B(/4r/))I=\'4r\';u I=\'\';1H=h[i].1S.1j();Z=h[i].2b;f((1H=="3N"||1H=="3O"||1H=="3R")&&!(Z=="1L"||Z=="3U")){f(N.B(/3u/)&&!N.B(/4x/)&&Z!="2i"){I=I+\' 3t\';n=h[i].6J;p=h[i].6K;f(N.B(/1k-1i-./)){f(h[i].2d==J){L=1I(h[i].G);I=I+\' 1M\';f(n&&n.1S.1j()=="2G"&&!n.F.B(/4t/))n.F=n.F+" 25";u f(p&&p.1S.1j()=="2G"&&!p.F.B(/4t/))p.F=p.F+" 25";1a=J;f(!P&&h[i].G!=\'\')P=h[i].G}u{f(n&&n.1S.1j()=="2G"&&n.F.B(/25/))n.F=n.F.1D(0,n.F.4w(/ 25/));u f(p&&p.1S.1j()=="2G"&&p.F.B(/25/))p.F=p.F.1D(0,p.F.4w(/ 25/))}}u f(N.B(/3s/)){f(h[i].E==\'\'||h[i].E==\'-\'){I=I+\' 1M\';1a=J;f(!P&&h[i].G!=\'\')P=h[i].G;L=1I(h[i].G)}}u f(h[i].E==\'\'){I=I+\' 1M\';1a=J;f(!P&&h[i].G!=\'\')P=h[i].G;L=1I(h[i].G)}}f(N.B(/4x/)){I=I+\' 6P\';f(h[i].E==\'\'&&!N.B(/3u/));u f(!4A.6R(h[i].E)){I=I+\' 3t 1M\';1a=J;f(!P)P=h[i].1Q;L=1I(h[i].G)}u I=I+\' 3t\'}f(N.B(/3u/)&&N.B(/1k-1i-b/)&&Z.B(/2i/)){2h=i;3v=J;27(h[i].1c.F.B(/1k-1i-18/)||h[i].1c.1c.F.B(/1k-1i-18/)){N=h[i].F;f(N.B(/1k-1i-b/)&&h[i].2d){3v=1b}i++}f(!3v){1a=J;f(!P)P=h[2h].1c.G;L=4P(h[2h].1c.G,h[2h].G.1D(0,h[2h].G.D-2))}}u h[i].F=I}1x=1;f(h[i]&&k.o(h[i].G+\'4D\')){1Z=k.o(h[i].G+\'4D\');f(Z==\'3O\')2q=h[i].E.M(/\\n\\r?/g,\' \');u 2q=h[i].E;f(1Z&&1Z.E!=\'\'){f(k.o(1Z.E)){f(2q!=k.o(1Z.E).E)1x=2c}u{f(2q!=\'\'){1x=1e 2C(1Z.E,[\'g\']);1x=2q.B(1x)}}f(1x==2c){I=I+\' 1M\';1a=J;f(!P&&h[i].G!=\'\')P=h[i].G;L=1I(h[i].G)}}}}f(k.o(\'2n\'+m)&&(k.o(\'6X\'+m).E!=2M(6Y(k.o(\'2n\'+m).E.1j())))){k.o(\'2n\'+m).F="2L 1M";f(1a){1a=J;2J=1b;f(!P)P=\'2n\'+m}L=1I(\'2n\'+m)}f(k.o(\'2s\'+m)){l 4F=4E(m);l 3w=4F.2e(\'+\');a=3w[1];b=k.o(\'2s\'+m).E;f(3w[0]==\'i\')b=b.1j();b=2M(b);f(a!=b){k.o(\'2s\'+m).F="2L 1M";f(1a){1a=J;2J=1b;f(!P)P=\'2s\'+m}L=1I(\'2s\'+m)}}f(2P==\'y\')53();f(P!=\'\'&&4H==\'y\'){38.31=\'#\'+P;k.o(P).73()}f(1a&&3k){k.o(\'1A\'+m).37=1b;l 2k=k.2v(\'3N\');2k.2b=\'1L\';2k.1Q=\'1A\'+m;2k.E=\'1\';k.o(\'4J\'+m).1c.3d(2k);k.o(\'1A\'+m).1V.2K="4K";k.o(\'1r\'+m+\'1o\').3U();v 1b}u f(1a){k.o(\'1A\'+m).1V.2K="4K";k.o(\'1A\'+m).37=1b;39(m)}f(!1a&&!2J){3z(m,k.o(\'78\'+m),L,1);v J}f(!1a){3z(m,k.o(\'7a\'+m),L,1);v J}v J}u v 1b;C 1I(G){1q=k.o(G).1c;f(3B==\'y\'){1q.F="3f"}f(24[G]&&(1E=24[G])!=\'\'){f(2P==\'y\'){1P[2w]=1q.G;1t=k.2v(\'4S\');Y=k.2v(\'4T\');R=k.4U(\'\');Y.1T=3J(1E);28=k.4W(\'3a\');28.4X=\'46\';1t.3d(Y);1t.50(28);2Y[2w++]=1t}f(1q.G!=\'\')v L+\'<Y><a 2Z="#\'+1q.G+\'">\'+1E+\' &3H;</Y></a>\';u v L+\'<Y>\'+1E+\'</Y>\'}u v L}C 4P(G,3e){1q=k.o(G.1D(0,G.D-5));f(3B==\'y\'){1q.F="1k-1i-3i 3f"}f(24[3e]&&(1E=24[3e])!=\'\'){f(2P==\'y\'){1P[2w]=1q.G;1t=k.2v(\'4S\');Y=k.2v(\'4T\');R=k.4U(\'\');Y.1T=3J(1E);28=k.4W(\'3a\');28.4X=\'46\';1t.3d(Y);1t.50(28);2Y[2w++]=1t}f(1q.G!=\'\')v L+\'<Y><a 2Z="#\'+1q.G+\'">\'+1E+\' &3H;</Y></a>\';u v L+\'<Y>\'+1E+\'</Y>\'}u v L}C 53(){O(n=0;n<1P.D;n++){f(k.o(1P[n]))k.o(1P[n]).7t(2Y[n],k.o(1P[n]).7v)}}}C 3J(K){K=K.M(/\\\\\'/g,\'\\\'\');K=K.M(/\\\\"/g,\'"\');K=K.M(/\\\\\\\\/g,\'\\\\\');K=K.M(/\\\\0/g,\'\\0\');v K}C 2X(2t,T,7y){2S{f(k.o(2t+\'a\'))k.o(2t+\'a\').1T=T;f(k.o(2t+\'b\'))k.o(2t+\'b\').1T=T;v 1b}2E(55){v J}}C 39(m){l 1x=1e 2C(\'[$][#][$]\',[\'g\']);l 1z=\'$#$\';f(m==\'\')H=\'1\';u H=m;h=k.o(\'1r\'+m+\'1o\').30(\'*\');O(l i=0,j=h.D;i<j;i++){1H=h[i].1S.1j();Z=h[i].2b;f(1H=="3N"||1H=="3O"||1H=="3R"){f(Z=="57"){f(h[i].1Q.B(/\\[\\]/)){18=\'\';27(i<j&&3Y(h[i])){f(h[i].2b==\'57\'&&h[i].1Q.B(/\\[\\]/)&&h[i].2d){18=18+h[i].E+\',\'}i++}f(18.D>1)H=H+1z+18.1m(0,18.D-1);u H=H+1z+""}u H=H+1z+(h[i].2d?((h[i].E!="")?h[i].E:"X"):"")}u f(Z=="2i"){18=h[i].2d?((h[i].E!="")?h[i].E:"X"):\'\';27(i<j&&3Y(h[i+1])){f(h[i+1].2b==\'2i\'&&h[i+1].2d){18=18+\',\'+h[i+1].E}i++}f(18.1G(0)==\',\')H=H+1z+18.1m(1,18.D);u H=H+1z+18}u f(Z=="3R-7M"){2y=\'\';O(z=0;z<h[i].1Y.D;z++){f(h[i].1Y[z].1S.1j()==\'7O\'&&h[i].1Y[z].7Q){2y=2y+h[i].1Y[z].E.M(1x,\'$\')+\',\'}}H=H+1z+2y.1m(0,2y.D-1)}u f(Z=="1L"&&h[i].1Q.B(/7T/)){H=H+\'+++\'+h[i].E}u f(Z=="1L"&&h[i].1Q.B(/7U/)){H=H+\'+++\'+h[i].E}u f(Z=="1L"&&h[i].1Q.B(/7W/)){H=H+\'+++\'+h[i].E}u f(Z=="1L"&&h[i].F.B(/7X/)){H=H+1z+h[i].E}u f(Z!="1L"&&Z!="3U"&&Z!="2i"){H=H+1z+h[i].E.M(1x,\'$\')}}}f(k.o(\'1r\'+m+\'1o\').83.B(\'85.86\'))H=H+\'***\';3X(H,5d)}C 3Y(1l){27(1l.1c){f(1l.1c.F==\'1k-1i-18\')v 1b;u 1l=1l.1c}v J}C 5d(V){2V=J;2l=V.B(/|/)?V.2B(\'|\'):V.D;2l=(2l<0)?V.D:2l;f(V.B(/---/)){1J=" 36"}u f(V.B(/!!!/)){1J=" 5n"}u f(V.B(/~~~/)){1J="51";2V=1b}u{1J="51"}l 1N=V.2B(\'*$#\');l m=V.1m(0,1N);l 4N=V.1G(1N+3);f(m==\'1\')m=\'\';f(!k.o(\'1r\'+m+\'1o\').F.B(/5q/))k.o(\'1r\'+m+\'1o\').5r();k.o(\'1A\'+m).1V.2K="4V";k.o(\'1A\'+m).37=J;T=V.1m(1N+4,2l);f(T.B(/\\$#\\$/)){2O=T.2e(\'$#$\');2f=2O[0];2u=2O[1];T=2O[2];f(k.o(2f)){l 1U=\'\';l 4L=k.o(2f).1Y.D-1;O(i=4L;i>=0;i--){l 2I=k.o(2f).1Y[i];f(2I.5D!=\'3\'&&2I.4n.1j()==\'Y\'){f(2I.F.B(/1U/))1U=\'1U\';i=-1}}f(1U==\'1U\')2u=2u.M(\'3a="1U"\',\'\');k.o(2f).1T=k.o(2f).1T+2u;f(5Q.5h)5h.5T()}l 2A=2u.B(/5W-5X-(5c|60)-63(s|-)[^" ]+/);f(2A!=2c&&2A[0]!=\'\'&&k.o(2A[0])){k.o(2A[0]).1V.3h=\'67\'}}3K=J;26=(4b(m)>1)?\' \'+1J+m:\'\';f(k.o(\'1F\'+m+\'a\')){k.o(\'1F\'+m+\'a\').F="2g "+1J+26;3K=1b}f(k.o(\'1F\'+m+\'b\')&&!(2V&&3K))k.o(\'1F\'+m+\'b\').F="2g "+1J+26;2X(\'1F\'+m,T,\'\');f(2V){k.o(\'1r\'+m+\'1o\').1V.3h=\'4i\';k.o(\'6p\'+m).1V.3h=\'4i\';f(!V.B(/>>>/))38.31=\'#1F\'+m+\'a\'}f(4N==\'y\'){T=T.M(/<4k.?\\/>/g,\'\\r\\n\');T=T.M(/(<.?4m>|<.?b>)/g,\'*\');T=T.M(/(<([^>]+)>)/3o,\'\');2o(T)}f(V.B(/>>>/)){38.2Z=V.1m((V.2B(\'|>>>\')+4),V.D);v}}l 4v=0;l 5j="";l 1f=8;C 2M(s){v 3r(1R(1W(s),s.D*1f))}C 6L(s){v 3D(1R(1W(s),s.D*1f))}C 6M(s){v 3l(1R(1W(s),s.D*1f))}C 6N(1s,19){v 3r(2F(1s,19))}C 6O(1s,19){v 3D(2F(1s,19))}C 6Q(1s,19){v 3l(2F(1s,19))}C 6S(){v 2M("6T")=="6V"}C 1R(x,2r){x[2r>>5]|=6W<<((2r)%32);x[(((2r+64)>>>9)<<4)+14]=2r;l a=70;l b=-71;l c=-72;l d=74;O(l i=0;i<x.D;i+=16){l 4s=a;l 4u=b;l 4y=c;l 4B=d;a=W(a,b,c,d,x[i+0],7,-75);d=W(d,a,b,c,x[i+1],12,-76);c=W(c,d,a,b,x[i+2],17,79);b=W(b,c,d,a,x[i+3],22,-7b);a=W(a,b,c,d,x[i+4],7,-7d);d=W(d,a,b,c,x[i+5],12,7e);c=W(c,d,a,b,x[i+6],17,-7g);b=W(b,c,d,a,x[i+7],22,-7h);a=W(a,b,c,d,x[i+8],7,7i);d=W(d,a,b,c,x[i+9],12,-7j);c=W(c,d,a,b,x[i+10],17,-7k);b=W(b,c,d,a,x[i+11],22,-7l);a=W(a,b,c,d,x[i+12],7,7o);d=W(d,a,b,c,x[i+13],12,-7p);c=W(c,d,a,b,x[i+14],17,-7q);b=W(b,c,d,a,x[i+15],22,7s);a=U(a,b,c,d,x[i+1],5,-7u);d=U(d,a,b,c,x[i+6],9,-7w);c=U(c,d,a,b,x[i+11],14,7A);b=U(b,c,d,a,x[i+0],20,-7C);a=U(a,b,c,d,x[i+5],5,-7E);d=U(d,a,b,c,x[i+10],9,7F);c=U(c,d,a,b,x[i+15],14,-7G);b=U(b,c,d,a,x[i+4],20,-7H);a=U(a,b,c,d,x[i+9],5,7I);d=U(d,a,b,c,x[i+14],9,-7J);c=U(c,d,a,b,x[i+3],14,-7L);b=U(b,c,d,a,x[i+8],20,7N);a=U(a,b,c,d,x[i+13],5,-7R);d=U(d,a,b,c,x[i+2],9,-7S);c=U(c,d,a,b,x[i+7],14,7V);b=U(b,c,d,a,x[i+12],20,-7Y);a=Q(a,b,c,d,x[i+5],4,-7Z);d=Q(d,a,b,c,x[i+8],11,-80);c=Q(c,d,a,b,x[i+11],16,81);b=Q(b,c,d,a,x[i+14],23,-84);a=Q(a,b,c,d,x[i+1],4,-87);d=Q(d,a,b,c,x[i+4],11,8a);c=Q(c,d,a,b,x[i+7],16,-8b);b=Q(b,c,d,a,x[i+10],23,-8c);a=Q(a,b,c,d,x[i+13],4,8d);d=Q(d,a,b,c,x[i+0],11,-5m);c=Q(c,d,a,b,x[i+3],16,-5p);b=Q(b,c,d,a,x[i+6],23,5s);a=Q(a,b,c,d,x[i+9],4,-5v);d=Q(d,a,b,c,x[i+12],11,-5x);c=Q(c,d,a,b,x[i+15],16,5y);b=Q(b,c,d,a,x[i+2],23,-5E);a=S(a,b,c,d,x[i+0],6,-5H);d=S(d,a,b,c,x[i+7],10,5L);c=S(c,d,a,b,x[i+14],15,-5S);b=S(b,c,d,a,x[i+5],21,-5V);a=S(a,b,c,d,x[i+12],6,61);d=S(d,a,b,c,x[i+3],10,-65);c=S(c,d,a,b,x[i+10],15,-68);b=S(b,c,d,a,x[i+1],21,-6a);a=S(a,b,c,d,x[i+8],6,6b);d=S(d,a,b,c,x[i+15],10,-6d);c=S(c,d,a,b,x[i+6],15,-6g);b=S(b,c,d,a,x[i+13],21,6m);a=S(a,b,c,d,x[i+4],6,-6q);d=S(d,a,b,c,x[i+11],10,-6x);c=S(c,d,a,b,x[i+2],15,6C);b=S(b,c,d,a,x[i+9],21,-6I);a=1w(a,4s);b=1w(b,4u);c=1w(c,4y);d=1w(d,4B)}v 1u(a,b,c,d)}C 2j(q,a,b,x,s,t){v 1w(4Q(1w(1w(a,q),1w(x,t)),s),b)}C W(a,b,c,d,x,s,t){v 2j((b&c)|((~b)&d),a,b,x,s,t)}C U(a,b,c,d,x,s,t){v 2j((b&d)|(c&(~d)),a,b,x,s,t)}C Q(a,b,c,d,x,s,t){v 2j(b^c^d,a,b,x,s,t)}C S(a,b,c,d,x,s,t){v 2j(c^(b|(~d)),a,b,x,s,t)}C 2F(1s,19){l 2a=1W(1s);f(2a.D>16)2a=1R(2a,1s.D*1f);l 3M=1u(16),3Q=1u(16);O(l i=0;i<16;i++){3M[i]=2a[i]^7r;3Q[i]=2a[i]^7D}l 31=1R(3M.5e(1W(19)),5g+19.D*1f);v 1R(3Q.5e(31),5g+82)}C 1w(x,y){l 3C=(x&3x)+(y&3x);l 3Z=(x>>16)+(y>>16)+(3C>>16);v(3Z<<16)|(3C&3x)}C 4Q(3c,3V){v(3c<<3V)|(3c>>>(32-3V))}C 1W(K){l 1X=1u();l 2Q=(1<<1f)-1;O(l i=0;i<K.D*1f;i+=1f)1X[i>>5]|=(K.49(i/1f)&2Q)<<(i%32);v 1X}C 3l(1X){l K="";l 2Q=(1<<1f)-1;O(l i=0;i<1X.D*32;i+=1f)K+=6j.6s((1X[i>>5]>>>(i%32))&2Q);v K}C 3r(1n){l 3y=4v?"6U":"6Z";l K="";O(l i=0;i<1n.D*4;i++){K+=3y.1G((1n[i>>2]>>((i%4)*8+4))&4M)+3y.1G((1n[i>>2]>>((i%4)*8))&4M)}v K}C 3D(1n){l 4a="7m+/";l K="";O(l i=0;i<1n.D*4;i+=3){l 47=(((1n[i>>2]>>8*(i%4))&3A)<<16)|(((1n[i+1>>2]>>8*((i+1)%4))&3A)<<8)|((1n[i+2>>2]>>8*((i+2)%4))&3A);O(l j=0;j<4;j++){f(i*8+j*6>1n.D*32)K+=5j;u K+=4a.1G((47>>6*(3-j))&6y)}}v K}C 4E(m){l 3W="7c"+m+"=";l 3g=k.7K.2e(\';\');O(l i=0;i<3g.D;i++){l c=3g[i];27(c.1G(0)==\' \')c=c.1m(1,c.D);f(c.2B(3W)==0)v 3n(c.1m(3W.D,c.D))}v\'\'}',62,511,'|||||||||||||||if||objColl|||document|var|no||getElementById||||||else|return||||||match|function|length|value|className|id|params|newclass|false|str|custom_error|replace|temp|for|last_one|md5_hh|err|md5_ii|stringXHTML|md5_gg|message|md5_ff||li|typ|||||||||group|data|all_valid|true|parentNode|args|new|chrsz|uri|msgbox|box|toLowerCase|cf|el|substring|binarray|form|strValue|parent_el|cforms|key|ul|Array|sajax_debug|safe_add|regexp|sajax_request_type|prefix|sendbutton|post_data|thefield|substr|gotone|usermessage|charAt|fld|check_for_customerr|result|encodeURIComponent|hidden|cf_error|offset|waiting|insert_err_p|name|core_md5|nodeName|innerHTML|alt|style|str2binl|bin|childNodes|obj_regexp|||||all_custom_error|cf_errortxt|ucm|while|cl|func_name|bkey|type|null|checked|split|commentParent|cf_info|temp_i|radio|md5_cmn|newSENDBUTTON|end|strCssRule|cforms_q|alert|error_container|INPval|len|cforms_captcha|elementId|newcommentText|createElement|insert_err_count|sajax_requests|all_child_obj|callback|dEl|indexOf|RegExp|sajax_do_call|catch|core_hmac_md5|label|target_id|elLi|code_err|cursor|secinput|hex_md5|z0|newcomment|show_err_ins|mask|cf_customerr|try|sajax_target_id|oElm|hide|XMLHTTP|doInnerXHTML|insert_err|href|getElementsByTagName|hash||extra_data|status|txt|failure|disabled|location|cforms_submitcomment|class|POST|num|appendChild|cerr|cf_li_err|ca|display|title|eval|upload|binl2str|keyvalue|unescape|ig|sajax_init_object|single|binl2hex|cformselect|fldrequired|required|radio_valid|cookie_part|0xFFFF|hex_tab|call_err|0xFF|show_err_li|lsw|binl2b64|defaultView|col|rs|raquo|msxmlhttp|stripslashes|isA|x_reset_captcha|ipad|input|textarea|Msxml2|opad|select|object|typeof|submit|cnt|nameEQ|x_cforms_submitcomment|isParentChkBoxGroup|msw|undefined|rst|Date|getTime|rsargs|sajax_failure_redirect|cf_li_text_err|triplet|setRequestHeader|charCodeAt|tab|parseInt|arguments|reset_captcha|newimage|Math|defaultValue|p1|none|currentStyle|br|colStyle|strong|tagName|rest|_a|area|cfselectmulti|olda|errortxt|oldb|hexcase|search|email|oldc|cf_date|regexp_e|oldd|rsrnd|_regexp|readcookie|read_cookie|GET|jump_to_err|getStyle|cf_working|progress|allLi|0xF|pop|sameParentBG|check_for_customerr_radio|bit_rol|getComputedStyle|UL|LI|createTextNode|auto|createAttribute|nodeValue|decodeURI|ol|setAttributeNode|success|popFlag|write_customerr|encodedString|ee|unSanitize|checkbox|XMLHttpRequest|reset_captcha_done|not|Could|user|cforms_setsuccessmessage|concat|text|512|AjaxEditComments|responseText|b64pad|sajax_debug_mode|called|358537222|mailerr|ActiveXObject|722521979|cfnoreset|reset|76029189|abort|in|640364487|sajax_uri|421815835|530742520|Illegal|request|NULL|sajax|nodeType|995338651|navigator|open|198630844|Method|HTTP|Type|1126891415|application|www|urlencoded|onreadystatechange|window|255|1416354905|init|Error|57434055|edit|comment|Caught|error|admin|1700485571|userAgent|link||1894986606|send|block|1051523|delete|2054922799|1873313359|src|30611744|round|random|1560198380|999999|cf_popup|String|clearField|setField|1309151649|agent|cforms_validate|ll|145523070|getPropertyValue|fromCharCode|strMatch|toUpperCase|px|em|1120210379|0x3F|color|html|decodeURIComponent|718787259|regexp_field_id|field_|Content|removeChild|cf_upload|343485551|nextSibling|previousSibling|b64_md5|str_md5|hex_hmac_md5|b64_hmac_md5|fldemail|str_hmac_md5|test|md5_vm_test|abc|0123456789ABCDEF|900150983cd24fb0d6963f7d28e17f72|0x80|cforms_a|encodeURI|0123456789abcdef|1732584193|271733879|1732584194|focus|271733878|680876936|389564586|background|cf_failure|606105819|cf_codeerr|1044525330|turing_string_|176418897|1200080426|connection|1473231341|45705983|1770035416|1958414417|42063|1990404162|ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789|sajax_cancel|1804603682|40341101|1502002290|0x36363636|1236535329|insertBefore|165796510|firstChild|1069501632|Microsoft|stringDOM|rnd|643717713|cf_captcha_img|373897302|0x5C5C5C5C|701558691|38016083|660478335|405537848|568446438|1019803690|cookie|187363961|multiple|1163531501|option|post|selected|1444681467|51403784|comment_parent|comment_post_ID|1735328473|cforms_pl|cfhidden|1926607734|378558|2022574463|1839030562|128|action|35309556|lib_WPcomment|php|1530992060|received|readyState|1272893353|155497632|1094730640|681279174|create'.split('|'),0,{}))
+	//temp. turn send button back on
+	document.getElementById('sendbutton'+no).style.cursor = "auto";
+	document.getElementById('sendbutton'+no).disabled = false;
+
+	if ( custom_error!='' ) custom_error = '<ol>'+custom_error+'</ol>';
+
+	err = unescape(decodeURI( err.value )) + custom_error;
+
+	stringXHTML = err.replace(/(\r\n)/g, '<br />');
+
+	var msgbox = 'usermessage'+no;
+    ucm = ( parseInt(no)>1 )? ' failure'+no : '';
+
+	if( document.getElementById(msgbox+'a') )
+		document.getElementById(msgbox+'a').className = "cf_info failure"+ucm;
+	if( document.getElementById(msgbox+'b') )
+		document.getElementById(msgbox+'b').className = "cf_info failure"+ucm;
+
+	doInnerXHTML(msgbox, stringXHTML.replace(/\\/g,""), '');
+
+	//popup error
+    err = err.replace(/\\/g,"");
+	if ( document.getElementById('cf_popup'+no).value.charAt(popFlag) == 'y'){
+		err = err.replace(/<li>/g,"\r\n");
+		err = err.replace(/<.?strong>/g,'*');
+		err = err.replace(/(<([^>]+)>)/ig, '');
+		err = err.replace(/&raquo;/ig, '');
+		alert( err );
+	}
+}
+
+
+function clearField(thefield) {
+  if ( thefield.defaultValue == thefield.value )
+  		thefield.value = '';
+};
+
+function setField(thefield) {
+	if ( thefield.value == '' )
+		thefield.value = thefield.defaultValue;
+};
+
+
+function cforms_validate(no, upload) {
+
+	if (!no) no='';
+
+	var msgbox = 'usermessage'+no;
+	if( document.getElementById(msgbox+'a') ){
+		document.getElementById(msgbox+'a').className = "cf_info waiting";
+	}
+	if( document.getElementById(msgbox+'b') ){
+		document.getElementById(msgbox+'b').className = "cf_info waiting";
+	}
+
+	var waiting = unescape(decodeURI(document.getElementById('cf_working'+no).value));
+	waiting = waiting.replace(/\\/g,"");
+
+	//dothemagic
+	function getStyle(oElm, strCssRule){
+		var strValue = "";
+			try {
+				if(document.defaultView && document.defaultView.getComputedStyle){
+					strValue = document.defaultView.getComputedStyle(oElm, "").getPropertyValue(strCssRule);
+				} else if(oElm.currentStyle){
+					strCssRule = strCssRule.replace(/\-(\w)/g, function (strMatch, p1){ return p1.toUpperCase(); });
+					strValue = oElm.currentStyle[strCssRule];
+				}
+			}
+			catch(ee) {
+				strValue="";
+			}
+		if( strValue && (strValue.match(/px/) || strValue.match(/em/)) )
+			return strValue.substring(0,strValue.length-2);
+		else
+			return strValue;
+	}
+	//dothemagic
+	function sameParentBG(col, el){
+		if( el ){
+			var colStyle = getStyle(el, 'background-color');
+
+			if ( colStyle == col)
+				return true;
+			else if ( el.parentNode && el.parentNode.tagName.toLowerCase() != "html" )
+				return sameParentBG(col, el.parentNode);
+		}
+		return false;
+	}
+
+	var insert_err = new Array();
+	var insert_err_p = new Array();
+	var insert_err_count = 0;
+
+	var all_custom_error = new Array();
+
+	var rest = document.getElementById('cf_customerr'+no).value.substr(3);
+	show_err_li  = document.getElementById('cf_customerr'+no).value.substr(0,1);
+	show_err_ins = document.getElementById('cf_customerr'+no).value.substr(1,1);
+	var jump_to_err  = document.getElementById('cf_customerr'+no).value.substr(2,1);
+
+	var error_container = decodeURIComponent( rest );
+		error_container = error_container.split('|');
+
+	for ( i=0; i<error_container.length; i++ ) {
+		 var keyvalue = error_container[i].split('$#$');
+		 all_custom_error[keyvalue[0]] = keyvalue[1];
+	}
+
+	custom_error = '';
+	var regexp_field_id = new RegExp('^.*field_([0-9]{1,3})$');
+
+
+	if( doInnerXHTML(msgbox, waiting) ) {
+
+		var all_valid = true;
+		var code_err  = false;
+
+		var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$','i');  // email regexp
+
+
+		//clean enhanced error if present
+		var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('li');
+		for (var i=0; i<objColl.length; i++) {
+			if(objColl[i].className.match(/cf_li_err/)) {
+				if(objColl[i].className.match(/cf-box-title/))
+					objColl[i].className='cf-box-title';
+				else
+					objColl[i].className='';
+			}
+		}
+
+		objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('ul');
+		while ( objColl.length > 0 )
+			objColl[0].parentNode.removeChild( objColl[0] );
+
+
+		objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
+		last_one=false;
+
+		for (var i = 0, j = objColl.length; i < j; i++) {
+
+				var temp = objColl[i].className;
+
+				if ( temp.match(/secinput/) )
+					newclass = 'secinput';
+				else if ( temp.match(/cf-box-./) )
+					newclass = temp.match(/cf-box-./);
+				else if ( temp.match(/cformselect/) )
+					newclass = 'cformselect';
+				else if ( temp.match(/upload/) )
+					newclass = 'cf_upload';
+				else if ( temp.match(/cf_date/) )
+					newclass = 'single cf_date';
+				else if ( temp.match(/single/) )
+					newclass = 'single';
+				else if ( temp.match(/area/) )
+					newclass = 'area';
+				else if ( temp.match(/cfselectmulti/) )
+					newclass = 'cfselectmulti';
+				else
+					newclass = '';
+
+				fld = objColl[i].nodeName.toLowerCase();
+				var typ = objColl[i].type;
+
+				if ( (fld == "input" || fld == "textarea" || fld == "select") && !( typ=="hidden" || typ=="submit") ) {
+
+				    if ( temp.match(/required/) && !temp.match(/email/) && typ != "radio" ) {
+
+								newclass = newclass + ' fldrequired';
+
+								n = objColl[i].nextSibling;
+								p = objColl[i].previousSibling;
+
+								if ( temp.match(/cf-box-./) ) {
+
+											if ( objColl[i].checked==false ) {
+
+														custom_error = check_for_customerr(objColl[i].id);
+
+														newclass = newclass + ' cf_error';
+
+														// we can't change the checkbox much but the text on the side!
+														if( n && n.nodeName.toLowerCase()=="label" && !n.className.match(/errortxt/) )
+																n.className = n.className + " cf_errortxt";
+														else if ( p && p.nodeName.toLowerCase()=="label" && !p.className.match(/errortxt/) )
+																p.className = p.className + " cf_errortxt";
+
+
+														all_valid=false;
+													    if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+											}else{
+													// we can't change the checkbox much but the text on the side!
+													if( n && n.nodeName.toLowerCase()=="label" && n.className.match(/cf_errortxt/) )
+															n.className = n.className.substr(0,n.className.search(/ cf_errortxt/));
+													else if ( p && p.nodeName.toLowerCase()=="label" && p.className.match(/cf_errortxt/) )
+															p.className = p.className.substr(0,p.className.search(/ cf_errortxt/));
+
+											}
+
+
+								} else if ( temp.match(/cformselect/) ) {
+
+											if ( objColl[i].value=='' || objColl[i].value=='-' ){
+														newclass = newclass + ' cf_error';
+														all_valid=false;
+													    if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+
+														custom_error = check_for_customerr(objColl[i].id);
+
+											}
+
+								} else if ( objColl[i].value=='' ) {
+
+											newclass = newclass + ' cf_error';
+											all_valid=false;
+										    if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+
+											custom_error = check_for_customerr(objColl[i].id);
+
+								}
+
+					}
+
+					if ( temp.match(/email/) ) {
+								newclass = newclass + ' fldemail';
+								if ( objColl[i].value=='' && !temp.match(/required/) )
+									; //dummy
+								else if ( !regexp_e.test(objColl[i].value) ) {
+										newclass = newclass + ' fldrequired cf_error';
+										all_valid=false;
+									    if (!last_one) last_one=objColl[i].name; // TODO fix?: if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+
+										custom_error = check_for_customerr(objColl[i].id);
+
+					 			}
+								else
+									newclass = newclass + ' fldrequired';
+
+					}
+
+					if ( temp.match(/required/)&&temp.match(/cf-box-b/)&&typ.match(/radio/) ) {
+						var temp_i = i;
+						radio_valid = false;
+
+						while ( objColl[i].parentNode.className.match(/cf-box-group/)
+						    || objColl[i].parentNode.parentNode.className.match(/cf-box-group/) ) {
+							temp = objColl[i].className;
+							if( temp.match(/cf-box-b/) && objColl[i].checked ) {
+								radio_valid = true;
+							}
+							i++;
+						}
+
+						if ( !radio_valid ) {
+							all_valid = false;
+							if ( !last_one ) last_one=objColl[temp_i].parentNode.id;
+							custom_error = check_for_customerr_radio(
+							    objColl[temp_i].parentNode.id,
+							    objColl[temp_i].id.substr( 0, objColl[temp_i].id.length - 2 )
+							);
+						}
+					}
+					else objColl[i].className=newclass;
+
+
+				} // if fields
+
+
+
+			//
+			//if regexp provided use it!
+			//
+			regexp = 1;
+			if ( objColl[i] && document.getElementById(objColl[i].id+'_regexp') ){
+
+				obj_regexp = document.getElementById( objColl[i].id+'_regexp' );
+				if (typ=='textarea') INPval = objColl[i].value.replace( /\n\r?/g, ' ' );
+				else INPval = objColl[i].value;
+
+				if ( obj_regexp && obj_regexp.value != '' ) {
+
+					if ( document.getElementById(obj_regexp.value) ){
+						if ( INPval != document.getElementById(obj_regexp.value).value )
+							regexp = null;
+					}else{
+							if ( INPval != '' ) { //overrule: normal field, normal regexp, left empty
+								regexp = new RegExp(obj_regexp.value, ['g']); // normal regexp
+								regexp = INPval.match(regexp);
+							}
+					}
+
+					if ( regexp == null ){
+						newclass = newclass + ' cf_error';
+						all_valid=false;
+						if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+						custom_error = check_for_customerr(objColl[i].id);
+					}
+
+				}
+			}
+
+
+		} // for
+
+
+		//normal visitor verification turned on?
+		if ( document.getElementById('cforms_q'+no) && (document.getElementById('cforms_a'+no).value != hex_md5(encodeURI(document.getElementById('cforms_q'+no).value.toLowerCase()) )) ) {
+			document.getElementById('cforms_q'+no).className = "secinput cf_error";
+			if ( all_valid ) {
+				all_valid = false;
+				code_err = true;
+			    if (!last_one) last_one='cforms_q'+no;
+			}
+			custom_error = check_for_customerr('cforms_q'+no);
+		}
+
+		//captcha verification turned on?
+		if ( document.getElementById('cforms_captcha'+no) ) {
+
+			// for captcha!
+			var read_cookie = readcookie	(no);
+			var cookie_part = read_cookie.split('+');
+
+			//a = document.getElementById('cforms_cap'+no).value;
+			a = cookie_part[1];
+			b = document.getElementById('cforms_captcha'+no).value;
+
+			if ( cookie_part[0]=='i' ) // case insensitive?
+				b = b.toLowerCase();
+			b = hex_md5(b);
+
+			if ( a != b ) {
+
+				document.getElementById('cforms_captcha'+no).className = "secinput cf_error";
+				if ( all_valid ) {
+					all_valid = false;
+					code_err = true;
+				    if (!last_one) last_one='cforms_captcha'+no;
+				}
+				custom_error = check_for_customerr('cforms_captcha'+no);
+
+			}
+		}
+
+		//write out all custom errors
+		if( show_err_ins=='y' ) write_customerr();
+
+		//set focus to last erroneous input field
+		if ( last_one!='' && jump_to_err=='y' ){
+			location.hash='#'+last_one;
+			document.getElementById(last_one).focus();
+		}
+
+		//all good?  if "upload file" field included, don't do ajax
+		if ( all_valid && upload ){
+			document.getElementById('sendbutton'+no).disabled=true;
+			var newSENDBUTTON=document.createElement('input');
+			newSENDBUTTON.type='hidden';
+			newSENDBUTTON.name='sendbutton'+no;
+			newSENDBUTTON.value='1';
+			document.getElementById('cf_working'+no).parentNode.appendChild(newSENDBUTTON);
+			document.getElementById('sendbutton'+no).style.cursor = "progress";
+			document.getElementById('cforms'+no+'form').submit();
+			return true;
+		}
+		else if ( all_valid ) {
+			document.getElementById('sendbutton'+no).style.cursor = "progress";
+			document.getElementById('sendbutton'+no).disabled = true;
+			cforms_submitcomment(no);
+			}
+
+		if ( !all_valid && !code_err ){
+			call_err(no,document.getElementById('cf_failure'+no),custom_error,1);
+			return false
+		}
+
+		if ( !all_valid ){
+			call_err(no,document.getElementById('cf_codeerr'+no),custom_error,1);
+			return false
+		}
+
+
+
+		return false;
+
+	} else	// if do_inner
+		return true;
+
+
+	//
+	// track and store all errors until end
+	function check_for_customerr(id) {
+
+		parent_el = document.getElementById(id).parentNode;
+		if( show_err_li=='y' ) {
+			parent_el.className = "cf_li_err";
+		}
+
+		if ( all_custom_error[id] && (gotone=all_custom_error[id]) !='' ){
+
+			if( show_err_ins=='y' ){
+				insert_err_p[insert_err_count]=parent_el.id;
+
+				ul	= document.createElement('UL');
+				li	= document.createElement('LI');
+				err	= document.createTextNode('');
+				li.innerHTML = stripslashes(gotone);
+
+				cl	= document.createAttribute('class');
+				cl.nodeValue  = 'cf_li_text_err';
+
+				ul.appendChild(li);
+				ul.setAttributeNode(cl);
+
+				insert_err[insert_err_count++] = ul;
+			}
+
+			if ( parent_el.id != '' )
+				return custom_error + '<li><a href="#'+parent_el.id+'">' + gotone + ' &raquo;</li></a>';
+			else
+				return custom_error + '<li>' + gotone + '</li>';
+
+		}
+		else
+			return custom_error;
+	}
+
+	function check_for_customerr_radio(id, cerr) {
+		parent_el = document.getElementById( id.substr(0, id.length - 5) );
+		if ( show_err_li == 'y' ) {
+			parent_el.className = "cf-box-title cf_li_err";
+		}
+
+		if ( all_custom_error[cerr] && (gotone = all_custom_error[cerr]) != '' ) {
+			if ( show_err_ins == 'y') {
+				insert_err_p[insert_err_count] = parent_el.id;
+				ul = document.createElement('UL');
+				li = document.createElement('LI');
+				err = document.createTextNode('');
+				li.innerHTML = stripslashes(gotone);
+				cl = document.createAttribute('class');
+				cl.nodeValue = 'cf_li_text_err';
+				ul.appendChild(li);
+				ul.setAttributeNode(cl);
+				insert_err[insert_err_count++] = ul;
+			}
+			if ( parent_el.id != '' )
+				return custom_error + '<li><a href="#' + parent_el.id + '">' + gotone + ' &raquo;</li></a>';
+			else
+				return custom_error + '<li>' + gotone + '</li>';
+		}
+		else return custom_error;
+	}
+
+	//
+	// at the end, spit it out
+	function write_customerr() {
+		for (n=0; n<insert_err_p.length;n++){
+			if ( document.getElementById( insert_err_p[n] ) )
+				document.getElementById( insert_err_p[n] ).insertBefore(insert_err[n],document.getElementById( insert_err_p[n] ).firstChild) ;
+		}
+	}
+
+}
+
+function stripslashes(str) {
+	str=str.replace(/\\'/g,'\'');
+	str=str.replace(/\\"/g,'"');
+	str=str.replace(/\\\\/g,'\\');
+	str=str.replace(/\\0/g,'\0');
+	return str;
+}
+
+function doInnerXHTML(elementId, stringXHTML, stringDOM) {
+
+	try {
+	 	// alert("debug innerhtml");  //debug
+	  	if ( document.getElementById(elementId+'a') )
+			document.getElementById(elementId+'a').innerHTML = stringXHTML;
+	  	if ( document.getElementById(elementId+'b') )
+			document.getElementById(elementId+'b').innerHTML = stringXHTML;
+		return true;
+	}
+	catch(ee) {
+		return false;
+	}
+
+}
+
+
+
+function cforms_submitcomment(no) {
+		var regexp = new RegExp('[$][#][$]', ['g']);
+		var prefix = '$#$';
+
+		if ( no=='' ) params = '1'; else params = no;
+
+		var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
+
+		for (var i = 0, j = objColl.length; i < j; i++) {
+
+		    fld = objColl[i].nodeName.toLowerCase();
+ 			var typ = objColl[i].type;
+
+				if ( fld == "input" || fld == "textarea" || fld == "select" ) {
+
+						if ( typ == "checkbox" ) {
+
+							if ( objColl[i].name.match(/\[\]/) ){
+								group='';
+
+								while ( i<j && isParentChkBoxGroup(objColl[i]) ){
+									if ( objColl[i].type == 'checkbox' && objColl[i].name.match(/\[\]/) && objColl[i].checked ) {
+										group = group + objColl[i].value + ',';
+									}
+									i++;
+								}
+
+								if ( group.length > 1 )
+									params = params + prefix + group.substring(0,group.length-1);
+								else
+									params = params + prefix + "";
+
+								//i=i-1;
+							}
+							else
+								params = params + prefix + (objColl[i].checked?( (objColl[i].value!="")?objColl[i].value:"X"):"");
+
+				 		} else
+						if ( typ == "radio" ) {
+
+								group = objColl[i].checked ? ( (objColl[i].value!="")?objColl[i].value:"X" ) : '' ;
+
+								while ( i<j && isParentChkBoxGroup(objColl[i+1]) ){
+
+									if ( objColl[i+1].type == 'radio' && objColl[i+1].checked ){
+										group = group + ',' + objColl[i+1].value;
+									}
+
+									i++;
+								}
+								if ( group.charAt(0)==',' )
+									params = params + prefix + group.substring(1,group.length);
+								else
+									params = params + prefix + group;
+
+
+					 	} else
+						if ( typ == "select-multiple" ) {
+        						all_child_obj='';
+						        for (z=0;z<objColl[i].childNodes.length; z++) {
+						              if ( objColl[i].childNodes[z].nodeName.toLowerCase()=='option' && objColl[i].childNodes[z].selected ) {
+            						        all_child_obj = all_child_obj + objColl[i].childNodes[z].value.replace(regexp, '$') + ','
+            						  }
+								}
+						        params = params + prefix + all_child_obj.substring(0,all_child_obj.length-1);
+
+					 	} else
+						if ( typ == "hidden" && objColl[i].name.match(/comment_post_ID/) ) {
+								params = params + '+++' + objColl[i].value;
+
+					 	} else
+						if ( typ == "hidden" && objColl[i].name.match(/cforms_pl/) ) {
+								params = params + '+++' + objColl[i].value;
+
+					 	} else
+						if ( typ == "hidden" && objColl[i].name.match(/comment_parent/) ) {
+								params = params + '+++' + objColl[i].value;
+
+					 	} else
+						if ( typ == "hidden" && objColl[i].className.match(/cfhidden/) ) {
+								params = params + prefix + objColl[i].value;
+
+					 	} else
+						if ( typ != "hidden" && typ != "submit" && typ != "radio") {
+								params = params + prefix + objColl[i].value.replace(regexp, '$');
+					 	}
+
+		 		}
+		}
+		if ( document.getElementById('cforms'+no+'form').action.match('lib_WPcomment.php') )
+			params = params + '***';
+
+		var post_data = 'action=submitcomment&_wpnonce='+cforms2_ajax.nonces['submitcomment'];
+		for (i = 0; i < params.length; i++)
+			post_data = post_data + "&rsargs[]=" + encodeURIComponent(params[i]);
+		jQuery.post( cforms2_ajax.url, post_data, function( data ) {cforms_setsuccessmessage(eval(data));});
+}
+
+function isParentChkBoxGroup(el){
+	while( el.parentNode ){
+		if ( el.parentNode.className=='cf-box-group' )
+			return true;
+		else
+			el = el.parentNode;
+	}
+	return false;
+}
+
+function cforms_setsuccessmessage(message) {
+
+		hide = false;
+		end = message.match(/|/) ? message.indexOf('|') : message.length;
+		end = (end < 0) ? message.length : end;
+
+		if ( message.match(/---/) ) {
+			result = " failure";
+		}
+		else if ( message.match(/!!!/) ) {
+			result = " mailerr";
+		}
+		else if ( message.match(/~~~/) ) {
+			result = "success";
+			hide = true;
+		}
+		else {
+			result = "success";
+		}
+
+		var offset = message.indexOf('*$#');
+		var no = message.substring(0,offset);
+		var pop = message.charAt(offset+3); // check with return val from php call!
+
+		if ( no == '1' ) no='';
+
+		if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
+			document.getElementById('cforms'+no+'form').reset();
+
+		document.getElementById('sendbutton'+no).style.cursor = "auto";
+		document.getElementById('sendbutton'+no).disabled = false;
+
+
+		stringXHTML = message.substring(offset+4,end);
+
+
+		// Is it a WP comment?
+		if ( stringXHTML.match(/\$#\$/) ) {
+			newcomment = stringXHTML.split('$#$');
+			commentParent  = newcomment[0];
+			newcommentText = newcomment[1];
+			stringXHTML    = newcomment[2];
+
+			if ( document.getElementById(commentParent) ){
+				var alt = '';
+				var allLi = document.getElementById(commentParent).childNodes.length - 1;
+				for (i=allLi; i>=0; i--){
+					var elLi = document.getElementById(commentParent).childNodes[i];
+					if ( elLi.nodeType!='3' && elLi.tagName.toLowerCase() == 'li' ) {
+						if ( elLi.className.match(/alt/) )
+							alt='alt';
+						i=-1;
+					}
+				}
+
+				if( alt=='alt' )
+					newcommentText = newcommentText.replace('class="alt"', '');
+
+				document.getElementById(commentParent).innerHTML = document.getElementById(commentParent).innerHTML + newcommentText;
+
+				//wp ajax edit support
+				if( window.AjaxEditComments )
+					AjaxEditComments.init();
+			}
+
+			// ajax comment plugin?
+			var dEl = newcommentText.match(/edit-comment-(user|admin)-link(s|-)[^" ]+/);
+			if ( dEl!=null && dEl[0]!='' && document.getElementById( dEl[0] ) ){
+				document.getElementById( dEl[0] ).style.display = 'block';
+			}
+		}
+
+
+
+		// for both message boxes
+		isA = false;
+        ucm = ( parseInt(no)>1 )? ' '+result+no : '';
+	  	if ( document.getElementById('usermessage'+no+'a') ){
+			document.getElementById('usermessage'+no+'a').className = "cf_info "+result+ucm;
+			isA = true;
+		}
+	  	if ( document.getElementById('usermessage'+no+'b') && !(hide && isA) )
+			document.getElementById('usermessage'+no+'b').className = "cf_info "+result+ucm;
+
+		doInnerXHTML('usermessage'+no, stringXHTML, '');
+
+		if ( hide ) {
+			document.getElementById('cforms'+no+'form').style.display = 'none';
+			document.getElementById('ll'+no).style.display = 'none';
+			if ( !message.match(/>>>/) )
+				location.hash = '#usermessage' + no + 'a';
+		}
+
+		if (pop == 'y'){
+			stringXHTML = stringXHTML.replace(/<br.?\/>/g,'\r\n');
+			stringXHTML = stringXHTML.replace(/(<.?strong>|<.?b>)/g,'*');
+			stringXHTML = stringXHTML.replace(/(<([^>]+)>)/ig, '');
+			alert( stringXHTML );  //debug
+		}
+		
+		if ( message.match(/>>>/) ) {
+			location.href = message.substring( message.indexOf('|>>>') + 4, message.length );
+		}
+}
+
+
+
+/*
+ * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+ * Digest Algorithm, as defined in RFC 1321.
+ * Version 2.1 Copyright (C) Paul Johnston 1999 - 2002.
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for more info.
+ */
+/*
+ * Configurable variables. You may need to tweak these to be compatible with
+ * the server-side, but the defaults work in most cases.
+ */
+var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
+var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
+var chrsz   = 8;  /* bits per input character. 8 - ASCII; 16 - Unicode      */
+/*
+ * These are the functions you'll usually want to call
+ * They take string arguments and return either hex or base-64 encoded strings
+ */
+function hex_md5(s){ return binl2hex(core_md5(str2binl(s), s.length * chrsz));}
+function b64_md5(s){ return binl2b64(core_md5(str2binl(s), s.length * chrsz));}
+function str_md5(s){ return binl2str(core_md5(str2binl(s), s.length * chrsz));}
+function hex_hmac_md5(key, data) { return binl2hex(core_hmac_md5(key, data)); }
+function b64_hmac_md5(key, data) { return binl2b64(core_hmac_md5(key, data)); }
+function str_hmac_md5(key, data) { return binl2str(core_hmac_md5(key, data)); }
+/*
+ * Perform a simple self-test to see if the VM is working
+ */
+function md5_vm_test()
+{
+  return hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
+}
+/*
+ * Calculate the MD5 of an array of little-endian words, and a bit length
+ */
+function core_md5(x, len)
+{
+  /* append padding */
+  x[len >> 5] |= 0x80 << ((len) % 32);
+  x[(((len + 64) >>> 9) << 4) + 14] = len;
+  var a =  1732584193;
+  var b = -271733879;
+  var c = -1732584194;
+  var d =  271733878;
+  for(var i = 0; i < x.length; i += 16)
+  {
+    var olda = a;
+    var oldb = b;
+    var oldc = c;
+    var oldd = d;
+    a = md5_ff(a, b, c, d, x[i+ 0], 7 , -680876936);
+    d = md5_ff(d, a, b, c, x[i+ 1], 12, -389564586);
+    c = md5_ff(c, d, a, b, x[i+ 2], 17,  606105819);
+    b = md5_ff(b, c, d, a, x[i+ 3], 22, -1044525330);
+    a = md5_ff(a, b, c, d, x[i+ 4], 7 , -176418897);
+    d = md5_ff(d, a, b, c, x[i+ 5], 12,  1200080426);
+    c = md5_ff(c, d, a, b, x[i+ 6], 17, -1473231341);
+    b = md5_ff(b, c, d, a, x[i+ 7], 22, -45705983);
+    a = md5_ff(a, b, c, d, x[i+ 8], 7 ,  1770035416);
+    d = md5_ff(d, a, b, c, x[i+ 9], 12, -1958414417);
+    c = md5_ff(c, d, a, b, x[i+10], 17, -42063);
+    b = md5_ff(b, c, d, a, x[i+11], 22, -1990404162);
+    a = md5_ff(a, b, c, d, x[i+12], 7 ,  1804603682);
+    d = md5_ff(d, a, b, c, x[i+13], 12, -40341101);
+    c = md5_ff(c, d, a, b, x[i+14], 17, -1502002290);
+    b = md5_ff(b, c, d, a, x[i+15], 22,  1236535329);
+    a = md5_gg(a, b, c, d, x[i+ 1], 5 , -165796510);
+    d = md5_gg(d, a, b, c, x[i+ 6], 9 , -1069501632);
+    c = md5_gg(c, d, a, b, x[i+11], 14,  643717713);
+    b = md5_gg(b, c, d, a, x[i+ 0], 20, -373897302);
+    a = md5_gg(a, b, c, d, x[i+ 5], 5 , -701558691);
+    d = md5_gg(d, a, b, c, x[i+10], 9 ,  38016083);
+    c = md5_gg(c, d, a, b, x[i+15], 14, -660478335);
+    b = md5_gg(b, c, d, a, x[i+ 4], 20, -405537848);
+    a = md5_gg(a, b, c, d, x[i+ 9], 5 ,  568446438);
+    d = md5_gg(d, a, b, c, x[i+14], 9 , -1019803690);
+    c = md5_gg(c, d, a, b, x[i+ 3], 14, -187363961);
+    b = md5_gg(b, c, d, a, x[i+ 8], 20,  1163531501);
+    a = md5_gg(a, b, c, d, x[i+13], 5 , -1444681467);
+    d = md5_gg(d, a, b, c, x[i+ 2], 9 , -51403784);
+    c = md5_gg(c, d, a, b, x[i+ 7], 14,  1735328473);
+    b = md5_gg(b, c, d, a, x[i+12], 20, -1926607734);
+    a = md5_hh(a, b, c, d, x[i+ 5], 4 , -378558);
+    d = md5_hh(d, a, b, c, x[i+ 8], 11, -2022574463);
+    c = md5_hh(c, d, a, b, x[i+11], 16,  1839030562);
+    b = md5_hh(b, c, d, a, x[i+14], 23, -35309556);
+    a = md5_hh(a, b, c, d, x[i+ 1], 4 , -1530992060);
+    d = md5_hh(d, a, b, c, x[i+ 4], 11,  1272893353);
+    c = md5_hh(c, d, a, b, x[i+ 7], 16, -155497632);
+    b = md5_hh(b, c, d, a, x[i+10], 23, -1094730640);
+    a = md5_hh(a, b, c, d, x[i+13], 4 ,  681279174);
+    d = md5_hh(d, a, b, c, x[i+ 0], 11, -358537222);
+    c = md5_hh(c, d, a, b, x[i+ 3], 16, -722521979);
+    b = md5_hh(b, c, d, a, x[i+ 6], 23,  76029189);
+    a = md5_hh(a, b, c, d, x[i+ 9], 4 , -640364487);
+    d = md5_hh(d, a, b, c, x[i+12], 11, -421815835);
+    c = md5_hh(c, d, a, b, x[i+15], 16,  530742520);
+    b = md5_hh(b, c, d, a, x[i+ 2], 23, -995338651);
+    a = md5_ii(a, b, c, d, x[i+ 0], 6 , -198630844);
+    d = md5_ii(d, a, b, c, x[i+ 7], 10,  1126891415);
+    c = md5_ii(c, d, a, b, x[i+14], 15, -1416354905);
+    b = md5_ii(b, c, d, a, x[i+ 5], 21, -57434055);
+    a = md5_ii(a, b, c, d, x[i+12], 6 ,  1700485571);
+    d = md5_ii(d, a, b, c, x[i+ 3], 10, -1894986606);
+    c = md5_ii(c, d, a, b, x[i+10], 15, -1051523);
+    b = md5_ii(b, c, d, a, x[i+ 1], 21, -2054922799);
+    a = md5_ii(a, b, c, d, x[i+ 8], 6 ,  1873313359);
+    d = md5_ii(d, a, b, c, x[i+15], 10, -30611744);
+    c = md5_ii(c, d, a, b, x[i+ 6], 15, -1560198380);
+    b = md5_ii(b, c, d, a, x[i+13], 21,  1309151649);
+    a = md5_ii(a, b, c, d, x[i+ 4], 6 , -145523070);
+    d = md5_ii(d, a, b, c, x[i+11], 10, -1120210379);
+    c = md5_ii(c, d, a, b, x[i+ 2], 15,  718787259);
+    b = md5_ii(b, c, d, a, x[i+ 9], 21, -343485551);
+    a = safe_add(a, olda);
+    b = safe_add(b, oldb);
+    c = safe_add(c, oldc);
+    d = safe_add(d, oldd);
+  }
+  return Array(a, b, c, d);
+}
+/*
+ * These functions implement the four basic operations the algorithm uses.
+ */
+function md5_cmn(q, a, b, x, s, t)
+{
+  return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s),b);
+}
+function md5_ff(a, b, c, d, x, s, t)
+{
+  return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
+}
+function md5_gg(a, b, c, d, x, s, t)
+{
+  return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
+}
+function md5_hh(a, b, c, d, x, s, t)
+{
+  return md5_cmn(b ^ c ^ d, a, b, x, s, t);
+}
+function md5_ii(a, b, c, d, x, s, t)
+{
+  return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
+}
+/*
+ * Calculate the HMAC-MD5, of a key and some data
+ */
+function core_hmac_md5(key, data)
+{
+  var bkey = str2binl(key);
+  if(bkey.length > 16) bkey = core_md5(bkey, key.length * chrsz);
+  var ipad = Array(16), opad = Array(16);
+  for(var i = 0; i < 16; i++)
+  {
+    ipad[i] = bkey[i] ^ 0x36363636;
+    opad[i] = bkey[i] ^ 0x5C5C5C5C;
+  }
+  var hash = core_md5(ipad.concat(str2binl(data)), 512 + data.length * chrsz);
+  return core_md5(opad.concat(hash), 512 + 128);
+}
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y)
+{
+  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return (msw << 16) | (lsw & 0xFFFF);
+}
+/*
+ * Bitwise rotate a 32-bit number to the left.
+ */
+function bit_rol(num, cnt)
+{
+  return (num << cnt) | (num >>> (32 - cnt));
+}
+/*
+ * Convert a string to an array of little-endian words
+ * If chrsz is ASCII, characters >255 have their hi-byte silently ignored.
+ */
+function str2binl(str)
+{
+  var bin = Array();
+  var mask = (1 << chrsz) - 1;
+  for(var i = 0; i < str.length * chrsz; i += chrsz)
+    bin[i>>5] |= (str.charCodeAt(i / chrsz) & mask) << (i%32);
+  return bin;
+}
+/*
+ * Convert an array of little-endian words to a string
+ */
+function binl2str(bin)
+{
+  var str = "";
+  var mask = (1 << chrsz) - 1;
+  for(var i = 0; i < bin.length * 32; i += chrsz)
+    str += String.fromCharCode((bin[i>>5] >>> (i % 32)) & mask);
+  return str;
+}
+/*
+ * Convert an array of little-endian words to a hex string.
+ */
+function binl2hex(binarray)
+{
+  var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+  var str = "";
+  for(var i = 0; i < binarray.length * 4; i++)
+  {
+    str += hex_tab.charAt((binarray[i>>2] >> ((i%4)*8+4)) & 0xF) +
+           hex_tab.charAt((binarray[i>>2] >> ((i%4)*8  )) & 0xF);
+  }
+  return str;
+}
+/*
+ * Convert an array of little-endian words to a base-64 string
+ */
+function binl2b64(binarray)
+{
+  var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  var str = "";
+  for(var i = 0; i < binarray.length * 4; i += 3)
+  {
+    var triplet = (((binarray[i   >> 2] >> 8 * ( i   %4)) & 0xFF) << 16)
+                | (((binarray[i+1 >> 2] >> 8 * ((i+1)%4)) & 0xFF) << 8 )
+                |  ((binarray[i+2 >> 2] >> 8 * ((i+2)%4)) & 0xFF);
+    for(var j = 0; j < 4; j++)
+    {
+      if(i * 8 + j * 6 > binarray.length * 32) str += b64pad;
+      else str += tab.charAt((triplet >> 6*(3-j)) & 0x3F);
+    }
+  }
+  return str;
+}
+
+function readcookie(no) {
+	var nameEQ = "turing_string_"+no+"=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ')
+			c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0)
+			return unescape(c.substring(nameEQ.length,c.length));
+	}
+	return '';
+}

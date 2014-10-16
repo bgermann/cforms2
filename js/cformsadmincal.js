@@ -1,1 +1,693 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(9($){$.1I.1E=$.1I.2d=9(s){7($.2X.31&&1l($.2X.32)===6){s=$.2m({A:\'D\',x:\'D\',G:\'D\',F:\'D\',1P:1V,1T:\'3Z:p;\'},s||{});o 1h=9(n){d n&&n.34==35?n+\'C\':n},2M=\'<1L B="2d"36="0"3a="-1"1T="\'+s.1T+\'"\'+\'1U="3b:3c;41:3z;z-3e:-1;\'+(s.1P!==p?\'3u:3f(3g=\\\'0\\\');\':\'\')+\'A:\'+(s.A==\'D\'?\'1u(((1l(y.1r.2n.3h)||0)*-1)+\\\'C\\\')\':1h(s.A))+\';\'+\'x:\'+(s.x==\'D\'?\'1u(((1l(y.1r.2n.3i)||0)*-1)+\\\'C\\\')\':1h(s.x))+\';\'+\'G:\'+(s.G==\'D\'?\'1u(y.1r.3j+\\\'C\\\')\':1h(s.G))+\';\'+\'F:\'+(s.F==\'D\'?\'1u(y.1r.3k+\\\'C\\\')\':1h(s.F))+\';\'+\'"/>\';d y.3o(9(){7($(\'> 1L.2d\',y).3p==0)y.3q(E.3W(2M),y.3s)})}d y}})(k);k.1I.3t=9(25,1w){o a={21:8,1W:18,1x:1V,W:4,K:p,2p:\'1G\',2G:\'2H\',1b:1X,19:p,2D:1,2s:1};7(25){k.2m(a,25)};o 1w=1w||9(){},v=(a.2G==\'2H\');2t();k(y)[a.2p](9(e){o M=y,$M=k(y),$L=k("L");7(!a.1b){$M.16("Q").24("Q",17)}b{o 1A=k("[2r="+a.1b+"]");1A.16("Q").24("Q",17)[0].2F();1A.24("1G",9(){1A.16("Q")})}k("#2e,#1F").3x();$f=k("<w q=\'2e\' B=\'1y\' />").1s($L);!a.19?$f.u("1P",a.2D):1X;1k($f);$R=k("<w B=\'2E\' q=\'R\' />").1s($L);$O=k("<w B=\'2E\' q=\'O\' />").1s($L);7(a.1x){$r=k("<w q=\'1F\' B=\'1y\' />").1s($L);!a.19?$r.u("1P",a.2s):1X;1k($r)}7(!v){$f.u("G","D");$r.u("G","D")}b{$R.1C(\'2u\');$O.1C(\'2u\')}2v();2C();9 2v(){o c=1;2w(h=a.21;h<=a.1W;h++){7(h==12){c=1}H=((!a.K&&h>12)?h-12:h);7(!a.K&&h==0){H=\'12\'}7(a.K&&h<10){H=\'0\'+H}$U=k("<w B=\'Y\' q=\'2l"+h+"J"+c+"\'>"+H+1t(h)+"</w>");7(a.K){$U.G(20)}1k($U);7(!v){$U.u("2x","x")}(h<12)?$R.S($U):$O.S($U);c++}$f.S($R);!v?$f.S("<w 1U=\'2y:x\' />"):\'\';$f.S($O)}9 2V(h){1m=h;H=(!a.K&&h>12)?h-12:h;7(!a.K&&h==0){H=\'12\'}7(a.K&&h<10){H=\'0\'+H}$r.3C();o n=1R/a.W,1Q=1t(1m),22=1;2w(m=0;m<1R;m=m+n){$1z=k("<w B=\'2h\' q=\'"+1m+"J"+m+"\'>"+H+":"+((m<10)?"0":"")+m+1Q+"</w>");7(!v){$1z.u("2x","x");7(a.W>6&&22==a.W/2+1){$r.S("<w 1U=\'2y:x\' />")}}$r.S($1z);1k($1z);22++}}9 1t(1m){7(!a.K){d(1m>=12)?\' 3F\':\' 3G\'}b{d\'\'}}9 2C(){7(e.2i!=\'2F\'){$f.u("x",e.2Z-5+\'C\').u("A",e.2W-(3I.3J($f.F()/2))+\'C\');1S($f)}b{$M.3K($f)}$f.3L(\'2B\');7(a.19)2b($f)}9 1S($3){o 2a=E.X.26?E.X.26:E.L.26;o 3M=E.X.27?E.X.27:E.L.27;o t=1l($3.u("A"));o l=1l($3.u("x"));o 1e=E.X.29?E.X.29:E.L.29;7(t<=1e&&!$3.1B("#1F")){$3.u("A",1e+10+\'C\')}b 7(t+$3.F()-1e>2a){$3.u("A",1e+2a-$3.F()-10+\'C\')}7(l<=0){$3.u("x",\'3O\')}}9 2b(2J){7(3S k.1I.1E==\'9\')2J.1E();b 1Z(\'1E 3U 3V 3X.\')}9 1k($3){7($3.N("q")==\'2e\'){$3.1H(9(e){2P(e)})}b 7($3.N("q")==\'1F\'){$3.1H(9(e){2Q(e)})}b 7($3.N("B")==\'Y\'){$3.1O(9(e){1D($3,e)});$3.1H(9(){1M($3)});$3.1G(9(){2q($3)})}b 7($3.N("B")==\'2h\'){$3.1O(9(){2g($3)});$3.1H(9(){2j($3)});$3.1G(9(){2o($3)})}};9 2P(e){2R{t=(e.1J)?e.1J:e.2T;7(!(k(t).1B("w[B^=1y], 1L"))){P()}}2U(e){P()}}9 2Q(e){2R{t=(e.1J)?e.1J:e.2T;7(!(k(t).1B("w[B^=1y], 1L"))){P()}}2U(e){P()}}9 1D($3,e){o h=$3.N("q").Z(\'J\')[1],i=$3.N("q").Z(\'J\')[2],l,t;$3.1C("V");7(a.1x){$r.2z();2V(h);7(v){t=e.2i==\'1O\'?e.2W-15:$f.11().A+2+($3.F()*i);7(h<12)l=$f.11().x-$r.G()-2;b l=$f.11().x+$f.G()+2}b{l=(e.2i==\'1O\')?e.2Z-10:$f.11().x+($3.G()-5)*i;7(h<12){t=$f.11().A-$r.F()-2}b{t=$f.11().A+$f.F()}}$r.u("x",l+\'C\').u("A",t+\'C\');1S($r);$r.3d();7(a.19)2b($r)}d p}9 1M($3){$3.2I("V");d p}9 2q($3){h=$3.N("q").Z(\'J\')[1];1Q=1t(h);1n=$3.1d();7(1n.2k(\' \')!=-1){2c=1n.3l(0,1n.2k(\' \'))}b{2c=1n}$3.1d(2c+\':3r\'+1Q);28($3);P()}9 2g($3){$3.1C("V");d p}9 2j($3){$3.2I("V");d p}9 2o($3){28($3);P()}9 28($3){7(!a.1b){M.3w=$3.1d()}b{k("3y[2r="+a.1b+"]").3A($3.1d())}1w.3B($M,[$3.1d()]);$M.16("Q",17)}9 P(){7(a.1x){$r.2z()}$f.3E(\'2B\');$M.16("Q",17)}9 17(e){o $3=$("w.V").1K()?$("w.V"):$("w.Y:2Y"),I=$3.1B(".Y")?\'1N\':\'2f\',2S=(I==\'1N\')?$3[0].q.Z(\'J\')[2]:0,h=(I==\'2f\')?$3[0].q.Z(\'J\')[0]:$3[0].q.Z(\'J\')[1];7(I==\'2f\'){o T=h<12?\'14\':\'1o\'}b{o T=h<12?\'1p\':\'1q\'}9 1Y($3){7($3.2K().1K()){1c(I+\'2L($3)\');1c(I+\'2N($3.2K(), e)\')}b{d p}}9 23($3){7($3.2O().1K()){1c(I+\'2L($3)\');1c(I+\'2N($3.2O(), e)\')}b{d p}}9 1f($3){o 1v=h>=12?\'#R\':\'#O\';$1g=k(".Y[q$=J"+2S+"]",1v);7($1g.1K()){1M($3);1D($1g,e)}b{d p}}9 1j($3){1M($3);2g($(".2h:2Y"))}9 1i($3){2j($3);o 1v=h>=12?\'#O\':\'#R\';o $1g=k(".Y[q^=2l"+h+"]",1v);1D($1g,e)}1a(e.3v){g 37:7(v){1a(T){g\'14\':d p;j;g\'1o\':1i($3);j;g\'1p\':1j($3);j;g\'1q\':1f($3);j}}b{1Y($3)}j;g 38:7(v){1Y($3)}b{1a(T){g\'14\':d p;j;g\'1o\':1i($3);j;g\'1p\':1j($3);j;g\'1q\':1f($3);j}}j;g 39:7(v){1a(T){g\'14\':1i($3);j;g\'1o\':d p;j;g\'1p\':1f($3);j;g\'1q\':1j($3);j}}b{23($3)}j;g 40:7(v){23($3)}b{1a(T){g\'14\':1i($3);j;g\'1o\':d p;j;g\'1p\':1f($3);j;g\'1q\':1j($3);j}}j;g 13:1c(I+\'33($3)\');j;3m:d 1V}d p}d p});9 2t(){7(a.21>=a.1W){1Z(\'2A - 3H 1N 30 3N 3P 3T 3Y 1N.\');d p}b 7(1R%a.W!=0){1Z(\'2A - 3Q W 30 3n 3D 3R 1R.\');d p}}d y}',62,250,'|||obj||||if||function|settings|else||return||hourcont|case|||break|jQuery||||var|false|id|mc|||css||div|left|this||top|class|px|auto|document|height|width|displayhours|divtype|_|military|body|self|attr|hourcol2|cleardivs|keydown|hourcol1|append|curloc|hd|CP_over|minutedivisions|documentElement|CP_hour|split||offset|||m1||unbind|keyhandler||useBgiframe|switch|valuefield|eval|text|st|hourtohour|newobj|prop|minutetohour|hourtominute|binder|parseInt|realhours|str|m2|h1|h2|parentNode|appendTo|set_tt|expression|ctx|callback|showminutes|CP|md|inputfield|is|addClass|hourdiv_over|bgIframe|CP_minutecont|click|mouseout|fn|toElement|size|iframe|hourdiv_out|hour|mouseover|opacity|tt|60|rectify|src|style|true|endhour|null|divprev|alert||starthour|counter|divnext|bind|options|clientHeight|clientWidth|setval|scrollTop|ph|bgi|cleanstr|bgiframe|CP_hourcont|minute|minutediv_over|CP_minute|type|minutediv_out|indexOf|hr_|extend|currentStyle|minutediv_click|event|hourdiv_click|name|minutesopacity|errorcheck|floatleft|renderhours|for|float|clear|hide|Error|fast|putcontainer|hoursopacity|CP_hourcol|focus|layout|vertical|removeClass|ob|prev|div_out|html|div_over|next|hourcont_out|minutecont_out|try|hi|relatedTarget|catch|renderminutes|pageY|browser|first|pageX|must|msie|version|div_click|constructor|Number|frameborder||||tabindex|display|block|show|index|Alpha|Opacity|borderTopWidth|borderLeftWidth|offsetWidth|offsetHeight|substring|default|divide|each|length|insertBefore|00|firstChild|clockpick|filter|keyCode|value|remove|input|absolute|val|apply|empty|evenly|slideUp|PM|AM|start|Math|floor|after|slideDown|pw|be|10px|less|param|into|typeof|than|plugin|not|createElement|loaded|end|javascript||position'.split('|'),0,{}))
+/* Copyright (c) 2006 Brandon Aaron (http://brandonaaron.net)
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
+ * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * $LastChangedDate$
+ * $Rev$
+ *
+ * Version 2.1.1
+ */
+
+(function($){
+
+/**
+ * The bgiframe is chainable and applies the iframe hack to get 
+ * around zIndex issues in IE6. It will only apply itself in IE6 
+ * and adds a class to the iframe called 'bgiframe'. The iframe
+ * is appeneded as the first child of the matched element(s) 
+ * with a tabIndex and zIndex of -1.
+ * 
+ * By default the plugin will take borders, sized with pixel units,
+ * into account. If a different unit is used for the border's width,
+ * then you will need to use the top and left settings as explained below.
+ *
+ * NOTICE: This plugin has been reported to cause perfromance problems
+ * when used on elements that change properties (like width, height and
+ * opacity) a lot in IE6. Most of these problems have been caused by 
+ * the expressions used to calculate the elements width, height and 
+ * borders. Some have reported it is due to the opacity filter. All 
+ * these settings can be changed if needed as explained below.
+ *
+ * @example $('div').bgiframe();
+ * @before <div><p>Paragraph</p></div>
+ * @result <div><iframe class="bgiframe".../><p>Paragraph</p></div>
+ *
+ * @param Map settings Optional settings to configure the iframe.
+ * @option String|Number top The iframe must be offset to the top
+ * 		by the width of the top border. This should be a negative 
+ *      number representing the border-top-width. If a number is 
+ * 		is used here, pixels will be assumed. Otherwise, be sure
+ *		to specify a unit. An expression could also be used. 
+ * 		By default the value is "auto" which will use an expression 
+ * 		to get the border-top-width if it is in pixels.
+ * @option String|Number left The iframe must be offset to the left
+ * 		by the width of the left border. This should be a negative 
+ *      number representing the border-left-width. If a number is 
+ * 		is used here, pixels will be assumed. Otherwise, be sure
+ *		to specify a unit. An expression could also be used. 
+ * 		By default the value is "auto" which will use an expression 
+ * 		to get the border-left-width if it is in pixels.
+ * @option String|Number width This is the width of the iframe. If
+ *		a number is used here, pixels will be assume. Otherwise, be sure
+ * 		to specify a unit. An experssion could also be used.
+ *		By default the value is "auto" which will use an experssion
+ * 		to get the offsetWidth.
+ * @option String|Number height This is the height of the iframe. If
+ *		a number is used here, pixels will be assume. Otherwise, be sure
+ * 		to specify a unit. An experssion could also be used.
+ *		By default the value is "auto" which will use an experssion
+ * 		to get the offsetHeight.
+ * @option Boolean opacity This is a boolean representing whether or not
+ * 		to use opacity. If set to true, the opacity of 0 is applied. If
+ *		set to false, the opacity filter is not applied. Default: true.
+ * @option String src This setting is provided so that one could change 
+ *		the src of the iframe to whatever they need.
+ *		Default: "javascript:false;"
+ *
+ * @name bgiframe
+ * @type jQuery
+ * @cat Plugins/bgiframe
+ * @author Brandon Aaron (brandon.aaron@gmail.com || http://brandonaaron.net)
+ */
+$.fn.bgIframe = $.fn.bgiframe = function(s) {
+	// This is only for IE6
+	if ( $.browser.msie && parseInt($.browser.version) === 6 ) {
+		s = $.extend({
+			top     : 'auto', // auto == .currentStyle.borderTopWidth
+			left    : 'auto', // auto == .currentStyle.borderLeftWidth
+			width   : 'auto', // auto == offsetWidth
+			height  : 'auto', // auto == offsetHeight
+			opacity : true,
+			src     : 'javascript:false;'
+		}, s || {});
+		var prop = function(n){return n&&n.constructor==Number?n+'px':n;},
+		    html = '<iframe class="bgiframe"frameborder="0"tabindex="-1"src="'+s.src+'"'+
+		               'style="display:block;position:absolute;z-index:-1;'+
+			               (s.opacity !== false?'filter:Alpha(Opacity=\'0\');':'')+
+					       'top:'+(s.top=='auto'?'expression(((parseInt(this.parentNode.currentStyle.borderTopWidth)||0)*-1)+\'px\')':prop(s.top))+';'+
+					       'left:'+(s.left=='auto'?'expression(((parseInt(this.parentNode.currentStyle.borderLeftWidth)||0)*-1)+\'px\')':prop(s.left))+';'+
+					       'width:'+(s.width=='auto'?'expression(this.parentNode.offsetWidth+\'px\')':prop(s.width))+';'+
+					       'height:'+(s.height=='auto'?'expression(this.parentNode.offsetHeight+\'px\')':prop(s.height))+';'+
+					'"/>';
+		return this.each(function() {
+			if ( $('> iframe.bgiframe', this).length == 0 )
+				this.insertBefore( document.createElement(html), this.firstChild );
+		});
+	}
+	return this;
+};
+
+})(jQuery);
+
+
+
+
+/*
+ClockPick, by Josh Nathanson
+Version 1.2.7
+Timepicker plugin for jQuery
+See copyright at end of file
+Complete documentation at http://www.jnathanson.com/index.cfm?page=jquery/clockpick/ClockPick
+name	 clockpick
+type	 jQuery
+param	 options                  hash                    object containing config options
+param	 options[starthour]       int                     starting hour (use military int)
+param	 options[endhour]         int                     ending hour (use military int)
+param	 options[showminutes]     bool                    show minutes
+param 	 options[minutedivisions] int                     number of divisions, i.e. 4 = :00, :15, :30, :45
+param 	 options[military]        bool                    use 24hr time if true
+param	 options[event]           string                  mouse event to trigger plugin
+param	 options[layout]          string                  set div layout to vertical or horizontal
+                                  ('vertical','horizontal')
+param	 options[valuefield]      string                  field to insert time value, if not same as click field
+                                  (name of input field)
+param	 options[useBgiframe]	  bool					  set true if using bgIframe plugin
+param	 options[hoursopacity]	  float					  set opacity of hours container
+param 	 options[minutesopacity]  float					  set opacity of minutes container
+param	 callback                 function                callback function - gets passed back the time value as a 
+														  string
+*/
+
+jQuery.fn.clockpick = function(options, callback) {
+
+	var settings = {
+		starthour       : 8,
+		endhour         : 18,
+		showminutes     : true,
+		minutedivisions : 4,
+		military        : false,
+		event           : 'click',
+		layout			: 'vertical',
+		valuefield		: null,
+		useBgiframe		: false,
+		hoursopacity	: 1,
+		minutesopacity  : 1
+		};
+		
+	if(options) {
+		jQuery.extend(settings, options);
+	};
+	
+	var callback = callback || function() { },
+	 	v = (settings.layout == 'vertical'); // boolean for vertical, shorten footprint
+	errorcheck();	
+	
+	jQuery(this)[settings.event](function(e) {
+		
+		var self = this,
+		$self = jQuery( this ),
+		$body = jQuery( "body" );
+		
+		if ( !settings.valuefield ) {
+			$self.unbind( "keydown" ).bind( "keydown", keyhandler );
+		}
+		else {
+			var inputfield = jQuery("[name=" + settings.valuefield + "]");
+			inputfield
+				.unbind( "keydown" )
+				.bind( "keydown", keyhandler)[0]
+				.focus();
+			inputfield
+				.bind("click", function() { inputfield.unbind("keydown"); } );										
+		}
+		// clear any malingerers
+		jQuery("#CP_hourcont,#CP_minutecont").remove();
+		
+		// append hourcont to body
+		// add class "CP" for mouseout recognition, although there is only
+		// one hourcont on the screen at a time
+		$hourcont = jQuery("<div id='CP_hourcont' class='CP' />").appendTo( $body );
+		!settings.useBgiframe ? $hourcont.css("opacity",settings.hoursopacity) : null;
+		binder( $hourcont );
+		
+		$hourcol1 = jQuery("<div class='CP_hourcol' id='hourcol1' />").appendTo( $body );
+		$hourcol2 = jQuery("<div class='CP_hourcol' id='hourcol2' />").appendTo( $body );
+
+		// if showminutes, append minutes cont to body
+		if (settings.showminutes) {
+			$mc = jQuery("<div id='CP_minutecont' class='CP' />").appendTo( $body );
+			!settings.useBgiframe ? $mc.css("opacity",settings.minutesopacity) : null;
+			binder($mc);
+		}
+		if ( !v ) {
+			$hourcont.css("width","auto");
+			$mc.css("width","auto");
+		}
+		else {
+			$hourcol1.addClass('floatleft');
+			$hourcol2.addClass('floatleft');
+		}
+				
+		// all the action right here
+		// fill in the hours container (minutes rendered in hour mouseover)
+		// then make hour container visible
+		renderhours();
+		putcontainer();
+		
+		/*----------------------helper functions below-------------------------*/
+				
+		function renderhours() {
+			// fill in the $hourcont div
+			var c = 1; 
+			// counter as index 2 of hr id, gives us index 
+			// in group of hourdivs for calculating where to put minutecont on keydown
+			for (h=settings.starthour; h<=settings.endhour; h++) {
+				
+				if(h==12) { c = 1; } // reset counter for col 2
+				
+				displayhours = ((!settings.military && h > 12) ? h - 12 : h);
+				// rectify zero hour
+				if (!settings.military && h == 0) {
+					displayhours = '12';
+				}
+				if ( settings.military && h < 10 ) {
+					displayhours = '0' + displayhours;
+				}
+				$hd = jQuery("<div class='CP_hour' id='hr_" + h + "_" + c + "'>" + displayhours + set_tt(h) + "</div>");
+				// shrink width a bit if military
+				if (settings.military) { $hd.width(20); }
+				binder($hd);
+				if (!v) {
+					$hd.css("float","left");
+				}
+				(h<12) ? $hourcol1.append($hd) : $hourcol2.append($hd);
+				c++;
+			}
+			$hourcont.append($hourcol1);
+			!v ? $hourcont.append("<div style='clear:left' />") : '';
+			$hourcont.append($hourcol2);
+		}
+		
+		function renderminutes(h) {
+			realhours = h;
+			displayhours = (!settings.military && h > 12) ? h - 12 : h;
+			if (!settings.military && h == 0) {
+				displayhours = '12';
+			}
+			if ( settings.military && h < 10 ) {
+				displayhours = '0' + displayhours;
+			}
+			$mc.empty();
+			var n = 60 / settings.minutedivisions,
+				tt = set_tt(realhours),
+				counter = 1;
+		
+			for(m=0;m<60;m=m+n) {
+				$md = jQuery("<div class='CP_minute' id='" + realhours + "_" + m + "'>" 
+							 + displayhours + ":" + ((m<10) ? "0" : "") + m + tt 
+							 + "</div>");
+				if ( !v ) {
+					$md.css("float","left");
+					if (settings.minutedivisions > 6 
+						&& counter == settings.minutedivisions / 2 + 1) {
+						// long horizontal, kick in extra row after half
+						$mc.append("<div style='clear:left' />");
+					}
+				}
+				$mc.append($md);
+				binder($md);
+				counter++;
+			}
+		}
+		
+		function set_tt(realhours) {
+			if (!settings.military) { 
+				return (realhours >= 12) ? ' PM' : ' AM'; 
+				}
+			else { 
+				return '';
+			}
+		}
+		
+		function putcontainer() {
+			if ( e.type != 'focus') {
+				$hourcont
+				.css("left",e.pageX - 5 + 'px')
+				.css("top",e.pageY - (Math.floor($hourcont.height() / 2)) + 'px');
+				rectify($hourcont);
+			}
+			else {
+				$self.after($hourcont);
+			}
+			$hourcont.slideDown('fast');
+			
+			if ( settings.useBgiframe )
+				bgi( $hourcont );			
+		}
+		
+		function rectify($obj) { 
+			// if a div is off the screen, move it accordingly
+			var ph = document.documentElement.clientHeight 
+						? document.documentElement.clientHeight 
+						: document.body.clientHeight;
+			var pw = document.documentElement.clientWidth
+						? document.documentElement.clientWidth
+						: document.body.clientWidth;
+			var t = parseInt($obj.css("top"));
+			var l = parseInt($obj.css("left"));
+			var st = document.documentElement.scrollTop 
+						? document.documentElement.scrollTop 
+						: document.body.scrollTop;
+			// run off top
+			if ( t <= st && !$obj.is("#CP_minutecont") ) {
+				$obj.css("top",st+10+'px');
+			}
+			else if (t + $obj.height() - st > ph) {
+				$obj.css("top",st + ph - $obj.height() - 10 + 'px');
+			}
+			if ( l <= 0 ) {
+				$obj.css("left", '10px');
+			}
+		}
+		
+		function bgi( ob ) {
+			if ( typeof jQuery.fn.bgIframe == 'function' )
+				ob.bgIframe();
+			else
+				alert('bgIframe plugin not loaded.');
+		}
+		
+		function binder($obj) {
+		// all the binding is done here
+		// event handlers have been abstracted out,
+		// so they can handle mouse or key events
+		
+			// bindings for hc (hours container)
+			if($obj.attr("id") == 'CP_hourcont') {
+				$obj.mouseout(function(e) { hourcont_out(e) });
+			}
+			
+			// bindings for mc (minute container)
+			else if ($obj.attr("id") == 'CP_minutecont') {
+				$obj.mouseout(function(e) { minutecont_out(e) });
+			}
+			
+			// bindings for $hd (hour divs)
+			else if ($obj.attr("class") == 'CP_hour') {
+				$obj.mouseover(function(e) { hourdiv_over($obj, e) });
+				$obj.mouseout(function() { hourdiv_out($obj) });					
+				$obj.click(function() {	hourdiv_click($obj) });
+			}
+			
+			// bindings for $md (minute divs)
+			else if ($obj.attr("class") == 'CP_minute') {
+				$obj.mouseover(function() { minutediv_over($obj) });
+				$obj.mouseout(function() { minutediv_out($obj) });					
+				$obj.click(function() {	minutediv_click($obj) });
+			}
+		};
+		
+		function hourcont_out(e) {
+			/*
+			this tells divs to clear only if rolling all the way 
+			out of hourcont.
+			relatedTarget "looks ahead" to see where the mouse
+			has moved to on mouseOut.
+			IE uses the more sensible "toElement".
+			try/catch for Mozilla bug on relatedTarget-input field.
+			*/
+			try {
+				t = (e.toElement) ? e.toElement : e.relatedTarget;
+				if (!(jQuery(t).is("div[class^=CP], iframe"))) {
+					// Safari incorrect mouseover/mouseout
+					//if (!jQuery.browser.safari) {
+						cleardivs();
+					//}
+				}	
+			}
+			catch(e) {
+				cleardivs();
+			}
+		}
+		
+		function minutecont_out(e) {
+			try {
+				t = (e.toElement) ? e.toElement : e.relatedTarget;
+				if (!(jQuery(t).is("div[class^=CP], iframe"))) {
+					cleardivs();
+				}		
+			}
+			catch(e) {
+				cleardivs();
+			}
+		}
+		
+		function hourdiv_over($obj, e) {
+			var h = $obj.attr("id").split('_')[1],
+				i = $obj.attr("id").split('_')[2],
+				l,
+				t;
+			$obj.addClass("CP_over");
+			if ( settings.showminutes ) {
+				$mc.hide();
+				renderminutes(h);
+				
+				// set position & show minutes container
+				if (v) {
+					t = e.type == 'mouseover'
+						? e.pageY - 15
+						: $hourcont.offset().top + 2 + ($obj.height() * i);
+					if ( h < 12 )
+						l = $hourcont.offset().left - $mc.width() - 2;
+					else
+						l = $hourcont.offset().left + $hourcont.width() + 2;
+				}
+				else {
+					l = (e.type == 'mouseover') 
+						? e.pageX - 10 
+						: $hourcont.offset().left + ($obj.width()-5) * i;
+					if(h<12) {
+						t = $hourcont.offset().top - $mc.height() - 2;
+					}
+					else {
+						t = $hourcont.offset().top + $hourcont.height();
+					}
+				}
+				$mc.css("left",l+'px').css("top",t+'px');
+				rectify( $mc );
+				$mc.show();
+				
+				if ( settings.useBgiframe )
+					bgi( $mc );
+			}
+			return false;
+		}
+		
+		
+		
+		function hourdiv_out($obj) {
+			$obj.removeClass("CP_over");
+			return false;
+		}
+		
+		function hourdiv_click($obj) {
+			h = $obj.attr("id").split('_')[1];
+			tt = set_tt(h);
+			str = $obj.text();
+			if(str.indexOf(' ') != -1) {
+				cleanstr = str.substring(0,str.indexOf(' '));
+			}
+			else {
+				cleanstr = str;
+			}
+			$obj.text(cleanstr + ':00' + tt);
+			setval($obj);
+			cleardivs();
+		}
+		
+		function minutediv_over($obj) {
+			$obj.addClass("CP_over");
+			return false;
+		}
+		
+		function minutediv_out($obj) {
+			$obj.removeClass("CP_over");	
+			return false;
+		}
+		
+		function minutediv_click($obj) {
+			setval($obj);
+			cleardivs();
+		}
+		
+		function setval($obj) { // takes either hour or minute obj
+			if(!settings.valuefield) {
+				self.value = $obj.text();
+			}
+			else {
+				jQuery("input[name=" + settings.valuefield + "]").val($obj.text());
+			}
+			callback.apply( $self, [ $obj.text() ]);
+			// unbind keydown handler, otherwise it will double-bind if 
+			// field is activated more than once
+			$self.unbind( "keydown", keyhandler );
+		}
+		
+		function cleardivs() {
+			if (settings.showminutes) {
+				$mc.hide();
+			}
+			$hourcont.slideUp('fast');
+			$self.unbind( "keydown", keyhandler );
+		}
+		
+		// keyboard handling
+		
+		function keyhandler( e ) {
+			
+			// $obj is current active div
+			var $obj = $("div.CP_over").size() ? $("div.CP_over") : $("div.CP_hour:first"),
+				divtype = $obj.is(".CP_hour") ? 'hour' : 'minute',
+				hi = (divtype == 'hour') ? $obj[0].id.split('_')[2] : 0, // hour index
+				h = (divtype == 'minute') ? $obj[0].id.split('_')[0] : $obj[0].id.split('_')[1]; // real hour 
+			if (divtype == 'minute') 
+				{ var curloc = h<12 ? 'm1' : 'm2' }
+			else 
+				{ var curloc = h<12 ? 'h1' : 'h2' }
+			
+			function divprev($obj) {
+				if ($obj.prev().size()) {
+					eval(divtype + 'div_out($obj)');
+					eval(divtype + 'div_over($obj.prev(), e)');
+				}
+				else { return false; }
+			}
+			
+			function divnext($obj) {
+				if ($obj.next().size()) {
+					eval(divtype + 'div_out($obj)');
+					eval(divtype + 'div_over($obj.next(), e)');
+				}
+				else { return false; }
+			}
+			
+			function hourtohour($obj) {
+				var ctx = h>=12 ? '#hourcol1' : '#hourcol2';
+				$newobj = jQuery(".CP_hour[id$=_" + hi + "]", ctx );
+				if ($newobj.size()) {
+					hourdiv_out($obj);
+					hourdiv_over($newobj, e);
+				}
+				else { return false; }
+			}
+			
+			function hourtominute($obj) {
+				hourdiv_out($obj);
+				minutediv_over($(".CP_minute:first"));
+			}
+			
+			function minutetohour($obj) {
+				minutediv_out($obj);
+				var ctx = h>=12 ? '#hourcol2' : '#hourcol1';
+				// extract hour from minutediv, then find hourdiv with that hour
+				var $newobj = jQuery(".CP_hour[id^=hr_" + h + "]", ctx);
+				hourdiv_over($newobj, e);
+			}
+
+			switch (e.keyCode) {
+				case 37: // left arrow
+					if (v) {
+						switch (curloc) {
+							case 'm1':
+								return false;
+								break;
+							case 'm2':
+								minutetohour($obj);
+								break;
+							case 'h1':
+								hourtominute($obj);
+								break;
+							case 'h2':
+								hourtohour($obj);
+								break;
+						}
+					}
+					else {
+						divprev($obj);
+					}
+					break;
+					
+				case 38: // up arrow
+					if(v) {
+						divprev($obj);
+					}
+					else {
+						switch (curloc) {
+							case 'm1':
+								return false;
+								break;
+							case 'm2':
+								minutetohour($obj);
+								break;
+							case 'h1':
+								hourtominute($obj);
+								break;
+							case 'h2':
+								hourtohour($obj);
+								break;
+						}
+					}
+					break;
+				case 39: // right arrow
+					if (v) {
+						switch (curloc) {
+							case 'm1':
+								minutetohour($obj);
+								break;
+							case 'm2':
+								return false;
+								break;
+							case 'h1':
+								hourtohour($obj);
+								break;
+							case 'h2':
+								hourtominute($obj);
+								break;
+						}
+					}
+					else {
+						divnext($obj);
+					}
+					break;
+				
+				case 40: // down arrow
+					if(v) {
+						divnext($obj);
+					}
+					else {
+						switch (curloc) {
+							case 'm1':
+								minutetohour($obj);
+								break;
+							case 'm2':
+								return false;
+								break;
+							case 'h1':
+								hourtohour($obj);
+								break;
+							case 'h2':
+								hourtominute($obj);
+								break;
+						}
+					}
+					break;
+					
+				case 13: // return
+					eval(divtype + 'div_click($obj)');
+					break;
+					
+				default:
+					return true;
+			}
+					
+		return false;
+			
+		}
+
+	return false;
+	});
+	
+	function errorcheck() {
+		if (settings.starthour >= settings.endhour) {
+			alert('Error - start hour must be less than end hour.');
+			return false;
+		}
+		else if (60 % settings.minutedivisions != 0) {
+			alert('Error - param minutedivisions must divide evenly into 60.');
+			return false;
+		}
+	}
+	
+	return this;
+
+}
+
+/*
++-----------------------------------------------------------------------+
+| Copyright (c) 2007 Josh Nathanson                  |
+| All rights reserved.                                                  |
+|                                                                       |
+| Redistribution and use in source and binary forms, with or without    |
+| modification, are permitted provided that the following conditions    |
+| are met:                                                              |
+|                                                                       |
+| o Redistributions of source code must retain the above copyright      |
+|   notice, this list of conditions and the following disclaimer.       |
+| o Redistributions in binary form must reproduce the above copyright   |
+|   notice, this list of conditions and the following disclaimer in the |
+|   documentation and/or other materials provided with the distribution.|
+|                                                                       |
+| THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS   |
+| "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT     |
+| LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR |
+| A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT  |
+| OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, |
+| SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT      |
+| LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, |
+| DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY |
+| THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT   |
+| (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE |
+| OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  |
+|                                                                       |
++-----------------------------------------------------------------------+
+*/

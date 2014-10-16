@@ -11,19 +11,19 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 $cformsSettings = get_option('cforms_settings');
 
 $cformsSettings = get_option('cforms_settings');
-$plugindir   = $cformsSettings['global']['plugindir'];
-$s = $cformsSettings['global']['cforms_IIS'];
+$plugindir   = dirname(plugin_basename(__FILE__));
+$s = DIRECTORY_SEPARATOR;
 
 ### CSS styles
 $style		= $cformsSettings['global']['cforms_css'];
-$stylefile	= $cformsSettings['global']['cforms_root_dir']."{$s}styling{$s}".$style;
+$stylefile	= dirname(__FILE__)."{$s}styling{$s}".$style;
 
 ### check if pre-9.0 update needs to be made
-if( $cformsSettings['global']['update'] )
+if( isset ($cformsSettings['global']['update']) && $cformsSettings['global']['update'] )
 	require_once (dirname(__FILE__) . '/update-pre-9.php');
 
 ### Check Whether User Can Manage Database
-check_access_priv();
+cforms2_check_access_priv();
 
 ### if all data has been erased quit
 if ( $cformsSettings['global']['cforms_formcount'] == '' ){
@@ -81,13 +81,9 @@ if(!empty($_POST['save_css'])){
 	update_option('cforms_settings',$cformsSettings);
 
 	$style = $cformsSettings['global']['cforms_css'];
-	$stylefile  = $cformsSettings['global']['cforms_root_dir']."{$s}styling{$s}".$style;
+	$stylefile  = dirname(__FILE__)."{$s}styling{$s}".$style;
 	echo ' <div id="message" class="updated fade"><p><strong>'. __('New theme selected.', 'cforms') .'</strong></p></div>'."\n";
 }
-
-
-### check for abspath.php
-abspath_check();
 
 ?>
 <div class="wrap" id="top">
@@ -112,8 +108,8 @@ abspath_check();
 								<td class="cssHint"><?php _e('Please choose a theme file to style your forms' , 'cforms') ?></td>
 								<td class="cssStyles">
 									<?php ### include all css files
-										$d   = $cformsSettings['global']['cforms_root_dir']."{$s}styling";
-										$dCustom = $cformsSettings['global']['cforms_root_dir']."{$s}..{$s}cforms-custom";
+										$d   = dirname(__FILE__)."{$s}styling";
+										$dCustom = dirname(__FILE__)."{$s}..{$s}cforms-custom";
 
 										$exists = file_exists($d);
 										if ( $exists == false )
@@ -175,14 +171,14 @@ abspath_check();
 									<p><?php _e('For comprehensive customization support you may choose to turn on <strong>label &amp; list element ID\'s</strong>. This way each input field &amp; label can be specifically addressed via CSS styles.', 'cforms') ?> </p>
 
 									<input type="submit" name="label-ids" id="label-ids" class="allbuttons" value="<?php if ( $cformsSettings['global']['cforms_labelID']=='' || $cformsSettings['global']['cforms_labelID']=='0' ) _e('Activate Label IDs', 'cforms'); else  _e('Deactivate Label IDs', 'cforms'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_labelID']=='1' ) echo __('Currently turned on ', 'cforms') . '<img class="turnedon" src="' . $cforms_root.'/images/ok.gif" alt=""/>'; ?>
+									<?php if ( $cformsSettings['global']['cforms_labelID']=='1' ) echo __('Currently turned on ', 'cforms') . '<img class="turnedon" src="' . plugin_dir_url(__FILE__).'images/ok.gif" alt=""/>'; ?>
 									<br />
 									<input type="submit" name="li-ids" id="li-ids" class="allbuttons" value="<?php if ( $cformsSettings['global']['cforms_liID']=='' || $cformsSettings['global']['cforms_liID']=='0' ) _e('Activate List Element IDs', 'cforms'); else  _e('Deactivate List Element IDs', 'cforms'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_liID']=='1' ) echo __('Currently turned on ', 'cforms') . '<img class="turnedon" src="' . $cforms_root.'/images/ok.gif" alt=""/>'; ?>
+									<?php if ( $cformsSettings['global']['cforms_liID']=='1' ) echo __('Currently turned on ', 'cforms') . '<img class="turnedon" src="' . plugin_dir_url(__FILE__).'images/ok.gif" alt=""/>'; ?>
 									<br />
 									<br />
 									<input type="submit" name="no-css" id="no-css" class="allbuttons deleteall" style="height:30px" value="<?php if ( $cformsSettings['global']['cforms_no_css']=='' || $cformsSettings['global']['cforms_no_css']=='0' ) _e('Deactivate CSS styling altogether!', 'cforms'); else  _e('Reactivate CSS styling!', 'cforms'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_no_css']=='1' ) echo __('No styles are being used', 'cforms') . '<img class="turnedon" src="' . $cforms_root.'/images/ok.gif" alt=""/>'; ?>
+									<?php if ( $cformsSettings['global']['cforms_no_css']=='1' ) echo __('No styles are being used', 'cforms') . '<img class="turnedon" src="' . plugin_dir_url(__FILE__).'images/ok.gif" alt=""/>'; ?>
 
 								</td>
 							</tr>
@@ -200,7 +196,7 @@ abspath_check();
 
 								$existsjpg = file_exists($d.'/'.$style.'.jpg');
 								if ( $existsjpg )
-									echo __('PREVIEW:', 'cforms').'<br /><img height="228px" width="300px" src="' . $cforms_root.'/styling/'.$style.'.jpg' . '" alt="' . __('Theme Preview', 'cforms') . '" title="' . __('Theme Preview', 'cforms').': ' . $style .'"/>';
+									echo __('PREVIEW:', 'cforms').'<br /><img height="228px" width="300px" src="' . plugin_dir_url(__FILE__).'styling/'.$style.'.jpg' . '" alt="' . __('Theme Preview', 'cforms') . '" title="' . __('Theme Preview', 'cforms').': ' . $style .'"/>';
 
 						}?>
 					</td>

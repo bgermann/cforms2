@@ -1,22 +1,9 @@
-<?php
+<?php add_action( 'wp_ajax_database_getentries', 'cforms2_database_getentries' );
 
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-### check if called from cforms-database.php
-if ( !defined('ABSPATH') ){
-	if ( file_exists('../../abspath.php') )
-	    include_once('../../abspath.php');
-	else
-	    $abspath='../../../../../';
-
-	if ( file_exists( $abspath . 'wp-load.php') )
-	    require_once( $abspath . 'wp-load.php' );
-	else
-	    require_once( $abspath . 'wp-config.php' );
-}
-
-### mini firewall
+function cforms2_database_getentries() {
+check_admin_referer( 'database_getentries' );
 if( !current_user_can('track_cforms') )
-	wp_die("access restricted.");
+	die("access restricted.");
 
 global $wpdb;
 
@@ -27,8 +14,8 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 $cformsSettings = get_option('cforms_settings');
 
 ### get custom functions
-$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
-$CFfunctions = dirname(dirname(dirname(__FILE__))).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )
@@ -122,9 +109,10 @@ if ($showIDs<>'') {
 
 					$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$entry->sub_id.'-';
 
-					if ( $fileuploaddirurl=='' )
-	                    $fileurl = $cformsSettings['global']['cforms_root'].substr($fileuploaddir,strpos($fileuploaddir,$cformsSettings['global']['plugindir'])+strlen($cformsSettings['global']['plugindir']),strlen($fileuploaddir));
-					else
+					if ( $fileuploaddirurl=='' ) {
+						$plugindir = dirname(dirname(dirname(plugin_basename(__FILE__))));
+	                    $fileurl = plugin_dir_url( __FILE__ ).substr($fileuploaddir,strpos($fileuploaddir,$plugindir)+strlen($plugindir)+1);
+					} else
 	                    $fileurl = $fileuploaddirurl;
 
 
@@ -181,4 +169,5 @@ if ($showIDs<>'') {
 	<?php endif;
 
 }
-?>
+die();
+}

@@ -1,13 +1,14 @@
-<?php
+<?php add_action( 'wp_dashboard_setup', 'cforms2_dashboard_setup', 1 );
+
 ### Show entries on dashboard for WP2.7+
-function cforms_dashboard_27_setup() {
-	wp_add_dashboard_widget( 'cforms_dashboard', __( 'Recent cforms entries','cforms' ), 'cforms_dashboard' );
+function cforms2_dashboard_setup() {
+	wp_add_dashboard_widget( 'cforms_dashboard', __( 'Recent cforms entries','cforms' ), 'cforms2_dashboard' );
 }
 
 
 ### Show entries on dashboard
-function cforms_dashboard() {
-	global $wpdb, $plugindir, $wp_db_version, $cformsSettings;
+function cforms2_dashboard() {
+	global $wpdb, $plugindir, $cformsSettings;
 
 	if (!current_user_can('track_cforms')) return;
 
@@ -30,18 +31,13 @@ function cforms_dashboard() {
 				"vertical-align: middle;\n".
 				"margin-right: 6px;\n".
 				"}\n".
-				"</style>\n";
-	if ( $wp_db_version < 6846 ){
-		$content .= "<ul style='font-size:0.8em'>";
-	}
-	else {
-		$content .= "<ul>";
-	}
+				"</style>\n".
+				"<ul>";
 
 	if( count($entries)>0 ){
 		foreach($entries as $entry){
 				$dateConv = mysql2date(get_option('date_format'), $entry->sub_date);
-				$content.= '<li><img class="dashboardIcon" alt="" src="'.$cformsSettings['global']['cforms_root'].'/images/cformsicon.png">'.
+				$content.= '<li><img class="dashboardIcon" alt="" src="'.plugin_dir_url(__FILE__).'images/cformsicon.png">'.
 				"<a title=\"". __('click for details','cforms') ."\" href='admin.php?page=".$plugindir."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a> ".
 				__('via','cforms') . " <strong>". $cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']. "</strong>".
 				" on ". $dateConv ."</li>";
@@ -50,15 +46,7 @@ function cforms_dashboard() {
 	else
 		$content.= '<li>'.__('No entries yet','cforms').'</li>';
 
-	$content.= '</ul>';
-	
-	if ( $wp_db_version < 6846 ){
-		$content .= "<h3><a href='admin.php?page=".$plugindir."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </h3>";
-	}
-	else {
-		$content .= "<p class=\"youhave\"><a href='admin.php?page=".$plugindir."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </p>";
-	}
+	$content .= "</ul><p class=\"youhave\"><a href='admin.php?page=".$plugindir."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </p>";
 
 	echo $content;
 }
-?>

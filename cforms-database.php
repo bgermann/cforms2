@@ -9,25 +9,19 @@ $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
 $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
 ### Check Whether User Can Manage Database
-check_access_priv('track_cforms');
+cforms2_check_access_priv('track_cforms');
 
 ### New global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
-$plugindir   = $cformsSettings['global']['plugindir'];
-
-$cforms_root = $cformsSettings['global']['cforms_root'];
+$plugindir   = dirname(plugin_basename(__FILE__));
 
 ### check if pre-9.0 update needs to be made
-if( $cformsSettings['global']['update'] )
+if( isset($cformsSettings['global']['update']) && $cformsSettings['global']['update'] )
 	require_once (dirname(__FILE__) . '/update-pre-9.php');
 
 ### if all data has been erased quit
-if ( check_erased() )
+if ( cforms2_check_erased() )
 	return;
-
-### check for abspath.php
-abspath_check();
-
 ?>
 <div class="wrap" id="top">
 	<div id="icon-cforms-tracking" class="icon32"><br/></div><h2><?php _e('Tracking Form Data','cforms')?></h2>
@@ -39,19 +33,19 @@ abspath_check();
 	<div id="ctrlmessage"></div>
 	<div class="bborderx"><table id="flex1" style="display:none"><tr><td></td></tr></table></div>
 	<div id="entries"></div>
-	<div id="geturl" title="<?php echo $cforms_root; ?>/js/include/"></div>
+	<div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>js/include/"></div>
 
 	<?php
 	### if called from dashboard
 	$dashboard = '';
-    if ( $_GET['d-id'] ){
+    if ( isset($_GET['d-id']) ){
 	    $dashboard = "qtype: 'id', query: '".$_GET['d-id']."',";
 	}
 	?>
 
 <script type="text/javascript">
 jQuery("#flex1").flexigrid ( {
-	url: '<?php echo $cforms_root.'/js/include/lib_database_overview.php'; ?>',
+	url: ajaxurl,
 	dataType: 'xml',
 	colModel : [
 		{display: '#', name : 'id', width : 40, sortable : true, align: 'center'},
@@ -88,6 +82,10 @@ jQuery("#flex1").flexigrid ( {
 	useRp: true,
 	blockOpacity: 0.9,
 	rp: 30,
+	params : [
+		{name:'action', value:'database_overview'},
+		{name:'_wpnonce', value: '<?php echo wp_create_nonce('database_overview'); ?>'}
+	],
 	rpOptions: [10,30,50,100,200],
 	showTableToggleBtn: true,
 	width: 900,
@@ -96,29 +94,24 @@ jQuery("#flex1").flexigrid ( {
 <?php
 
 ### if called from dashboard
-if ( $_GET['d-id'] ){
+if ( isset($_GET['d-id']) ){
 	$_POST['showids'] = $_GET['d-id'].',';
-	include_once( 'js/include/lib_database_getentries.php' );
 }
 
-cforms_footer();
+cforms2_footer();
 ?>
 </div> <!-- wrap -->
 
 <?php
-add_action('admin_footer', 'insert_cfmodal_tracking');
-function insert_cfmodal_tracking(){
-	global $cforms_root,$noDISP;
-
-	### Temp storage for download data
-	$tempfile = dirname(__FILE__)."/js/include/data.tmp";
+add_action('admin_footer', 'cforms2_insert_modal_tracking');
+function cforms2_insert_modal_tracking(){
 ?>
 	<div class="jqmWindow" id="cf_delete_dialog">
 		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="deleteform" method="post">
 				<div id="cf_target_del"><?php _e('Are you sure you want to delete the record(s)?','cforms'); ?></div>
-				<div class="controls"><a href="#" id="okDelete" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+				<div class="controls"><a href="#" id="okDelete" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__) ?>images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__) ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
 			</form>
 		</div>
 	</div>
@@ -126,7 +119,6 @@ function insert_cfmodal_tracking(){
 		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="downloadform" method="post" id="downloadform">
-				<?php if( is_writable($tempfile) ) : ?>
 				<div id="cf_target_dl">
                     <select id="pickDLformat" name="format">
                         <option value="xml">&nbsp;&nbsp;&nbsp;XML&nbsp;&nbsp;&nbsp;</option>
@@ -141,14 +133,9 @@ function insert_cfmodal_tracking(){
                     <input type="checkbox" class="chkBoxW" id="addip" name="addip" value="true"/><label for="addip"><?php echo sprintf(__('Include IP address of submitting user','cforms')); ?></label><br />
                     <input type="checkbox" class="chkBoxW" id="addurl" name="addurl" value="true"/><label for="addurl"><?php echo sprintf(__('Add URL for upload fields','cforms')); ?></label>
 				</div>
-                <?php else :
-                    echo '<p><strong>'.sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),'<br />&nbsp;&nbsp;&nbsp;<code>'.dirname(__FILE__).'/js/include</code><br />','<br />').'</strong></p>';
-                    echo '<p><strong>'.sprintf( __('...and reload this page afterwards.','cforms')).'</strong></p>';
-                    endif; ?>
-				<div class="controls"><?php if( is_writable($tempfile) ) : ?><a href="#" id="okDL" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><?php endif; ?><a href="#" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+				<div class="controls"><a href="#" id="okDL" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
 			</form>
 		</div>
 	</div>
 <?php
 }
-?>

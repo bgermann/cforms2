@@ -1,16 +1,8 @@
-<?php
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
+<?php add_action( 'wp_ajax_cforms2_field_fieldsetstart', 'cforms2_field_fieldsetstart' );
 
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
+function cforms2_field_fieldsetstart() {
+check_admin_referer( 'cforms2_field_fieldsetstart' );
 
-load_plugin_textdomain( 'cforms' );
 ?>
 
 
@@ -20,3 +12,5 @@ load_plugin_textdomain( 'cforms' );
 	<input type="text" id="cf_edit_label" name="cf_edit_label" value="">
 
 </form>
+<?php die();
+}

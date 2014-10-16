@@ -2,18 +2,8 @@
 ###
 ### WP comment feature
 ###
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('abspath.php') )
-	include_once('abspath.php');
-else
-	$abspath='../../../';
 
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
-
-global $WPsuccess, $smtpsettings, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $comment_author_IP;
+global $WPsuccess, $subID, $wpdb, $track, $comment_author_IP;
 
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
@@ -23,7 +13,6 @@ $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 $content 	 = '';
 
 $err		 = 0;
-$filefield	 = 0;   ### for multiple file upload fields
 
 $validations = array();
 $all_valid 	 = 1;
@@ -127,7 +116,7 @@ if ( $isAjaxWPcomment ){
 			}
 
 	        ### keep track of custom comment fields
-	        write_tracking_record($no,$comment_author_email,$comment_id);
+	        cforms2_write_tracking_record($no,$comment_author_email,$comment_id);
 
 			$template = stripslashes($cformsSettings['global']['cforms_commentHTML']);
 
@@ -189,8 +178,8 @@ if ( $isAjaxWPcomment ){
 		###
 		### Filter first?
 		###
-	    $CFfunctionsC = dirname(dirname(__FILE__)).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
-		$CFfunctions = dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+	    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+		$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
         if ( file_exists($CFfunctionsC) )
 			include_once($CFfunctionsC);
 		else if ( file_exists($CFfunctions) )
@@ -255,7 +244,7 @@ if ( $isAjaxWPcomment ){
 			cforms( '',$no );
 
 		### keep track of custom comment fields
-        write_tracking_record($no,$comment_author_email,$comment_id);
+        cforms2_write_tracking_record($no,$comment_author_email,$comment_id);
 
 		$location = ( empty($_POST['redirect_to'] ) ? get_permalink($_POST['comment_post_ID']).$cfpre.'cfemail=posted'.'#cforms'.$no.'form' : $_POST['redirect_to'] );
 		$location = apply_filters('comment_post_redirect', $location, $comment);
@@ -271,4 +260,3 @@ if ( $isAjaxWPcomment ){
 		header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=err'.$err. '#cforms'.$no.'form' );
 	}
 } ### non Ajax
-?>

@@ -1,18 +1,10 @@
-<?php
+<?php add_action( 'wp_ajax_database_overview', 'cforms2_database_overview' );
+
+function cforms2_database_overview() {
 ob_start();
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
-
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
-
+check_admin_referer( 'database_overview' );
 if( !current_user_can('track_cforms') )
-	wp_die("access restricted.");
+	die("access restricted.");
 
 global $wpdb;
 
@@ -87,12 +79,13 @@ else{
 $sql="SELECT * FROM {$wpdb->cformssubmissions} $where $sort $limit";
 $result = $wpdb->get_results($sql);
 
-
+/*
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT" );
 header("Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" );
 header("Cache-Control: no-cache, must-revalidate" );
 header("Pragma: no-cache" );
 header("Content-type: text/xml");
+*/
 
 $xml = "<?xml version=\"1.0\"?>\n";
 $xml .= "<rows>";
@@ -113,4 +106,5 @@ foreach ($result as $entry) {
 $xml .= "</rows>";
 ob_end_clean();
 echo $xml;
-?>
+die();
+}

@@ -1,27 +1,20 @@
-<?php
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
+<?php add_action( 'wp_ajax_cforms2_installpreset', 'cforms2_installpreset' );
 
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
+function cforms2_installpreset() {
+check_admin_referer( 'cforms2_installpreset' );
 
-load_plugin_textdomain( 'cforms' );
 ?>
 
 	<p>
 		<label for="cf_edit_label_select"><?php _e('Please select a predefined form:', 'cforms'); ?></label>
-		<?php echo get_form_presets(); ?>
+		<?php echo cforms2_get_form_presets(); ?>
 	</p>
 	<p class="ex installNote"><?php _e('By accepting and choosing OK, you will <strong>replace</strong> all your existing input fields with this new preset! If you\'re unsure about this, make a backup copy of the form first.', 'cforms'); ?></p>
-<?php
+<?php die();
+}
 
 ### read all presets from the dir
-function get_form_presets(){
+function cforms2_get_form_presets(){
 	$fullplugindir	= dirname(__FILE__);
 	$presetsdir		= $fullplugindir.'/../../formpresets/';
 
@@ -69,5 +62,3 @@ function get_form_presets(){
 	$fullstring = '<select name="formpresets" id="formpresets">'.$list.'</select></p><p class="descPreset">'.$alldesc;
     return ($list=='')?'<select><li>'.__('Not available','cforms').'</select></li>':$fullstring;
 }
-
-?>

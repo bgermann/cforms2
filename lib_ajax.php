@@ -3,47 +3,23 @@
 ###  ajax submission of form
 ###
 
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('abspath.php') )
-	include_once('abspath.php');
-else
-	$abspath='../../../';
-
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
-
-if (version_compare(PHP_VERSION, '5.0.0', '>'))
-	require_once(dirname(__FILE__) . '/lib_email.php');
-else
-	require_once(dirname(__FILE__) . '/lib_email_php4.php');
-
+require_once(dirname(__FILE__) . '/lib_email.php');
 require_once(dirname(__FILE__) . '/lib_aux.php');
 
-###
-###  reset captcha image
-###
-function reset_captcha( $no = '' ){
-	### fix for windows!!!
-	if ( strpos(__FILE__,'\\') ){
-		$path = preg_replace( '|.*(wp-content.*)lib_ajax.php|','${1}', __FILE__ );
-		$path = '/'.str_replace('\\','/',$path);
-	}
-	else
-		$path = preg_replace( '|.*(/wp-content/.*)/.*|','${1}', __FILE__ );
-
-	$path = get_bloginfo('wpurl') . $path;
-
-	$newimage = 'newcap|'.$no.'|'.$path.'/cforms-captcha.php?ts='.$no;
-	return $newimage;
-}
+add_action( 'wp_ajax_submitcomment', 'cforms2_submitcomment' );
+add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 
 ###
 ###  submit comment
 ###
-function cforms_submitcomment($content) {
-	global $cformsSettings, $wpdb, $subID, $smtpsettings, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale, $abspath;
+function cforms2_submitcomment() {
+	check_admin_referer( 'submitcomment' );
+	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL;
+
+	header ('Content-Type: text/javascript');
+	$content = '';
+	if (isset($_POST['rsargs'][0]))
+		$content = $_POST['rsargs'][0];
 
     $WPsuccess=false;
 	
@@ -67,13 +43,8 @@ function cforms_submitcomment($content) {
 	$segments = explode('$#$', $content[0]);
 	$params = array();
 
-	$sep = (strpos(__FILE__,'/')===false)?'\\':'/';
-	$WPpluggable = $abspath . 'wp-includes'.$sep.'pluggable.php';
-	if ( file_exists($WPpluggable) )
-		require_once($WPpluggable);
-
-    $CFfunctionsC = dirname(dirname(__FILE__)).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
-    $CFfunctions = dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+    $CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
     if ( file_exists($CFfunctionsC) )
         include_once($CFfunctionsC);
     else if ( file_exists($CFfunctions) )
@@ -112,20 +83,18 @@ function cforms_submitcomment($content) {
 	$taf_youremail = false;
 	$taf_friendsemail = false;
 
-	$isFieldArray = false;
-
 	###  form limit reached
-	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && get_cforms_submission_left($no)==0) || !cf_check_time($no) ){
+	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
-	    return $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])) . $hide;
+	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']));
+		die();
 	}
 
 	### for comment luv
 	get_currentuserinfo();
-	global $user_level;
 
 	### Subscribe-To-Comments
-	$isSubscribed=='';
+	$isSubscribed='';
 	if ( class_exists('sg_subscribe') ){
 		global $sg_subscribe;
 		sg_subscribe_start();
@@ -196,15 +165,8 @@ function cforms_submitcomment($content) {
 				
 				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$field_name,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
-				$customTrackingID	= cf_sanitize_ids( $input_name[2] );
+				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 				
-				/* 2.6.2012
-				$isFieldArray = strpos($input_name[1],'[]');
-				$idPartA = strpos($field_name,'[id:');
-				$idPartB = strrpos($field_name,']',$idPartA); 
-				$customTrackingID = substr($field_name,$idPartA+4,($idPartB-$idPartA)-4);
-				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
-				*/
 			}
 			else
 				$customTrackingID='';
@@ -331,7 +293,7 @@ function cforms_submitcomment($content) {
         my_cforms_filter($no);
 
 	###  assemble text & html email
-	$r = formatEmail($track,$no);
+	$r = cforms2_format_email($track,$no);
     $formdata = $r['text'];
     $htmlformdata = $r['html'];
 
@@ -339,7 +301,7 @@ function cforms_submitcomment($content) {
 	###
 	###  record:
 	###
-	$subID = ( $isTAF=='2' && $track['send2author']<>'1' )?'noid':write_tracking_record($no,$field_email);
+	$subID = ( $isTAF=='2' && $track['send2author']<>'1' )?'noid':cforms2_write_tracking_record($no,$field_email);
 
 
 	###
@@ -357,8 +319,10 @@ function cforms_submitcomment($content) {
 		require_once (dirname(__FILE__) . '/lib_WPcomment.php');
 
 	    ###  Catch WP-Comment function: error
-	    if ( !$WPsuccess )
-    	    return $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
+	    if ( !$WPsuccess ) {
+    	    echo $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
+			die();
+		}
     } ### Catch WP-Comment function
 
 
@@ -374,7 +338,7 @@ function cforms_submitcomment($content) {
 
 
 	### from
-	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	$frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 
 
 	###  T-A-F override?
@@ -389,16 +353,16 @@ function cforms_submitcomment($content) {
 	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
 	if (function_exists('my_cforms_logic'))
 		$vsubject = my_cforms_logic($trackf,$vsubject,'adminEmailSUBJ');
-	$vsubject = check_default_vars($vsubject,$no);
-	$vsubject = check_cust_vars($vsubject,$track,$no);
+	$vsubject = cforms2_check_default_vars($vsubject,$no);
+	$vsubject = cforms2_check_cust_vars($vsubject,$track,$no);
 
 
 	###  prep message text, replace variables
 	$message = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header']);
 	if ( function_exists('my_cforms_logic') )
 		$message = my_cforms_logic($trackf, $message,'adminEmailTXT');
-	$message = check_default_vars($message,$no);
-	$message = check_cust_vars($message,$track,$no);
+	$message = cforms2_check_default_vars($message,$no);
+	$message = cforms2_check_cust_vars($message,$track,$no);
 
 	###  actual user message
     $htmlmessage='';
@@ -406,8 +370,8 @@ function cforms_submitcomment($content) {
 		$htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
 	    if ( function_exists('my_cforms_logic') )
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
-		$htmlmessage = check_default_vars($htmlmessage,$no);
-	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no,true);
+		$htmlmessage = cforms2_check_default_vars($htmlmessage,$no);
+	    $htmlmessage = cforms2_check_cust_vars($htmlmessage,$track,$no,true);
 
 	}
 
@@ -417,7 +381,7 @@ function cforms_submitcomment($content) {
 	else
 		$userReplyTo = $field_email;
 	
-	$mail = new cf_mail($no,$frommail,$to,$userReplyTo, true);
+	$mail = new cforms2_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
 	$mail->char_set = 'utf-8';
 
@@ -431,11 +395,8 @@ function cforms_submitcomment($content) {
 	    $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 
 
-	###  SMTP server or native PHP mail() ?
     if( $cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1' || ($WPsuccess && $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']!='21') )
         $sentadmin = 1;
-	else if ( $smtpsettings[0]=='1' )
-		$sentadmin = cforms_phpmailer( $no, $frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata );
 	else
 	    $sentadmin = $mail->send();
 
@@ -446,14 +407,14 @@ function cforms_submitcomment($content) {
 	    if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[data][$ccme]<>'') )  ###  not if no email & already CC'ed
 	    {
 
-	                $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 
 	                ###  actual user message
 	                $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
 	                if ( function_exists('my_cforms_logic') )
 	                    $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
-	                $cmsg = check_default_vars($cmsg,$no);
-	                $cmsg = check_cust_vars($cmsg,$track,$no);
+	                $cmsg = cforms2_check_default_vars($cmsg,$no);
+	                $cmsg = cforms2_check_cust_vars($cmsg,$track,$no);
 
 	                ###  HTML text
 	                $cmsghtml='';
@@ -461,16 +422,16 @@ function cforms_submitcomment($content) {
 	                    $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
 	                    if ( function_exists('my_cforms_logic') )
 	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
-	                    $cmsghtml = check_default_vars($cmsghtml,$no);
-	                    $cmsghtml = check_cust_vars($cmsghtml,$track,$no,true);
+	                    $cmsghtml = cforms2_check_default_vars($cmsghtml,$no);
+	                    $cmsghtml = cforms2_check_cust_vars($cmsghtml,$track,$no,true);
 	                }
 
 	                ### subject
 	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 					if (function_exists('my_cforms_logic'))
 						$subject2 = my_cforms_logic($trackf,$subject2,'autoConfSUBJ');
-					$subject2 = check_default_vars($subject2,$no);
-	                $subject2 = check_cust_vars($subject2,$track,$no);
+					$subject2 = cforms2_check_default_vars($subject2,$no);
+	                $subject2 = cforms2_check_cust_vars($subject2,$track,$no);
 
 	                ###  different cc & ac subjects?
 	                $s=explode('$#$',$subject2);
@@ -483,14 +444,14 @@ function cforms_submitcomment($content) {
 	                else
 	                    $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 
-	                $mail = new cf_mail($no,$frommail,$field_email,$replyto);
+	                $mail = new cforms2_mail($no,$frommail,$field_email,$replyto);
 
 	                ### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,$cformsSettings['global']['cforms_IIS'])+1, strlen($a) );
-	                    $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
+	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 	                    $mail->add_file($a, $n,'base64',$m); ### optional name
 	                }
 
@@ -498,9 +459,6 @@ function cforms_submitcomment($content) {
 
 	                ### CC or auto conf?
 	                if ( $ccme&&$trackf[data][$ccme]<>'' ) {
-	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
-	                    else{
 	                        $mail->subj = $s[1];
 	                        if ( $mail->html_show ) {  // 3.2.2012 changed from html_show_ac > admin email setting dictates this!
 	                            $mail->is_html(true);
@@ -511,12 +469,8 @@ function cforms_submitcomment($content) {
 	                            $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 
 	                        $sent = $mail->send();
-	                    }
 	                }
 	                else {
-	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[0] , $cmsg , '', $cmsghtml, '', 'ac' );
-	                    else{
 	                        $mail->subj = $s[0];
 	                        if ( $mail->html_show_ac ) {
 	                            $mail->is_html(true);
@@ -527,13 +481,13 @@ function cforms_submitcomment($content) {
 	                            $mail->body     =  $cmsg;
 
 	                        $sent = $mail->send();
-	                    }
 	                }
 
 	                if( $sent<>'1' ) {
-	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sent:$mail->ErrorInfo;
+	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->ErrorInfo;
 	                    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-	                    return $pre . $err .'|!!!';
+	                    echo $pre . $err .'|!!!';
+						die();
 	                }
 	    } ###  cc
 
@@ -544,11 +498,11 @@ function cforms_submitcomment($content) {
 		if ( $WPsuccess )
 			$successMsg = $WPresp;
 		else{
-        	$successMsg	= check_default_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']),$no);
+        	$successMsg	= cforms2_check_default_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']),$no);
 			$successMsg	= str_replace ( $mail->eol, '<br />', $successMsg);
 		}
 
-		$successMsg	= check_cust_vars($successMsg,$track,$no);
+		$successMsg	= cforms2_check_cust_vars($successMsg,$track,$no);
 
 	    ### logic: possibly change usermessage
 	    if ( function_exists('my_cforms_logic') )
@@ -557,7 +511,7 @@ function cforms_submitcomment($content) {
 
 		$opt='';
 		###  hide?
-        if ( $cformsSettings['form'.$no]['cforms'.$no.'_hide'] || get_cforms_submission_left($no)==0 )
+        if ( $cformsSettings['form'.$no]['cforms'.$no.'_hide'] || cforms2_get_submission_left($no)==0 )
 			$opt .= '|~~~';
 
 		###  redirect to a different page on suceess?
@@ -570,205 +524,17 @@ function cforms_submitcomment($content) {
 				$opt .= '|>>>' . $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 		}
 
-	    return $pre.$successMsg.$opt;
+	    echo $pre.$successMsg.$opt;
 
 	}
 	else {  ###  no admin mail sent!
 
 		###  return error msg
-		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sentadmin:$mail->ErrorInfo;
+		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->ErrorInfo;
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-	    return $pre . $err .'|!!!';
+	    echo $pre . $err .'|!!!';
 
 	}
 
-} ### function
-
-
-
-###
-###  sajax stuff
-###
-
-if (!isset($SAJAX_INCLUDED)) {
-
-	$GLOBALS['sajax_version'] = '0.12';
-	$GLOBALS['sajax_debug_mode'] = 0;
-	$GLOBALS['sajax_export_list'] = array();
-	$GLOBALS['sajax_request_type'] = 'POST';
-	$GLOBALS['sajax_remote_uri'] = '';
-	$GLOBALS['sajax_failure_redirect'] = '';
-
-	function sajax_init() {
-	}
-
-	function sajax_get_my_uri() {
-		return $_SERVER["REQUEST_URI"];
-	}
-	$sajax_remote_uri = sajax_get_my_uri();
-
-	function sajax_get_js_repr($value) {
-		$type = gettype($value);
-
-		if ($type == "boolean") {
-			return ($value) ? "Boolean(true)" : "Boolean(false)";
-		}
-		elseif ($type == "integer") {
-			return "parseInt($value)";
-		}
-		elseif ($type == "double") {
-			return "parseFloat($value)";
-		}
-		elseif ($type == "array" || $type == "object" ) {
-			$s = "{ ";
-			if ($type == "object") {
-				$value = get_object_vars($value);
-			}
-			foreach ($value as $k=>$v) {
-				$esc_key = sajax_esc($k);
-				if (is_numeric($k))
-					$s .= "$k: " . sajax_get_js_repr($v) . ", ";
-				else
-					$s .= "\"$esc_key\": " . sajax_get_js_repr($v) . ", ";
-			}
-			if (count($value))
-				$s = substr($s, 0, -2);
-			return $s . " }";
-		}
-		else {
-			$esc_val = sajax_esc($value);
-			$s = "'$esc_val'";
-			return $s;
-		}
-	}
-
-	function sajax_handle_client_request() {
-		global $sajax_export_list;
-
-		$mode = "";
-
-		if (! empty($_GET["rs"]))
-			$mode = "get";
-
-		if (!empty($_POST["rs"]))
-			$mode = "post";
-
-		if (empty($mode))
-			return;
-
-		$target = "";
-
-		### 10.02. Added header
-		header ('Content-Type: text/javascript');
-		header ('X-Content-Type-Options: nosniff');
-
-		if ($mode == "get") {
-			###  Bust cache in the head		
-			header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 		###  Date in the past
-			header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-			###  always modified
-			header ("Cache-Control: no-cache, must-revalidate");	###  HTTP/1.1
-			header ("Pragma: no-cache");                        	###  HTTP/1.0
-			$func_name = ( $_GET["rs"] );  							### 10.2.2012 sajax_sanitize removed
-			if (! empty($_GET["rsargs"]))
-				$args = ( $_GET["rsargs"] ); 						### 10.2.2012 sajax_sanitize removed
-			else
-				$args = array();
-		}
-		else {
-			$func_name = ( $_POST["rs"] ); 							### 10.2.2012 sajax_sanitize removed
-			if (! empty($_POST["rsargs"]))
-				$args = ( $_POST["rsargs"] ); 						### 10.2.2012 sajax_sanitize removed
-			else
-				$args = array();
-		}
-
-		### Kousuke Ebihara
-		if (! in_array($func_name, $sajax_export_list))
-			echo "-:".sajax_esc($func_name)." not callable";
-		else {
-			$result = call_user_func_array($func_name, $args);
-			echo "+:";
-			echo "var res = " . (trim(sajax_get_js_repr($result))) . "; res;"; // adjusted: removed sajax_esc
-		}		
-		exit;
-	}
-	
-	### Kousuke Ebihara
-	function unicode_escape($matches)
-    {
-        $u16 = mb_convert_encoding($matches[0], 'UTF-16');
-        return preg_replace('/[0-9a-f]{4}/', '\u$0', bin2hex($u16));
-    }
-
-    function escape_js_string($s)
-    {
-        return preg_replace_callback('/[^-\.0-9a-zA-Z]+/', 'unicode_escape', $s); 
-    }
-
-	### fallback escaping without mb_ support
-    function escape_js_string_noMB($s)
-    {
-		$s = str_replace("\\", "\\\\", $s);
-		$s = str_replace("\r", "\\r", $s);
-		$s = str_replace("\n", "\\n", $s);
-		$s = str_replace("'", "\\'", $s);
-		return str_replace('"', '\\"', $s);
-    }
-	
-	###  javascript escape a value
-    function sajax_esc($val)
-    {
-		if( function_exists(mb_convert_encoding) )
-			return escape_js_string($val);
-		else
-			return escape_js_string_noMB($val);
-    }
-	
-	
-	function sajax_get_one_stub($func_name) {
-		ob_start();
-		$html = ob_get_contents();
-		ob_end_clean();
-		return $html;
-	}
-
-	function sajax_show_one_stub($func_name) {
-		echo sajax_get_one_stub($func_name);
-	}
-
-	function sajax_export() {
-		global $sajax_export_list;
-
-		$n = func_num_args();
-		for ($i = 0; $i < $n; $i++) {
-			$sajax_export_list[] = func_get_arg($i);
-		}
-	}
-
-	$sajax_js_has_been_shown = 0;
-	function sajax_get_javascript()
-	{
-		global $sajax_js_has_been_shown;
-		global $sajax_export_list;
-
-		$html = "";
-		if (! $sajax_js_has_been_shown) {
-			$html .= sajax_get_common_js();
-			$sajax_js_has_been_shown = 1;
-		}
-		foreach ($sajax_export_list as $func) {
-			$html .= sajax_get_one_stub($func);
-		}
-		return $html;
-	}
-
-	$SAJAX_INCLUDED = 1;
+	die();
 }
-
-###  $sajax_debug_mode = 1;
-sajax_init();
-sajax_export("cforms_submitcomment");
-sajax_export("reset_captcha");
-sajax_handle_client_request();
-?>

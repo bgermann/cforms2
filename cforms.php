@@ -1,38 +1,37 @@
 <?php
 /*
+  Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+  Copyright (c) 2014      Matthew Sigley
+  Copyright (c) 2014      Bastian Germann
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-	Copyright 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
-
-	Software included:  PHPMailer - PHP email class
-	Copyright (c) 2004-2007, Andy Prevost. All Rights Reserved.
-    Copyright (c) 2001-2003, Brent R. Matzelle
-
-	see also
-
-	____LICENSE_CREDITS.txt
-	____HISTORY.txt
-
-
-Plugin Name: cforms II EX
-Plugin URI: https://github.com/msigley/cforms-II-EX
-Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
-Author: Matthew Sigley, Oliver Seidel
-Version: 14.6.2
-Author URI: https://github.com/msigley/
+Plugin Name: cforms
+Plugin URI: http://www.deliciousdays.com/cforms-plugin
+Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
+Author: Oliver Seidel, Bastian Germann
+Version: 14.6.3
 
 
 */
 
 global $localversion;
-$localversion = '14.6.1';
-
-### debug messages
-$cfdebug = false;
-$cfdebugmsg = '';
+$localversion = '14.6.3';
 
 ### db settings
-global $wpdb, $wp_db_version, $cformsSettings;
+global $wpdb, $cformsSettings;
 
 $cformsSettings				= get_option('cforms_settings');
 $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
@@ -45,85 +44,64 @@ require_once(dirname(__FILE__) . '/lib_functions.php');
 
 ### update 9x notice?
 $dummy = __('Please go to the <a href="%s">cforms admin page</a> and run the update process.', 'cforms');
-add_action('admin_notices', create_function('', 'global $plugindir, $cformsSettings; if (is_array($cformsSettings) && $cformsSettings[\'global\'][\'update\']) echo \'<div class="error"><p><strong>\' . sprintf( __(\'Please go to the <a href="%s">cforms admin page</a> and run the update process.\', \'cforms\') ,\'admin.php?page=\'.$plugindir.\'/cforms-global-settings.php\') . \'</strong></p></div>\';') );
+add_action('admin_notices', create_function('', 'global $plugindir, $cformsSettings; if (is_array($cformsSettings) && isset($cformsSettings[\'global\'][\'update\'])) echo \'<div class="error"><p><strong>\' . sprintf( __(\'Please go to the <a href="%s">cforms admin page</a> and run the update process.\', \'cforms\') ,\'admin.php?page=\'.$plugindir.\'/cforms-global-settings.php\') . \'</strong></p></div>\';') );
 
 
 
 ### activate cforms
-function cforms_activate() {
+function cforms2_activate() {
 	global $localversion;
-	cforms_init();
+	cforms2_init();
 	require_once(dirname(__FILE__) . '/lib_activate.php');
 }
-add_action('activate_' . plugin_basename(__FILE__), 'cforms_activate' );
+add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate' );
 
 
 
-### settings corrputed?
+### settings corruputed?
 if ( !is_array($cformsSettings) ){
-	add_action('admin_menu', 'settings_corrupted');
+	add_action('admin_menu', 'cforms2_settings_corrupted');
     return;
 }
-function settings_corrupted() {
+function cforms2_settings_corrupted() {
 	$tmp = basename(dirname(__FILE__));
 
 	if (function_exists('add_menu_page')){
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', get_cf_plugindir().'/images/cformsicon.png' );
+		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
 		add_submenu_page($tmp.'/cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php' );
     }
 	elseif (function_exists('add_management_page'))
 		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php');
 
-    add_action('wp_print_scripts', 'cforms_scripts_corrupted' );
+    add_action('wp_print_scripts', 'cforms2_scripts_corrupted' );
 }
-function cforms_scripts_corrupted(){
-	echo	'<link rel="stylesheet" type="text/css" href="' . get_cf_plugindir() . '/cforms-admin.css" />' . "\n";
+function cforms2_scripts_corrupted(){
+	echo	'<link rel="stylesheet" type="text/css" href="' . plugin_dir_url( __FILE__ ) . 'cforms-admin.css" />' . "\n";
 }
 
 
 ### load add'l files
-if (version_compare(PHP_VERSION, '5.0.0', '>'))
-	require_once(dirname(__FILE__) . '/lib_email.php');
-else
-	require_once(dirname(__FILE__) . '/lib_email_php4.php');
-
+require_once (dirname(__FILE__) . '/lib_email.php');
 require_once (dirname(__FILE__) . '/lib_aux.php');
 require_once (dirname(__FILE__) . '/lib_editor.php');
 
 
 
 ### http://trac.wordpress.org/ticket/3002
-$plugindir   = $cformsSettings['global']['plugindir'];
-$cforms_root = $cformsSettings['global']['cforms_root'];
-//Correct protocol for https connections
-list($protocol, $uri) = explode('://', $cforms_root, 2);
-if( is_ssl() ) {
-	if( 'http' == $protocol )
-		$protocol = 'https';
-} else {
-	if( 'https' == $protocol )
-		$protocol = 'http';
-}
-$cforms_root = trailingslashit($protocol.'://'.$uri);
+$plugindir   = dirname(plugin_basename(__FILE__));
 
 
 ### session control for multi-page form
-add_action('template_redirect', 'start_cforms_session');
-/*
-function start_cforms_session() {
-	@session_cache_limiter('private, must-revalidate');
-	@session_cache_expire(0);
-	@session_start();
-}
-*/
-function start_cforms_session() {
-	@session_cache_limiter('private, must-revalidate');
-	@session_cache_expire(0);
-	if ( !session_id() ){		
-		@session_start();
+add_action('template_redirect', 'cforms2_start_session');
+
+function cforms2_start_session() {
+	session_cache_limiter('private, must-revalidate');
+	session_cache_expire(0);
+	if ( !session_id() ){
+		session_start();
 		### debug
-		db( "After session (".session_id().")start: ".print_r($_SESSION,1) );
-		}
+		cforms2_dbg( "After session (".session_id().")start: ".print_r($_SESSION,1) );
+	}
 }
 
 
@@ -131,16 +109,16 @@ function start_cforms_session() {
 ###
 ### main function
 ###
-function cforms($args = '',$no = '') {
+function cforms2($args = '',$no = '') {
 
-	global $smtpsettings, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $cformsSettings;
+	global $subID, $wpdb, $track, $cformsSettings;
 
 	### parse_str($args, $r); ### Oliver 6.8.2011
 
     $oldno = ($no=='1')?'':$no;  ### remeber old val, to reset session when in new MP form
 
     ##debug
-    db("Original form on page #$oldno");
+    cforms2_dbg("Original form on page #$oldno");
 
 	### multi page form: overwrite $no
     $isWPcommentForm = (substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1)=='2');
@@ -148,12 +126,12 @@ function cforms($args = '',$no = '') {
     $isTAF = substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
 
 	##debug
-    db("Comment form = $isWPcommentForm");
-    db("Multi-page form = $isMPform");
-    db("PHP Session = ".(isset($_SESSION)?"yes":"no").$_SESSION['cforms']['current'] );
+    cforms2_dbg("Comment form = $isWPcommentForm");
+    cforms2_dbg("Multi-page form = $isMPform");
+    cforms2_dbg("PHP Session = ".(isset($_SESSION)?"yes":"no").$_SESSION['cforms']['current'] );
 
 	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && !$isWPcommentForm ){
-		db("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
+		cforms2_dbg("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
 		$no = $_SESSION['cforms']['current'];
 	}
 
@@ -161,7 +139,7 @@ function cforms($args = '',$no = '') {
 	$no = ($no=='1')?'':$no;
 
     ##debug
-    db("Switch to form #$no");
+    cforms2_dbg("Switch to form #$no");
 
     $moveBack=false;
 	### multi page form: reset button
@@ -173,7 +151,7 @@ function cforms($args = '',$no = '') {
 	    $_SESSION['cforms']['pos']=1;
 	    unset( $_REQUEST );
 	    ##debug
-	    db("Reset-Button pressed");
+	    cforms2_dbg("Reset-Button pressed");
 	}
 	else ### multi page form: back button
 	if( isset($_REQUEST['backbutton'.$no]) && isset($_SESSION['cforms']) && ($_SESSION['cforms']['pos']-1)>=0){
@@ -181,14 +159,14 @@ function cforms($args = '',$no = '') {
 	    $_SESSION['cforms']['current']=$no;
         $moveBack=true;
 	    ##debug
-	    db("Back-Button pressed");
+	    cforms2_dbg("Back-Button pressed");
 	}
 	else ### mp init: must be mp, first & not submitted!
 	if( $isMPform && !is_array($_SESSION['cforms']) && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] ){
 	//if( $isMPform && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] && !isset($_REQUEST['sendbutton'.$no]) ){
 	    ##debug
-	    db("Current form is *first* MP-form");
-        db("Session found, you're on the first form and session is reset!");
+	    cforms2_dbg("Current form is *first* MP-form");
+        cforms2_dbg("Session found, you're on the first form and session is reset!");
 
         $no = ($oldno=='1')?'':$oldno; ### restore old val
         unset($_SESSION['cforms']);
@@ -200,13 +178,13 @@ function cforms($args = '',$no = '') {
 	
 
 	##debug
-	db( print_r($_SESSION,1) );
+	cforms2_dbg( print_r($_SESSION,1) );
 
 
 	### custom fields support
 	if ( !(strpos($no,'+') === false) ) {
 	    $no = substr($no,0,-1);
-		$customfields = build_fstat($args);
+		$customfields = cforms2_build_fstat($args);
 		$field_count = count($customfields);
 		$custom=true;
 	} else {
@@ -218,7 +196,6 @@ function cforms($args = '',$no = '') {
 	$content = '';
 
 	$err=0;
-	$filefield=0;
 
 	$validations = array();
 	$all_valid = 1;
@@ -278,8 +255,8 @@ function cforms($args = '',$no = '') {
 	$nttt="\n\t\t\t";
 
 	### either show info message above or below
-	$usermessage_text	= check_default_vars($usermessage_text,$no);
-	$usermessage_text	= check_cust_vars($usermessage_text,$track,$no);
+	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
+	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track,$no);
 	### logic: possibly change usermessage
 	if ( function_exists('my_cforms_logic') )
 	    $usermessage_text = my_cforms_logic($trackf, $usermessage_text,'successMessage');
@@ -287,7 +264,7 @@ function cforms($args = '',$no = '') {
    	$umc = ($usermessage_class<>''&&$no>1)?' '.$usermessage_class.$no:'';
 
     ##debug
-    db("User info for form #$no");
+    cforms2_dbg("User info for form #$no");
 
 	### where to show message
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],0,1)=='y' ) {
@@ -304,15 +281,15 @@ function cforms($args = '',$no = '') {
     	$oldcurrent = $no;
 
 		##debug
-		db("Form is all valid & sendbutton pressed.");
+		cforms2_dbg("Form is all valid & sendbutton pressed.");
 
 		if( $isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']<>-1 ){
 
         	$isMPformNext=true;
-            $no = check_form_name( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] );
+            $no = cforms2_check_form_name( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] );
 
 	        ##debug
-	        db("Session active and now moving on to form #$no");
+	        cforms2_dbg("Session active and now moving on to form #$no");
 
 	        ### logic: possibly change next form
 	        if ( function_exists('my_cforms_logic') )
@@ -326,7 +303,7 @@ function cforms($args = '',$no = '') {
 	    }elseif( $isMPform && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']==-1 ){
 
 	        ##debug
-	        db("Session was active but is being reset now");
+	        cforms2_dbg("Session was active but is being reset now");
 
 			$oldcurrent = $no;
 
@@ -344,11 +321,11 @@ function cforms($args = '',$no = '') {
 	}
 
     ##debug
-    db("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
+    cforms2_dbg("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
 
 	##debug: optional
-	## db(print_r($_SESSION,1));
-	## db(print_r($track,1));
+	## cforms2_dbg(print_r($_SESSION,1));
+	## cforms2_dbg(print_r($track,1));
 
 	### redirect == 2 : hide form?    || or if max entries reached! w/ SESSION support if#2
 	if (  $all_valid && (
@@ -357,7 +334,7 @@ function cforms($args = '',$no = '') {
           				)
        )
 		return $content;
-	else if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && get_cforms_submission_left($no)<=0) || !cf_check_time($no) ){
+	else if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)<=0) || !cforms2_check_time($no) ){
 
 		if ( $cflimit == "reached" )
 			return stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']);
@@ -375,9 +352,9 @@ function cforms($args = '',$no = '') {
 		$alt_action=true;
 	}
 	else if( $isWPcommentForm )
-		$action = $cforms_root . 'lib_WPcomment.php'; ### re-route and use WP comment processing
+		$action = plugin_dir_url(__FILE__) . 'lib_WPcomment.php'; ### re-route and use WP comment processing
  	else
-		$action = get_current_page(false) . '#usermessage'. $no . $actiontarget;
+		$action = cforms2_get_current_page(false) . '#usermessage'. $no . $actiontarget;
 
 
 	$enctype = $cformsSettings['form'.$no]['cforms'.$no.'_formaction'] ? 'enctype="application/x-www-form-urlencoded"':'enctype="multipart/form-data"';
@@ -426,14 +403,14 @@ function cforms($args = '',$no = '') {
 		$html5 = ($obj[1]<>'') ? preg_split('/\x{00A4}/u',$obj[1], -1) : '';
 
 		###debug
-		db("\t\t html5 check, settings = ".print_r($html5,1));
+		cforms2_dbg("\t\t html5 check, settings = ".print_r($html5,1));
 		
 		### check for custom err message and split field_name
 	    $obj = explode('|err:', $obj[0],2);
 	    $fielderr = $obj[1];
 		
 		###debug
-		db("\t adding $field_type field: $field_name");
+		cforms2_dbg("\t adding $field_type field: $field_name");
 		
 		if ( $fielderr <> '')	{
 		    switch ( $field_type ) {
@@ -461,7 +438,7 @@ function cforms($args = '',$no = '') {
     				if ( strpos($input_name[1],'[id:')>0 )
     					preg_match ('/\[id:(.+)\]/',$input_name[1],$input_name);
 
-					$custom_error .= ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?cf_sanitize_ids($input_name[1]):'cf'.$no.'_field_'.$i;
+					$custom_error .= ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?cforms2_sanitize_ids($input_name[1]):'cf'.$no.'_field_'.$i;
 					$custom_error .= '$#$'.$fielderr.'|';
 	    			break;
 		    }
@@ -473,7 +450,7 @@ function cforms($args = '',$no = '') {
 		$fieldTitle = ($obj[1]<>'')?' title="'.str_replace('"','&quot;',stripslashes($obj[1])).'"':'';
 
 		###debug
-		db("\t\t title check, obj[0] = ".$obj[0]);
+		cforms2_dbg("\t\t title check, obj[0] = ".$obj[0]);
 		
 
 		### special treatment for selectboxes
@@ -486,7 +463,7 @@ function cforms($args = '',$no = '') {
 			}
 			
 			###debug
-			db("\t\t found checkbox:, obj[0] = ".$obj[0]);
+			cforms2_dbg("\t\t found checkbox:, obj[0] = ".$obj[0]);
 
 			$options = explode('#', stripslashes($obj[0]) );
 			
@@ -496,7 +473,7 @@ function cforms($args = '',$no = '') {
 				$field_name = $options[0];
 				
 			###debug
-			db("\t\t left from '#' (=field_name) = ".$options[0].", right from '#': ".$options[1] . "  -> field_name= $field_name");
+			cforms2_dbg("\t\t left from '#' (=field_name) = ".$options[0].", right from '#': ".$options[1] . "  -> field_name= $field_name");
 
 		}
 
@@ -531,7 +508,7 @@ function cforms($args = '',$no = '') {
 		    $obj = explode('|', $obj[0],3);
 
 			if ( $obj[2] <> '')	$reg_exp = str_replace('"','&quot;',stripslashes($obj[2])); else $reg_exp='';
-		    if ( $obj[1] <> '')	$defaultvalue = str_replace( array('"','\n'),array('&quot;',"\r"), check_default_vars(stripslashes(($obj[1])),$no) );
+		    if ( $obj[1] <> '')	$defaultvalue = str_replace( array('"','\n'),array('&quot;',"\r"), cforms2_check_default_vars(stripslashes(($obj[1])),$no) );
 
 			$field_name = $obj[0];
 		}
@@ -557,7 +534,7 @@ function cforms($args = '',$no = '') {
 
 				if( $isFieldArray ){
 				
-					$input_id = $input_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
+					$input_id = $input_name = cforms2_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
 					
 					if( !$inpFieldArr[$input_id] || $inpFieldArr[$input_id]=='' ){
 						$inpFieldArr[$input_id]=1;
@@ -567,14 +544,14 @@ function cforms($args = '',$no = '') {
 					$input_name .= '[]';
 				
 				} else
-					$input_id = $input_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
+					$input_id = $input_name = cforms2_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
 
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
 				###debug
-				db("\t \t parsing custom ID/NAME...new field_name = $field_name, ID=$input_id");
+				cforms2_dbg("\t \t parsing custom ID/NAME...new field_name = $field_name, ID=$input_id");
 				
 			} else
-				$input_id = $input_name = cf_sanitize_ids(stripslashes($field_name));
+				$input_id = $input_name = cforms2_sanitize_ids(stripslashes($field_name));
 
 		} else
 			$input_id = $input_name = 'cf'.$no.'_field_'.$i;
@@ -646,7 +623,7 @@ function cforms($args = '',$no = '') {
 		### only for mp forms
 		if( $moveBack || $isMPform ){  // $isMPformNext
 				$field_value = htmlspecialchars( stripslashes(  $_SESSION['cforms']['cf_form'.$no][ $_SESSION['cforms']['cf_form'.$no]['$$$'.($sItem++)] ] ) );
-				db( 'retrieving session values to pre-fill...'.$field_value);
+				cforms2_dbg( 'retrieving session values to pre-fill...'.$field_value);
 		}
 
 		if( !$all_valid ){
@@ -697,7 +674,6 @@ function cforms($args = '',$no = '') {
 
 		### add input field
 		$dp = '';
-		$naming = false;
 		$field  = '';
 		$val = '';
 		$force_checked = false;
@@ -749,8 +725,8 @@ function cforms($args = '',$no = '') {
 
 			case "captcha":
 				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" value=""'.$fieldTitle.'/>'.
-						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="'.$cforms_root.'cforms-captcha.php?ts='.$no.'" alt=""/>'.
-						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.$cforms_root.'images/spacer.gif" alt="Captcha"/></a>';
+						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="#" alt=""/><script>jQuery(function() {reset_captcha('.$no.');});</script>'.
+						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.plugin_dir_url(__FILE__).'images/spacer.gif" alt="Captcha"/></a>';
 		    	$captcha=true;
 				break;
 
@@ -783,7 +759,7 @@ function cforms($args = '',$no = '') {
 			case "html5url":
 			case "html5week":
 
-				$field_value = check_post_vars($field_value);
+				$field_value = cforms2_check_post_vars($field_value);
 
 				$h5 = '';
 				if( strpos($field_type,'tml5')!==false ){
@@ -801,7 +777,7 @@ function cforms($args = '',$no = '') {
 					$h5_7 = ( $field_required ) ? ' required="required"' : '';
 					$h5 .= $h5_7 . ' ';
 					###debug
-					db('......html5 attributes: '.$h5);
+					cforms2_dbg('......html5 attributes: '.$h5);
 				}else
 					$type = ($field_type=='pwfield')?'password':'text';
 					
@@ -818,8 +794,8 @@ function cforms($args = '',$no = '') {
 
 			case "hidden":
 
-				$field_value = check_post_vars($field_value);
-				$field_value = check_default_vars($field_value,$no);
+				$field_value = cforms2_check_post_vars($field_value);
+				$field_value = cforms2_check_default_vars($field_value,$no);
 
                 if ( preg_match('/^<([a-zA-Z0-9]+)>$/',$field_value,$getkey) )
                     $field_value = $_GET[$getkey[1]];
@@ -897,7 +873,7 @@ function cforms($args = '',$no = '') {
 				$id=1; $j=0;
 
                 ### mp session support
-                if ( $moveBack || $isMPform )
+                if ( ( $moveBack || $isMPform ) && !is_array($field_value) )
                     $field_value = explode(',',$field_value);
 
 				foreach( $options as $option  ) {
@@ -1047,7 +1023,7 @@ function cforms($args = '',$no = '') {
 		}
 
 		### debug
-		db("Form setup: $field_type, val=$field_value, default=$defaultvalue");
+		cforms2_dbg("Form setup: $field_type, val=$field_value, default=$defaultvalue");
 
 		### add new field
 		$content .= $field;
@@ -1128,28 +1104,27 @@ function cforms($args = '',$no = '') {
 
 
 	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form>';
+	if (isset($cformsSettings['global']['cforms_linklove']) && $cformsSettings['global']['cforms_linklove'])
+		$content .= '<p class="linklove" id="ll'. $no .'"><a href="http://www.deliciousdays.com/cforms-plugin"><em>cforms</em> contact form by delicious:days</a></p>';
 
 	### either show message above or below
-	$usermessage_text	= check_default_vars($usermessage_text,$no);
-	$usermessage_text	= check_cust_vars($usermessage_text,$track,$no);
+	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
+	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track,$no);
 
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
 		$content .= $tt . '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>' . $nl;
 
 	### debug
-	db( "(cforms) Last stop...".print_r($_SESSION,1) );
-
-	### flush debug messages
-	dbflush();
+	cforms2_dbg( "(cforms) Last stop...".print_r($_SESSION,1) );
 
 	return $content;
 }
 
 
 
-### some css for positioning the form elements
-function cforms_script() {
-	global $wp_query, $cforms_root, $localversion, $cformsSettings;
+### some JavaScript
+function cforms2_script() {
+	global $wp_query, $localversion, $cformsSettings;
 
 	### add content actions and filters
 	$page_obj = $wp_query->get_queried_object();
@@ -1160,7 +1135,7 @@ function cforms_script() {
 
 	if( $onPages=='' || (in_array($page_obj->ID,$onPagesA) && !$exclude) || (!in_array($page_obj->ID,$onPagesA) && $exclude)){
 
-		echo "\n<!-- Start Of Script Generated By cforms v".$localversion." [Oliver Seidel | www.deliciousdays.com] -->\n";
+		echo "\n<!-- Start of script generated by cforms v".$localversion." -->\n";
 
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
 			$nav = $cformsSettings['global']['cforms_dp_nav'];
@@ -1183,13 +1158,13 @@ function cforms_script() {
 				"\t".'cfCAL.TEXT_CLOSE="'.stripslashes($nav[4]).'";'."\n".
 				"\t".'cfCAL.TEXT_CHOOSE_DATE="'.stripslashes($nav[5]).'";'."\n". 
 				"\t".'cfCAL.changeYear='. ($nav[6]==1? 'true':'false') .';'."\n". 
-				"\t".'cfCAL.ROOT="'.$cformsSettings['global']['cforms_root'].'";' ."\n\n".
+				"\t".'cfCAL.ROOT="'.plugin_dir_url( __FILE__ ).'";' ."\n\n".
 				 
 				 "\t".'jQuery(function() { '."\n".
 				 "\t\t".'if( 1||jQuery.datepicker ){'."\n".
 				 
 					"\t\t\t".'jQuery(".cf_date").datepicker({'."\n".
-						"\t\t\t\t".'"buttonImage": cfCAL.ROOT+"/js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",'."\n".
+						"\t\t\t\t".'"buttonImage": cfCAL.ROOT+"js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",'."\n".
 						"\t\t\t\t".'"dateFormat": cfCAL.dateFormat, "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, firstDay:cfCAL.firstDayOfWeek,'."\n".
 						"\t\t\t\t".'"nextText": cfCAL.TEXT_NEXT_MONTH, "prevText": cfCAL.TEXT_PREV_MONTH, "closeText": cfCAL.TEXT_CLOSE });'."\n".
 			
@@ -1203,8 +1178,8 @@ function cforms_script() {
 
 
 ### some css for positioning the form elements
-function cforms_style() {
-	global $wp_query, $cforms_root, $localversion, $cformsSettings;
+function cforms2_style() {
+	global $wp_query, $localversion, $cformsSettings;
 
 	### add content actions and filters
 	$page_obj = $wp_query->get_queried_object();
@@ -1215,8 +1190,10 @@ function cforms_style() {
 
 	if( $onPages=='' || (in_array($page_obj->ID,$onPagesA) && !$exclude) || (!in_array($page_obj->ID,$onPagesA) && $exclude)){
 
-		if( $cformsSettings['global']['cforms_no_css']<>'1' )
-			echo '<link rel="stylesheet" type="text/css" href="' . $cforms_root . 'styling/' . $cformsSettings['global']['cforms_css'] . '" />'."\n";
+		if( $cformsSettings['global']['cforms_no_css']<>'1' ) {
+			wp_register_style( 'cforms-style', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'] );
+			wp_enqueue_style('cforms-style');
+		}
 
 		### add jQuery script & calendar
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
@@ -1224,21 +1201,29 @@ function cforms_style() {
 			wp_enqueue_script('jquery-ui-core',false,false,false,false);
 			wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
 		}
-		echo '<script type="text/javascript" src="' . $cforms_root. 'js/cforms.js"></script>'."\n";
+		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', false, $localversion);
+		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
+			'url'    => admin_url('admin-ajax.php'),
+			'nonces' => array(
+				'reset_captcha'        => wp_create_nonce('cforms2_reset_captcha'),
+				'submitcomment' => wp_create_nonce('submitcomment')
+			)
+		) );
+	    wp_enqueue_script('cforms2');
 		
 	}
 }
 
 
 ### custom routine to find last item
-function findlast( $haystack,$needle,$offset=NULL ){
+function cforms2_findlast( $haystack,$needle,$offset=NULL ){
 	if( ($pos = strpos( strrev($haystack) , strrev($needle) , $offset)) === false ) return false;
     return strlen($haystack) - $pos - strlen($needle);
 }
 
 
 ### replace placeholder by generated code
-function cforms_insert( $content ) {
+function cforms2_insert( $content ) {
 	global $post, $cformsSettings; $newcontent='';
 
 	$last=0;
@@ -1249,8 +1234,8 @@ function cforms_insert( $content ) {
 
 		$p_offset= 0;
 		$part_content = substr( $content, 0, $a-$last );
-		$p_open  = findlast($part_content,'<p>');
-		$p_close = findlast($part_content,'</p>');
+		$p_open  = cforms2_findlast($part_content,'<p>');
+		$p_close = cforms2_findlast($part_content,'</p>');
 
 		### wrapped in <p> ?
 		$p_offset = ($p_close < $p_open || ($p_open!==false && $p_close===false) ) ? $p_open : $a;
@@ -1276,11 +1261,11 @@ function cforms_insert( $content ) {
 			$newcontent .= substr($content,$last,$p_offset-$last);
 
 			if( $Fname !== '' ){
-			  if ( check_for_taf( $fns[$Fname],cfget_pid() ) )
-  				$newcontent .= cforms('',$fns[$Fname]);
+			  if ( cforms2_check_for_taf( $fns[$Fname],cforms2_cfget_pid() ) )
+  				$newcontent .= cforms2('',$fns[$Fname]);
 			}else{
-			  if ( check_for_taf( $Fid,cfget_pid() ) )
-    			$newcontent .= cforms('',$Fid);
+			  if ( cforms2_check_for_taf( $Fid,cforms2_cfget_pid() ) )
+    			$newcontent .= cforms2('',$Fid);
       }
 
 			$p_open_after  = strpos($content,'<p>',$b);
@@ -1296,8 +1281,8 @@ function cforms_insert( $content ) {
 
 			### next wrapping <p> tags
 			$part_content = substr( $content, $last, $a-$last );
-			$p_open  = findlast($part_content,'<p>');
-			$p_close = findlast($part_content,'</p>');
+			$p_open  = cforms2_findlast($part_content,'<p>');
+			$p_close = cforms2_findlast($part_content,'</p>');
 
 			### wrapped in <p> ?
 			$p_offset = ($p_close < $p_open) ? $a-(strlen($part_content)-$p_open) : $a;
@@ -1313,7 +1298,7 @@ function cforms_insert( $content ) {
 
 
 ### build field_stat string from array (for custom forms)
-function build_fstat($f) {
+function cforms2_build_fstat($f) {
     $cfarray = array();
     for($i=0; $i<count($f['label']); $i++) {
         if ( $f['type'][$i] == '') $f['type'][$i] = 'textfield';
@@ -1329,23 +1314,23 @@ function build_fstat($f) {
 
 
 ### inserts a cform anywhere you want
-function insert_cform($no='',$custom='',$c='') {
+function cforms2_insert_cform($no='',$custom='',$c='') {
 	global $post;
 
-	$pid = cfget_pid();
+	$pid = cforms2_cfget_pid();
 
 	if( !is_numeric($no) )
-		$no = check_form_name( $no );
+		$no = cforms2_check_form_name( $no );
 
 	if ( !$pid )
-		echo cforms($custom,$no.$c);
+		echo cforms2($custom,$no.$c);
 	else
-		echo check_for_taf($no,$pid)?cforms($custom,$no.$c):'';
+		echo cforms2_check_for_taf($no,$pid)?cforms2($custom,$no.$c):'';
 }
 
 
 ### GET $pid
-function cfget_pid() {
+function cforms2_cfget_pid() {
 	global $post;
 
 	if ( isset($_GET['pid']) )
@@ -1360,13 +1345,15 @@ function cfget_pid() {
 
 
 ### inserts a custom cform anywhere you want
-function insert_custom_cform($fields='',$no='') {
-	insert_cform($no, $fields, '+');
+if (!function_exists('insert_custom_cform')) {
+	function insert_custom_cform($fields='',$no='') {
+		cforms2_insert_cform($no, $fields, '+');
+	}
 }
 
 
 ### check form names/id's
-function check_form_name($no) {
+function cforms2_check_form_name($no) {
 
 	if( is_numeric($no) || $no=='' ) return $no;
 
@@ -1385,7 +1372,7 @@ function check_form_name($no) {
 
 
 ### check if t-f-a is set
-function check_for_taf($no,$pid) {
+function cforms2_check_for_taf($no,$pid) {
 	global $cformsSettings;
 
 	if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)<>'1')
@@ -1400,48 +1387,29 @@ function check_for_taf($no,$pid) {
 
 
 ### public function: check if post is t-f-a enabled
-function is_tellafriend($pid) {
-	$tmp = get_post_custom($pid);
-	return ($tmp["tell-a-friend"][0]=='1')?true:false;
+if (!function_exists('is_tellafriend')) {
+	function is_tellafriend($pid) {
+		$tmp = get_post_custom($pid);
+		return ($tmp["tell-a-friend"][0]=='1')?true:false;
+	}
 }
 
 
 ### WP 2.7 admin menu hook
-function cforms_post_box(){
+function cforms2_post_box(){
 	global $tafstring;
 	echo $tafstring;
 }
 
 
-function add_cforms_post_boxes(){
-	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms'), 'cforms_post_box', 'post', 'normal', 'high');
-	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms'), 'cforms_post_box', 'page', 'normal', 'high');
-}
-
-
-### up to WP 2.7 and lower
-function taf_admin() {
-	global $wp_db_version, $tafstring;
-    if ( $wp_db_version >= 6846 ){
-        ?>
-        <fieldset id="cformsTAF" class="postbox closed">
-            <h3><?php _e('cforms Tell-A-Friend', 'cforms'); ?></h3>
-            <div class="inside"><?php echo $tafstring; ?></div>
-        </fieldset>
-        <?php
-    }else {
-        ?>
-        <fieldset id="cformsTAF" class="dbx-box">
-            <h3 class="dbx-handle"><?php _e('cforms Tell-A-Friend', 'cforms'); ?></h3>
-                <div class="dbx-content"><?php echo $tafstring; ?></div>
-        </fieldset>
-        <?php
-    }
+function cforms2_add_cforms_post_boxes(){
+	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms'), 'cforms2_post_box', 'post', 'normal', 'high');
+	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms'), 'cforms2_post_box', 'page', 'normal', 'high');
 }
 
 
 ### Add Tell A Friend processing
-function enable_tellafriend($post_ID) {
+function cforms2_enable_tellafriend($post_ID) {
 	global $wpdb;
 
 	if ( isset($_POST['action']) && ($_POST['action']=='autosave' || $_POST['action']=='inline-save')  )
@@ -1457,22 +1425,22 @@ function enable_tellafriend($post_ID) {
 
 
 ### cforms widget
-function widget_cforms_init() {
+function cforms2_widget_init() {
 
-	global $cforms_root, $wp_registered_widgets, $cformsSettings;
+	global $wp_registered_widgets, $cformsSettings;
+
 
     $cformsSettings = get_option('cforms_settings');
+
+	// Matthew Sigley's change from https://github.com/msigley/cforms-II-EX/commit/c9724f4cf72e088059ac6bde9d610e66dc30dc1c
     $options = array();
-	if( isset($cformsSettings['global']['widgets']) && is_array($cformsSettings['global']['widgets']) )
-		$options = $cformsSettings['global']['widgets'];
-    $options = $cformsSettings['global']['widgets'];
+    if( isset($cformsSettings['global']['widgets']) && is_array($cformsSettings['global']['widgets']) )
+        $options = $cformsSettings['global']['widgets'];
+	// end Matthew Sigley's change
+
     $prefix = 'cforms';
 
-	if (! function_exists("wp_register_sidebar_widget")) {
-		return;
-	}
-
-	        function widget_cforms($args) {
+	        function cforms2_widget($args) {
 	            $cformsSettings = get_option('cforms_settings');
 	            $options = $cformsSettings['global']['widgets'];
 	            extract($args);
@@ -1484,11 +1452,11 @@ function widget_cforms_init() {
 	            $title = htmlspecialchars(stripslashes($options[$id]['title']));
 
 	            echo $before_widget.$before_title.$title.$after_title;
-	            insert_cform($no);
+	            cforms2_insert_cform($no);
 	            echo $after_widget;
 	        }
 
-	        function widget_cforms_options($args) {
+	        function cforms2_widget_options($args) {
 	            global $wpdb;
 
 	            $cformsSettings = get_option('cforms_settings');
@@ -1521,16 +1489,16 @@ function widget_cforms_init() {
 	                }
 
 	                // clear unused options and update options in DB. return actual options array
-	                $options = cforms_widget_update($prefix, $options, $_POST[$prefix], $_POST['sidebar'], 'widget_cforms');
+	                $options = cforms2_widget_update($prefix, $options, $_POST[$prefix], $_POST['sidebar'], 'cforms2_widget');
 
 	            }
 
 	            $number = ($args['number'] == -1)? '%i%' : $args['number'];
 
 	            // stored data
-	            $opts  = @$options[$number];
-	            $title = @$opts['title'];
-	            $form = @$opts['form'];
+	            $opts  = $options[$number];
+	            $title = $opts['title'];
+	            $form = $opts['form'];
 
 
                 $opt = '';
@@ -1551,7 +1519,7 @@ function widget_cforms_init() {
 
 	        }
 
-	        function cforms_widget_update($id_prefix, $options, $post, $sidebar, $option_name = ''){
+	        function cforms2_widget_update($id_prefix, $options, $post, $sidebar, $option_name = ''){
 
 	                global $wp_registered_widgets;
 	                static $updated = false;
@@ -1595,20 +1563,20 @@ function widget_cforms_init() {
 
 	if(!empty($options)){
 		foreach(array_keys($options) as $widget_number){
-			wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'widget_cforms', $widget_ops, array( 'number' => $widget_number ));
-			wp_register_widget_control($prefix.'-'.$widget_number, $name, 'widget_cforms_options', $control_ops, array( 'number' => $widget_number ));
+			wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'cforms2_widget', $widget_ops, array( 'number' => $widget_number ));
+			wp_register_widget_control($prefix.'-'.$widget_number, $name, 'cforms2_widget_options', $control_ops, array( 'number' => $widget_number ));
 		}
 	} else{
 		$options = array();
 		$widget_number = 1;
-		wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'widget_cforms', $widget_ops, array( 'number' => $widget_number ));
-		wp_register_widget_control($prefix.'-'.$widget_number, $name, 'widget_cforms_options', $control_ops, array( 'number' => $widget_number ));
+		wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'cforms2_widget', $widget_ops, array( 'number' => $widget_number ));
+		wp_register_widget_control($prefix.'-'.$widget_number, $name, 'cforms2_widget_options', $control_ops, array( 'number' => $widget_number ));
 	}
 }
 
 
 ### get # of submission left (max subs)
-function get_cforms_submission_left($no='') {
+function cforms2_get_submission_left($no='') {
 	global $wpdb, $cformsSettings;
 
 	if ( $no==0 || $no==1 ) $no='';
@@ -1626,85 +1594,42 @@ function get_cforms_submission_left($no='') {
 }
 
 
-### get current page
-function get_request_uri() {
-	$request_uri = $_SERVER['REQUEST_URI'];
-	if ( !isset($_SERVER['REQUEST_URI']) || (strpos($_SERVER['SERVER_SOFTWARE'],'IIS')!==false && strpos($_SERVER['REQUEST_URI'],'wp-admin')===false) ){
-	    if(isset($_SERVER['SCRIPT_NAME']))
-	        $request_uri = $_SERVER['SCRIPT_NAME'];
-	    else
-	        $request_uri = $_SERVER['PHP_SELF'];
-	}
-	return $request_uri;
+function cforms2_localization () {
+	// For compatibility reasons, use slug cforms, not cforms2.
+	load_plugin_textdomain( 'cforms',  false, dirname( plugin_basename( __FILE__ ) ) . '/____Plugin_Localization/' );
 }
-
-
-### PLUGIN VERSION CHECK ON PLUGINS PAGE
-add_action( 'after_plugin_row', 'cf_check_plugin_version' );
-
-function cf_check_plugin_version($plugin)
-{
-	global $plugindir,$localversion;
-
- 	if( strpos($plugindir.'/cforms.php',$plugin)!==false )
- 	{
-		$checkfile = "http://www.deliciousdays.com/download/cforms.chk";
-
-		$vcheck = wp_remote_fopen($checkfile);
-
-		if($vcheck)
-		{
-			$version = $localversion;
-
-			$status = explode('@', $vcheck);
-			$theVersion = $status[1];
-			$theMessage = $status[3];
-
-			if( (version_compare(strval($theVersion), strval($version), '>') == 1) )
-			{
-				$msg = __("Latest version available: ", "cforms").'<strong>v'.$theVersion.'</strong> - '.$theMessage;
-				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(click for more info)", "cforms").'</a></div><div id="cf-update-msg" style="display:none; padding:10px; text-align:center;box-shadow: 0 0 30px #EEEEEE inset, 0 0 2px #000000 inset;-moz-box-shadow: 0 0 30px #EEEEEE inset, 0 0 2px #000000 inset;-webkit-box-shadow: 0 0 30px #EEEEEE inset, 0 0 2px #000000 inset;" >'.$msg.'</div></td>';
-			} else {
-				return;
-			}
-		}
-	}
-}
-
 
 ### add actions
 global $tafstring;
 if (function_exists('add_action')){
 
 	### widget init
-	add_action('plugins_loaded', 'widget_cforms_init');
+	add_action('plugins_loaded', 'cforms2_localization' );
+	add_action('plugins_loaded', 'cforms2_widget_init');
 
-	### get location?
-	$request_uri = get_request_uri();
-
-	$admin   = ( strpos($request_uri,'wp-admin')!==false )?true:false;
+	$admin   = is_admin();
 	$cfadmin = ( strpos($_SERVER['QUERY_STRING'],$plugindir.'/cforms')!==false )?true:false;
 
 	### dashboard
 	if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {
 		require_once(dirname(__FILE__) . '/lib_dashboard.php');
-	    if ( $wp_db_version < 9872 )
-			add_action( 'activity_box_end', 'cforms_dashboard', 1 );
-        else
-			add_action( 'wp_dashboard_setup', 'cforms_dashboard_27_setup', 1 );
 	}
 	### cforms specific stuff
 	if ( $cfadmin ) {
 		require_once(dirname(__FILE__) . '/lib_functions.php');
-		add_action('admin_head', 'cforms_options_page_style');
-		add_action('init', 'download_cforms');
-        add_action('admin_print_scripts', 'cforms_scripts' );
+		add_action('admin_head', 'cforms2_options_page_style');
+		add_action('init', 'cforms2_download');
+        add_action('admin_print_scripts', 'cforms2_scripts' );
 	}
+
+	### public ajax
+	require_once ('lib_ajax.php');
+	require_once ('cforms-captcha.php');
+
  	### other admin stuff
-	if ( $admin ) {
+	if ( is_admin() ) {
 		require_once(dirname(__FILE__) . '/lib_functions.php');
-		add_action('admin_menu', 'cforms_menu');
-		add_action('init', create_function('', 'load_plugin_textdomain(\'cforms\');') );
+		add_action('admin_menu', 'cforms2_menu');
 
 	    ### Check all forms for TAF and set variables
 	    for ( $i=1;$i<=$cformsSettings['global']['cforms_formcount'];$i++ ) {
@@ -1723,18 +1648,30 @@ if (function_exists('add_action')){
 			$tafstring = '<label for="tellafriend" class="selectit"><input type="checkbox" id="tellafriend" name="tellafriend" value="1"'. $tafchk .'/>&nbsp;'. __('T-A-F enable this post/page', 'cforms').'</label>';
 
 	        ### add admin boxes
-	        if ( $wp_db_version < 6846 ){
-	            add_action('dbx_post_sidebar', 'taf_admin');
-	            add_action('dbx_page_sidebar', 'taf_admin');        ###  < WP25.
-	        }else if ( $wp_db_version < 9872 ) {
-	            add_action('edit_form_advanced', 'taf_admin');      ### >= WP2.5
-	            add_action('edit_page_form', 'taf_admin');          ### >= WP2.5
-	        }else{
-	            add_action('admin_menu', 'add_cforms_post_boxes');  ### >= WP2.7
-	        }
-			add_action('save_post', 'enable_tellafriend');
+	        add_action('admin_menu', 'cforms2_add_cforms_post_boxes');
+			add_action('save_post', 'cforms2_enable_tellafriend');
 
 	    } ### if tafenabled
+
+		### admin ajax
+		require_once ('js/include/installpreset.php');
+
+		require_once ('js/include/checkbox.php');
+		require_once ('js/include/checkboxgroup.php');
+		require_once ('js/include/fieldsetstart.php');
+		require_once ('js/include/html5field.php');
+		require_once ('js/include/selectbox.php');
+		require_once ('js/include/textfield.php');
+		require_once ('js/include/textonly.php');
+
+		require_once ('js/include/lib_database_deleteentries.php');
+		require_once ('js/include/lib_database_deleteentry.php');
+		require_once ('js/include/lib_database_dlentries.php');
+		require_once ('js/include/lib_database_getentries.php');
+		require_once ('js/include/lib_database_overview.php');
+		require_once ('js/include/lib_database_savedata.php');
+
+		require_once ('js/insertdialog25.php');
 
 	} ### if admin
 
@@ -1742,8 +1679,7 @@ if (function_exists('add_action')){
 
 
 ### cforms runtime JS scripts
-function cforms_adminstyle() {
-	global $wp_query, $wp_scripts, $localversion;
+function cforms2_adminstyle() {
 	wp_enqueue_script('jquery',false,false,false,false);
 	wp_enqueue_script('jquery-ui-core',false,false,false,false);
 	wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
@@ -1755,52 +1691,51 @@ if ( isset($_GET['page']) ) {
 	$plugin_page = stripslashes($_GET['page']);
 	$plugin_page = plugin_basename($plugin_page);
 	if( strpos($plugin_page, 'cforms-options.php') )
-		add_action('admin_bar_menu', 'add_items_options',999);
+		add_action('admin_bar_menu', 'cforms2_add_items_options',999);
 	else if( strpos($plugin_page, 'cforms-global-settings.php') )
-		add_action('admin_bar_menu', 'add_items_global',999);	
+		add_action('admin_bar_menu', 'cforms2_add_items_global',999);
 }
 
-function add_items_global( $admin_bar ){
+function cforms2_add_items_global( $admin_bar ){
 	
 	global $wpdb;
 
-	addAdminBar_root($admin_bar, 'cforms-bar', 'cforms Admin');
+	cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 	
-	addAdminBar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms'), __('Outputs -for debug purposes- all cforms settings', 'cforms'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
-	addAdminBar_item($admin_bar, 'cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms'), __('Be careful here...', 'cforms'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms'), __('Outputs -for debug purposes- all cforms settings', 'cforms'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms'), __('Be careful here...', 'cforms'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
 
 	if ( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions ) 
-		addAdminBar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms'), __('Be careful here...', 'cforms'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms').'") ) jQuery("#deletetables").trigger("click"); return false;');
+		cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms'), __('Be careful here...', 'cforms'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms').'") ) jQuery("#deletetables").trigger("click"); return false;');
 
-	addAdminBar_item($admin_bar, 'cforms-backup', __('Backup / restore all settings', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-backup', __('Backup / restore all settings', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
 	
-	addAdminBar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
 
 }
 
-function add_items_options( $admin_bar ){
+function cforms2_add_items_options( $admin_bar ){
 
 	$cfo = get_option('cforms_settings');
 
-	addAdminBar_root($admin_bar,'cforms-bar', 'cforms Admin');
+	cforms2_add_admin_bar_root($admin_bar,'cforms-bar', 'cforms Admin');
 	
-	addAdminBar_item($admin_bar,'cforms-addbutton', __('Add new form', 'cforms'), __('Adds a new form with default values', 'cforms'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
-	addAdminBar_item($admin_bar,'cforms-dupbutton', __('Duplicate current form', 'cforms'), __('Clones the current form', 'cforms'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-addbutton', __('Add new form', 'cforms'), __('Adds a new form with default values', 'cforms'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-dupbutton', __('Duplicate current form', 'cforms'), __('Clones the current form', 'cforms'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
 	if ( (int)$cfo['global']['cforms_formcount'] > 1)
-		addAdminBar_item($admin_bar,'cforms-delbutton', __('Delete current form (!)', 'cforms'), __('Clicking this button WILL delete this form', 'cforms'), 'if ( confirm("'.__('This will delete the current form!', 'cforms').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
+		cforms2_add_admin_bar_item($admin_bar,'cforms-delbutton', __('Delete current form (!)', 'cforms'), __('Clicking this button WILL delete this form', 'cforms'), 'if ( confirm("'.__('This will delete the current form!', 'cforms').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
 
-	addAdminBar_item($admin_bar,'cforms-preset', __('Install a form preset', 'cforms'), __('Pick a form preset from the repository', 'cforms'), 'jQuery("#preset").trigger("click"); return false;');
-	addAdminBar_item($admin_bar,'cforms-backup', __('Backup / restore this form only', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-preset', __('Install a form preset', 'cforms'), __('Pick a form preset from the repository', 'cforms'), 'jQuery("#preset").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-backup', __('Backup / restore this form only', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
 
-	addAdminBar_item($admin_bar,'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
 
 }
 
 
 ### attaching to filters
 //add_filter('init', 'cforms_runtime_scripts');
-add_action('admin_init', 'cforms_adminstyle');
-add_filter('wp_head', 'cforms_style');
-add_filter('the_content', 'cforms_insert',101);
-add_filter('wp_footer', 'cforms_script',99);
-?>
+add_action('admin_init', 'cforms2_adminstyle');
+add_filter('wp_head', 'cforms2_style');
+add_filter('the_content', 'cforms2_insert',101);
+add_filter('wp_footer', 'cforms2_script',99);

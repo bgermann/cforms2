@@ -4,7 +4,7 @@
 ###
 
 ### Check Whether User Can Manage Database
-check_access_priv();
+cforms2_check_access_priv();
 ?>
 <div class="wrap">
 	<div id="icon-cforms-corrupted" class="icon32"><br/></div><h2><?php _e('cforms error','cforms')?></h2>
@@ -76,4 +76,4 @@ $c = str_replace('&','&amp;',$wpdb->get_var("SELECT option_value FROM `$wpdb->op
     </form>
 
 </div>
-<?php die(); ?>
+<?php wp_die();

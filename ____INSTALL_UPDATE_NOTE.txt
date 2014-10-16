@@ -2,11 +2,8 @@
  ======================================================================================
  Installing the plugin:
  ======================================================================================
-  Please upload the complete plugin folder /cforms/, contained in this zip file, to
+  Please upload the complete plugin folder "cforms2", contained in this zip file, to
   your WP plugin directory!
-
-  If there is no /cforms/ root folder in this zip file, please create one in your
-  WordPress plugins/ folder.
 
 
  ======================================================================================
@@ -23,8 +20,8 @@
  ======================================================================================
  Did you modify any cforms theme (CSS) files, images etc?
  ======================================================================================
-  Create a custom folder under /plugins/ & call it "/cforms-custom/". Move all your
-  custom files into it. This folder will protect your changes going forward.
+  Create a custom folder under your WP plugin directory & call it "cforms-custom". Move
+  all your custom files into it. This folder will protect your changes going forward.
 
   Also note that it is always advisable to make or keep a backup of your
   current plugin directory just in case you need to revert back to a

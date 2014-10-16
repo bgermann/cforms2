@@ -62,7 +62,7 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] = 'http://';
 
 	/*file upload*/
-	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] = $cformsSettings['global']['cforms_root_dir'] . $cformsSettings['global']['cforms_IIS'] . 'attachments';
+	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'attachments';
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] = 'txt,zip,doc,rtf,xls';
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] = '1024';
 
@@ -73,5 +73,3 @@
 
     update_option('cforms_settings',$cformsSettings);
 	echo '<div id="message" class="updated fade"><p>'.__('A new form with default fields has been added.', 'cforms').'</p></div>';
-
-?>

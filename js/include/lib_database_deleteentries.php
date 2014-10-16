@@ -1,17 +1,9 @@
-<?php
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
+<?php add_action( 'wp_ajax_database_deleteentries', 'cforms2_database_deleteentries' );
 
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
-
+function cforms2_database_deleteentries() {
+check_admin_referer( 'database_deleteentries' );
 if( !current_user_can('track_cforms') )
-	wp_die("access restricted.");
+	die("access restricted.");
 
 global $wpdb;
 
@@ -113,4 +105,5 @@ if ( $sub_ids<>'' ){
 
 	 _e('Entries successfully removed from the tracking tables!', 'cforms');
 }
-?>
+die();
+}

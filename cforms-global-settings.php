@@ -11,22 +11,18 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
-$plugindir   = $cformsSettings['global']['plugindir'];
-$cforms_root = $cformsSettings['global']['cforms_root'];
+$plugindir   = dirname(plugin_basename(__FILE__));
 
 ### check if pre-9.0 update needs to be made
-if( $cformsSettings['global']['update'] )
+if( isset($cformsSettings['global']['update']) )
 	require_once (dirname(__FILE__) . '/update-pre-9.php');
 
-### SMPT sever configured?
-$smtpsettings=explode('$#$',$cformsSettings['global']['cforms_smtp']);
-
 ### Check Whether User Can Manage Database
-check_access_priv();
+cforms2_check_access_priv();
 
 
 ### if all data has been erased quit
-if ( check_erased() )
+if ( cforms2_check_erased() )
 	return;
 
 if ( isset($_REQUEST['deletetables']) ) {
@@ -61,25 +57,26 @@ if ( isset($_REQUEST['deletetables']) ) {
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
 
-    $cformsSettings['global']['cforms_html5'] = $_REQUEST['cforms_html5']?'1':'0';
-    $cformsSettings['global']['cforms_show_quicktag'] = $_REQUEST['cforms_show_quicktag']?'1':'0';
-	$cformsSettings['global']['cforms_sec_qa'] = 		magic($_REQUEST['cforms_sec_qa']);
-	$cformsSettings['global']['cforms_codeerr'] = 		magic($_REQUEST['cforms_codeerr']);
+	$cformsSettings['global']['cforms_linklove'] = $_REQUEST['cforms_linklove']?'1':'0';
+	$cformsSettings['global']['cforms_html5'] = $_REQUEST['cforms_html5']?'1':'0';
+	$cformsSettings['global']['cforms_show_quicktag'] = $_REQUEST['cforms_show_quicktag']?'1':'0';
+	$cformsSettings['global']['cforms_sec_qa'] = 		cforms2_magic($_REQUEST['cforms_sec_qa']);
+	$cformsSettings['global']['cforms_codeerr'] = 		cforms2_magic($_REQUEST['cforms_codeerr']);
 	$cformsSettings['global']['cforms_database'] = 		$_REQUEST['cforms_database']?'1':'0';
 	$cformsSettings['global']['cforms_showdashboard'] = $_REQUEST['cforms_showdashboard']?'1':'0';
 	$cformsSettings['global']['cforms_datepicker'] = 	$_REQUEST['cforms_datepicker']?'1':'0';
-	$cformsSettings['global']['cforms_dp_date'] = 		magic($_REQUEST['cforms_dp_date']);
-	$cformsSettings['global']['cforms_dp_days'] = 		magic($_REQUEST['cforms_dp_days']);
+	$cformsSettings['global']['cforms_dp_date'] = 		cforms2_magic($_REQUEST['cforms_dp_date']);
+	$cformsSettings['global']['cforms_dp_days'] = 		cforms2_magic($_REQUEST['cforms_dp_days']);
 	$cformsSettings['global']['cforms_dp_start'] = 		$_REQUEST['cforms_dp_start']==''?'0':$_REQUEST['cforms_dp_start'];
-	$cformsSettings['global']['cforms_dp_months'] = 	magic($_REQUEST['cforms_dp_months']);
+	$cformsSettings['global']['cforms_dp_months'] = 	cforms2_magic($_REQUEST['cforms_dp_months']);
 
 	$nav=array();
-	$nav[0]=magic($_REQUEST['cforms_dp_prevY']);
-	$nav[1]=magic($_REQUEST['cforms_dp_prevM']);
-	$nav[2]=magic($_REQUEST['cforms_dp_nextY']);
-	$nav[3]=magic($_REQUEST['cforms_dp_nextM']);
-	$nav[4]=magic($_REQUEST['cforms_dp_close']);
-	$nav[5]=magic($_REQUEST['cforms_dp_choose']);
+	$nav[0]=cforms2_magic($_REQUEST['cforms_dp_prevY']);
+	$nav[1]=cforms2_magic($_REQUEST['cforms_dp_prevM']);
+	$nav[2]=cforms2_magic($_REQUEST['cforms_dp_nextY']);
+	$nav[3]=cforms2_magic($_REQUEST['cforms_dp_nextM']);
+	$nav[4]=cforms2_magic($_REQUEST['cforms_dp_close']);
+	$nav[5]=cforms2_magic($_REQUEST['cforms_dp_choose']);
 	$nav[6]=$_REQUEST['cforms_dp_Ybuttons']?'1':'0';
 	$cformsSettings['global']['cforms_dp_nav'] = $nav;
 
@@ -89,39 +86,23 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
  	$cformsSettings['global']['cforms_inexclude']['ids'] = $_REQUEST['cforms_include'];
 
-	$cformsSettings['global']['cforms_commentsuccess'] =magic($_REQUEST['cforms_commentsuccess']);
+	$cformsSettings['global']['cforms_commentsuccess'] =cforms2_magic($_REQUEST['cforms_commentsuccess']);
 	$cformsSettings['global']['cforms_commentWait'] =  	$_REQUEST['cforms_commentWait'];
 	$cformsSettings['global']['cforms_commentParent'] =	$_REQUEST['cforms_commentParent'];
-	$cformsSettings['global']['cforms_commentHTML'] =	magic($_REQUEST['cforms_commentHTML']);
-	$cformsSettings['global']['cforms_commentInMod'] =	magic($_REQUEST['cforms_commentInMod']);
+	$cformsSettings['global']['cforms_commentHTML'] =	cforms2_magic($_REQUEST['cforms_commentHTML']);
+	$cformsSettings['global']['cforms_commentInMod'] =	cforms2_magic($_REQUEST['cforms_commentInMod']);
 	$cformsSettings['global']['cforms_avatar'] =	   	$_REQUEST['cforms_avatar'];
 
 	$cformsSettings['global']['cforms_crlf']['h'] =	   	$_REQUEST['cforms_crlfH']?'1':'0';
 	$cformsSettings['global']['cforms_crlf']['b'] =	   	$_REQUEST['cforms_crlf']?'1':'0';
 
-	$smtpsettings[0] = $_REQUEST['cforms_smtp_onoff']?'1':'0';
-	$smtpsettings[1] = $_REQUEST['cforms_smtp_host'];
-	$smtpsettings[2] = magic($_REQUEST['cforms_smtp_user']);
-	if ( !preg_match('/^\*+$/',$_REQUEST['cforms_smtp_pass']) ) {
-		$smtpsettings[3] = magic($_REQUEST['cforms_smtp_pass']);
-		}
-	$smtpsettings[4] = $_REQUEST['cforms_smtp_ssltls'];
-	$smtpsettings[5] = $_REQUEST['cforms_smtp_port'];
-    $smtpsettings[6] = $_REQUEST['cforms_smtp_pop']?'1':'0';
-    $smtpsettings[7] = $_REQUEST['cforms_smtp_pop_host'];
-    $smtpsettings[8] = $_REQUEST['cforms_smtp_pop_port'];
-    $smtpsettings[9] = $_REQUEST['cforms_smtp_pop_ln'];
-	if ( !preg_match('/^\*+$/',$_REQUEST['cforms_smtp_pop_pw']) ) {
-		$smtpsettings[10] = magic($_REQUEST['cforms_smtp_pop_pw']);
-		}
+	$cformsSettings['global']['cforms_smtp'] = null ;
 
-	$cformsSettings['global']['cforms_smtp'] = implode('$#$',$smtpsettings) ;
-
-	$cformsSettings['global']['cforms_upload_err1'] = magic($_REQUEST['cforms_upload_err1']);
-	$cformsSettings['global']['cforms_upload_err2'] = magic($_REQUEST['cforms_upload_err2']);
-	$cformsSettings['global']['cforms_upload_err3'] = magic($_REQUEST['cforms_upload_err3']);
-	$cformsSettings['global']['cforms_upload_err4'] = magic($_REQUEST['cforms_upload_err4']);
-	$cformsSettings['global']['cforms_upload_err5'] = magic($_REQUEST['cforms_upload_err5']);
+	$cformsSettings['global']['cforms_upload_err1'] = cforms2_magic($_REQUEST['cforms_upload_err1']);
+	$cformsSettings['global']['cforms_upload_err2'] = cforms2_magic($_REQUEST['cforms_upload_err2']);
+	$cformsSettings['global']['cforms_upload_err3'] = cforms2_magic($_REQUEST['cforms_upload_err3']);
+	$cformsSettings['global']['cforms_upload_err4'] = cforms2_magic($_REQUEST['cforms_upload_err4']);
+	$cformsSettings['global']['cforms_upload_err5'] = cforms2_magic($_REQUEST['cforms_upload_err5']);
 
 	$cap = array();
 	$cap['i'] = $_REQUEST['cforms_cap_i'];
@@ -162,7 +143,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					  ip varchar(15) default '',
 					  PRIMARY KEY  (id) ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
-			require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
 
 			$sql = "CREATE TABLE " . $wpdb->cformsdata . " (
@@ -171,7 +152,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					  field_name varchar(100) NOT NULL default '',
 					  field_val text) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
-			require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
 
             ###check
@@ -203,9 +184,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	}
 
 }
-
-### check for abspath.php
-abspath_check();
 
 ?>
 
@@ -364,7 +342,7 @@ abspath_check();
 
 				<tr class="ob space15">
 					<td class="obL"><label for="cforms_dp_date"><strong><?php _e('Date Format', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_date'] )); ?>"/><a href="http://docs.jquery.com/UI/Datepicker/formatDate" target="_blank"><?php _e('See supported date formats &raquo;', 'cforms'); ?></a></td>
+					<td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_date'] )); ?>"/><a href="http://api.jqueryui.com/datepicker/#utility-formatDate"><?php _e('See supported date formats &raquo;', 'cforms'); ?></a></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_dp_days"><strong><?php _e('Days (Columns)', 'cforms'); ?></strong></label></td>
@@ -424,84 +402,6 @@ abspath_check();
 				<tr class="obSEP"><td colspan="2"></td></tr>
 				</table>
 
-				<p><img style="vertical-align:middle;margin-right:10px;" src="<?php echo $cforms_root; ?>/images/phpmailer.png" alt="phpmailerV2"/> <?php _e('In a normal WP environment you do not need to configure these settings!', 'cforms') ?>
-				<?php _e('In case your web hosting provider doesn\'t support the <strong>native PHP mail()</strong> command feel free to configure <strong>cforms</strong> to utilize an external <strong>SMTP mail server</strong> to deliver the emails.', 'cforms') ?></p>
-				<?php
-				$userconfirm = $cformsSettings['global']['cforms_confirmerr'];
-				if ( $smtpsettings[0]=='1' && $smtpsettings[4]<>'' && ($userconfirm&32)==0 ){
-					if ( isset($_GET['cf_confirm']) && $_GET['cf_confirm']=='confirm32' ){
-						$cformsSettings['global']['cforms_confirmerr'] = $userconfirm|32;
-						update_option('cforms_settings',$cformsSettings);
-						echo '<div id="message32" class="updated fade"><p>ok</p></div>';
-                    } else {
-						$text = '<strong>'.__('Important:','cforms').'</strong> '.__('If you require SSL / TLS make sure your webserver/PHP environment permits it! If in doubt, check with your web hosting company regarding <strong>openssl</strong> support.', 'cforms');
-						echo '<div id="message32" class="updated fade"><p>'.$text.'</p><p><a href="?page='.$plugindir.'/cforms-global-settings.php&cf_confirm=confirm32" class="rm_button allbuttons">'.__('Remove Message','cforms').'</a></p></div>';
-					}
-				}
-				?>
-
-				<table class="form-table">
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_smtp_onoff" name="cforms_smtp_onoff" <?php if($smtpsettings[0]=="1") echo "checked=\"checked\""; ?>/><label for="cforms_smtp_onoff"><strong><?php _e('Enable an external SMTP server', 'cforms') ?></strong></label> ** <a class="infobutton" href="#" name="it11"><?php _e('Note &raquo;', 'cforms'); ?></a></td>
-				</tr>
-				<tr id="it11" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('To avoid additional sources of error, cformsII v6.4 and beyond includes the PHPmailer 2.0 scripts, now <strong>supporting</strong> both <strong>SSL</strong> and <strong>TLS</strong> for authentication.','cforms')); ?></td></tr>
-
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_smtp_host"><strong><?php _e('SMTP server address', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_host" name="cforms_smtp_host" value="<?php echo stripslashes(htmlspecialchars($smtpsettings[1])); ?>"/></td>
-				</tr>
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_smtp_ssl"><strong><?php _e('Secure Connection', 'cforms'); ?></strong></label></td>
-					<td class="obR">
-						<input type="radio" class="allchk" id="cforms_smtp_none" value="" name="cforms_smtp_ssltls" <?php echo ($smtpsettings[4]=='')?'checked="checked"':''; ?>/><label for="cforms_smtp_none"><strong><?php _e('No', 'cforms'); ?></strong></label><br />
-						<input type="radio" class="allchk" id="cforms_smtp_ssl" value="ssl" name="cforms_smtp_ssltls" <?php echo ($smtpsettings[4]=='ssl')?'checked="checked"':''; ?>/><label for="cforms_smtp_ssl"><strong><?php _e('SSL (e.g. gmail)', 'cforms'); ?></strong></label><br />
-						<input type="radio" class="allchk" id="cforms_smtp_tls" value="tls" name="cforms_smtp_ssltls" <?php echo ($smtpsettings[4]=='tls')?'checked="checked"':''; ?>/><label for="cforms_smtp_tls"><strong><?php _e('TLS', 'cforms'); ?></strong></label>
-					</td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_port"><strong><?php _e('Port', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_port" name="cforms_smtp_port" value="<?php echo stripslashes(htmlspecialchars($smtpsettings[5])); ?>"/> <?php _e('Usually 465 (e.g. gmail) or 587', 'cforms'); ?></td>
-				</tr>
-				<tr class="ob space15">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><strong><?php _e('SMTP Authentication (leave blank if not needed!):', 'cforms'); ?></strong></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_user"><strong><?php _e('Username', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_user" name="cforms_smtp_user" value="<?php echo stripslashes(htmlspecialchars($smtpsettings[2])); ?>"/></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_pass"><strong><?php _e('Password', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_pass" name="cforms_smtp_pass" value="<?php echo str_repeat('*',strlen($smtpsettings[3])); ?>"/></td>
-				</tr>
-
-				<tr class="obSEP"><td colspan="2"></td></tr>
-
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_smtp_pop" name="cforms_smtp_pop" value="1" <?php if($smtpsettings[6]=="1") echo "checked=\"checked\""; ?>/><label for="cforms_smtp_pop"><strong><?php _e('POP before SMTP', 'cforms') ?></strong></label></td>
-				</tr>
-
-				<?php if( $smtpsettings[6]=="1" ): ?>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_pop_host"><strong><?php _e('POP server address', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_pop_host" name="cforms_smtp_pop_host" value="<?php echo stripslashes(htmlspecialchars($smtpsettings[7])); ?>"/></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_pop_port"><strong><?php _e('POP Port', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_pop_port" name="cforms_smtp_pop_port" value="<?php echo stripslashes(htmlspecialchars($smtpsettings[8])); ?>"/></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_pop_ln"><strong><?php _e('POP Login', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_pop_ln" name="cforms_smtp_pop_ln" value="<?php echo stripslashes(htmlspecialchars($smtpsettings[9])); ?>"/></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_smtp_pop_pw"><strong><?php _e('POP Password', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_smtp_pop_pw" name="cforms_smtp_pop_pw" value="<?php echo str_repeat('*',strlen($smtpsettings[10])); ?>"/></td>
-				</tr>
-                <?php endif; ?>
-				</table>
 			</div>
 		</fieldset>
 
@@ -572,7 +472,7 @@ abspath_check();
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obL"><img src="<?php echo $cforms_root; ?>/images/button.gif" alt=""/></td>
+					<td class="obL"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/button.gif" alt=""/></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_show_quicktag" name="cforms_show_quicktag" <?php if($cformsSettings['global']['cforms_show_quicktag']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_show_quicktag"><strong><?php _e('Enable TinyMCE', 'cforms') ?></strong> <?php _e('&amp; Code editor buttons', 'cforms') ?></label></td>
 				</tr>
 
@@ -594,35 +494,35 @@ abspath_check();
 
 				<?php
 					$cap = $cformsSettings['global']['cforms_captcha_def'];
-					$h = prep2( $cap['h'],25 );
-					$w = prep2( $cap['w'],115 );
-					$c = prep2( $cap['c'],'000066' );
-					$l = prep2( $cap['l'],'000066' );
-					$f = prep2( $cap['f'],'font4.ttf' );
-					$a1 = prep2( $cap['a1'],-12 );
-					$a2 = prep2( $cap['a2'],12 );
-					$f1 = prep2( $cap['f1'],17 );
-					$f2 = prep2( $cap['f2'],19 );
-					$bg = prep2( $cap['bg'],'1.gif' );
-					$c1 = prep2( $cap['c1'],4 );
-					$c2 = prep2( $cap['c2'],5 );
-					$i  = prep2( $cap['i'],'i' );
-					$ac = prep2( $cap['ac'],'abcdefghijkmnpqrstuvwxyz23456789' );
+					$h = cforms2_prep( $cap['h'],25 );
+					$w = cforms2_prep( $cap['w'],115 );
+					$c = cforms2_prep( $cap['c'],'000066' );
+					$l = cforms2_prep( $cap['l'],'000066' );
+					$f = cforms2_prep( $cap['f'],'font4.ttf' );
+					$a1 = cforms2_prep( $cap['a1'],-12 );
+					$a2 = cforms2_prep( $cap['a2'],12 );
+					$f1 = cforms2_prep( $cap['f1'],17 );
+					$f2 = cforms2_prep( $cap['f2'],19 );
+					$bg = cforms2_prep( $cap['bg'],'1.gif' );
+					$c1 = cforms2_prep( $cap['c1'],4 );
+					$c2 = cforms2_prep( $cap['c2'],5 );
+					$i  = cforms2_prep( $cap['i'],'i' );
+					$ac = cforms2_prep( $cap['ac'],'abcdefghijkmnpqrstuvwxyz23456789' );
 
 					//$img = "&amp;c1={$c1}&amp;c2={$c2}&amp;ac={$ac}&amp;i={$i}&amp;w={$w}&amp;h={$h}&amp;c={$c}&amp;l={$l}&amp;f={$f}&amp;a1={$a1}&amp;a2={$a2}&amp;f1={$f1}&amp;f2={$f2}&amp;bg={$bg}";
 
-					$fonts = '<select name="cforms_cap_f" id="cforms_cap_f">'.cf_get_files('captchafonts',$f,'ttf').'</select>';
-					$backgrounds = '<select name="cforms_cap_b" id="cforms_cap_b">'.cf_get_files('captchabg',$bg,'gif').'</select>';
+					$fonts = '<select name="cforms_cap_f" id="cforms_cap_f">'.cforms2_get_files('captchafonts',$f,'ttf').'</select>';
+					$backgrounds = '<select name="cforms_cap_b" id="cforms_cap_b">'.cforms2_get_files('captchabg',$bg,'gif').'</select>';
 
 				?>
 
 				<div style="position:absolute; z-index:9999;">
 				<div id="mini" onmousedown="coreXY('mini',event)" style="top:0px; left:10px; display:none; margin-left:5%;">
 					<div class="north"><span id="mHEX">FFFFFF</span><div onmousedown="$cfS('mini').display='none';">x</div></div>
-					<div class="south" id="mSpec" style="HEIGHT: 128px; WIDTH: 128px;" onmousedown="coreXY('mCur',event)">
-						<div id="mCur" style="TOP: 86px; LEFT: 68px;"></div>
-						<img src="<?php echo $cforms_root; ?>/images/circle.png" onmousedown="return false;" alt=""/>
-						<img src="<?php echo $cforms_root; ?>/images/resize.gif" id="mSize" onmousedown="coreXY('mSize',event); return false;" alt=""/>
+					<div class="south" id="mSpec" style="height: 128px; width: 128px;" onmousedown="coreXY('mCur',event)">
+						<div id="mCur" style="top: 86px; left: 68px;"></div>
+						<img src="<?php echo plugin_dir_url(__FILE__); ?>images/circle.png" onmousedown="return false;" alt=""/>
+						<img src="<?php echo plugin_dir_url(__FILE__); ?>images/resize.gif" id="mSize" onmousedown="coreXY('mSize',event); return false;" alt=""/>
 					</div>
 				</div>
 				</div>
@@ -631,7 +531,7 @@ abspath_check();
 				<tr class="ob">
 					<td class="obL"><strong><?php _e('Preview Image', 'cforms') ?></strong><br /><span id="pnote" style="display:none; color:red;"><?php _e('Don\'t forget to save your changes!', 'cforms'); ?></span></td>
 					<td class="obR" id="adminCaptcha">
-                        <a title="<?php _e('Reload Captcha Image', 'cforms'); ?>" href="javascript:resetAdminCaptcha('<?php echo $cforms_root; ?>')"><?php _e('Reload Captcha Image', 'cforms'); ?> &raquo;</a>
+                        <a title="<?php _e('Reload Captcha Image', 'cforms'); ?>" href="javascript:resetAdminCaptcha()"><?php _e('Reload Captcha Image', 'cforms'); ?> &raquo;</a>
 					</td>
 				</tr>
 
@@ -796,11 +696,26 @@ abspath_check();
 					<td class="obR">
 						<input name="cforms_rsskeyall" id="cforms_rsskey" value="<?php echo $cformsSettings['global']['cforms_rsskeyall'];  ?>" />
 						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#tracking';"/>
-						<br /><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_cf_siteurl().'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
+						<br /><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.network_site_url().'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
 					</td>
 				</tr>
 				<?php endif; ?>
 
+				</table>
+			</div>
+		</fieldset>
+
+		<fieldset id="linklove" class="cformsoptions">
+			<div class="cflegend op-closed" id="p32" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Link Attribution', 'cforms')?>
+            </div>
+
+			<div class="cf-content" id="o32">
+				<table class="form-table">
+					<tr class="ob">
+						<td class="obL"></td>
+						<td class="obR"><input class="allchk" type="checkbox" id="cforms_linklove" name="cforms_linklove" <?php if($cformsSettings['global']['cforms_linklove']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_linklove"><strong><?php _e('Enable link attribution', 'cforms') ?></strong></label></td>
+					</tr>
 				</table>
 			</div>
 		</fieldset>
@@ -817,7 +732,7 @@ abspath_check();
 
 	<?php endif; ### not showing debug msgs. ?> 
 	
-	<?php cforms_footer(); ?>
+	<?php cforms2_footer(); ?>
 </div>
 
 <div class="jqmWindow" id="cf_backupbox">
@@ -832,7 +747,7 @@ abspath_check();
                 	<input type="file" id="importall" name="importall" size="25" /><input type="submit" name="restoreallcformsdata" title="<?php _e('Restore all settings now!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('Restore all settings now!', 'cforms') ?>" onclick="return confirm('<?php _e('With a broken backup file, this action may erase all your settings! Do you want to continue?', 'cforms') ?>');"/>
 				</p>
 				<em><?php _e('PS: Individual form configurations can be backup up on the respective form admin page.', 'cforms') ?></em>
-                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
 
             </div>
             <input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
@@ -849,7 +764,7 @@ abspath_check();
 				<p><strong><?php _e('This is irrevocable!', 'cforms') ?></strong>&nbsp;&nbsp;&nbsp;<br />
 					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms') ?>');"/></p>
 
-                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
             </div>
         </form>
     </div>
@@ -857,13 +772,11 @@ abspath_check();
 
 <?php
 
-function cf_get_files($dir,$currentfile,$ext){
-	global	$cformsSettings;
+function cforms2_get_files($dir,$currentfile,$ext){
 
-	$s = $cformsSettings['global']['cforms_IIS'];
-	$presetsdir		= $cformsSettings['global']['cforms_root_dir'] .$s.'..'.$s .'cforms-custom';
+	$s = DIRECTORY_SEPARATOR;
+	$presetsdir		= dirname(__FILE__) .$s.'..'.$s .'cforms-custom';
 	$list 			= '';
-	$allfiles		= array();
 
 	if ( file_exists($presetsdir) ){
 
@@ -880,7 +793,7 @@ function cf_get_files($dir,$currentfile,$ext){
 		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('cform css files','cforms'). ' ***&nbsp;&nbsp;</option>';
 	}
 
-	$presetsdir		= $cformsSettings['global']['cforms_root_dir'].$s. $dir .$s;
+	$presetsdir		= dirname(__FILE__).$s. $dir .$s;
 	if ($handle = opendir($presetsdir)) {
 	    while (false !== ($file = readdir($handle))) {
 	        if (preg_match('/\.'.$ext.'$/i',$file) && $file != "." && $file != ".." && filesize($presetsdir.$file) > 0)
@@ -894,7 +807,6 @@ function cf_get_files($dir,$currentfile,$ext){
 
 
 ### strip stuff
-function prep2($v,$d) {
+function cforms2_prep($v,$d) {
 	return ($v<>'')?stripslashes(htmlspecialchars($v)):$d;
 }
-?>

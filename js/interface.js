@@ -1,1 +1,1733 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('6.u={H:N,8:N,2A:A(){F j.1b(A(){9(j.3j){j.7.1D.2U(\'4a\',6.u.4j);j.7=N;j.3j=q;9(6.1N.2Y){j.4e="65"}S{j.R.66=\'\';j.R.5c=\'\';j.R.5b=\'\'}}})},4j:A(e){9(6.u.8!=N){6.u.3k(e);F q}k g=j.3B;6(P).3q(\'3p\',6.u.4b).3q(\'3v\',6.u.3k);g.7.18=6.Q.3X(e);g.7.1r=g.7.18;g.7.3Q=q;g.7.67=j!=j.3B;6.u.8=g;9(g.7.23&&j!=j.3B){4B=6.Q.2o(g.2d);4H=6.Q.20(g);44={x:O(6.I(g,\'1o\'))||0,y:O(6.I(g,\'1p\'))||0};V=g.7.1r.x-4B.x-4H.1c/2-44.x;W=g.7.1r.y-4B.y-4H.12/2-44.y;6.4d.69(g,[V,W])}F 6.6a||q},58:A(e){k g=6.u.8;g.7.3Q=K;k 3s=g.R;g.7.2K=6.I(g,\'U\');g.7.2L=6.I(g,\'1u\');9(!g.7.4G)g.7.4G=g.7.2L;g.7.Y={x:O(6.I(g,\'1o\'))||0,y:O(6.I(g,\'1p\'))||0};g.7.3w=0;g.7.3x=0;9(6.1N.2Y){k 4w=6.Q.3U(g,K);g.7.3w=4w.l||0;g.7.3x=4w.t||0}g.7.L=6.1s(6.Q.2o(g),6.Q.20(g));9(g.7.2L!=\'4T\'&&g.7.2L!=\'3G\'){3s.1u=\'4T\'}6.u.H.4F();k 1R=g.5N(K);6(1R).I({U:\'2b\',1o:\'1A\',1p:\'1A\'});1R.R.3b=\'0\';1R.R.2C=\'0\';1R.R.3c=\'0\';1R.R.3e=\'0\';6.u.H.1I(1R);k 1i=6.u.H.J(0).R;9(g.7.4g){1i.2W=\'4U\';1i.21=\'4U\'}S{1i.21=g.7.L.12+\'1d\';1i.2W=g.7.L.1c+\'1d\'}1i.U=\'2b\';1i.3b=\'1A\';1i.2C=\'1A\';1i.3c=\'1A\';1i.3e=\'1A\';6.1s(g.7.L,6.Q.20(1R));9(g.7.11){9(g.7.11.1o){g.7.Y.x+=g.7.18.x-g.7.L.x-g.7.11.1o;g.7.L.x=g.7.18.x-g.7.11.1o}9(g.7.11.1p){g.7.Y.y+=g.7.18.y-g.7.L.y-g.7.11.1p;g.7.L.y=g.7.18.y-g.7.11.1p}9(g.7.11.45){g.7.Y.x+=g.7.18.x-g.7.L.x-g.7.L.12+g.7.11.45;g.7.L.x=g.7.18.x-g.7.L.1c+g.7.11.45}9(g.7.11.46){g.7.Y.y+=g.7.18.y-g.7.L.y-g.7.L.12+g.7.11.46;g.7.L.y=g.7.18.y-g.7.L.12+g.7.11.46}}g.7.1G=g.7.Y.x;g.7.1B=g.7.Y.y;9(g.7.31||g.7.X==\'2G\'){30=6.Q.3U(g.2d,K);g.7.L.x=g.4C+(6.1N.2Y?0:6.1N.3A?-30.l:30.l);g.7.L.y=g.4E+(6.1N.2Y?0:6.1N.3A?-30.t:30.t);6(g.2d).1I(6.u.H.J(0))}9(g.7.X){6.u.4V(g);g.7.1L.X=6.u.52}9(g.7.23){6.4d.6b(g)}1i.1o=g.7.L.x-g.7.3w+\'1d\';1i.1p=g.7.L.y-g.7.3x+\'1d\';1i.2W=g.7.L.1c+\'1d\';1i.21=g.7.L.12+\'1d\';6.u.8.7.3O=q;9(g.7.2p){g.7.1L.1U=6.u.50}9(g.7.2v!=q){6.u.H.I(\'2v\',g.7.2v)}9(g.7.15){6.u.H.I(\'15\',g.7.15);9(2c.3z){6.u.H.I(\'4o\',\'4W(15=\'+g.7.15*4X+\')\')}}9(g.7.2t){6.u.H.2n(g.7.2t);6.u.H.J(0).3l.R.U=\'10\'}9(g.7.1y)g.7.1y.1E(g,[1R,g.7.Y.x,g.7.Y.y]);9(6.G&&6.G.37>0){6.G.5j(g)}9(g.7.1m==q){3s.U=\'10\'}F q},4V:A(g){9(g.7.X.1h==5g){9(g.7.X==\'2G\'){g.7.1a=6.1s({x:0,y:0},6.Q.20(g.2d));k 3g=6.Q.3U(g.2d,K);g.7.1a.w=g.7.1a.1c-3g.l-3g.r;g.7.1a.h=g.7.1a.12-3g.t-3g.b}S 9(g.7.X==\'P\'){k 48=6.Q.5z();g.7.1a={x:0,y:0,w:48.w,h:48.h}}}S 9(g.7.X.1h==4t){g.7.1a={x:O(g.7.X[0])||0,y:O(g.7.X[1])||0,w:O(g.7.X[2])||0,h:O(g.7.X[3])||0}}g.7.1a.V=g.7.1a.x-g.7.L.x;g.7.1a.W=g.7.1a.y-g.7.L.y},3t:A(8){9(8.7.31||8.7.X==\'2G\'){6(\'17\',P).1I(6.u.H.J(0))}6.u.H.4F().6d().I(\'15\',1);9(2c.3z){6.u.H.I(\'4o\',\'4W(15=4X)\')}},3k:A(e){6(P).2U(\'3p\',6.u.4b).2U(\'3v\',6.u.3k);9(6.u.8==N){F}k 8=6.u.8;6.u.8=N;9(8.7.3Q==q){F q}9(8.7.1l==K){6(8).I(\'1u\',8.7.2L)}k 3s=8.R;9(8.23){6.u.H.I(\'5s\',\'5a\')}9(8.7.2t){6.u.H.3f(8.7.2t)}9(8.7.22==q){9(8.7.T>0){9(!8.7.M||8.7.M==\'2x\'){k x=39 6.T(8,{2u:8.7.T},\'1o\');x.4Y(8.7.Y.x,8.7.2V)}9(!8.7.M||8.7.M==\'2M\'){k y=39 6.T(8,{2u:8.7.T},\'1p\');y.4Y(8.7.Y.y,8.7.2X)}}S{9(!8.7.M||8.7.M==\'2x\')8.R.1o=8.7.2V+\'1d\';9(!8.7.M||8.7.M==\'2M\')8.R.1p=8.7.2X+\'1d\'}6.u.3t(8);9(8.7.1m==q){6(8).I(\'U\',8.7.2K)}}S 9(8.7.T>0){8.7.3O=K;k 2E=q;9(6.G&&6.E&&8.7.1l){2E=6.Q.2o(6.E.H.J(0))}6.u.H.6e({1o:2E?2E.x:8.7.L.x,1p:2E?2E.y:8.7.L.y},8.7.T,A(){8.7.3O=q;9(8.7.1m==q){8.R.U=8.7.2K}6.u.3t(8)})}S{6.u.3t(8);9(8.7.1m==q){6(8).I(\'U\',8.7.2K)}}9(6.G&&6.G.37>0){6.G.5m(8)}9(6.E&&8.7.1l){6.E.5O(8)}9(8.7.1f&&(8.7.2V!=8.7.Y.x||8.7.2X!=8.7.Y.y)){8.7.1f.1E(8,8.7.6f||[0,0,8.7.2V,8.7.2X])}9(8.7.1n)8.7.1n.1E(8);F q},50:A(x,y,V,W){9(V!=0)V=O((V+(j.7.2p*V/19.51(V))/2)/j.7.2p)*j.7.2p;9(W!=0)W=O((W+(j.7.35*W/19.51(W))/2)/j.7.35)*j.7.35;F{V:V,W:W,x:0,y:0}},52:A(x,y,V,W){V=19.53(19.3d(V,j.7.1a.V),j.7.1a.w+j.7.1a.V-j.7.L.1c);W=19.53(19.3d(W,j.7.1a.W),j.7.1a.h+j.7.1a.W-j.7.L.12);F{V:V,W:W,x:0,y:0}},4b:A(e){9(6.u.8==N||6.u.8.7.3O==K){F}k 8=6.u.8;8.7.1r=6.Q.3X(e);9(8.7.3Q==q){57=19.6g(19.56(8.7.18.x-8.7.1r.x,2)+19.56(8.7.18.y-8.7.1r.y,2));9(57<8.7.2e){F}S{6.u.58(e)}}k V=8.7.1r.x-8.7.18.x;k W=8.7.1r.y-8.7.18.y;1t(k i 1V 8.7.1L){k 26=8.7.1L[i].1E(8,[8.7.Y.x+V,8.7.Y.y+W,V,W]);9(26&&26.1h==6h){V=i!=\'2B\'?26.V:(26.x-8.7.Y.x);W=i!=\'2B\'?26.W:(26.y-8.7.Y.y)}}8.7.1G=8.7.L.x+V-8.7.3w;8.7.1B=8.7.L.y+W-8.7.3x;9(8.7.23&&(8.7.2F||8.7.1f)){6.4d.2F(8,8.7.1G,8.7.1B)}9(8.7.1z)8.7.1z.1E(8,[8.7.Y.x+V,8.7.Y.y+W]);9(!8.7.M||8.7.M==\'2x\'){8.7.2V=8.7.Y.x+V;6.u.H.J(0).R.1o=8.7.1G+\'1d\'}9(!8.7.M||8.7.M==\'2M\'){8.7.2X=8.7.Y.y+W;6.u.H.J(0).R.1p=8.7.1B+\'1d\'}9(6.G&&6.G.37>0){6.G.3h(8)}F q},2w:A(o){9(!6.u.H){6(\'17\',P).1I(\'<1P Z="59"></1P>\');6.u.H=6(\'#59\');k D=6.u.H.J(0);k 1F=D.R;1F.1u=\'3G\';1F.U=\'10\';1F.5s=\'5a\';1F.6i=\'10\';1F.6j=\'4n\';9(2c.3z){D.4e="5d"}S{1F.6k=\'10\';1F.5b=\'10\';1F.5c=\'10\'}}9(!o){o={}}F j.1b(A(){9(j.3j||!6.Q)F;9(2c.3z){j.6l=A(){F q};j.6m=A(){F q}}k D=j;k 1D=o.1T?6(j).6n(o.1T):6(j);9(6.1N.2Y){1D.1b(A(){j.4e="5d"})}S{1D.I(\'-6p-2B-4f\',\'10\');1D.I(\'2B-4f\',\'10\');1D.I(\'-6q-2B-4f\',\'10\')}j.7={1D:1D,22:o.22?K:q,1m:o.1m?K:q,1l:o.1l?o.1l:q,23:o.23?o.23:q,31:o.31?o.31:q,2v:o.2v?O(o.2v)||0:q,15:o.15?4r(o.15):q,T:O(o.T)||N,2a:o.2a?o.2a:q,1L:{},18:{},1y:o.1y&&o.1y.1h==1J?o.1y:q,1n:o.1n&&o.1n.1h==1J?o.1n:q,1f:o.1f&&o.1f.1h==1J?o.1f:q,M:/2M|2x/.4c(o.M)?o.M:q,2e:o.2e?O(o.2e)||0:0,11:o.11?o.11:q,4g:o.4g?K:q,2t:o.2t||q};9(o.1L&&o.1L.1h==1J)j.7.1L.2B=o.1L;9(o.1z&&o.1z.1h==1J)j.7.1z=o.1z;9(o.X&&((o.X.1h==5g&&(o.X==\'2G\'||o.X==\'P\'))||(o.X.1h==4t&&o.X.1k==4))){j.7.X=o.X}9(o.4h){j.7.4h=o.4h}9(o.1U){9(5u o.1U==\'6t\'){j.7.2p=O(o.1U)||1;j.7.35=O(o.1U)||1}S 9(o.1U.1k==2){j.7.2p=O(o.1U[0])||1;j.7.35=O(o.1U[1])||1}}9(o.2F&&o.2F.1h==1J){j.7.2F=o.2F}j.3j=K;1D.1b(A(){j.3B=D});1D.3q(\'4a\',6.u.4j)})}};6.2Q.1s({3i:6.u.2A,40:6.u.2w});6.G={5r:A(1M,1O,2D,2i){F 1M<=6.u.8.7.1G&&(1M+2D)>=(6.u.8.7.1G+6.u.8.7.L.w)&&1O<=6.u.8.7.1B&&(1O+2i)>=(6.u.8.7.1B+6.u.8.7.L.h)?K:q},4I:A(1M,1O,2D,2i){F!(1M>(6.u.8.7.1G+6.u.8.7.L.w)||(1M+2D)<6.u.8.7.1G||1O>(6.u.8.7.1B+6.u.8.7.L.h)||(1O+2i)<6.u.8.7.1B)?K:q},18:A(1M,1O,2D,2i){F 1M<6.u.8.7.1r.x&&(1M+2D)>6.u.8.7.1r.x&&1O<6.u.8.7.1r.y&&(1O+2i)>6.u.8.7.1r.y?K:q},1Q:q,1g:{},37:0,1e:{},5j:A(g){9(6.u.8==N){F}k i;6.G.1g={};k 4l=q;1t(i 1V 6.G.1e){9(6.G.1e[i]!=N){k C=6.G.1e[i].J(0);9(6(6.u.8).3Z(\'.\'+C.B.a)){9(C.B.m==q){C.B.p=6.1s(6.Q.3D(C),6.Q.3K(C));C.B.m=K}9(C.B.29){6.G.1e[i].2n(C.B.29)}6.G.1g[i]=6.G.1e[i];9(6.E&&C.B.s&&6.u.8.7.1l){C.B.D=6(\'.\'+C.B.a,C);g.R.U=\'10\';6.E.3W(C);C.B.3V=6.E.33(6.1j(C,\'Z\')).2R;g.R.U=g.7.2K;4l=K}9(C.B.3F){C.B.3F.1E(6.G.1e[i].J(0),[6.u.8])}}}}9(4l){6.E.5L()}},5t:A(){6.G.1g={};1t(i 1V 6.G.1e){9(6.G.1e[i]!=N){k C=6.G.1e[i].J(0);9(6(6.u.8).3Z(\'.\'+C.B.a)){C.B.p=6.1s(6.Q.3D(C),6.Q.3K(C));9(C.B.29){6.G.1e[i].2n(C.B.29)}6.G.1g[i]=6.G.1e[i];9(6.E&&C.B.s&&6.u.8.7.1l){C.B.D=6(\'.\'+C.B.a,C);g.R.U=\'10\';6.E.3W(C);g.R.U=g.7.2K}}}}},3h:A(e){9(6.u.8==N){F}6.G.1Q=q;k i;k 4D=q;k 5k=0;1t(i 1V 6.G.1g){k C=6.G.1g[i].J(0);9(6.G.1Q==q&&6.G[C.B.t](C.B.p.x,C.B.p.y,C.B.p.1c,C.B.p.12)){9(C.B.24&&C.B.h==q){6.G.1g[i].2n(C.B.24)}9(C.B.h==q&&C.B.2q){4D=K}C.B.h=K;6.G.1Q=C;9(6.E&&C.B.s&&6.u.8.7.1l){6.E.H.J(0).5M=C.B.5p;6.E.3h(C)}5k++}S 9(C.B.h==K){9(C.B.2r){C.B.2r.1E(C,[e,6.u.H.J(0).3l,C.B.T])}9(C.B.24){6.G.1g[i].3f(C.B.24)}C.B.h=q}}9(6.E&&!6.G.1Q&&6.u.8.1l){6.E.H.J(0).R.U=\'10\'}9(4D){6.G.1Q.B.2q.1E(6.G.1Q,[e,6.u.H.J(0).3l])}},5m:A(e){k i;1t(i 1V 6.G.1g){k C=6.G.1g[i].J(0);9(C.B.29){6.G.1g[i].3f(C.B.29)}9(C.B.24){6.G.1g[i].3f(C.B.24)}9(C.B.s){6.E.2I[6.E.2I.1k]=i}9(C.B.3E&&C.B.h==K){C.B.h=q;C.B.3E.1E(C,[e,C.B.T])}C.B.m=q;C.B.h=q}6.G.1g={}},2A:A(){F j.1b(A(){9(j.3M){9(j.B.s){Z=6.1j(j,\'Z\');6.E.1K[Z]=N;6(\'.\'+j.B.a,j).3i()}6.G.1e[\'d\'+j.4p]=N;j.3M=q;j.f=N}})},2w:A(o){F j.1b(A(){9(j.3M==K||!o.1v||!6.Q||!6.u){F}j.B={a:o.1v,29:o.3n||q,24:o.3o||q,5p:o.1W||q,3E:o.6x||o.3E||q,2q:o.2q||o.4Q||q,2r:o.2r||o.4R||q,3F:o.3F||q,t:o.28&&(o.28==\'5r\'||o.28==\'4I\')?o.28:\'18\',T:o.T?o.T:q,m:q,h:q};9(o.43==K&&6.E){Z=6.1j(j,\'Z\');6.E.1K[Z]=j.B.a;j.B.s=K;9(o.1f){j.B.1f=o.1f;j.B.3V=6.E.33(Z).2R}}j.3M=K;j.4p=O(19.6z()*6A);6.G.1e[\'d\'+j.4p]=6(j);6.G.37++})}};6.2Q.1s({4L:6.G.2A,4O:6.G.2w});6.6D=6.G.5t;6.2Q.1s({3J:A(36,M,16){o=6.36(36);F j.6E(\'5x\',A(){39 6.T.3J(j,o,M,16)})},6G:A(36,M,16){F j.1b(A(){6(\'a[@5v*="#"]\',j).6H(A(e){5w=j.5v.6I(\'#\');6(\'#\'+5w[1]).3J(36,M,16);F q})})}});6.T.3J=A(e,o,M,16){k z=j;z.o=o;z.e=e;z.M=/5C|5E/.4c(M)?M:q;z.16=16;p=6.Q.2o(e);s=6.Q.49();z.5B=A(){6K(z.4z);z.4z=N;6.6M(z.e,\'5x\')};z.t=(39 5y).5A();s.h=s.h>s.1Z?(s.h-s.1Z):s.h;s.w=s.w>s.1X?(s.w-s.1X):s.w;z.3P=p.y>s.h?s.h:p.y;z.3S=p.x>s.w?s.w:p.x;z.2z=s.t;z.2J=s.l;z.5J=A(){k t=(39 5y).5A();k n=t-z.t;k p=n/z.o.2u;9(t>=z.o.2u+z.t){z.5B();6N(A(){z.4y(z.3P,z.3S)},13)}S{9(!z.M||z.M==\'5C\'){9(!6.16||!6.16[z.16]){3u=((-19.5F(p*19.5H)/2)+0.5)*(z.3P-z.2z)+z.2z}S{3u=6.16[z.16](p,n,z.2z,(z.3P-z.2z),z.o.2u)}}S{3u=z.2z}9(!z.M||z.M==\'5E\'){9(!6.16||!6.16[z.16]){3T=((-19.5F(p*19.5H)/2)+0.5)*(z.3S-z.2J)+z.2J}S{3T=6.16[z.16](p,n,z.2J,(z.3S-z.2J),z.o.2u)}}S{3T=z.2J}z.4y(3u,3T)}};z.4y=A(t,l){2c.6Q(l,t)};z.4z=6R(A(){z.5J()},13)};6.E={2I:[],1K:{},H:q,2k:N,5L:A(){9(6.u.8==N){F}k 1x,2s,c,2f;6.E.H.J(0).5M=6.u.8.7.2a;1x=6.E.H.J(0).R;1x.U=\'2b\';6.E.H.L=6.1s(6.Q.2o(6.E.H.J(0)),6.Q.20(6.E.H.J(0)));1x.2W=6.u.8.7.L.1c+\'1d\';1x.21=6.u.8.7.L.12+\'1d\';2s=6.Q.5K(6.u.8);1x.3b=2s.t;1x.2C=2s.r;1x.3c=2s.b;1x.3e=2s.l;9(6.u.8.7.1m==K){c=6.u.8.5N(K);2f=c.R;2f.3b=\'1A\';2f.2C=\'1A\';2f.3c=\'1A\';2f.3e=\'1A\';2f.U=\'2b\';6.E.H.4F().1I(c)}6(6.u.8).5P(6.E.H.J(0));6.u.8.R.U=\'10\'},5O:A(e){9(!e.7.1l&&6.G.1Q.43){9(e.7.1n)e.7.1n.1E(8);6(e).I(\'1u\',e.7.4G||e.7.2L);6(e).3i();6(6.G.1Q).5e(e)}6.E.H.3f(e.7.2a).6W(\'&4M;\');6.E.2k=N;k 1x=6.E.H.J(0).R;1x.U=\'10\';6.E.H.5P(e);9(e.7.T>0){6(e).6Y(e.7.T)}6(\'17\').1I(6.E.H.J(0));k 2P=[];k 2O=q;1t(k i=0;i<6.E.2I.1k;i++){k C=6.G.1e[6.E.2I[i]].J(0);k Z=6.1j(C,\'Z\');k 2N=6.E.33(Z);9(C.B.3V!=2N.2R){C.B.3V=2N.2R;9(2O==q&&C.B.1f){2O=C.B.1f}2N.Z=Z;2P[2P.1k]=2N}}6.E.2I=[];9(2O!=q&&2P.1k>0){2O(2P)}},3h:A(e,o){9(!6.u.8)F;k 1S=q;k i=0;9(e.B.D.4K()>0){1t(i=e.B.D.4K();i>0;i--){9(e.B.D.J(i-1)!=6.u.8){9(!e.1Y.4m){9((e.B.D.J(i-1).27.y+e.B.D.J(i-1).27.12/2)>6.u.8.7.1B){1S=e.B.D.J(i-1)}S{5U}}S{9((e.B.D.J(i-1).27.x+e.B.D.J(i-1).27.1c/2)>6.u.8.7.1G&&(e.B.D.J(i-1).27.y+e.B.D.J(i-1).27.12/2)>6.u.8.7.1B){1S=e.B.D.J(i-1)}}}}}9(1S&&6.E.2k!=1S){6.E.2k=1S;6(1S).5V(6.E.H.J(0))}S 9(!1S&&(6.E.2k!=N||6.E.H.J(0).2d!=e)){6.E.2k=N;6(e).1I(6.E.H.J(0))}6.E.H.J(0).R.U=\'2b\'},3W:A(e){9(6.u.8==N){F}e.B.D.1b(A(){j.27=6.1s(6.Q.3K(j),6.Q.3D(j))})},33:A(s){k i;k h=\'\';k o={};9(s){9(6.E.1K[s]){o[s]=[];6(\'#\'+s+\' .\'+6.E.1K[s]).1b(A(){9(h.1k>0){h+=\'&\'}h+=s+\'[]=\'+6.1j(j,\'Z\');o[s][o[s].1k]=6.1j(j,\'Z\')})}S{1t(a 1V s){9(6.E.1K[s[a]]){o[s[a]]=[];6(\'#\'+s[a]+\' .\'+6.E.1K[s[a]]).1b(A(){9(h.1k>0){h+=\'&\'}h+=s[a]+\'[]=\'+6.1j(j,\'Z\');o[s[a]][o[s[a]].1k]=6.1j(j,\'Z\')})}}}}S{1t(i 1V 6.E.1K){o[i]=[];6(\'#\'+i+\' .\'+6.E.1K[i]).1b(A(){9(h.1k>0){h+=\'&\'}h+=i+\'[]=\'+6.1j(j,\'Z\');o[i][o[i].1k]=6.1j(j,\'Z\')})}}F{2R:h,o:o}},5f:A(e){9(!e.5Y){F}F j.1b(A(){9(!j.1Y||!6(e).3Z(\'.\'+j.1Y.1v))6(e).2n(j.1Y.1v);6(e).40(j.1Y.7)})},2A:A(){F j.1b(A(){6(\'.\'+j.1Y.1v).3i();6(j).4L();j.1Y=N;j.4Z=N})},2w:A(o){9(o.1v&&6.Q&&6.u&&6.G){9(!6.E.H){6(\'17\',P).1I(\'<1P Z="4N">&4M;</1P>\');6.E.H=6(\'#4N\');6.E.H.J(0).R.U=\'10\'}j.4O({1v:o.1v,3n:o.3n?o.3n:q,3o:o.3o?o.3o:q,1W:o.1W?o.1W:q,2q:o.2q||o.4Q,2r:o.2r||o.4R,43:K,1f:o.1f||o.68,T:o.T?o.T:q,1m:o.1m?K:q,28:o.28?o.28:\'4I\'});F j.1b(A(){k 7={22:o.22?K:q,54:55,15:o.15?4r(o.15):q,2a:o.1W?o.1W:q,T:o.T?o.T:q,1l:K,1m:o.1m?K:q,1T:o.1T?o.1T:N,X:o.X?o.X:N,1y:o.1y&&o.1y.1h==1J?o.1y:q,1z:o.1z&&o.1z.1h==1J?o.1z:q,1n:o.1n&&o.1n.1h==1J?o.1n:q,M:/2M|2x/.4c(o.M)?o.M:q,2e:o.2e?O(o.2e)||0:q,11:o.11?o.11:q};6(\'.\'+o.1v,j).40(7);j.4Z=K;j.1Y={1v:o.1v,22:o.22?K:q,54:55,15:o.15?4r(o.15):q,2a:o.1W?o.1W:q,T:o.T?o.T:q,1l:K,1m:o.1m?K:q,1T:o.1T?o.1T:N,X:o.X?o.X:N,4m:o.4m?K:q,7:7}})}}};6.2Q.1s({6o:6.E.2w,5e:6.E.5f,6r:6.E.2A});6.6s=6.E.33;6.Q={2o:A(e){k x=0;k y=0;k 14=e.R;k 4k=q;9(6(e).I(\'U\')==\'10\'){k 3I=14.2H;k 3H=14.1u;4k=K;14.2H=\'4n\';14.U=\'2b\';14.1u=\'3G\'}k D=e;3m(D){x+=D.4C+(D.3C&&!6.1N.3A?O(D.3C.4J)||0:0);y+=D.4E+(D.3C&&!6.1N.3A?O(D.3C.5Q)||0:0);D=D.5n}D=e;3m(D&&D.5i&&D.5i.5G()!=\'17\'){x-=D.2h||0;y-=D.2g||0;D=D.2d}9(4k==K){14.U=\'10\';14.1u=3H;14.2H=3I}F{x:x,y:y}},3D:A(D){k x=0,y=0;3m(D){x+=D.4C||0;y+=D.4E||0;D=D.5n}F{x:x,y:y}},20:A(e){k w=6.I(e,\'2W\');k h=6.I(e,\'21\');k 1c=0;k 12=0;k 14=e.R;9(6(e).I(\'U\')!=\'10\'){1c=e.34;12=e.4s}S{k 3I=14.2H;k 3H=14.1u;14.2H=\'4n\';14.U=\'2b\';14.1u=\'3G\';1c=e.34;12=e.4s;14.U=\'10\';14.1u=3H;14.2H=3I}F{w:w,h:h,1c:1c,12:12}},3K:A(D){F{1c:D.34||0,12:D.4s||0}},5z:A(e){k h,w,2y;9(e){w=e.2T;h=e.2S}S{2y=P.1q;w=2c.4x||3r.4x||(2y&&2y.2T)||P.17.2T;h=2c.4A||3r.4A||(2y&&2y.2S)||P.17.2S}F{w:w,h:h}},49:A(e){k t=0,l=0,w=0,h=0,1X=0,1Z=0;9(e&&e.6O.5G()!=\'17\'){t=e.2g;l=e.2h;w=e.4u;h=e.4v;1X=0;1Z=0}S{9(P.1q){t=P.1q.2g;l=P.1q.2h;w=P.1q.4u;h=P.1q.4v}S 9(P.17){t=P.17.2g;l=P.17.2h;w=P.17.4u;h=P.17.4v}1X=3r.4x||P.1q.2T||P.17.2T||0;1Z=3r.4A||P.1q.2S||P.17.2S||0}F{t:t,l:l,w:w,h:h,1X:1X,1Z:1Z}},5K:A(e,2j){k D=6(e);k t=D.I(\'3b\')||\'\';k r=D.I(\'2C\')||\'\';k b=D.I(\'3c\')||\'\';k l=D.I(\'3e\')||\'\';9(2j)F{t:O(t)||0,r:O(r)||0,b:O(b)||0,l:O(l)};S F{t:t,r:r,b:b,l:l}},6S:A(e,2j){k D=6(e);k t=D.I(\'6T\')||\'\';k r=D.I(\'6U\')||\'\';k b=D.I(\'6V\')||\'\';k l=D.I(\'6X\')||\'\';9(2j)F{t:O(t)||0,r:O(r)||0,b:O(b)||0,l:O(l)};S F{t:t,r:r,b:b,l:l}},3U:A(e,2j){k D=6(e);k t=D.I(\'5Q\')||\'\';k r=D.I(\'5R\')||\'\';k b=D.I(\'5S\')||\'\';k l=D.I(\'4J\')||\'\';9(2j)F{t:O(t)||0,r:O(r)||0,b:O(b)||0,l:O(l)||0};S F{t:t,r:r,b:b,l:l}},3X:A(38){k x=38.5X||(38.5D+(P.1q.2h||P.17.2h))||0;k y=38.5Z||(38.5l+(P.1q.2g||P.17.2g))||0;F{x:x,y:y}},42:A(1C,41){41(1C);1C=1C.3l;3m(1C){6.Q.42(1C,41);1C=1C.63}},64:A(1C){6.Q.42(1C,A(D){1t(k 1j 1V D){9(5u D[1j]===\'A\'){D[1j]=N}}})},6c:A(D,M){k 1H=6.Q.49();k 4i=6.Q.20(D);9(!M||M==\'2M\')6(D).I({1p:1H.t+((19.3d(1H.h,1H.1Z)-1H.t-4i.12)/2)+\'1d\'});9(!M||M==\'2x\')6(D).I({1o:1H.l+((19.3d(1H.w,1H.1X)-1H.l-4i.1c)/2)+\'1d\'})},6v:A(D,5q){k 5o=6(\'6w[@3L*="3N"]\',D||P),3N;5o.1b(A(){3N=j.3L;j.3L=5q;j.R.4o="6B:6F.6J.6L(3L=\'"+3N+"\')"})}};[].5I||(4t.6P.5I=A(v,n){n=(n==N)?0:n;k m=j.1k;1t(k i=n;i<m;i++)9(j[i]==v)F i;F-1});(A($){k 1w,3a;k 2m=0;k 3Y=32;k 5T;$.2Q.5W=A(){F j.1b(A(){1w=$(j).2n(\'60\'),3a=N;$(j).61(\'<1P 4S="62-1w"><4P></4P></1P>\').2G().1I($(\'<1P 4S="2Z"></1P>\').3q("4a",{D:j},5h));k 2Z=$(\'1P.2Z\',$(j).2G())[0];2Z.R.2C=(2Z.34-$(j)[0].34)+\'1d\'})};A 5h(e){1w=$(e.6u.D);1w.6y();2m=4q(e).y;3a=1w.21()-2m;1w.I(\'15\',0.25);$(P).3p(47).3v(3y);F q}A 47(e){k 3R=4q(e).y;k 2l=3a+3R;9(2m>=(3R)){2l-=5}2m=3R;2l=19.3d(3Y,2l);1w.21(2l+\'1d\');9(2l<3Y){3y(e)}F q}A 3y(e){$(P).2U(\'3p\',47).2U(\'3v\',3y);1w.I(\'15\',1);1w.6C();1w=N;3a=N;2m=0}A 4q(e){F{x:e.5D+P.1q.2h,y:e.5l+P.1q.2g}}})(6);',62,433,'||||||jQuery|dragCfg|dragged|if|||||||elm|||this|var||||||false||||iDrag||||||function|dropCfg|iEL|el|iSort|return|iDrop|helper|css|get|true|oC|axis|null|parseInt|document|iUtil|style|else|fx|display|dx|dy|containment|oR|id|none|cursorAt|hb||es|opacity|easing|body|pointer|Math|cont|each|wb|px|zones|onChange|highlighted|constructor|dhs|attr|length|so|ghosting|onStop|left|top|documentElement|currentPointer|extend|for|position|accept|textarea|shs|onStart|onDrag|0px|ny|nodeEl|dhe|apply|els|nx|clientScroll|append|Function|collected|onDragModifier|zonex|browser|zoney|div|overzone|clonedEl|cur|handle|grid|in|helperclass|iw|sortCfg|ih|getSize|height|revert|si|hc||newCoords|pos|tolerance|ac|hpc|block|window|parentNode|snapDistance|cs|scrollTop|scrollLeft|zoneh|toInteger|inFrontOf|iMousePos|iLastMousePos|addClass|getPosition|gx|onHover|onOut|margins|frameClass|duration|zIndex|build|horizontally|de|startTop|destroy|user|marginRight|zonew|dh|onSlide|parent|visibility|changed|startLeft|oD|oP|vertically|ser|fnc|ts|fn|hash|clientHeight|clientWidth|unbind|nRx|width|nRy|msie|grippie|parentBorders|insideParent||serialize|offsetWidth|gy|speed|count|event|new|staticOffset|marginTop|marginBottom|max|marginLeft|removeClass|contBorders|checkhover|DraggableDestroy|isDraggable|dragstop|firstChild|while|activeclass|hoverclass|mousemove|bind|self|dEs|hidehelper|st|mouseup|diffX|diffY|endDrag|ActiveXObject|opera|dragElem|currentStyle|getPositionLite|onDrop|onActivate|absolute|oldPosition|oldVisibility|ScrollTo|getSizeLite|src|isDroppable|png|prot|endTop|init|iThisMousePos|endLeft|sl|getBorder|os|measure|getPointer|iMin|is|Draggable|func|traverseDOM|sortable|sliderPos|right|bottom|performDrag|clnt|getScroll|mousedown|dragmove|test|iSlider|unselectable|select|autoSize|fractions|windowSize|draginit|restoreStyles|oneIsSortable|floats|hidden|filter|idsa|mousePosition|parseFloat|offsetHeight|Array|scrollWidth|scrollHeight|oldBorder|innerWidth|scroll|timer|innerHeight|parentPos|offsetLeft|applyOnHover|offsetTop|empty|initialPosition|sliderSize|intersect|borderLeftWidth|size|DroppableDestroy|nbsp|sortHelper|Droppable|span|onhover|onout|class|relative|auto|getContainment|alpha|100|custom|isSortable|snapToGrid|abs|fitToContainer|min|zindex|3000|pow|distance|dragstart|dragHelper|move|userSelect|KhtmlUserSelect|on|SortableAddItem|addItem|String|startDrag|tagName|highlight|hlt|clientY|checkdrop|offsetParent|images|shc|emptyGIF|fit|cursor|remeasure|typeof|href|parts|interfaceFX|Date|getClient|getTime|clear|vertical|clientX|horizontal|cos|toLowerCase|PI|indexOf|step|getMargins|start|className|cloneNode|check|after|borderTopWidth|borderRightWidth|borderBottomWidth|grip|break|before|TextAreaResizer|pageX|childNodes|pageY|processed|wrap|resizable|nextSibling|purgeEvents|off|MozUserSelect|fromHandler|onchange|dragmoveBy|selectKeyHelper|modifyContainer|centerEl|hide|animate|lastSi|sqrt|Object|listStyle|overflow|mozUserSelect|onselectstart|ondragstart|find|Sortable|moz|khtml|SortableDestroy|SortSerialize|number|data|fixPNG|img|ondrop|blur|random|10000|progid|focus|recallDroppables|queue|DXImageTransform|ScrollToAnchors|click|split|Microsoft|clearInterval|AlphaImageLoader|dequeue|setTimeout|nodeName|prototype|scrollTo|setInterval|getPadding|paddingTop|paddingRight|paddingBottom|html|paddingLeft|fadeIn'.split('|'),0,{}))
+/**
+ * Interface Elements for jQuery
+ * Draggable
+ *
+ * http://interface.eyecon.ro
+ *
+ * Copyright (c) 2006 Stefan Petre
+ * Dual licensed under the MIT (MIT-LICENSE.txt)
+ * and GPL (GPL-LICENSE.txt) licenses.
+ */
+ 
+/**
+ * Create a draggable element with a number of advanced options including callback, Google Maps type draggables,
+ * reversion, ghosting, and grid dragging.
+ * 
+ * @name Draggable
+ * @descr Creates draggable elements that can be moved across the page.
+ * @param Hash hash A hash of parameters. All parameters are optional.
+ * @option String handle (optional) The jQuery selector matching the handle that starts the draggable
+ * @option DOMElement handle (optional) The DOM Element of the handle that starts the draggable
+ * @option Boolean revert (optional) When true, on stop-drag the element returns to initial position
+ * @option Boolean ghosting (optional) When true, a copy of the element is moved
+ * @option Integer zIndex (optional) zIndex depth for the element while it is being dragged
+ * @option Float opacity (optional) A number between 0 and 1 that indicates the opacity of the element while being dragged
+ * @option Integer grid (optional) (optional) A number of pixels indicating the grid that the element should snap to
+ * @option Array grid (optional) A number of x-pixels and y-pixels indicating the grid that the element should snap to
+ * @option Integer fx (optional) Duration for the effect (like ghosting or revert) applied to the draggable
+ * @option String containment (optional) Define the zone where the draggable can be moved. 'parent' moves it inside parent
+ *                           element, while 'document' prevents it from leaving the document and forcing additional
+ *                           scrolling
+ * @option Array containment An 4-element array (left, top, width, height) indicating the containment of the element
+ * @option String axis (optional) Set an axis: vertical (with 'vertically') or horizontal (with 'horizontally')
+ * @option Function onStart (optional) Callback function triggered when the dragging starts
+ * @option Function onStop (optional) Callback function triggered when the dragging stops
+ * @option Function onChange (optional) Callback function triggered when the dragging stop *and* the element was moved at least
+ *                          one pixel
+ * @option Function onDrag (optional) Callback function triggered while the element is dragged. Receives two parameters: x and y
+ *                        coordinates. You can return an object with new coordinates {x: x, y: y} so this way you can
+ *                        interact with the dragging process (for instance, build your containment)
+ * @option Boolean insideParent Forces the element to remain inside its parent when being dragged (like Google Maps)
+ * @option Integer snapDistance (optional) The element is not moved unless it is dragged more than snapDistance. You can prevent
+ *                             accidental dragging and keep regular clicking enabled (for links or form elements, 
+ *                             for instance)
+ * @option Object cursorAt (optional) The dragged element is moved to the cursor position with the offset specified. Accepts value
+ *                        for top, left, right and bottom offset. Basically, this forces the cursor to a particular
+ *                        position during the entire drag operation.
+ * @option Boolean autoSize (optional) When true, the drag helper is resized to its content, instead of the dragged element's sizes
+ * @option String frameClass (optional) When is set the cloned element is hidden so only a frame is dragged
+ * @type jQuery
+ * @cat Plugins/Interface
+ * @author Stefan Petre
+ */
+
+jQuery.iDrag =	{
+	helper : null,
+	dragged: null,
+	destroy : function()
+	{
+		return this.each(
+			function ()
+			{
+				if (this.isDraggable) {
+					this.dragCfg.dhe.unbind('mousedown', jQuery.iDrag.draginit);
+					this.dragCfg = null;
+					this.isDraggable = false;
+					if(jQuery.browser.msie) {
+						this.unselectable = "off";
+					} else {
+						this.style.MozUserSelect = '';
+						this.style.KhtmlUserSelect = '';
+						this.style.userSelect = '';
+					}
+				}
+			}
+		);
+	},
+	draginit : function (e)
+	{
+		if (jQuery.iDrag.dragged != null) {
+			jQuery.iDrag.dragstop(e);
+			return false;
+		}
+		var elm = this.dragElem;
+		jQuery(document)
+			.bind('mousemove', jQuery.iDrag.dragmove)
+			.bind('mouseup', jQuery.iDrag.dragstop);
+		elm.dragCfg.pointer = jQuery.iUtil.getPointer(e);
+		elm.dragCfg.currentPointer = elm.dragCfg.pointer;
+		elm.dragCfg.init = false;
+		elm.dragCfg.fromHandler = this != this.dragElem;
+		jQuery.iDrag.dragged = elm;
+		if (elm.dragCfg.si && this != this.dragElem) {
+				parentPos = jQuery.iUtil.getPosition(elm.parentNode);
+				sliderSize = jQuery.iUtil.getSize(elm);
+				sliderPos = {
+					x : parseInt(jQuery.css(elm,'left')) || 0,
+					y : parseInt(jQuery.css(elm,'top')) || 0
+				};
+				dx = elm.dragCfg.currentPointer.x - parentPos.x - sliderSize.wb/2 - sliderPos.x;
+				dy = elm.dragCfg.currentPointer.y - parentPos.y - sliderSize.hb/2 - sliderPos.y;
+				jQuery.iSlider.dragmoveBy(elm, [dx, dy]);
+		}
+		return jQuery.selectKeyHelper||false;
+	},
+
+	dragstart : function(e)
+	{
+		var elm = jQuery.iDrag.dragged;
+		elm.dragCfg.init = true;
+
+		var dEs = elm.style;
+
+		elm.dragCfg.oD = jQuery.css(elm,'display');
+		elm.dragCfg.oP = jQuery.css(elm,'position');
+		if (!elm.dragCfg.initialPosition)
+			elm.dragCfg.initialPosition = elm.dragCfg.oP;
+
+		elm.dragCfg.oR = {
+			x : parseInt(jQuery.css(elm,'left')) || 0,
+			y : parseInt(jQuery.css(elm,'top')) || 0
+		};
+		elm.dragCfg.diffX = 0;
+		elm.dragCfg.diffY = 0;
+		if (jQuery.browser.msie) {
+			var oldBorder = jQuery.iUtil.getBorder(elm, true);
+			elm.dragCfg.diffX = oldBorder.l||0;
+			elm.dragCfg.diffY = oldBorder.t||0;
+		}
+
+		elm.dragCfg.oC = jQuery.extend(
+			jQuery.iUtil.getPosition(elm),
+			jQuery.iUtil.getSize(elm)
+		);
+		if (elm.dragCfg.oP != 'relative' && elm.dragCfg.oP != 'absolute') {
+			dEs.position = 'relative';
+		}
+
+		jQuery.iDrag.helper.empty();
+		var clonedEl = elm.cloneNode(true);
+		
+		jQuery(clonedEl).css(
+			{
+				display:	'block',
+				left:		'0px',
+				top: 		'0px'
+			}
+		);
+		clonedEl.style.marginTop = '0';
+		clonedEl.style.marginRight = '0';
+		clonedEl.style.marginBottom = '0';
+		clonedEl.style.marginLeft = '0';
+		jQuery.iDrag.helper.append(clonedEl);
+		
+		var dhs = jQuery.iDrag.helper.get(0).style;
+
+		if (elm.dragCfg.autoSize) {
+			dhs.width = 'auto';
+			dhs.height = 'auto';
+		} else {
+			dhs.height = elm.dragCfg.oC.hb + 'px';
+			dhs.width = elm.dragCfg.oC.wb + 'px';
+		}
+
+		dhs.display = 'block';
+		dhs.marginTop = '0px';
+		dhs.marginRight = '0px';
+		dhs.marginBottom = '0px';
+		dhs.marginLeft = '0px';
+
+		//remeasure the clone to check if the size was changed by user's functions
+		jQuery.extend(
+			elm.dragCfg.oC,
+			jQuery.iUtil.getSize(clonedEl)
+		);
+
+		if (elm.dragCfg.cursorAt) {
+			if (elm.dragCfg.cursorAt.left) {
+				elm.dragCfg.oR.x += elm.dragCfg.pointer.x - elm.dragCfg.oC.x - elm.dragCfg.cursorAt.left;
+				elm.dragCfg.oC.x = elm.dragCfg.pointer.x - elm.dragCfg.cursorAt.left;
+			}
+			if (elm.dragCfg.cursorAt.top) {
+				elm.dragCfg.oR.y += elm.dragCfg.pointer.y - elm.dragCfg.oC.y - elm.dragCfg.cursorAt.top;
+				elm.dragCfg.oC.y = elm.dragCfg.pointer.y - elm.dragCfg.cursorAt.top;
+			}
+			if (elm.dragCfg.cursorAt.right) {
+				elm.dragCfg.oR.x += elm.dragCfg.pointer.x - elm.dragCfg.oC.x -elm.dragCfg.oC.hb + elm.dragCfg.cursorAt.right;
+				elm.dragCfg.oC.x = elm.dragCfg.pointer.x - elm.dragCfg.oC.wb + elm.dragCfg.cursorAt.right;
+			}
+			if (elm.dragCfg.cursorAt.bottom) {
+				elm.dragCfg.oR.y += elm.dragCfg.pointer.y - elm.dragCfg.oC.y - elm.dragCfg.oC.hb + elm.dragCfg.cursorAt.bottom;
+				elm.dragCfg.oC.y = elm.dragCfg.pointer.y - elm.dragCfg.oC.hb + elm.dragCfg.cursorAt.bottom;
+			}
+		}
+		elm.dragCfg.nx = elm.dragCfg.oR.x;
+		elm.dragCfg.ny = elm.dragCfg.oR.y;
+
+		if (elm.dragCfg.insideParent || elm.dragCfg.containment == 'parent') {
+			parentBorders = jQuery.iUtil.getBorder(elm.parentNode, true);
+			elm.dragCfg.oC.x = elm.offsetLeft + (jQuery.browser.msie ? 0 : jQuery.browser.opera ? -parentBorders.l : parentBorders.l);
+			elm.dragCfg.oC.y = elm.offsetTop + (jQuery.browser.msie ? 0 : jQuery.browser.opera ? -parentBorders.t : parentBorders.t);
+			jQuery(elm.parentNode).append(jQuery.iDrag.helper.get(0));
+		}
+		if (elm.dragCfg.containment) {
+			jQuery.iDrag.getContainment(elm);
+			elm.dragCfg.onDragModifier.containment = jQuery.iDrag.fitToContainer;
+		}
+
+		if (elm.dragCfg.si) {
+			jQuery.iSlider.modifyContainer(elm);
+		}
+
+		dhs.left = elm.dragCfg.oC.x - elm.dragCfg.diffX + 'px';
+		dhs.top = elm.dragCfg.oC.y - elm.dragCfg.diffY + 'px';
+		//resize the helper to fit the clone
+		dhs.width = elm.dragCfg.oC.wb + 'px';
+		dhs.height = elm.dragCfg.oC.hb + 'px';
+
+		jQuery.iDrag.dragged.dragCfg.prot = false;
+
+		if (elm.dragCfg.gx) {
+			elm.dragCfg.onDragModifier.grid = jQuery.iDrag.snapToGrid;
+		}
+		if (elm.dragCfg.zIndex != false) {
+			jQuery.iDrag.helper.css('zIndex', elm.dragCfg.zIndex);
+		}
+		if (elm.dragCfg.opacity) {
+			jQuery.iDrag.helper.css('opacity', elm.dragCfg.opacity);
+			if (window.ActiveXObject) {
+				jQuery.iDrag.helper.css('filter', 'alpha(opacity=' + elm.dragCfg.opacity * 100 + ')');
+			}
+		}
+
+		if(elm.dragCfg.frameClass) {
+			jQuery.iDrag.helper.addClass(elm.dragCfg.frameClass);
+			jQuery.iDrag.helper.get(0).firstChild.style.display = 'none';
+		}
+		if (elm.dragCfg.onStart)
+			elm.dragCfg.onStart.apply(elm, [clonedEl, elm.dragCfg.oR.x, elm.dragCfg.oR.y]);
+		if (jQuery.iDrop && jQuery.iDrop.count > 0 ){
+			jQuery.iDrop.highlight(elm);
+		}
+		if (elm.dragCfg.ghosting == false) {
+			dEs.display = 'none';
+		}
+		return false;
+	},
+
+	getContainment : function(elm)
+	{
+		if (elm.dragCfg.containment.constructor == String) {
+			if (elm.dragCfg.containment == 'parent') {
+				elm.dragCfg.cont = jQuery.extend(
+					{x:0,y:0},
+					jQuery.iUtil.getSize(elm.parentNode)
+				);
+				var contBorders = jQuery.iUtil.getBorder(elm.parentNode, true);
+				elm.dragCfg.cont.w = elm.dragCfg.cont.wb - contBorders.l - contBorders.r;
+				elm.dragCfg.cont.h = elm.dragCfg.cont.hb - contBorders.t - contBorders.b;
+			} else if (elm.dragCfg.containment == 'document') {
+				var clnt = jQuery.iUtil.getClient();
+				elm.dragCfg.cont = {
+					x : 0,
+					y : 0,
+					w : clnt.w,
+					h : clnt.h
+				};
+			}
+		} else if (elm.dragCfg.containment.constructor == Array) {
+			elm.dragCfg.cont = {
+				x : parseInt(elm.dragCfg.containment[0])||0,
+				y : parseInt(elm.dragCfg.containment[1])||0,
+				w : parseInt(elm.dragCfg.containment[2])||0,
+				h : parseInt(elm.dragCfg.containment[3])||0
+			};
+		}
+		elm.dragCfg.cont.dx = elm.dragCfg.cont.x - elm.dragCfg.oC.x;
+		elm.dragCfg.cont.dy = elm.dragCfg.cont.y - elm.dragCfg.oC.y;
+	},
+
+	hidehelper : function(dragged)
+	{
+		if (dragged.dragCfg.insideParent || dragged.dragCfg.containment == 'parent') {
+			jQuery('body', document).append(jQuery.iDrag.helper.get(0));
+		}
+		jQuery.iDrag.helper.empty().hide().css('opacity', 1);
+		if (window.ActiveXObject) {
+			jQuery.iDrag.helper.css('filter', 'alpha(opacity=100)');
+		}
+	},
+
+	dragstop : function(e)
+	{
+
+		jQuery(document)
+			.unbind('mousemove', jQuery.iDrag.dragmove)
+			.unbind('mouseup', jQuery.iDrag.dragstop);
+
+		if (jQuery.iDrag.dragged == null) {
+			return;
+		}
+		var dragged = jQuery.iDrag.dragged;
+
+		jQuery.iDrag.dragged = null;
+
+		if (dragged.dragCfg.init == false) {
+			return false;
+		}
+		if (dragged.dragCfg.so == true) {
+			jQuery(dragged).css('position', dragged.dragCfg.oP);
+		}
+		var dEs = dragged.style;
+
+		if (dragged.si) {
+			jQuery.iDrag.helper.css('cursor', 'move');
+		}
+		if(dragged.dragCfg.frameClass) {
+			jQuery.iDrag.helper.removeClass(dragged.dragCfg.frameClass);
+		}
+
+		if (dragged.dragCfg.revert == false) {
+			if (dragged.dragCfg.fx > 0) {
+				if (!dragged.dragCfg.axis || dragged.dragCfg.axis == 'horizontally') {
+					var x = new jQuery.fx(dragged,{duration:dragged.dragCfg.fx}, 'left');
+					x.custom(dragged.dragCfg.oR.x,dragged.dragCfg.nRx);
+				}
+				if (!dragged.dragCfg.axis || dragged.dragCfg.axis == 'vertically') {
+					var y = new jQuery.fx(dragged,{duration:dragged.dragCfg.fx}, 'top');
+					y.custom(dragged.dragCfg.oR.y,dragged.dragCfg.nRy);
+				}
+			} else {
+				if (!dragged.dragCfg.axis || dragged.dragCfg.axis == 'horizontally')
+					dragged.style.left = dragged.dragCfg.nRx + 'px';
+				if (!dragged.dragCfg.axis || dragged.dragCfg.axis == 'vertically')
+					dragged.style.top = dragged.dragCfg.nRy + 'px';
+			}
+			jQuery.iDrag.hidehelper(dragged);
+			if (dragged.dragCfg.ghosting == false) {
+				jQuery(dragged).css('display', dragged.dragCfg.oD);
+			}
+		} else if (dragged.dragCfg.fx > 0) {
+			dragged.dragCfg.prot = true;
+			var dh = false;
+			if(jQuery.iDrop && jQuery.iSort && dragged.dragCfg.so) {
+				dh = jQuery.iUtil.getPosition(jQuery.iSort.helper.get(0));
+			}
+			jQuery.iDrag.helper.animate(
+				{
+					left : dh ? dh.x : dragged.dragCfg.oC.x,
+					top : dh ? dh.y : dragged.dragCfg.oC.y
+				},
+				dragged.dragCfg.fx,
+				function()
+				{
+					dragged.dragCfg.prot = false;
+					if (dragged.dragCfg.ghosting == false) {
+						dragged.style.display = dragged.dragCfg.oD;
+					}
+					jQuery.iDrag.hidehelper(dragged);
+				}
+			);
+		} else {
+			jQuery.iDrag.hidehelper(dragged);
+			if (dragged.dragCfg.ghosting == false) {
+				jQuery(dragged).css('display', dragged.dragCfg.oD);
+			}
+		}
+
+		if (jQuery.iDrop && jQuery.iDrop.count > 0 ){
+			jQuery.iDrop.checkdrop(dragged);
+		}
+		if (jQuery.iSort && dragged.dragCfg.so) {
+			jQuery.iSort.check(dragged);
+		}
+		if (dragged.dragCfg.onChange && (dragged.dragCfg.nRx != dragged.dragCfg.oR.x || dragged.dragCfg.nRy != dragged.dragCfg.oR.y)){
+			dragged.dragCfg.onChange.apply(dragged, dragged.dragCfg.lastSi||[0,0,dragged.dragCfg.nRx,dragged.dragCfg.nRy]);
+		}
+		if (dragged.dragCfg.onStop)
+			dragged.dragCfg.onStop.apply(dragged);
+		return false;
+	},
+
+	snapToGrid : function(x, y, dx, dy)
+	{
+		if (dx != 0)
+			dx = parseInt((dx + (this.dragCfg.gx * dx/Math.abs(dx))/2)/this.dragCfg.gx) * this.dragCfg.gx;
+		if (dy != 0)
+			dy = parseInt((dy + (this.dragCfg.gy * dy/Math.abs(dy))/2)/this.dragCfg.gy) * this.dragCfg.gy;
+		return {
+			dx : dx,
+			dy : dy,
+			x: 0,
+			y: 0
+		};
+	},
+
+	fitToContainer : function(x, y, dx, dy)
+	{
+		dx = Math.min(
+				Math.max(dx,this.dragCfg.cont.dx),
+				this.dragCfg.cont.w + this.dragCfg.cont.dx - this.dragCfg.oC.wb
+			);
+		dy = Math.min(
+				Math.max(dy,this.dragCfg.cont.dy),
+				this.dragCfg.cont.h + this.dragCfg.cont.dy - this.dragCfg.oC.hb
+			);
+
+		return {
+			dx : dx,
+			dy : dy,
+			x: 0,
+			y: 0
+		}
+	},
+
+	dragmove : function(e)
+	{
+		if (jQuery.iDrag.dragged == null || jQuery.iDrag.dragged.dragCfg.prot == true) {
+			return;
+		}
+
+		var dragged = jQuery.iDrag.dragged;
+
+		dragged.dragCfg.currentPointer = jQuery.iUtil.getPointer(e);
+		if (dragged.dragCfg.init == false) {
+			distance = Math.sqrt(Math.pow(dragged.dragCfg.pointer.x - dragged.dragCfg.currentPointer.x, 2) + Math.pow(dragged.dragCfg.pointer.y - dragged.dragCfg.currentPointer.y, 2));
+			if (distance < dragged.dragCfg.snapDistance){
+				return;
+			} else {
+				jQuery.iDrag.dragstart(e);
+			}
+		}
+
+		var dx = dragged.dragCfg.currentPointer.x - dragged.dragCfg.pointer.x;
+		var dy = dragged.dragCfg.currentPointer.y - dragged.dragCfg.pointer.y;
+
+		for (var i in dragged.dragCfg.onDragModifier) {
+			var newCoords = dragged.dragCfg.onDragModifier[i].apply(dragged, [dragged.dragCfg.oR.x + dx, dragged.dragCfg.oR.y + dy, dx, dy]);
+			if (newCoords && newCoords.constructor == Object) {
+				dx = i != 'user' ? newCoords.dx : (newCoords.x - dragged.dragCfg.oR.x);
+				dy = i != 'user' ? newCoords.dy : (newCoords.y - dragged.dragCfg.oR.y);
+			}
+		}
+
+		dragged.dragCfg.nx = dragged.dragCfg.oC.x + dx - dragged.dragCfg.diffX;
+		dragged.dragCfg.ny = dragged.dragCfg.oC.y + dy - dragged.dragCfg.diffY;
+
+		if (dragged.dragCfg.si && (dragged.dragCfg.onSlide || dragged.dragCfg.onChange)) {
+			jQuery.iSlider.onSlide(dragged, dragged.dragCfg.nx, dragged.dragCfg.ny);
+		}
+
+		if(dragged.dragCfg.onDrag)
+			dragged.dragCfg.onDrag.apply(dragged, [dragged.dragCfg.oR.x + dx, dragged.dragCfg.oR.y + dy]);
+			
+		if (!dragged.dragCfg.axis || dragged.dragCfg.axis == 'horizontally') {
+			dragged.dragCfg.nRx = dragged.dragCfg.oR.x + dx;
+			jQuery.iDrag.helper.get(0).style.left = dragged.dragCfg.nx + 'px';
+		}
+		if (!dragged.dragCfg.axis || dragged.dragCfg.axis == 'vertically') {
+			dragged.dragCfg.nRy = dragged.dragCfg.oR.y + dy;
+			jQuery.iDrag.helper.get(0).style.top = dragged.dragCfg.ny + 'px';
+		}
+		
+		if (jQuery.iDrop && jQuery.iDrop.count > 0 ){
+			jQuery.iDrop.checkhover(dragged);
+		}
+		return false;
+	},
+
+	build : function(o)
+	{
+		if (!jQuery.iDrag.helper) {
+			jQuery('body',document).append('<div id="dragHelper"></div>');
+			jQuery.iDrag.helper = jQuery('#dragHelper');
+			var el = jQuery.iDrag.helper.get(0);
+			var els = el.style;
+			els.position = 'absolute';
+			els.display = 'none';
+			els.cursor = 'move';
+			els.listStyle = 'none';
+			els.overflow = 'hidden';
+			if (window.ActiveXObject) {
+				el.unselectable = "on";
+			} else {
+				els.mozUserSelect = 'none';
+				els.userSelect = 'none';
+				els.KhtmlUserSelect = 'none';
+			}
+		}
+		if (!o) {
+			o = {};
+		}
+		return this.each(
+			function()
+			{
+				if (this.isDraggable || !jQuery.iUtil)
+					return;
+				if (window.ActiveXObject) {
+					this.onselectstart = function(){return false;};
+					this.ondragstart = function(){return false;};
+				}
+				var el = this;
+				var dhe = o.handle ? jQuery(this).find(o.handle) : jQuery(this);
+				if(jQuery.browser.msie) {
+					dhe.each(
+						function()
+						{
+							this.unselectable = "on";
+						}
+					);
+				} else {
+					dhe.css('-moz-user-select', 'none');
+					dhe.css('user-select', 'none');
+					dhe.css('-khtml-user-select', 'none');
+				}
+				this.dragCfg = {
+					dhe: dhe,
+					revert : o.revert ? true : false,
+					ghosting : o.ghosting ? true : false,
+					so : o.so ? o.so : false,
+					si : o.si ? o.si : false,
+					insideParent : o.insideParent ? o.insideParent : false,
+					zIndex : o.zIndex ? parseInt(o.zIndex)||0 : false,
+					opacity : o.opacity ? parseFloat(o.opacity) : false,
+					fx : parseInt(o.fx)||null,
+					hpc : o.hpc ? o.hpc : false,
+					onDragModifier : {},
+					pointer : {},
+					onStart : o.onStart && o.onStart.constructor == Function ? o.onStart : false,
+					onStop : o.onStop && o.onStop.constructor == Function ? o.onStop : false,
+					onChange : o.onChange && o.onChange.constructor == Function ? o.onChange : false,
+					axis : /vertically|horizontally/.test(o.axis) ? o.axis : false,
+					snapDistance : o.snapDistance ? parseInt(o.snapDistance)||0 : 0,
+					cursorAt: o.cursorAt ? o.cursorAt : false,
+					autoSize : o.autoSize ? true : false,
+					frameClass : o.frameClass || false
+					
+				};
+				if (o.onDragModifier && o.onDragModifier.constructor == Function)
+					this.dragCfg.onDragModifier.user = o.onDragModifier;
+				if (o.onDrag && o.onDrag.constructor == Function)
+					this.dragCfg.onDrag = o.onDrag;
+				if (o.containment && ((o.containment.constructor == String && (o.containment == 'parent' || o.containment == 'document')) || (o.containment.constructor == Array && o.containment.length == 4) )) {
+					this.dragCfg.containment = o.containment;
+				}
+				if(o.fractions) {
+					this.dragCfg.fractions = o.fractions;
+				}
+				if(o.grid){
+					if(typeof o.grid == 'number'){
+						this.dragCfg.gx = parseInt(o.grid)||1;
+						this.dragCfg.gy = parseInt(o.grid)||1;
+					} else if (o.grid.length == 2) {
+						this.dragCfg.gx = parseInt(o.grid[0])||1;
+						this.dragCfg.gy = parseInt(o.grid[1])||1;
+					}
+				}
+				if (o.onSlide && o.onSlide.constructor == Function) {
+					this.dragCfg.onSlide = o.onSlide;
+				}
+
+				this.isDraggable = true;
+				dhe.each(
+					function(){
+						this.dragElem = el;
+					}
+				);
+				dhe.bind('mousedown', jQuery.iDrag.draginit);
+			}
+		)
+	}
+};
+
+/**
+ * Destroy an existing draggable on a collection of elements
+ * 
+ * @name DraggableDestroy
+ * @descr Destroy a draggable
+ * @type jQuery
+ * @cat Plugins/Interface
+ * @example $('#drag2').DraggableDestroy();
+ */
+
+jQuery.fn.extend(
+	{
+		DraggableDestroy : jQuery.iDrag.destroy,
+		Draggable : jQuery.iDrag.build
+	}
+);/**
+ * Interface Elements for jQuery
+ * Droppables
+ * 
+ * http://interface.eyecon.ro
+ * 
+ * Copyright (c) 2006 Stefan Petre
+ * Dual licensed under the MIT (MIT-LICENSE.txt) 
+ * and GPL (GPL-LICENSE.txt) licenses.
+ *   
+ *
+ */
+
+/**
+ * With the Draggables plugin, Droppable allows you to create drop zones for draggable elements.
+ *
+ * @name Droppable
+ * @cat Plugins/Interface
+ * @param Hash options A hash of options
+ * @option String accept The class name for draggables to get accepted by the droppable (mandatory)
+ * @option String activeclass When an acceptable draggable is moved, the droppable gets this class
+ * @option String hoverclass When an acceptable draggable is inside the droppable, the droppable gets
+ *                           this class
+ * @option String tolerance  Choose from 'pointer', 'intersect', or 'fit'. The pointer options means
+ *                           that the pointer must be inside the droppable in order for the draggable
+ *                           to be dropped. The intersect option means that the draggable must intersect
+ *                           the droppable. The fit option means that the entire draggable must be
+ *                           inside the droppable.
+ * @option Function onDrop   When an acceptable draggable is dropped on a droppable, this callback is
+ *                           called. It passes the draggable DOMElement as a parameter.
+ * @option Function onHover  When an acceptable draggable is hovered over a droppable, this callback
+ *                           is called. It passes the draggable DOMElement as a parameter.
+ * @option Function onOut    When an acceptable draggable leaves a droppable, this callback is called.
+ *                           It passes the draggable DOMElement as a parameter.
+ * @example                  $('#dropzone1').Droppable(
+ *                             {
+ *                               accept : 'dropaccept', 
+ *                               activeclass: 'dropzoneactive', 
+ *                               hoverclass:	'dropzonehover',
+ *                               ondrop:	function (drag) {
+ *                                              alert(this); //the droppable
+ *                                              alert(drag); //the draggable
+ *                                        },
+ *                               fit: true
+ *                             }
+ *                           )
+ */
+
+jQuery.iDrop = {
+	fit : function (zonex, zoney, zonew, zoneh)
+	{
+		return 	zonex <= jQuery.iDrag.dragged.dragCfg.nx && 
+				(zonex + zonew) >= (jQuery.iDrag.dragged.dragCfg.nx + jQuery.iDrag.dragged.dragCfg.oC.w) &&
+				zoney <= jQuery.iDrag.dragged.dragCfg.ny && 
+				(zoney + zoneh) >= (jQuery.iDrag.dragged.dragCfg.ny + jQuery.iDrag.dragged.dragCfg.oC.h) ? true :false;
+	},
+	intersect : function (zonex, zoney, zonew, zoneh)
+	{
+		return 	! ( zonex > (jQuery.iDrag.dragged.dragCfg.nx + jQuery.iDrag.dragged.dragCfg.oC.w)
+				|| (zonex + zonew) < jQuery.iDrag.dragged.dragCfg.nx 
+				|| zoney > (jQuery.iDrag.dragged.dragCfg.ny + jQuery.iDrag.dragged.dragCfg.oC.h) 
+				|| (zoney + zoneh) < jQuery.iDrag.dragged.dragCfg.ny
+				) ? true :false;
+	},
+	pointer : function (zonex, zoney, zonew, zoneh)
+	{
+		return	zonex < jQuery.iDrag.dragged.dragCfg.currentPointer.x
+				&& (zonex + zonew) > jQuery.iDrag.dragged.dragCfg.currentPointer.x 
+				&& zoney < jQuery.iDrag.dragged.dragCfg.currentPointer.y 
+				&& (zoney + zoneh) > jQuery.iDrag.dragged.dragCfg.currentPointer.y
+				? true :false;
+	},
+	overzone : false,
+	highlighted : {},
+	count : 0,
+	zones : {},
+	
+	highlight : function (elm)
+	{
+		if (jQuery.iDrag.dragged == null) {
+			return;
+		}
+		var i;
+		jQuery.iDrop.highlighted = {};
+		var oneIsSortable = false;
+		for (i in jQuery.iDrop.zones) {
+			if (jQuery.iDrop.zones[i] != null) {
+				var iEL = jQuery.iDrop.zones[i].get(0);
+				if (jQuery(jQuery.iDrag.dragged).is('.' + iEL.dropCfg.a)) {
+					if (iEL.dropCfg.m == false) {
+						iEL.dropCfg.p = jQuery.extend(
+							jQuery.iUtil.getPositionLite(iEL),
+							jQuery.iUtil.getSizeLite(iEL)
+						);//jQuery.iUtil.getPos(iEL);
+						iEL.dropCfg.m = true;
+					}
+					if (iEL.dropCfg.ac) {
+						jQuery.iDrop.zones[i].addClass(iEL.dropCfg.ac);
+					}
+					jQuery.iDrop.highlighted[i] = jQuery.iDrop.zones[i];
+					//if (jQuery.iSort && jQuery.iDrag.dragged.dragCfg.so) {
+					if (jQuery.iSort && iEL.dropCfg.s && jQuery.iDrag.dragged.dragCfg.so) {
+						iEL.dropCfg.el = jQuery('.' + iEL.dropCfg.a, iEL);
+						elm.style.display = 'none';
+						jQuery.iSort.measure(iEL);
+						iEL.dropCfg.os = jQuery.iSort.serialize(jQuery.attr(iEL, 'id')).hash;
+						elm.style.display = elm.dragCfg.oD;
+						oneIsSortable = true;
+					}
+					if (iEL.dropCfg.onActivate) {
+						iEL.dropCfg.onActivate.apply(jQuery.iDrop.zones[i].get(0), [jQuery.iDrag.dragged]);
+					}
+				}
+			}
+		}
+		//if (jQuery.iSort && jQuery.iDrag.dragged.dragCfg.so) {
+		if (oneIsSortable) {
+			jQuery.iSort.start();
+		}
+	},
+	/**
+	 * remeasure the droppable
+	 * 
+	 * useful when the positions/dimensions for droppables 
+	 * are changed while dragging a element
+	 * 
+	 * this works for sortables too but with a greate processor 
+	 * penality because remeasures each sort items too
+	 */
+	remeasure : function()
+	{
+		jQuery.iDrop.highlighted = {};
+		for (i in jQuery.iDrop.zones) {
+			if (jQuery.iDrop.zones[i] != null) {
+				var iEL = jQuery.iDrop.zones[i].get(0);
+				if (jQuery(jQuery.iDrag.dragged).is('.' + iEL.dropCfg.a)) {
+					iEL.dropCfg.p = jQuery.extend(
+						jQuery.iUtil.getPositionLite(iEL),
+						jQuery.iUtil.getSizeLite(iEL)
+					);
+					if (iEL.dropCfg.ac) {
+						jQuery.iDrop.zones[i].addClass(iEL.dropCfg.ac);
+					}
+					jQuery.iDrop.highlighted[i] = jQuery.iDrop.zones[i];
+					
+					if (jQuery.iSort && iEL.dropCfg.s && jQuery.iDrag.dragged.dragCfg.so) {
+						iEL.dropCfg.el = jQuery('.' + iEL.dropCfg.a, iEL);
+						elm.style.display = 'none';
+						jQuery.iSort.measure(iEL);
+						elm.style.display = elm.dragCfg.oD;
+					}
+				}
+			}
+		}
+	},
+	
+	checkhover : function (e)
+	{
+		if (jQuery.iDrag.dragged == null) {
+			return;
+		}
+		jQuery.iDrop.overzone = false;
+		var i;
+		var applyOnHover = false;
+		var hlt = 0;
+		for (i in jQuery.iDrop.highlighted)
+		{
+			var iEL = jQuery.iDrop.highlighted[i].get(0);
+			if ( 
+					jQuery.iDrop.overzone == false
+					 && 
+					jQuery.iDrop[iEL.dropCfg.t](
+					 	iEL.dropCfg.p.x, 
+						iEL.dropCfg.p.y, 
+						iEL.dropCfg.p.wb, 
+						iEL.dropCfg.p.hb
+					)
+					 
+			) {
+				if (iEL.dropCfg.hc && iEL.dropCfg.h == false) {
+					jQuery.iDrop.highlighted[i].addClass(iEL.dropCfg.hc);
+				}
+				//chec if onHover function has to be called
+				if (iEL.dropCfg.h == false &&iEL.dropCfg.onHover) {
+					applyOnHover = true;
+				}
+				iEL.dropCfg.h = true;
+				jQuery.iDrop.overzone = iEL;
+				//if(jQuery.iSort && jQuery.iDrag.dragged.dragCfg.so) {
+				if(jQuery.iSort && iEL.dropCfg.s && jQuery.iDrag.dragged.dragCfg.so) {
+					jQuery.iSort.helper.get(0).className = iEL.dropCfg.shc;
+					jQuery.iSort.checkhover(iEL);
+				}
+				hlt ++;
+			} else if(iEL.dropCfg.h == true) {
+				//onOut function
+				if (iEL.dropCfg.onOut) {
+					iEL.dropCfg.onOut.apply(iEL, [e, jQuery.iDrag.helper.get(0).firstChild, iEL.dropCfg.fx]);
+				}
+				if (iEL.dropCfg.hc) {
+					jQuery.iDrop.highlighted[i].removeClass(iEL.dropCfg.hc);
+				}
+				iEL.dropCfg.h = false;
+			}
+		}
+		if (jQuery.iSort && !jQuery.iDrop.overzone && jQuery.iDrag.dragged.so) {
+			jQuery.iSort.helper.get(0).style.display = 'none';
+			//jQuery('body').append(jQuery.iSort.helper.get(0));
+		}
+		//call onhover
+		if(applyOnHover) {
+			jQuery.iDrop.overzone.dropCfg.onHover.apply(jQuery.iDrop.overzone, [e, jQuery.iDrag.helper.get(0).firstChild]);
+		}
+	},
+	checkdrop : function (e)
+	{
+		var i;
+		for (i in jQuery.iDrop.highlighted) {
+			var iEL = jQuery.iDrop.highlighted[i].get(0);
+			if (iEL.dropCfg.ac) {
+				jQuery.iDrop.highlighted[i].removeClass(iEL.dropCfg.ac);
+			}
+			if (iEL.dropCfg.hc) {
+				jQuery.iDrop.highlighted[i].removeClass(iEL.dropCfg.hc);
+			}
+			if(iEL.dropCfg.s) {
+				jQuery.iSort.changed[jQuery.iSort.changed.length] = i;
+			}
+			if (iEL.dropCfg.onDrop && iEL.dropCfg.h == true) {
+				iEL.dropCfg.h = false;
+				iEL.dropCfg.onDrop.apply(iEL, [e, iEL.dropCfg.fx]);
+			}
+			iEL.dropCfg.m = false;
+			iEL.dropCfg.h  = false;
+		}
+		jQuery.iDrop.highlighted = {};
+	},
+	destroy : function()
+	{
+		return this.each(
+			function()
+			{
+				if (this.isDroppable) {
+					if (this.dropCfg.s) {
+						id = jQuery.attr(this,'id');
+						jQuery.iSort.collected[id] = null;
+						jQuery('.' + this.dropCfg.a, this).DraggableDestroy();
+					}
+					jQuery.iDrop.zones['d' + this.idsa] = null;
+					this.isDroppable = false;
+					this.f = null;
+				}
+			}
+		);
+	},
+	build : function (o)
+	{
+		return this.each(
+			function()
+			{
+				if (this.isDroppable == true || !o.accept || !jQuery.iUtil || !jQuery.iDrag){
+					return;
+				}
+				this.dropCfg = {
+					a : o.accept,
+					ac: o.activeclass||false, 
+					hc:	o.hoverclass||false,
+					shc: o.helperclass||false,
+					onDrop:	o.ondrop||o.onDrop||false,
+					onHover: o.onHover||o.onhover||false,
+					onOut: o.onOut||o.onout||false,
+					onActivate: o.onActivate||false,
+					t: o.tolerance && ( o.tolerance == 'fit' || o.tolerance == 'intersect') ? o.tolerance : 'pointer',
+					fx: o.fx ? o.fx : false,
+					m: false,
+					h: false
+				};
+				if (o.sortable == true && jQuery.iSort) {
+					id = jQuery.attr(this,'id');
+					jQuery.iSort.collected[id] = this.dropCfg.a;
+					this.dropCfg.s = true;
+					if(o.onChange) {
+						this.dropCfg.onChange = o.onChange;
+						this.dropCfg.os = jQuery.iSort.serialize(id).hash;
+					}
+				}
+				this.isDroppable = true;
+				this.idsa = parseInt(Math.random() * 10000);
+				jQuery.iDrop.zones['d' + this.idsa] = jQuery(this);
+				jQuery.iDrop.count ++;
+			}
+		);
+	}
+};
+
+/**
+ * Destroy an existing droppable on a collection of elements
+ * 
+ * @name DroppableDestroy
+ * @descr Destroy a droppable
+ * @type jQuery
+ * @cat Plugins/Interface
+ * @example $('#drag2').DroppableDestroy();
+ */
+
+jQuery.fn.extend(
+	{
+		DroppableDestroy : jQuery.iDrop.destroy,
+		Droppable : jQuery.iDrop.build
+	}
+);
+
+ 
+/**
+ * Recalculate all Droppables
+ *
+ * @name $.recallDroppables
+ * @type jQuery
+ * @cat Plugins/Interface
+ * @example $.recallDroppable();
+ */
+
+jQuery.recallDroppables = jQuery.iDrop.remeasure;/**
+ * Interface Elements for jQuery
+ * FX - scroll to
+ * 
+ * http://interface.eyecon.ro
+ * 
+ * Copyright (c) 2006 Stefan Petre
+ * Dual licensed under the MIT (MIT-LICENSE.txt) 
+ * and GPL (GPL-LICENSE.txt) licenses.
+ *   
+ *
+ */
+/**
+ * Applies a scrolling effect to document until the element gets into viewport
+ */
+jQuery.fn.extend (
+	{
+		/**
+		 * @name ScrollTo
+		 * @description scrolls the document until the lement gets into viewport
+		 * @param Mixed speed animation speed, integer for miliseconds, string ['slow' | 'normal' | 'fast']
+		 * @param String axis (optional) whatever to scroll on vertical, horizontal or both axis ['vertical'|'horizontal'|null]
+		 * @param String easing (optional) The name of the easing effect that you want to use.
+		 * @type jQuery
+		 * @cat Plugins/Interface
+		 * @author Stefan Petre
+		 */
+		ScrollTo : function(speed, axis, easing) {
+			o = jQuery.speed(speed);
+			return this.queue('interfaceFX',function(){
+				new jQuery.fx.ScrollTo(this, o, axis, easing);
+			});
+		},
+		/**
+		 * @name ScrollToAnchors
+		 * @description all links to '#elementId' will animate scroll
+		 * @param Mixed speed animation speed, integer for miliseconds, string ['slow' | 'normal' | 'fast']
+		 * @param String axis (optional) whatever to scroll on vertical, horizontal or both axis ['vertical'|'horizontal'|null]
+		 * @param String easing (optional) The name of the easing effect that you want to use.
+		 * @type jQuery
+		 * @cat Plugins/Interface
+		 * @author Stefan Petre
+		 */
+		/*inspired by David Maciejewski www.macx.de*/
+		ScrollToAnchors : function(speed, axis, easing) {
+			return this.each(
+				function()
+				{
+					jQuery('a[@href*="#"]', this).click(
+						function(e)
+						{
+							parts = this.href.split('#');
+							jQuery('#' + parts[1]).ScrollTo(speed, axis, easing);
+							return false;
+						}
+					);
+				}
+			)
+		}
+	}
+);
+
+jQuery.fx.ScrollTo = function (e, o, axis, easing)
+{
+	var z = this;
+	z.o = o;
+	z.e = e;
+	z.axis = /vertical|horizontal/.test(axis) ? axis : false;
+	z.easing = easing;
+	p = jQuery.iUtil.getPosition(e);
+	s = jQuery.iUtil.getScroll();
+	z.clear = function(){clearInterval(z.timer);z.timer=null;jQuery.dequeue(z.e, 'interfaceFX');};
+	z.t=(new Date).getTime();
+	s.h = s.h > s.ih ? (s.h - s.ih) : s.h;
+	s.w = s.w > s.iw ? (s.w - s.iw) : s.w;
+	z.endTop = p.y > s.h ? s.h : p.y;
+	z.endLeft = p.x > s.w ? s.w : p.x;
+	z.startTop = s.t;
+	z.startLeft = s.l;
+	z.step = function(){
+		var t = (new Date).getTime();
+		var n = t - z.t;
+		var p = n / z.o.duration;
+		if (t >= z.o.duration+z.t) {
+			z.clear();
+			setTimeout(function(){z.scroll(z.endTop, z.endLeft)},13);
+		} else {
+			if (!z.axis || z.axis == 'vertical') {
+				if (!jQuery.easing || !jQuery.easing[z.easing]) {
+					st = ((-Math.cos(p*Math.PI)/2) + 0.5) * (z.endTop-z.startTop) + z.startTop;
+				} else {
+					st = jQuery.easing[z.easing](p, n, z.startTop, (z.endTop - z.startTop), z.o.duration);
+				}
+			} else {
+				st = z.startTop;
+			}
+			if (!z.axis || z.axis == 'horizontal') {
+				if (!jQuery.easing || !jQuery.easing[z.easing]) {
+					sl = ((-Math.cos(p*Math.PI)/2) + 0.5) * (z.endLeft-z.startLeft) + z.startLeft;
+				} else {
+					sl = jQuery.easing[z.easing](p, n, z.startLeft, (z.endLeft - z.startLeft), z.o.duration);
+				}
+			} else {
+				sl = z.startLeft;
+			}
+			z.scroll(st, sl);
+		}
+	};
+	z.scroll = function (t, l){window.scrollTo(l, t);};
+	z.timer=setInterval(function(){z.step();},13);
+};/**
+ * Interface Elements for jQuery
+ * Sortables
+ * 
+ * http://interface.eyecon.ro
+ * 
+ * Copyright (c) 2006 Stefan Petre
+ * Dual licensed under the MIT (MIT-LICENSE.txt) 
+ * and GPL (GPL-LICENSE.txt) licenses.
+ *   
+ *
+ */
+
+/**
+ * Allows you to resort elements within a container by dragging and dropping. Requires
+ * the Draggables and Droppables plugins. The container and each item inside the container
+ * must have an ID. Sortables are especially useful for lists.
+ * 
+ * @see Plugins/Interface/Draggable
+ * @see Plugins/Interface/Droppable
+ * @author Stefan Petre
+ * @name Sortable
+ * @cat Plugins/Interface
+ * @param Hash options        A hash of options
+ * @option String accept      The class name for items inside the container (mandatory)
+ * @option String activeclass The class for the container when one of its items has started to move
+ * @option String hoverclass  The class for the container when an acceptable item is inside it
+ * @option String helperclass The helper is used to point to the place where the item will be 
+ *                            moved. This is the class for the helper.
+ * @option Float opacity      Opacity (between 0 and 1) of the item while being dragged
+ * @option Boolean ghosting   When true, the sortable is ghosted when dragged
+ * @option String tolerance   Either 'pointer', 'intersect', or 'fit'. See Droppable for more details
+ * @option Boolean fit        When true, sortable must be inside the container in order to drop
+ * @option Integer fx         Duration for the effect applied to the sortable
+ * @option Function onchange  Callback that gets called when the sortable list changed. It takes
+ *                            an array of serialized elements
+ * @option Boolean floats     True if the sorted elements are floated
+ * @option String containment Use 'parent' to constrain the drag to the container
+ * @option String axis        Use 'horizontally' or 'vertically' to constrain dragging to an axis
+ * @option String handle      The jQuery selector that indicates the draggable handle
+ * @option DOMElement handle  The node that indicates the draggable handle
+ * @option Function onHover   Callback that is called when an acceptable item is dragged over the
+ *                            container. Gets the hovering DOMElement as a parameter
+ * @option Function onOut     Callback that is called when an acceptable item leaves the container.
+ *                            Gets the leaving DOMElement as a parameter
+ * @option Object cursorAt    The mouse cursor will be moved to the offset on the dragged item
+ *                            indicated by the object, which takes "top", "bottom", "left", and
+ *                            "right" keys
+ * @option Function onStart   Callback function triggered when the dragging starts
+ * @option Function onStop    Callback function triggered when the dragging stops
+ * @example                   $('ul').Sortable(
+ *                            	{
+ *                            		accept : 'sortableitem',
+ *                            		activeclass : 'sortableactive',
+ *                             		hoverclass : 'sortablehover',
+ *                             		helperclass : 'sorthelper',
+ *                             		opacity: 	0.5,
+ *                             		fit :	false
+ *                             	}
+ *                             )
+ */
+
+jQuery.iSort = {
+	changed : [],
+	collected : {},
+	helper : false,
+	inFrontOf: null,
+	
+	start : function ()
+	{
+		if (jQuery.iDrag.dragged == null) {
+			return;
+		}
+		var shs, margins,c, cs;
+		
+		jQuery.iSort.helper.get(0).className = jQuery.iDrag.dragged.dragCfg.hpc;
+		shs = jQuery.iSort.helper.get(0).style;
+		shs.display = 'block';
+		jQuery.iSort.helper.oC = jQuery.extend(
+			jQuery.iUtil.getPosition(jQuery.iSort.helper.get(0)),
+			jQuery.iUtil.getSize(jQuery.iSort.helper.get(0))
+		);
+		
+		shs.width = jQuery.iDrag.dragged.dragCfg.oC.wb + 'px';
+		shs.height = jQuery.iDrag.dragged.dragCfg.oC.hb + 'px';
+		//shs.cssFloat = jQuery.iDrag.dragged.dragCfg.oF;
+		margins = jQuery.iUtil.getMargins(jQuery.iDrag.dragged);
+		shs.marginTop = margins.t;
+		shs.marginRight = margins.r;
+		shs.marginBottom = margins.b;
+		shs.marginLeft = margins.l;
+		if (jQuery.iDrag.dragged.dragCfg.ghosting == true) {
+			c = jQuery.iDrag.dragged.cloneNode(true);
+			cs = c.style;
+			cs.marginTop = '0px';
+			cs.marginRight = '0px';
+			cs.marginBottom = '0px';
+			cs.marginLeft = '0px';
+			cs.display = 'block';
+			jQuery.iSort.helper.empty().append(c);
+		}
+		jQuery(jQuery.iDrag.dragged).after(jQuery.iSort.helper.get(0));
+		jQuery.iDrag.dragged.style.display = 'none';
+	},
+	
+	check : function (e)
+	{
+		if (!e.dragCfg.so && jQuery.iDrop.overzone.sortable) {
+			if (e.dragCfg.onStop)
+				e.dragCfg.onStop.apply(dragged);
+			jQuery(e).css('position', e.dragCfg.initialPosition || e.dragCfg.oP);
+			jQuery(e).DraggableDestroy();
+			jQuery(jQuery.iDrop.overzone).SortableAddItem(e);
+		}
+		jQuery.iSort.helper.removeClass(e.dragCfg.hpc).html('&nbsp;');
+		jQuery.iSort.inFrontOf = null;
+		var shs = jQuery.iSort.helper.get(0).style;
+		shs.display = 'none';
+		jQuery.iSort.helper.after(e);
+		if (e.dragCfg.fx > 0) {
+			jQuery(e).fadeIn(e.dragCfg.fx);
+		}
+		jQuery('body').append(jQuery.iSort.helper.get(0));
+		var ts = [];
+		var fnc = false;
+		for(var i=0; i<jQuery.iSort.changed.length; i++){
+			var iEL = jQuery.iDrop.zones[jQuery.iSort.changed[i]].get(0);
+			var id = jQuery.attr(iEL, 'id');
+			var ser = jQuery.iSort.serialize(id);
+			if (iEL.dropCfg.os != ser.hash) {
+				iEL.dropCfg.os = ser.hash;
+				if (fnc == false && iEL.dropCfg.onChange) {
+					fnc = iEL.dropCfg.onChange;
+				}
+				ser.id = id;
+				ts[ts.length] = ser;
+			}
+		}
+		jQuery.iSort.changed = [];
+		if (fnc != false && ts.length > 0) {
+			fnc(ts);
+		}
+	},
+	
+	checkhover : function(e,o)
+	{
+		if (!jQuery.iDrag.dragged)
+			return;
+		var cur = false;
+		var i = 0;
+		if ( e.dropCfg.el.size() > 0) {
+			for (i = e.dropCfg.el.size(); i >0; i--) {
+				if (e.dropCfg.el.get(i-1) != jQuery.iDrag.dragged) {
+					if (!e.sortCfg.floats) {
+						if ( 
+						(e.dropCfg.el.get(i-1).pos.y + e.dropCfg.el.get(i-1).pos.hb/2) > jQuery.iDrag.dragged.dragCfg.ny  
+						) {
+							cur = e.dropCfg.el.get(i-1);
+						} else {
+							break;
+						}
+					} else {
+						if (
+						(e.dropCfg.el.get(i-1).pos.x + e.dropCfg.el.get(i-1).pos.wb/2) > jQuery.iDrag.dragged.dragCfg.nx && 
+						(e.dropCfg.el.get(i-1).pos.y + e.dropCfg.el.get(i-1).pos.hb/2) > jQuery.iDrag.dragged.dragCfg.ny  
+						) {
+							cur = e.dropCfg.el.get(i-1);
+						}
+					}
+				}
+			}
+		}
+		//helpos = jQuery.iUtil.getPos(jQuery.iSort.helper.get(0));
+		if (cur && jQuery.iSort.inFrontOf != cur) {
+			jQuery.iSort.inFrontOf = cur;
+			jQuery(cur).before(jQuery.iSort.helper.get(0));
+		} else if(!cur && (jQuery.iSort.inFrontOf != null || jQuery.iSort.helper.get(0).parentNode != e) ) {
+			jQuery.iSort.inFrontOf = null;
+			jQuery(e).append(jQuery.iSort.helper.get(0));
+		}
+		jQuery.iSort.helper.get(0).style.display = 'block';
+	},
+	
+	measure : function (e)
+	{
+		if (jQuery.iDrag.dragged == null) {
+			return;
+		}
+		e.dropCfg.el.each (
+			function ()
+			{
+				this.pos = jQuery.extend(
+					jQuery.iUtil.getSizeLite(this),
+					jQuery.iUtil.getPositionLite(this)
+				);
+			}
+		);
+	},
+	
+	serialize : function(s)
+	{
+		var i;
+		var h = '';
+		var o = {};
+		if (s) {
+			if (jQuery.iSort.collected[s] ) {
+				o[s] = [];
+				jQuery('#' + s + ' .' + jQuery.iSort.collected[s]).each(
+					function ()
+					{
+						if (h.length > 0) {
+							h += '&';
+						}
+						h += s + '[]=' + jQuery.attr(this,'id');
+						o[s][o[s].length] = jQuery.attr(this,'id');
+					}
+				);
+			} else {
+				for ( a in s) {
+					if (jQuery.iSort.collected[s[a]] ) {
+						o[s[a]] = [];			
+						jQuery('#' + s[a] + ' .' + jQuery.iSort.collected[s[a]]).each(
+							function ()
+							{
+								if (h.length > 0) {
+									h += '&';
+								}
+								h += s[a] + '[]=' + jQuery.attr(this,'id');
+								o[s[a]][o[s[a]].length] = jQuery.attr(this,'id');
+							}
+						);
+					}
+				}
+			}
+		} else {
+			for ( i in jQuery.iSort.collected){
+				o[i] = [];
+				jQuery('#' + i + ' .' + jQuery.iSort.collected[i]).each(
+					function ()
+					{
+						if (h.length > 0) {
+							h += '&';
+						}
+						h += i + '[]=' + jQuery.attr(this,'id');
+						o[i][o[i].length] = jQuery.attr(this,'id');
+					}
+				);
+			}
+		}
+		return {hash:h, o:o};
+	},
+	
+	addItem : function (e)
+	{
+		if ( !e.childNodes ) {
+			return;
+		}
+		return this.each(
+			function ()
+			{
+				if(!this.sortCfg || !jQuery(e).is('.' +  this.sortCfg.accept))
+					jQuery(e).addClass(this.sortCfg.accept);
+				jQuery(e).Draggable(this.sortCfg.dragCfg);
+			}
+		);
+	},
+	
+	destroy: function()
+	{
+		return this.each(
+			function()
+			{
+				jQuery('.' + this.sortCfg.accept).DraggableDestroy();
+				jQuery(this).DroppableDestroy();
+				this.sortCfg = null;
+				this.isSortable = null;
+			}
+		);
+	},
+	
+	build : function (o)
+	{
+		if (o.accept && jQuery.iUtil && jQuery.iDrag && jQuery.iDrop) {
+			if (!jQuery.iSort.helper) {
+				jQuery('body',document).append('<div id="sortHelper">&nbsp;</div>');
+				jQuery.iSort.helper = jQuery('#sortHelper');
+				jQuery.iSort.helper.get(0).style.display = 'none';
+			}
+			this.Droppable(
+				{
+					accept :  o.accept,
+					activeclass : o.activeclass ? o.activeclass : false,
+					hoverclass : o.hoverclass ? o.hoverclass : false,
+					helperclass : o.helperclass ? o.helperclass : false,
+					/*onDrop: function (drag, fx) 
+							{
+								jQuery.iSort.helper.after(drag);
+								if (fx > 0) {
+									jQuery(drag).fadeIn(fx);
+								}
+							},*/
+					onHover: o.onHover||o.onhover,
+					onOut: o.onOut||o.onout,
+					sortable : true,
+					onChange : 	o.onChange||o.onchange,
+					fx : o.fx ? o.fx : false,
+					ghosting : o.ghosting ? true : false,
+					tolerance: o.tolerance ? o.tolerance : 'intersect'
+				}
+			);
+			
+			return this.each(
+				function()
+				{
+					var dragCfg = {
+						revert : o.revert? true : false,
+						zindex : 3000,
+						opacity : o.opacity ? parseFloat(o.opacity) : false,
+						hpc : o.helperclass ? o.helperclass : false,
+						fx : o.fx ? o.fx : false,
+						so : true,
+						ghosting : o.ghosting ? true : false,
+						handle: o.handle ? o.handle : null,
+						containment: o.containment ? o.containment : null,
+						onStart : o.onStart && o.onStart.constructor == Function ? o.onStart : false,
+						onDrag : o.onDrag && o.onDrag.constructor == Function ? o.onDrag : false,
+						onStop : o.onStop && o.onStop.constructor == Function ? o.onStop : false,
+						axis : /vertically|horizontally/.test(o.axis) ? o.axis : false,
+						snapDistance : o.snapDistance ? parseInt(o.snapDistance)||0 : false,
+						cursorAt: o.cursorAt ? o.cursorAt : false
+					};
+					jQuery('.' + o.accept, this).Draggable(dragCfg);
+					this.isSortable = true;
+					this.sortCfg = {
+						accept :  o.accept,
+						revert : o.revert? true : false,
+						zindex : 3000,
+						opacity : o.opacity ? parseFloat(o.opacity) : false,
+						hpc : o.helperclass ? o.helperclass : false,
+						fx : o.fx ? o.fx : false,
+						so : true,
+						ghosting : o.ghosting ? true : false,
+						handle: o.handle ? o.handle : null,
+						containment: o.containment ? o.containment : null,
+						floats: o.floats ? true : false,
+						dragCfg : dragCfg
+					}
+				}
+			);
+		}
+	}
+};
+
+jQuery.fn.extend(
+	{
+		Sortable : jQuery.iSort.build,
+		/**
+		 * A new item can be added to a sortable by adding it to the DOM and then adding it via
+		 * SortableAddItem. 
+		 *
+		 * @name SortableAddItem
+		 * @param DOMElement elem A DOM Element to add to the sortable list
+		 * @example $('#sortable1').append('<li id="newitem">new item</li>')
+		 *                         .SortableAddItem($("#new_item")[0])
+		 * @type jQuery
+		 * @cat Plugins/Interface
+		 */
+		SortableAddItem : jQuery.iSort.addItem,
+		/**
+		 * Destroy a sortable
+		 *
+		 * @name SortableDestroy
+		 * @example $('#sortable1').SortableDestroy();
+		 * @type jQuery
+		 * @cat Plugins/Interface
+		 */
+		SortableDestroy: jQuery.iSort.destroy
+	}
+);
+
+/**
+ * This function returns the hash and an object (can be used as arguments for $.post) for every 
+ * sortable in the page or specific sortables. The hash is based on the 'id' attributes of 
+ * container and items.
+ *
+ * @params String sortable The id of the sortable to serialize
+ * @name $.SortSerialize
+ * @type String
+ * @cat Plugins/Interface
+ */
+
+jQuery.SortSerialize = jQuery.iSort.serialize;/**
+ * Interface Elements for jQuery
+ * utility function
+ *
+ * http://interface.eyecon.ro
+ *
+ * Copyright (c) 2006 Stefan Petre
+ * Dual licensed under the MIT (MIT-LICENSE.txt)
+ * and GPL (GPL-LICENSE.txt) licenses.
+ *
+ *
+ */
+
+jQuery.iUtil = {
+	getPosition : function(e)
+	{
+		var x = 0;
+		var y = 0;
+		var es = e.style;
+		var restoreStyles = false;
+		if (jQuery(e).css('display') == 'none') {
+			var oldVisibility = es.visibility;
+			var oldPosition = es.position;
+			restoreStyles = true;
+			es.visibility = 'hidden';
+			es.display = 'block';
+			es.position = 'absolute';
+		}
+		var el = e;
+		while (el){
+			x += el.offsetLeft + (el.currentStyle && !jQuery.browser.opera ?parseInt(el.currentStyle.borderLeftWidth)||0:0);
+			y += el.offsetTop + (el.currentStyle && !jQuery.browser.opera ?parseInt(el.currentStyle.borderTopWidth)||0:0);
+			el = el.offsetParent;
+		}
+		el = e;
+		while (el && el.tagName  && el.tagName.toLowerCase() != 'body')
+		{
+			x -= el.scrollLeft||0;
+			y -= el.scrollTop||0;
+			el = el.parentNode;
+		}
+		if (restoreStyles == true) {
+			es.display = 'none';
+			es.position = oldPosition;
+			es.visibility = oldVisibility;
+		}
+		return {x:x, y:y};
+	},
+	getPositionLite : function(el)
+	{
+		var x = 0, y = 0;
+		while(el) {
+			x += el.offsetLeft || 0;
+			y += el.offsetTop || 0;
+			el = el.offsetParent;
+		}
+		return {x:x, y:y};
+	},
+	getSize : function(e)
+	{
+		var w = jQuery.css(e,'width');
+		var h = jQuery.css(e,'height');
+		var wb = 0;
+		var hb = 0;
+		var es = e.style;
+		if (jQuery(e).css('display') != 'none') {
+			wb = e.offsetWidth;
+			hb = e.offsetHeight;
+		} else {
+			var oldVisibility = es.visibility;
+			var oldPosition = es.position;
+			es.visibility = 'hidden';
+			es.display = 'block';
+			es.position = 'absolute';
+			wb = e.offsetWidth;
+			hb = e.offsetHeight;
+			es.display = 'none';
+			es.position = oldPosition;
+			es.visibility = oldVisibility;
+		}
+		return {w:w, h:h, wb:wb, hb:hb};
+	},
+	getSizeLite : function(el)
+	{
+		return {
+			wb:el.offsetWidth||0,
+			hb:el.offsetHeight||0
+		};
+	},
+	getClient : function(e)
+	{
+		var h, w, de;
+		if (e) {
+			w = e.clientWidth;
+			h = e.clientHeight;
+		} else {
+			de = document.documentElement;
+			w = window.innerWidth || self.innerWidth || (de&&de.clientWidth) || document.body.clientWidth;
+			h = window.innerHeight || self.innerHeight || (de&&de.clientHeight) || document.body.clientHeight;
+		}
+		return {w:w,h:h};
+	},
+	getScroll : function (e)
+	{
+		var t=0, l=0, w=0, h=0, iw=0, ih=0;
+		if (e && e.nodeName.toLowerCase() != 'body') {
+			t = e.scrollTop;
+			l = e.scrollLeft;
+			w = e.scrollWidth;
+			h = e.scrollHeight;
+			iw = 0;
+			ih = 0;
+		} else  {
+			if (document.documentElement) {
+				t = document.documentElement.scrollTop;
+				l = document.documentElement.scrollLeft;
+				w = document.documentElement.scrollWidth;
+				h = document.documentElement.scrollHeight;
+			} else if (document.body) {
+				t = document.body.scrollTop;
+				l = document.body.scrollLeft;
+				w = document.body.scrollWidth;
+				h = document.body.scrollHeight;
+			}
+			iw = self.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||0;
+			ih = self.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||0;
+		}
+		return { t: t, l: l, w: w, h: h, iw: iw, ih: ih };
+	},
+	getMargins : function(e, toInteger)
+	{
+		var el = jQuery(e);
+		var t = el.css('marginTop') || '';
+		var r = el.css('marginRight') || '';
+		var b = el.css('marginBottom') || '';
+		var l = el.css('marginLeft') || '';
+		if (toInteger)
+			return {
+				t: parseInt(t)||0,
+				r: parseInt(r)||0,
+				b: parseInt(b)||0,
+				l: parseInt(l)
+			};
+		else
+			return {t: t, r: r,	b: b, l: l};
+	},
+	getPadding : function(e, toInteger)
+	{
+		var el = jQuery(e);
+		var t = el.css('paddingTop') || '';
+		var r = el.css('paddingRight') || '';
+		var b = el.css('paddingBottom') || '';
+		var l = el.css('paddingLeft') || '';
+		if (toInteger)
+			return {
+				t: parseInt(t)||0,
+				r: parseInt(r)||0,
+				b: parseInt(b)||0,
+				l: parseInt(l)
+			};
+		else
+			return {t: t, r: r,	b: b, l: l};
+	},
+	getBorder : function(e, toInteger)
+	{
+		var el = jQuery(e);
+		var t = el.css('borderTopWidth') || '';
+		var r = el.css('borderRightWidth') || '';
+		var b = el.css('borderBottomWidth') || '';
+		var l = el.css('borderLeftWidth') || '';
+		if (toInteger)
+			return {
+				t: parseInt(t)||0,
+				r: parseInt(r)||0,
+				b: parseInt(b)||0,
+				l: parseInt(l)||0
+			};
+		else
+			return {t: t, r: r,	b: b, l: l};
+	},
+	getPointer : function(event)
+	{
+		var x = event.pageX || (event.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft)) || 0;
+		var y = event.pageY || (event.clientY + (document.documentElement.scrollTop || document.body.scrollTop)) || 0;
+		return {x:x, y:y};
+	},
+	traverseDOM : function(nodeEl, func)
+	{
+		func(nodeEl);
+		nodeEl = nodeEl.firstChild;
+		while(nodeEl){
+			jQuery.iUtil.traverseDOM(nodeEl, func);
+			nodeEl = nodeEl.nextSibling;
+		}
+	},
+	purgeEvents : function(nodeEl)
+	{
+		jQuery.iUtil.traverseDOM(
+			nodeEl,
+			function(el)
+			{
+				for(var attr in el){
+					if(typeof el[attr] === 'function') {
+						el[attr] = null;
+					}
+				}
+			}
+		);
+	},
+	centerEl : function(el, axis)
+	{
+		var clientScroll = jQuery.iUtil.getScroll();
+		var windowSize = jQuery.iUtil.getSize(el);
+		if (!axis || axis == 'vertically')
+			jQuery(el).css(
+				{
+					top: clientScroll.t + ((Math.max(clientScroll.h,clientScroll.ih) - clientScroll.t - windowSize.hb)/2) + 'px'
+				}
+			);
+		if (!axis || axis == 'horizontally')
+			jQuery(el).css(
+				{
+					left:	clientScroll.l + ((Math.max(clientScroll.w,clientScroll.iw) - clientScroll.l - windowSize.wb)/2) + 'px'
+				}
+			);
+	},
+	fixPNG : function (el, emptyGIF) {
+		var images = jQuery('img[@src*="png"]', el||document), png;
+		images.each( function() {
+			png = this.src;				
+			this.src = emptyGIF;
+			this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + png + "')";
+		});
+	}
+};
+
+// Helper function to support older browsers!
+[].indexOf || (Array.prototype.indexOf = function(v, n){
+	n = (n == null) ? 0 : n;
+	var m = this.length;
+	for (var i=n; i<m; i++)
+		if (this[i] == v)
+			return i;
+	return -1;
+});
+/* 
+	jQuery TextAreaResizer plugin
+	Created on 17th January 2008 by Ryan O'Dell 
+	Version 1.0.4
+	
+	Converted from Drupal -> textarea.js
+	Found source: http://plugins.jquery.com/misc/textarea.js
+	$Id$
+
+	1.0.1 Updates to missing global 'var', added extra global variables, fixed multiple instances, improved iFrame support
+	1.0.2 Updates according to textarea.focus
+	1.0.3 Further updates including removing the textarea.focus and moving private variables to top
+	1.0.4 Re-instated the blur/focus events, according to information supplied by dec
+
+	
+*/
+(function($) {
+	/* private variable "oHover" used to determine if you're still hovering over the same element */
+	var textarea, staticOffset;  // added the var declaration for 'staticOffset' thanks to issue logged by dec.
+	var iLastMousePos = 0;
+	var iMin = 32;
+	var grip;
+	/* TextAreaResizer plugin */
+	$.fn.TextAreaResizer = function() {
+		return this.each(function() {
+		    textarea = $(this).addClass('processed'), staticOffset = null;
+
+			// 18-01-08 jQuery bind to pass data element rather than direct mousedown - Ryan O'Dell
+		    // When wrapping the text area, work around an IE margin bug.  See:
+		    // http://jaspan.com/ie-inherited-margin-bug-form-elements-and-haslayout
+		    $(this).wrap('<div class="resizable-textarea"><span></span></div>')
+		      .parent().append($('<div class="grippie"></div>').bind("mousedown",{el: this} , startDrag));
+
+		    var grippie = $('div.grippie', $(this).parent())[0];
+		    grippie.style.marginRight = (grippie.offsetWidth - $(this)[0].offsetWidth) +'px';
+
+		});
+	};
+	/* private functions */
+	function startDrag(e) {
+		textarea = $(e.data.el);
+		textarea.blur();
+		iLastMousePos = mousePosition(e).y;
+		staticOffset = textarea.height() - iLastMousePos;
+		textarea.css('opacity', 0.25);
+		$(document).mousemove(performDrag).mouseup(endDrag);
+		return false;
+	}
+
+	function performDrag(e) {
+		var iThisMousePos = mousePosition(e).y;
+		var iMousePos = staticOffset + iThisMousePos;
+		if (iLastMousePos >= (iThisMousePos)) {
+			iMousePos -= 5;
+		}
+		iLastMousePos = iThisMousePos;
+		iMousePos = Math.max(iMin, iMousePos);
+		textarea.height(iMousePos + 'px');
+		if (iMousePos < iMin) {
+			endDrag(e);
+		}
+		return false;
+	}
+
+	function endDrag(e) {
+		$(document).unbind('mousemove', performDrag).unbind('mouseup', endDrag);
+		textarea.css('opacity', 1);
+		textarea.focus();
+		textarea = null;
+		staticOffset = null;
+		iLastMousePos = 0;
+	}
+
+	function mousePosition(e) {
+		return { x: e.clientX + document.documentElement.scrollLeft, y: e.clientY + document.documentElement.scrollTop };
+	};
+})(jQuery);
+

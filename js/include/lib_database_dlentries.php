@@ -1,20 +1,9 @@
-<?php
+<?php add_action( 'wp_ajax_database_dlentries', 'cforms2_database_dlentries' );
 
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
-
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
-
-### mini firewall
+function cforms2_database_dlentries() {
+check_admin_referer( 'database_dlentries' );
 if( !current_user_can('track_cforms') )
-	wp_die("access restricted.");
-
+	die("access restricted.");
 
 global $wpdb;
 
@@ -26,8 +15,8 @@ $cformsSettings = get_option('cforms_settings');
 
 
 ### get custom functions
-$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
-$CFfunctions = dirname(dirname(dirname(__FILE__))).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )
@@ -49,7 +38,7 @@ $charset = $_GET['enc'];
 $qtype = $_GET['qtype'];
 $query = $_GET['query'];
 
-$tempfile = dirname(__FILE__)."/data.tmp";
+$tempfile = wp_tempnam('data.tmp');
 
 ### get form id from name
 $query = str_replace('*','',$query);
@@ -88,10 +77,8 @@ if ($sub_ids<>'') {
 
 	$in_list = ($sub_ids<>'all')?'AND id in ('.substr($sub_ids,0,-1).')':'';
 
-	$count = $wpdb->get_var("SELECT COUNT(id) FROM {$wpdb->cformssubmissions} WHERE TRUE $where $in_list");
-
     if( !is_writable($tempfile) ){
-		$err = sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),"\r\n\r\n --->  <code>".dirname(__FILE__)."\r\n\r\n","\r\n\r\n");
+		$err = sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),"\r\n\r\n --->  <code>". $tempfile ."\r\n\r\n","\r\n\r\n");
 
 	    header("Pragma: public");
 	    header("Expires: 0");
@@ -106,19 +93,19 @@ if ($sub_ids<>'') {
 		die();
     }
 
-    $temp = fopen($tempfile, "w");
+    $handle = fopen($tempfile, "w");
 
     ### UTF8 header
     if ( $charset=='utf-8' )
-        fwrite($temp, pack("CCC",0xef,0xbb,0xbf));
+        fwrite($handle, pack("CCC",0xef,0xbb,0xbf));
 
 	switch ( $format ){
-		case 'xml': getXML(); break;
-		case 'csv': getCSVTAB('csv'); break;
-		case 'tab': getCSVTAB('tab'); break;
+		case 'xml': cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'csv': cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'tab': cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, 'tab'); break;
 	}
 
-    fclose($temp);
+    fclose($handle);
 
 	header("Pragma: public");
 	header("Expires: 0");
@@ -130,29 +117,20 @@ if ($sub_ids<>'') {
 	header("Content-Transfer-Encoding: binary");
 	header("Content-Length: " .(string)(filesize($tempfile)) );
     ob_clean();
-    flush();
 
     readfile( $tempfile );
-
-    $temp = fopen($tempfile, "w");
-    fclose($temp);
-
-	exit();
+    ob_flush();
+    flush();
+    unlink($tempfile);
+	die();
 
 }
+}
 
-function getCSVTAB($format='csv'){
-	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset;
+function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, $format='csv'){
+	global $wpdb;
 
-     $results = $wpdb->get_results( "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC" );
-
-	/*
-	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-	@mysql_select_db(DB_NAME) or die( "Unable to select database");
-
- 	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
-	$r = mysql_query($sql);
-	*/
+    $results = $wpdb->get_results( "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC" );
 	
 	$br="\n";
 	$buffer=array();
@@ -166,7 +144,7 @@ function getCSVTAB($format='csv'){
 
     $last_n = '';
 
-	foreach( $results as $key => $entry ) {
+	foreach( $results as $entry ) {
 
 	### while( $entry = mysql_fetch_array($r) ){
 
@@ -179,16 +157,16 @@ function getCSVTAB($format='csv'){
 
 			if ( $buffer[body]<>'' ){
                 if( $_GET['header']=='true' && $buffer[last_n]<>$buffer[last2_n])
-					fwrite($temp, $buffer[head] . $br . $buffer[body] . $br);
+					fwrite($handle, $buffer[head] . $br . $buffer[body] . $br);
 				else
-					fwrite($temp, $buffer[body] . $br);
+					fwrite($handle, $buffer[body] . $br);
             }
             $buffer[body]   = $body;  ### save 1 line
             $buffer[head]   = $head;  ### save 1 line
             $buffer[last2_n]= $buffer[last_n];
             $buffer[last_n] = $last_n;
 
-			$body  = '"'.__('Form','cforms').': ' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry->sub_date) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
+			$body  = '"'.__('Form','cforms').': ' . cforms2_enc_data($fnames[$next_n], $charset). '"'. $format .'"'. cforms2_enc_data($entry->sub_date, $charset) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 			$last_n = $next_n;
 
@@ -211,9 +189,10 @@ function getCSVTAB($format='csv'){
 
 			$subID = $cformsSettings['form'.$no]['cforms'.$no.'_noid'] ? '' : $entry->id.'-';
 
-            if ( $fdirURL=='' )
-                $url = $cformsSettings['global']['cforms_root'].substr( $fdir, strpos($fdir,$cformsSettings['global']['plugindir']) + strlen($cformsSettings['global']['plugindir']),  strlen($fdir) );
-            else
+            if ( $fdirURL=='' ) {
+				$plugindir = dirname(dirname(dirname(plugin_basename(__FILE__))));
+                $url = plugin_dir_url( __FILE__ ).substr( $fdir, strpos($fdir,$plugindir) + strlen($plugindir) + 1 );
+			} else
                 $url = $fdirURL;
 
 			$passID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '':$entry->id;
@@ -229,8 +208,8 @@ function getCSVTAB($format='csv'){
 				
 		}
 
-        $head .= ($_GET['header']=='true')?'"'.encData(stripslashes($entry->field_name)).'"' . $format . $urlTab:'';
-		$body .= '"' . str_replace('"','""', encData(stripslashes($entry->field_val))) . '"' . $format . $url;
+        $head .= ($_GET['header']=='true')?'"'.cforms2_enc_data(stripslashes($entry->field_name), $charset).'"' . $format . $urlTab:'';
+		$body .= '"' . str_replace('"','""', cforms2_enc_data(stripslashes($entry->field_val)), $charset) . '"' . $format . $url;
 
 	} ### foreach
 
@@ -238,16 +217,16 @@ function getCSVTAB($format='csv'){
    	### clean up buffer
     if ( $buffer[body]<>'' ){
         if( $_GET['header']=='true' && $buffer[last_n]<>$buffer[last2_n])
-            fwrite($temp, $buffer[head] . $br . $buffer[body] . $br);
+            fwrite($handle, $buffer[head] . $br . $buffer[body] . $br);
         else
-            fwrite($temp, $buffer[body] . $br);
+            fwrite($handle, $buffer[body] . $br);
     }
 
     ### clean up last body
 	if( $_GET['header']=='true' && $buffer[last_n]<>$next_n)
-	    fwrite($temp, $head . $br . $body . $br);
+	    fwrite($handle, $head . $br . $body . $br);
 	else
-	    fwrite($temp, $body . $br);
+	    fwrite($handle, $body . $br);
 
 /*
 	mysql_free_result($r);
@@ -258,13 +237,13 @@ function getCSVTAB($format='csv'){
 
 
 
-function getXML(){
-	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset;
+function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $charset){
+	global $wpdb;
 
 	if( $charset=='utf-8' )
-		fwrite($temp, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<entries>\n");
+		fwrite($handle, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<entries>\n");
 	else
-		fwrite($temp, "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<entries>\n");
+		fwrite($handle, "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<entries>\n");
 
 	$results = $wpdb->get_results(
 	       "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC"
@@ -275,7 +254,7 @@ function getXML(){
 	
 	/*
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-	@mysql_select_db(DB_NAME) or die( "Unable to select database");
+	mysql_select_cforms2_dbgDB_NAME) or die( "Unable to select database");
 
  	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
 	$r = mysql_query($sql);
@@ -284,7 +263,7 @@ function getXML(){
 	//  &#10;
 	
     $sub_id ='';
-    foreach( $results as $key => $entry ) {
+    foreach( $results as $entry ) {
 	### while( $entry = mysql_fetch_array($r) ){
 
 	        if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
@@ -296,13 +275,13 @@ function getXML(){
 	        if( $sub_id<>$entry->id ){
 
 	            if ( $sub_id<>'' )
-	            	fwrite($temp, "</entry>\n");
+	            	fwrite($handle, "</entry>\n");
 
-	            fwrite($temp, '<entry form="'.encDataXML( $fnames[$n]).'" date="'.encDataXML( $entry->sub_date ).'"'.($_GET['addip']=='true'?' ip="'.$entry->ip.'"':'').">\n");
+	            fwrite($handle, '<entry form="'.cforms2_enc_data_xml( $fnames[$n], $charset).'" date="'.cforms2_enc_data_xml( $entry->sub_date, $charset ).'"'.($_GET['addip']=='true'?' ip="'.$entry->ip.'"':'').">\n");
 
 	            $sub_id = $entry->id;
 	        }
-	        fwrite($temp, '<data col="'.encDataXML( stripslashes($entry->field_name) ).'"><![CDATA['.encDataXML( stripslashes($entry->field_val) ).']]></data>'."\n");
+	        fwrite($handle, '<data col="'.cforms2_enc_data_xml( stripslashes($entry->field_name), $charset ).'"><![CDATA['.cforms2_enc_data_xml( stripslashes($entry->field_val), $charset ).']]></data>'."\n");
 			//echo '<br><pre>'.$entry->field_name."=".$entry->field_val.'</pre>';
 
 	} ### while
@@ -313,22 +292,18 @@ function getXML(){
 	*/
 	
 	if($sub_id<>'')
-	 fwrite($temp, "</entry>\n</entries>\n");
+	 fwrite($handle, "</entry>\n</entries>\n");
 
 	return;
 }
 
-function encData ( $d ){
-	global $charset;
+function cforms2_enc_data ( $d, $charset ){
 	$d = str_replace( array('"',"\r","\n"), array('&quot;',"","\r"),$d );
 	$d = ( $charset=='utf-8' ) ? $d : utf8_decode($d);
 	return $d;
 }
-function encDataXML ( $d ){
-	global $charset;
+function cforms2_enc_data_xml ( $d , $charset ){
 	$d = str_replace( array('"'), array('&quot;'),$d );
 	$d = ( $charset=='utf-8' ) ? $d : utf8_decode($d);
 	return $d;
 }
-
-?>

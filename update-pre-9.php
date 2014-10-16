@@ -11,14 +11,14 @@
 
 		$cformsSettings['global']['update'] = false;
 
-		newSettings(true);
-		oldSettings(true);
+		cforms2_newSettings(true);
+		cforms2_oldSettings(true);
 
 		update_option('cforms_settings',$cformsSettings);
 
 		$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%' AND option_name <> 'cforms_settings'");
 
-		echo '<p>'.sprintf(__('Phew. All settings successfully transferred. Please <a href="%s">continue here</a>.', 'cforms'),'?page='.$cformsSettings['global']['plugindir'].'/cforms-options.php#datepicker').'</p>';
+		echo '<p>'.sprintf(__('Phew. All settings successfully transferred. Please <a href="%s">continue here</a>.', 'cforms'),'?page='.dirname(plugin_basename(__FILE__)).'/cforms-options.php#datepicker').'</p>';
 	    die();
     }
 ?>
@@ -32,13 +32,13 @@
 <?php
 
 ### show all movable root options
-$temp = newSettings(false);
+$temp = cforms2_newSettings(false);
 if( $temp <> '' )
 	echo '<h3>'.__('Some new settings found:', 'cforms').'</h3><div style="font:normal 10px monospace";>'.$temp.'</div>';
 
 ###check options now
 echo '<h3>'.__('Old wp_options() settings, to be moved to new settings container:', 'cforms').'</h3>';
-echo '<div style="font:normal 10px monospace";>'.oldSettings(false).'</div>';
+echo '<div style="font:normal 10px monospace";>'.cforms2_oldSettings(false).'</div>';
 
 ###check options now
 echo '<h3>'.__('Start migration', 'cforms').'</h3>';
@@ -51,14 +51,14 @@ echo '<h3>'.__('Start migration', 'cforms').'</h3>';
 </form>
 
 <?php
-cforms_footer();
+cforms2_footer();
 echo '</div>';
 die();
 
 ##
 ## check more recent settings
 ##
-function newSettings( $doit ){
+function cforms2_newSettings( $doit ){
 
 	global $cformsSettings;
 	$p = '';
@@ -96,7 +96,7 @@ function newSettings( $doit ){
 ##
 ## check more recent settings
 ##
-function oldSettings( $doit ){
+function cforms2_oldSettings( $doit ){
 
 	global $cformsSettings, $wpdb;
     $p = '';
@@ -137,5 +137,3 @@ function oldSettings( $doit ){
 	}
 	return $p;
 }
-
-?>

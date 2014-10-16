@@ -1,1 +1,190 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('(4(){5 G=i.7.G;5 1d=i.1d;5 M=22;i.Y.23(\'a\');i.18(\'i.1m.1p\',{2t:4(2,24){2.25.x(4(){2.7.28(F+"1f.29")});2.2c(\'K\',4(2d,v){2.1K.1R({2g:F+\'1f.1F\',1T:2l,2m:2n+(1l.2o?20:0)+(1l.2p?0:0),2q:1},{2r:F,2s:\'2j 2i\'})});2.2h.l(4(2,e){n=e.1t;6(2.7.y(n,\'r\'))k G.1o(e)});2.1q.x(4(2,C,n,2f){C.19(\'a\',(n.Z===\'T\'&&2.7.y(n,\'r\')));C.1v(\'a\',(n.Z===\'T\'&&2.7.y(n,\'r\')))});2.2b(\'a\',{A:\'a.U\',2a:\'K\',1z:F+\'../27/26.1C\'});2.1D(\'1G+f\',2.1H(\'a.U\'),\'K\');2.1I.x(4(2,o){5 j=0;1J((j=o.b.I(\'<!--a\',j))!=-1){5 N=o.b.I(\'-->\',j)+3;5 9=o.b.J(j+10,N-3);6(9.E(/D=/)){5 W=/D="([^"]+)"/;w=W.1S(9);w=w[1];9=9.14(\'D\',\'A\')}q{w=1M[(9==\'\'?1:9)-1];6(9==\'\')9=\' H="1O"\';q 9=\' H="S\'+9+\'"\'}5 11=o.b.J(N);o.b=o.b.J(0,j);o.b+=\'<B\'+9+\' 17="r">\'+w+\'</B>\';o.b+=11;j++}});2.1W.x(4(2,o){6(o.1Y)o.b=o.b.14(/<B [^\\/]+\\/B>/g,4(h){6(h.I(\'17="r\')!==-1){6(h.E(/A=/)){5 m;5 1a=(m=h.E(/A="([^"]+)"/))?m[1]:\'\';h=\'<!--a D="\'+1a+\'"-->\'}q{5 m;5 1e=(m=h.E(/H="S(.*?)"/))?m[1]:\'\';h=\'<!--a\'+1e+\'-->\'}}k h})});5 t=1i;t.1b=2;R=\'r\';2.1q.l(4(2,C,n){5 Q,O;Q=2.7.1c(2.z.2e(),4(n){k 2.7.y(n,R)});O=2.7.1c(2.z.2k(),4(n){k 2.7.y(n,R)});6(Q||O){M=n;t.P(1);k 1s}q t.P(0)})},1u:4(){k{1w:\'a\',1x:\'1y 1A\',1B:\'1r://12.15.V\',1E:\'1r://12.15.V\',1U:"8.0"}},d:4(2,e){6(e.1N==\'1P\'){6(e.L==8||e.L==1V){2.7.u(M);2.1j()}q 6(e.L==13){2.z.16(2.7.16(\'1Z\')[0]);2.z.21(2.7.18(\'p\'));2.1j()}}k G.1o(e)},P:4(s,n){5 t=1i,2=t.1b;i.1L(2.1Q.1X,4(c){c.19(s)});6(s!==t.1k){6(s){2.1n.l(t.d);2.1g.l(t.d);2.1h.l(t.d);2.X.l(t.d)}q{2.1n.u(t.d);2.1g.u(t.d);2.1h.u(t.d);2.X.u(t.d)}t.1k=s}}});i.Y.x(\'a\',i.1m.1p)})();',62,154,'||ed||function|var|if|dom||no|cforms|content||_block||||im|tinymce|startPos|return|addToTop|||||else|mce_plugin_cforms_img|||remove||fname|add|hasClass|selection|title|span|cm|name|match|purl|Event|id|indexOf|substring|mcecforms|keyCode|cfNODE|endPos|ec|_setDisabled|sc|nonEditClass|cf|SPAN|desc|com|formName|onPaste|PluginManager|nodeName||contentAfter|www||replace|deliciousdays|select|class|create|setDisabled|cf_name|editor|getParent|DOM|cf_id|insertdialog25|onKeyPress|onKeyUp|this|nodeChanged|disabled|tinyMCE|plugins|onKeyDown|cancel|cformsPlugin|onNodeChange|http|false|target|getInfo|setActive|longname|author|Oliver|image|Seidel|authorurl|gif|addShortcut|infourl|php|ctrl|getLang|onBeforeSetContent|while|windowManager|each|formnames|type|cf1|keypress|controlManager|open|exec|width|version|46|onPostProcess|controls|get|body||setNode|null|requireLangPack|url|onInit|button|images|loadCSS|css|cmd|addButton|addCommand|ui|getStart|co|file|onMouseDown|arg|custom|getEnd|400|height|125|isNS7|isMSIE|inline|plugin_url|some_custom_arg|init'.split('|'),0,{}))
+(function() {
+
+	var Event = tinymce.dom.Event;
+	var DOM = tinymce.DOM;
+	var cfNODE = null;
+
+	tinymce.PluginManager.requireLangPack('cforms');
+	
+	tinymce.create('tinymce.plugins.cformsPlugin', {
+		
+		init : function(ed, url) {
+
+			ed.onInit.add(function() { 
+				ed.dom.loadCSS(purl + "insertdialog25.css");
+			});
+
+			ed.addCommand('mcecforms', function(ui,v) {
+				ed.windowManager.open({
+					file : ajaxurl+'?action=cforms2_insertmcedialog',
+					width : 400,
+					height : 125 + (tinyMCE.isNS7 ? 20 : 0) + (tinyMCE.isMSIE ? 0 : 0),
+					inline : 1
+				}, {
+					plugin_url:purl,
+					some_custom_arg : 'custom arg' // Custom argument
+				});
+								
+			});
+
+			ed.onMouseDown.addToTop(function(ed, e) {
+				n = e.target;
+				if ( ed.dom.hasClass(n, 'mce_plugin_cforms_img') )
+					return Event.cancel(e);
+			});
+
+			ed.onNodeChange.add(function(ed, cm, n, co) {
+				cm.setDisabled('cforms', (n.nodeName === 'SPAN' && ed.dom.hasClass(n, 'mce_plugin_cforms_img')) );
+				cm.setActive('cforms', (n.nodeName === 'SPAN' && ed.dom.hasClass(n, 'mce_plugin_cforms_img')) );
+			});
+			
+			ed.addButton('cforms', { title : 'cforms.desc', cmd : 'mcecforms', image : purl+'../images/button.gif' }); //???
+			ed.addShortcut('ctrl+f', ed.getLang('cforms.desc'), 'mcecforms');
+
+			// Replace morebreak with images
+			ed.onBeforeSetContent.add(function(ed, o) {
+
+					var startPos = 0;
+	
+					while ((startPos = o.content.indexOf('<!--cforms', startPos)) != -1) {
+	
+						var endPos = o.content.indexOf('-->', startPos) + 3;
+	
+						var no = o.content.substring(startPos + 10, endPos - 3);
+						
+						if ( no.match(/name=/) ){
+							var formName = /name="([^"]+)"/;
+							fname = formName.exec(no);
+							fname = fname[1];
+							no = no.replace('name','title');	
+						}else{
+							fname = formnames[(no==''?1:no)-1];
+							if ( no == '' )
+								no=' id="cf1"';
+							else
+								no=' id="cf'+no+'"';	
+						}
+						
+						var contentAfter = o.content.substring(endPos);
+						o.content = o.content.substring(0, startPos);
+						o.content += '<span'+no+' class="mce_plugin_cforms_img">'+fname+'</span>';
+						o.content += contentAfter;
+	
+						startPos++;
+					}
+	
+			});
+
+
+			// Replace images
+			ed.onPostProcess.add(function(ed, o) {
+				if (o.get)
+					o.content = o.content.replace(/<span [^\/]+\/span>/g, function(im) {
+						if (im.indexOf('class="mce_plugin_cforms_img') !== -1) {
+
+							if ( im.match(/title=/) ){
+	                            var m;
+	                            var cf_name = (m = im.match(/title="([^"]+)"/)) ? m[1] : '';
+	                            im = '<!--cforms name="'+cf_name+'"-->';								
+							}else{
+	                            var m;
+	                            var cf_id = (m = im.match(/id="cf(.*?)"/)) ? m[1] : '';
+	                            im = '<!--cforms'+cf_id+'-->';
+	                        }
+	                        
+                        }		
+                        return im;
+					});
+			});
+
+			/* noneditable */
+			var t = this;
+
+			t.editor = ed;
+			nonEditClass = 'mce_plugin_cforms_img';
+
+			ed.onNodeChange.addToTop(function(ed, cm, n) {
+				var sc, ec;
+
+				// Block if start or end is inside a non editable element
+				sc = ed.dom.getParent(ed.selection.getStart(), function(n) {
+					return ed.dom.hasClass(n, nonEditClass);
+				});
+
+				ec = ed.dom.getParent(ed.selection.getEnd(), function(n) {
+					return ed.dom.hasClass(n, nonEditClass);
+				});
+
+				// Block or unblock
+				if (sc || ec) {
+					cfNODE=n;
+					t._setDisabled(1);
+					return false;
+				} else
+					t._setDisabled(0);
+			});
+			/* noneditable */
+
+			
+		}, // init
+
+		getInfo : function() {
+			return {
+				longname : 'cforms',
+				author : 'Oliver Seidel',
+				authorurl : 'http://www.deliciousdays.com',
+				infourl : 'http://www.deliciousdays.com',
+				version : "8.0"
+			};
+		},
+		
+		/* noneditable */
+		_block : function(ed, e) {
+			
+			if ( e.type == 'keypress' ){
+						
+				if( e.keyCode == 8 || e.keyCode == 46  ){ 	// del || bksp				
+					ed.dom.remove( cfNODE );
+					ed.nodeChanged();
+				}
+				else if( e.keyCode == 13 ){ 				// CR
+					ed.selection.select( ed.dom.select('body')[0] );
+					ed.selection.setNode( ed.dom.create('p') );
+					ed.nodeChanged();
+				}
+				
+			}
+			return Event.cancel(e);
+			
+		},
+
+		_setDisabled : function(s,n) {
+			var t = this, ed = t.editor;
+
+			tinymce.each(ed.controlManager.controls, function(c) {
+				c.setDisabled(s);
+			});
+
+			if (s !== t.disabled) {
+				if (s) {
+					ed.onKeyDown.addToTop(t._block);
+					ed.onKeyPress.addToTop(t._block);
+					ed.onKeyUp.addToTop(t._block);
+					ed.onPaste.addToTop(t._block);
+				} else {
+					ed.onKeyDown.remove(t._block);
+					ed.onKeyPress.remove(t._block);
+					ed.onKeyUp.remove(t._block);
+					ed.onPaste.remove(t._block);
+				}
+
+				t.disabled = s;
+			}
+		}
+		/* noneditable */
+
+	});
+
+	// Register plugin
+	tinymce.PluginManager.add('cforms', tinymce.plugins.cformsPlugin);
+})();

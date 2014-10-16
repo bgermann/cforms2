@@ -6,8 +6,7 @@ please see cforms.php for more information
 ### new Global Settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
-$plugindir   = $cformsSettings['global']['plugindir'];
-$cforms_root = $cformsSettings['global']['cforms_root'];
+$plugindir   = dirname(plugin_basename(__FILE__));
 
 ?>
 <div class="wrap" id="top">
@@ -22,7 +21,6 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 
 		<p>
         	<?php _e('Here you\'ll find plenty of examples and documentation that should help you configure <strong>cforms</strong>.', 'cforms'); ?>
-			<?php //echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img style="vertical-align:middle;" src="'.$cforms_root.'/images/adobe.gif"/>'); ?>
 		</p>
 
 		<p class="cftoctitle"><?php _e('Table of Contents', 'cforms'); ?></p>
@@ -56,7 +54,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<ol style="margin:10px 0 0 100px;">
 				<li><?php echo sprintf(__('First take a look at the <a href="%s">default form</a>', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
 					<ul style="margin:10px 0 0 30px;">
-						<li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms'); ?> <img style="vertical-align:middle;" src="<?php echo $cforms_root; ?>/images/move.gif" alt="" title=""/>?</li>
+						<li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.gif" alt="" title=""/>?</li>
 						<li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench"></button> </li>
 						<li><?php _e('Check the flags for each field (check boxes to the right).', 'cforms'); ?></li>
 						<li><?php echo sprintf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms'),'#qa','onclick="setshow(19)"','#captcha','onclick="setshow(19)"','?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></li>
@@ -78,7 +76,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		<div class="cf-content" id="o18">
 			<h3><strong><?php _e('Editing posts and pages:', 'cforms'); ?></strong></h3>
 
-			<p class="helpimg"><img src="<?php echo $cforms_root; ?>/images/example-tiny.png"  alt=""/><br /><?php _e('TinyMCE Support', 'cforms'); ?></p>
+			<p class="helpimg"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-tiny.png"  alt=""/><br /><?php _e('TinyMCE Support', 'cforms'); ?></p>
 			<p><?php echo sprintf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms'),'<code>&lt;!--cforms name="XYZ"--&gt;</code>','<code>XYZ</code>'); ?></p>
 			<p><?php echo sprintf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms'),'?page=' . $plugindir . '/cforms-global-settings.php#wpeditor','onclick="setshow(12)"'); ?></p>
 			<p><?php echo sprintf(__('For backwards compatibility, the old-fashioned way is still supported: %1s for the first form and/or %2s for your other forms.', 'cforms'),'<code>&lt;!--cforms--&gt;</code>','<code>&lt;!--cforms<span style="color:red; font-weight:bold;">X</span>--&gt;</code>'); ?></p>
@@ -99,7 +97,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<p><?php echo sprintf(__('All supported input fields are listed below, highlighting the expected <em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, see examples below.', 'cforms'),'<a class="infobutton" href="#" name="it14">','</a>'); ?></p>
 
 			<p class="ex" style="display:none; width:400px;" id="it14"><?php _e('While the <em>Field Names</em> are usually just the label of a field (e.g. "Your Name"), they can contain additional information to support special functionality (e.g. default values, regular expressions for extended field validation etc.)', 'cforms'); ?></p>
-			<p class="helpimg" style="width:400px;"><img src="<?php echo $cforms_root; ?>/images/example-wizard.png"  alt=""/><br /><?php _e('A new <em>wizard like</em> mode allows you to configure more complex settings in case all the pipes "|" and pounds "#" are overwhelming.', 'cforms'); ?></p>
+			<p class="helpimg" style="width:400px;"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-wizard.png"  alt=""/><br /><?php _e('A new <em>wizard like</em> mode allows you to configure more complex settings in case all the pipes "|" and pounds "#" are overwhelming.', 'cforms'); ?></p>
 
 			<ul style="margin:10px 0 0 100px; list-style:square;">
 				<li><a href="#textonly" onclick="setshow(19)"><?php 	_e('Text only elements', 'cforms'); ?></a></li>
@@ -127,7 +125,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Text only elements (no input)', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-text.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-text.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -157,7 +155,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Javascript Date Picker', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-dp.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-dp.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -192,7 +190,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Single, Password &amp; Multi line input fields', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-single.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-single.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -226,7 +224,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Select boxes &amp; radio buttons', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-dropdown.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-dropdown.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -271,7 +269,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Multi select boxes', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-ms.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-ms.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -311,7 +309,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Check boxes', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-checkbox.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-checkbox.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -347,7 +345,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Check box groups', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-grp.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-grp.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -388,7 +386,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('CC: option for visitors', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-cc.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-cc.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -421,7 +419,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 		</p>
 
 
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-multi.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-multi.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -479,7 +477,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Visitor verification (Q&amp;A)', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-vv.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-vv.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -515,7 +513,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Captcha', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-cap.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-cap.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -550,7 +548,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Attachments / File Upload Box', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-upload.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-upload.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -581,7 +579,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Tell a Friend input fields', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-t-a-f.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-t-a-f.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:<br />of all 4 fields', 'cforms'); ?></span></td>
@@ -603,7 +601,7 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 						<li><?php echo sprintf(__('The <a href="%s" %s>auto confirmation</a> message will be used as a <strong>message template</strong> and needs to be defined. See example below.', 'cforms'),'?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?></li>
 						<li><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be used in the <a href="%s" %s>message template</a>.', 'cforms'),'#tafvariables','onclick="setshow(23)"','?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?></li>
 						<li><?php echo _e('<strong>Add the form</strong> to your post/page php templates (see deployment options further below).', 'cforms'); ?></li>
-						<li><img style="float:right;" src="<?php echo $cforms_root; ?>/images/example-t-a-f2.png"  alt=""/><?php echo _e('Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F field in the WP post (page) editor.', 'cforms'); ?></li>
+						<li><img style="float:right;" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-t-a-f2.png"  alt=""/><?php echo _e('Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F field in the WP post (page) editor.', 'cforms'); ?></li>
 					</ol>
 
 				</td>
@@ -704,8 +702,8 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 		</p>
 		<p style="margin:5px 30px"><?php _e('The beauty is, using one form, you can now offer your readers to either leave a comment behind or simply send a note to the post editor while being able to fully utilize all security aspects of cforms.', 'cforms'); ?></p>
 		<div style="float:right" align="center">
-			<img class="helpimg" style="float:none" src="<?php echo $cforms_root; ?>/images/example-crep1.png"   alt=""/><br /><br />
-			<img class="helpimg" style="float:none" src="<?php echo $cforms_root; ?>/images/example-crep2sm.png" alt=""/><br />
+			<img class="helpimg" style="float:none" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-crep1.png"   alt=""/><br /><br />
+			<img class="helpimg" style="float:none" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-crep2sm.png" alt=""/><br />
 			<?php _e('Example Configuration', 'cforms'); ?>
 		</div>
 		<table class="hf" cellspacing="2" border="4">
@@ -745,7 +743,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 					<ol>
 						<li><?php echo sprintf(__('Turn on the <a href="%s" %s>WP Comment feature</a> for the given form. (<em>Make sure it\'s the right one!</em>), otherwise you won\'t see the above input fields in the [<em>Field Type</em>] select box.', 'cforms'),'?page='.$plugindir.'/cforms-options.php#commentrep','onclick="setshow(7)"'); ?></li>
 						<li><?php _e('Modify this form to include all the necessary (new) input fields, make them required or not, add regexp, anti SPAM fields or even custom err messages. All up to you. Or better yet, start with the built-in preset: "<strong>Advanced: WP comment...</strong>" form.', 'cforms'); ?></li>
-						<li><?php echo sprintf(__('Edit your WP Theme template for comments. Remove the current <strong><u>form tag</u></strong> entirely (<code  style="color:red">&lt;form action=&quot;...&lt;/form&gt;</code>). Instead replace with a PHP call to cforms: <code  style="color:red">&lt;?php insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> if the form is your default form or starting at <strong>\'2\'</strong> (with single quotes!) for any subsequent form #. %sSee example comments.php here!%s', 'cforms'),'<a href="'.$cforms_root.'/cforms-example-comments.php.txt">','</a>'); ?></li>
+						<li><?php echo sprintf(__('Edit your WP Theme template for comments. Remove the current <strong><u>form tag</u></strong> entirely (<code  style="color:red">&lt;form action=&quot;...&lt;/form&gt;</code>). Instead replace with a PHP call to cforms: <code  style="color:red">&lt;?php insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> if the form is your default form or starting at <strong>\'2\'</strong> (with single quotes!) for any subsequent form #. %sSee example comments.php here!%s', 'cforms'),'<a href="'.plugin_dir_url(__FILE__).'cforms-example-comments.php.txt">','</a>'); ?></li>
 						<li><?php echo sprintf(__('Double check the extended <a href="%s" %s>WP comment feature settings here</a> (especially the Ajax specific ones!). ', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#wpcomment','onclick="setshow(28)"'); ?></li>
 						<li><?php echo '<strong>'.__('Important:','cforms').'</strong> '; _e('To make Ajax work in case there are no comments yet, make sure that the comment container <strong>is always</strong> being rendered.', 'cforms'); ?></li>
 					</ol>
@@ -766,7 +764,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<strong><?php _e('Other comment plugins?', 'cforms'); ?></strong> <?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="http://www.fiddyp.co.uk/commentluv-wordpress-plugin/">Comment Luv</a>, <a href="http://txfx.net/code/wordpress/subscribe-to-comments/">Subscribe To Comment</a> &amp; <a href="http://www.raproject.com/ajax-edit-comments-20/">WP Ajax Edit Comments</a>.
+					<strong><?php _e('Other comment plugins?', 'cforms'); ?></strong> <?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/commentluv/">CommentLuv</a>, <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a> &amp; <a href="https://wordpress.org/plugins/wp-ajax-edit-comments/">WP Ajax Edit Comments</a>.
 				</td>
 			</tr>
 			<tr>
@@ -788,7 +786,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 
    		<p style="margin:10px 30px;"><?php _e('Fieldsets are definitely part of good form design, they are form elements that are used to create individual sections of content within a given form.', 'cforms'); ?></p>
 
-		<img class="helpimg" src="<?php echo $cforms_root; ?>/images/example-fieldsets.png"  alt=""/>
+		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-fieldsets.png"  alt=""/>
 		<table class="hf" cellspacing="2" border="4">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
@@ -888,7 +886,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('More information can be found <a href="%s">here</a>, a great regexp repository <a href="%s">here</a>.', 'cforms'),'http://weblogtoolscollection.com/regex/regex.php','http://regexlib.com'); ?>
+					<?php echo sprintf(__('More information can be found <a href="%s">here</a>, a great regexp repository <a href="%s">here</a>.', 'cforms'),'http://php.net/manual/en/book.regex.php','http://regexlib.com'); ?>
 				</td>
 			</tr>
 		</table>
@@ -1436,7 +1434,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		<div class="cf-content" id="o30">
 			<p><?php echo sprintf(__('Multi-page-forms support chaining of several forms and gather user input across all linked forms. Inserting a multi page form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms'),'<strong>','</strong>'); ?></p>
 
-			<p align="center" style="margin: 20px 0px 20px 10px; float: right; width: 410px;"><img src="<?php echo $cforms_root; ?>/images/example-mp.png"  alt=""/></p>
+			<p align="center" style="margin: 20px 0px 20px 10px; float: right; width: 410px;"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-mp.png"  alt=""/></p>
 			<table class="hf" cellspacing="2" border="4">
 				<tr>
 					<td class="bright" colspan="2"><strong><?php _e('Multi-part/-page form features:', 'cforms'); ?></strong></td>
@@ -1504,7 +1502,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
 			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
 			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
-			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum?forum=1&amp;topic=428&amp;page=1'); ?></p>
+			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/css-customization-guide-1/'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>
 
@@ -1514,8 +1512,8 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
         </div>
 
 		<div class="cf-content" id="o25">
-			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/?forum=3&amp;topic=4&amp;page=1">','</a>','<a href="http://www.deliciousdays.com/cforms-forum">','</a>'); ?></p>
+			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/page-1">','</a>','<a href="http://www.deliciousdays.com/cforms-forum">','</a>'); ?></p>
 		</div>
 
-	<?php cforms_footer(); ?>
+	<?php cforms2_footer(); ?>
 </div>

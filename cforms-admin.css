@@ -1410,13 +1410,10 @@ cursor:move;
 position:absolute;
 top:0;left:0;
 z-index:-1;
-width: expression(this.parentNode.offsetWidth+'px');
-height: expression(this.parentNode.offsetHeight+'px');
 }
 
 * html .jqmWindow {
 position:absolute;
-top:expression((document.documentElement.scrollTop||document.body.scrollTop) + Math.round(25*(document.documentElement.offsetHeight||document.body.clientHeight) / 100) + 'px');
 }
 
 #cf_target_del{

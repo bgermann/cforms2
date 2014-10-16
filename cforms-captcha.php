@@ -1,51 +1,42 @@
-<?php
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('abspath.php') )
-	include_once('abspath.php');
-else
-	$abspath='../../../';
-	
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
+<?php add_action( 'wp_ajax_cforms2_reset_captcha', 'cforms2_reset_captcha' );
+add_action( 'wp_ajax_nopriv_cforms2_reset_captcha', 'cforms2_reset_captcha' );
+
+function cforms2_reset_captcha() {
+check_admin_referer( 'cforms2_reset_captcha' );
 
 $cformsSettings = get_option('cforms_settings');
 $cap = $cformsSettings['global']['cforms_captcha_def'];
 
 ### overwrite for admin demo purposes, no cookie set though
-if ( count($_GET)>2 )
+if ( count($_GET)>4 )
 	$cap = $_GET;
 
-$min = prepVal( $cap['c1'],4 );
-$max = prepVal( $cap['c2'],5 );
-$src = prepVal( $cap['ac'], 'abcdefghijkmnpqrstuvwxyz23456789');
+$min = cforms2_prepVal( $cap['c1'],4 );
+$max = cforms2_prepVal( $cap['c2'],5 );
+$src = cforms2_prepVal( $cap['ac'], 'abcdefghijkmnpqrstuvwxyz23456789');
 
 $img_sz_type	= 0;
-$img_sz_width	= prepVal($cap['w'],115);
-$img_sz_height	= prepVal($cap['h'],25);
+$img_sz_width	= cforms2_prepVal($cap['w'],115);
+$img_sz_height	= cforms2_prepVal($cap['h'],25);
 
-$im_bg			= 0;
 $im_bg_type		= 1;
-$im_bg_url		= 'captchabg/' . ( prepVal($cap['bg'],'1.gif') );
+$im_bg_url		= dirname(__FILE__) . '/captchabg/' . ( cforms2_prepVal($cap['bg'],'1.gif') );
 
-$fontUsed		= 0;
-$font_url		= 'captchafonts/' . ( prepVal($cap['f'],'font4.ttf') );
-$fonts_dir		= 'captchafonts';
+$font_url		= dirname(__FILE__) . '/captchafonts/' . ( cforms2_prepVal($cap['f'],'font4.ttf') );
 
-$min_font_size	= prepVal($cap['f1'],17);
-$max_font_size	= prepVal($cap['f2'],19);
+$min_font_size	= cforms2_prepVal($cap['f1'],17);
+$max_font_size	= cforms2_prepVal($cap['f2'],19);
 
-$min_angle		= prepVal($cap['a1'],-12);
-$max_angle		= prepVal($cap['a2'],12);
+$min_angle		= cforms2_prepVal($cap['a1'],-12);
+$max_angle		= cforms2_prepVal($cap['a2'],12);
 
 $col_txt_type	= 4;
-$col			= prepVal($cap['c'],'000066');
+$col			= cforms2_prepVal($cap['c'],'000066');
 $col_txt_r		= hexdec(substr($col,0,2));
 $col_txt_g		= hexdec(substr($col,2,2));
 $col_txt_b		= hexdec(substr($col,4,2));
 
-$border			= prepVal($cap['l'],'000066');
+$border			= cforms2_prepVal($cap['l'],'000066');
 $border_r		= hexdec(substr($border,0,2));
 $border_g		= hexdec(substr($border,2,2));
 $border_b		= hexdec(substr($border,4,2));
@@ -53,7 +44,7 @@ $border_b		= hexdec(substr($border,4,2));
 $char_padding	= 2;
 $output_type	= 'png';
 
-$no 			= prepVal($_GET['ts'],'');
+$no 			= cforms2_prepVal($_GET['ts'],'');
 
 ### captcha random code
 $srclen = strlen($src)-1;
@@ -70,11 +61,7 @@ $tu = ($cap['i']=='i')?strtolower($turing):$turing;
 if ( ! ( isset($_GET['c1']) || isset($_GET['c2']) || isset($_GET['ac']) ) )
 	setcookie("turing_string_".$no, $cap['i'].'+'.md5($tu),(time()+60*60*5),"/");
 
-if ($fontUsed == 1 ) {
-	$fontno = mt_rand(1,34);
-	$font = $fonts_dir . '/font' . $fontno . '.ttf';
-	}
-	else $font = $font_url;
+$font = $font_url;
 
 ### initialize variables
 
@@ -118,7 +105,6 @@ if ( $img_sz_type == 1 ) {
 ### build the image, and allocte the colors
 
 $im = ImageCreate($image_width, $image_height);
-$cs = mt_rand(1,3);
 
 $d1 = $d2 = $d3 = 0;
 while ( ($d1<50) AND ($d2<50) AND ($d3<50) ) {
@@ -126,15 +112,15 @@ while ( ($d1<50) AND ($d2<50) AND ($d3<50) ) {
 	$d1 = abs($r-$g);	$d2 = abs($r-$b);	$d3 = abs($g-$b);
 }
 
-$color_bg       = ImageColorAllocate($im, $r, $g, $b );
-$color_border   = ImageColorAllocate($im, $border_r, $border_g, $border_b);
-$color_line0    = ImageColorAllocate($im, round($r*0.85), round($g*0.85), round($b*0.85) );
-$color_elipse0  = ImageColorAllocate($im, round($r*0.95), round($g*0.95), round($b*0.95) );
-$color_elipse1  = ImageColorAllocate($im, round($r*0.90), round($g*0.90), round($b*0.90) );
+ImageColorAllocate($im, $r, $g, $b );
+$color_border = ImageColorAllocate($im, $border_r, $border_g, $border_b);
+ImageColorAllocate($im, round($r*0.85), round($g*0.85), round($b*0.85) );
+ImageColorAllocate($im, round($r*0.95), round($g*0.95), round($b*0.95) );
+ImageColorAllocate($im, round($r*0.90), round($g*0.90), round($b*0.90) );
 
 $d1 = mt_rand(0,50); $d2 = mt_rand(0,50); $d3 = mt_rand(0,50);
 
-$color_line1  = ImageColorAllocate($im, $r-$d1, $g-$d2, $b-$d3 );
+ImageColorAllocate($im, $r-$d1, $g-$d2, $b-$d3 );
 
 $d1 = $d2 = $d3 = 0;
 while ( ($d1<100) AND ($d2<100) AND ($d3<100) ) {
@@ -148,8 +134,6 @@ switch ( $col_txt_type ) {
 	case 3 : $col_txt    = ImageColorAllocate($im, 255, 255, 255 );	break;
 	case 4 : $col_txt    = ImageColorAllocate($im, $col_txt_r, $col_txt_g, $col_txt_b ); break;
 }
-
-$noiset = mt_rand(1,2);
 
 $image_data=getimagesize($im_bg_url);
 $image_type=$image_data[2];
@@ -173,16 +157,19 @@ foreach($data as $d) {
 
 ### a nice border
 ImageRectangle($im, 0, 0, $image_width-1, $image_height-1, $color_border);
+
 switch ($output_type) {
 	case 'jpeg': Header('Content-type: image/jpeg'); ImageJPEG($im,NULL,100); break;
 	case 'png':
     default:	Header('Content-type: image/png'); ImagePNG($im); break;
 }
 
+flush();
 ImageDestroy($im);
+die();
+}
 
 ### strip stuff
-function prepVal($v,$d) {
+function cforms2_prepVal($v,$d) {
 	return ($v<>'') ? stripslashes($v) : $d;
 }
-?>

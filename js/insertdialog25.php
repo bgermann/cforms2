@@ -1,26 +1,15 @@
-<?php
+<?php add_action( 'wp_ajax_cforms2_insertmcedialog', 'cforms2_insertmcedialog' );
 
-global $wp_db_version;
+function cforms2_insertmcedialog () {
 
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../abspath.php') )
-	require_once('../abspath.php');
-else
-	$abspath='../../../../';
-
-require_once($abspath.'wp-blog-header.php');
-
-### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>cforms</title>
-	<link type="text/css" rel="stylesheet" href="<?php echo $cformsSettings['global']['cforms_root']; ?>/js/insertdialog<?php if ($wp_db_version>=6846) echo '25'; ?>.css"></link>
-	<script language="javascript" type="text/javascript" src="<?php echo $cformsSettings['global']['tinyURI']; ?>/tiny_mce_popup.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $cformsSettings['global']['tinyURI']; ?>/utils/mctabs.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $cformsSettings['global']['tinyURI']; ?>/utils/form_utils.js"></script>
+	<link type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__); ?>js/insertdialog25.css"></link>
+	<?php wp_enqueue_script( 'tiny_mce_popup.js', includes_url( 'js/tinymce/tiny_mce_popup.js' ) ); wp_print_scripts('tiny_mce_popup.js'); ?>
 
 	<script language="javascript" type="text/javascript">
 	<!--
@@ -85,3 +74,5 @@ $cformsSettings = get_option('cforms_settings');
 </form>
 </body>
 </html>
+<?php die();
+}

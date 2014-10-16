@@ -3,8 +3,8 @@
 ###  Validate all fields
 ###
 
-$CFfunctionsC = dirname(dirname(__FILE__)).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
-$CFfunctions = dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+$CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )
@@ -21,7 +21,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		if( function_exists('my_cforms_filter') )
 			$_POST = my_cforms_filter($_POST);
 
-		if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && get_cforms_submission_left($no)==0) || !cf_check_time($no) ){
+		if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
 			$cflimit = 'reached';
 			return;
 		}
@@ -94,9 +94,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
-				$customTrackingID	= cf_sanitize_ids( $input_name[2] );
+				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 
-				$current_field = cf_sanitize_ids( $customTrackingID );
+				$current_field = cforms2_sanitize_ids( $customTrackingID );
 
 				//echo '<br><pre>'.$tmpName . print_r($input_name,1).'</pre>';
 				
@@ -105,7 +105,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 					$idPartB = strrpos($tmpName,']',$idPartA);
 					
 					$customTrackingID = substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4);
-					$current_field = cf_sanitize_ids( $customTrackingID );
+					$current_field = cforms2_sanitize_ids( $customTrackingID );
 
 					$field_name = substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1);
 	*/
@@ -115,7 +115,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
 					else
 						preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
-					$current_field = cf_sanitize_ids($input_name[1]);
+					$current_field = cforms2_sanitize_ids($input_name[1]);
 					$customTrackingID='';
 				}
 
@@ -124,7 +124,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				$current_field = 'cf'.$no.'_field_' . $i;
 
 			###debug
-			db("lib_nonajax.php: looking at field: $current_field");
+			cforms2_dbg("lib_nonajax.php: looking at field: $current_field");
 			
 			###  dissect field
 		    $obj = explode('|', $field_name,3);
@@ -296,7 +296,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    $_SESSION['cforms']['cf_form'.$no] = $track;
 
 		### debug
-		db( "(lib_nonajax) In Session tracking for ($no)...".print_r($_SESSION,1) );
+		cforms2_dbg( "(lib_nonajax) In Session tracking for ($no)...".print_r($_SESSION,1) );
 
         $field_email = $_SESSION['cforms']['email']; ### fetch from prev. def
    		$ccme = $_SESSION['cforms']['ccme'];
@@ -309,14 +309,14 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
     	!$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email'] &&
     	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']==-1 &&
         is_array($_SESSION['cforms']) ){
-			$track = allTracks($_SESSION['cforms']);
+			$track = cforms2_all_tracks($_SESSION['cforms']);
             $ongoingSession = '0';
 		}
 	### debug
-	db( '$track = '.print_r($track,1) );
+	cforms2_dbg( '$track = '.print_r($track,1) );
 
 	
-    $r = formatEmail($track,$no);
+    $r = cforms2_format_email($track,$no);
     $formdata = $r['text'];
     $htmlformdata = $r['html'];
 
@@ -325,7 +325,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###  FIRST into the database is required!
 	###
 	global $subID;
-	$subID = ( $isTAF =='2' && !$send2author )?'noid':write_tracking_record($no,$field_email);
+	$subID = ( $isTAF =='2' && !$send2author )?'noid':cforms2_write_tracking_record($no,$field_email);
 
 
 	###
@@ -360,13 +360,13 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 
 	###
-	###  Files attached?? create $_SESSION['cforms']['upload'] via cf_move_files()
+	###  Files attached?? create $_SESSION['cforms']['upload'] via cforms2_move_files()
 	###
 	if(is_array($file)){
 	    if( $subID<>-1 && $ongoingSession!='0' )
-	        cf_move_files($track, $no, $subID);
+	        cforms2_move_files($track, $no, $subID);
 	    else
-	        cf_move_files($track, $no, 'xx');
+	        cforms2_move_files($track, $no, 'xx');
 	}
 	### end of session:
     if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
@@ -383,7 +383,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	###
 
-	$frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	$frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 
     ### logic: dynamic admin email address
     if ( function_exists('my_cforms_logic') )
@@ -394,8 +394,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
 	if (function_exists('my_cforms_logic'))
 		$vsubject = my_cforms_logic($trackf,$vsubject,'adminEmailSUBJ');
-	$vsubject = check_default_vars($vsubject,$no);
-	$vsubject = check_cust_vars($vsubject,$track,$no);
+	$vsubject = cforms2_check_default_vars($vsubject,$no);
+	$vsubject = cforms2_check_cust_vars($vsubject,$track,$no);
 
 	###  prep message text, replace variables
 	$message	= stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header']);
@@ -403,8 +403,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$message = my_cforms_logic($trackf, $message,'adminEmailTXT');
 		$formdata = my_cforms_logic($trackf, $formdata,'adminEmailDataTXT');
 	}
-	$message	= check_default_vars($message,$no);
-	$message	= check_cust_vars($message,$track,$no);
+	$message	= cforms2_check_default_vars($message,$no);
+	$message	= cforms2_check_cust_vars($message,$track,$no);
 
     ###  actual user message
     $htmlmessage='';
@@ -414,8 +414,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
 			$htmlformdata = my_cforms_logic($trackf, $htmlformdata,'adminEmailDataHTML');
 	    }
-		$htmlmessage = check_default_vars($htmlmessage,$no);
-	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no,true);
+		$htmlmessage = cforms2_check_default_vars($htmlmessage,$no);
+	    $htmlmessage = cforms2_check_cust_vars($htmlmessage,$track,$no,true);
 	}
 
 	### custom user ReplyTo handling
@@ -424,7 +424,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	else
 		$userReplyTo = $field_email;
 
-	$mail = new cf_mail($no,$frommail,$to,$userReplyTo, true);
+	$mail = new cforms2_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
 	$mail->char_set = 'utf-8';
 
@@ -454,7 +454,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$fpointer = 0;
 
 		### debug
-		db( 'File Attachments:' );
+		cforms2_dbg( 'File Attachments:' );
 
 	    ###  attachments wanted for current form? (tracking session form uploads handled above!)
 		$doAttach = !($cformsSettings['form'.$no]['cforms'.$no.'_noattachments']);
@@ -462,9 +462,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		### form w/ files, within session or single form 
 		if ( $doAttach && $ongoingSession!='0' && is_array($file) ){
 			foreach( $file[tmp_name] as $fn ){
-				cf_base64($fn, $doAttach);
+				cforms2_base64($fn, $doAttach);
 				### debug
-				db( "File = $fn, attach = $doAttach" );
+				cforms2_dbg( "File = $fn, attach = $doAttach" );
 			}
 		}
 		
@@ -472,27 +472,27 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
 			foreach ( array_keys($_SESSION['cforms']['upload']) as $n )
 				foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ){
-					cf_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'] );
+					cforms2_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'] );
 					### debug
-					db( "(end of session) File = ".$_SESSION['cforms']['upload'][$n]['files'][$m].", attach = ".$_SESSION['cforms']['upload'][$n]['doAttach'] );
+					cforms2_dbg( "(end of session) File = ".$_SESSION['cforms']['upload'][$n]['files'][$m].", attach = ".$_SESSION['cforms']['upload'][$n]['doAttach'] );
 					}
 		}
 		### parse through all files (both single and mp forms)
 		foreach ( $fdata as $file ) {
 			if ( $file[doAttach] && $file[name] <> '' ){
-				$n = substr( $file[name], strrpos($file[name],$cformsSettings['global']['cforms_IIS'])+1, strlen($file[name]) );
-				$m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+				$n = substr( $file[name], strrpos($file[name],DIRECTORY_SEPARATOR)+1, strlen($file[name]) );
+				$m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 				$mail->add_file($file[name], $n,'base64',$m); ### optional name
 				### debug
-				db( 'Attaching file ('.$file[name].') to email' );
+				cforms2_dbg( 'Attaching file ('.$file[name].') to email' );
 			}
 		}
 
 	    ### end adding attachments
 
 		### debug
-		db('TRACKF');
-		db(print_r($trackf,1)."\n");
+		cforms2_dbg('TRACKF');
+		cforms2_dbg(print_r($trackf,1)."\n");
 
 		###
 		### Shoot:
@@ -500,28 +500,26 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		###
 		if( $cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1' )
 	        $sentadmin = 1;
-	    else if ( $smtpsettings[0]=='1' )
-            $sentadmin = cforms_phpmailer( $no, $mail->frommail, $field_email, $to, $vsubject, $message, $formdata, $htmlmessage, $htmlformdata, '1' );
 	    else
 	        $sentadmin = $mail->send();
 
 	    if( $sentadmin == 1 ) {
 
 				#debug
-				db("is CC: = $ccme, active = {$trackf[data][$ccme]} | ");
+				cforms2_dbg("is CC: = $ccme, active = {$trackf[data][$ccme]} | ");
 
 	            ###  send copy or notification?
                 ###  not if no email & already CC'ed				
 	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[data][$ccme]<>'') ){
 
-	                $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
 
 	                ###  actual user message
 	                $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
 	                if ( function_exists('my_cforms_logic') )
 	                    $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
-	                $cmsg = check_default_vars($cmsg,$no);
-	                $cmsg = check_cust_vars($cmsg,$track,$no);
+	                $cmsg = cforms2_check_default_vars($cmsg,$no);
+	                $cmsg = cforms2_check_cust_vars($cmsg,$track,$no);
 
 	                ###  HTML text
 					$cmsghtml='';
@@ -529,16 +527,16 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                    $cmsghtml = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html']);
 	                    if ( function_exists('my_cforms_logic') )
 	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
-	                    $cmsghtml = check_default_vars($cmsghtml,$no);
-	                    $cmsghtml =	check_cust_vars($cmsghtml,$track,$no,true);
+	                    $cmsghtml = cforms2_check_default_vars($cmsghtml,$no);
+	                    $cmsghtml =	cforms2_check_cust_vars($cmsghtml,$track,$no,true);
                     }
 
                     ### subject
 	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 					if (function_exists('my_cforms_logic'))
 						$subject2 = my_cforms_logic($trackf,$subject2,'autoConfSUBJ');
-	                $subject2 = check_default_vars($subject2,$no);
-	                $subject2 = check_cust_vars($subject2,$track,$no);
+	                $subject2 = cforms2_check_default_vars($subject2,$no);
+	                $subject2 = cforms2_check_cust_vars($subject2,$track,$no);
 
 	                ###  different cc & ac subjects?
 	                $s=explode('$#$',$subject2);
@@ -551,14 +549,14 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 					else
 		                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 									
-	                $mail = new cf_mail($no,$frommail,$field_email,$replyto);
+	                $mail = new cforms2_mail($no,$frommail,$field_email,$replyto);
 
 					### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].$a;
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,$cformsSettings['global']['cforms_IIS'])+1, strlen($a) );
-	                    $m = getMIME( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
+	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 	                    $mail->add_file($a, $n,'base64',$m); ### optional name
                     }
 
@@ -566,9 +564,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
                     ### CC or auto conf?
 	                if ( $ccme&&$trackf[data][$ccme]<>'' ) {
-	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
-	                    else{
 							$mail->subj = $s[1];
 	                        if ( $mail->html_show ) {  // 3.2.2012 changed from html_show_ac > admin email setting dictates this!
 	                            $mail->is_html(true);
@@ -579,12 +574,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                            $mail->body     =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 
 	                        $sent = $mail->send();
-                        }
 	                }
 	                else { // ac below
-	                    if ( $smtpsettings[0]=='1' )
-	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[0] , $cmsg , '', $cmsghtml, '', 'ac' );
-	                    else{
 							$mail->subj = $s[0];
 	                        if ( $mail->html_show_ac ) {
 	                            $mail->is_html(true);
@@ -595,11 +586,10 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                            $mail->body     =  $cmsg;
 
 	                        $sent = $mail->send();
-                        }
 	                }
 
 	                if( $sent<>'1' )
-				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sent:$mail->ErrorInfo;
+				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->ErrorInfo;
 	            }
 
 	        ###  redirect to a different page on suceess?
@@ -609,7 +599,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	            else
 	                $rp = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 
-	            if ( $rp <> '' ){
+	            if ( $rp <> '' ){ // TODO rework to do this via HTTP?
 	                ?>
 	                <script type="text/javascript">
 	                    location.href = '<?php echo $rp; ?>';
@@ -620,8 +610,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	    } ###  if $sentadmin
 	    else
-	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $smtpsettings[0]?'<br />'.$sentadmin:$mail->ErrorInfo;
+	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->ErrorInfo;
 	} ### if $MPok
 
 } ### if isset & valid sendbutton
-?>

@@ -1,0 +1,39 @@
+LICENSING TERMS FOR DARK GARDEN FONT
+====================================
+The font is dual-licensed: you can use and distribute it under the terms
+of either of the licenses listed below.
+
+
+Copyright (C) 1999, 2000, 2004, 2012 Michal Kosmulski.
+<mkosmul@users.sourceforge.net>
+
+This font is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This font is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this font (file COPYING-GPL.txt); if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+As a special exception, if you create a document which uses
+this font, and embed this font or unaltered portions of this font into
+the document, this font does not by itself cause the resulting
+document to be covered by the GNU General Public License.  This
+exception does not however invalidate any other reasons why the
+document might be covered by the GNU General Public License.  If you
+modify this font, you may extend this exception to your version of the
+font, but you are not obligated to do so. If you do not wish to do so,
+delete this exception statement from your version.
+
+
+Copyright (C) 2012 Michał Kosmulski, <mkosmul@users.sourceforge.net>
+with Reserved Font Name "Dark Garden".
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is included in the font package (file COPYING-OFL.txt), and is also available with a FAQ at: http://scripts.sil.org/OFL.

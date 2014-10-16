@@ -1,16 +1,8 @@
-<?php
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
+<?php add_action( 'wp_ajax_cforms2_field_selectbox', 'cforms2_field_selectbox' );
 
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
+function cforms2_field_selectbox() {
+check_admin_referer( 'cforms2_field_selectbox' );
 
-load_plugin_textdomain( 'cforms' );
 ?>
 
 <form method="post">
@@ -35,3 +27,5 @@ load_plugin_textdomain( 'cforms' );
 	<input type="text" id="cf_edit_customerr" name="cf_edit_customerr" value="">
 
 </form>
+<?php die();
+}

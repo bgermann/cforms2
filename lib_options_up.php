@@ -16,7 +16,7 @@
 			$err = __('File is empty. Please upload something more substantial.', 'cforms');
 
 	// A properly uploaded file will pass this test. There should be no reason to override this one.
-	if (! @is_uploaded_file( $file['tmp_name'] ) )
+	if (! is_uploaded_file( $file['tmp_name'] ) )
 			$err = __('Specified file failed upload test.', 'cforms');
 
 	if ( $err <> '' ){
@@ -26,7 +26,7 @@
 	} else if( isset($_REQUEST['uploadcformsdata']) ) {
 
 		$fo = fopen($file['tmp_name'],"rb");
-		$cformsSettings['form'.$no] = LoadArray( $no , $fo );
+		$cformsSettings['form'.$no] = cforms2_load_array( $no , $fo );
 		update_option('cforms_settings',$cformsSettings);
 
 		echo '<div id="message" class="updated fade"><p>'.__('All form specific settings have been restored from the backup file.', 'cforms').'</p></div>';
@@ -34,15 +34,14 @@
 	} else if( isset($_REQUEST['restoreallcformsdata']) ) {
 
 		$fo = fopen($file['tmp_name'],"rb");
-		$cformsSettings = LoadArray( '-1', $fo );
+		$cformsSettings = cforms2_load_array( '-1', $fo );
 
         update_option('cforms_settings',$cformsSettings);
 
 		echo '<div id="message" class="updated fade"><p>'.__('All cforms settings have been restored from the backup file.', 'cforms').'</p></div>';
 	}
 
-	### Syntax: LoadArrayFromFile(Handle of a BINARY opened file);
-	function LoadArray($k, $vFile){
+	function cforms2_load_array($k, $vFile){
 	    $ForRet = array();
 
 /*		### corrupted file fix
@@ -60,7 +59,7 @@
 
 	    if ($Wert != "\0{") return;
 	    while (true) {
-	        if (NextMatches($vFile,"\0}")) {
+	        if (cforms2_next_matches($vFile,"\0}")) {
 	            fread($vFile,2);
 	            return $ForRet;
 	        }
@@ -75,10 +74,10 @@
 	        }
 	        $MyKey = stripslashes($MyKey);
 
-	        if (NextMatches($vFile,"\0{")) {
+	        if (cforms2_next_matches($vFile,"\0{")) {
 				if ($k<>'-1' && !is_array($MyKey))
                 	$MyKey = 'cforms'.$k.substr( $MyKey, strpos($MyKey,'_') );
-                $ForRet[$MyKey] = LoadArray($k,$vFile);
+                $ForRet[$MyKey] = cforms2_load_array($k,$vFile);
 	            fread($vFile,1);
 	        } else {
 	            $MyVal = "";
@@ -97,8 +96,8 @@
 
 	    }
 	}
-	### Syntax: NextMatches($vFile, $Text);
-	function NextMatches($vFile, $Text){
+	### Syntax: cforms2_next_matches($vFile, $Text);
+	function cforms2_next_matches($vFile, $Text){
 	    $PrevPos = ftell($vFile);
 	    $Jump = strlen($Text);
 	    $stats = fstat($vFile);
@@ -108,5 +107,3 @@
 	    fseek($vFile, $PrevPos);
 	    return ($Erg == $Text);
 	}
-
-?>

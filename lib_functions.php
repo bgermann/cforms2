@@ -4,19 +4,6 @@
 ### plugin removal
 if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
 
-	### supporting WP2.6 wp-load & custom wp-content / plugin dir
-	if ( file_exists('abspath.php') )
-		include_once('abspath.php');
-	else
-		$abspath = dirname(__FILE__) . '/../../../';
-
-	if ( file_exists( $abspath . 'wp-load.php') )
-		require_once( $abspath . 'wp-load.php' );
-	else
-		require_once( $abspath . 'wp-config.php' );
-
-	require (ABSPATH . WPINC . '/pluggable.php');
-
 	global $current_user,$user_ID;
 	$u = get_currentuserinfo();
 
@@ -37,7 +24,7 @@ if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
 
 ### backup/download cforms settings
 $buffer='';
-function download_cforms(){
+function cforms2_download(){
 	global $buffer, $wpdb, $cformsSettings;
 	$br="\n";
 
@@ -48,12 +35,12 @@ function download_cforms(){
 	        if( $_REQUEST['noSub']<>'1' )
 	            $noDISP = $no = $_REQUEST['noSub'];
 
-	    	$buffer .= SaveArray($cformsSettings['form'.$no]);
-//	    	$buffer .= SaveArray($cformsSettings['form'.$no]).$br;
+	    	$buffer .= cforms2_save_array($cformsSettings['form'.$no]);
+//	    	$buffer .= cforms2_save_array($cformsSettings['form'.$no]).$br;
 			$filename = 'form-settings.txt';
 		}else{
-	    	$buffer .= SaveArray($cformsSettings);
-//	    	$buffer .= SaveArray($cformsSettings).$br;
+	    	$buffer .= cforms2_save_array($cformsSettings);
+//	    	$buffer .= cforms2_save_array($cformsSettings).$br;
 			$filename = 'all-cforms-settings.txt';
 		}
         ob_end_clean();
@@ -73,7 +60,7 @@ function download_cforms(){
 }
 
 ### backup/download cforms settings :: save the array
-function SaveArray($vArray){
+function cforms2_save_array($vArray){
 	global $buffer;
     // Every array starts with chr(1)+"{"
     $buffer .=  "\0{";
@@ -86,7 +73,7 @@ function SaveArray($vArray){
         $MyKey = addslashes(strval( key($vArray) ));
         if (is_array($Current)) {
             $buffer .= $MyKey."\0";
-            SaveArray($Current);
+            cforms2_save_array($Current);
             $buffer .= "\0";
         } else {
             $Current = addslashes($Current);
@@ -106,7 +93,7 @@ function SaveArray($vArray){
 
 
 ### check user access
-function check_access_priv($r='manage_cforms'){
+function cforms2_check_access_priv($r='manage_cforms'){
 	if( !current_user_can($r) ){
 		$err = '<div class="wrap"><div id="icon-cforms-error" class="icon32"><br/></div><h2>'.__('cforms error','cforms').'</h2><div class="updated fade" id="message"><p>'.__('You do not have the proper privileges to access this page.','cforms').'</p></div></div>';
 		die( $err );
@@ -116,18 +103,18 @@ function check_access_priv($r='manage_cforms'){
 
 
 ### add cforms menu
-function cforms_menu() {
+function cforms2_menu() {
 	global $wpdb, $submenu;
 
 	$cformsSettings = get_option('cforms_settings');
-    $p = $cformsSettings['global']['plugindir'];
+    $p = dirname(plugin_basename(__FILE__));
 
 	$tablesup = ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)?true:false;
 
 	$o = $p.'/cforms-options.php';
 
     if (function_exists('add_menu_page')) {
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o, '', $cformsSettings['global']['cforms_root'].'/images/cformsicon.png');
+		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o, '', plugin_dir_url(__FILE__).'images/cformsicon.png');
 	}
 	elseif (function_exists('add_management_page')) {
 		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o);
@@ -146,7 +133,7 @@ function cforms_menu() {
 
 
 ### cforms init
-function cforms_init() {
+function cforms2_init() {
 	global $wpdb;
 
 	$plugindir   = basename(dirname(__FILE__));
@@ -160,110 +147,64 @@ function cforms_init() {
 		$role->add_cap('track_cforms');
 	}
 
-	### save ABSPATH for ajax routines
-	if ( defined('ABSPATH') && ($fhandle = fopen(dirname(__FILE__).$sep.'abspath.php', "w")) ) {
-	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) . "'; ?>\n");
-	    fclose($fhandle);
+}
+
+
+### get current page
+function cforms2_get_request_uri() {
+	$request_uri = $_SERVER['REQUEST_URI'];
+	if ( !isset($_SERVER['REQUEST_URI']) || (strpos($_SERVER['SERVER_SOFTWARE'],'IIS')!==false && strpos($_SERVER['REQUEST_URI'],'wp-admin')===false) ){
+	    if(isset($_SERVER['SCRIPT_NAME']))
+	        $request_uri = $_SERVER['SCRIPT_NAME'];
+	    else
+	        $request_uri = $_SERVER['PHP_SELF'];
 	}
-
+	return $request_uri;
 }
-
-
-
-### check for abspath.php
-function abspath_check(){
-	global $cformsSettings;
-	if ( !file_exists( dirname(__FILE__).$cformsSettings['global']['cforms_IIS'].'abspath.php' ) ){
-    	echo '<div class="updated fade"><p>'.
-        	__('It appears that cforms was not able to create <strong>abspath.php</strong> in your cforms plugin folder. Please check file/folder permissions (plugins/cforms), then <strong>re-activate</strong> cforms.', 'cforms').
-            '</p><p>'.
-            __('If the problem persists, please create a file (using your preferred text editor) manually with the following content:', 'cforms').
-            '<p><code>&lt;?php $abspath = \''.addslashes(ABSPATH).'\'; ?&gt;</code></p>'.
-            '<p>'.__('Save the file as abspath.php and ftp to your cforms folder.', 'cforms').'</p></div>';
-        }
-}
-
-### get site URL for both single installs and network installs
-function get_cf_siteurl(){
-	return is_multisite() ? network_site_url() :  site_url();
-}
-
-### get WP plugin dir
-function get_cf_plugindir(){
-/*
-	$cr = defined('PLUGINDIR') ? get_cf_siteurl() .'/'. PLUGINDIR . '/' : get_cf_siteurl() . '/wp-content/plugins/';
-	$cr = defined('WP_CONTENT_URL') ? WP_CONTENT_URL.'/plugins/' : $cr;
-	$cr = defined('WP_PLUGIN_URL') ? WP_PLUGIN_URL .'/' : $cr;
-*/
-
-if ( ! function_exists( 'is_ssl' ) ) {
-	function is_ssl() {
-		if ( isset($_SERVER['HTTPS']) ) {
-			if ( 'on' == strtolower($_SERVER['HTTPS']) )
-			return true;
-			if ( '1' == $_SERVER['HTTPS'] )
-			return true;
-		} elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
-			return true;
-		}
-		return false;
-	}
-}
-
-	if ( version_compare( get_bloginfo( 'version' ) , '3.0' , '<' ) && is_ssl() ) {
-		$wp_content_url = str_replace( 'http://' , 'https://' , get_cf_siteurl() );
-	} else {
-		$wp_content_url = get_cf_siteurl();
-	}
-	
-	$wp_content_url .= '/wp-content';
-	$wp_content_dir = ABSPATH . 'wp-content';
-	$wp_plugin_url = $wp_content_url . '/plugins';
-	$wp_plugin_dir = $wp_content_dir . '/plugins';
-	$wpmu_plugin_url = $wp_content_url . '/mu-plugins';
-	$wpmu_plugin_dir = $wp_content_dir . '/mu-plugins';
-	
-	return rtrim(plugin_dir_url( __FILE__ ), '/');
-}
-
 
 
 ### cforms JS scripts
-function cforms_scripts() {
+function cforms2_scripts() {
 	global $wp_scripts, $localversion;
 
 	### get options
 	$cformsSettings = get_option('cforms_settings');
-	$r=$cformsSettings['global']['cforms_root'];
-
-	### global settings
-	$request_uri = get_request_uri();
-
-    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.4.2") ) === -1 ){
-		wp_deregister_script('jquery');
-	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.4.2');
-    	wp_enqueue_script('jquery');
-    }
+	$r=plugin_dir_url(__FILE__);
 
 	### Add admin styles
-	wp_register_style('cforms-admin-style', $r . '/cforms-admin.css' );
+	wp_register_style('cforms-admin-style', $r . 'cforms-admin.css' );
 	wp_enqueue_style('cforms-admin-style'); 
 
-	if ( strpos($request_uri,'cforms-options')!==false ){
-		wp_register_style('calendar-style', $r . '/styling/calendar.css' );
+	if ( strpos(cforms2_get_request_uri(),'cforms-options')!==false ){
+		wp_register_style('calendar-style', $r . 'styling/calendar.css' );
 		wp_enqueue_style('calendar-style'); 
 		
 		wp_enqueue_script('jquery');
 	    wp_enqueue_script('jquery-ui-core');
 
-	    wp_register_script('cforms_admin_cal',$r.'/js/cformsadmincal.js',false,$localversion);
+	    wp_register_script('cforms_admin_cal',$r.'js/cformsadmincal.js',false,$localversion);
 	    wp_enqueue_script('cforms_admin_cal');
 	}
 
-    wp_deregister_script('prototype');
+    wp_register_script('cforms_interface',$r.'js/interface.js',false,$localversion);
+    wp_register_script('cforms_admin',$r.'js/cformsadmin.js',false,$localversion);
+    wp_localize_script('cforms_admin', 'cforms2_nonces', array(
+        'installpreset' => wp_create_nonce('cforms2_installpreset'),
 
-    wp_register_script('cforms_interface',$r.'/js/interface.js',false,$localversion);
-    wp_register_script('cforms_admin',$r.'/js/cformsadmin.js',false,$localversion);
+		'checkbox'      => wp_create_nonce('cforms2_field_checkbox'),
+		'checkboxgroup' => wp_create_nonce('cforms2_field_checkboxgroup'),
+		'fieldsetstart' => wp_create_nonce('cforms2_field_fieldsetstart'),
+		'html5field'    => wp_create_nonce('cforms2_field_html5field'),
+		'selectbox'     => wp_create_nonce('cforms2_field_selectbox'),
+		'textfield'     => wp_create_nonce('cforms2_field_textfield'),
+		'textonly'      => wp_create_nonce('cforms2_field_textonly'),
+
+        'deleteentries' => wp_create_nonce('database_deleteentries'),
+		'deleteentry'   => wp_create_nonce('database_deleteentry'),
+		'dlentries'     => wp_create_nonce('database_dlentries'),
+		'getentries'    => wp_create_nonce('database_getentries'),
+		'savedata'      => wp_create_nonce('database_savedata')
+    ) );
 
     wp_enqueue_script('cforms_interface');
     wp_enqueue_script('cforms_admin');
@@ -272,13 +213,13 @@ function cforms_scripts() {
 
 
 ### some css for arranging the table fields in wp-admin
-function cforms_options_page_style() {
+function cforms2_options_page_style() {
 
 	global $localversion;
 	$cformsSettings = get_option('cforms_settings');
 	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
-	echo "\n<!-- Start Of Script Generated By cformsII v".$localversion." [Oliver Seidel | www.deliciousdays.com] -->\n";
+	echo "\n<!-- Start of script generated by cformsII v".$localversion." -->\n";
     echo '<script type="text/javascript">'."\n/* <![CDATA[ */\n".
 		'var cfCAL={};'."\n".
 		'cfCAL.dayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
@@ -294,7 +235,7 @@ function cforms_options_page_style() {
 		'cfCAL.TEXT_CLOSE="'.stripslashes($nav[4]).'";'."\n".
 		'cfCAL.TEXT_CHOOSE_DATE="'.stripslashes($nav[5]).'";'."\n". 
 		'cfCAL.changeYear='. ($nav[6]==1? 'true':'false') .';'."\n". 
-		'cfCAL.ROOT="'.$cformsSettings['global']['cforms_root'].'";' ."\n\n"; 
+		'cfCAL.ROOT="'.plugin_dir_url( __FILE__ ).'";' ."\n\n"; 
 ?>
 jQuery(function() {
 
@@ -306,7 +247,7 @@ if( jQuery(".cf_timebutt1").length>0 && jQuery(".cf_timebutt2").length>0 ){
 if( jQuery(".cf_date").length>0 ){
 
 	jQuery(".cf_date").datepicker({
-			"buttonImage": cfCAL.ROOT+"/js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",
+			"buttonImage": cfCAL.ROOT+"js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",
 			"dateFormat": "dd/mm/yy", "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, "firstDay":cfCAL.firstDayOfWeek,
 			"nextText": cfCAL.TEXT_NEXT_MONTH, "prevText": cfCAL.TEXT_PREV_MONTH, "closeText": cfCAL.TEXT_CLOSE });
 
@@ -343,7 +284,7 @@ if( jQuery(".cf_date").length>0 ){
 
 
 ### footer
-function cforms_footer() {
+function cforms2_footer() {
 	global $localversion;
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
@@ -358,7 +299,7 @@ function cforms_footer() {
 
 
 ### plugin uninstalled?
-function check_erased() {
+function cforms2_check_erased() {
 	global $cformsSettings;
     if ( $cformsSettings['global']['cforms_formcount'] == '' ){
 		?>
@@ -374,7 +315,7 @@ function check_erased() {
 }
 
 ### add menu items to admin bar
-function addAdminBar_root($admin_bar, $id, $ti){
+function cforms2_add_admin_bar_root($admin_bar, $id, $ti){
 	$arr = array(	'id' => $id, 
 					'title' => $ti, 
 					'href'  => false 
@@ -382,7 +323,7 @@ function addAdminBar_root($admin_bar, $id, $ti){
 	$admin_bar->add_node( $arr );
 }
 
-function addAdminBar_item($admin_bar, $id,$ti,$hi,$ev,$p = 'cforms-bar'){
+function cforms2_add_admin_bar_item($admin_bar, $id,$ti,$hi,$ev,$p = 'cforms-bar'){
 	$arr = array(	'parent' => $p, 
 					'id' => $id, 
 					'title' => $ti, 
@@ -401,9 +342,8 @@ if ( !function_exists('get_magic_quotes_gpc') ) {
 		return false;
 	}
 }
-function magic($v){
-  global $wp_version;
-  $vercomp = (version_compare(strval($wp_version), strval('2.9'), '>=') == 1);
+function cforms2_magic($v){
+	global $wp_version;
+	$vercomp = (version_compare(strval($wp_version), strval('2.9'), '>='));
 	return ( get_magic_quotes_gpc() || $vercomp ) ? $v : addslashes($v);
 }
-?>

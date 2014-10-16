@@ -1,18 +1,9 @@
-<?php
+<?php add_action( 'wp_ajax_database_savedata', 'cforms2_database_savedata' );
 
-### supporting WP2.6 wp-load & custom wp-content / plugin dir
-if ( file_exists('../../abspath.php') )
-	include_once('../../abspath.php');
-else
-	$abspath='../../../../../';
-
-if ( file_exists( $abspath . 'wp-load.php') )
-	require_once( $abspath . 'wp-load.php' );
-else
-	require_once( $abspath . 'wp-config.php' );
-
+function cforms2_database_savedata() {
+check_admin_referer( 'database_savedata' );
 if( !current_user_can('track_cforms') )
-	wp_die("access restricted.");
+	die("access restricted.");
 
 global $wpdb;
 
@@ -30,4 +21,5 @@ if ( $f_id<>'' && $newVal<>$oldVal  ) {
 	echo str_replace("\n",'<br />',stripslashes(stripslashes($newVal)));
 
 }
-?>
+die();
+}

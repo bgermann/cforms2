@@ -2,15 +2,7 @@
 cforms supports WP localization.
 --------------------------------
 
-(1) Please pick the appropriate language file from the /languages/ folder
-    and copy it into your /wp-content/plugins/ directory.
-
-(2) If your WP_LANG variable is set correctly (wp-config.php) then the language
-    file should be picked up immediately.
-
-(3) In case the translation author has included localized title images, you
-    may want to replace the original ones at plugins/contactform/images/ with
-    the onex provided.
+If your languge is set correctly then the language file in this directory should be picked up immediately.
 
 
 Note:
@@ -18,8 +10,9 @@ Note:
 
 If you have suggestions or corrections, please get in touch with the actual author of the translation file.
 
-You can find the list of the translations here:
+You can find the list of the translations for the original cforms version here:
 http://www.deliciousdays.com/cforms-plugin/
 
-If you would like to contribute a new language file, send me an email:
-oliver.seidel @ deliciousdays.com
+If you would like to contribute a new language file, please file a ticket with the translation file attached.
+It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
+you must not redistribute them as long as it is not your translation.
