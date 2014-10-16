@@ -112,6 +112,8 @@ function cforms_submitcomment($content) {
 	$taf_youremail = false;
 	$taf_friendsemail = false;
 
+	$isFieldArray = false;
+
 	###  form limit reached
 	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && get_cforms_submission_left($no)==0) || !cf_check_time($no) ){
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
@@ -191,8 +193,9 @@ function cforms_submitcomment($content) {
 
 			### remove [id: ] first
 			if ( strpos($field_name,'[id:')!==false ){
+				$isFieldArray = strpos($input_name[1],'[]');
 				$idPartA = strpos($field_name,'[id:');
-				$idPartB = strpos($field_name,']',$idPartA);
+				$idPartB = strrpos($field_name,']',$idPartA);
 				$customTrackingID = substr($field_name,$idPartA+4,($idPartB-$idPartA)-4);
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
 			}

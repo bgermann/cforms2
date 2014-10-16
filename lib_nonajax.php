@@ -40,6 +40,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$taf_friendsemail = false;
 		$send2author = false;
 
+		$inpFieldArr = array(); // for var[] type input fields
+
 		$key = 0;
 
 		for($i = 1; $i <= $field_count; $i++) {
@@ -86,8 +88,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				preg_match('/^([^#\|]*).*/',$field_name,$input_name);
 
 				if ( strpos($input_name[1],'[id:')!==false ){
+					$isFieldArray = strpos($input_name[1],'[]');
 					$idPartA = strpos($input_name[1],'[id:');
-					$idPartB = strpos($input_name[1],']',$idPartA);
+					$idPartB = strrpos($input_name[1],']',$idPartA);
 					$customTrackingID = substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4);
 					$current_field = cf_sanitize_ids( $customTrackingID );
 
@@ -206,8 +209,17 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		else if( $field_type == 'hidden' )
 			$value = rawurldecode($_POST[$current_field]);
 
-		else
-			$value = $_POST[$current_field];       ###  covers all other fields' values
+		else{
+			if( $isFieldArray ){
+
+				if( !$inpFieldArr[$current_field] || $inpFieldArr[$current_field]=='' ){
+					$inpFieldArr[$current_field]=0;
+				} 
+				$value = $_POST[$current_field][$inpFieldArr[$current_field]++];       ###  covers all other fields' values
+
+			}else
+				$value = $_POST[$current_field];       ###  covers all other fields' values
+		}
 
 		### check boxes
 		if ( $field_type == "checkbox" || $field_type == "ccbox" ) {

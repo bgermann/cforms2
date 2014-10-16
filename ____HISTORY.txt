@@ -26,6 +26,12 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.7.2
+*) other:  enhanced support for form field arrays, e.g. :  my-field[id:address[]]
+*) bugfix: fixed jQuery wizard editor error 
+*) bugfix: fixed "upload field" handling & form error (stalling)
+*) bugfix: sorting fixed for API call "get_cforms_entries()" - hopefully for good
+
 WHAT's NEW in cformsII - v11.7.1
 *) bugfix: fixed function_exists() call in lib_functions.php
 *) bugfix: fixed some date picker related bugs

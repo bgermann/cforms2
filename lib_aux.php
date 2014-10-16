@@ -118,6 +118,9 @@ function cf_sanitize_ids($t) {
 	$t = preg_replace("|'|", '-', $t);
 	$t = trim($t, '-');
 
+	$t = str_replace('[', '', $t);
+	$t = str_replace(']', '', $t);
+ 
 	return $t;
 }
 
@@ -663,7 +666,7 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 
     }
 
-	if ( $cfsort <> '' ) ;
+	if ( $cfsort <> '' )
 		uksort ($cfdata, "cf_sort");
 
 	return $cfdata;

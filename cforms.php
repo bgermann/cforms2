@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 11.7.1
+Version: 11.7.2
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '11.7.1';
+$localversion = '11.7.2';
 
 ### debug messages
 $cfdebug = false;
@@ -367,6 +367,8 @@ function cforms($args = '',$no = '') {
 	$fscount = 1;
 	$ol = false;
 
+	$inpFieldArr = array(); // for var[] type input fields
+		
 	for($i = 1; $i <= $field_count; $i++) {
 
 		if ( !$custom )
@@ -494,9 +496,23 @@ function cforms($args = '',$no = '') {
 		if ( $cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1' ){
 
 			if ( strpos($field_name,'[id:')!==false ){
+				$isFieldArray = strpos($field_name,'[]');
 				$idPartA = strpos($field_name,'[id:');
-				$idPartB = strpos($field_name,']',$idPartA);
-				$input_id = $input_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
+				$idPartB = strrpos($field_name,']',$idPartA);
+
+				if( $isFieldArray ){
+				
+					$input_id = $input_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
+					
+					if( !$inpFieldArr[$input_id] || $inpFieldArr[$input_id]=='' ){
+						$inpFieldArr[$input_id]=1;
+					} 
+					
+					$input_id	.= $inpFieldArr[$input_id]++;
+					$input_name .= '[]';
+				
+				} else
+					$input_id = $input_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
 
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
 

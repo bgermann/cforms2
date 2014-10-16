@@ -4,6 +4,8 @@
 ###
 ###
 
+$inpFieldArr = array(); // for var[] type input fields
+
 $cflimit = '';
 $filefield = 0;
 
@@ -66,23 +68,48 @@ for($i = 1; $i <= $field_count; $i++) {
 
 		### comment luv
 		get_currentuserinfo();
+		
 		global $user_level;
+				
 		if( in_array($field_type,array('luv')) && $user_level==10 )
 			continue;
 
 		### input field names & label
 		$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
+		$isFieldArray = false;
 
 		if ( $custom_names ){
 
 			preg_match('/^([^#\|]*).*/',$field_name,$input_name);
 
 			if ( strpos($input_name[1],'[id:')!==false ){
-				$idPartA = strpos($input_name[1],'[id:');
-				$idPartB = strpos($input_name[1],']',$idPartA);
-				$current_field = $_REQUEST[ cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) ) ];
 
-				$field_name = substr_replace($input_name[1],'',$idPartA,($idPartB-$idPartA)+1);
+				$isFieldArray = strpos($input_name[1],'[]');
+
+				$idPartA = strpos($input_name[1],'[id:');
+				$idPartB = strrpos($input_name[1],']',$idPartA);
+	
+				if( $isFieldArray ){				
+
+				
+					$array_id = cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) );
+
+					if( !$inpFieldArr[$array_id] || $inpFieldArr[$array_id]=='' ){
+						$inpFieldArr[$array_id]=0;
+					}
+					
+					$field_name 	= cf_sanitize_ids( substr_replace($input_name[1],'',$idPartA,($idPartB-$idPartA)+1) );
+					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) ) ][$inpFieldArr[$array_id]++];
+
+					//echo "f=$field_name , curr=$current_field [$array_id]<br>";
+									
+				} else {
+					$field_name 	= cf_sanitize_ids( substr_replace($input_name[1],'',$idPartA,($idPartB-$idPartA)+1) );
+					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) ) ];
+				}
+					//$field_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
+	
+				
 			} else
 				$current_field = $_REQUEST[ cf_sanitize_ids($input_name[1]) ];
 
