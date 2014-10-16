@@ -14,18 +14,18 @@
 	____HISTORY.txt
 
 
-Plugin Name: cforms
-Plugin URI: http://www.deliciousdays.com/cforms-plugin
+Plugin Name: cforms II EX
+Plugin URI: https://github.com/msigley/cforms-II-EX
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
-Author: Oliver Seidel
-Version: 14.6
-Author URI: http://www.deliciousdays.com
+Author: Matthew Sigley, Oliver Seidel
+Version: 14.6.1
+Author URI: https://github.com/msigley/
 
 
 */
 
 global $localversion;
-$localversion = '14.6';
+$localversion = '14.6.1';
 
 ### debug messages
 $cfdebug = false;
@@ -95,7 +95,16 @@ require_once (dirname(__FILE__) . '/lib_editor.php');
 ### http://trac.wordpress.org/ticket/3002
 $plugindir   = $cformsSettings['global']['plugindir'];
 $cforms_root = $cformsSettings['global']['cforms_root'];
-
+//Correct protocol for https connections
+list($protocol, $uri) = explode('://', $cforms_root, 2);
+if( is_ssl() ) {
+	if( 'http' == $protocol )
+		$protocol = 'https';
+} else {
+	if( 'https' == $protocol )
+		$protocol = 'http';
+}
+$cforms_root = trailingslashit($protocol.'://'.$uri);
 
 
 ### session control for multi-page form
@@ -366,7 +375,7 @@ function cforms($args = '',$no = '') {
 		$alt_action=true;
 	}
 	else if( $isWPcommentForm )
-		$action = $cforms_root . '/lib_WPcomment.php'; ### re-route and use WP comment processing
+		$action = $cforms_root . 'lib_WPcomment.php'; ### re-route and use WP comment processing
  	else
 		$action = get_current_page(false) . '#usermessage'. $no . $actiontarget;
 
@@ -740,8 +749,8 @@ function cforms($args = '',$no = '') {
 
 			case "captcha":
 				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" value=""'.$fieldTitle.'/>'.
-						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="'.$cforms_root.'/cforms-captcha.php?ts='.$no.'" alt=""/>'.
-						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.$cforms_root.'/images/spacer.gif" alt="Captcha"/></a>';
+						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="'.$cforms_root.'cforms-captcha.php?ts='.$no.'" alt=""/>'.
+						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.$cforms_root.'images/spacer.gif" alt="Captcha"/></a>';
 		    	$captcha=true;
 				break;
 
@@ -1207,7 +1216,7 @@ function cforms_style() {
 	if( $onPages=='' || (in_array($page_obj->ID,$onPagesA) && !$exclude) || (!in_array($page_obj->ID,$onPagesA) && $exclude)){
 
 		if( $cformsSettings['global']['cforms_no_css']<>'1' )
-			echo '<link rel="stylesheet" type="text/css" href="' . $cforms_root . '/styling/' . $cformsSettings['global']['cforms_css'] . '" />'."\n";
+			echo '<link rel="stylesheet" type="text/css" href="' . $cforms_root . 'styling/' . $cformsSettings['global']['cforms_css'] . '" />'."\n";
 
 		### add jQuery script & calendar
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
@@ -1215,7 +1224,7 @@ function cforms_style() {
 			wp_enqueue_script('jquery-ui-core',false,false,false,false);
 			wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
 		}
-		echo '<script type="text/javascript" src="' . $cforms_root. '/js/cforms.js"></script>'."\n";
+		echo '<script type="text/javascript" src="' . $cforms_root. 'js/cforms.js"></script>'."\n";
 		
 	}
 }

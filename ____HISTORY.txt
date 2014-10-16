@@ -32,6 +32,10 @@
 
 	!!! IMPORTANT !!!
 
+
+WHAT's NEW in cformsII - v14.6.1
+*) fixed:   SSL support on file includes
+*) fixed:   double slash in file includes
 	
 WHAT's NEW in cformsII - v14.6
 *) added:   NEW: my_cforms_filter()  in my-functions.php  (input filter)
