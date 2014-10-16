@@ -1316,7 +1316,8 @@ function cforms2_build_fstat($f) {
 
 
 ### inserts a cform anywhere you want
-function cforms2_insert_cform($no='',$custom='',$c='') {
+if (!function_exists('insert_cform')) {
+function insert_cform($no='',$custom='',$c='') {
 	global $post;
 
 	$pid = cforms2_cfget_pid();
@@ -1328,6 +1329,7 @@ function cforms2_insert_cform($no='',$custom='',$c='') {
 		echo cforms2($custom,$no.$c);
 	else
 		echo cforms2_check_for_taf($no,$pid)?cforms2($custom,$no.$c):'';
+}
 }
 
 
@@ -1349,7 +1351,7 @@ function cforms2_cfget_pid() {
 ### inserts a custom cform anywhere you want
 if (!function_exists('insert_custom_cform')) {
 	function insert_custom_cform($fields='',$no='') {
-		cforms2_insert_cform($no, $fields, '+');
+		insert_cform($no, $fields, '+');
 	}
 }
 
@@ -1388,7 +1390,7 @@ function cforms2_check_for_taf($no,$pid) {
 }
 
 
-### public function: check if post is t-f-a enabled
+### public function: check if post is t-a-f enabled
 if (!function_exists('is_tellafriend')) {
 	function is_tellafriend($pid) {
 		$tmp = get_post_custom($pid);
@@ -1452,7 +1454,7 @@ function cforms2_widget_init() {
 	            $title = htmlspecialchars(stripslashes($options[$id]['title']));
 
 	            echo $before_widget.$before_title.$title.$after_title;
-	            cforms2_insert_cform($no);
+	            insert_cform($no);
 	            echo $after_widget;
 	        }
 
