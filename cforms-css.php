@@ -131,7 +131,8 @@ abspath_check();
 													$allcustomCSS = array();
 													$dir = opendir($dCustom);
 													while ( $dir && ($f = readdir($dir)) ) {
-														if( eregi("\.css$",$f) ){
+														if( preg_match("/\.css$/i", $f) ){
+														
 															array_push($allcustomCSS, $f);
 														}
 													}
@@ -150,7 +151,7 @@ abspath_check();
 												$allCSS = array();
 												$dir = opendir($d);
 												while ( $dir && ($f = readdir($dir)) ) {
-													if( eregi("\.css$",$f) && !eregi("calendar\.css$",$f) ){
+													if( preg_match("/\.css$/i",$f) && !preg_match("/calendar\.css$/i",$f) ){
 														array_push($allCSS, $f);
 													}
 												}

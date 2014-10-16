@@ -1318,6 +1318,23 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 						<?php echo sprintf(__('%1$s{Your Website}%2$s , %1$s{homepage}%2$s, or %1$s%3$s%2$s (assuming it is on the 4th position) respectively.', 'cforms'),'<span style="padding:0 4px; font-family:monospace; background:#f2f2f2;">','</span>','{_field4}'); ?>
 					</td>
 				</tr>
+				
+				<tr>
+					<td class="bright" colspan="2">&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td class="bright" colspan="2">
+						<span class="abbr" title="<?php _e('Important!', 'cforms'); ?>"><strong><?php _e('Custom variables in MULTI-PAGE forms:', 'cforms'); ?></strong></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="ball" colspan="2">
+						<?php echo sprintf(__('Referencing form values in multi-page forms require specification of the actual form the field is on, eg. {%scf_form6_%sYour Name} would reference the field labeled "Your Name" on form #6.', 'cforms'), '<span style="color:red; font-weight:bold;">','</span>'); ?>
+					</td>
+				</tr>
+				<tr>
+				
 			</table>
 			<br />
 			<table class="hf" cellspacing="2" border="4" width="75%">

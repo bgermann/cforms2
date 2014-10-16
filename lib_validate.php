@@ -333,7 +333,7 @@ if ( $err<>0 && $c_errflag )
 
 ### proxy functions
 function cforms_is_email($string){
-	return eregi("^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", $string);
+	return preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i", $string);
 }
 
 ?>

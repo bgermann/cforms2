@@ -56,7 +56,6 @@ function download_cforms(){
 //	    	$buffer .= SaveArray($cformsSettings).$br;
 			$filename = 'all-cforms-settings.txt';
 		}
-
         ob_end_clean();
 		header('Pragma: public;');
 		header('Expires: 0;');
@@ -66,7 +65,7 @@ function download_cforms(){
 		header('Content-Type: application/download;');
 		header('Content-Disposition: attachment; filename="'.$filename.'";');
 		header('Content-Transfer-Encoding: binary;');
-		header('Content-Length: ' .(string)(strlen($buffer)) . ';' );
+		//header('Content-Length: ' .(string)(strlen($buffer)) . ';' );   // causes FF corrupt page issue
         flush();
 		print $buffer;
 		exit(0);
@@ -161,32 +160,6 @@ function cforms_init() {
 		$role->add_cap('track_cforms');
 	}
 
-	### try to adjust cforms.js automatically
-	/*
-	$jsContent = $jsContentNew = '';
-	if ( $fhandle = fopen(dirname(__FILE__).'/js/cforms.js', "r") ) {
-		$jsContent = fread($fhandle, filesize(dirname(__FILE__).'/js/cforms.js'));
-	    fclose($fhandle);
-
-		$URIprefix = get_option('siteurl');
-		$pathToAjax = $URIprefix . '/wp-content/plugins/cforms/lib_ajax.php';
-
-        if ( defined('WP_CONTENT_URL') )
-			$pathToAjax = $URIprefix.'/'.WP_CONTENT_URL.'/plugins/'.$plugindir. '/lib_ajax.php';
-
-        if ( defined('WP_PLUGIN_URL') )
-			$pathToAjax = $URIprefix.'/'.WP_PLUGIN_URL.'/'.$plugindir. '/lib_ajax.php';
-
-        if ( defined('PLUGINDIR') )
-			$pathToAjax = $URIprefix.'/'.PLUGINDIR.'/'.$plugindir. '/lib_ajax.php';
-
-       	$jsContentNew = str_replace('\'/wp-content/plugins/cforms/lib_ajax.php\'',"'{$pathToAjax}'",$jsContent);
-	}
-	if ( $jsContentNew<>'' && $jsContentNew<>$jsContent && ($fhandle = fopen(dirname(__FILE__).$sep.'js'.$sep.'cforms.js', "w")) ) {
-	    fwrite($fhandle, $jsContentNew);
-	    fclose($fhandle);
-	}
-	*/
 	### save ABSPATH for ajax routines
 	if ( defined('ABSPATH') && ($fhandle = fopen(dirname(__FILE__).$sep.'abspath.php', "w")) ) {
 	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) . "'; ?>\n");
@@ -210,14 +183,47 @@ function abspath_check(){
         }
 }
 
-
+### get site URL for both single installs and network installs
+function get_cf_siteurl(){
+	return is_multisite() ? network_site_url() :  site_url();
+}
 
 ### get WP plugin dir
 function get_cf_plugindir(){
-	$cr = defined('PLUGINDIR') ? get_option('siteurl') .'/'. PLUGINDIR . '/' : get_option('siteurl') . '/wp-content/plugins/';
+/*
+	$cr = defined('PLUGINDIR') ? get_cf_siteurl() .'/'. PLUGINDIR . '/' : get_cf_siteurl() . '/wp-content/plugins/';
 	$cr = defined('WP_CONTENT_URL') ? WP_CONTENT_URL.'/plugins/' : $cr;
 	$cr = defined('WP_PLUGIN_URL') ? WP_PLUGIN_URL .'/' : $cr;
-	return $cr;
+*/
+
+if ( ! function_exists( 'is_ssl' ) ) {
+	function is_ssl() {
+		if ( isset($_SERVER['HTTPS']) ) {
+			if ( 'on' == strtolower($_SERVER['HTTPS']) )
+			return true;
+			if ( '1' == $_SERVER['HTTPS'] )
+			return true;
+		} elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+			return true;
+		}
+		return false;
+	}
+}
+
+	if ( version_compare( get_bloginfo( 'version' ) , '3.0' , '<' ) && is_ssl() ) {
+		$wp_content_url = str_replace( 'http://' , 'https://' , get_cf_siteurl() );
+	} else {
+		$wp_content_url = get_cf_siteurl();
+	}
+	
+	$wp_content_url .= '/wp-content';
+	$wp_content_dir = ABSPATH . 'wp-content';
+	$wp_plugin_url = $wp_content_url . '/plugins';
+	$wp_plugin_dir = $wp_content_dir . '/plugins';
+	$wpmu_plugin_url = $wp_content_url . '/mu-plugins';
+	$wpmu_plugin_dir = $wp_content_dir . '/mu-plugins';
+	
+	return plugin_dir_url( __FILE__ );
 }
 
 

@@ -133,7 +133,7 @@ function prep($v,$d) {
 
 
 
-### formatEmail data
+### map data
 function allTracks($session){
 	$t = array(); $i = array();
 
@@ -161,6 +161,10 @@ function formatEmail($track,$no){
     foreach( array_keys($track) as $k){
 
 		$v = stripslashes($track[$k]);
+		
+		### Exclude empty fields?
+		if ($v == '' && $cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'])
+			continue;
 
         ### fix labels
 	 	if ( in_array($k,array('luv','subscribe','cauthor','email','url','comment','send2author')) ) continue;
@@ -233,9 +237,15 @@ function formatEmail($track,$no){
 function write_tracking_record($no,$field_email,$c=''){
 		global $wpdb, $track, $cformsSettings;
 
-        if ( $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] || ($cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email']) )
+		db('WRITING TRACKING RECORD');
+		$noTracking = $cformsSettings['form'.$no]['cforms'.$no.'_notracking'];
+		$mpSession = ($cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email']);
+		
+        if ( $noTracking || $mpSession ){
+			db("....bailing out: noTracking=$noTracking, mpSession=$mpSession\n");
 			return -1; ### bail out
-
+		}
+		
 		if ( $cformsSettings['global']['cforms_database'] == '1' ) {
 
         	### first process fields, perhaps need to bail out
@@ -296,10 +306,19 @@ function cf_move_files($no, $subID){
 	
     $temp = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
     $fileuploaddir = $temp[0];
-		$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$subID.'-';
+	
+	$inSession = (strpos($subID,'xx') !== false);
+	//if( !$inSession )
+		$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '' : $subID.'-';
 
     $file2 = $file;
   	$i=0;
+	
+	$_SESSION['cforms']['upload'][$no]['doAttach'] = !($cformsSettings['form'.$no]['cforms'.$no.'_noattachments']);
+
+	### debug
+	db("... in session=$inSession, moving files on form $no, tracking ID=$subID");
+	
   	if ( is_array($file2) && isset($file2[tmp_name]) ) {
   		foreach( $file2[tmp_name] as $tmpfile ) {
 		
@@ -308,10 +327,14 @@ function cf_move_files($no, $subID){
 
             	$destfile = $fileuploaddir.'/'.$subID.str_replace(' ','_',$file2['name'][$i]);
             	move_uploaded_file($tmpfile,$destfile );
-      				$file[tmp_name][$i] = $destfile;
 
-              if( strpos($subID,'xx') !== false )
-                  $_SESSION['cforms']['upload'][$no][] = $destfile;
+				### debug
+				db("   $tmpfile -> $destfile");
+      			
+				$file[tmp_name][$i] = $destfile;
+
+				if( $inSession )
+					$_SESSION['cforms']['upload'][$no]['files'][] = $destfile;
 
             }
         	$i++;
@@ -322,10 +345,11 @@ function cf_move_files($no, $subID){
 
 
 ### base64 encode attached files
-function cf_base64($fn){
+function cf_base64($fn, $attachFlag=false){
 	global $fdata, $fpointer;
 	if( file_exists($fn) ){
 	    $fdata[$fpointer][name] = $fn;
+	    $fdata[$fpointer][doAttach] = $attachFlag;
         $fpointer++;
 	}
 	return;
@@ -451,7 +475,10 @@ function check_default_vars($m,$no) {
 
 
 ### look for custom variables
-function check_cust_vars($m,$t,$no) {
+function check_cust_vars($m,$t,$no,$html=false) {
+	
+	global $cformsSettings;
+    $eol = ($cformsSettings['global']['cforms_crlf'][b]!=1)?"\r\n":"\n";
 
 	preg_match_all('/\\{([^\\{]+)\\}/',$m,$findall);
 	if ( count($findall[1]) > 0 ) {
@@ -475,9 +502,17 @@ function check_cust_vars($m,$t,$no) {
 			}
 
 			### check if label name is tracked...
-			if( in_array( $fTrackedVar,$allvars ) )
-				$m = str_replace('{'.$fvar.'}', stripslashes($t[$fTrackedVar]), $m);
-
+			if( in_array( $fTrackedVar,$allvars ) ){
+				
+				$v = stripslashes($t[$fTrackedVar]);
+				
+				###  CRs for textareas \r\n user input hardcoded!
+				if ( $html && strpos($v,"\n")!==false )
+					$v = str_replace("\n",'<br />'.$eol,$v);
+				
+				$m = str_replace('{'.$fvar.'}', $v, $m);
+			}
+			
 		}
 	}
 	return $m;
@@ -552,7 +587,7 @@ class cformsRSS {
 							}
                             $description .= '<div style="margin:8px 0;"><a href="'.$entrylink.'">'.__('View details','cforms').'</a></div> ]]>';
 
-			                $entrylink = get_option('siteurl').'/wp-admin/admin.php?page='.$plugindir.'/cforms-database.php&amp;d-id='.$entry->id.'#entry'.$entry->id;
+			                $entrylink = get_cf_siteurl().'/wp-admin/admin.php?page='.$plugindir.'/cforms-database.php&amp;d-id='.$entry->id.'#entry'.$entry->id;
 							$content.= "\t".'<item>'."\n".
 										"\t\t".'<title>'.$title.'</title>'."\n".
 										"\t\t".'<description>'.$description.'</description>'."\n".
@@ -574,8 +609,8 @@ class cformsRSS {
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 	<title><?php if ($single) echo __('New submissions for >>', 'cforms').' '.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']); else _e('All new form submissions', 'cforms'); ?></title>
-	<atom:link href="<?php echo get_option('siteurl').'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?>" rel="self" type="application/rss+xml" />
-	<link><?php echo get_option('siteurl'); ?></link>
+	<atom:link href="<?php echo get_cf_siteurl().'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?>" rel="self" type="application/rss+xml" />
+	<link><?php echo get_cf_siteurl(); ?></link>
 	<description><?php _e('This RSS feed provides you with the most recent form submissions.', 'cforms') ?></description>
 	<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></pubDate>
 	<language><?php echo get_option('rss_language'); ?></language>

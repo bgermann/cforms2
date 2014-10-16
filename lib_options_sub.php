@@ -146,6 +146,7 @@
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_emailoff'] =		 $_REQUEST['cforms_emailoff']?'1':'0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'] =		 $_REQUEST['cforms_emptyoff']?'1':'0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_fromemail'] =     magic($_REQUEST['cforms_fromemail']);
 	$cformsSettings['form'.$no]['cforms'.$no.'_email'] =         magic($_REQUEST['cforms_email']);
 	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] =           magic($_REQUEST['cforms_bcc']);
@@ -190,7 +191,7 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] =	magic($_REQUEST['cforms_mp_backtext']);
 	if( $_REQUEST['cforms_mp_form'] ){
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax']       = '0';
-    $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']  = false;
+		$cformsSettings['form'.$no]['cforms'.$no.'_dontclear']  = false; // NOTE that it can't be set with MP!
 	} else
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = 			$_REQUEST['cforms_ajax']?'1':'0';
 

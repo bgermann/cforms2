@@ -31,7 +31,27 @@
 	v13.0 is only compatible with WP3.1+
 
 	!!! IMPORTANT !!!
- 
+
+
+WHAT's NEW in cformsII - v13.2
+*) fixed:    several fixes around "CC: me" field
+*) improved: added Help Note on how to use {Custom Variables} in multi-page forms
+*) fixed:    default checkbox state is not restored on form reload (user choice remains)
+*) fixed:    removed depreciated eregi() & split() calls
+*) improved: better support for SSL and multi-site deployments (WP v3x!)
+*) fixed:    "Corrupted Content Error" on FF when backing up settings
+*) feature:	 empty fields can now be excluded from the admin email 
+            (Admin Email Message Options)
+*) fixed:    multi-page forms: the "disable email attachments" setting for individual  
+             forms is now being considered in the final admin email 
+*) improved: fixed several issues with multi page forms (accidental auto resets etc.),
+             forms now need to be manually reset via form reset button (setting),
+             no auto form reset anymore when on first form!
+             form session is properly remembered.       			 
+*) improved: calendar.css adjustments to make styles specific to cforms
+
+
+
 WHAT's NEW in cformsII - v13.1
 *) bugfix:	radio button fix
  
@@ -50,8 +70,6 @@ WHAT's NEW in cformsII - v13.0
 *) other:    email layout enhancements (optimized for gmail & HTML capable clients)
              !!! NOTE: in order to fully enable the new layout for old forms, you MUST 
              reset the Admin & Auto Confirmation Messages (see button above each)
-			 
-			 
 
 WHAT's NEW in cformsII - v12.2
 *) other: pare_str() caused issues for some, commented out now

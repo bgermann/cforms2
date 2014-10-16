@@ -46,7 +46,7 @@ function cforms_submitcomment($content) {
 	global $cformsSettings, $wpdb, $subID, $smtpsettings, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale, $abspath;
 
     $WPsuccess=false;
-
+	
 	### WP Comment flag
 	$isAjaxWPcomment = strpos($content,'***');###  WP comment feature
 
@@ -257,8 +257,9 @@ function cforms_submitcomment($content) {
 			  $field_name = $field_name[0];
 
 				###  if ccbox & checked
-			  if ($field_type == "ccbox" && $params ['field_' . $i]<>"-" )
-			      $ccme = 'field_' . $i;
+			  if ($field_type == "ccbox" && $params ['field_' . $i]<>"" ) //10.2. removed "-"
+			      ##$ccme = 'field_' . $i;
+			      $ccme = $field_name;
 			}
 
 			if ( $field_type == "emailtobox" ){  			### special case where the value needs to bet get from the DB!
@@ -353,9 +354,9 @@ function cforms_submitcomment($content) {
 			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = {$Ajaxpid} AND U.ID=P.post_author");
 			$to = $replyto = ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
-	else if ( !($to_one<>-1 && $to<>'') )
+	else if ( !($to_one<>-1 && $to<>'') ){
 		$to = $replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
-
+	}
 
 
 	### from
@@ -390,11 +391,14 @@ function cforms_submitcomment($content) {
 	    if ( function_exists('my_cforms_logic') )
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
 		$htmlmessage = check_default_vars($htmlmessage,$no);
-	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no);
+	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no,true);
 
 	}
 
-	$mail = new cf_mail($no,$frommail,$to,$field_email, true);
+	### custom user ReplyTo handling
+	$userReplyTo = my_cforms_logic($trackf, $field_email, 'ReplyTo');
+
+	$mail = new cf_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
 	$mail->char_set = 'utf-8';
 
@@ -418,8 +422,9 @@ function cforms_submitcomment($content) {
 
 	if( $sentadmin==1 )
 	{
-		  ###  send copy or notification?
-	    if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[$ccme]<>'-') )  ###  not if no email & already CC'ed
+
+		###  send copy or notification?
+	    if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[data][$ccme]<>'') )  ###  not if no email & already CC'ed
 	    {
 
 	                $frommail = check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
@@ -438,7 +443,7 @@ function cforms_submitcomment($content) {
 	                    if ( function_exists('my_cforms_logic') )
 	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
 	                    $cmsghtml = check_default_vars($cmsghtml,$no);
-	                    $cmsghtml = check_cust_vars($cmsghtml,$track,$no);
+	                    $cmsghtml = check_cust_vars($cmsghtml,$track,$no,true);
 	                }
 
 	                ### subject
@@ -471,12 +476,12 @@ function cforms_submitcomment($content) {
 	                $mail->char_set = 'utf-8';
 
 	                ### CC or auto conf?
-	                if ( $ccme&&$trackf[$ccme]<>'-' ) {
+	                if ( $ccme&&$trackf[data][$ccme]<>'' ) {
 	                    if ( $smtpsettings[0]=='1' )
 	                        $sent = cforms_phpmailer( $no, $frommail, $replyto, $field_email, $s[1], $message, $formdata, $htmlmessage, $htmlformdata, 'ac' );
 	                    else{
 	                        $mail->subj = $s[1];
-	                        if ( $mail->html_show_ac ) {
+	                        if ( $mail->html_show ) {  // 3.2.2012 changed from html_show_ac > admin email setting dictates this!
 	                            $mail->is_html(true);
 	                            $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
 	                            $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
@@ -632,55 +637,74 @@ if (!isset($SAJAX_INCLUDED)) {
 
 		$target = "";
 
+		### 10.02. Added header
+		header ('Content-Type: text/javascript');
+		header ('X-Content-Type-Options: nosniff');
+
 		if ($mode == "get") {
-			###  Bust cache in the head
-			header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    ###  Date in the past
+			###  Bust cache in the head		
+			header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 		###  Date in the past
 			header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 			###  always modified
-			header ("Cache-Control: no-cache, must-revalidate");  ###  HTTP/1.1
-			header ("Pragma: no-cache");                          ###  HTTP/1.0
-			$func_name = sajax_sanitize( $_GET["rs"] );
+			header ("Cache-Control: no-cache, must-revalidate");	###  HTTP/1.1
+			header ("Pragma: no-cache");                        	###  HTTP/1.0
+			$func_name = ( $_GET["rs"] );  							### 10.2.2012 sajax_sanitize removed
 			if (! empty($_GET["rsargs"]))
-				$args = sajax_sanitize( $_GET["rsargs"] );
+				$args = ( $_GET["rsargs"] ); 						### 10.2.2012 sajax_sanitize removed
 			else
 				$args = array();
 		}
 		else {
-			$func_name = sajax_sanitize( $_POST["rs"] );
+			$func_name = ( $_POST["rs"] ); 							### 10.2.2012 sajax_sanitize removed
 			if (! empty($_POST["rsargs"]))
-				$args = sajax_sanitize( $_POST["rsargs"] );
+				$args = ( $_POST["rsargs"] ); 						### 10.2.2012 sajax_sanitize removed
 			else
 				$args = array();
 		}
 
+		### Kousuke Ebihara
 		if (! in_array($func_name, $sajax_export_list))
-			echo "-:$func_name not callable";
+			echo "-:".sajax_esc($func_name)." not callable";
 		else {
 			$result = call_user_func_array($func_name, $args);
 			echo "+:";
-			echo "var res = " . trim(sajax_get_js_repr($result)) . "; res;";
-		}
+			echo "var res = " . (trim(sajax_get_js_repr($result))) . "; res;"; // adjusted: removed sajax_esc
+		}		
 		exit;
 	}
+	
+	### Kousuke Ebihara
+	function unicode_escape($matches)
+    {
+        $u16 = mb_convert_encoding($matches[0], 'UTF-16');
+        return preg_replace('/[0-9a-f]{4}/', '\u$0', bin2hex($u16));
+    }
 
-	### sanitize
-	function sajax_sanitize($t) {
-		//$t = preg_replace('/\s/', '', $t);
-		$t = str_replace('<php', '', $t);
-		$t = str_replace('<?', '', $t);
-		return $t;
-	}
+    function escape_js_string($s)
+    {
+        return preg_replace_callback('/[^-\.0-9a-zA-Z]+/', 'unicode_escape', $s); 
+    }
 
+	### fallback escaping without mb_ support
+    function escape_js_string_noMB($s)
+    {
+		$s = str_replace("\\", "\\\\", $s);
+		$s = str_replace("\r", "\\r", $s);
+		$s = str_replace("\n", "\\n", $s);
+		$s = str_replace("'", "\\'", $s);
+		return str_replace('"', '\\"', $s);
+    }
+	
 	###  javascript escape a value
-	function sajax_esc($val)
-	{
-		$val = str_replace("\\", "\\\\", $val);
-		$val = str_replace("\r", "\\r", $val);
-		$val = str_replace("\n", "\\n", $val);
-		$val = str_replace("'", "\\'", $val);
-		return str_replace('"', '\\"', $val);
-	}
-
+    function sajax_esc($val)
+    {
+		if( function_exists(mb_convert_encoding) )
+			return escape_js_string($val);
+		else
+			return escape_js_string_noMB($val);
+    }
+	
+	
 	function sajax_get_one_stub($func_name) {
 		ob_start();
 		$html = ob_get_contents();

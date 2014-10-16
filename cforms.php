@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 13.1
+Version: 13.2
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '13.1';
+$localversion = '13.2';
 
 ### debug messages
 $cfdebug = false;
@@ -70,7 +70,7 @@ function settings_corrupted() {
 	$tmp = basename(dirname(__FILE__));
 
 	if (function_exists('add_menu_page')){
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', get_cf_plugindir().'/'.$tmp.'/images/cformsicon.png' );
+		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', get_cf_plugindir().'/images/cformsicon.png' );
 		add_submenu_page($tmp.'/cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php' );
     }
 	elseif (function_exists('add_management_page'))
@@ -79,7 +79,7 @@ function settings_corrupted() {
     add_action('wp_print_scripts', 'cforms_scripts_corrupted' );
 }
 function cforms_scripts_corrupted(){
-	echo	'<link rel="stylesheet" type="text/css" href="' . get_cf_plugindir() . basename(dirname(__FILE__)). '/cforms-admin.css" />' . "\n";
+	echo	'<link rel="stylesheet" type="text/css" href="' . get_cf_plugindir() . '/cforms-admin.css" />' . "\n";
 }
 
 
@@ -112,9 +112,11 @@ function start_cforms_session() {
 function start_cforms_session() {
 	@session_cache_limiter('private, must-revalidate');
 	@session_cache_expire(0);
-	if (!isset($_SESSION)){
+	if ( !session_id() ){		
 		@session_start();
-	}
+		### debug
+		db( "After session (".session_id().")start: ".print_r($_SESSION,1) );
+		}
 }
 
 
@@ -138,12 +140,15 @@ function cforms($args = '',$no = '') {
     $isMPform = $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_form'];
     $isTAF = substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
 
-    ##debug
+	##debug
     db("Comment form = $isWPcommentForm");
     db("Multi-page form = $isMPform");
+    db("PHP Session = ".(isset($_SESSION)?"yes":"no").$_SESSION['cforms']['current'] );
 
-	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && !$isWPcommentForm )
+	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && !$isWPcommentForm ){
+		db("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
 		$no = $_SESSION['cforms']['current'];
+	}
 
 	### Safety, in case someone uses '1' for the default form
 	$no = ($no=='1')?'':$no;
@@ -171,7 +176,8 @@ function cforms($args = '',$no = '') {
 	    db("Back-Button pressed");
 	}
 	else ### mp init: must be mp, first & not submitted!
-	if( $isMPform && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] && !isset($_REQUEST['sendbutton'.$no]) ){
+	if( $isMPform && !is_array($_SESSION['cforms']) && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] ){
+	//if( $isMPform && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] && !isset($_REQUEST['sendbutton'.$no]) ){
 	    ##debug
 	    db("Current form is *first* MP-form");
         db("Session found, you're on the first form and session is reset!");
@@ -183,9 +189,10 @@ function cforms($args = '',$no = '') {
         $_SESSION['cforms']['first']=$no;
         $_SESSION['cforms']['pos']=1;
     }
+	
 
 	##debug
-	db(print_r($_SESSION,1));
+	db( print_r($_SESSION,1) );
 
 
 	### custom fields support
@@ -288,6 +295,9 @@ function cforms($args = '',$no = '') {
 		$isMPformNext=false; ### default
     	$oldcurrent = $no;
 
+		##debug
+		db("Form is all valid & sendbutton pressed.");
+
 		if( $isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']<>-1 ){
 
         	$isMPformNext=true;
@@ -301,7 +311,7 @@ function cforms($args = '',$no = '') {
 	            $no = my_cforms_logic($trackf, $no,"nextForm");  ### use trackf!
 
 			$oldcurrent = $_SESSION['cforms']['current'];
-	        $_SESSION['cforms']['current']=$no==''?1:$no;
+	        $_SESSION['cforms']['current'] = ($no=='')?1:$no;
 
 			$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 
@@ -326,7 +336,7 @@ function cforms($args = '',$no = '') {
 	}
 
     ##debug
-    db("All good, currently on form #$no");
+    db("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
 
 	##debug: optional
 	## db(print_r($_SESSION,1));
@@ -601,9 +611,10 @@ function cforms($args = '',$no = '') {
 
 
 		### only for mp forms
-		if( $moveBack || $isMPformNext )
+		if( $moveBack || $isMPform ){  // $isMPformNext
 				$field_value = htmlspecialchars( stripslashes(  $_SESSION['cforms']['cf_form'.$no][ $_SESSION['cforms']['cf_form'.$no]['$$$'.($sItem++)] ] ) );
-
+				db( 'retrieving session values to pre-fill...'.$field_value);
+		}
 
 		if( !$all_valid ){
 			### errors...
@@ -631,9 +642,9 @@ function cforms($args = '',$no = '') {
 		    ### only pre-populating fields...
 			if ( $field_type == 'multiselectbox' || $field_type == 'checkboxgroup' )
 				$field_value = $_REQUEST[$input_name];  ### in this case it's an array! will do the stripping later
-			else
+			else{
 				$field_value = htmlspecialchars(stripslashes($_REQUEST[$input_name]));
-
+			}
 	    }
 
 
@@ -645,7 +656,6 @@ function cforms($args = '',$no = '') {
 		### if not reloaded (due to err) then use default values
 		if ( $field_value=='' && $defaultvalue<>'' )
 			$field_value=$defaultvalue;
-
 
 		### field disabled or readonly, greyed out?
 		$disabled = $field_disabled?' disabled="disabled"':'';
@@ -783,10 +793,10 @@ function cforms($args = '',$no = '') {
 				}
 	   		case "ccbox":
 			case "checkbox":
-				if ( ! $field_value )
-					$preChecked = ( strpos($chkboxClicked[1],'true') !== false ) ? ' checked="checked"':'';
+				if ( !$all_valid || ($all_valid && $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form'.$no])) ) //exclude MP! if first time on the form = array = null
+					$preChecked = ( $field_value && $field_value<>'' )? ' checked="checked"':'';  // for MPs 
 				else
-					$preChecked = ( $field_value && $field_value<>'-' )? ' checked="checked"':''; ### '-' for mp session!
+					$preChecked = ( strpos($chkboxClicked[1],'true') !== false ) ? ' checked="checked"':'';  // $all_valid = user choice prevails
 
 				$err='';
 				if( !$all_valid && $validations[$i]<>1 )
@@ -820,7 +830,7 @@ function cforms($args = '',$no = '') {
 				$id=1; $j=0;
 
                 ### mp session support
-                if ( $moveBack || $isMPformNext )
+                if ( $moveBack || $isMPform )
                     $field_value = explode(',',$field_value);
 
 				foreach( $options as $option  ) {
@@ -831,7 +841,7 @@ function cforms($args = '',$no = '') {
 						if ( $opt[1]=='' ) $opt[1] = $opt[0];
 
 	                    $checked = '';
-						if( $moveBack || $isMPformNext ){
+						if( $moveBack || $isMPform ){ //$isMPformNext
 		                    if ( in_array($opt[1],array_values($field_value)) )
 		                        $checked = 'checked="checked"';
 	                    } elseif ( is_array($field_value) ){
@@ -866,7 +876,7 @@ function cforms($args = '',$no = '') {
 				$j=0;
 
                 ### mp session support
-                if ( $moveBack || $isMPformNext )
+                if ( $moveBack || $isMPform ) //$isMPformNext
                     $field_value = explode(',',$field_value);
 
 				foreach( $options as $option  ) {
@@ -877,7 +887,7 @@ function cforms($args = '',$no = '') {
                     if ( $opt[1]=='' ) $opt[1] = $opt[0];
 
                     $checked = '';
-					if( $moveBack || $isMPformNext ){
+					if( $moveBack || $isMPform ){
 	                    if ( in_array($opt[1],array_values($field_value)) )
 	                        $checked = 'selected="selected"';
                     } elseif ( is_array($field_value) ){
@@ -969,6 +979,9 @@ function cforms($args = '',$no = '') {
 
 		}
 
+		### debug
+		db("Form setup: $field_type, val=$field_value, default=$defaultvalue");
+
 		### add new field
 		$content .= $field;
 
@@ -1043,7 +1056,7 @@ function cforms($args = '',$no = '') {
 
     ### multi page form: back
 	$back='';
-    if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back'] )
+    if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back'] && !$cformsSettings['form'.$oldno]['cforms'.$no.'_mp']['mp_first'] )
 		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] . '">';
 
 
@@ -1055,6 +1068,9 @@ function cforms($args = '',$no = '') {
 
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
 		$content .= $tt . '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>' . $nl;
+
+	### debug
+	db( "(cforms) Last stop...".print_r($_SESSION,1) );
 
 	### flush debug messages
 	dbflush();

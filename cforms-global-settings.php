@@ -783,7 +783,7 @@ abspath_check();
 					<td class="obR">
 						<input name="cforms_rsskeyall" id="cforms_rsskey" value="<?php echo $cformsSettings['global']['cforms_rsskeyall'];  ?>" />
 						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#tracking';"/>
-						<br /><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_option('siteurl').'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
+						<br /><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_cf_siteurl().'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
 					</td>
 				</tr>
 				<?php endif; ?>
@@ -876,7 +876,7 @@ function cf_get_files($dir,$currentfile,$ext){
 
 		if ($handle = opendir($presetsdir)) {
 		    while (false !== ($file = readdir($handle))) {
-		        if (eregi('\.'.$ext.'$',$file) && $file != "." && $file != ".." && filesize($presetsdir.'/'.$file) > 0)
+		        if (preg_match('/\.'.$ext.'$/i',$file) && $file != "." && $file != ".." && filesize($presetsdir.'/'.$file) > 0)
 					$list .= '<option value="../../cforms-custom/'.$file.'"'.(('../../cforms-custom/'.$file==$currentfile)?' style="background:#fbd0d3" selected="selected"':'').'>' .$file. '</option>';
 		    }
 		    closedir($handle);
@@ -888,7 +888,7 @@ function cf_get_files($dir,$currentfile,$ext){
 	$presetsdir		= $cformsSettings['global']['cforms_root_dir'].$s. $dir .$s;
 	if ($handle = opendir($presetsdir)) {
 	    while (false !== ($file = readdir($handle))) {
-	        if (eregi('\.'.$ext.'$',$file) && $file != "." && $file != ".." && filesize($presetsdir.$file) > 0)
+	        if (preg_match('/\.'.$ext.'$/i',$file) && $file != "." && $file != ".." && filesize($presetsdir.$file) > 0)
 				$list .= '<option value="'.$file.'"'.(($file==$currentfile)?' style="background:#fbd0d3" selected="selected"':'').'>' .$file. '</option>';
 	    }
 	    closedir($handle);

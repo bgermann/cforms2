@@ -39,11 +39,26 @@
 function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
 
-
 	### If you're unsure how to reference $cformsdata use the below @mail call to send you the data array
 	### @mail('your@email.com', 'cforms my_action test', print_r($cformsdata,1), 'From: your@email.com');
 
 
+
+	###
+	### example: the below code modifies the REPLY-TO address (submitter)
+
+    if ( $setting == "ReplyTo" && $oldvalue<>'' ){
+
+        ### only form #2 should be affected (note: form #1 would be '' empty!!):
+		if ( $cformsdata['id']=='2' && $cformsdata['data']['Your Name']<>'' ){
+
+			return '"'.$cformsdata['data']['Your Name'].'"' . ' <'.$oldvalue.'>';  ### This requires the form to have field labeled "Your Name" !
+
+		}
+
+    }
+	
+	
 
 	###
 	### example: the below code changes the original Success Message
@@ -132,7 +147,7 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
 
 
-	return $oldvalue;
+	return $oldvalue; // If you use this function, this MUST be the last statement!
 }
 
 

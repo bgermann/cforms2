@@ -195,6 +195,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 .ui-datepicker-trigger{
 	cursor:pointer;
+	margin-top: 3px;
 }
 /*                                                    */
 /*   radio button title                               */

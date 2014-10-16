@@ -187,7 +187,6 @@ if ( ($userconfirm & 64) == 0 ){	### 64 = upgrade to 13.0
 		echo '<div id="message64" class="updated fade">'.$text.'<p><a href="?page='.$plugindir.'/cforms-options.php&cf_confirm=confirm64" class="rm_button allbuttons">'.__('Remove Message','cforms').'</a></p></div>';
 	}
 }
-				
 ?>
 
 <div class="wrap" id="top">
@@ -585,7 +584,7 @@ if ( ($userconfirm & 64) == 0 ){	### 64 = upgrade to 13.0
 				<tr class="ob space10">
 					<td class="obL"></td>
 					<td class="obR">
-						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
+						<input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form']) echo 'disabled="disabled"'; if($cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) echo "checked=\"checked\""; ?>/><label for="cforms_dontclear"><?php echo sprintf(__('%sDo not reset%s input fields after submission', 'cforms'),'<strong>','</strong>'); ?></label>
 		 			</td>
 	  			</tr>
 
@@ -744,7 +743,7 @@ if ( ($userconfirm & 64) == 0 ){	### 64 = upgrade to 13.0
 				</tr>
 				<tr class="ob">
 					<td class="obL"></td>
-					<td class="obR"><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_option('siteurl').'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?></td>
+					<td class="obR"><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.get_cf_siteurl().'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?></td>
 				</tr>
 				<?php endif; ?>
 				</table>
@@ -765,6 +764,13 @@ if ( ($userconfirm & 64) == 0 ){	### 64 = upgrade to 13.0
                 <tr class="ob space15">
                     <td class="obL"></td>
                     <td class="obR"><input class="allchk" type="checkbox" id="cforms_emailoff" name="cforms_emailoff" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_emailoff']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_emailoff"><?php echo sprintf(__('%sTurn off%s admin email', 'cforms'),'<strong>','</strong>') ?></label></td>
+                </tr>
+				</table>
+
+				<table class="form-table">
+                <tr class="">
+                    <td class="obL"></td>
+                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_emptyoff" name="cforms_emptyoff" <?php if($cformsSettings['form'.$no]['cforms'.$no.'_emptyoff']=='1') echo "checked=\"checked\""; ?>/><label for="cforms_emptyoff"><?php echo sprintf(__('%sExclude empty fields%s from admin email', 'cforms'),'<strong>','</strong>') ?></label></td>
                 </tr>
 				</table>
 

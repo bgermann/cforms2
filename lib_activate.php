@@ -5,8 +5,8 @@ global $wpdb, $cformsSettings;
 
 ### a few basic things, always reset during (re)activation
 $cformsSettings['global']['plugindir'] = basename(dirname(__FILE__));
-$cformsSettings['global']['cforms_root'] = get_cf_plugindir() . $cformsSettings['global']['plugindir'];
-$cformsSettings['global']['tinyURI'] = get_option('siteurl') . '/wp-includes/js/tinymce';
+$cformsSettings['global']['cforms_root'] = get_cf_plugindir(); // . $cformsSettings['global']['plugindir'];
+$cformsSettings['global']['tinyURI'] = get_cf_siteurl() . '/wp-includes/js/tinymce';
 $cformsSettings['global']['cforms_root_dir'] = dirname(__FILE__);
 $cformsSettings['global']['cforms_IIS'] = strpos(dirname(__FILE__), '\\') !==false ? '\\' : '/';
 $cformsSettings['global']['v'] = $localversion;
