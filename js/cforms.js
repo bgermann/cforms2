@@ -23,7 +23,6 @@ Copyright 2007-2011 OLIVER SEIDEL  (email : oliver.seidel @ deliciousdays.com)
 // DYNAMIC NEW SETTING, if the below doesn't work, please try the above
 var sajax_uri = window.location.protocol + "//" + window.location.host+'/wp-content/plugins/cforms/lib_ajax.php';
 
- 
 
 // No need to change anything here:
 var sajax_debug_mode = false;

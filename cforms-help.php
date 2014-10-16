@@ -11,15 +11,18 @@ $cforms_root = $cformsSettings['global']['cforms_root'];
 
 ?>
 <div class="wrap" id="top">
+		<p class="donateTXT">
+        	<?php _e('If cforms provides great services to you and/or your business, <strong>please consider making a donation</strong> to support future development.', 'cforms'); ?>:<br/>
+			<a class="allbuttons donatebutton" target="_blank" href="http://www.deliciousdays.com/cforms-donation" title="<?php _e('Thank you!', 'cforms'); ?>">Donation in US Dollar</a><br/>
+			<a class="allbuttons donatebutton" target="_blank" href="http://www.deliciousdays.com/cforms-donation-eur" title="<?php _e('Thank you!', 'cforms'); ?>">Donation in EUR</a><br/>
+			<strong><?php _e('Thank you!', 'cforms'); ?></strong>
+		</p>
+
 		<div id="icon-cforms-help" class="icon32"><br/></div><h2><?php _e('Help','cforms')?></h2>
 
 		<p>
         	<?php _e('Here you\'ll find plenty of examples and documentation that should help you configure <strong>cforms</strong>.', 'cforms'); ?>
-			<?php echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img style="vertical-align:middle;" src="'.$cforms_root.'/images/adobe.gif"/>'); ?>
-		</p>
-		<p>
-        	<?php _e('If cforms provides great services to you and/or your business, please consider making a donation to support future development.', 'cforms'); ?>:
-        	<form action="http://www.deliciousdays.com/cforms-plugin/#donation"><input type="submit" class="button" id="donatebutton" value="<?php _e('Thank you!', 'cforms'); ?>" title="<?php _e('Thank you!', 'cforms'); ?>"/></form>
+			<?php //echo sprintf(__('This manual/help page is also available as a %shttp://www.deliciousdays.com/download/cforms-manual.pdf%sPDF document%s.', 'cforms'),'<a href="','">','</a> <img style="vertical-align:middle;" src="'.$cforms_root.'/images/adobe.gif"/>'); ?>
 		</p>
 
 		<p class="cftoctitle"><?php _e('Table of Contents', 'cforms'); ?></p>
@@ -1484,7 +1487,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
 			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
 			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
-			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS &amp; a web screencast</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum?forum=1&amp;topic=428&amp;page=1'); ?></p>
+			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum?forum=1&amp;topic=428&amp;page=1'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>
 

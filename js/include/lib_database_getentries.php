@@ -96,7 +96,7 @@ if ($showIDs<>'') {
 
 				echo '<div class="showform" id="entry'.$entry->sub_id.'">'.
 					 '<table class="dataheader"><tr><td>'.__('Form:','cforms').' </td><td class="b">'. stripslashes($cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']) . '</td><td class="e">(ID:' . $entry->sub_id . ')</td><td class="d">' . $time.' &nbsp; '.$date. '</td>' .
-					 '<td class="s">&nbsp;</td><td><a class="xdatabutton" type="submit" id="xbutton'.$entry->sub_id.'" title="'.__('delete this entry', 'cforms').'" value=""></a></td>' .
+					 '<td class="s">&nbsp;</td><td><a href="#" class="xdatabutton allbuttons deleteall" type="submit" id="xbutton'.$entry->sub_id.'">'.__('Delete this entry', 'cforms').'</a></td>' .
 					 '<td><a class="cdatabutton" type="submit" id="cbutton'.$entry->sub_id.'" title="'.__('close this entry', 'cforms').'" value=""></a></td>' .
                      "</tr></table>\n";
 			}
@@ -122,7 +122,7 @@ if ($showIDs<>'') {
 
                     $fileurl .= '/'.$subID.strip_tags($val);
 
-					echo '<div class="showformfield" style="margin:4px 0;color:#3C575B;"><div class="L">';
+					echo '<div class="showformfield meta"><div class="L">';
 					echo substr($name, 0,strpos($name,'[*'));
 					if ( $entry->field_val == '' )
 						echo 	'</div><div class="R">' . __('-','cforms') . '</div></div>' . "\n";
@@ -132,11 +132,11 @@ if ($showIDs<>'') {
 			}
 			elseif ($name=='page') {  // special field: page
 
-					echo '<div class="showformfield" style="color:#3C575B;"><div class="L">';
+					echo '<div class="showformfield meta"><div class="L">';
 					_e('Submitted via page', 'cforms');
 					echo 	'</div><div class="R">' . str_replace("\n","<br />", strip_tags($val) ) . '</div></div>' . "\n";
 
-					echo '<div class="showformfield" style="margin-bottom:10px;color:#3C575B;"><div class="L">';
+					echo '<div class="showformfield meta"><div class="L">';
 					_e('IP address', 'cforms');
 					echo 	'</div><div class="R"><a href="http://geomaplookup.net/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms').'">'.$entry->ip.'</a></div></div>' . "\n";
 

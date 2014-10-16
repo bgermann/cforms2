@@ -12,14 +12,25 @@ $cformsSettings['global']['cforms_IIS'] = strpos(dirname(__FILE__), '\\') !==fal
 $cformsSettings['global']['v'] = $localversion;
 
 ### Common HTML message information
-$cformsSettings['global']['cforms_style_title'] = 'font:normal 0.8em Verdana; text-align:right; color:#777; margin:3px 0';
-$cformsSettings['global']['cforms_style_table'] = 'background:#F4F5FB; color:#666; font-size:1em; font-family:verdana;';
-$cformsSettings['global']['cforms_style_fs_td'] = 'font-size:105%; font-variant:small-caps; letter-spacing:2px; border-bottom:2px solid #E6E8F7; padding:6px 2px 6px 4px; background:#EFF0FA;';
-$cformsSettings['global']['cforms_style_fsend_td'] = 'background:#E6E8F7; font-size:0px; line-height:2px; height:2px;';
-$cformsSettings['global']['cforms_style_fsendSP_td'] = 'font-size:0px; line-height:2px; height:4px;';
-$cformsSettings['global']['cforms_style_key_td'] = 'color:#000; font-size:90%; white-space:nowrap; padding:4px 20px 4px 15px; vertical-align:top;';
-$cformsSettings['global']['cforms_style_val_td'] = 'font-size:90%; width:100%;';
-$cformsSettings['global']['cforms_style_cforms'] = 'font:normal 10px Arial; color:#777;';
+
+$cformsSettings['global']['cforms_style_doctype'] 	= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
+
+unset ( $cformsSettings['global']['cforms_style'] );
+$cformsSettings['global']['cforms_style']['body'] 	= 'style="margin:0; padding:0; font-family: Verdana, Arial; font-size: 13px; color:#555;"';
+$cformsSettings['global']['cforms_style']['meta'] 	= 'style="font-size: 90%; margin:0; background:#aaaaaa; padding:1em 2em 1em 0.6em; color:#555555; text-shadow:0 1px 0 #c5c5c5; border-bottom:1px solid #9d9d9d;"';
+$cformsSettings['global']['cforms_style']['admin'] 	= 'style="background:#f0f0f0; border-top:1px solid #777; box-shadow:0 -2px 2px #999; -webkit-box-shadow:0 -2px 2px #999;"';
+$cformsSettings['global']['cforms_style']['title'] 	= 'style="font-size: 90%; margin:0; background:#fcfcfc; padding:1em 2em 1em 0.6em; color:#888888; display:inline-block;"';
+$cformsSettings['global']['cforms_style']['table'] 	= 'style="width:auto; margin: 0.2em 2em 2em; font-size: 100%;"';
+$cformsSettings['global']['cforms_style']['fs'] 	= 'style="color:#555; padding:1em 0 0.4em; font-size: 110%; font-weight:bold; text-shadow:0 1px 0 #fff;"';
+$cformsSettings['global']['cforms_style']['key_td']	= 'style="padding: 0.3em 1em; border-bottom:1px dotted #ddd; padding-right:2em; color:#888; width:1%;"';
+$cformsSettings['global']['cforms_style']['val_td'] = 'style="padding: 0.3em 1em; border-bottom:1px dotted #ddd; padding-left:0; color:#333;"';
+$cformsSettings['global']['cforms_style']['cforms'] = 'style="display:block; padding:1em 0.6em; margin-top:1em; background:#f7f7f7; color:#777; font-size:90%; text-align:right; font-family:Tahoma,Arial;"';
+
+$cformsSettings['global']['cforms_style']['autoconf'] 	= 'style="padding:1em 1em 0; background:#f0f0f0; color:#333;"';
+$cformsSettings['global']['cforms_style']['dear'] 		= 'style="margin:0.5em 30px; font-weight:bold; margin-bottom:1.2em;"';
+$cformsSettings['global']['cforms_style']['confp'] 		= 'style="margin:0.5em 30px;"';
+$cformsSettings['global']['cforms_style']['confirmationmsg'] = 'style="margin:4em 30px 0; padding-bottom:1em; font-size:80%; color:#aaa; font-family:Tahoma,Arial;"';
+
 
 ### check for upgrade pre-9.0 to 9.0
 if ( check_update() )
@@ -52,16 +63,18 @@ setINI('form','cforms_ajax', '1');
 setINI('form','cforms_emailpriority', '3');
 setINI('form','cforms_fname', __('Your default form', 'cforms'));
 setINI('form','cforms_csubject', __('Re: Your note', 'cforms').'$#$'.__('Re: Submitted form (copy)', 'cforms'));
+### below is also in cforms-options.php!
 setINI('form','cforms_cmsg', __('Dear {Your Name},', 'cforms') . "\n" . __('Thank you for your note!', 'cforms') . "\n". __('We will get back to you as soon as possible.', 'cforms') . "\n\n");
-
-setINI('form','cforms_cmsg_html', '<div style="font:normal 1em arial; margin-top:10px"><p><strong>' . __('Dear {Your Name},', 'cforms') . "</strong></p>\n<p>". __('Thank you for your note!', 'cforms') . "</p>\n<p>". __('We will get back to you as soon as possible.', 'cforms') . "\n" . '<div style="width:80%; background:#f4faff ; color:#aaa; font-size:11px; padding:10px; margin-top:20px"><strong>'.__('This is an automatic confirmation message.', 'cforms').' {Date}.'.'</strong></div></div>'. "\n\n");
-
+setINI('form','cforms_cmsg_html', '<div '.$cformsSettings['global']['cforms_style']['autoconf'].'><p '.$cformsSettings['global']['cforms_style']['dear'] .'>'. __('Dear {Your Name},', 'cforms') . "</p>\n<p ". $cformsSettings['global']['cforms_style']['confp'].'>'. __('Thank you for your note!', 'cforms') . "</p>\n<p ".$cformsSettings['global']['cforms_style']['confp'].'>'. __('We will get back to you as soon as possible.', 'cforms') . "\n<div ".$cformsSettings['global']['cforms_style']['confirmationmsg'].'>'.__('This is an automatic confirmation message.', 'cforms')." {Date}.</div></div>\n\n" );
+###
 setINI('form','cforms_email', get_bloginfo('admin_email') );
 setINI('form','cforms_fromemail', get_bloginfo('admin_email') );
 setINI('form','cforms_bcc', '');
 
+### below is also in cforms-options.php!
 setINI('form','cforms_header', __('A new submission (form: "{Form Name}")', 'cforms') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms') . "\r\n" . __('Via: {Page}', 'cforms') . "\r\n" . __('By {IP} (visitor IP)', 'cforms') . ".\r\n" . ".\r\n" );
-setINI('form','cforms_header_html', '<p style="font:normal 0.8em Verdana; text-align:right; color:#777; margin:3px 0">' . __('a form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms') . '</p>' );
+setINI('form','cforms_header_html', '<p '.$cformsSettings['global']['cforms_style']['meta'].'>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms') . '</p>' );
+###
 setINI('form','cforms_formdata', '1111');
 setINI('form','cforms_space', '30');
 setINI('form','cforms_noattachments', '0');
@@ -134,7 +147,7 @@ setINI('global','cforms_commentHTML', "<li id=\"comment-{id}\">{moderation}\n<p>
 setINI('global','cforms_commentInMod', '<em>'.__('Your comment is awaiting moderation.', 'cforms').'</em>');
 setINI('global','cforms_avatar', '32');
 
-setINI('global','cforms_css', 'cforms.css');
+setINI('global','cforms_css', 'cforms2012.css');
 setINI('global','cforms_labelID', '0');
 setINI('global','cforms_liID', '0');
 
@@ -142,7 +155,7 @@ setINI('global','cforms_database', '0');
 
 setINI('global','cforms_datepicker', '0');
 setINI('global','cforms_dp_start', '0');
-setINI('global','cforms_dp_date', 'MM/dd/yyyy');
+setINI('global','cforms_dp_date', 'mm/dd/yy');
 setINI('global','cforms_dp_days', __('"S","M","T","W","T","F","S"', 'cforms'));
 setINI('global','cforms_dp_months', __('"January","February","March","April","May","June","July","August","September","October","November","December"', 'cforms'));
 

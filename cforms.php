@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 12.2	
+Version: 13.0
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '12.2';
+$localversion = '13.0';
 
 ### debug messages
 $cfdebug = false;
@@ -70,7 +70,7 @@ function settings_corrupted() {
 	$tmp = basename(dirname(__FILE__));
 
 	if (function_exists('add_menu_page')){
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', get_cf_plugindir().'/'.$tmp.'/images/cformsicon.gif' );
+		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', get_cf_plugindir().'/'.$tmp.'/images/cformsicon.png' );
 		add_submenu_page($tmp.'/cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php' );
     }
 	elseif (function_exists('add_management_page'))
@@ -126,7 +126,7 @@ function cforms($args = '',$no = '') {
 
 	global $smtpsettings, $subID, $cforms_root, $wpdb, $track, $wp_db_version, $cformsSettings;
 
-	parse_str($args, $r);
+	### parse_str($args, $r); ### Oliver 6.8.2011
 
     $oldno = ($no=='1')?'':$no;  ### remeber old val, to reset session when in new MP form
 
@@ -1026,9 +1026,9 @@ function cforms($args = '',$no = '') {
 	}
 
 
-	$content .= $nttt . '<input type="hidden" name="cf_working'.$no.'" id="cf_working'.$no.'" value="'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_working']).'"/>'.
-				$nttt . '<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'"/>'.
-				$nttt . '<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'"/>'.
+	$content .= $nttt . '<input type="hidden" name="cf_working'.$no.'" id="cf_working'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_working']).'</span>"/>'.
+				$nttt . '<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'</span>"/>'.
+				$nttt . '<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="<span>'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'</span>"/>'.
 				$nttt . '<input type="hidden" name="cf_customerr'.$no.'" id="cf_customerr'.$no.'" value="'.rawurlencode($custom_error).'"/>'.
 				$nttt . '<input type="hidden" name="cf_popup'.$no.'" id="cf_popup'.$no.'" value="'.$cformsSettings['form'.$no]['cforms'.$no.'_popup'].'"/>';
 
@@ -1086,32 +1086,41 @@ function cforms_style() {
 			$nav = $cformsSettings['global']['cforms_dp_nav'];
 			$dformat = str_replace(array('M','EE','E'),array('m','dddd','ddd'),stripslashes($cformsSettings['global']['cforms_dp_date']));
 
-			echo '<script type="text/javascript" src="' . $cforms_root. '/js/cformsadmincal.js"></script>'."\n";
+			//echo '<script type="text/javascript" src="' . $cforms_root. '/js/cformsadmincal.js"></script>'."\n";
+			### add jQuery script & calendar
+			wp_register_style('calendar-style', $r . '/styling/calendar.css' );
+			wp_enqueue_style('calendar-style'); 
+
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('jquery-ui-core');
+			
 			echo '<script type="text/javascript">'."\n".
+			
 				 // "\t".'var cforms = jQuery.noConflict(false);'."\n".
-				 "\t".'Date.dayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
-				 "\t".'Date.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
-				 "\t".'Date.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-				 "\t".'Date.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-				 "\t".'Date.firstDayOfWeek = '.stripslashes($cformsSettings['global']['cforms_dp_start']).';'."\n".
-				 "\t".''."\n".
-				 "\t".'Date.fullYearStart = "20";'."\n".
-				 "\t".'jQuery.dpText = { TEXT_PREV_YEAR:"'.stripslashes($nav[0]).'",'. ### Previous year
-				 'TEXT_PREV_MONTH:"'.stripslashes($nav[1]).'",'.
-				 'TEXT_NEXT_YEAR:"'.stripslashes($nav[2]).'",'.
-				 'TEXT_NEXT_MONTH:"'.stripslashes($nav[3]).'",'.
-				 'TEXT_CLOSE:"'.stripslashes($nav[4]).'",'.
-				 'TEXT_CHOOSE_DATE:"'.stripslashes($nav[5]).'",'.
-				 'HEADER_FORMAT:"mmm yyyy",'.
-				 'ROOT:"'.$cforms_root.'"};'."\n".
+				"\t".'var cfCAL={};'."\n".
+				"\t".'cfCAL.dateFormat = "'.stripslashes($cformsSettings['global']['cforms_dp_date']).'";'."\n".
+				"\t".'cfCAL.dayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
+				"\t".'cfCAL.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
+				"\t".'cfCAL.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
+				"\t".'cfCAL.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
+				"\t".'cfCAL.firstDayOfWeek = 0;'."\n".
+				"\t".'cfCAL.fullYearStart = "20";'."\n".
+				"\t".'cfCAL.TEXT_PREV_YEAR="'.stripslashes($nav[0]).'";'."\n". // not needed with 3.3
+				"\t".'cfCAL.TEXT_NEXT_YEAR="'.stripslashes($nav[2]).'";'."\n". // not needed with 3.3
+				"\t".'cfCAL.TEXT_PREV_MONTH="'.stripslashes($nav[1]).'";'."\n".
+				"\t".'cfCAL.TEXT_NEXT_MONTH="'.stripslashes($nav[3]).'";'."\n".
+				"\t".'cfCAL.TEXT_CLOSE="'.stripslashes($nav[4]).'";'."\n".
+				"\t".'cfCAL.TEXT_CHOOSE_DATE="'.stripslashes($nav[5]).'";'."\n". 
+				"\t".'cfCAL.ROOT="'.$cformsSettings['global']['cforms_root'].'";' ."\n\n".
+				 
 				 "\t".'jQuery(function() { '."\n".
 				 "\t\t".'if( jQuery.datepicker ){'."\n".
-				 "\t\t\t".'jQuery(".cf_date").datepicker({buttonImage: "js/calendar.gif", buttonImageOnly: true, dateFormat: "'.$dformat.'" } );'."\n".
-				 "\t\t".'} else {'."\n".
-				 //"\t\t\t".'Date.format = "dd/mm/yyyy"; jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } ); Date.format = "'.$dformat.'";'."\n".
-				 "\t\t\t".'Date.format = "dd/mm/yyyy";'."\n". //!!needed for startDate!!
-				 "\t\t\t".'jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } );'."\n".
-				 "\t\t\t".'Date.format = "'.$dformat.'";'."\n".
+				 
+					"\t\t\t".'jQuery(".cf_date").datepicker({'."\n".
+						"\t\t\t\t".'"buttonImage": cfCAL.ROOT+"/js/calendar.gif", buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",'."\n".
+						"\t\t\t\t".'"dateFormat": cfCAL.dateFormat, "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, "firstDay":cfCAL.firstDayOfWeek,'."\n".
+						"\t\t\t\t".'"nextText": cfCAL.TEXT_NEXT_MONTH, "prevText": cfCAL.TEXT_PREV_MONTH, "closeText": cfCAL.TEXT_CLOSE });'."\n".
+			
 				 "\t\t".'}'."\n".
 				 "\t".'});'."\n".
 				 '</script>'."\n";
@@ -1526,6 +1535,7 @@ function get_request_uri() {
 
 ### PLUGIN VERSION CHECK ON PLUGINS PAGE
 //add_action( 'after_plugin_row', 'cf_check_plugin_version' );
+/*
 function cf_check_plugin_version($plugin)
 {
 	global $plugindir,$localversion;
@@ -1554,7 +1564,7 @@ function cf_check_plugin_version($plugin)
 		}
 	}
 }
-
+*/
 
 ### add actions
 global $tafstring;

@@ -164,8 +164,8 @@ function formatEmail($track,$no){
 
         ### fix labels
 	 	if ( in_array($k,array('luv','subscribe','cauthor','email','url','comment','send2author')) ) continue;
-		if ( preg_match('/\$\$\$/',$k) ) continue;
 
+		if ( preg_match('/\$\$\$/',$k) ) continue;
 
 		if ( strpos($k, 'cf_form') !== false && preg_match('/^cf_form\d*_(.+)/',$k, $r) )
         	$k = $r[1];
@@ -173,11 +173,10 @@ function formatEmail($track,$no){
 		if ( strpos($k, '___') !== false && preg_match('/^(.+)___\d+/',$k, $r) )
         	$k = $r[1];
 
-
 		###  fieldsets
 	    if ( strpos($k,'FieldsetEnd')!==false ){
    			$t .= $eol;
-            $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_fsend_td'].'" colspan="2">&nbsp;</td></tr>' . $eol;
+            $h .= '<tr><td style="" colspan="2">&nbsp;</td></tr>' . $eol;
 			continue;
 		}
 	    elseif ( strpos($k,'Fieldset')!==false ){
@@ -188,7 +187,7 @@ function formatEmail($track,$no){
 	            $space = str_repeat("-", $n );
 
    			$t .= substr($eol."$space".stripslashes( strip_tags($v) )."$space",0,($customspace*2)) . $eol . $eol;
-            $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_fs_td'].'" colspan="2">' . $v . '</td></tr>' . $eol;
+            $h .= '<tr><td '.$cformsSettings['global']['cforms_style']['fs'].' colspan="2">' . $v . '</td></tr>' . $eol;
 			continue;
 		}
 
@@ -201,6 +200,10 @@ function formatEmail($track,$no){
 		$hk = $k;
 		$hv = htmlspecialchars($v);
 
+		### checkboxes get a symbol for value
+	 	if ( $v == '(x)' ) 
+			$hv = "<strong>&#10004;</strong>";
+			
 		###  CRs for textareas \r\n user input hardcoded!
 		if ( strpos($v,"\n")!==false ) {
 	        $k = $eol . $k;
@@ -216,11 +219,11 @@ function formatEmail($track,$no){
 
         ###  create formdata block for email
         $t .= stripslashes( strip_tags($k) ). ': '. $space . $v . $eol;
-        $h .= '<tr><td style="'.$cformsSettings['global']['cforms_style_key_td'].'">' . $hk . '</td><td style="'.$cformsSettings['global']['cforms_style_val_td'].'">' . $hv . '</td></tr>' . $eol;
+        $h .= '<tr><td '.$cformsSettings['global']['cforms_style']['key_td'].'>' . $hk . '</td><td '.$cformsSettings['global']['cforms_style']['val_td'].'>' . $hv . '</td></tr>' . $eol;
 
 	}
 	$r['text'] = $t;
-    $r['html'] = '<p style="'.$cformsSettings['global']['cforms_style_title'].'">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'</p><table width="100%" cellpadding="0" cellspacing="0" style="'.$cformsSettings['global']['cforms_style_table'].'">'.stripslashes($h).'</table><span style="'.$cformsSettings['global']['cforms_style_cforms'].'">powered by <a href="http://www.deliciousdays.com/cforms-plugin">cformsII</a></span>';
+    $r['html'] = '<div '.$cformsSettings['global']['cforms_style']['admin'].'><span '.$cformsSettings['global']['cforms_style']['title'].'>'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'</span><table cellpadding="0" cellspacing="0" '.$cformsSettings['global']['cforms_style']['table'].'>'.stripslashes($h).'</table><span '.$cformsSettings['global']['cforms_style']['cforms'].'>powered by <a href="http://www.deliciousdays.com/cforms-plugin">cformsII</a></span></div>';
 	return $r;
 }
 

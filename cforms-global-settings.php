@@ -210,19 +210,14 @@ abspath_check();
 <div class="wrap" id="top">
     <div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('Global Settings','cforms')?></h2>
 
-    <?php
-    ###debug "easter egg"
-    if ( isset($_POST['showinfo']) ){
+    <?php if ( isset($_POST['showinfo']) ) : ###debug "easter egg" 
 
         echo '<h2>'.__('Debug Info (all major setting groups)', 'cforms').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">';
         echo print_r(array_keys($cformsSettings),1)."</pre>";
         echo '<h2>'.__('Debug Info (all cforms settings)', 'cforms').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">'.print_r($cformsSettings,1)."</pre>";
-
-        cforms_footer();
-        echo '</div>';
-        die();
-    }
-    ?>
+    
+	else : ?>
+	
     <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms') ?></p>
 
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="">
@@ -352,7 +347,7 @@ abspath_check();
 
 				<tr class="ob space15">
 					<td class="obL"><label for="cforms_dp_date"><strong><?php _e('Date Format', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_date'] )); ?>"/></td>
+					<td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_date'] )); ?>"/><a href="http://docs.jquery.com/UI/Datepicker/formatDate" target="_blank"><?php _e('See supported date formats &raquo;', 'cforms'); ?></a></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_dp_days"><strong><?php _e('Days (Columns)', 'cforms'); ?></strong></label></td>
@@ -797,23 +792,18 @@ abspath_check();
 			</div>
 		</fieldset>
 
-	    <div class="cf_actions" id="cf_actions">
-	        <div class="cflegend op-closed" id="p31"><div class="blindplus"></div><p><?php _e('Admin Actions','cforms'); ?></p></div>
-	        <div class="cf-content" id="o31">
-				<p class="m1"><input type="submit" name="showinfo" title="<?php _e('outputs -for debug purposes- all cforms settings', 'cforms') ?>" class="allbuttons addbutton" value="<?php _e('Produce Debug Output', 'cforms') ?>"/></p>
-
-				<p class="m4"><input type="button" class="jqModalDelAll allbuttons deleteall" value="<?php _e('Uninstalling / Removing cforms', 'cforms'); ?>"/></p>
-				<?php if ( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions ) :?>
-				<p class="m2"><input id="deletetables" type="submit" title="<?php _e('Be careful with this one!', 'cforms') ?>" name="deletetables" class="allbuttons deleteall" value="<?php _e('Delete cforms Tracking Tables', 'cforms') ?>" onclick="return confirm('<?php _e('Do you really want to erase all collected data?', 'cforms') ?>');"/></p>
-				<?php endif; ?>
-
-                <p class="m4"><input type="button" class="jqModalBackup allbuttons" value="<?php _e('Backup &amp; Restore All Settings', 'cforms'); ?>"/></p>
-	            <p class="m5"><input type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="<?php _e('Update Settings &raquo;', 'cforms') ?>" onclick="javascript:document.mainform.action='#'+getFieldset(focusedFormControl);" /></p>
-	        </div>
+	    <div class="cf_actions" id="cf_actions" style="display:none;">
+			<input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
+			<input id="cfbar-deleteall" class="jqModalDelAll allbuttons deleteall" type="button" name="deleteallbutton" value=""/>
+			<input id="deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
+			<input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=""/>
+			<input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
 	    </div>
-
+		
 	</form>
 
+	<?php endif; ### not showing debug msgs. ?> 
+	
 	<?php cforms_footer(); ?>
 </div>
 
@@ -844,14 +834,34 @@ abspath_check();
             <div class="controls">
 				<p><?php _e('Generally, simple deactivation of cforms does <strong>not</strong> erase any of its data. If you like to quit using cforms for good, please erase all data before deactivating the plugin.', 'cforms') ?></p>
 				<p><strong><?php _e('This is irrevocable!', 'cforms') ?></strong>&nbsp;&nbsp;&nbsp;<br />
-					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms') ?>');"/>
+					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms') ?>');"/></p>
 
                 <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo $cforms_root; ?>/images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
             </div>
         </form>
     </div>
 </div>
+
 <?php
+add_action('admin_bar_menu', 'add_items');
+function add_items($admin_bar){
+	
+	global $wpdb;
+
+	addAdminBar_root('cforms-bar', 'cforms Admin');
+	
+	addAdminBar_item('cforms-showinfo', __('Produce debug output', 'cforms'), __('Outputs -for debug purposes- all cforms settings', 'cforms'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
+	addAdminBar_item('cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms'), __('Be careful here...', 'cforms'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
+
+	if ( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions ) 
+		addAdminBar_item('cforms-deletetables', __('Delete cforms tracking tables', 'cforms'), __('Be careful here...', 'cforms'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms').'") ) jQuery("#deletetables").trigger("click"); return false;');
+
+	addAdminBar_item('cforms-backup', __('Backup / restore all settings', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+	
+	addAdminBar_item('cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+
+}
+
 function cf_get_files($dir,$currentfile,$ext){
 	global	$cformsSettings;
 

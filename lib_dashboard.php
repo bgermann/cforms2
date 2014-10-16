@@ -25,23 +25,39 @@ function cforms_dashboard() {
 
 	$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformssubmissions} $WHERE ORDER BY sub_date DESC LIMIT 0,5");
 
+	$content .= "<style>\n".
+				"img.dashboardIcon{\n".
+				"vertical-align: middle;\n".
+				"margin-right: 6px;\n".
+				"}\n".
+				"</style>\n";
 	if ( $wp_db_version < 6846 ){
-		$content = "<h3>" . __('Recent cforms entries','cforms') . " <a href='admin.php?page=".$plugindir."/cforms-database.php'>&raquo;</a> </h3>";
-		$content.= "<ul style='font-size:0.8em'>";
+		$content .= "<ul style='font-size:0.8em'>";
 	}
 	else {
-		$content = "<p class=\"youhave\">" . __('Recent cforms entries','cforms') . " <a href='admin.php?page=".$plugindir."/cforms-database.php'>&raquo;</a> </p>";
-		$content.= "<ul>";
+		$content .= "<ul>";
 	}
 
 	if( count($entries)>0 ){
-		foreach($entries as $entry)
-				$content.= '<li><img style="vertical-align:middle;" alt="" src="'.$cformsSettings['global']['cforms_root'].'/images/cformsicon.gif">'.$cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']." [<a href='admin.php?page=".$plugindir."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a>] @ $entry->sub_date</li>";
+		foreach($entries as $entry){
+				$dateConv = mysql2date(get_option('date_format'), $entry->sub_date);
+				$content.= '<li><img class="dashboardIcon" alt="" src="'.$cformsSettings['global']['cforms_root'].'/images/cformsicon.png">'.
+				"<a title=\"". __('click for details','cforms') ."\" href='admin.php?page=".$plugindir."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a> ".
+				__('via','cforms') . " <strong>". $cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']. "</strong>".
+				" on ". $dateConv ."</li>";
+		}
 	}
 	else
 		$content.= '<li>'.__('No entries yet','cforms').'</li>';
 
 	$content.= '</ul>';
+	
+	if ( $wp_db_version < 6846 ){
+		$content .= "<h3><a href='admin.php?page=".$plugindir."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </h3>";
+	}
+	else {
+		$content .= "<p class=\"youhave\"><a href='admin.php?page=".$plugindir."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </p>";
+	}
 
 	echo $content;
 }

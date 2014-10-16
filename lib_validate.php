@@ -315,16 +315,16 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 switch($err){
 	case 0: break;
 	case 1:
-			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), $cformsSettings['form'.$no]['cforms'.$no.'_failure'] );
+			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$cformsSettings['form'.$no]['cforms'.$no.'_failure'].'</span>' );
 			break;
 	case 2:
-			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), $cformsSettings['global']['cforms_codeerr'] );
+			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$cformsSettings['global']['cforms_codeerr'].'</span>' );
 			break;
 	case 3:
-			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), $fileerr);
+			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$fileerr.'</span>');
 			break;
 	case 4:
-			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), $cformsSettings['form'.$no]['cforms'.$no.'_failure'] );
+			$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$cformsSettings['form'.$no]['cforms'.$no.'_failure'].'</span>' );
 			break;
 
 }

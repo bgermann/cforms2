@@ -1,0 +1,9 @@
+
+
+***  If you plan on allowing file attachments/uploads, 
+***  make sure that this folder's permissions are set  
+***  properly to protect against abuse & google from 
+***  indexing it!
+
+***  You also might want to add the contents of robots.txt
+***  to your main robots.txt file under /

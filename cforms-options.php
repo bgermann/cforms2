@@ -100,6 +100,17 @@ if( isset($_REQUEST['cforms_rsskeysnew']) ) {
 	update_option('cforms_settings',$cformsSettings);
 }
 
+### Reset Admin and AutoConf messages
+if( isset($_REQUEST['cforms_resetAdminMsg']) ) {
+	$cformsSettings['form'.$no]['cforms'.$no.'_header'] = __('A new submission (form: "{Form Name}")', 'cforms') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms') . "\r\n" . __('Via: {Page}', 'cforms') . "\r\n" . __('By {IP} (visitor IP)', 'cforms') . ".\r\n" . ".\r\n";
+	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] = '<p '.$cformsSettings['global']['cforms_style']['meta'].'>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms') . '</p>';
+	update_option('cforms_settings',$cformsSettings);
+}
+if( isset($_REQUEST['cforms_resetAutoCMsg']) ) {
+	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] = __('Dear {Your Name},', 'cforms') . "\n" . __('Thank you for your note!', 'cforms') . "\n". __('We will get back to you as soon as possible.', 'cforms') . "\n\n";
+	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] = '<div '.$cformsSettings['global']['cforms_style']['autoconf'].'><p '.$cformsSettings['global']['cforms_style']['dear'] .'>'. __('Dear {Your Name},', 'cforms') . "</p>\n<p ". $cformsSettings['global']['cforms_style']['confp'].'>'. __('Thank you for your note!', 'cforms') . "</p>\n<p ".$cformsSettings['global']['cforms_style']['confp'].'>'. __('We will get back to you as soon as possible.', 'cforms') . "\n<div ".$cformsSettings['global']['cforms_style']['confirmationmsg'].'>'.__('This is an automatic confirmation message.', 'cforms')." {Date}.</div></div>\n\n";
+	update_option('cforms_settings',$cformsSettings);
+}
 
 ### delete field if we find one and move the rest up
 $deletefound = 0;
@@ -163,7 +174,22 @@ if( strlen($fd)<=2 ) {
 ### check for abspath.php
 abspath_check();
 
+$userconfirm = $cformsSettings['global']['cforms_confirmerr'];
+if ( ($userconfirm & 64) == 0 ){	### 64 = upgrade to 13.0
+	if ( isset($_GET['cf_confirm']) && $_GET['cf_confirm']=='confirm64' ){
+		$cformsSettings['global']['cforms_confirmerr'] = $userconfirm|64;
+		update_option('cforms_settings',$cformsSettings);
+	} else {
+		$text = '<p><strong><u>'.__('Please note the main changes for v13.0','cforms').'</u></strong></p>'.
+				'<p>'.__('<strong>Admin Action Menu & Saving Settings</strong><br/>Note that the floating admin drop down on the right side has been moved into the admin bar at the top!', 'cforms').'</p>'.
+				'<p>'.__('<strong>Date Picker</strong><br/>going forward, cforms will exclusively utilize WP\'s jQuery date picker version! See global settings for supported date formats.', 'cforms').'</p>'.
+				'<p>'.__('<strong>Admin and Auto Confirmation Messages</strong><br/>The email layouts have been revised and improved, please goto your individual Message Settings and <u>reset to default</u>.', 'cforms').'</p>';
+		echo '<div id="message64" class="updated fade">'.$text.'<p><a href="?page='.$plugindir.'/cforms-options.php&cf_confirm=confirm64" class="rm_button allbuttons">'.__('Remove Message','cforms').'</a></p></div>';
+	}
+}
+				
 ?>
+
 <div class="wrap" id="top">
 	<div id="icon-cforms-settings" class="icon32"><br/></div><h2><?php _e('Form Settings','cforms')?></h2>
 
@@ -171,7 +197,7 @@ abspath_check();
 		<table class="chgformbox" title="<?php _e('Navigate to your other forms.', 'cforms') ?>">
 		<tr>
             <td class="chgL">
-            	<label for="switchform" class="bignumber"><?php _e('Navigate to', 'cforms') ?> </label>
+            	<label for="switchform" class="bignumber navbar"><?php _e('Navigate to', 'cforms') ?> </label>
                 <?php echo $formlistbox; ?><input type="submit" class="allbuttons go" id="go" name="go" value="<?php _e('Go', 'cforms');?>"/>
             </td>
             <td class="chgM">
@@ -205,23 +231,23 @@ abspath_check();
 
 	<fieldset id="anchorfields" class="cf-content">
 
-		<p>
+		<div>
 			<?php echo sprintf(__('Please see the <strong>Help!</strong> section for information on how to deploy the various <a href="%s" %s>supported fields</a>,', 'cforms'),'?page='.$plugindir.'/cforms-help.php#fields','onclick="setshow(19)"') . ' ' .
 					   sprintf(__('set up forms using <a href="%s" %s>FIELDSETS</a>,', 'cforms'), '?page='.$plugindir.'/cforms-help.php#hfieldsets','onclick="setshow(19)"') .
 					   sprintf(__('use <a href="%s" %s>default values</a> &amp; <a href="%s" %s>regular expressions</a> for single &amp; multi-line fields. ', 'cforms'),'?page='.$plugindir.'/cforms-help.php#single','onclick="setshow(19)"','?page='.$plugindir.'/cforms-help.php#regexp','onclick="setshow(19)"') .
 					   sprintf(__('Besides the generic success &amp; failure messages below, you can add <a href="%s" %s>custom error messages</a>.', 'cforms'),'?page='.$plugindir.'/cforms-help.php#customerr','onclick="setshow(20)"'); ?>
-		</p>
+		</div>
 
 		<div class="tableheader">
         	<div id="cformswarning" style="display:none"><?php echo __('Please save the new order of fields (<em>Update Settings</em>)!','cforms'); ?></div>
         	<div>
 	            <div class="fh1" title="<?php _e('Can be a simple label or a more complex expression. See Help!', 'cforms'); ?>"><br /><span class="abbr"><?php _e('Field Name', 'cforms'); ?></span></div>
 	            <div class="fh2" title="<?php _e('Pick one of the supported input field types.', 'cforms'); ?>"><br /><span class="abbr"><?php _e('Type', 'cforms'); ?></span></div>
-	            <div><img src="<?php echo $cforms_root; ?>/images/ic_required.gif" title="<?php _e('Makes an input field required for proper form validation.', 'cforms'); ?>" alt="" /><br /><?php _e('required', 'cforms'); ?></div>
-	            <div><img src="<?php echo $cforms_root; ?>/images/ic_email.gif" title="<?php _e('Makes the field required and verifies the email address.', 'cforms'); ?>" alt="" /><br /><?php _e('e-mail', 'cforms'); ?></div>
-	            <div><img src="<?php echo $cforms_root; ?>/images/ic_clear.gif" title="<?php _e('Clears the field (default value) upon focus.', 'cforms'); ?>" alt="" /><br /><?php _e('auto-clear', 'cforms'); ?></div>
-	            <div><img src="<?php echo $cforms_root; ?>/images/ic_disabled.gif" title="<?php _e('Grey\'s out a form field (field will be completely disabled).', 'cforms'); ?>" alt="" /><br /><?php _e('disabled', 'cforms'); ?></div>
-	            <div><img src="<?php echo $cforms_root; ?>/images/ic_readonly.gif" title="<?php _e('Form field will be readonly!', 'cforms'); ?>" alt="" /><br /><?php _e('read-only', 'cforms'); ?></div>
+	            <div><img src="<?php echo $cforms_root; ?>/images/ic_required.png" title="<?php _e('Makes an input field required for proper form validation.', 'cforms'); ?>" alt="" /><br /><?php _e('required', 'cforms'); ?></div>
+	            <div><img src="<?php echo $cforms_root; ?>/images/ic_email.png" title="<?php _e('Makes the field required and verifies the email address.', 'cforms'); ?>" alt="" /><br /><?php _e('e-mail', 'cforms'); ?></div>
+	            <div><img src="<?php echo $cforms_root; ?>/images/ic_clear.png" title="<?php _e('Clears the field (default value) upon focus.', 'cforms'); ?>" alt="" /><br /><?php _e('auto-clear', 'cforms'); ?></div>
+	            <div><img src="<?php echo $cforms_root; ?>/images/ic_disabled.png" title="<?php _e('Grey\'s out a form field (field will be completely disabled).', 'cforms'); ?>" alt="" /><br /><?php _e('disabled', 'cforms'); ?></div>
+	            <div><img src="<?php echo $cforms_root; ?>/images/ic_readonly.png" title="<?php _e('Form field will be readonly!', 'cforms'); ?>" alt="" /><br /><?php _e('read-only', 'cforms'); ?></div>
        		</div>
 		</div>
 
@@ -773,8 +799,17 @@ abspath_check();
                     </td>
                 </tr>
 
-				<tr class="ob space15">
-					<td class="obL" style="padding-bottom:0"><label for="cforms_header"><?php _e('<strong>Admin TEXT message</strong><br />(Header)', 'cforms') ?></label></td>
+				<tr class="ob space20">
+					<td class="obL" style="padding-bottom:0">&nbsp;</td>				
+					<td class="obR" style="padding-bottom:0">
+						<input type="submit" class="allbuttons" name="cforms_resetAdminMsg" id="cforms_resetAdminMsg" value="<?php _e('Reset admin message to default', 'cforms') ?>" onclick="javascript:document.mainform.action='#emailoptions';" />
+		 			</td>
+				</tr>
+				
+				<tr class="ob">
+					<td class="obL" style="padding-bottom:0">
+						<label for="cforms_header"><?php _e('<strong>Admin TEXT message</strong><br />(Header)', 'cforms') ?></label>
+					</td>
 					<td class="obR" style="padding-bottom:0">
                     	<table><tr>
 						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header'])); ?></textarea></td>
@@ -851,12 +886,19 @@ abspath_check();
 						<a class="infobutton" href="#" name="it8"><?php _e('Please read note &raquo;', 'cforms'); ?></a>
 		 			</td>
 				</tr>
+				
 				<tr id="it8" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('For the <em>auto confirmation</em> feature to work, make sure to mark at least one field <code>Email</code>, otherwise <strong>NO</strong> auto confirmation email will be sent out! If multiple fields are checked "Email", only the first in the list will receive a notification.', 'cforms') ?></td></tr>
 
                 <?php if( $o=="1" ) :?>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_csubject"><strong><?php _e('Subject auto confirmation', 'cforms') ?></strong></label></td>
 					<td class="obR"><input type="text" name="cforms_csubject" id="cforms_csubject" value="<?php $t=explode('$#$',$cformsSettings['form'.$no]['cforms'.$no.'_csubject']); echo stripslashes(htmlspecialchars($t[0])); ?>" /> <?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
+				</tr>
+				<tr class="ob space20">
+					<td class="obL" style="padding-bottom:0">&nbsp;</td>				
+					<td class="obR" style="padding-bottom:0">
+						<input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms') ?>" onclick="javascript:document.mainform.action='#autoconf';"/>
+		 			</td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_cmsg"><strong><?php _e('TEXT message', 'cforms') ?></strong></label></td>
@@ -1071,21 +1113,13 @@ abspath_check();
 			</div>
 		</fieldset>
 
-	    <div class="cf_actions" id="cf_actions">
-	        <div class="cflegend op-closed" id="p31"><div class="blindplus"></div><p><?php _e('Admin Actions','cforms'); ?></p></div>
-	        <div class="cf-content" id="o31">
-                <p class="m1">
-                <input class="allbuttons addbutton" type="submit" name="addbutton" title="<?php _e('adds a new form with default values', 'cforms'); ?>" value="<?php _e('Add new form', 'cforms'); ?>"/><br />
-                <input class="allbuttons dupbutton" type="submit" name="dupbutton" title="<?php _e('clones the current form', 'cforms'); ?>" value="<?php _e('Duplicate current form', 'cforms'); ?>"/>
-                </p>
-				<?php
-	            	if ( (int)$cformsSettings['global']['cforms_formcount'] > 1)
-    	        		echo '<p class="m2"><input class="allbuttons deleteall" title="'.__('Clicking this button WILL delete this form.', 'cforms').'" type="submit" onclick="return confirm(\''.__('This will delete the current form!', 'cforms').'\')" name="delbutton" value="'.__('Delete current form (!)', 'cforms').'"/></p>';
-        		?>
-				<p class="m3"><input type="button" class="jqModalInstall allbuttons" name="<?php echo $cforms_root; ?>/js/include/" id="preset" value="<?php _e('Install a form preset', 'cforms'); ?>"/></p>
-				<p class="m4"><input type="button" class="jqModalBackup allbuttons" name="backup" id="backup" value="<?php _e('Backup and Restore Settings', 'cforms'); ?>"/></p>
-	            <p class="m5"><input type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="<?php _e('Update Settings &raquo;', 'cforms') ?>" onclick="javascript:document.mainform.action='#'+getFieldset(focusedFormControl);" /></p>
-	        </div>
+	    <div class="cf_actions" id="cf_actions" style="display:none;">
+			<input id="cfbar-addbutton" class="allbuttons addbutton" type="submit" name="addbutton" value=""/>
+			<input id="cfbar-dupbutton" class="allbuttons dupbutton" type="submit" name="dupbutton" value=""/>
+			<input id="cfbar-delbutton" class="allbuttons deleteall" type="submit" name="delbutton" value=""/>
+			<input id="preset" type="button" class="jqModalInstall allbuttons" name="<?php echo $cforms_root; ?>/js/include/" value=""/>
+			<input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=""/>
+			<input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
 	    </div>
 
 		</form>
@@ -1094,6 +1128,25 @@ abspath_check();
 </div>
 
 <?php
+add_action('admin_bar_menu', 'add_items');
+function add_items($admin_bar){
+	$cfo = get_option('cforms_settings');
+
+	addAdminBar_root('cforms-bar', 'cforms Admin');
+	
+	addAdminBar_item('cforms-addbutton', __('Add new form', 'cforms'), __('Adds a new form with default values', 'cforms'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
+	addAdminBar_item('cforms-dupbutton', __('Duplicate current form', 'cforms'), __('Clones the current form', 'cforms'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
+	if ( (int)$cfo['global']['cforms_formcount'] > 1)
+		addAdminBar_item('cforms-delbutton', __('Delete current form (!)', 'cforms'), __('Clicking this button WILL delete this form', 'cforms'), 'if ( confirm("'.__('This will delete the current form!', 'cforms').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
+
+	addAdminBar_item('cforms-preset', __('Install a form preset', 'cforms'), __('Pick a form preset from the repository', 'cforms'), 'jQuery("#preset").trigger("click"); return false;');
+	addAdminBar_item('cforms-backup', __('Backup / restore this form only', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+
+	addAdminBar_item('cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+
+}
+
+
 add_action('admin_footer', 'insert_cfmodal');
 function insert_cfmodal(){
 	global $cforms_root,$noDISP;

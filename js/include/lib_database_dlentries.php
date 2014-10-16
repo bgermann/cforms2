@@ -153,7 +153,7 @@ function getCSVTAB($format='csv'){
 
     $sub_id='';
 	$format = ($format=="csv")?",":"\t";
-    $ipTab = ($_GET['addip']?$format:'');
+    $ipTab = ($_GET['addip']=='true'?$format:'');
 
 	$head = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 
@@ -181,7 +181,7 @@ function getCSVTAB($format='csv'){
             $buffer[last2_n]= $buffer[last_n];
             $buffer[last_n] = $last_n;
 
-			$body  = __('Form','cforms').': "' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry[sub_date]) .'"' . $format . ($_GET['addip']?$entry[ip].$format:'');
+			$body  = __('Form','cforms').': "' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry[sub_date]) .'"' . $format . ($_GET['addip']=='true'?$entry[ip].$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 			$last_n = $next_n;
 
@@ -190,7 +190,7 @@ function getCSVTAB($format='csv'){
 
 		$url='';
         $urlTab='';
-        if( $_GET['addurl'] && strpos($entry[field_name],'[*') ){
+        if( $_GET['addurl']=='true' && strpos($entry[field_name],'[*') ){
 
             preg_match('/.*\[\*(.*)\]$/i',$entry[field_name],$t);
             $no   = $t[1]==''?$entry[form_id]:($t[1]==1?'':$t[1]);
@@ -275,7 +275,7 @@ function getXML(){
 	            if ( $sub_id<>'' )
 	            	fwrite($temp, "</entry>\n");
 
-	            fwrite($temp, '<entry form="'.encData( $fnames[$n]).'" date="'.encData( $entry[sub_date] ).'"'.($_GET['addip']?' ip="'.$entry[ip].'"':'').">\n");
+	            fwrite($temp, '<entry form="'.encData( $fnames[$n]).'" date="'.encData( $entry[sub_date] ).'"'.($_GET['addip']=='true'?' ip="'.$entry[ip].'"':'').">\n");
 
 	            $sub_id = $entry[id];
 	        }

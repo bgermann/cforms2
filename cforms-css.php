@@ -75,7 +75,7 @@ if(!empty($_POST['save_css'])){
 
 	    echo ' <div id="message" class="updated fade"><p><strong>'. __('Write Error! Please verify write permissions on the style file.', 'cforms') .'</strong></p></div>'."\n";
 
-} else if ( !empty($_POST['chg_css']) ){
+} else if ( !empty($_POST['style']) ){
 
 	$cformsSettings['global']['cforms_css'] = $_POST['style'];
 	update_option('cforms_settings',$cformsSettings);
@@ -98,8 +98,8 @@ abspath_check();
 
 	<form id="selectcss" method="post" action="" name="selectcss">
 			 <fieldset class="cformsoptions">
-	            <div class="cflegend op-closed" style="padding-left:10px;" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Select a form style', 'cforms')?>
+	            <div class="cflegend op-closed" style="padding-left:10px;">
+	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Styling options', 'cforms')?>
 	            </div>
 
 			<div class="cf-content">
@@ -109,8 +109,8 @@ abspath_check();
 					<td>
 						<table>
 							<tr valign="middle">
-								<td width="300" align="right" style="font-size:10px;"><?php _e('Please choose a theme file <br />to style your forms' , 'cforms') ?></td>
-								<td align="center">
+								<td class="cssHint"><?php _e('Please choose a theme file to style your forms' , 'cforms') ?></td>
+								<td class="cssStyles">
 									<?php ### include all css files
 										$d   = $cformsSettings['global']['cforms_root_dir']."{$s}styling";
 										$dCustom = $cformsSettings['global']['cforms_root_dir']."{$s}..{$s}cforms-custom";
@@ -121,7 +121,7 @@ abspath_check();
 
 										else {
 											?>
-											<select style="cursor:pointer;" name="style"><?php
+											<select id="csspicker" name="style"><?php
 
 
 												if (file_exists($dCustom)){
@@ -162,16 +162,16 @@ abspath_check();
 															echo '<option value="'.$f.'">'.$f.'</option>';
 												}
 
-											?></select>
+											?>
+											</select>
+											<input style="display:none;" type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms'); ?>"/>
 									<?php } ?>
 								</td>
-								<td>
-									<input type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms'); ?>"/>
-								</td>
+								<td></td>
 							</tr>
 							<tr style="height:200px;">
 								<td colspan="3">
-									<p class="ex"><?php _e('For comprehensive customization support you may choose to turn on <strong>label &amp; list element ID\'s</strong>. This way each input field &amp; label can be specifically addressed via CSS styles.', 'cforms') ?> </p>
+									<p><?php _e('For comprehensive customization support you may choose to turn on <strong>label &amp; list element ID\'s</strong>. This way each input field &amp; label can be specifically addressed via CSS styles.', 'cforms') ?> </p>
 
 									<input type="submit" name="label-ids" id="label-ids" class="allbuttons" value="<?php if ( $cformsSettings['global']['cforms_labelID']=='' || $cformsSettings['global']['cforms_labelID']=='0' ) _e('Activate Label IDs', 'cforms'); else  _e('Deactivate Label IDs', 'cforms'); ?>" />
 									<?php if ( $cformsSettings['global']['cforms_labelID']=='1' ) echo __('Currently turned on ', 'cforms') . '<img class="turnedon" src="' . $cforms_root.'/images/ok.gif" alt=""/>'; ?>
@@ -181,13 +181,13 @@ abspath_check();
 									<br />
 									<br />
 									<input type="submit" name="no-css" id="no-css" class="allbuttons deleteall" style="height:30px" value="<?php if ( $cformsSettings['global']['cforms_no_css']=='' || $cformsSettings['global']['cforms_no_css']=='0' ) _e('Deactivate CSS styling altogether!', 'cforms'); else  _e('Reactivate CSS styling!', 'cforms'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_no_css']=='1' ) echo __('Theme is disabled', 'cforms') . '<img class="turnedon" src="' . $cforms_root.'/images/ok.gif" alt=""/>'; ?>
+									<?php if ( $cformsSettings['global']['cforms_no_css']=='1' ) echo __('No styles are being used', 'cforms') . '<img class="turnedon" src="' . $cforms_root.'/images/ok.gif" alt=""/>'; ?>
 
 								</td>
 							</tr>
 							<tr>
 								<td colspan="3">
-										<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS &amp; a web screencast</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/css-customization-guide-1'); ?></p>
+										<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/css-customization-guide-1'); ?></p>
 								</td>
 							</tr>
 

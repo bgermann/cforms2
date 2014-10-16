@@ -76,18 +76,21 @@ jQuery("#flex1").flexigrid ( {
 	sortname: "id",
 	sortorder: "desc",
 	usepager: true,
+	onDragCol: true,
 	title: '<?php _e('Form Submissions','cforms'); ?>',
 	errormsg: '<?php _e('Connection Error','cforms'); ?>',
 	pagestat: '<?php _e('Displaying {from} to {to} of {total} items','cforms'); ?>',
 	procmsg: '<?php _e('Processing, please wait ...','cforms'); ?>',
 	nomsg: '<?php _e('No items','cforms'); ?>',
-	pageof: '<?php _e('Page {%1} of','cforms'); ?>',
+	outof: '<?php _e('of','cforms'); ?>',
+	findtext: '<?php _e('Find','cforms'); ?>',
+	/* pageof: '<?php _e('Page {%1} of','cforms'); ?>', */
 	useRp: true,
 	blockOpacity: 0.9,
 	rp: 30,
 	rpOptions: [10,30,50,100,200],
 	showTableToggleBtn: true,
-	width: 820,
+	width: 900,
 	height: 250 });
 </script>
 <?php

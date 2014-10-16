@@ -288,7 +288,21 @@ function cforms_submitcomment($content) {
 			if ( $field_type == "verification" )
 					$field_name = __('Q&A','cforms');
 
+			### check boxes
+			if ( $field_type == "checkbox" || $field_type == "ccbox" ) {
 
+					if ( $value == 'on' )
+						$value = '(x)';
+					else
+						$value = '';
+
+			} else if ( $field_type == "radiobuttons" ) {
+
+					if ( ! $value <> 'on' )
+						$value = '';
+
+			}
+			
 			### determine tracked field name
 			$inc='';
 			$trackname=trim($field_name);
@@ -392,7 +406,7 @@ function cforms_submitcomment($content) {
 	### HTML email
 	if ( $mail->html_show ) {
 	    $mail->is_html(true);
-	    $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	    $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
 	    $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 	}
 	else
@@ -469,7 +483,7 @@ function cforms_submitcomment($content) {
 	                        $mail->subj = $s[1];
 	                        if ( $mail->html_show_ac ) {
 	                            $mail->is_html(true);
-	                            $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	                            $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
 	                            $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 	                        }
 	                        else
@@ -485,7 +499,7 @@ function cforms_submitcomment($content) {
 	                        $mail->subj = $s[0];
 	                        if ( $mail->html_show_ac ) {
 	                            $mail->is_html(true);
-	                            $mail->body     =  "<html>".$mail->eol."<body>".$cmsghtml."</body></html>".$mail->eol;
+	                            $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$cmsghtml."</body></html>".$mail->eol;
 	                            $mail->body_alt  =  $cmsg;
 	                        }
 	                        else

@@ -26,8 +26,34 @@
  =====================================================================================
 
  
-PLEASE NOTE: BEFORE INSTALLING V11.8 MAKE A BACKUP OF YOUR CFORMS.JS FILE, AS THE PATH 
-INFORMATION & DECLARATION HAS CHANGED!
+	!!! IMPORTANT !!!
+
+	v13.0 is only compatible with WP3.1+
+
+	!!! IMPORTANT !!!
+ 
+ 
+WHAT's NEW in cformsII - v13.0
+*) WP3.3 compliance
+*) other:    a new more modern default theme/style (cforms2012.css)
+*) other:    WP 3.3 jQuery / jQueryUI is now being used for the date picker!
+*) other:    link to supported date formats added to global settings screen
+*) other:    enhanced dashboard layout / listings
+*) other:    enhanced in-field editing on tracking page ("view records area")
+*) bugfix:   checkbox "default state" setting fixed
+*) bugfix:   checkboxgroup "default states" & "new line" settings fixed 
+*) bugfixes: several admin screens related fixes
+*) bugfixes: tracking page, download options fixed (header, URLs etc.)
+*) other:    checkbox fields now include a "checked symbol", instead of the word "on"
+*) other:    email layout enhancements (optimized for gmail & HTML capable clients)
+             !!! NOTE: in order to fully enable the new layout for old forms, you MUST 
+             create a brand new form and copy/paste the HTML message parts (admin &
+             auto-confirmation message) from this new form to all your old forms !!!
+			 
+			 
+
+WHAT's NEW in cformsII - v12.2
+*) other: pare_str() caused issues for some, commented out now
 
 WHAT's NEW in cformsII - v12.2
 *) bugfix: minor datepicker adjustment (for anyone that uses non standard date display)

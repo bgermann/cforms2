@@ -23,6 +23,12 @@
 
 
  ======================================================================================
+ Some icons are based on the wonderful set of Jan Kovarík: glyphicons
+ ======================================================================================
+  www.glyphicons.com
+  
+
+ ======================================================================================
  Link Love / Credits line under the form:
  ======================================================================================
   I believe in good karma, so I leave it up to you to either leave the link love

@@ -228,15 +228,15 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		### check boxes
 		if ( $field_type == "checkbox" || $field_type == "ccbox" ) {
 
-				if ( isset($_POST[$current_field]) )
-					$value = ($_POST[$current_field]<>'')?$_POST[$current_field]:'X';
+				if ( $value == 'on' )
+					$value = '(x)';
 				else
-					$value = '-';
+					$value = '';
 
 		} else if ( $field_type == "radiobuttons" ) {
 
-				if ( ! isset($_POST[$current_field]) )
-					$value = '-';
+				if ( ! $value <> 'on' )
+					$value = '';
 
 		}
 
@@ -380,7 +380,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	### HTML email
 	if ( $mail->html_show ) {
 	    $mail->is_html(true);
-	    $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	    $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
 	    $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 	}
 	else
@@ -504,7 +504,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 							$mail->subj = $s[1];
 	                        if ( $mail->html_show_ac ) {
 	                            $mail->is_html(true);
-	                            $mail->body     =  "<html>".$mail->eol."<body>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
+	                            $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$htmlmessage.( $mail->f_html?$mail->eol.$htmlformdata:'').$mail->eol."</body></html>".$mail->eol;
 	                            $mail->body_alt  =  $message . ($mail->f_txt?$mail->eol.$formdata:'');
 	                        }
 	                        else
@@ -520,7 +520,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 							$mail->subj = $s[0];
 	                        if ( $mail->html_show_ac ) {
 	                            $mail->is_html(true);
-	                            $mail->body     =  "<html>".$mail->eol."<body>".$cmsghtml."</body></html>".$mail->eol;
+	                            $mail->body     =  $cformsSettings['global']['cforms_style_doctype'] .$mail->eol."<html xmlns=\"http://www.w3.org/1999/xhtml\">".$mail->eol."<head><title></title></head>".$mail->eol."<body {$cformsSettings['global']['cforms_style']['body']}>".$cmsghtml."</body></html>".$mail->eol;
 	                            $mail->body_alt  =  $cmsg;
 	                        }
 	                        else
