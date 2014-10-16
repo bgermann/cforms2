@@ -374,14 +374,24 @@ function check_erased() {
 }
 
 ### add menu items to admin bar
-function addAdminBar_root($id, $ti){
-	global $wp_admin_bar;
-	$wp_admin_bar->add_menu( array('id' => $id, 'title' => $ti, 'href'  => false) );
+function addAdminBar_root($admin_bar, $id, $ti){
+	$arr = array(	'id' => $id, 
+					'title' => $ti, 
+					'href'  => false 
+				);
+	$admin_bar->add_node( $arr );
 }
 
-function addAdminBar_item($id,$ti,$hi,$ev,$p = 'cforms-bar'){
-	global $wp_admin_bar;
-	$wp_admin_bar->add_menu( array('parent' => $p, 'id' => $id, 'title' => $ti, 'href'  => '#', 'meta'  => array('title'  => $hi, 'onclick'  => $ev)) );
+function addAdminBar_item($admin_bar, $id,$ti,$hi,$ev,$p = 'cforms-bar'){
+	$arr = array(	'parent' => $p, 
+					'id' => $id, 
+					'title' => $ti, 
+					'href'  => '#', 
+					'meta'  => array(	'title'  => $hi, 
+										'onclick'  => $ev )
+				);
+	
+	$admin_bar->add_node( $arr );
 }
 
 

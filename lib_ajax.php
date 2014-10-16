@@ -35,7 +35,7 @@ function reset_captcha( $no = '' ){
 
 	$path = get_bloginfo('wpurl') . $path;
 
-	$newimage = 'newcap|'.$no.'|'.$path.'/cforms-captcha.php?ts='.$no.str_replace('&amp;','&',get_captcha_uri());
+	$newimage = 'newcap|'.$no.'|'.$path.'/cforms-captcha.php?ts='.$no;
 	return $newimage;
 }
 

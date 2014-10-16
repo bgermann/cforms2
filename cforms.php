@@ -18,14 +18,14 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 14.2
+Version: 14.5
 Author URI: http://www.deliciousdays.com
 
 
 */
 
 global $localversion;
-$localversion = '14.2';
+$localversion = '14.5';
 
 ### debug messages
 $cfdebug = false;
@@ -739,7 +739,7 @@ function cforms($args = '',$no = '') {
 
 			case "captcha":
 				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" value=""'.$fieldTitle.'/>'.
-						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="'.$cforms_root.'/cforms-captcha.php?ts='.$no.get_captcha_uri().'" alt=""/>'.
+						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="'.$cforms_root.'/cforms-captcha.php?ts='.$no.'" alt=""/>'.
 						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.$cforms_root.'/images/spacer.gif" alt="Captcha"/></a>';
 		    	$captcha=true;
 				break;
@@ -1624,8 +1624,8 @@ function get_request_uri() {
 
 
 ### PLUGIN VERSION CHECK ON PLUGINS PAGE
-//add_action( 'after_plugin_row', 'cf_check_plugin_version' );
-/*
+add_action( 'after_plugin_row', 'cf_check_plugin_version' );
+
 function cf_check_plugin_version($plugin)
 {
 	global $plugindir,$localversion;
@@ -1647,14 +1647,14 @@ function cf_check_plugin_version($plugin)
 			if( (version_compare(strval($theVersion), strval($version), '>') == 1) )
 			{
 				$msg = __("Latest version available: ", "cforms").'<strong>v'.$theVersion.'</strong> - '.$theMessage;
-				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(more info)", "cforms").'</a>.</div><div id="cf-update-msg" style="display:none; padding:10px; text-align:center;" >'.$msg.'</div></td>';
+				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(click for more info)", "cforms").'</a></div><div id="cf-update-msg" style="display:none; padding:10px; text-align:center;" >'.$msg.'</div></td>';
 			} else {
 				return;
 			}
 		}
 	}
 }
-*/
+
 
 ### add actions
 global $tafstring;
@@ -1724,12 +1724,60 @@ if (function_exists('add_action')){
 
 }
 
+
 ### cforms runtime JS scripts
 function cforms_adminstyle() {
 	global $wp_query, $wp_scripts, $localversion;
 	wp_enqueue_script('jquery',false,false,false,false);
 	wp_enqueue_script('jquery-ui-core',false,false,false,false);
 	wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
+}
+
+
+### admin bar
+if ( isset($_GET['page']) ) {
+	$plugin_page = stripslashes($_GET['page']);
+	$plugin_page = plugin_basename($plugin_page);
+	if( strpos($plugin_page, 'cforms-options.php') )
+		add_action('admin_bar_menu', 'add_items_options',999);
+	else if( strpos($plugin_page, 'cforms-global-settings.php') )
+		add_action('admin_bar_menu', 'add_items_global',999);	
+}
+
+function add_items_global( $admin_bar ){
+	
+	global $wpdb;
+
+	addAdminBar_root($admin_bar, 'cforms-bar', 'cforms Admin');
+	
+	addAdminBar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms'), __('Outputs -for debug purposes- all cforms settings', 'cforms'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
+	addAdminBar_item($admin_bar, 'cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms'), __('Be careful here...', 'cforms'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
+
+	if ( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions ) 
+		addAdminBar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms'), __('Be careful here...', 'cforms'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms').'") ) jQuery("#deletetables").trigger("click"); return false;');
+
+	addAdminBar_item($admin_bar, 'cforms-backup', __('Backup / restore all settings', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+	
+	addAdminBar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+
+}
+
+function add_items_options( $admin_bar ){
+
+	$cfo = get_option('cforms_settings');
+
+	addAdminBar_root($admin_bar,'cforms-bar', 'cforms Admin');
+	
+	addAdminBar_item($admin_bar,'cforms-addbutton', __('Add new form', 'cforms'), __('Adds a new form with default values', 'cforms'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
+	addAdminBar_item($admin_bar,'cforms-dupbutton', __('Duplicate current form', 'cforms'), __('Clones the current form', 'cforms'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
+	if ( (int)$cfo['global']['cforms_formcount'] > 1)
+		addAdminBar_item($admin_bar,'cforms-delbutton', __('Delete current form (!)', 'cforms'), __('Clicking this button WILL delete this form', 'cforms'), 'if ( confirm("'.__('This will delete the current form!', 'cforms').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
+
+	addAdminBar_item($admin_bar,'cforms-preset', __('Install a form preset', 'cforms'), __('Pick a form preset from the repository', 'cforms'), 'jQuery("#preset").trigger("click"); return false;');
+	addAdminBar_item($admin_bar,'cforms-backup', __('Backup / restore this form only', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+
+	addAdminBar_item($admin_bar,'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+
 }
 
 

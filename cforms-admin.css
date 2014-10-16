@@ -713,7 +713,7 @@ color:#666666;
 background-color:#ccc;
 }
 
-.chkno,.fieldisreq,.fieldisemail,.fielddisabled,.fieldreadonly,.fieldclear {
+.chkno, input[type="checkbox"].fieldisreq, input[type="checkbox"].fieldisemail, input[type="checkbox"].fielddisabled, input[type="checkbox"].fieldreadonly, input[type="checkbox"].fieldclear {
 margin:0 9px 0 19px;
 width:13px;
 height:13px;
@@ -727,7 +727,7 @@ outline: 1px solid #2244ED;
 vertical-align:top;
 }
 
-.alternate,.rowalt,.rowalt .fieldisreq,.rowalt .fieldisemail,.rowalt .fielddisabled,.rowalt .fieldreadonly,.rowalt .fieldclear {
+.alternate, .rowalt, .rowalt input[type="checkbox"].fieldisreq, .rowalt input[type="checkbox"].fieldisemail, .rowalt input[type="checkbox"].fielddisabled, .rowalt input[type="checkbox"].fieldreadonly, .rowalt input[type="checkbox"].fieldclear {
 background-color:#eee!important;
 }
 

@@ -28,9 +28,15 @@
  
 	!!! IMPORTANT !!!
 
-	v13.0 is only compatible with WP3.1+
+	v14.5 is only compatible with WP3.3+
 
 	!!! IMPORTANT !!!
+
+	
+WHAT's NEW in cformsII - v14.5
+*) added	WP3.4 compliance
+*) fixed	CAPTCHA security issue; can't override captcha settings via URL params
+*) fixed	re-enabled version update info on the native WP plugins page
 
 WHAT's NEW in cformsII - v14.2
 *) added	added more IQ to my-functions.php:

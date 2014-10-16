@@ -609,7 +609,7 @@ abspath_check();
 					$i  = prep2( $cap['i'],'i' );
 					$ac = prep2( $cap['ac'],'abcdefghijkmnpqrstuvwxyz23456789' );
 
-					$img = "&amp;c1={$c1}&amp;c2={$c2}&amp;ac={$ac}&amp;i={$i}&amp;w={$w}&amp;h={$h}&amp;c={$c}&amp;l={$l}&amp;f={$f}&amp;a1={$a1}&amp;a2={$a2}&amp;f1={$f1}&amp;f2={$f2}&amp;b={$bg}";
+					//$img = "&amp;c1={$c1}&amp;c2={$c2}&amp;ac={$ac}&amp;i={$i}&amp;w={$w}&amp;h={$h}&amp;c={$c}&amp;l={$l}&amp;f={$f}&amp;a1={$a1}&amp;a2={$a2}&amp;f1={$f1}&amp;f2={$f2}&amp;bg={$bg}";
 
 					$fonts = '<select name="cforms_cap_f" id="cforms_cap_f">'.cf_get_files('captchafonts',$f,'ttf').'</select>';
 					$backgrounds = '<select name="cforms_cap_b" id="cforms_cap_b">'.cf_get_files('captchabg',$bg,'gif').'</select>';
@@ -856,24 +856,6 @@ abspath_check();
 </div>
 
 <?php
-add_action('admin_bar_menu', 'add_items');
-function add_items($admin_bar){
-	
-	global $wpdb;
-
-	addAdminBar_root('cforms-bar', 'cforms Admin');
-	
-	addAdminBar_item('cforms-showinfo', __('Produce debug output', 'cforms'), __('Outputs -for debug purposes- all cforms settings', 'cforms'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
-	addAdminBar_item('cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms'), __('Be careful here...', 'cforms'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
-
-	if ( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions ) 
-		addAdminBar_item('cforms-deletetables', __('Delete cforms tracking tables', 'cforms'), __('Be careful here...', 'cforms'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms').'") ) jQuery("#deletetables").trigger("click"); return false;');
-
-	addAdminBar_item('cforms-backup', __('Backup / restore all settings', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
-	
-	addAdminBar_item('cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
-
-}
 
 function cf_get_files($dir,$currentfile,$ext){
 	global	$cformsSettings;
