@@ -600,18 +600,32 @@ add_action('template_redirect', array('cformsRSS', 'outputRSS'));
 global $cfdata, $cfsort, $cfsortdir;
 
 function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=false,$sd='asc') {
-	global $wpdb, $cformsSettings, $cfdata, $cfsort, $cfsortdir;
+	global $wpdb, $cformsSettings, $cfdataTMP, $cfsort, $cfsortdir;
+	
+	//unify
+	if( $s=='date' || $s=='timestamp' )
+		$s = 'sub_date';
 
-	if( $s=='date' )
-		$s = 'timestamp';
+	//set limit
+    $limit = ($limit && $limit<>'')?'LIMIT 0,'.$limit:'';
 
-	$cfdata = array();
-    $cfsort=$s;
-    $cfsortdir=$sd;
+	
+	$ORDER_1 = $cfsort = '';
+	if( in_array($s,array('id','form','timestamp','email','ip')) )
+		$ORDER_1 = "ORDER BY " . $s . ' ' . $sd;
+	else{
+		$ORDER_1 = "ORDER BY id DESC";
+		$cfsort = $s;
+	}
 
-    $fname_in = '';
+	//SORT
+	$cfdata 	= array();
+    $cfsortdir	= $sd;
+	
+	//GENERAL WHERE
 	$where = false;
 
+    $fname_in = '';
 	for ($i=1; $i <= $cformsSettings['global']['cforms_formcount']; $i++){
 	    $n = ( $i==1 )?'':$i;
 	    $fnames[$i]=stripslashes($cformsSettings['form'.$n]['cforms'.$n.'_fname']);
@@ -624,13 +638,19 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 	$where .= $from?($where?' AND':'')." sub_date > '$from'":'';
 	$where .= $to?($where?' AND':'')." sub_date < '$to'":'';
     $where = $where?'WHERE'.$where:'';
-
-    $limit = ($limit && $limit<>'')?'LIMIT 0,'.$limit:'';
-
+	//
+	
     $in = '';
-    $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $limit";
+
+    $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $ORDER_1 $limit";
 	$all = $wpdb->get_results($sql);
 
+/*	
+	echo '<br> >>'.$sql;
+	echo '<br><pre>'.print_r($all,1).'</pre>';
+	die();
+*/
+	
 	foreach ( $all as $d ){
     	$in = $in . $d->id . ',';
 	    $n = ( $d->form_id=='' )?1:$d->form_id;
@@ -649,7 +669,6 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE $where";
 	$all = $wpdb->get_results($sql);
 
-
 	$offsets = array();
 	foreach ( $all as $d ){
 
@@ -666,31 +685,32 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 
     }
 
-	if ( $cfsort <> '' )
+	if ( $cfsort <> '' ){
+		$cfdataTMP = $cfdata;
 		uksort ($cfdata, "cf_sort");
-
+	}
 	return $cfdata;
 }
 
 
 
 function cf_sort( $a,$b ){
-	global $cfdata, $cfsort, $cfsortdir;
-
+	global $cfdataTMP, $cfsort, $cfsortdir;
 
 	if (!is_array($a) && !is_array($b)){
-
-    	if( $cfdata[$a][$cfsort]<>'' && $cfdata[$b][$cfsort]<>'' ){
-	        $na = $cfdata[$a][$cfsort];
-	        $nb = $cfdata[$b][$cfsort];
-		}else if ( $cfdata[$a]['data'][$cfsort]<>'' && $cfdata[$b]['data'][$cfsort]<>'' ){
-	        $na = $cfdata[$a]['data'][$cfsort];
-	        $nb = $cfdata[$b]['data'][$cfsort];
-        }
-        else
-        	return 0;
-
+		
+		$na = ($cfdataTMP[$a]['data'][$cfsort]<>'') ? $cfdataTMP[$a]['data'][$cfsort]:false;
+		$nb = ($cfdataTMP[$b]['data'][$cfsort]<>'') ? $cfdataTMP[$b]['data'][$cfsort]:false;
+	
+		if ( !($na && $nb) ){ 
+			//echo "err: ($a=$naD) :: ($b=$nbD)<br>";
+			if ( !$na ) return 1;
+			if ( !$nb ) return -1;
+			return 0;
+		}
 	}
+	
+	//echo "($a=$na) :: ($b=$nb)<br>";
 
     $tmpA=(int)trim($na);
     $tmpB=(int)trim($nb);

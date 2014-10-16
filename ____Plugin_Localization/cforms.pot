@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cforms v11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-09 17:51+0100\n"
+"POT-Creation-Date: 2011-05-02 20:46+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Oliver Seidel <oliver.seidel@deliciousdays.com>\n"
 "Language-Team: Oliver Seidel <oliver.seidel@deliciousdays.com>\n"
@@ -3552,7 +3552,7 @@ msgid "<strong>Include</strong> user input at the bottom of the admin email"
 msgstr ""
 
 #: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms-options.php:812
-msgid "'Don't like the default (blue) form data block in your admin email?  &raquo;"
+msgid "'Don't like the default form data block in your admin email?  &raquo;"
 msgstr ""
 
 #: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms-options.php:813
@@ -3872,46 +3872,46 @@ msgstr ""
 msgid "Corrupted Settings"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:679
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:706
 msgid "reset captcha image"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1008
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1037
 msgid "Note: This will reset all your input!"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1257
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1258
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1268
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1275
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1297
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1298
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1308
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1315
 msgid "cforms Tell-A-Friend"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1379
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1423
 msgid "Title"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1382
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1426
 msgid "Form"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1423
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1467
 msgid "Add any cforms form to your sidebar"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1497
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1541
 msgid "Latest version available: "
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1498
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1542
 msgid "New cformsII update available"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1498
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1542
 msgid "(more info)"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1555
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/cforms.php:1599
 msgid "T-A-F enable this post/page"
 msgstr ""
 
@@ -4047,15 +4047,15 @@ msgstr ""
 msgid "\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\""
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_ajax.php:286
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_ajax.php:289
 msgid "Q&A"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_ajax.php:496
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_ajax.php:499
 msgid "Error occurred while sending the auto confirmation message: "
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_ajax.php:541
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_ajax.php:544
 msgid "Error occurred while sending the message: "
 msgstr ""
 
@@ -4067,28 +4067,28 @@ msgstr ""
 msgid "minute(s)"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:547
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:550
 msgid "View details"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:560
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:563
 #: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_dashboard.php:42
 msgid "No entries yet"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:560
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:563
 msgid "You might want to check back in a little while..."
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:570
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:573
 msgid "New submissions for >>"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:570
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:573
 msgid "All new form submissions"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:573
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_aux.php:576
 msgid "This RSS feed provides you with the most recent form submissions."
 msgstr ""
 
@@ -4152,28 +4152,28 @@ msgstr ""
 msgid "Help!"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:204
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:205
 msgid "It appears that cforms was not able to create <strong>abspath.php</strong> in your cforms plugin folder. Please check file/folder permissions (plugins/cforms), then <strong>re-activate</strong> cforms."
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:206
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:207
 msgid "If the problem persists, please create a file (using your preferred text editor) manually with the following content:"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:208
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:209
 msgid "Save the file as abspath.php and ftp to your cforms folder."
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:332
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:333
 #, php-format
 msgid "For more information and support, visit the <strong>cforms</strong> %s support forum %s. "
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:333
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:334
 msgid "Translation provided by Oliver Seidel, for updates <a href=\"http://deliciousdays.com/cforms-plugin\">check here.</a>"
 msgstr ""
 
-#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:350
+#: G:\MyDocuments\Documents\Code\cforms-source\cforms/lib_functions.php:351
 msgid "In case disabling/enabling doesn't seem to properly set the plugin defaults, try login out and back in and <strong>don't select the checkbox for activation</strong> on the plugin page."
 msgstr ""
 

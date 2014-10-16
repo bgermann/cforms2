@@ -1,5 +1,5 @@
 /*
-Copyright 2007, 2008, 2009 OLIVER SEIDEL  (email : oliver.seidel @ deliciousdays.com)
+Copyright 2007-2011 OLIVER SEIDEL  (email : oliver.seidel @ deliciousdays.com)
 
   This program is free software: you can redistribute it and/or modify it under the
   terms of the GNU General Public License as published by the Free Software Foundation,
@@ -16,8 +16,14 @@ Copyright 2007, 2008, 2009 OLIVER SEIDEL  (email : oliver.seidel @ deliciousdays
 
 // ONLY in case AJAX DOESN'T work you may want to double-check this path:
 // If you do change this setting: CLEAR your BROWSER CACHE & RESTART you BROWSER!
-var sajax_uri = '/wp-content/plugins/cforms/lib_ajax.php';
 
+
+// OLD SETTING: var sajax_uri = '/wp-content/plugins/cforms/lib_ajax.php';
+
+// DYNAMIC NEW SETTING, if the below doesn't work, please try the above
+var sajax_uri = window.location.protocol + "//" + window.location.host+'/wp-content/plugins/cforms/lib_ajax.php';
+
+ 
 
 // No need to change anything here:
 var sajax_debug_mode = false;

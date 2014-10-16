@@ -171,8 +171,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
  		}
  		else if ( $field_type == "upload" ){
 
- 			### $fsize = $file['size'][$filefield]/1000;
- 			$value = str_replace(' ','_',$file['name'][$filefield++]);
+			if ( is_array($file) && is_array($file['name']) ) {
+				### $fsize = $file['size'][$filefield]/1000;
+				$value = str_replace(' ','_',$file['name'][$filefield++]);
+			}else{
+				$value = '';
+			}
 
  		}
  		else if ( $field_type == "multiselectbox" || $field_type == "checkboxgroup"){
