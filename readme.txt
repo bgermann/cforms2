@@ -4,7 +4,7 @@ Donate link: http://www.deliciousdays.com/cforms-donation
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 14.6
+Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
