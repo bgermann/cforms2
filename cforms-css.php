@@ -12,7 +12,7 @@ $cformsSettings = get_option('cforms_settings');
 
 $cformsSettings = get_option('cforms_settings');
 $plugindir   = dirname(plugin_basename(__FILE__));
-$s = DIRECTORY_SEPARATOR;
+$s = DIRECTORY_SEPERATOR;
 
 ### CSS styles
 $style		= $cformsSettings['global']['cforms_css'];

@@ -76,4 +76,4 @@ $c = str_replace('&','&amp;',$wpdb->get_var("SELECT option_value FROM `$wpdb->op
     </form>
 
 </div>
-<?php wp_die();
+<?php die(); ?>

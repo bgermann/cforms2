@@ -62,3 +62,5 @@ function cforms2_get_form_presets(){
 	$fullstring = '<select name="formpresets" id="formpresets">'.$list.'</select></p><p class="descPreset">'.$alldesc;
     return ($list=='')?'<select><li>'.__('Not available','cforms').'</select></li>':$fullstring;
 }
+
+?>

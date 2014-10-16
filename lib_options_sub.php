@@ -252,3 +252,4 @@
 
     update_option('cforms_settings',$cformsSettings);
 	echo '<div id="message" class="updated fade"><p>'.__('Form settings updated.', 'cforms').'</p>'.$usermsg.'</div>';
+?>

@@ -1,7 +1,6 @@
 <?php
 /*
   Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
-  Copyright (c) 2014      Matthew Sigley
   Copyright (c) 2014      Bastian Germann
 
   This program is free software: you can redistribute it and/or modify
@@ -21,7 +20,7 @@
 Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
-Author: Oliver Seidel, Bastian Germann
+Author: Oliver Seidel, Bastian Germann, Matthew Sigley
 Version: 14.6.3
 
 
@@ -95,10 +94,10 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 add_action('template_redirect', 'cforms2_start_session');
 
 function cforms2_start_session() {
-	session_cache_limiter('private, must-revalidate');
-	session_cache_expire(0);
+	@session_cache_limiter('private, must-revalidate');
+	@session_cache_expire(0);
 	if ( !session_id() ){
-		session_start();
+		@session_start();
 		### debug
 		cforms2_dbg( "After session (".session_id().")start: ".print_r($_SESSION,1) );
 	}
@@ -196,6 +195,7 @@ function cforms2($args = '',$no = '') {
 	$content = '';
 
 	$err=0;
+	$filefield=0;
 
 	$validations = array();
 	$all_valid = 1;
@@ -674,6 +674,7 @@ function cforms2($args = '',$no = '') {
 
 		### add input field
 		$dp = '';
+		$naming = false;
 		$field  = '';
 		$val = '';
 		$force_checked = false;
@@ -1431,12 +1432,9 @@ function cforms2_widget_init() {
 
 
     $cformsSettings = get_option('cforms_settings');
-
-	// Matthew Sigley's change from https://github.com/msigley/cforms-II-EX/commit/c9724f4cf72e088059ac6bde9d610e66dc30dc1c
     $options = array();
     if( isset($cformsSettings['global']['widgets']) && is_array($cformsSettings['global']['widgets']) )
         $options = $cformsSettings['global']['widgets'];
-	// end Matthew Sigley's change
 
     $prefix = 'cforms';
 
@@ -1496,9 +1494,9 @@ function cforms2_widget_init() {
 	            $number = ($args['number'] == -1)? '%i%' : $args['number'];
 
 	            // stored data
-	            $opts  = $options[$number];
-	            $title = $opts['title'];
-	            $form = $opts['form'];
+	            $opts  = @$options[$number];
+	            $title = @$opts['title'];
+	            $form = @$opts['form'];
 
 
                 $opt = '';
@@ -1680,6 +1678,7 @@ if (function_exists('add_action')){
 
 ### cforms runtime JS scripts
 function cforms2_adminstyle() {
+	global $wp_query, $wp_scripts, $localversion;
 	wp_enqueue_script('jquery',false,false,false,false);
 	wp_enqueue_script('jquery-ui-core',false,false,false,false);
 	wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
@@ -1739,3 +1738,4 @@ add_action('admin_init', 'cforms2_adminstyle');
 add_filter('wp_head', 'cforms2_style');
 add_filter('the_content', 'cforms2_insert',101);
 add_filter('wp_footer', 'cforms2_script',99);
+?>

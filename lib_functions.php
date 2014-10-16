@@ -347,3 +347,4 @@ function cforms2_magic($v){
 	$vercomp = (version_compare(strval($wp_version), strval('2.9'), '>='));
 	return ( get_magic_quotes_gpc() || $vercomp ) ? $v : addslashes($v);
 }
+?>

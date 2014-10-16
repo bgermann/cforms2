@@ -936,7 +936,7 @@ if( strlen($fd)<=2 ) {
 			    <?php
 			    $a=$cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
                 $err='';
-				$t = (substr($a,0,1)=='/')?$a:dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
+				$t = (substr($a,0,1)=='/')?$a:dirname(__FILE__).DIRECTORY_SEPERATOR.$a;
 				if ( $t<>'' && !file_exists( $t ) ) {
 			        $err = '<br /><p class="error">' . sprintf(__('Can\'t find the specified <strong>Attachment</strong> (%s)! Please verify the server path!', 'cforms' ),$t) . '</p>';
 			    }
@@ -1179,3 +1179,4 @@ function cforms2_insert_modal(){
 	</div>
 <?php
 }
+?>

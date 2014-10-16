@@ -62,7 +62,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		if( $jump )	continue;
 
 		### if subscribe not shown, skip
-		$isSubscribed='';
+		$isSubscribed=='';
 		if ( class_exists('sg_subscribe') ){
 			global $sg_subscribe;
 			sg_subscribe_start();
@@ -321,7 +321,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 				}
 
               ### A properly uploaded file will pass this test. There should be no reason to override this one.
-              if (! is_uploaded_file( $file['tmp_name'][$i] ) )
+              if (! @ is_uploaded_file( $file['tmp_name'][$i] ) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err4'];
 
               if ( $fileerr <> '' ){
@@ -364,3 +364,5 @@ if ( $err<>0 && $c_errflag )
 function cforms2_is_email($string){
 	return preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i", $string);
 }
+
+?>

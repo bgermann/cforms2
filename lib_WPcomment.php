@@ -13,6 +13,7 @@ $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 $content 	 = '';
 
 $err		 = 0;
+$filefield	 = 0;   ### for multiple file upload fields
 
 $validations = array();
 $all_valid 	 = 1;
@@ -178,8 +179,8 @@ if ( $isAjaxWPcomment ){
 		###
 		### Filter first?
 		###
-	    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-		$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
+	    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
+		$CFfunctions = dirname(__FILE__).DIRECTORY_SEPERATOR.'my-functions.php';
         if ( file_exists($CFfunctionsC) )
 			include_once($CFfunctionsC);
 		else if ( file_exists($CFfunctions) )
@@ -260,3 +261,4 @@ if ( $isAjaxWPcomment ){
 		header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=err'.$err. '#cforms'.$no.'form' );
 	}
 } ### non Ajax
+?>

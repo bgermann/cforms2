@@ -84,7 +84,7 @@ jQuery("#flex1").flexigrid ( {
 	rp: 30,
 	params : [
 		{name:'action', value:'database_overview'},
-		{name:'_wpnonce', value: '<?php echo wp_create_nonce('database_overview'); ?>'}
+		{name:'_wpnonce', value: '<?php echo wp_create_nonce('database_overview'); ?>'},
 	],
 	rpOptions: [10,30,50,100,200],
 	showTableToggleBtn: true,
@@ -105,6 +105,8 @@ cforms2_footer();
 <?php
 add_action('admin_footer', 'cforms2_insert_modal_tracking');
 function cforms2_insert_modal_tracking(){
+	global $noDISP;
+
 ?>
 	<div class="jqmWindow" id="cf_delete_dialog">
 		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
@@ -139,3 +141,4 @@ function cforms2_insert_modal_tracking(){
 	</div>
 <?php
 }
+?>

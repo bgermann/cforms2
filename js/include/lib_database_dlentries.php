@@ -15,8 +15,8 @@ $cformsSettings = get_option('cforms_settings');
 
 
 ### get custom functions
-$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
+$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPERATOR.'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )
@@ -77,6 +77,8 @@ if ($sub_ids<>'') {
 
 	$in_list = ($sub_ids<>'all')?'AND id in ('.substr($sub_ids,0,-1).')':'';
 
+	$count = $wpdb->get_var("SELECT COUNT(id) FROM {$wpdb->cformssubmissions} WHERE TRUE $where $in_list");
+
     if( !is_writable($tempfile) ){
 		$err = sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),"\r\n\r\n --->  <code>". $tempfile ."\r\n\r\n","\r\n\r\n");
 
@@ -98,11 +100,11 @@ if ($sub_ids<>'') {
     ### UTF8 header
     if ( $charset=='utf-8' )
         fwrite($handle, pack("CCC",0xef,0xbb,0xbf));
-
+trigger_error("$fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset");
 	switch ( $format ){
-		case 'xml': cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
-		case 'csv': cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
-		case 'tab': cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, 'tab'); break;
+		case 'xml': cforms2_get_xml($handle, $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'csv': cforms2_get_csv_tab($handle, 'csv', $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'tab': cforms2_get_csv_tab($handle, 'tab', $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
 	}
 
     fclose($handle);
@@ -127,7 +129,7 @@ if ($sub_ids<>'') {
 }
 }
 
-function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, $format='csv'){
+function cforms2_get_csv_tab($handle, $format='csv', $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset){
 	global $wpdb;
 
     $results = $wpdb->get_results( "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC" );
@@ -144,7 +146,7 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 
     $last_n = '';
 
-	foreach( $results as $entry ) {
+	foreach( $results as $key => $entry ) {
 
 	### while( $entry = mysql_fetch_array($r) ){
 
@@ -237,7 +239,7 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 
 
 
-function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $charset){
+function cforms2_get_xml($handle, $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset){
 	global $wpdb;
 
 	if( $charset=='utf-8' )
@@ -254,7 +256,7 @@ function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder
 	
 	/*
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-	mysql_select_cforms2_dbgDB_NAME) or die( "Unable to select database");
+	@mysql_select_cforms2_dbgDB_NAME) or die( "Unable to select database");
 
  	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
 	$r = mysql_query($sql);
@@ -263,7 +265,7 @@ function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder
 	//  &#10;
 	
     $sub_id ='';
-    foreach( $results as $entry ) {
+    foreach( $results as $key => $entry ) {
 	### while( $entry = mysql_fetch_array($r) ){
 
 	        if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
@@ -306,4 +308,4 @@ function cforms2_enc_data_xml ( $d , $charset ){
 	$d = str_replace( array('"'), array('&quot;'),$d );
 	$d = ( $charset=='utf-8' ) ? $d : utf8_decode($d);
 	return $d;
-}
+} ?>

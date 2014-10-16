@@ -12,9 +12,9 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###
 ###  submit comment
 ###
-function cforms2_submitcomment() {
+function cforms2_submitcomment($content) {
 	check_admin_referer( 'submitcomment' );
-	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL;
+	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale;
 
 	header ('Content-Type: text/javascript');
 	$content = '';
@@ -43,8 +43,8 @@ function cforms2_submitcomment() {
 	$segments = explode('$#$', $content[0]);
 	$params = array();
 
-    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-    $CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
+    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
+    $CFfunctions = dirname(__FILE__).DIRECTORY_SEPERATOR.'my-functions.php';
     if ( file_exists($CFfunctionsC) )
         include_once($CFfunctionsC);
     else if ( file_exists($CFfunctions) )
@@ -83,18 +83,21 @@ function cforms2_submitcomment() {
 	$taf_youremail = false;
 	$taf_friendsemail = false;
 
+	$isFieldArray = false;
+
 	###  form limit reached
 	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
-	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']));
+	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])) . $hide;
 		die();
 	}
 
 	### for comment luv
 	get_currentuserinfo();
+	global $user_level;
 
 	### Subscribe-To-Comments
-	$isSubscribed='';
+	$isSubscribed=='';
 	if ( class_exists('sg_subscribe') ){
 		global $sg_subscribe;
 		sg_subscribe_start();
@@ -167,6 +170,13 @@ function cforms2_submitcomment() {
 				$field_name = $input_name[1].$input_name[4];
 				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 				
+				/* 2.6.2012
+				$isFieldArray = strpos($input_name[1],'[]');
+				$idPartA = strpos($field_name,'[id:');
+				$idPartB = strrpos($field_name,']',$idPartA); 
+				$customTrackingID = substr($field_name,$idPartA+4,($idPartB-$idPartA)-4);
+				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
+				*/
 			}
 			else
 				$customTrackingID='';
@@ -448,9 +458,9 @@ function cforms2_submitcomment() {
 
 	                ### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPERATOR.$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
+	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPERATOR)+1, strlen($a) );
 	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 	                    $mail->add_file($a, $n,'base64',$m); ### optional name
 	                }

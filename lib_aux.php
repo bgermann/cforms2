@@ -745,3 +745,5 @@ if (!function_exists('cf_extra_comment_data')) {
 		return $r;
 	}
 }
+
+?>

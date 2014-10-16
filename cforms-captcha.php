@@ -19,10 +19,12 @@ $img_sz_type	= 0;
 $img_sz_width	= cforms2_prepVal($cap['w'],115);
 $img_sz_height	= cforms2_prepVal($cap['h'],25);
 
+$im_bg			= 0;
 $im_bg_type		= 1;
 $im_bg_url		= dirname(__FILE__) . '/captchabg/' . ( cforms2_prepVal($cap['bg'],'1.gif') );
 
 $font_url		= dirname(__FILE__) . '/captchafonts/' . ( cforms2_prepVal($cap['f'],'font4.ttf') );
+$fonts_dir		= dirname(__FILE__) . '/captchafonts';
 
 $min_font_size	= cforms2_prepVal($cap['f1'],17);
 $max_font_size	= cforms2_prepVal($cap['f2'],19);
@@ -105,6 +107,7 @@ if ( $img_sz_type == 1 ) {
 ### build the image, and allocte the colors
 
 $im = ImageCreate($image_width, $image_height);
+$cs = mt_rand(1,3);
 
 $d1 = $d2 = $d3 = 0;
 while ( ($d1<50) AND ($d2<50) AND ($d3<50) ) {
@@ -112,15 +115,15 @@ while ( ($d1<50) AND ($d2<50) AND ($d3<50) ) {
 	$d1 = abs($r-$g);	$d2 = abs($r-$b);	$d3 = abs($g-$b);
 }
 
-ImageColorAllocate($im, $r, $g, $b );
-$color_border = ImageColorAllocate($im, $border_r, $border_g, $border_b);
-ImageColorAllocate($im, round($r*0.85), round($g*0.85), round($b*0.85) );
-ImageColorAllocate($im, round($r*0.95), round($g*0.95), round($b*0.95) );
-ImageColorAllocate($im, round($r*0.90), round($g*0.90), round($b*0.90) );
+$color_bg       = ImageColorAllocate($im, $r, $g, $b );
+$color_border   = ImageColorAllocate($im, $border_r, $border_g, $border_b);
+$color_line0    = ImageColorAllocate($im, round($r*0.85), round($g*0.85), round($b*0.85) );
+$color_elipse0  = ImageColorAllocate($im, round($r*0.95), round($g*0.95), round($b*0.95) );
+$color_elipse1  = ImageColorAllocate($im, round($r*0.90), round($g*0.90), round($b*0.90) );
 
 $d1 = mt_rand(0,50); $d2 = mt_rand(0,50); $d3 = mt_rand(0,50);
 
-ImageColorAllocate($im, $r-$d1, $g-$d2, $b-$d3 );
+$color_line1  = ImageColorAllocate($im, $r-$d1, $g-$d2, $b-$d3 );
 
 $d1 = $d2 = $d3 = 0;
 while ( ($d1<100) AND ($d2<100) AND ($d3<100) ) {
@@ -134,6 +137,8 @@ switch ( $col_txt_type ) {
 	case 3 : $col_txt    = ImageColorAllocate($im, 255, 255, 255 );	break;
 	case 4 : $col_txt    = ImageColorAllocate($im, $col_txt_r, $col_txt_g, $col_txt_b ); break;
 }
+
+$noiset = mt_rand(1,2);
 
 $image_data=getimagesize($im_bg_url);
 $image_type=$image_data[2];
@@ -173,3 +178,4 @@ die();
 function cforms2_prepVal($v,$d) {
 	return ($v<>'') ? stripslashes($v) : $d;
 }
+?>

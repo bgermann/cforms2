@@ -3,8 +3,8 @@
 ###  Validate all fields
 ###
 
-$CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
+$CFfunctions = dirname(__FILE__).DIRECTORY_SEPERATOR.'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )
@@ -480,7 +480,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		### parse through all files (both single and mp forms)
 		foreach ( $fdata as $file ) {
 			if ( $file[doAttach] && $file[name] <> '' ){
-				$n = substr( $file[name], strrpos($file[name],DIRECTORY_SEPARATOR)+1, strlen($file[name]) );
+				$n = substr( $file[name], strrpos($file[name],DIRECTORY_SEPERATOR)+1, strlen($file[name]) );
 				$m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 				$mail->add_file($file[name], $n,'base64',$m); ### optional name
 				### debug
@@ -553,9 +553,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 					### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPERATOR.$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
+	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPERATOR)+1, strlen($a) );
 	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 	                    $mail->add_file($a, $n,'base64',$m); ### optional name
                     }
@@ -614,3 +614,4 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	} ### if $MPok
 
 } ### if isset & valid sendbutton
+?>

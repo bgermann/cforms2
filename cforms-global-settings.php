@@ -519,8 +519,8 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<div style="position:absolute; z-index:9999;">
 				<div id="mini" onmousedown="coreXY('mini',event)" style="top:0px; left:10px; display:none; margin-left:5%;">
 					<div class="north"><span id="mHEX">FFFFFF</span><div onmousedown="$cfS('mini').display='none';">x</div></div>
-					<div class="south" id="mSpec" style="height: 128px; width: 128px;" onmousedown="coreXY('mCur',event)">
-						<div id="mCur" style="top: 86px; left: 68px;"></div>
+					<div class="south" id="mSpec" style="HEIGHT: 128px; WIDTH: 128px;" onmousedown="coreXY('mCur',event)">
+						<div id="mCur" style="TOP: 86px; LEFT: 68px;"></div>
 						<img src="<?php echo plugin_dir_url(__FILE__); ?>images/circle.png" onmousedown="return false;" alt=""/>
 						<img src="<?php echo plugin_dir_url(__FILE__); ?>images/resize.gif" id="mSize" onmousedown="coreXY('mSize',event); return false;" alt=""/>
 					</div>
@@ -773,10 +773,12 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 <?php
 
 function cforms2_get_files($dir,$currentfile,$ext){
+	global	$cformsSettings;
 
-	$s = DIRECTORY_SEPARATOR;
+	$s = DIRECTORY_SEPERATOR;
 	$presetsdir		= dirname(__FILE__) .$s.'..'.$s .'cforms-custom';
 	$list 			= '';
+	$allfiles		= array();
 
 	if ( file_exists($presetsdir) ){
 
@@ -810,3 +812,4 @@ function cforms2_get_files($dir,$currentfile,$ext){
 function cforms2_prep($v,$d) {
 	return ($v<>'')?stripslashes(htmlspecialchars($v)):$d;
 }
+?>

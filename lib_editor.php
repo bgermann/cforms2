@@ -165,3 +165,4 @@ if($cformsSettings['global']['cforms_show_quicktag'] == true) {
 		add_action('admin_head', 'cforms2_insert_script');
 
 }
+?>

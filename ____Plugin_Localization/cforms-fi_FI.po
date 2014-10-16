@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII 14.6.3 uncomplete\n"
-"POT-Creation-Date: 2014-10-16 03:42+0100\n"
-"PO-Revision-Date: 2014-10-16 03:44+0100\n"
+"POT-Creation-Date: 2014-10-15 13:59+0100\n"
+"PO-Revision-Date: 2014-10-15 14:02+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Leadvirus <sangita@leadvirus.com>\n"
 "Language: fi_FI\n"
@@ -169,7 +169,7 @@ msgstr ""
 msgid "custom css files"
 msgstr "asiakassuhde CSS-tiedostot"
 
-#: cforms-css.php:143 cforms-global-settings.php:793
+#: cforms-css.php:143 cforms-global-settings.php:795
 msgid "cform css files"
 msgstr "cform CSS-tiedostot"
 
@@ -363,51 +363,51 @@ msgstr "löytää"
 msgid "Page {%1} of"
 msgstr "sivu {% 1} ja"
 
-#: cforms-database.php:110 cforms-database.php:119
+#: cforms-database.php:112 cforms-database.php:121
 msgid "Please Confirm"
 msgstr "Ole hyvä ja Vahvista"
 
-#: cforms-database.php:113
+#: cforms-database.php:115
 msgid "Are you sure you want to delete the record(s)?"
 msgstr "Oletko varma, että haluat poistaa kirjaa?"
 
-#: cforms-database.php:114 cforms-database.php:136 cforms-options.php:1157
+#: cforms-database.php:116 cforms-database.php:138 cforms-options.php:1157
 msgid "Install"
 msgstr "asentaa"
 
-#: cforms-database.php:114 cforms-database.php:136 cforms-options.php:1149
+#: cforms-database.php:116 cforms-database.php:138 cforms-options.php:1149
 #: cforms-options.php:1157
 msgid "OK"
 msgstr "kunnossa"
 
-#: cforms-database.php:114 cforms-database.php:136
+#: cforms-database.php:116 cforms-database.php:138
 #: cforms-global-settings.php:750 cforms-global-settings.php:767
 #: cforms-options.php:1149 cforms-options.php:1157 cforms-options.php:1173
 #: js/insertdialog25.php:71 lib_editor.php:142
 msgid "Cancel"
 msgstr "peruuttaa"
 
-#: cforms-database.php:127
+#: cforms-database.php:129
 msgid "Please pick a format!"
 msgstr "Ole hyvä ja valitse muodossa!"
 
-#: cforms-database.php:129
+#: cforms-database.php:131
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: cforms-database.php:130
+#: cforms-database.php:132
 msgid "ISO-8859-1"
 msgstr "ISO-8859-1"
 
-#: cforms-database.php:132
+#: cforms-database.php:134
 msgid "Include field names / header"
 msgstr "Sisällytä kenttien nimet / ylätunniste"
 
-#: cforms-database.php:133
+#: cforms-database.php:135
 msgid "Include IP address of submitting user"
 msgstr "Ovat IP-osoite esittää käyttäjälle"
 
-#: cforms-database.php:134
+#: cforms-database.php:136
 msgid "Add URL for upload fields"
 msgstr "Lisää URL upload kentät"
 
@@ -1063,11 +1063,11 @@ msgstr "poistaa * KAIKKI * cforms tiedot"
 msgid "Final Warning!"
 msgstr "Lopullinen Varoitus!"
 
-#: cforms-global-settings.php:783
+#: cforms-global-settings.php:785
 msgid "custom files"
 msgstr "mukautettuja tiedostoja"
 
-#: cforms-global-settings.php:805 js/include/installpreset.php:63
+#: cforms-global-settings.php:807 js/include/installpreset.php:63
 msgid "Not available"
 msgstr "ei saatavilla"
 
@@ -4724,122 +4724,122 @@ msgstr "tai palauttaa aiemmin tallennetut asetukset:"
 msgid "Restore from file"
 msgstr "Palauta tiedosto"
 
-#: cforms.php:46
+#: cforms.php:45
 #, php-format
 msgid ""
 "Please go to the <a href=\"%s\">cforms admin page</a> and run the update "
 "process."
 msgstr "Siirry <a href=\"%s\"> cforms admin sivu </ a> ja suorita päivitys."
 
-#: cforms.php:70 cforms.php:74 lib_functions.php:117 lib_functions.php:120
+#: cforms.php:69 cforms.php:73 lib_functions.php:117 lib_functions.php:120
 msgid "cformsII"
 msgstr "cformsII"
 
-#: cforms.php:71
+#: cforms.php:70
 msgid "Corrupted Settings"
 msgstr "vioittunut Asetukset"
 
-#: cforms.php:729
+#: cforms.php:730
 msgid "reset captcha image"
 msgstr "nollata captcha kuva"
 
-#: cforms.php:1097
+#: cforms.php:1098
 msgid "Note: This will reset all your input!"
 msgstr "Huom: Tämä palauttaa kaikki tulo!"
 
-#: cforms.php:1406 cforms.php:1407
+#: cforms.php:1407 cforms.php:1408
 msgid "cforms Tell-A-Friend"
 msgstr "cforms Kerro kaverille-"
 
-#: cforms.php:1514
+#: cforms.php:1512
 msgid "Title"
 msgstr "otsikko"
 
-#: cforms.php:1517 js/include/lib_database_dlentries.php:169
+#: cforms.php:1515 js/include/lib_database_dlentries.php:171
 msgid "Form"
 msgstr "lomake"
 
-#: cforms.php:1558
+#: cforms.php:1556
 msgid "Add any cforms form to your sidebar"
 msgstr "Lisätä cforms muodossa sivupalkkiin"
 
-#: cforms.php:1648
+#: cforms.php:1646
 msgid "T-A-F enable this post/page"
 msgstr "T-A-F mahdollistaa tämän post / sivu"
 
-#: cforms.php:1705
+#: cforms.php:1704
 msgid "Produce debug output"
 msgstr "Tuota debug"
 
-#: cforms.php:1705
+#: cforms.php:1704
 msgid "Outputs -for debug purposes- all cforms settings"
 msgstr "Lähdöt-debug-tarkoituksiin kaikki cforms asetukset"
 
-#: cforms.php:1706
+#: cforms.php:1705
 msgid "Uninstalling / removing cforms"
 msgstr "Poistaminen / poistaminen cforms"
 
-#: cforms.php:1706 cforms.php:1709
+#: cforms.php:1705 cforms.php:1708
 msgid "Be careful here..."
 msgstr "Ole varovainen täällä ..."
 
-#: cforms.php:1709
+#: cforms.php:1708
 msgid "Delete cforms tracking tables"
 msgstr "Poista cforms seuranta taulukot"
 
-#: cforms.php:1709
+#: cforms.php:1708
 msgid "Do you really want to erase all collected data?"
 msgstr "Haluatko todella poistaa kaikki kerätyt tiedot?"
 
-#: cforms.php:1711
+#: cforms.php:1710
 msgid "Backup / restore all settings"
 msgstr "varmuuskopiointi / palauttaa kaikki asetukset"
 
-#: cforms.php:1711 cforms.php:1729
+#: cforms.php:1710 cforms.php:1728
 msgid "Better safe than sorry ;)"
 msgstr "Parempi katsoa kuin katua;)"
 
-#: cforms.php:1713 cforms.php:1731
+#: cforms.php:1712 cforms.php:1730
 msgid "Save & update form settings"
 msgstr ""
 
-#: cforms.php:1723
+#: cforms.php:1722
 msgid "Add new form"
 msgstr "Lisää uusi muoto"
 
-#: cforms.php:1723
+#: cforms.php:1722
 msgid "Adds a new form with default values"
 msgstr "Lisää uuden muodon oletusarvot"
 
-#: cforms.php:1724
+#: cforms.php:1723
 msgid "Duplicate current form"
 msgstr "Monista nykymuodossaan"
 
-#: cforms.php:1724
+#: cforms.php:1723
 msgid "Clones the current form"
 msgstr "Klooneja nykymuodossaan"
 
-#: cforms.php:1726
+#: cforms.php:1725
 msgid "Delete current form (!)"
 msgstr "Poista nykymuodossaan (!)"
 
-#: cforms.php:1726
+#: cforms.php:1725
 msgid "Clicking this button WILL delete this form"
 msgstr "Tämän napin klikkaaminen poistaa tämän lomakkeen"
 
-#: cforms.php:1726
+#: cforms.php:1725
 msgid "This will delete the current form!"
 msgstr "Tämä poistaa nykyisessä muodossa!"
 
-#: cforms.php:1728
+#: cforms.php:1727
 msgid "Install a form preset"
 msgstr "Asenna muodossa valmiiksi"
 
-#: cforms.php:1728
+#: cforms.php:1727
 msgid "Pick a form preset from the repository"
 msgstr "Valitse lomake valmiiksi arkistosta"
 
-#: cforms.php:1729
+#: cforms.php:1728
 msgid "Backup / restore this form only"
 msgstr "(nonAjax)Varmuuskopiointi / palauttaminen tässä muodossa"
 
@@ -5064,7 +5064,7 @@ msgstr "(mukaan lukien kaikki kiinnitys / s)"
 msgid "Entry successfully removed"
 msgstr "Entry onnistuneesti poistettu"
 
-#: js/include/lib_database_dlentries.php:81
+#: js/include/lib_database_dlentries.php:83
 #, php-format
 msgid ""
 "File (data.tmp) in %s not writable! %sPlease adjust its file permissions/"
@@ -5147,27 +5147,27 @@ msgstr "Lomakkeet:"
 msgid "Insert"
 msgstr "lisätä"
 
-#: lib_WPcomment.php:44
+#: lib_WPcomment.php:45
 msgid "Comment ID not found."
 msgstr "Kommentti ID ei löytynyt."
 
-#: lib_WPcomment.php:47 lib_WPcomment.php:201
+#: lib_WPcomment.php:48 lib_WPcomment.php:202
 msgid "Sorry, comments are closed for this item."
 msgstr "Anteeksi, kommentit ovat suljettuina tämän kohteen."
 
-#: lib_WPcomment.php:50
+#: lib_WPcomment.php:51
 msgid "Comment is on draft."
 msgstr "Kommentti on luonnoksesta."
 
-#: lib_WPcomment.php:81 lib_WPcomment.php:225
+#: lib_WPcomment.php:82 lib_WPcomment.php:226
 msgid "Sorry, you must be logged in to post a comment."
 msgstr "Anteeksi, sinun täytyy olla kirjautuneena kommentoidaksesi."
 
-#: lib_WPcomment.php:93
+#: lib_WPcomment.php:94
 msgid "You've said that before. No need to repeat yourself."
 msgstr "Olet sanonut, että ennen. Ei tarvitse toista itseäsi."
 
-#: lib_WPcomment.php:104
+#: lib_WPcomment.php:105
 msgid "You are posting comments too quickly. Slow down."
 msgstr "Olet kommenttien liian nopeasti. Hidastakaa."
 
@@ -5294,15 +5294,15 @@ msgstr "Edellinen vuosi"
 msgid "Next Year"
 msgstr "Seuraava vuosi"
 
-#: lib_ajax.php:263 lib_nonajax.php:224
+#: lib_ajax.php:273 lib_nonajax.php:224
 msgid "Q&A"
 msgstr "Q&A"
 
-#: lib_ajax.php:487 lib_nonajax.php:592
+#: lib_ajax.php:497 lib_nonajax.php:592
 msgid "Error occurred while sending the auto confirmation message: "
 msgstr "Lähetettäessä tapahtui virhe auto vahvistus viestin:"
 
-#: lib_ajax.php:533 lib_nonajax.php:613
+#: lib_ajax.php:543 lib_nonajax.php:613
 msgid "Error occurred while sending the message: "
 msgstr "Virhe viestin lähettämistä:"
 

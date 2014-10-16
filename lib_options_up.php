@@ -16,7 +16,7 @@
 			$err = __('File is empty. Please upload something more substantial.', 'cforms');
 
 	// A properly uploaded file will pass this test. There should be no reason to override this one.
-	if (! is_uploaded_file( $file['tmp_name'] ) )
+	if (! @is_uploaded_file( $file['tmp_name'] ) )
 			$err = __('Specified file failed upload test.', 'cforms');
 
 	if ( $err <> '' ){
@@ -107,3 +107,5 @@
 	    fseek($vFile, $PrevPos);
 	    return ($Erg == $Text);
 	}
+
+?>
