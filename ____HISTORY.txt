@@ -29,8 +29,8 @@
 PLEASE NOTE: BEFORE INSTALLING V11.8 MAKE A BACKUP OF YOUR CFORMS.JS FILE, AS THE PATH 
 INFORMATION & DECLARATION HAS CHANGED!
 
-WHAT's NEW in cformsII - v12.1
-*) bugfix: minor datepicker adjustment
+WHAT's NEW in cformsII - v12.2
+*) bugfix: minor datepicker adjustment (for anyone that uses non standard date display)
 
 WHAT's NEW in cformsII - v12.0
 *) other:  WP3.2.1 compliance

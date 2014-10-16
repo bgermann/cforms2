@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 12.1	
+Version: 12.2	
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '12.1';
+$localversion = '12.2';
 
 ### debug messages
 $cfdebug = false;
@@ -249,7 +249,7 @@ function cforms($args = '',$no = '') {
 		} elseif ( $_GET['cfemail']=='posted' ){
 			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['global']['cforms_commentsuccess']) );
 		} else {
-			$usermessage_class = '';
+			$usermessage_class = ' failure';
 			$success=false;		
 		}
 	}
@@ -1109,8 +1109,9 @@ function cforms_style() {
 				 "\t\t\t".'jQuery(".cf_date").datepicker({buttonImage: "js/calendar.gif", buttonImageOnly: true, dateFormat: "'.$dformat.'" } );'."\n".
 				 "\t\t".'} else {'."\n".
 				 //"\t\t\t".'Date.format = "dd/mm/yyyy"; jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } ); Date.format = "'.$dformat.'";'."\n".
-				 "\t\t\t".'Date.format = "'.$dformat.'";'."\n".
+				 "\t\t\t".'Date.format = "dd/mm/yyyy";'."\n". //!!needed for startDate!!
 				 "\t\t\t".'jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } );'."\n".
+				 "\t\t\t".'Date.format = "'.$dformat.'";'."\n".
 				 "\t\t".'}'."\n".
 				 "\t".'});'."\n".
 				 '</script>'."\n";
