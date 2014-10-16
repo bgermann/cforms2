@@ -234,8 +234,12 @@ function cforms_submitcomment($content) {
 			}
 
 			###  special Tell-A-Friend fields
-			if ( $taf_friendsemail == '' && $field_type=='friendsemail' && $field_stat[3]=='1')
-					$field_email = $taf_friendsemail = $params ['field_' . $i];
+			if ( $taf_friendsemail == '' && $field_type=='friendsemail' && $field_stat[3]=='1'){
+					
+					preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i", $params ['field_' . $i], $r);
+					$field_email = $taf_friendsemail = $r[1];  // double checking anti spam TAF
+
+			}
 			if ( $taf_youremail == '' && $field_type=='youremail' && $field_stat[3]=='1')
 					$taf_youremail = $params ['field_' . $i];
 			if ( $field_type=='friendsname' )
@@ -322,6 +326,9 @@ function cforms_submitcomment($content) {
 
 	} ###  for
 
+	###  prefilter user input
+	if( function_exists('my_cforms_filter') )
+        my_cforms_filter($no);
 
 	###  assemble text & html email
 	$r = formatEmail($track,$no);
@@ -432,7 +439,7 @@ function cforms_submitcomment($content) {
 	else
 	    $sentadmin = $mail->send();
 
-	if( $sentadmin==1 )
+	if( $sentadmin == 1 )
 	{
 
 		###  send copy or notification?
@@ -472,7 +479,7 @@ function cforms_submitcomment($content) {
 	                ###  email tracking via 3rd party?
 	                ###  if in Tell-A-Friend Mode, then overwrite header stuff...
 	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
-	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
+	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>"; ### sanitize taf_friendsemail !!!
 	                else
 	                    $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 

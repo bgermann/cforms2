@@ -18,14 +18,14 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 14.5
+Version: 14.6
 Author URI: http://www.deliciousdays.com
 
 
 */
 
 global $localversion;
-$localversion = '14.5';
+$localversion = '14.6';
 
 ### debug messages
 $cfdebug = false;
@@ -162,6 +162,7 @@ function cforms($args = '',$no = '') {
         $_SESSION['cforms']['current']=0;
 	    $_SESSION['cforms']['first']=$oldno;
 	    $_SESSION['cforms']['pos']=1;
+	    unset( $_REQUEST );
 	    ##debug
 	    db("Reset-Button pressed");
 	}
@@ -1233,6 +1234,9 @@ function cforms_insert( $content ) {
 
 	$last=0;
 	if ( ($a=strpos($content,'<!--cforms'))!==false ) {  ### only if form tag is present!
+		
+		### get rid of WP's auto p...
+		//remove_filter('the_content',  'wpautop');
 
 		$p_offset= 0;
 		$part_content = substr( $content, 0, $a-$last );
@@ -1647,7 +1651,7 @@ function cf_check_plugin_version($plugin)
 			if( (version_compare(strval($theVersion), strval($version), '>') == 1) )
 			{
 				$msg = __("Latest version available: ", "cforms").'<strong>v'.$theVersion.'</strong> - '.$theMessage;
-				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(click for more info)", "cforms").'</a></div><div id="cf-update-msg" style="display:none; padding:10px; text-align:center;" >'.$msg.'</div></td>';
+				echo '<td colspan="5" class="plugin-update" style="line-height:1.2em; font-size:11px; padding:1px;"><div style="background:#A2F099;border:1px solid #4FE23F; padding:2px; font-weight:bold;">'.__("New cformsII update available", "cforms").' <a href="javascript:void(0);" onclick="jQuery(\'#cf-update-msg\').toggle();">'.__("(click for more info)", "cforms").'</a></div><div id="cf-update-msg" style="display:none; padding:10px; text-align:center;box-shadow: 0 0 30px #EEEEEE inset, 0 0 2px #000000 inset;-moz-box-shadow: 0 0 30px #EEEEEE inset, 0 0 2px #000000 inset;-webkit-box-shadow: 0 0 30px #EEEEEE inset, 0 0 2px #000000 inset;" >'.$msg.'</div></td>';
 			} else {
 				return;
 			}
@@ -1785,6 +1789,6 @@ function add_items_options( $admin_bar ){
 //add_filter('init', 'cforms_runtime_scripts');
 add_action('admin_init', 'cforms_adminstyle');
 add_filter('wp_head', 'cforms_style');
-add_filter('the_content', 'cforms_insert',10);
+add_filter('the_content', 'cforms_insert',101);
 add_filter('wp_footer', 'cforms_script',99);
 ?>

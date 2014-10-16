@@ -28,28 +28,35 @@
  
 	!!! IMPORTANT !!!
 
-	v14.5 is only compatible with WP3.3+
+	v14.5+ is only compatible with WP3.3+
 
 	!!! IMPORTANT !!!
 
 	
+WHAT's NEW in cformsII - v14.6
+*) added:   NEW: my_cforms_filter()  in my-functions.php  (input filter)
+*) fixed:   Security/SPAM issue with TellAFriend feature
+*) added:   Avoiding wpautop screwing with the layout
+*) added:   Changed the_content filter priority to deal with themes demanding wpautop
+*) fixed:   multi-part forms: RESET button resets complete input and not just session
+
+
 WHAT's NEW in cformsII - v14.5
-*) added	WP3.4 compliance
-*) fixed	CAPTCHA security issue; can't override captcha settings via URL params
-*) fixed	re-enabled version update info on the native WP plugins page
+*) added:   WP3.4 compliance
+*) fixed:   CAPTCHA security issue; can't override captcha settings via URL params
+*) fixed:   re-enabled version update info on the native WP plugins page
 
 WHAT's NEW in cformsII - v14.2
-*) added	added more IQ to my-functions.php:
+*) added:   added more IQ to my-functions.php:
             "adminEmailSUBJ" & "autoConfSUBJ" to change the subject line during run-time
-			Also, check out Regis' code example in this new section!
-			Thanks Regis!
-*) added	"\n" in the default text of textarea fields is recognised as a new line character
+            Also, check out Regis' code example in this new section!
+            Thanks Regis!
+*) added:   "\n" in the default text of textarea fields is recognised as a new line character
 *) fixed:   Call-time pass-by-reference in lib_aux.php
 *) fixed:   XML download, imports now nicely into excel, even with multi-line fields
 *) fixed:   corrected superfluous html5***** settings for non html5 fields
-*) fixed:	bigger field label issues when using custom IDs and regexp
+*) fixed:   bigger field label issues when using custom IDs and regexp
 *) fixed:   localization issue with lib_editor.php and added French translation for the editor. Thanks Regis!
-
 	
 WHAT's NEW in cformsII - v14.1
 *) fixed:    localization in wizard popups

@@ -3,6 +3,9 @@
 ### Find below examples for your custom routines. Do not change the function names.
 ###
 
+
+### NEW: my_cforms_filter()   : in case you'd like to manipulate / check user input before further processing
+###
 ### my_cforms_logic() : gets triggered throughout cforms, supporting real-time configuration
 ###
 ### my_cforms_action() : gets triggered just before sending the admin email
@@ -12,12 +15,9 @@
 ### my_cforms_ajax_filter() : after validation, before processing/saving input data (AJAX)
 ###
 
-
 ### TO USE THE FUNCTIOS:
 ###   >>>   uncomment the functions as required
 ###   >>>   and provide your custom code where appropriate
-
-
 
 ###
 ### Your custom application logic features
@@ -220,6 +220,42 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 ###
 ###
 ### Your custom user data input filter
+###
+###
+
+/*  <--- move or remove this line to uncomment functions below (and check the end as well!)
+
+function my_cforms_filter($formID) {
+
+	global $track;
+
+	### 		$track stores all user input
+	### Note: 	$formID = '' (empty) for the first form!
+
+	### triggers on your third form
+	if ( $formID == '3' ) {
+
+		### Do something with the data or not, up to you
+		$track['Your Name'] = 'Mr./Mrs. '.$track['Your Name'];
+
+	}
+
+	### Send to 3d party or do something else
+	@mail('your@email.com', 'cforms my_filter test', print_r($track,1), 'From: your@blog.com');
+
+}
+
+ ending comment line for: my_cforms_filter -------------------->  */
+
+
+
+
+
+
+
+###
+###
+### Your custom user data action routine
 ###
 ###
 

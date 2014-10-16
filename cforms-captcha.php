@@ -1,7 +1,4 @@
 <?php
-//echo '<br><pre>'.print_r($_GET,1).'</pre>';
-//die( "count = ".count($_GET) );
-
 ### supporting WP2.6 wp-load & custom wp-content / plugin dir
 if ( file_exists('abspath.php') )
 	include_once('abspath.php');

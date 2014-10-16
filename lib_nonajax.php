@@ -277,6 +277,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	} ### for all fields
 
+	
+	###  prefilter user input
+	if( function_exists('my_cforms_filter') )
+        my_cforms_filter($no);
+
+
     ### multi-form session
 	$ongoingSession = 'noSess';
 	if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] ){
