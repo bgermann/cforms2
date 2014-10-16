@@ -25,7 +25,7 @@
 ### "successMessage" 				$cformsdata = cforms datablock
 ### "redirection"  					$cformsdata = cforms datablock
 ### "filename"     					$cformsdata = $_REQUEST
-### "fileDestination" 				&$cformsdata = cforms datablock REFERENCE! (&), $oldvalue = array!
+### "fileDestination" 				$cformsdata = $oldvalue = array!
 ### "fileDestinationTrackingPage" 	$cformsdata = all SQL data, $oldvalue = array!
 ### "adminTO"  	  					$cformsdata = cforms datablock
 ### "nextForm"    					$cformsdata = cforms datablock
@@ -34,6 +34,8 @@
 ### "adminEmailHTML"				$cformsdata = cforms datablock
 ### "autoConfTXT"					$cformsdata = cforms datablock
 ### "autoConfHTML" 					$cformsdata = cforms datablock
+### "adminEmailSUBJ"				$cformsdata = cforms datablock
+### "autoConfSUBJ"					$cformsdata = cforms datablock
 ###
 
 /*  <--- move or remove this line to uncomment functions below (and check the end as well!)
@@ -98,7 +100,28 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
     }
 
+	
+	
+	### example: the below code replaces the custom var {DateFuture=Nd} in the subject
+	###			 field of the admin email & auto confirmation email
+	### Code Contribution by Regis Villemin
+	
+    if ( $setting == "autoConfSUBJ" || $setting == "autoConfSUBJ" ){
+		$m 	= preg_replace_callback( '/{DateFuture=([0-9]+)d}/i',
+						create_function(
+							'$days',
+							'
 
+							$datefuture = strtotime ("+$days[1] days");
+							
+							return strtoupper( strftime( "%A %d %B %Y",  $datefuture ) );
+							'
+						),
+						$oldvalue ); 
+	
+		return $m;
+    }
+	
 
 	### example: changes the next form to be form ID 5 (which is multi form page enabled)
 

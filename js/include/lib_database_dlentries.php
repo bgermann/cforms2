@@ -188,7 +188,7 @@ function getCSVTAB($format='csv'){
             $buffer[last2_n]= $buffer[last_n];
             $buffer[last_n] = $last_n;
 
-			$body  = __('Form','cforms').': "' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry->sub_date) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
+			$body  = '"'.__('Form','cforms').': ' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry->sub_date) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 			$last_n = $next_n;
 
@@ -267,9 +267,12 @@ function getXML(){
 		fwrite($temp, "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<entries>\n");
 
 	$results = $wpdb->get_results(
-	       "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC",
-	       "ARRAY_A"
+	       "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC"
+		   //,"ARRAY_A"
 	);
+	
+	// echo '<br><pre>'.print_r($results,1).'</pre>';
+	
 	/*
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
 	@mysql_select_db(DB_NAME) or die( "Unable to select database");
@@ -278,6 +281,8 @@ function getXML(){
 	$r = mysql_query($sql);
 	*/
 	
+	//  &#10;
+	
     $sub_id ='';
     foreach( $results as $key => $entry ) {
 	### while( $entry = mysql_fetch_array($r) ){
@@ -285,17 +290,20 @@ function getXML(){
 	        if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
 	            continue;
 
+			//echo '<br><pre>'."$key =>".print_r($entry,1).'</pre>';
+
 	        $n = ( $entry->form_id=='' )?'1':$entry->form_id;
 	        if( $sub_id<>$entry->id ){
 
 	            if ( $sub_id<>'' )
 	            	fwrite($temp, "</entry>\n");
 
-	            fwrite($temp, '<entry form="'.encData( $fnames[$n]).'" date="'.encData( $entry->sub_date ).'"'.($_GET['addip']=='true'?' ip="'.$entry->ip.'"':'').">\n");
+	            fwrite($temp, '<entry form="'.encDataXML( $fnames[$n]).'" date="'.encDataXML( $entry->sub_date ).'"'.($_GET['addip']=='true'?' ip="'.$entry->ip.'"':'').">\n");
 
 	            $sub_id = $entry->id;
 	        }
-	        fwrite($temp, '<data col="'.encData( stripslashes($entry->field_name) ).'"><![CDATA['.encData( stripslashes($entry->field_val) ).']]></data>'."\n");
+	        fwrite($temp, '<data col="'.encDataXML( stripslashes($entry->field_name) ).'"><![CDATA['.encDataXML( stripslashes($entry->field_val) ).']]></data>'."\n");
+			//echo '<br><pre>'.$entry->field_name."=".$entry->field_val.'</pre>';
 
 	} ### while
 
@@ -312,8 +320,15 @@ function getXML(){
 
 function encData ( $d ){
 	global $charset;
-	$d = str_replace('"','&quot;',$d);
-	return ( $charset=='utf-8' ) ? $d : utf8_decode($d);
+	$d = str_replace( array('"',"\r","\n"), array('&quot;',"","\r"),$d );
+	$d = ( $charset=='utf-8' ) ? $d : utf8_decode($d);
+	return $d;
+}
+function encDataXML ( $d ){
+	global $charset;
+	$d = str_replace( array('"'), array('&quot;'),$d );
+	$d = ( $charset=='utf-8' ) ? $d : utf8_decode($d);
+	return $d;
 }
 
 ?>

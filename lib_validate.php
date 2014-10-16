@@ -94,29 +94,35 @@ for($i = 1; $i <= $field_count; $i++) {
 			if ( strpos($tmpName,'[id:')!==false ){
 
 				$isFieldArray = strpos($tmpName,'[]');
+				
+				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
+				$field_name = $input_name[1].$input_name[4];
+				$trackingID	= cf_sanitize_ids( $input_name[2] );
 
-				$idPartA = strpos($tmpName,'[id:');
-				$idPartB = strrpos($tmpName,']',$idPartA);
-	
+//		 	echo '<br><pre>'.$tmpName . print_r($input_name,1).'</pre>';
+
+/* 
+	First Name[id:firstname]yy||^[A-Za-z ]*$Array
+	(
+		[0] => First Name[id:firstname]yy||^[A-Za-z ]*$
+		[1] => First Name
+		[2] => firstname
+		[3] => 
+		[4] => yy
+	)
+*/
 				if( $isFieldArray ){				
 
-					$array_id = cf_sanitize_ids( substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4) );
-
-					if( !$inpFieldArr[$array_id] || $inpFieldArr[$array_id]=='' ){
-						$inpFieldArr[$array_id]=0;
-					}
+					if( !$inpFieldArr[$trackingID] || $inpFieldArr[$trackingID]=='' )
+						$inpFieldArr[$trackingID]=0;
 					
-					$field_name 	= cf_sanitize_ids( substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1) );
-					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4) ) ][$inpFieldArr[$array_id]++];
-
-					//echo "f=$field_name , curr=$current_field [$array_id]<br>";
+					$current_field	= $_REQUEST[ $trackingID ][$inpFieldArr[$trackingID]++];
 									
-				} else {
-					$field_name 	= cf_sanitize_ids( substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1) );
-					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4) ) ];
-				}
-					//$field_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
-	
+				} else 
+					$current_field	= $_REQUEST[ $trackingID ];
+
+				db("\t\t\t ...currentField field_name = \"$field_name\", current_field = $current_field, request-id = $trackingID");
+
 				
 			} else {
 					if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
@@ -239,6 +245,9 @@ for($i = 1; $i <= $field_count; $i++) {
   					else { ### classic regexp
 						$reg_exp = str_replace('/','\/',stripslashes($obj[2]) );
 
+						###debug
+						db("\t\t ...REGEXP check content: $current_field =? $reg_exp");
+				
 						### multi-line textarea regexp trick
 						if( $field_type == 'textarea' )
 						    $valField = (string)str_replace(array("\r", "\r\n", "\n"), ' ', $current_field);

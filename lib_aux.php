@@ -301,7 +301,7 @@ function write_tracking_record($no,$field_email,$c=''){
 
 
 ### move uploaded files to local dir
-function cf_move_files(&$trackf, $no, $subID){
+function cf_move_files($trackf, $no, $subID){
 	global $cformsSettings,$file;
 	
     $temp = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
@@ -327,8 +327,9 @@ function cf_move_files(&$trackf, $no, $subID){
 
 				$fileInfoArr = array('name'=>str_replace(' ','_',$file2['name'][$i]),'path'=>$fileuploaddir, 'subID'=>$subID);
 				
-				if ( function_exists('my_cforms_logic') )
+				if ( function_exists('my_cforms_logic') ){
 					$fileInfoArr = my_cforms_logic( $trackf, $fileInfoArr, 'fileDestination');
+				}
 				
 				if( ! array_key_exists('modified', $fileInfoArr) )
 					$fileInfoArr['name'] = $subID_ . $fileInfoArr['name'];				

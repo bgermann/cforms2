@@ -32,6 +32,19 @@
 
 	!!! IMPORTANT !!!
 
+WHAT's NEW in cformsII - v14.2
+*) added	added more IQ to my-functions.php:
+            "adminEmailSUBJ" & "autoConfSUBJ" to change the subject line during run-time
+			Also, check out Regis' code example in this new section!
+			Thanks Regis!
+*) added	"\n" in the default text of textarea fields is recognised as a new line character
+*) fixed:   Call-time pass-by-reference in lib_aux.php
+*) fixed:   XML download, imports now nicely into excel, even with multi-line fields
+*) fixed:   corrected superfluous html5***** settings for non html5 fields
+*) fixed:	bigger field label issues when using custom IDs and regexp
+*) fixed:   localization issue with lib_editor.php and added French translation for the editor. Thanks Regis!
+
+	
 WHAT's NEW in cformsII - v14.1
 *) fixed:    localization in wizard popups
 *) fixed:    array declaration error some experienced in lib_activate.php

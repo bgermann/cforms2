@@ -193,11 +193,18 @@ function cforms_submitcomment($content) {
 
 			### remove [id: ] first
 			if ( strpos($field_name,'[id:')!==false ){
+				
+				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$field_name,$input_name); // 2.6.2012  
+				$field_name = $input_name[1].$input_name[4];
+				$customTrackingID	= cf_sanitize_ids( $input_name[2] );
+				
+				/* 2.6.2012
 				$isFieldArray = strpos($input_name[1],'[]');
 				$idPartA = strpos($field_name,'[id:');
-				$idPartB = strrpos($field_name,']',$idPartA);
+				$idPartB = strrpos($field_name,']',$idPartA); 
 				$customTrackingID = substr($field_name,$idPartA+4,($idPartB-$idPartA)-4);
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
+				*/
 			}
 			else
 				$customTrackingID='';
@@ -373,6 +380,8 @@ function cforms_submitcomment($content) {
 
 	### either use configured subject or user determined
 	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
+	if (function_exists('my_cforms_logic'))
+		$vsubject = my_cforms_logic($trackf,$vsubject,'adminEmailSUBJ');
 	$vsubject = check_default_vars($vsubject,$no);
 	$vsubject = check_cust_vars($vsubject,$track,$no);
 
@@ -451,7 +460,9 @@ function cforms_submitcomment($content) {
 
 	                ### subject
 	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
-	                $subject2 = check_default_vars($subject2,$no);
+					if (function_exists('my_cforms_logic'))
+						$subject2 = my_cforms_logic($trackf,$subject2,'autoConfSUBJ');
+					$subject2 = check_default_vars($subject2,$no);
 	                $subject2 = check_cust_vars($subject2,$track,$no);
 
 	                ###  different cc & ac subjects?

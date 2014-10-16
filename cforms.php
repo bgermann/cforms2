@@ -2,7 +2,7 @@
 /*
 
 
-	Copyright 2006-2011  Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+	Copyright 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
 
 	Software included:  PHPMailer - PHP email class
 	Copyright (c) 2004-2007, Andy Prevost. All Rights Reserved.
@@ -18,14 +18,14 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 14.1
+Version: 14.2
 Author URI: http://www.deliciousdays.com
 
 
 */
 
 global $localversion;
-$localversion = '14.1';
+$localversion = '14.2';
 
 ### debug messages
 $cfdebug = false;
@@ -521,7 +521,7 @@ function cforms($args = '',$no = '') {
 		    $obj = explode('|', $obj[0],3);
 
 			if ( $obj[2] <> '')	$reg_exp = str_replace('"','&quot;',stripslashes($obj[2])); else $reg_exp='';
-		    if ( $obj[1] <> '')	$defaultvalue = str_replace('"','&quot;', check_default_vars(stripslashes(($obj[1])),$no) );
+		    if ( $obj[1] <> '')	$defaultvalue = str_replace( array('"','\n'),array('&quot;',"\r"), check_default_vars(stripslashes(($obj[1])),$no) );
 
 			$field_name = $obj[0];
 		}
@@ -678,7 +678,7 @@ function cforms($args = '',$no = '') {
 
 		### if not reloaded (due to err) then use default values
 		if ( $field_value=='' && $defaultvalue<>'' )
-			$field_value=$defaultvalue;
+			$field_value = $defaultvalue;
 
 		### field disabled or readonly, greyed out?
 		$disabled = $field_disabled?' disabled="disabled"':'';

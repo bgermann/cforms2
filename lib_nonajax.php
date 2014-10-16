@@ -91,12 +91,25 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 				if ( strpos($tmpName,'[id:')!==false ){
 					$isFieldArray = strpos($tmpName,'[]');
+
+				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
+				$field_name = $input_name[1].$input_name[4];
+				$customTrackingID	= cf_sanitize_ids( $input_name[2] );
+
+				$current_field = cf_sanitize_ids( $customTrackingID );
+
+				//echo '<br><pre>'.$tmpName . print_r($input_name,1).'</pre>';
+				
+/*				
 					$idPartA = strpos($tmpName,'[id:');
 					$idPartB = strrpos($tmpName,']',$idPartA);
+					
 					$customTrackingID = substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4);
 					$current_field = cf_sanitize_ids( $customTrackingID );
 
 					$field_name = substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1);
+	*/
+	
 				} else{
 					if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
 						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
@@ -373,6 +386,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	### either use configured subject or user determined
 	### now replace the left over {xyz} variables with the input data
 	$vsubject = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_subject']);
+	if (function_exists('my_cforms_logic'))
+		$vsubject = my_cforms_logic($trackf,$vsubject,'adminEmailSUBJ');
 	$vsubject = check_default_vars($vsubject,$no);
 	$vsubject = check_cust_vars($vsubject,$track,$no);
 
@@ -514,6 +529,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
                     ### subject
 	                $subject2 = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
+					if (function_exists('my_cforms_logic'))
+						$subject2 = my_cforms_logic($trackf,$subject2,'autoConfSUBJ');
 	                $subject2 = check_default_vars($subject2,$no);
 	                $subject2 = check_cust_vars($subject2,$track,$no);
 

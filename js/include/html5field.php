@@ -14,7 +14,7 @@ load_plugin_textdomain( 'cforms' );
 ?>
 
 
-<form method="post">
+<form method="post" id="html5formfields">
 
 	<label for="cf_edit_label"><?php _e('Field label', 'cforms'); ?></label>
 	<input type="text" id="cf_edit_label" name="cf_edit_label" value="">
