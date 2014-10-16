@@ -18,7 +18,7 @@ Plugin Name: cforms II EX
 Plugin URI: https://github.com/msigley/cforms-II-EX
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Matthew Sigley, Oliver Seidel
-Version: 14.6.1
+Version: 14.6.2
 Author URI: https://github.com/msigley/
 
 
@@ -1127,7 +1127,7 @@ function cforms($args = '',$no = '') {
 		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] . '">';
 
 
-	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form><p class="linklove" id="ll'. $no .'"><a href="http://www.deliciousdays.com/cforms-plugin"><em>cforms</em> contact form by delicious:days</a></p>';
+	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form>';
 
 	### either show message above or below
 	$usermessage_text	= check_default_vars($usermessage_text,$no);
@@ -1462,6 +1462,9 @@ function widget_cforms_init() {
 	global $cforms_root, $wp_registered_widgets, $cformsSettings;
 
     $cformsSettings = get_option('cforms_settings');
+    $options = array();
+	if( isset($cformsSettings['global']['widgets']) && is_array($cformsSettings['global']['widgets']) )
+		$options = $cformsSettings['global']['widgets'];
     $options = $cformsSettings['global']['widgets'];
     $prefix = 'cforms';
 

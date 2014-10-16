@@ -33,6 +33,10 @@
 	!!! IMPORTANT !!!
 
 
+WHAT's NEW in cformsII - v14.6.2
+*) fixed:   issues upgrading from older versions of cforms
+*) other:   removed link at the bottom of the contact form
+
 WHAT's NEW in cformsII - v14.6.1
 *) fixed:   SSL support on file includes
 *) fixed:   double slash in file includes
