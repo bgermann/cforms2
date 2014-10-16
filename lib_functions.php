@@ -162,6 +162,7 @@ function cforms_init() {
 	}
 
 	### try to adjust cforms.js automatically
+	/*
 	$jsContent = $jsContentNew = '';
 	if ( $fhandle = fopen(dirname(__FILE__).'/js/cforms.js', "r") ) {
 		$jsContent = fread($fhandle, filesize(dirname(__FILE__).'/js/cforms.js'));
@@ -185,7 +186,7 @@ function cforms_init() {
 	    fwrite($fhandle, $jsContentNew);
 	    fclose($fhandle);
 	}
-
+	*/
 	### save ABSPATH for ajax routines
 	if ( defined('ABSPATH') && ($fhandle = fopen(dirname(__FILE__).$sep.'abspath.php', "w")) ) {
 	    fwrite($fhandle, "<?php \$abspath = '". addslashes(ABSPATH) . "'; ?>\n");
