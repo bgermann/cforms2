@@ -32,6 +32,18 @@
 
 	!!! IMPORTANT !!!
 
+WHAT's NEW in cformsII - v14
+*) enhanced: tabbed navigation between form configuration fields
+*) added:    date picker support for year selection drop down
+*) added:    HTML5 support, new Global Settings (must be enabled first) and Form Options:
+             html5color, html5date, html5datetime, html5datetime-local, html5email, html5month, 
+			 html5number, html5range, html5search, html5tel, html5time, html5url, html5week
+*) added:    new my_cforms_logic() routine "fileDestination" for uploads
+*) fixed:    date picker start day
+*) fixed:    loading of calendar style (css)
+*) fixed:    form submission restrictions (from/to date and number)
+*) fixed:    extra slash removed from plugin URL
+
 WHAT's NEW in cformsII - v13.2.2
 *) fixed:    CC field issues for MP forms
 *) fixed:    Reply-To fixed in admin email

@@ -301,7 +301,7 @@ function write_tracking_record($no,$field_email,$c=''){
 
 
 ### move uploaded files to local dir
-function cf_move_files($no, $subID){
+function cf_move_files(&$trackf, $no, $subID){
 	global $cformsSettings,$file;
 	
     $temp = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
@@ -309,7 +309,7 @@ function cf_move_files($no, $subID){
 	
 	$inSession = (strpos($subID,'xx') !== false);
 	//if( !$inSession )
-		$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '' : $subID.'-';
+		$subID_ = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '' : $subID.'-';
 
     $file2 = $file;
   	$i=0;
@@ -317,7 +317,7 @@ function cf_move_files($no, $subID){
 	$_SESSION['cforms']['upload'][$no]['doAttach'] = !($cformsSettings['form'.$no]['cforms'.$no.'_noattachments']);
 
 	### debug
-	db("... in session=$inSession, moving files on form $no, tracking ID=$subID");
+	db("... in session=$inSession, moving files on form $no, tracking ID=$subID_");
 	
   	if ( is_array($file2) && isset($file2[tmp_name]) ) {
   		foreach( $file2[tmp_name] as $tmpfile ) {
@@ -325,7 +325,16 @@ function cf_move_files($no, $subID){
             ### copy attachment to local server dir
             if ( is_uploaded_file($tmpfile) ){
 
-            	$destfile = $fileuploaddir.'/'.$subID.str_replace(' ','_',$file2['name'][$i]);
+				$fileInfoArr = array('name'=>str_replace(' ','_',$file2['name'][$i]),'path'=>$fileuploaddir, 'subID'=>$subID);
+				
+				if ( function_exists('my_cforms_logic') )
+					$fileInfoArr = my_cforms_logic( $trackf, $fileInfoArr, 'fileDestination');
+				
+				if( ! array_key_exists('modified', $fileInfoArr) )
+					$fileInfoArr['name'] = $subID_ . $fileInfoArr['name'];				
+					
+				$destfile = $fileInfoArr['path'].'/'.$fileInfoArr['name'];
+				
             	move_uploaded_file($tmpfile,$destfile );
 
 				### debug

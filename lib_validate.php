@@ -137,6 +137,9 @@ for($i = 1; $i <= $field_count; $i++) {
 
 		if( $field_emailcheck ) {  ### email field
 
+				###debug
+				db("\t\t ...found email field ($current_field) is_email = ".cforms_is_email( $current_field ));
+
 				### special email field in WP Commente
 				if ( $field_type=='email' )
 					$validations[$i+$off] = cforms_is_email( $_REQUEST['email']) || (!$field_required && $_REQUEST['email']=='');
@@ -151,7 +154,8 @@ for($i = 1; $i <= $field_count; $i++) {
 				###debug
 				db("\t\t ...is required! check: current_field=$current_field");
 
-				if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
+				if( in_array($field_type,array( 'html5color','html5date','html5datetime','html5datetime-local','html5email','html5month','html5number','html5range','html5search','html5tel','html5time','html5url','html5week',
+												'cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
 
 							$validations[$i+$off] = ($current_field=='')?false:true;
 

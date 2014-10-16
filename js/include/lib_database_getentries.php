@@ -14,10 +14,9 @@ if ( !defined('ABSPATH') ){
 	    require_once( $abspath . 'wp-config.php' );
 }
 
+### mini firewall
 if( !current_user_can('track_cforms') )
 	wp_die("access restricted.");
-
-### mini firewall
 
 global $wpdb;
 
@@ -26,6 +25,14 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
+
+### get custom functions
+$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+$CFfunctions = dirname(dirname(dirname(__FILE__))).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+if ( file_exists($CFfunctionsC) )
+    include_once($CFfunctionsC);
+else if ( file_exists($CFfunctions) )
+    include_once($CFfunctions);
 
 ### get form names
 for ($i=1; $i <= $cformsSettings['global']['cforms_formcount']; $i++){
@@ -120,8 +127,18 @@ if ($showIDs<>'') {
 					else
 	                    $fileurl = $fileuploaddirurl;
 
-                    $fileurl .= '/'.$subID.strip_tags($val);
 
+					$passID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '':$entry->sub_id;
+					$fileInfoArr = array('name'=>strip_tags($val), 'path'=>$fileurl, 'subID'=>$passID);
+
+					if ( function_exists('my_cforms_logic') )
+						$fileInfoArr = my_cforms_logic( $results, $fileInfoArr, 'fileDestinationTrackingPage');
+
+					if( ! array_key_exists('modified', $fileInfoArr) )
+						$fileInfoArr['name'] = $subID . $fileInfoArr['name'];
+					
+					$fileurl = $fileInfoArr['path'] . '/' . $fileInfoArr['name'] . $format;
+					
 					echo '<div class="showformfield meta"><div class="L">';
 					echo substr($name, 0,strpos($name,'[*'));
 					if ( $entry->field_val == '' )

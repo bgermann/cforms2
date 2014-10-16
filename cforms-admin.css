@@ -127,6 +127,7 @@ margin-bottom:10px;
 
 .form-table {
 width:80%;
+margin-bottom:0;
 }
 
 .form-table tr {
@@ -222,7 +223,9 @@ background: -ms-linear-gradient(top,  #f7f7f7 1%,#e2e2e2 100%);
 background: linear-gradient(top,  #f7f7f7 1%,#e2e2e2 100%);
 border: 1px solid #cfcfcf;
 }
-
+.jqmWindow .allbuttons:focus,
+a.allbuttons:focus,
+input.allbuttons:focus, 
 .jqmWindow .allbuttons:hover,
 a.allbuttons:hover,
 input.allbuttons:hover {
@@ -248,6 +251,7 @@ background: linear-gradient(top,  #cefcba 0%,#b1f591 100%);
 border: 1px solid #9CD37E;
 text-shadow: #fff 0 1px 0;
 }
+input.addbutton:focus, input.dupbutton:focus,
 input.addbutton:hover, input.dupbutton:hover {
 background: #e6f9de;
 background: -moz-linear-gradient(top,  #f9f9f9 0%, #b1f591 100%);
@@ -273,6 +277,8 @@ text-shadow: #752C33 0 -1px 0;
 color:#fafafa;
 }
 
+a.deleteall:focus,
+input.deleteall:focus,
 a.deleteall:hover,
 input.deleteall:hover {
 color:#fff;
@@ -297,6 +303,7 @@ background: -ms-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%);
 background: linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%);
 border: 1px solid #4a7581;
 }
+.chgformbox input.chgbutton:focus,
 .chgformbox input.chgbutton:hover {
 border-color: #666;
 background: #f7f7f7;
@@ -641,6 +648,13 @@ display:inline-box;
 -ms-box-sizing: border-box!important; /* ie8 only */
 box-sizing: border-box!important;
 }
+#pickform:focus,
+#cforms_fname:focus,
+#wpcontent select.fieldtype:focus, .itemContent input.inpfld:focus {
+border-left:2px solid #2244ED;
+}
+#wpcontent select.fieldtype:focus{
+}
 
 #wpcontent select.fieldtype {
 font:normal 10px Arial;
@@ -682,6 +696,8 @@ background-color:transparent!important;
 margin-right:2px;
 }
 
+input.wrench:focus, input.wrench:focus,
+input.altx:focus, input.xbutton:focus,
 input.wrench:hover, input.wrench:active,
 input.altx:hover, input.xbutton:hover,
 input.altx:active, input.xbutton:active {
@@ -689,7 +705,12 @@ background-position:0 -20px!important;
 }
 
 option.disabled {
+background-color:#f0f0f0;
 color:#999;
+}
+option.disabled.title {
+color:#666666;
+background-color:#ccc;
 }
 
 .chkno,.fieldisreq,.fieldisemail,.fielddisabled,.fieldreadonly,.fieldclear {
@@ -697,6 +718,9 @@ margin:0 9px 0 19px;
 width:13px;
 height:13px;
 padding:0;
+}
+input[type="checkbox"]:focus, input[type="radio"]:focus {
+outline: 1px solid #2244ED;
 }
 
 .chkno {
@@ -843,14 +867,16 @@ border:1px solid #ccc;
 -webkit-border-radius: 0;
 border-radius:0;
 }
+.ob input[type=text]:focus,
+.ob textarea:focus {
+border:1px solid #aaa;
+border-left:2px solid #2244ED;
+outline:0;
+}
 
 .ob input[type=text] {
 width:320px;
 line-height:1em;
-}
-
-.ob textarea:focus, .ob input[type=text]:focus {
-border:1px solid #aaa;
 }
 
 .ob input[type=text].cap {
@@ -945,6 +971,10 @@ width:15em;
 
 .ob input.allchk {
 width:auto;
+}
+
+.ob input.allchk:focus {
+outline: 1px solid #2244ED;
 }
 
 .inexclude td.obL{
@@ -1445,6 +1475,13 @@ margin-left:0;
 line-height:1em;
 background:#fbfbfb;
 }
+.cf_multi_data1 td{
+padding-right:10px;
+}
+.cf_multi_data2 input{
+min-width:8em;
+width:auto;
+}
 
 * html .jqmWindow input {
 width:565px;
@@ -1472,6 +1509,7 @@ border:1px solid #aaa;
 font-size:10px;
 margin-top:5px;
 display:block;
+font-weight:bold;
 }
 
 .jqmWindow .cf_edit_groups_header {

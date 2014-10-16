@@ -305,6 +305,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	###  FIRST into the database is required!
 	###
+	global $subID;
 	$subID = ( $isTAF =='2' && !$send2author )?'noid':write_tracking_record($no,$field_email);
 
 
@@ -344,9 +345,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	if(is_array($file)){
 	    if( $subID<>-1 && $ongoingSession!='0' )
-	        cf_move_files($no, $subID);
+	        cf_move_files($track, $no, $subID);
 	    else
-	        cf_move_files($no, 'xx');
+	        cf_move_files($track, $no, 'xx');
 	}
 	### end of session:
     if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
@@ -377,8 +378,10 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	###  prep message text, replace variables
 	$message	= stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header']);
-	if ( function_exists('my_cforms_logic') )
+	if ( function_exists('my_cforms_logic') ){
 		$message = my_cforms_logic($trackf, $message,'adminEmailTXT');
+		$formdata = my_cforms_logic($trackf, $formdata,'adminEmailDataTXT');
+	}
 	$message	= check_default_vars($message,$no);
 	$message	= check_cust_vars($message,$track,$no);
 
@@ -386,9 +389,11 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
     $htmlmessage='';
     if( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' ){
 	    $htmlmessage = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_header_html']);
-	    if ( function_exists('my_cforms_logic') )
+	    if ( function_exists('my_cforms_logic') ){
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
-	    $htmlmessage = check_default_vars($htmlmessage,$no);
+			$htmlformdata = my_cforms_logic($trackf, $htmlformdata,'adminEmailDataHTML');
+	    }
+		$htmlmessage = check_default_vars($htmlmessage,$no);
 	    $htmlmessage = check_cust_vars($htmlmessage,$track,$no,true);
 	}
 

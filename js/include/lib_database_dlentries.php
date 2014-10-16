@@ -11,10 +11,10 @@ if ( file_exists( $abspath . 'wp-load.php') )
 else
 	require_once( $abspath . 'wp-config.php' );
 
+### mini firewall
 if( !current_user_can('track_cforms') )
 	wp_die("access restricted.");
 
-### mini firewall
 
 global $wpdb;
 
@@ -23,6 +23,16 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
+
+
+### get custom functions
+$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).$cformsSettings['global']['cforms_IIS'].'cforms-custom'.$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+$CFfunctions = dirname(dirname(dirname(__FILE__))).$cformsSettings['global']['cforms_IIS'].'my-functions.php';
+if ( file_exists($CFfunctionsC) )
+    include_once($CFfunctionsC);
+else if ( file_exists($CFfunctions) )
+    include_once($CFfunctions);
+
 
 ### get form names
 for ($i=1; $i <= $cformsSettings['global']['cforms_formcount']; $i++){
@@ -134,10 +144,7 @@ if ($sub_ids<>'') {
 function getCSVTAB($format='csv'){
 	global $fnames, $wpdb, $count, $temp, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset;
 
-     $results = $wpdb->get_results(
-             "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC",
-             "ARRAY_A"
-     );
+     $results = $wpdb->get_results( "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC" );
 
 	/*
 	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
@@ -163,12 +170,12 @@ function getCSVTAB($format='csv'){
 
 	### while( $entry = mysql_fetch_array($r) ){
 
-		if ( $entry[field_name]=='page' || strpos($entry[field_name],'Fieldset')!==false )
+		if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
 			continue;
 
-        $next_n = ( $entry[form_id]=='' )?'1':$entry[form_id];
+        $next_n = ( $entry->form_id=='' )?'1':$entry->form_id;
 
-		if( $sub_id<>$entry[id] ){   ### new record starts
+		if( $sub_id<>$entry->id ){   ### new record starts
 
 			if ( $buffer[body]<>'' ){
                 if( $_GET['header']=='true' && $buffer[last_n]<>$buffer[last2_n])
@@ -181,40 +188,49 @@ function getCSVTAB($format='csv'){
             $buffer[last2_n]= $buffer[last_n];
             $buffer[last_n] = $last_n;
 
-			$body  = __('Form','cforms').': "' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry[sub_date]) .'"' . $format . ($_GET['addip']=='true'?$entry[ip].$format:'');
+			$body  = __('Form','cforms').': "' . encData($fnames[$next_n]). '"'. $format .'"'. encData($entry->sub_date) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 			$last_n = $next_n;
 
-			$sub_id = $entry[id];
+			$sub_id = $entry->id;
 		}
 
 		$url='';
         $urlTab='';
-        if( $_GET['addurl']=='true' && strpos($entry[field_name],'[*') ){
+        if( $_GET['addurl']=='true' && strpos($entry->field_name,'[*') ){
 
-            preg_match('/.*\[\*(.*)\]$/i',$entry[field_name],$t);
-            $no   = $t[1]==''?$entry[form_id]:($t[1]==1?'':$t[1]);
+            preg_match('/.*\[\*(.*)\]$/i',$entry->field_name,$t);
+            $no   = $t[1]==''?$entry->form_id:($t[1]==1?'':$t[1]);
 
 		    $urlTab = $format;
-			$entry[field_name] = substr($entry[field_name],0,strpos($entry[field_name],'[*'));
+			$entry->field_name = substr($entry->field_name,0,strpos($entry->field_name,'[*'));
 
             $t = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
             $fdir = $t[0];
             $fdirURL = $t[1];
 
-			$subID = $cformsSettings['form'.$no]['cforms'.$no.'_noid'] ? '' : $entry[id].'-';
+			$subID = $cformsSettings['form'.$no]['cforms'.$no.'_noid'] ? '' : $entry->id.'-';
 
             if ( $fdirURL=='' )
-                $url = $cformsSettings['global']['cforms_root'].
-                		substr( $fdir, strpos($fdir,$cformsSettings['global']['plugindir']) + strlen($cformsSettings['global']['plugindir']),  strlen($fdir) );
+                $url = $cformsSettings['global']['cforms_root'].substr( $fdir, strpos($fdir,$cformsSettings['global']['plugindir']) + strlen($cformsSettings['global']['plugindir']),  strlen($fdir) );
             else
                 $url = $fdirURL;
 
-			$url .= '/'.$subID.strip_tags($entry[field_val]) .$format;
+			$passID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '':$entry->id;
+			$fileInfoArr = array('name'=>strip_tags($entry->field_val), 'path'=>$url, 'subID'=>$passID);
+
+			if ( function_exists('my_cforms_logic') )
+				$fileInfoArr = my_cforms_logic( $results, $fileInfoArr, 'fileDestinationTrackingPage' );
+			
+			if( ! array_key_exists('modified', $fileInfoArr) )
+				$fileInfoArr['name'] = $subID . $fileInfoArr['name'];
+			
+			$url = $fileInfoArr['path'] . '/' . $fileInfoArr['name'] . $format;				
+				
 		}
 
-        $head .= ($_GET['header']=='true')?'"'.encData(stripslashes($entry[field_name])).'"' . $format . $urlTab:'';
-		$body .= '"' . str_replace('"','""', encData(stripslashes($entry[field_val]))) . '"' . $format . $url;
+        $head .= ($_GET['header']=='true')?'"'.encData(stripslashes($entry->field_name)).'"' . $format . $urlTab:'';
+		$body .= '"' . str_replace('"','""', encData(stripslashes($entry->field_val))) . '"' . $format . $url;
 
 	} ### foreach
 
@@ -266,20 +282,20 @@ function getXML(){
     foreach( $results as $key => $entry ) {
 	### while( $entry = mysql_fetch_array($r) ){
 
-	        if ( $entry[field_name]=='page' || strpos($entry[field_name],'Fieldset')!==false )
+	        if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
 	            continue;
 
-	        $n = ( $entry[form_id]=='' )?'1':$entry[form_id];
-	        if( $sub_id<>$entry[id] ){
+	        $n = ( $entry->form_id=='' )?'1':$entry->form_id;
+	        if( $sub_id<>$entry->id ){
 
 	            if ( $sub_id<>'' )
 	            	fwrite($temp, "</entry>\n");
 
-	            fwrite($temp, '<entry form="'.encData( $fnames[$n]).'" date="'.encData( $entry[sub_date] ).'"'.($_GET['addip']=='true'?' ip="'.$entry[ip].'"':'').">\n");
+	            fwrite($temp, '<entry form="'.encData( $fnames[$n]).'" date="'.encData( $entry->sub_date ).'"'.($_GET['addip']=='true'?' ip="'.$entry->ip.'"':'').">\n");
 
-	            $sub_id = $entry[id];
+	            $sub_id = $entry->id;
 	        }
-	        fwrite($temp, '<data col="'.encData( stripslashes($entry[field_name]) ).'"><![CDATA['.encData( stripslashes($entry[field_val]) ).']]></data>'."\n");
+	        fwrite($temp, '<data col="'.encData( stripslashes($entry->field_name) ).'"><![CDATA['.encData( stripslashes($entry->field_val) ).']]></data>'."\n");
 
 	} ### while
 

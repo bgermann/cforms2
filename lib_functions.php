@@ -223,7 +223,7 @@ if ( ! function_exists( 'is_ssl' ) ) {
 	$wpmu_plugin_url = $wp_content_url . '/mu-plugins';
 	$wpmu_plugin_dir = $wp_content_dir . '/mu-plugins';
 	
-	return plugin_dir_url( __FILE__ );
+	return rtrim(plugin_dir_url( __FILE__ ), '/');
 }
 
 
@@ -285,7 +285,7 @@ function cforms_options_page_style() {
 		'cfCAL.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
 		'cfCAL.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
 		'cfCAL.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-		'cfCAL.firstDayOfWeek = 0;'."\n".
+		'cfCAL.firstDayOfWeek = "'.stripslashes($cformsSettings['global']['cforms_dp_start']).'";'."\n".
 		'cfCAL.fullYearStart = "20";'."\n".
 		'cfCAL.TEXT_PREV_YEAR="'.stripslashes($nav[0]).'";'."\n". // not needed with 3.3
 		'cfCAL.TEXT_NEXT_YEAR="'.stripslashes($nav[2]).'";'."\n". // not needed with 3.3
@@ -293,6 +293,7 @@ function cforms_options_page_style() {
 		'cfCAL.TEXT_NEXT_MONTH="'.stripslashes($nav[3]).'";'."\n".
 		'cfCAL.TEXT_CLOSE="'.stripslashes($nav[4]).'";'."\n".
 		'cfCAL.TEXT_CHOOSE_DATE="'.stripslashes($nav[5]).'";'."\n". 
+		'cfCAL.changeYear='. ($nav[6]==1? 'true':'false') .';'."\n". 
 		'cfCAL.ROOT="'.$cformsSettings['global']['cforms_root'].'";' ."\n\n"; 
 ?>
 jQuery(function() {
@@ -305,8 +306,8 @@ if( jQuery(".cf_timebutt1").length>0 && jQuery(".cf_timebutt2").length>0 ){
 if( jQuery(".cf_date").length>0 ){
 
 	jQuery(".cf_date").datepicker({
-			"buttonImage": cfCAL.ROOT+"/js/calendar.gif", buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",
-			"dateFormat": "dd/mm/yyyy", "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, "firstDay":cfCAL.firstDayOfWeek,
+			"buttonImage": cfCAL.ROOT+"/js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",
+			"dateFormat": "dd/mm/yy", "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, "firstDay":cfCAL.firstDayOfWeek,
 			"nextText": cfCAL.TEXT_NEXT_MONTH, "prevText": cfCAL.TEXT_PREV_MONTH, "closeText": cfCAL.TEXT_CLOSE });
 
     jQuery('#cforms_startdate').bind(

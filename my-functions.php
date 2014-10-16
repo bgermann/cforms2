@@ -22,16 +22,18 @@
 ###
 ### Your custom application logic features
 ###
-### "successMessage" 	$cformsdata = cforms datablock
-### "redirection"  		$cformsdata = cforms datablock
-### "filename"     		$cformsdata = $_REQUEST
-### "adminTO"  	  		$cformsdata = cforms datablock
-### "nextForm"    		$cformsdata = cforms datablock
+### "successMessage" 				$cformsdata = cforms datablock
+### "redirection"  					$cformsdata = cforms datablock
+### "filename"     					$cformsdata = $_REQUEST
+### "fileDestination" 				&$cformsdata = cforms datablock REFERENCE! (&), $oldvalue = array!
+### "fileDestinationTrackingPage" 	$cformsdata = all SQL data, $oldvalue = array!
+### "adminTO"  	  					$cformsdata = cforms datablock
+### "nextForm"    					$cformsdata = cforms datablock
 ###
-### "adminEmailTXT"		$cformsdata = cforms datablock
-### "adminEmailHTML"	$cformsdata = cforms datablock
-### "autoConfTXT"		$cformsdata = cforms datablock
-### "autoConfHTML" 		$cformsdata = cforms datablock
+### "adminEmailTXT"					$cformsdata = cforms datablock
+### "adminEmailHTML"				$cformsdata = cforms datablock
+### "autoConfTXT"					$cformsdata = cforms datablock
+### "autoConfHTML" 					$cformsdata = cforms datablock
 ###
 
 /*  <--- move or remove this line to uncomment functions below (and check the end as well!)
@@ -79,7 +81,8 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 	### example: the below code changes a user-variable in both the Text & HTML part of
     ###          the admin email & auto confirmation email
 
-    if ( $setting == "adminEmailTXT" || $setting == "adminEmailHTML" || $setting == "autoConfTXT" || $setting == "autoConfHTML" ){
+    if ( $setting == "adminEmailTXT" || $setting == "adminEmailHTML" || $setting == "autoConfTXT" || $setting == "autoConfHTML" ||
+		 $setting == "adminEmailDataTXT" || $setting == "adminEmailDataHTML"){
 
         ### it's only changed though for form #2
         ### and requires "{CustomSalutation}" to be in the message(s)
@@ -128,6 +131,39 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 	}
 
 
+	
+	### example: allows the final destination file path & name to be modified, return result = a full, absolute path
+	### NOTE: changing the path or filename may cause the file links on the tracking page to not function anymore!
+	
+    if ( $setting == "fileDestination" ){
+	
+		$submissionID = $oldvalue['subID'];					### submission ID
+
+		$newArray = array();
+		$newArray['name'] = $submissionID . '-' . $oldvalue['name'];	### filename only
+		$newArray['path'] = rtrim($oldvalue['path'], '/');				### path (may or may not have trailing slash!)
+		
+		$newArray['modified'] = true;		### must set
+		return $newArray;					### TRIPPLE check that this array always! returns valid path + name info
+	}
+	
+	
+	### this allows to modify the file path shown on the tracking page and for downloads
+	###	you may only needs the below in case the final upload dir deviates from the form's configured one
+	
+    if ( $setting == "fileDestinationTrackingPage" ){
+	
+		$submissionID = $oldvalue['subID'];					### submission ID
+
+		$newArray = array();
+		$newArray['name'] = $submissionID . '-' . $oldvalue['name'];	### filename only
+		$newArray['path'] = rtrim($oldvalue['path'], '/');				### path (may or may not have trailing slash!)
+
+		$newArray['modified'] = true;		### must set
+		return $newArray;					### TRIPPLE check that this array always! returns valid path + name info
+	}
+	
+	
 
 	### example: changes redirection address based on user input field
 

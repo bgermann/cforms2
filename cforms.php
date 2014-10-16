@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 13.2.2
+Version: 14.0
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '13.2.2';
+$localversion = '14.0';
 
 ### debug messages
 $cfdebug = false;
@@ -411,10 +411,17 @@ function cforms($args = '',$no = '') {
 		### ommit certain fields
 		if( in_array($field_type,array('cauthor','url','email')) && $user->ID )
 			continue;
+			
+ 
+		### check for html5 attributes
+	    $obj = explode('|html5:', $field_name,2);
+		$html5 = ($obj[1]<>'') ? preg_split('/\x{00A4}/u',$obj[1], -1) : '';
 
-
+		###debug
+		db("\t\t html5 check, settings = ".print_r($html5,1));
+		
 		### check for custom err message and split field_name
-	    $obj = explode('|err:', $field_name,2);
+	    $obj = explode('|err:', $obj[0],2);
 	    $fielderr = $obj[1];
 		
 		###debug
@@ -459,7 +466,7 @@ function cforms($args = '',$no = '') {
 
 		###debug
 		db("\t\t title check, obj[0] = ".$obj[0]);
-
+		
 
 		### special treatment for selectboxes
 		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','luv','subscribe','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
@@ -746,6 +753,7 @@ function cforms($args = '',$no = '') {
 			case "email":
 				$cookieset = ($cookieset=='')?'comment_author_email_'.COOKIEHASH:$cookieset;
 				$field_value = ( $_COOKIE[$cookieset]<>'' ) ? $_COOKIE[$cookieset] : $field_value;
+			
 			case "datepicker":
 			case "yourname":
 			case "youremail":
@@ -753,15 +761,47 @@ function cforms($args = '',$no = '') {
 			case "friendsemail":
 			case "textfield":
 			case "pwfield":
+			case "html5color":
+			case "html5date":
+			case "html5datetime":
+			case "html5datetime-local":
+			case "html5email":
+			case "html5month":
+			case "html5number":
+			case "html5range":
+			case "html5search":
+			case "html5tel":
+			case "html5time":
+			case "html5url":
+			case "html5week":
 
 				$field_value = check_post_vars($field_value);
 
-				$type = ($field_type=='pwfield')?'password':'text';
+				$h5 = '';
+				if( strpos($field_type,'tml5')!==false ){
+					$type = substr($field_type,5);
+					if( is_array($html5) ){
+						$h5_0 = ( $html5[0] == '1' ) ? ' autocomplete="on"' :'';
+						$h5_1 = ( $html5[1] == '1' ) ? ' autofocus ="autofocus"' :'';
+						$h5_2 = ( $html5[2] != '' ) ? ' min="'.$html5[2].'"' :'';
+						$h5_3 = ( $html5[3] != '' ) ? ' max="'.$html5[3].'"' :'';
+						$h5_4 = ( $html5[4] != '' ) ? ' pattern="'.$html5[4].'"' :'';
+						$h5_5 = ( $html5[5] != '' ) ? ' step="'.$html5[5].'"' :'';
+						$h5_6 = ( $html5[6] != '' ) ? ' placeholder="'.$html5[6].'"' :'';
+						$h5 = $h5_0.$h5_1.$h5_2.$h5_3.$h5_4.$h5_5.$h5_6;
+					}
+					$h5_7 = ( $field_required ) ? ' required="required"' : '';
+					$h5 .= $h5_7 . ' ';
+					###debug
+					db('......html5 attributes: '.$h5);
+				}else
+					$type = ($field_type=='pwfield')?'password':'text';
+					
 				$field_class = ($field_type=='datepicker')?$field_class.' cf_date':$field_class;
 
 			    $onfocus = $field_clear?' onfocus="clearField(this)" onblur="setField(this)"' : '';
 
-				$field = '<input' . $readonly.$disabled . ' type="'.$type.'" name="'.$input_name.'" id="'.$input_id.'" class="' . $field_class . '" value="' . $field_value  . '"'.$onfocus.$fieldTitle.'/>';
+				$field = '<input' . $h5.$readonly.$disabled . ' type="'.$type.'" name="'.$input_name.'" id="'.$input_id.'" class="' . $field_class . '" value="' . $field_value  . '"'.$onfocus.$fieldTitle.'/>';
 				  if ( $reg_exp<>'' )
 	           		 $field .= '<input type="hidden" name="'.$input_name.'_regexp" id="'.$input_id.'_regexp" value="'.$reg_exp.'"'.$fieldTitle.'/>';
 
@@ -1123,7 +1163,7 @@ function cforms_style() {
 
 			//echo '<script type="text/javascript" src="' . $cforms_root. '/js/cformsadmincal.js"></script>'."\n";
 			### add jQuery script & calendar
-			wp_register_style('calendar-style', $r . '/styling/calendar.css' );
+			wp_register_style('calendar-style', $cforms_root . '/styling/calendar.css' );
 			wp_enqueue_style('calendar-style'); 
 
 			wp_enqueue_script('jquery');
@@ -1138,7 +1178,7 @@ function cforms_style() {
 				"\t".'cfCAL.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
 				"\t".'cfCAL.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
 				"\t".'cfCAL.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-				"\t".'cfCAL.firstDayOfWeek = 0;'."\n".
+				"\t".'cfCAL.firstDayOfWeek = "'.stripslashes($cformsSettings['global']['cforms_dp_start']).'";'."\n".
 				"\t".'cfCAL.fullYearStart = "20";'."\n".
 				"\t".'cfCAL.TEXT_PREV_YEAR="'.stripslashes($nav[0]).'";'."\n". // not needed with 3.3
 				"\t".'cfCAL.TEXT_NEXT_YEAR="'.stripslashes($nav[2]).'";'."\n". // not needed with 3.3
@@ -1146,14 +1186,15 @@ function cforms_style() {
 				"\t".'cfCAL.TEXT_NEXT_MONTH="'.stripslashes($nav[3]).'";'."\n".
 				"\t".'cfCAL.TEXT_CLOSE="'.stripslashes($nav[4]).'";'."\n".
 				"\t".'cfCAL.TEXT_CHOOSE_DATE="'.stripslashes($nav[5]).'";'."\n". 
+				"\t".'cfCAL.changeYear='. ($nav[6]==1? 'true':'false') .';'."\n". 
 				"\t".'cfCAL.ROOT="'.$cformsSettings['global']['cforms_root'].'";' ."\n\n".
 				 
 				 "\t".'jQuery(function() { '."\n".
 				 "\t\t".'if( jQuery.datepicker ){'."\n".
 				 
 					"\t\t\t".'jQuery(".cf_date").datepicker({'."\n".
-						"\t\t\t\t".'"buttonImage": cfCAL.ROOT+"/js/calendar.gif", buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",'."\n".
-						"\t\t\t\t".'"dateFormat": cfCAL.dateFormat, "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, "firstDay":cfCAL.firstDayOfWeek,'."\n".
+						"\t\t\t\t".'"buttonImage": cfCAL.ROOT+"/js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",'."\n".
+						"\t\t\t\t".'"dateFormat": cfCAL.dateFormat, "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, firstDay:cfCAL.firstDayOfWeek,'."\n".
 						"\t\t\t\t".'"nextText": cfCAL.TEXT_NEXT_MONTH, "prevText": cfCAL.TEXT_PREV_MONTH, "closeText": cfCAL.TEXT_CLOSE });'."\n".
 			
 				 "\t\t".'}'."\n".

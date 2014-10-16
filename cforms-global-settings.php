@@ -61,6 +61,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
 
+    $cformsSettings['global']['cforms_html5'] = $_REQUEST['cforms_html5']?'1':'0';
     $cformsSettings['global']['cforms_show_quicktag'] = $_REQUEST['cforms_show_quicktag']?'1':'0';
 	$cformsSettings['global']['cforms_sec_qa'] = 		magic($_REQUEST['cforms_sec_qa']);
 	$cformsSettings['global']['cforms_codeerr'] = 		magic($_REQUEST['cforms_codeerr']);
@@ -79,6 +80,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$nav[3]=magic($_REQUEST['cforms_dp_nextM']);
 	$nav[4]=magic($_REQUEST['cforms_dp_close']);
 	$nav[5]=magic($_REQUEST['cforms_dp_choose']);
+	$nav[6]=$_REQUEST['cforms_dp_Ybuttons']?'1':'0';
 	$cformsSettings['global']['cforms_dp_nav'] = $nav;
 
  	$cformsSettings['global']['cforms_inexclude']['ex'] = '';
@@ -223,6 +225,21 @@ abspath_check();
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="">
 		<input type="hidden" name="cforms_database_new" value="<?php if($cformsSettings['global']['cforms_database']=="0") echo 'true'; ?>"/>
 
+		<fieldset id="wpeditor" class="cformsoptions">
+			<div class="cflegend op-closed" id="p31" title="<?php _e('Expand/Collapse', 'cforms') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('HTML5 Input Field Support', 'cforms')?>
+            </div>
+
+			<div class="cf-content" id="o31">
+				<table class="form-table">
+					<tr class="ob">
+						<td class="obL"></td>
+						<td class="obR"><input class="allchk" type="checkbox" id="cforms_html5" name="cforms_html5" <?php if($cformsSettings['global']['cforms_html5']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_html5"><strong><?php _e('Enable HTML5 fields', 'cforms') ?></strong></label></td>
+					</tr>
+				</table>
+			</div>
+		</fieldset>
+		
 		<fieldset id="wpcomment" class="cformsoptions">
 			<div class="cflegend op-closed" id="p28" title="<?php _e('Expand/Collapse', 'cforms') ?>">
             	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature Settings', 'cforms')?>
@@ -359,16 +376,12 @@ abspath_check();
 				</tr>
 				<tr class="ob">
 					<?php $nav = $cformsSettings['global']['cforms_dp_nav']; ?>
-					<td class="obL"><label for="cforms_dp_prevY"><strong><?php _e('Previous Year', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_dp_prevY" name="cforms_dp_prevY" value="<?php echo stripslashes(htmlspecialchars( $nav[0] )); ?>"/></td>
+					<td class="obL"></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_dp_Ybuttons" name="cforms_dp_Ybuttons" <?php if($nav[6]=="1") echo "checked=\"checked\""; ?>/><label for="cforms_dp_Ybuttons"><strong><?php _e('Enable year selection drop down', 'cforms') ?></strong></label></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_dp_prevM"><strong><?php _e('Previous Month', 'cforms'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_prevM" name="cforms_dp_prevM" value="<?php echo stripslashes(htmlspecialchars( $nav[1] )); ?>"/></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_nextY"><strong><?php _e('Next Year', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_dp_nextY" name="cforms_dp_nextY" value="<?php echo stripslashes(htmlspecialchars( $nav[2] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_dp_nextM"><strong><?php _e('Next Month', 'cforms'); ?></strong></label></td>
