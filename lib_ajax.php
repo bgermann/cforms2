@@ -43,8 +43,8 @@ function cforms2_submitcomment($content) {
 	$segments = explode('$#$', $content[0]);
 	$params = array();
 
-    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
-    $CFfunctions = dirname(__FILE__).DIRECTORY_SEPERATOR.'my-functions.php';
+    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+    $CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
     if ( file_exists($CFfunctionsC) )
         include_once($CFfunctionsC);
     else if ( file_exists($CFfunctions) )
@@ -458,9 +458,9 @@ function cforms2_submitcomment($content) {
 
 	                ### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPERATOR.$a;
+	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPERATOR)+1, strlen($a) );
+	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
 	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
 	                    $mail->add_file($a, $n,'base64',$m); ### optional name
 	                }

@@ -118,6 +118,9 @@ After updating please edit each form on your plugins config page to verify that 
 
 == Changelog ==
 
+= 14.6.4 =
+* bugfix:   hanging form submission
+
 = 14.6.3 =
 * feature:  Use the ____Plugin_Localization directory to store and distribute some GPL translations
 * enhanced: unobfuscate JavaScript changes from version 10.3 on and kick out js_src.zip which was not updated since then

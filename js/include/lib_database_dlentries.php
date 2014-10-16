@@ -15,8 +15,8 @@ $cformsSettings = get_option('cforms_settings');
 
 
 ### get custom functions
-$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
-$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPERATOR.'my-functions.php';
+$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )

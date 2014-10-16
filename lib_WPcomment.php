@@ -179,8 +179,8 @@ if ( $isAjaxWPcomment ){
 		###
 		### Filter first?
 		###
-	    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPERATOR.'cforms-custom'.DIRECTORY_SEPERATOR.'my-functions.php';
-		$CFfunctions = dirname(__FILE__).DIRECTORY_SEPERATOR.'my-functions.php';
+	    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+		$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
         if ( file_exists($CFfunctionsC) )
 			include_once($CFfunctionsC);
 		else if ( file_exists($CFfunctions) )

@@ -1,6 +1,7 @@
 <?php
 /*
   Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+  Copyright (c) 2014      Matthew Sigley
   Copyright (c) 2014      Bastian Germann
 
   This program is free software: you can redistribute it and/or modify
@@ -20,14 +21,14 @@
 Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
-Author: Oliver Seidel, Bastian Germann, Matthew Sigley
-Version: 14.6.3
+Author: Oliver Seidel, Bastian Germann
+Version: 14.6.4
 
 
 */
 
 global $localversion;
-$localversion = '14.6.3';
+$localversion = '14.6.4';
 
 ### db settings
 global $wpdb, $cformsSettings;
@@ -1430,11 +1431,12 @@ function cforms2_widget_init() {
 
 	global $wp_registered_widgets, $cformsSettings;
 
-
+	// Matthew Sigley's change from https://github.com/msigley/cforms-II-EX/commit/c9724f4cf72e088059ac6bde9d610e66dc30dc1c
     $cformsSettings = get_option('cforms_settings');
     $options = array();
     if( isset($cformsSettings['global']['widgets']) && is_array($cformsSettings['global']['widgets']) )
         $options = $cformsSettings['global']['widgets'];
+	// end Matthew Sigley's change 
 
     $prefix = 'cforms';
 

@@ -15,7 +15,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cformsII 14.6.3\n"
+"Project-Id-Version: cformsII 14.6.4\n"
 "POT-Creation-Date: 2014-10-15 13:59+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Oliver Seidel <oliver.seidel@deliciousdays.com>\n"
