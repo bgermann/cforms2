@@ -11,6 +11,9 @@ $filefield = 0;
 
 $captchaopt = $cformsSettings['global']['cforms_captcha_def'];
 
+###debug
+db("lib_validate.php: validating fields for form no. $no");
+
 for($i = 1; $i <= $field_count; $i++) {
 
 		if ( !$custom )
@@ -41,6 +44,8 @@ for($i = 1; $i <= $field_count; $i++) {
 		$field_required = $field_stat[2];
 		$field_emailcheck = $field_stat[3];
 
+		###debug
+		db("\t ...validating field $field_name");
 
 		### ommit certain fields; validation only!
 		if( in_array($field_type,array('cauthor','url','email')) ){
@@ -80,39 +85,47 @@ for($i = 1; $i <= $field_count; $i++) {
 
 		if ( $custom_names ){
 
-			preg_match('/^([^#\|]*).*/',$field_name,$input_name);
+			###preg_match('/^([^#\|]*).*/',$field_name,$input_name);
+			$tmpName = $field_name; ###hardcoded for now
 
-			if ( strpos($input_name[1],'[id:')!==false ){
+			###debug
+			db("\t\t ...custom names/id's...($tmpName)");
 
-				$isFieldArray = strpos($input_name[1],'[]');
+			if ( strpos($tmpName,'[id:')!==false ){
 
-				$idPartA = strpos($input_name[1],'[id:');
-				$idPartB = strrpos($input_name[1],']',$idPartA);
+				$isFieldArray = strpos($tmpName,'[]');
+
+				$idPartA = strpos($tmpName,'[id:');
+				$idPartB = strrpos($tmpName,']',$idPartA);
 	
 				if( $isFieldArray ){				
 
-				
-					$array_id = cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) );
+					$array_id = cf_sanitize_ids( substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4) );
 
 					if( !$inpFieldArr[$array_id] || $inpFieldArr[$array_id]=='' ){
 						$inpFieldArr[$array_id]=0;
 					}
 					
-					$field_name 	= cf_sanitize_ids( substr_replace($input_name[1],'',$idPartA,($idPartB-$idPartA)+1) );
-					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) ) ][$inpFieldArr[$array_id]++];
+					$field_name 	= cf_sanitize_ids( substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1) );
+					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4) ) ][$inpFieldArr[$array_id]++];
 
 					//echo "f=$field_name , curr=$current_field [$array_id]<br>";
 									
 				} else {
-					$field_name 	= cf_sanitize_ids( substr_replace($input_name[1],'',$idPartA,($idPartB-$idPartA)+1) );
-					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4) ) ];
+					$field_name 	= cf_sanitize_ids( substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1) );
+					$current_field	= $_REQUEST[ cf_sanitize_ids( substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4) ) ];
 				}
 					//$field_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
 	
 				
-			} else
-				$current_field = $_REQUEST[ cf_sanitize_ids($input_name[1]) ];
-
+			} else {
+					if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
+						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
+					else
+						preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
+					$current_field = $_REQUEST[ cf_sanitize_ids($input_name[1]) ];
+			}
+			
 		}
 		else
 			$current_field = $_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)];
@@ -134,6 +147,9 @@ for($i = 1; $i <= $field_count; $i++) {
 
 		}
 		else if( $field_required && !in_array($field_type,array('verification','captcha'))  ) { ### just required
+
+				###debug
+				db("\t\t ...is required! check: current_field=$current_field");
 
 				if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
 

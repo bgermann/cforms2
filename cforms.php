@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 13.2.1
+Version: 13.2.2
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '13.2.1';
+$localversion = '13.2.2';
 
 ### debug messages
 $cfdebug = false;
@@ -416,7 +416,10 @@ function cforms($args = '',$no = '') {
 		### check for custom err message and split field_name
 	    $obj = explode('|err:', $field_name,2);
 	    $fielderr = $obj[1];
-
+		
+		###debug
+		db("\t adding $field_type field: $field_name");
+		
 		if ( $fielderr <> '')	{
 		    switch ( $field_type ) {
 			    case 'upload':
@@ -454,6 +457,9 @@ function cforms($args = '',$no = '') {
 	    $obj = explode('|title:', $obj[0],2);
 		$fieldTitle = ($obj[1]<>'')?' title="'.str_replace('"','&quot;',stripslashes($obj[1])).'"':'';
 
+		###debug
+		db("\t\t title check, obj[0] = ".$obj[0]);
+
 
 		### special treatment for selectboxes
 		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','luv','subscribe','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
@@ -463,9 +469,19 @@ function cforms($args = '',$no = '') {
 				$chkboxClicked = explode('|set:', stripslashes($obj[0]) );
 				$obj[0] = $chkboxClicked[0];
 			}
+			
+			###debug
+			db("\t\t found checkbox:, obj[0] = ".$obj[0]);
 
 			$options = explode('#', stripslashes($obj[0]) );
-            $field_name = $options[0];
+			
+            if (  in_array($field_type,array('subscribe','checkbox','ccbox'))  )
+				$field_name = ( $options[0]=='' ) ? $options[1]:$options[0];
+			else
+				$field_name = $options[0];
+				
+			###debug
+			db("\t\t left from '#' (=field_name) = ".$options[0].", right from '#': ".$options[1] . "  -> field_name= $field_name");
 
 		}
 
@@ -539,7 +555,9 @@ function cforms($args = '',$no = '') {
 					$input_id = $input_name = cf_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
 
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
-
+				###debug
+				db("\t \t parsing custom ID/NAME...new field_name = $field_name, ID=$input_id");
+				
 			} else
 				$input_id = $input_name = cf_sanitize_ids(stripslashes($field_name));
 
@@ -753,6 +771,7 @@ function cforms($args = '',$no = '') {
 			case "hidden":
 
 				$field_value = check_post_vars($field_value);
+				$field_value = check_default_vars($field_value,$no);
 
                 if ( preg_match('/^<([a-zA-Z0-9]+)>$/',$field_value,$getkey) )
                     $field_value = $_GET[$getkey[1]];
@@ -802,14 +821,13 @@ function cforms($args = '',$no = '') {
 				if( !$all_valid && $validations[$i]<>1 )
 					$err = ' cf_errortxt';
 
-				if ( $options[1]<>'' ) {
-					    $opt = explode('|', $options[1],2);
+			    $opt = explode('|', $field_name,2);
+				if ( $options[1]<>'' ) {  ### $options =  explode('#', stripslashes($obj[0]) ) (line 476)
 				 		$before = '<li'.$liID.' class="'.$liERR.'">'.$insertErr;
 						$after  = '<label'. $labelID . ' for="'.$input_id.'" class="cf-after'.$err.'"><span>' . $opt[0] . '</span></label></li>';
 				 		$ba = 'a';
 				}
 				else {
-					    $opt = explode('|', $field_name,2);
 						$before = '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_name.'" class="cf-before'. $err .'"><span>' . $opt[0] . '</span></label>';
 				 		$after  = '</li>';
 				 		$ba = 'b';
@@ -817,6 +835,7 @@ function cforms($args = '',$no = '') {
 				### if | val provided, then use "X"
 				if( $val=='' )
 					$val = ($opt[1]<>'')?' value="'.$opt[1].'"':'';
+					
 				$field = $nttt . $before . '<input' . $readonly.$disabled . ' type="checkbox" name="'.$input_name.'" id="'.$input_id.'" class="cf-box-' . $ba . $field_class . '"'.$val.$fieldTitle.$preChecked.'/>' . $after;
 
 				break;

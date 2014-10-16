@@ -398,7 +398,9 @@ function cforms_submitcomment($content) {
 	### custom user ReplyTo handling
 	if ( function_exists('my_cforms_logic') )
 		$userReplyTo = my_cforms_logic($trackf, $field_email, 'ReplyTo');
-
+	else
+		$userReplyTo = $field_email;
+	
 	$mail = new cf_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
 	$mail->char_set = 'utf-8';

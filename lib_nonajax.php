@@ -85,17 +85,23 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
     		if ( $custom_names ){
 
-				preg_match('/^([^#\|]*).*/',$field_name,$input_name);
+				###preg_match('/^([^#\|]*).*/',$field_name,$input_name);
+				###preg_match('/^([^\|]*).*/',$field_name,$input_name);
+				$tmpName = $field_name; ###hardcoded for now
 
-				if ( strpos($input_name[1],'[id:')!==false ){
-					$isFieldArray = strpos($input_name[1],'[]');
-					$idPartA = strpos($input_name[1],'[id:');
-					$idPartB = strrpos($input_name[1],']',$idPartA);
-					$customTrackingID = substr($input_name[1],$idPartA+4,($idPartB-$idPartA)-4);
+				if ( strpos($tmpName,'[id:')!==false ){
+					$isFieldArray = strpos($tmpName,'[]');
+					$idPartA = strpos($tmpName,'[id:');
+					$idPartB = strrpos($tmpName,']',$idPartA);
+					$customTrackingID = substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4);
 					$current_field = cf_sanitize_ids( $customTrackingID );
 
-					$field_name = substr_replace($input_name[1],'',$idPartA,($idPartB-$idPartA)+1);
+					$field_name = substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1);
 				} else{
+					if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
+						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
+					else
+						preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
 					$current_field = cf_sanitize_ids($input_name[1]);
 					$customTrackingID='';
 				}
@@ -104,6 +110,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			else
 				$current_field = 'cf'.$no.'_field_' . $i;
 
+			###debug
+			db("lib_nonajax.php: looking at field: $current_field");
+			
 			###  dissect field
 		    $obj = explode('|', $field_name,3);
 			$defaultval = stripslashes($obj[1]);
@@ -153,8 +162,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			  $field_name = explode('#',$field_name);
 			  $field_name = ($field_name[1]=='')?$field_name[0]:$field_name[1];
 				###  if ccbox
-			  if ($field_type == "ccbox" && isset($_POST[$current_field]) )
-			      $ccme = $field_name;
+			  if ($field_type == "ccbox" && isset($_POST[$current_field]) ){
+				if( $isMPform )
+				  $ccme = 'cf_form'.$no.'_'.$field_name;
+				 else				 
+				  $ccme = $field_name;
+				}
 			}
 
 
@@ -237,7 +250,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 		### determine tracked field name
         $inc='';
-        $trackname = trim( ($field_type == "upload")?$field_name.'[*'.($no==''?1:$no).']':$field_name );
+        $trackname = trim( ($field_type == "upload") ? $field_name.'[*'.($no==''?1:$no).']' : $field_name );
         if ( array_key_exists($trackname, $track) ){
             if ( $trackinstance[$trackname]==''  )
                 $trackinstance[$trackname]=2;
@@ -257,6 +270,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 		if( $field_email<>'' )
        		$_SESSION['cforms']['email']=$field_email;
+		if( $ccme<>'' )
+       		$_SESSION['cforms']['ccme']=$ccme;
 		$_SESSION['cforms']['list'][$_SESSION['cforms']['pos']++]=$no;
 	    $_SESSION['cforms']['current']=$no==''?1:$no;
 	    $_SESSION['cforms']['cf_form'.$no] = $track;
@@ -265,6 +280,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		db( "(lib_nonajax) In Session tracking for ($no)...".print_r($_SESSION,1) );
 
         $field_email = $_SESSION['cforms']['email']; ### fetch from prev. def
+   		$ccme = $_SESSION['cforms']['ccme'];
 		$ongoingSession = '1';
 	}
 
@@ -379,6 +395,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	### custom user ReplyTo handling
 	if ( function_exists('my_cforms_logic') )
 		$userReplyTo = my_cforms_logic($trackf, $field_email, 'ReplyTo');
+	else
+		$userReplyTo = $field_email;
 
 	$mail = new cf_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
@@ -463,6 +481,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	    if( $sentadmin == 1 ) {
 
+				#debug
+				db("is CC: = $ccme, active = {$trackf[data][$ccme]} | ");
+
 	            ###  send copy or notification?
                 ###  not if no email & already CC'ed				
 	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[data][$ccme]<>'') ){
@@ -501,7 +522,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
 					else
 		                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
-
+									
 	                $mail = new cf_mail($no,$frommail,$field_email,$replyto);
 
 					### auto conf attachment?

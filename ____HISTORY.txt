@@ -32,6 +32,12 @@
 
 	!!! IMPORTANT !!!
 
+WHAT's NEW in cformsII - v13.2.2
+*) fixed:    CC field issues for MP forms
+*) fixed:    Reply-To fixed in admin email
+*) fixed:    fixed 'custom names' form feature
+*) added:    hidden field default value supports cforms {default variables},eg. UserID, Name etc.
+
 WHAT's NEW in cformsII - v13.2.1
 *) fixed:    undefined function 'my_cforms_logic' 
 
