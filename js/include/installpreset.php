@@ -9,7 +9,10 @@ if ( file_exists( $abspath . 'wp-load.php') )
 	require_once( $abspath . 'wp-load.php' );
 else
 	require_once( $abspath . 'wp-config.php' );
+
+load_plugin_textdomain( 'cforms' );
 ?>
+
 	<p>
 		<label for="cf_edit_label_select"><?php _e('Please select a predefined form:', 'cforms'); ?></label>
 		<?php echo get_form_presets(); ?>

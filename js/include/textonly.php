@@ -10,7 +10,10 @@ if ( file_exists( $abspath . 'wp-load.php') )
 	require_once( $abspath . 'wp-load.php' );
 else
 	require_once( $abspath . 'wp-config.php' );
+
+load_plugin_textdomain( 'cforms' );
 ?>
+
 
 <form method="post">
 

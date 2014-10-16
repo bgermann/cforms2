@@ -1,5 +1,6 @@
 <?php
 global $wpdb, $cformsSettings;
+$cformsSettings = (array) $cformsSettings;
 
 ### new global settings container
 
