@@ -26,6 +26,9 @@
  Version History:
  =====================================================================================
 
+WHAT's NEW in cformsII - v11.7.3
+*) bugfix: stalling of upload forms fixed (or ones with alternative form action)
+
 WHAT's NEW in cformsII - v11.7.2
 *) other:  enhanced support for form field arrays, e.g. :  my-field[id:address[]]
 *) bugfix: fixed jQuery wizard editor error 

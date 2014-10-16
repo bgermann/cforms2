@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 11.7.2
+Version: 11.7.3
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '11.7.2';
+$localversion = '11.7.3';
 
 ### debug messages
 $cfdebug = false;
@@ -493,6 +493,7 @@ function cforms($args = '',$no = '') {
 				  substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1)=="y" )?' id="li-'.$no.'-'.$i.'"':'';
 
 		### input field names & label
+		$isFieldArray = false;
 		if ( $cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1' ){
 
 			if ( strpos($field_name,'[id:')!==false ){
@@ -830,12 +831,14 @@ function cforms($args = '',$no = '') {
 						    $checked = ' checked="checked"';
 	                    }
 
+						$brackets = $isFieldArray ? '' : '[]';
+
 						if ( $labelID<>'' ) $labelIDx = substr($labelID,0,-1) . $id . '"';
 
 						if ( $opt[0]=='' )
 							$field .= $nttt . $tab . '<br />';
 						else
-							$field .= $nttt . $tab . '<input' . $readonly.$disabled . ' type="checkbox" id="'. $input_id .'-'. $id . '" name="'. $input_name . '[]" value="'.$opt[1].'" '.$checked.' class="cf-box-b"'.$fieldTitle.'/>'.
+							$field .= $nttt . $tab . '<input' . $readonly.$disabled . ' type="checkbox" id="'. $input_id .'-'. $id . '" name="'. $input_name . $brackets .'" value="'.$opt[1].'" '.$checked.' class="cf-box-b"'.$fieldTitle.'/>'.
 									  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-group-after"><span>'.$opt[0] . "</span></label>";
 
 					}
