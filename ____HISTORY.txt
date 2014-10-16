@@ -32,8 +32,11 @@
 
 	!!! IMPORTANT !!!
 
+WHAT's NEW in cformsII - v13.2.1
+*) fixed:    undefined function 'my_cforms_logic' 
 
 WHAT's NEW in cformsII - v13.2
+*) fixed:    XSS security issue with lib_ajax.php
 *) fixed:    several fixes around "CC: me" field
 *) improved: added Help Note on how to use {Custom Variables} in multi-page forms
 *) fixed:    default checkbox state is not restored on form reload (user choice remains)
