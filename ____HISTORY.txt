@@ -29,6 +29,13 @@
 PLEASE NOTE: BEFORE INSTALLING V11.8 MAKE A BACKUP OF YOUR CFORMS.JS FILE, AS THE PATH 
 INFORMATION & DECLARATION HAS CHANGED!
 
+WHAT's NEW in cformsII - v12.0
+*) other:  WP3.2.1 compliance
+*) other:  upgraded to jQuery 1.6.2 (datepicker)
+*) bugfix: corrected WP comment form issue ($usermessage_text)
+*) bugfix: Zip Code RegExp in the Help Seection corrected
+*) bugfix: date picker fix for WP3.2
+
 WHAT's NEW in cformsII - v11.9
 *) bugfix: IE9 date picker fix
  

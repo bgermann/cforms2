@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 11.9
+Version: 12.0
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '11.9';
+$localversion = '12.0';
 
 ### debug messages
 $cfdebug = false;
@@ -247,7 +247,7 @@ function cforms($args = '',$no = '') {
 		if ( $_GET['cfemail']=='sent' )
 			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
 		elseif ( $_GET['cfemail']=='posted' )
-			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms_commentsuccess']) );
+			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['global']['cforms_commentsuccess']) );
 	}
 
 
@@ -1101,7 +1101,7 @@ function cforms_style() {
 				 'ROOT:"'.$cforms_root.'"};'."\n".
 				 "\t".'jQuery(function() { '."\n".
 				 "\t\t".'if( jQuery.datepicker ){'."\n".
-				 "\t\t\t".'jQuery(".cf_date").datepicker({buttonImage: "js/calendar.gif", buttonImageOnly: false, dateFormat: "'.$dformat.'" } );'."\n".
+				 "\t\t\t".'jQuery(".cf_date").datepicker({buttonImage: "js/calendar.gif", createButton: true, dateFormat: "'.$dformat.'" } );'."\n".
 				 "\t\t".'} else {'."\n".
 				 "\t\t\t".'Date.format = "dd/mm/yyyy"; jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } ); Date.format = "'.$dformat.'";'."\n".
 				 "\t\t".'}'."\n".
@@ -1628,9 +1628,9 @@ function cforms_runtime_scripts() {
 	if ( !is_a($wp_scripts, 'WP_Scripts') )
 		$wp_scripts = new WP_Scripts();
 
-    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.4.2") ) === -1 ){
+    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.6.2") ) === -1 ){
 		wp_deregister_script('jquery');
-	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.4.2');
+	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.6.2');
     	wp_enqueue_script('jquery');
     }
 	else

@@ -837,7 +837,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:<br />US zip code', 'cforms'); ?></td><td class="bright">
-					<code><?php _e('zip code', 'cforms'); ?>||^\d{5}$)|(^\d{5}-\d{4}$</code></td>
+					<code><?php _e('zip code', 'cforms'); ?>||^\d{5}$|^\d{5}-\d{4}$</code></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:<br />US phone #', 'cforms'); ?></td><td class="bright">
