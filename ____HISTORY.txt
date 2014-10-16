@@ -26,7 +26,11 @@
  Version History:
  =====================================================================================
 
-WHAT's NEW in cformsII - v11.6
+WHAT's NEW in cformsII - v11.7
+*) bugfix: much enhanced/fixed REGEXP support for multi-line fields, to better support anti
+			SPAM measures, e.g. :   ^(?!.*(xxx|seo|ptimization)).*$
+
+WHAT's NEW in cformsII - v11.6.1
 *) bugfix: fixed missing spaces in multi-line text fields
 
 WHAT's NEW in cformsII - v11.6

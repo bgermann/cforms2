@@ -191,7 +191,14 @@ for($i = 1; $i <= $field_count; $i++) {
   					}
   					else { ### classic regexp
 						$reg_exp = str_replace('/','\/',stripslashes($obj[2]) );
-                        if( $current_field<>'' && !preg_match('/'.$reg_exp.'/', $current_field) ){
+
+						### multi-line textarea regexp trick
+						if( $field_type == 'textarea' )
+						    $valField = (string)str_replace(array("\r", "\r\n", "\n"), ' ', $current_field);
+						else
+						    $valField = $current_field;
+
+                        if( $current_field<>'' && !preg_match('/'.$reg_exp.'/', $valField) ){
 						    $validations[$i+$off] = false;
 						}
 					}
