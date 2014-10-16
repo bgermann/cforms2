@@ -1179,4 +1179,3 @@ function cforms2_insert_modal(){
 	</div>
 <?php
 }
-?>

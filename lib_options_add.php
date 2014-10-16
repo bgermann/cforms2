@@ -73,5 +73,3 @@
 
     update_option('cforms_settings',$cformsSettings);
 	echo '<div id="message" class="updated fade"><p>'.__('A new form with default fields has been added.', 'cforms').'</p></div>';
-
-?>

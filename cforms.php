@@ -1742,4 +1742,3 @@ add_action('admin_init', 'cforms2_adminstyle');
 add_filter('wp_head', 'cforms2_style');
 add_filter('the_content', 'cforms2_insert',101);
 add_filter('wp_footer', 'cforms2_script',99);
-?>

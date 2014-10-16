@@ -107,5 +107,3 @@
 	    fseek($vFile, $PrevPos);
 	    return ($Erg == $Text);
 	}
-
-?>

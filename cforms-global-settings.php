@@ -812,4 +812,3 @@ function cforms2_get_files($dir,$currentfile,$ext){
 function cforms2_prep($v,$d) {
 	return ($v<>'')?stripslashes(htmlspecialchars($v)):$d;
 }
-?>

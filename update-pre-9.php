@@ -137,5 +137,3 @@ function cforms2_oldSettings( $doit ){
 	}
 	return $p;
 }
-
-?>

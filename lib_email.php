@@ -660,4 +660,3 @@ class cforms2_mail {
 	    return $s;
 	}
 }
-?>

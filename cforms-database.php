@@ -141,4 +141,3 @@ function cforms2_insert_modal_tracking(){
 	</div>
 <?php
 }
-?>

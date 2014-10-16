@@ -614,4 +614,3 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	} ### if $MPok
 
 } ### if isset & valid sendbutton
-?>

@@ -50,4 +50,3 @@ function cforms2_dashboard() {
 
 	echo $content;
 }
-?>

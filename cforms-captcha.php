@@ -178,4 +178,3 @@ die();
 function cforms2_prepVal($v,$d) {
 	return ($v<>'') ? stripslashes($v) : $d;
 }
-?>

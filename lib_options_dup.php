@@ -23,5 +23,3 @@
 
 	//set $no afterwards: need it to duplicate fields
 	$no = $noDISP = $FORMCOUNT;
-
-?>

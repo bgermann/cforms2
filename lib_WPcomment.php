@@ -261,4 +261,3 @@ if ( $isAjaxWPcomment ){
 		header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=err'.$err. '#cforms'.$no.'form' );
 	}
 } ### non Ajax
-?>

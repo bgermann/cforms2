@@ -230,4 +230,3 @@ function cforms2_check_update() {
     }
 	return get_option('cforms_formcount');
 }
-?>

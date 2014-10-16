@@ -1660,7 +1660,6 @@ jQuery.iUtil = {
 	
 	Converted from Drupal -> textarea.js
 	Found source: http://plugins.jquery.com/misc/textarea.js
-	$Id$
 
 	1.0.1 Updates to missing global 'var', added extra global variables, fixed multiple instances, improved iFrame support
 	1.0.2 Updates according to textarea.focus
