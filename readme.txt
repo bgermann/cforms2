@@ -294,7 +294,7 @@ After updating please edit each form on your plugins config page to verify that 
 
 = 11.6 =
 
-* added:    addded Form Name to <form> element for easier styling across sites
+* added:    addded Form Name to `<form>` element for easier styling across sites
 * other:    changed edit / delete icon for better distinction
 * other:    plugged a potential (but unlikely to be exploited) security hole
 * other:    changed MySQL calls from direct code to using $wpdb
