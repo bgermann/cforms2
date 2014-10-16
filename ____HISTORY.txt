@@ -32,6 +32,8 @@
 
 	!!! IMPORTANT !!!
  
+WHAT's NEW in cformsII - v13.1
+*) bugfix:	radio button fix
  
 WHAT's NEW in cformsII - v13.0
 *) WP3.3 compliance
@@ -47,8 +49,7 @@ WHAT's NEW in cformsII - v13.0
 *) other:    checkbox fields now include a "checked symbol", instead of the word "on"
 *) other:    email layout enhancements (optimized for gmail & HTML capable clients)
              !!! NOTE: in order to fully enable the new layout for old forms, you MUST 
-             create a brand new form and copy/paste the HTML message parts (admin &
-             auto-confirmation message) from this new form to all your old forms !!!
+             reset the Admin & Auto Confirmation Messages (see button above each)
 			 
 			 
 

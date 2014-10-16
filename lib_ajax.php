@@ -296,11 +296,6 @@ function cforms_submitcomment($content) {
 					else
 						$value = '';
 
-			} else if ( $field_type == "radiobuttons" ) {
-
-					if ( ! $value <> 'on' )
-						$value = '';
-
 			}
 			
 			### determine tracked field name

@@ -233,11 +233,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				else
 					$value = '';
 
-		} else if ( $field_type == "radiobuttons" ) {
-
-				if ( ! $value <> 'on' )
-					$value = '';
-
 		}
 
 		### determine tracked field name
