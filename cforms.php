@@ -19,7 +19,7 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more. Please see ____HISTORY.txt for <strong>what's new</strong> and current <strong>bugfixes</strong>.
 Author: Oliver Seidel
-Version: 12.0
+Version: 12.1	
 Author URI: http://www.deliciousdays.com
 
 
@@ -27,7 +27,7 @@ Author URI: http://www.deliciousdays.com
 */
 
 global $localversion;
-$localversion = '12.0';
+$localversion = '12.1';
 
 ### debug messages
 $cfdebug = false;
@@ -244,10 +244,14 @@ function cforms($args = '',$no = '') {
 	if ( isset($_GET['cfemail']) && $isWPcommentForm ){
 		$usermessage_class = ' success';
 		$success=true;
-		if ( $_GET['cfemail']=='sent' )
+		if ( $_GET['cfemail']=='sent' ){
 			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
-		elseif ( $_GET['cfemail']=='posted' )
+		} elseif ( $_GET['cfemail']=='posted' ){
 			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['global']['cforms_commentsuccess']) );
+		} else {
+			$usermessage_class = '';
+			$success=false;		
+		}
 	}
 
 
@@ -1098,12 +1102,15 @@ function cforms_style() {
 				 'TEXT_NEXT_MONTH:"'.stripslashes($nav[3]).'",'.
 				 'TEXT_CLOSE:"'.stripslashes($nav[4]).'",'.
 				 'TEXT_CHOOSE_DATE:"'.stripslashes($nav[5]).'",'.
+				 'HEADER_FORMAT:"mmm yyyy",'.
 				 'ROOT:"'.$cforms_root.'"};'."\n".
 				 "\t".'jQuery(function() { '."\n".
 				 "\t\t".'if( jQuery.datepicker ){'."\n".
-				 "\t\t\t".'jQuery(".cf_date").datepicker({buttonImage: "js/calendar.gif", createButton: true, dateFormat: "'.$dformat.'" } );'."\n".
+				 "\t\t\t".'jQuery(".cf_date").datepicker({buttonImage: "js/calendar.gif", buttonImageOnly: true, dateFormat: "'.$dformat.'" } );'."\n".
 				 "\t\t".'} else {'."\n".
-				 "\t\t\t".'Date.format = "dd/mm/yyyy"; jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } ); Date.format = "'.$dformat.'";'."\n".
+				 //"\t\t\t".'Date.format = "dd/mm/yyyy"; jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } ); Date.format = "'.$dformat.'";'."\n".
+				 "\t\t\t".'Date.format = "'.$dformat.'";'."\n".
+				 "\t\t\t".'jQuery(".cf_date").datePicker({startDate:"01/01/1899",verticalOffset:20,horizontalOffset:5,horizontalPosition:1 } );'."\n".
 				 "\t\t".'}'."\n".
 				 "\t".'});'."\n".
 				 '</script>'."\n";
@@ -1628,7 +1635,7 @@ function cforms_runtime_scripts() {
 	if ( !is_a($wp_scripts, 'WP_Scripts') )
 		$wp_scripts = new WP_Scripts();
 
-    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.6.2") ) === -1 ){
+    if ( version_compare(strval($wp_scripts->registered['jquery']->ver), strval("1.6.1") ) === -1 ){
 		wp_deregister_script('jquery');
 	    wp_register_script('jquery',$r.'/js/jquery.js',false,'1.6.2');
     	wp_enqueue_script('jquery');
