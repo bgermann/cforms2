@@ -95,10 +95,10 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 add_action('template_redirect', 'cforms2_start_session');
 
 function cforms2_start_session() {
-	@session_cache_limiter('private, must-revalidate');
-	@session_cache_expire(0);
+	session_cache_limiter('private, must-revalidate');
+	session_cache_expire(0);
 	if ( !session_id() ){
-		@session_start();
+		session_start();
 		### debug
 		cforms2_dbg( "After session (".session_id().")start: ".print_r($_SESSION,1) );
 	}
@@ -1498,9 +1498,9 @@ function cforms2_widget_init() {
 	            $number = ($args['number'] == -1)? '%i%' : $args['number'];
 
 	            // stored data
-	            $opts  = @$options[$number];
-	            $title = @$opts['title'];
-	            $form = @$opts['form'];
+	            $opts  = $options[$number];
+	            $title = $opts['title'];
+	            $form = $opts['form'];
 
 
                 $opt = '';

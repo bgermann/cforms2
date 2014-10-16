@@ -252,18 +252,6 @@ function cforms2_get_xml($handle, $fnames, $count, $where, $in_list, $sortBy, $s
 		   //,"ARRAY_A"
 	);
 	
-	// echo '<br><pre>'.print_r($results,1).'</pre>';
-	
-	/*
-	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-	@mysql_select_cforms2_dbgDB_NAME) or die( "Unable to select database");
-
- 	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
-	$r = mysql_query($sql);
-	*/
-	
-	//  &#10;
-	
     $sub_id ='';
     foreach( $results as $key => $entry ) {
 	### while( $entry = mysql_fetch_array($r) ){

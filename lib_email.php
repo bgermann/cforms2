@@ -427,7 +427,7 @@ class cforms2_mail {
 	}
 
 	public function add_file($path, $name = '', $encoding = 'base64', $type = 'application/octet-stream') {
-	    if(!@is_file($path)) {
+	    if(!is_file($path)) {
 	      $this->set_err(__('Could not access file: ','cforms'));
 	      return false;
 	    }
@@ -486,7 +486,7 @@ class cforms2_mail {
 	}
 
 	private function enc_file ($path, $encoding = 'base64') {
-	    if(!@$fd = fopen($path, 'rb')) {
+	    if(!$fd = fopen($path, 'rb')) {
 	      $this->set_err(__('File Error: Could not open file: ','cforms'));
 	      return '';
 	    }

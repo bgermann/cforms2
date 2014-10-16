@@ -321,7 +321,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 				}
 
               ### A properly uploaded file will pass this test. There should be no reason to override this one.
-              if (! @ is_uploaded_file( $file['tmp_name'][$i] ) )
+              if (! is_uploaded_file( $file['tmp_name'][$i] ) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err4'];
 
               if ( $fileerr <> '' ){

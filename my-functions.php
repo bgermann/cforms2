@@ -43,8 +43,8 @@
 function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
 
-	### If you're unsure how to reference $cformsdata use the below @mail call to send you the data array
-	### @mail('your@email.com', 'cforms my_action test', print_r($cformsdata,1), 'From: your@email.com');
+	### If you're unsure how to reference $cformsdata use the below mail call to send you the data array
+	### mail('your@email.com', 'cforms my_action test', print_r($cformsdata,1), 'From: your@email.com');
 
 
 
@@ -241,7 +241,7 @@ function my_cforms_filter($formID) {
 	}
 
 	### Send to 3d party or do something else
-	@mail('your@email.com', 'cforms my_filter test', print_r($track,1), 'From: your@blog.com');
+	mail('your@email.com', 'cforms my_filter test', print_r($track,1), 'From: your@blog.com');
 
 }
 
@@ -278,7 +278,7 @@ function my_cforms_action($cformsdata) {
 	}
 
 	### Send to 3d party or do something else
-	@mail('your@email.com', 'cforms my_action test', print_r($form,1), 'From: your@blog.com');
+	mail('your@email.com', 'cforms my_action test', print_r($form,1), 'From: your@blog.com');
 
 }
 
@@ -307,7 +307,7 @@ function my_cforms_filter($POSTdata) {
 			$POSTdata['cf3_field_3'] = 'Mr./Mrs. '.$POSTdata['cf3_field_3'];
 
 			### perhaps send an email or do somethign different
-			@mail('your@email.com', 'cforms my_filter_nonAjax test', 'Form data array (nonAjax):'.print_r($POSTdata,1), 'From: your@blog.com');
+			mail('your@email.com', 'cforms my_filter_nonAjax test', 'Form data array (nonAjax):'.print_r($POSTdata,1), 'From: your@blog.com');
 	}
 	return $POSTdata;
 
@@ -338,7 +338,7 @@ function my_cforms_ajax_filter($params) {
 			$params['field_1'] = 'Mr./Mrs. '.$params['field_1'];
 
 			### perhaps send an email or do somethign different
-			@mail('your@email.com', 'cforms my_filter_Ajax test', 'Form data array (Ajax):'.print_r($params,1), 'From: your@blog.com');
+			mail('your@email.com', 'cforms my_filter_Ajax test', 'Form data array (Ajax):'.print_r($params,1), 'From: your@blog.com');
 
 	}
 	return $params;
@@ -347,6 +347,3 @@ function my_cforms_ajax_filter($params) {
 
 
  ending comment line for: my_cforms_ajax_filter -------------------->  */
-
-
-?>
