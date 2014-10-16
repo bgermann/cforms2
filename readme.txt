@@ -1,10 +1,10 @@
 === cformsII - contact form ===
-Contributors: bgermann
+Contributors: bgermann, olivers
 Donate link: http://www.deliciousdays.com/cforms-donation
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: trunk
+Stable tag: 14.6.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
