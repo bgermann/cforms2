@@ -22,13 +22,13 @@ Plugin Name: cforms
 Plugin URI: http://www.deliciousdays.com/cforms-plugin
 Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
 Author: Oliver Seidel, Bastian Germann
-Version: 14.6.4
+Version: 14.6.5
 
 
 */
 
 global $localversion;
-$localversion = '14.6.4';
+$localversion = '14.6.5';
 
 ### db settings
 global $wpdb, $cformsSettings;

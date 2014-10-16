@@ -4,7 +4,7 @@ Donate link: http://www.deliciousdays.com/cforms-donation
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 14.6.4
+Stable tag: 14.6.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -117,6 +117,9 @@ After updating please edit each form on your plugins config page to verify that 
 
 
 == Changelog ==
+
+= 14.6.5 =
+* other:    reintroduced the public insert_cform function
 
 = 14.6.4 =
 * bugfix:   hanging form submission
