@@ -612,7 +612,7 @@ function cforms_submitcomment(no) {
 		var post_data = 'action=submitcomment&_wpnonce='+cforms2_ajax.nonces['submitcomment'];
 		for (i = 0; i < params.length; i++)
 			post_data = post_data + "&rsargs[]=" + encodeURIComponent(params[i]);
-		jQuery.post( cforms2_ajax.url, post_data, function( data ) {cforms_setsuccessmessage(eval(data));});
+		jQuery.post( cforms2_ajax.url, post_data, function( data ) {cforms_setsuccessmessage(data);});
 }
 
 function isParentChkBoxGroup(el){

@@ -16,7 +16,7 @@ function cforms2_submitcomment($content) {
 	check_admin_referer( 'submitcomment' );
 	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale;
 
-	header ('Content-Type: text/javascript');
+	header ('Content-Type: text/plain');
 	$content = '';
 	if (isset($_POST['rsargs'][0]))
 		$content = $_POST['rsargs'][0];
