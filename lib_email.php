@@ -14,7 +14,6 @@ class cforms2_mail {
 	public $content_type = 'text/plain';
 	public $enc = '8bit';
 	public $err  = '';
-	public $ver  = '';
 
 	public $from = '';
 	public $fname = 'cforms';
@@ -46,8 +45,6 @@ class cforms2_mail {
 	###
     public function __construct($no, $from, $to, $replyto='',$adminEmail=false){
 		$cformsSettings = get_option('cforms_settings');
-
-        $this->ver = $cformsSettings['global']['v'];
 
 	    $this->eolH = ($cformsSettings['global']['cforms_crlf'][h]!=1)?"\r\n":"\n";
 	    $this->eol  = ($cformsSettings['global']['cforms_crlf'][b]!=1)?"\r\n":"\n";

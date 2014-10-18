@@ -4,9 +4,6 @@ $cformsSettings = (array) $cformsSettings;
 
 ### new global settings container
 
-### always reset during (re)activation
-$cformsSettings['global']['v'] = $localversion;
-
 ### Common HTML message information
 
 $cformsSettings['global']['cforms_style_doctype'] 	= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
@@ -27,10 +24,6 @@ $cformsSettings['global']['cforms_style']['dear'] 		= 'style="margin:0.5em 30px;
 $cformsSettings['global']['cforms_style']['confp'] 		= 'style="margin:0.5em 30px;"';
 $cformsSettings['global']['cforms_style']['confirmationmsg'] = 'style="margin:4em 30px 0; padding-bottom:1em; font-size:80%; color:#aaa; font-family:Tahoma,Arial;"';
 
-
-### check for upgrade pre-9.0 to 9.0
-if ( cforms2_check_update() )
-    return;
 
 ### file upload
 cforms2_setINI('form','cforms_upload_dir', plugin_dir_path( __FILE__ ) . '/attachments' );
@@ -218,15 +211,4 @@ function cforms2_setINI($s,$v,$d) {
 	global $cformsSettings;
 	if( !is_array($cformsSettings[$s]) || !in_array($v, array_keys($cformsSettings[$s]) ) )
     	$cformsSettings[$s][$v]=$d;
-}
-
-
-### check if update screen will be shown
-function cforms2_check_update() {
-    global $cformsSettings;
-	if( is_array($cformsSettings) && get_option('cforms_formcount') ){
-		$cformsSettings['global']['update'] = true;
-         update_option('cforms_settings',$cformsSettings);
-    }
-	return get_option('cforms_formcount');
 }

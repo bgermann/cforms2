@@ -15,10 +15,6 @@ cforms2_check_access_priv('track_cforms');
 $cformsSettings = get_option('cforms_settings');
 $plugindir   = dirname(plugin_basename(__FILE__));
 
-### check if pre-9.0 update needs to be made
-if( isset($cformsSettings['global']['update']) && $cformsSettings['global']['update'] )
-	require_once (dirname(__FILE__) . '/update-pre-9.php');
-
 ### if all data has been erased quit
 if ( cforms2_check_erased() )
 	return;

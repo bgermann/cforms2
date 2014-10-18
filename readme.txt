@@ -4,7 +4,7 @@ Donate link: http://www.deliciousdays.com/cforms-donation
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: trunk
+Stable tag: 14.6.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -42,9 +42,47 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 == Installation ==
 
-Please see the [cforms plugin home page](http://www.deliciousdays.com/cforms-plugin) for details. Check out the [cforms CSS Guide and webcast](http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/) on layout customization.
+= Installing the plugin =
+
+You can install the plugin via Wordpress Dashboard. It should show up by searching
+for cforms2. If this does not work for you, there should be an option to upload a
+[zip file](https://downloads.wordpress.org/plugin/cforms2.zip).
+
+If you want to install manually, please upload the complete plugin folder "cforms2",
+contained in the zip file, to your WP plugin directory!
+
+= Upgrading the plugin =
+
+If you want to upgrade from the original cformsII from deliciousdays.com, please
+upgrade to the original version 14.6 first, make sure you upgraded your settings and
+backup your database. Then deactivate the original plugin and install this fork.
+
+If you want to delete the original version, make sure you do not delete your upload
+directory.
+
+= Did you modify any cforms theme (CSS) files, images etc? =
+
+Create a custom folder under your WP plugin directory & call it "cforms-custom". Move
+all your custom files into it. This folder will protect your changes going forward.
+
+Also note that it is always advisable to make or keep a backup of your
+current plugin directory just in case you need to revert back to a
+previous release!
+
+Check out the [cforms CSS Guide and webcast](http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/) on layout customization.
+
+= Localization =
+
+If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
+
+You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/).
+
+If you would like to contribute a new language file, please file a ticket with the translation file attached.
+It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
+you must not redistribute them as long as it is not your translation.
 
 
 == Frequently Asked Questions ==
@@ -117,6 +155,12 @@ After updating please edit each form on your plugins config page to verify that 
 
 
 == Changelog ==
+
+= 14.6.6 =
+* bugfix:   wrong AJAX MIME type
+* added:    guideline to upgrade from original cforms
+* other:    removed old upgrade code
+* other:    moved some additional information in textfiles to readme.txt
 
 = 14.6.5 =
 * other:    reintroduced the public insert_cform function

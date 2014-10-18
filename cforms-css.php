@@ -18,10 +18,6 @@ $s = DIRECTORY_SEPARATOR;
 $style		= $cformsSettings['global']['cforms_css'];
 $stylefile	= dirname(__FILE__)."{$s}styling{$s}".$style;
 
-### check if pre-9.0 update needs to be made
-if( isset ($cformsSettings['global']['update']) && $cformsSettings['global']['update'] )
-	require_once (dirname(__FILE__) . '/update-pre-9.php');
-
 ### Check Whether User Can Manage Database
 cforms2_check_access_priv();
 

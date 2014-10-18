@@ -3,12 +3,6 @@
 	$FORMCOUNT=$FORMCOUNT+1;
 	$no = $noDISP = $FORMCOUNT;
 
-	###sorry, but WP2.2 doesn quickly enough flush the cache!
-	###if ( function_exists (wp_cache_close) ) {
-	###	wp_cache_flush();
-	###	wp_cache_close();
-	###}
-
 	$cformsSettings['global']['cforms_formcount'] = (string)($FORMCOUNT);
 
 	### new settings container
