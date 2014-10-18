@@ -77,8 +77,6 @@ if ($sub_ids<>'') {
 
 	$in_list = ($sub_ids<>'all')?'AND id in ('.substr($sub_ids,0,-1).')':'';
 
-	$count = $wpdb->get_var("SELECT COUNT(id) FROM {$wpdb->cformssubmissions} WHERE TRUE $where $in_list");
-
     if( !is_writable($tempfile) ){
 		$err = sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),"\r\n\r\n --->  <code>". $tempfile ."\r\n\r\n","\r\n\r\n");
 
@@ -100,11 +98,11 @@ if ($sub_ids<>'') {
     ### UTF8 header
     if ( $charset=='utf-8' )
         fwrite($handle, pack("CCC",0xef,0xbb,0xbf));
-trigger_error("$fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset");
+
 	switch ( $format ){
-		case 'xml': cforms2_get_xml($handle, $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
-		case 'csv': cforms2_get_csv_tab($handle, 'csv', $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
-		case 'tab': cforms2_get_csv_tab($handle, 'tab', $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'xml': cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'csv': cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset); break;
+		case 'tab': cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, 'tab'); break;
 	}
 
     fclose($handle);
@@ -129,7 +127,7 @@ trigger_error("$fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSe
 }
 }
 
-function cforms2_get_csv_tab($handle, $format='csv', $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset){
+function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, $format='csv'){
 	global $wpdb;
 
     $results = $wpdb->get_results( "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC" );
@@ -146,7 +144,7 @@ function cforms2_get_csv_tab($handle, $format='csv', $fnames, $count, $where, $i
 
     $last_n = '';
 
-	foreach( $results as $key => $entry ) {
+	foreach( $results as $entry ) {
 
 	### while( $entry = mysql_fetch_array($r) ){
 
@@ -239,7 +237,7 @@ function cforms2_get_csv_tab($handle, $format='csv', $fnames, $count, $where, $i
 
 
 
-function cforms2_get_xml($handle, $fnames, $count, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset){
+function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $charset){
 	global $wpdb;
 
 	if( $charset=='utf-8' )
@@ -252,8 +250,20 @@ function cforms2_get_xml($handle, $fnames, $count, $where, $in_list, $sortBy, $s
 		   //,"ARRAY_A"
 	);
 	
+	// echo '<br><pre>'.print_r($results,1).'</pre>';
+	
+	/*
+	mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
+	mysql_select_cforms2_dbgDB_NAME) or die( "Unable to select database");
+
+ 	$sql = "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC";
+	$r = mysql_query($sql);
+	*/
+	
+	//  &#10;
+	
     $sub_id ='';
-    foreach( $results as $key => $entry ) {
+    foreach( $results as $entry ) {
 	### while( $entry = mysql_fetch_array($r) ){
 
 	        if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
@@ -296,4 +306,4 @@ function cforms2_enc_data_xml ( $d , $charset ){
 	$d = str_replace( array('"'), array('&quot;'),$d );
 	$d = ( $charset=='utf-8' ) ? $d : utf8_decode($d);
 	return $d;
-} ?>
+}

@@ -62,7 +62,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		if( $jump )	continue;
 
 		### if subscribe not shown, skip
-		$isSubscribed=='';
+		$isSubscribed='';
 		if ( class_exists('sg_subscribe') ){
 			global $sg_subscribe;
 			sg_subscribe_start();
@@ -98,8 +98,6 @@ for($i = 1; $i <= $field_count; $i++) {
 				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
 				$trackingID	= cforms2_sanitize_ids( $input_name[2] );
-
-//		 	echo '<br><pre>'.$tmpName . print_r($input_name,1).'</pre>';
 
 /* 
 	First Name[id:firstname]yy||^[A-Za-z ]*$Array

@@ -13,7 +13,6 @@ $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 $content 	 = '';
 
 $err		 = 0;
-$filefield	 = 0;   ### for multiple file upload fields
 
 $validations = array();
 $all_valid 	 = 1;

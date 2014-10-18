@@ -69,13 +69,11 @@
 	padding-right: 10px;
 }
 
-.flexigrid div.nDiv tr:hover td.ndcol1,.flexigrid div.nDiv tr.ndcolover td.ndcol1
-	{
+.flexigrid div.nDiv tr:hover td.ndcol1,.flexigrid div.nDiv tr.ndcolover td.ndcol1 {
 	border-right: 1px solid #d2e3ec;
 }
 
-.flexigrid div.nDiv tr:hover td.ndcol2,.flexigrid div.nDiv tr.ndcolover td.ndcol2
-	{
+.flexigrid div.nDiv tr:hover td.ndcol2,.flexigrid div.nDiv tr.ndcolover td.ndcol2 {
 	border-left: 1px solid #eef8ff;
 }
 
@@ -416,10 +414,6 @@ div.colCopy {
 	white-space: nowrap;
 }
 
-.flexigrid div.hDiv th div {
-	
-}
-
 .flexigrid span.cdropleft {
 	display: block;
 	background: url(images/prev.gif) no-repeat -4px center;
@@ -453,10 +447,6 @@ div.colCopy {
 	border-bottom: 1px solid #f3f3f3;
 }
 
-.flexigrid tr td.sorted div {
-	
-}
-
 .flexigrid tr.erow td {
 	background: #f7f7f7;
 	border-bottom: 1px solid #f7f7f7;
@@ -465,10 +455,6 @@ div.colCopy {
 .flexigrid tr.erow td.sorted {
 	background: #e3e3e3;
 	border-bottom: 1px solid #e3e3e3;
-}
-
-.flexigrid tr.erow td.sorted div {
-	
 }
 
 .flexigrid div.bDiv tr:hover td,.flexigrid div.bDiv tr:hover td.sorted,.flexigrid div.bDiv tr.trOver td.sorted,.flexigrid div.bDiv tr.trOver td
@@ -509,14 +495,12 @@ div.colCopy {
 	border-left-color: #f7f7f7;
 }
 
-.flexigrid.novstripe div.bDiv tr.trSelected:hover td,.flexigrid.novstripe div.bDiv tr.trSelected:hover td.sorted,.flexigrid.novstripe div.bDiv tr.trOver.trSelected td.sorted,.flexigrid.novstripe div.bDiv tr.trOver.trSelected td,.flexigrid.novstripe tr.trSelected td.sorted,.flexigrid.novstripe tr.trSelected td
-	{
+.flexigrid.novstripe div.bDiv tr.trSelected:hover td,.flexigrid.novstripe div.bDiv tr.trSelected:hover td.sorted,.flexigrid.novstripe div.bDiv tr.trOver.trSelected td.sorted,.flexigrid.novstripe div.bDiv tr.trOver.trSelected td,.flexigrid.novstripe tr.trSelected td.sorted,.flexigrid.novstripe tr.trSelected td {
 	border-right: 1px solid #0066FF;
 	border-left: 1px solid #0066FF;
 }
 
-.flexigrid.novstripe div.bDiv tr.trOver td,.flexigrid.novstripe div.bDiv tr:hover td
-	{
+.flexigrid.novstripe div.bDiv tr.trOver td,.flexigrid.novstripe div.bDiv tr:hover td {
 	border-left-color: #d9ebf5;
 	border-right-color: #d9ebf5;
 }
@@ -566,8 +550,7 @@ div.pGroup {
 	overflow: hidden;
 }
 
-.flexigrid div.pDiv  div.pButton:hover,.flexigrid div.pDiv  div.pButton.pBtnOver
-	{
+.flexigrid div.pDiv  div.pButton:hover,.flexigrid div.pDiv  div.pButton.pBtnOver {
 	width: 20px;
 	height: 20px;
 	border: 1px solid #ccc;
@@ -624,20 +607,18 @@ div.pGroup {
 }
 
 /*Oliver added:*/
-.flexigrid div.fbutton .add
-	{
-		background: url(images/view.png) no-repeat center left;
-	}
+.flexigrid div.fbutton .add {
+	background: url(images/view.png) no-repeat center left;
+}
 
-.flexigrid div.fbutton .delete
-	{
-		background: url(images/trash.gif) no-repeat top left;
-	}
-.flexigrid div.fbutton .delete:hover
-	{
-		background-position: 0 -23px;
-	}
-.flexigrid div.fbutton .dl
-	{
-		background: url(images/download.png) no-repeat center left;
-	}
+.flexigrid div.fbutton .delete {
+	background: url(images/trash.gif) no-repeat top left;
+}
+
+.flexigrid div.fbutton .delete:hover {
+	background-position: 0 -23px;
+}
+
+.flexigrid div.fbutton .dl {
+	background: url(images/download.png) no-repeat center left;
+}

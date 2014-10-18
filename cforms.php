@@ -198,7 +198,6 @@ function cforms2($args = '',$no = '') {
 	$content = '';
 
 	$err=0;
-	$filefield=0;
 
 	$validations = array();
 	$all_valid = 1;
@@ -677,7 +676,6 @@ function cforms2($args = '',$no = '') {
 
 		### add input field
 		$dp = '';
-		$naming = false;
 		$field  = '';
 		$val = '';
 		$force_checked = false;
@@ -1435,12 +1433,13 @@ function cforms2_widget_init() {
 
 	global $wp_registered_widgets, $cformsSettings;
 
-	// Matthew Sigley's change from https://github.com/msigley/cforms-II-EX/commit/c9724f4cf72e088059ac6bde9d610e66dc30dc1c
     $cformsSettings = get_option('cforms_settings');
+	
+    // Matthew Sigley's change from https://github.com/msigley/cforms-II-EX/commit/c9724f4cf72e088059ac6bde9d610e66dc30dc1c
     $options = array();
     if( isset($cformsSettings['global']['widgets']) && is_array($cformsSettings['global']['widgets']) )
         $options = $cformsSettings['global']['widgets'];
-	// end Matthew Sigley's change 
+    // end Matthew Sigley's change 
 
     $prefix = 'cforms';
 

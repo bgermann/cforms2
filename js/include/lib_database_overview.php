@@ -107,4 +107,4 @@ $xml .= "</rows>";
 ob_end_clean();
 echo $xml;
 die();
-} ?>
+}

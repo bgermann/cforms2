@@ -12,14 +12,14 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###
 ###  submit comment
 ###
-function cforms2_submitcomment($content) {
+function cforms2_submitcomment() {
 	check_admin_referer( 'submitcomment' );
-	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL, $wp_locale;
+	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL;
 
 	header ('Content-Type: text/plain');
 	$content = '';
-	if (isset($_POST['rsargs'][0]))
-		$content = $_POST['rsargs'][0];
+	if (isset($_POST['rsargs']))
+		$content = $_POST['rsargs'];
 
     $WPsuccess=false;
 	
@@ -83,21 +83,18 @@ function cforms2_submitcomment($content) {
 	$taf_youremail = false;
 	$taf_friendsemail = false;
 
-	$isFieldArray = false;
-
 	###  form limit reached
 	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
-	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])) . $hide;
+	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']));
 		die();
 	}
 
 	### for comment luv
 	get_currentuserinfo();
-	global $user_level;
 
 	### Subscribe-To-Comments
-	$isSubscribed=='';
+	$isSubscribed='';
 	if ( class_exists('sg_subscribe') ){
 		global $sg_subscribe;
 		sg_subscribe_start();
@@ -169,14 +166,7 @@ function cforms2_submitcomment($content) {
 				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$field_name,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
 				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
-				
-				/* 2.6.2012
-				$isFieldArray = strpos($input_name[1],'[]');
-				$idPartA = strpos($field_name,'[id:');
-				$idPartB = strrpos($field_name,']',$idPartA); 
-				$customTrackingID = substr($field_name,$idPartA+4,($idPartB-$idPartA)-4);
-				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
-				*/
+
 			}
 			else
 				$customTrackingID='';

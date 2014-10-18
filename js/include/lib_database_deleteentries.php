@@ -106,4 +106,4 @@ if ( $sub_ids<>'' ){
 	 _e('Entries successfully removed from the tracking tables!', 'cforms');
 }
 die();
-} ?>
+}

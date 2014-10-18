@@ -186,7 +186,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 <div class="wrap" id="top">
     <div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('Global Settings','cforms')?></h2>
 
-    <?php if ( isset($_POST['showinfo']) ) : ###debug "easter egg" 
+    <?php if ( WP_DEBUG && isset($_POST['showinfo']) ) : ###debug "easter egg" 
 
         echo '<h2>'.__('Debug Info (all major setting groups)', 'cforms').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">';
         echo print_r(array_keys($cformsSettings),1)."</pre>";
@@ -769,12 +769,10 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 <?php
 
 function cforms2_get_files($dir,$currentfile,$ext){
-	global	$cformsSettings;
 
 	$s = DIRECTORY_SEPARATOR;
 	$presetsdir		= dirname(__FILE__) .$s.'..'.$s .'cforms-custom';
 	$list 			= '';
-	$allfiles		= array();
 
 	if ( file_exists($presetsdir) ){
 

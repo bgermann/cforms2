@@ -101,7 +101,6 @@ cforms2_footer();
 <?php
 add_action('admin_footer', 'cforms2_insert_modal_tracking');
 function cforms2_insert_modal_tracking(){
-	global $noDISP;
 
 ?>
 	<div class="jqmWindow" id="cf_delete_dialog">
