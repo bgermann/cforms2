@@ -25,8 +25,7 @@ if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
 ### backup/download cforms settings
 $buffer='';
 function cforms2_download(){
-	global $buffer, $wpdb, $cformsSettings;
-	$br="\n";
+	global $buffer, $cformsSettings;
 
 	if( isset($_REQUEST['savecformsdata']) || isset($_REQUEST['saveallcformsdata']) ) {
 
@@ -36,11 +35,9 @@ function cforms2_download(){
 	            $noDISP = $no = $_REQUEST['noSub'];
 
 	    	$buffer .= cforms2_save_array($cformsSettings['form'.$no]);
-//	    	$buffer .= cforms2_save_array($cformsSettings['form'.$no]).$br;
 			$filename = 'form-settings.txt';
 		}else{
 	    	$buffer .= cforms2_save_array($cformsSettings);
-//	    	$buffer .= cforms2_save_array($cformsSettings).$br;
 			$filename = 'all-cforms-settings.txt';
 		}
         ob_end_clean();
@@ -64,6 +61,7 @@ function cforms2_save_array($vArray){
 	global $buffer;
     // Every array starts with chr(1)+"{"
     $buffer .=  "\0{";
+    $i = 0;
 
     // Go through the given array
     reset($vArray);
@@ -82,8 +80,9 @@ function cforms2_save_array($vArray){
 
         ++$i;
 
-        while ( next($vArray)===false )
+        while ( next($vArray)===false ) {
             if (++$i > count($vArray)) break;
+        }
 
         if ($i > count($vArray)) break;
     }
@@ -104,9 +103,8 @@ function cforms2_check_access_priv($r='manage_cforms'){
 
 ### add cforms menu
 function cforms2_menu() {
-	global $wpdb, $submenu;
+	global $wpdb;
 
-	$cformsSettings = get_option('cforms_settings');
     $p = dirname(plugin_basename(__FILE__));
 
 	$tablesup = ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)?true:false;
@@ -148,23 +146,25 @@ function cforms2_get_request_uri() {
 function cforms2_scripts() {
 	global $localversion;
 
-	### get options
-	$cformsSettings = get_option('cforms_settings');
+	$suffix = SCRIPT_DEBUG ? '' : '.min';
 	$r=plugin_dir_url(__FILE__);
 
 	### Add admin styles
-	wp_register_style('cforms-admin-style', $r . 'cforms-admin.css' );
-	wp_enqueue_style('cforms-admin-style'); 
+	wp_register_style('cforms-admin-style', $r . 'cforms-admin.css', false, $localversion );
+	wp_enqueue_style('cforms-admin-style');
 
 	if ( strpos(cforms2_get_request_uri(),'cforms-options')!==false ){
-		wp_register_style('calendar-style', $r . 'styling/calendar.css' );
+		wp_register_style('calendar-style', $r . 'styling/calendar.css', false, $localversion );
 		wp_enqueue_style('calendar-style'); 
 		
 		wp_enqueue_script('jquery');
 	    wp_enqueue_script('jquery-ui-core');
 
-	    wp_register_script('cforms_admin_cal',$r.'js/cformsadmincal.js',false,$localversion);
-	    wp_enqueue_script('cforms_admin_cal');
+	    wp_register_script('jquery-clockpick',$r."js/jquery.clockpick$suffix.js",false,'1.2.9');
+	    wp_enqueue_script('jquery-clockpick');
+		
+		wp_register_style('jquery-clockpick-style', $r . 'js/css/jquery.clockpick.css', false, '1.2.9' );
+		wp_enqueue_style('jquery-clockpick-style');
 	}
 
     wp_register_script('cforms_interface',$r.'js/interface.js',false,$localversion);

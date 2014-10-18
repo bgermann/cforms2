@@ -156,6 +156,9 @@ After updating please edit each form on your plugins config page to verify that 
 
 == Changelog ==
 
+= 14.6.7 =
+* enhanced: bump up ClockPick to the newest version
+
 = 14.6.6 =
 * bugfix:   wrong AJAX MIME type
 * added:    guideline to upgrade from original cforms

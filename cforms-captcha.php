@@ -51,8 +51,9 @@ $srclen = strlen($src)-1;
 $length = mt_rand($min,$max);
 
 $turing = '';
-for($i=0; $i<$length; $i++)
+for($i=0; $i<$length; $i++) {
 	$turing .= substr($src, mt_rand(0, $srclen), 1);
+}
 
 $tu = ($cap['i']=='i')?strtolower($turing):$turing;
 

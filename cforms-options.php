@@ -415,8 +415,9 @@ if( strlen($fd)<=2 ) {
         	<input tabindex="<?php echo $ti++;?>" type="text" name="AddFieldNo" value="1" class="addfieldno"/><?php _e('new field(s) @ position', 'cforms'); ?>
 			<select tabindex="<?php echo $ti++;?>" name="AddFieldPos" class="addfieldno">
 			<?php
-	            for($i = 1; $i <= $field_count; $i++)
+	            for($i = 1; $i <= $field_count; $i++) {
     	        	echo '<option value="'.$i.'">'.$i.'</option>';
+                }
 			?>
             </select>
 

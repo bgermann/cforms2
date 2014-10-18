@@ -2631,7 +2631,7 @@ Version 2.3.0
 
 Authors:
 	Dave Hauenstein
-	Martin H‰cker <spamfaenger [at] gmx [dot] de>
+	Martin H√§cker <spamfaenger [at] gmx [dot] de>
 
 Project home:
 	http://code.google.com/p/jquery-in-place-editor/
@@ -2674,8 +2674,8 @@ $.fn.editInPlace.defaults = {
 	bg_out:				"transparent", // string: background color on restore from hover
 	hover_class:		"",  // string: class added to root element during hover. Will override bg_over and bg_out
 	show_buttons:		false, // boolean: will show the buttons: cancel or save; will automatically cancel out the onBlur functionality
-	save_button:		'<button class="inplace_save">Save</button>', // string: image button tag to use as ìSaveî button
-	cancel_button:		'<button class="inplace_cancel">Cancel</button>', // string: image button tag to use as ìCancelî button
+	save_button:		'<button class="inplace_save">Save</button>', // string: image button tag to use as ‚ÄúSave‚Äù button
+	cancel_button:		'<button class="inplace_cancel">Cancel</button>', // string: image button tag to use as ‚ÄúCancel‚Äù button
 	params:				"", // string: example: first_name=dave&last_name=hauenstein extra paramters sent via the post request to the server
 	field_type:			"text", // string: "text", "textarea", or "select";  The type of form field that will appear on instantiation
 	default_text:		"(Click here to add text)", // string: text to show up if the element that has this functionality is empty
