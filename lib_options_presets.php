@@ -59,8 +59,9 @@
 	}
 
 	$max = $cformsSettings['form'.$no]["cforms{$no}_count_fields"];
-	for ( $j=$i; $j<=$max; $j++)
+	for ( $j=$i; $j<=$max; $j++) {
 		$cformsSettings['form'.$no]["cforms{$no}_count_field_{$j}"] = '';
+    }
 
 	$cformsSettings['form'.$no]["cforms{$no}_count_fields"] = ($i-1);
 

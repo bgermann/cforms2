@@ -97,18 +97,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 
 				$current_field = cforms2_sanitize_ids( $customTrackingID );
-
-				//echo '<br><pre>'.$tmpName . print_r($input_name,1).'</pre>';
-				
-/*				
-					$idPartA = strpos($tmpName,'[id:');
-					$idPartB = strrpos($tmpName,']',$idPartA);
-					
-					$customTrackingID = substr($tmpName,$idPartA+4,($idPartB-$idPartA)-4);
-					$current_field = cforms2_sanitize_ids( $customTrackingID );
-
-					$field_name = substr_replace($tmpName,'',$idPartA,($idPartB-$idPartA)+1);
-	*/
 	
 				} else{
 					if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
@@ -324,7 +312,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	###  FIRST into the database is required!
 	###
-	global $subID;
+	global $subID, $wpdb;
 	$subID = ( $isTAF =='2' && !$send2author )?'noid':cforms2_write_tracking_record($no,$field_email);
 
 
@@ -370,10 +358,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	}
 	### end of session:
     if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
-    	foreach ( array_keys($_SESSION['cforms']['upload']) as $n )
-	    	foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m )
+    	foreach ( array_keys($_SESSION['cforms']['upload']) as $n ) {
+	    	foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ) {
 				if( file_exists($_SESSION['cforms']['upload'][$n]['files'][$m]) )
 	                rename($_SESSION['cforms']['upload'][$n]['files'][$m],str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]));
+            }
+        }
     }
 
 
@@ -449,7 +439,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    ### adding attachments now
 	    ###
 	    $attached='';
-		global $fdata,$fpointer;
+		global $fdata, $fpointer;
 		$fdata = array();
 		$fpointer = 0;
 
@@ -470,12 +460,13 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		
 		### end of session w/ files
 		if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
-			foreach ( array_keys($_SESSION['cforms']['upload']) as $n )
+			foreach ( array_keys($_SESSION['cforms']['upload']) as $n ) {
 				foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ){
 					cforms2_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'] );
 					### debug
 					cforms2_dbg( "(end of session) File = ".$_SESSION['cforms']['upload'][$n]['files'][$m].", attach = ".$_SESSION['cforms']['upload'][$n]['doAttach'] );
-					}
+                }
+            }
 		}
 		### parse through all files (both single and mp forms)
 		foreach ( $fdata as $file ) {

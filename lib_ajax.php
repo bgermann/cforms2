@@ -14,7 +14,7 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###
 function cforms2_submitcomment() {
 	check_admin_referer( 'submitcomment' );
-	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL;
+	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL, $WPresp, $commentparent;
 
 	header ('Content-Type: text/plain');
 	$content = '';

@@ -195,8 +195,9 @@ if ( $wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata
     $tablefields = $wpdb->get_results("DESCRIBE {$wpdb->cformsdata};");
 
     $afield = array();
-    foreach($tablefields as $field)
+    foreach($tablefields as $field) {
         array_push ($afield,$field->Field);
+    }
 
     if ( !in_array('f_id', $afield) ) {
         $sql = "ALTER TABLE " . $wpdb->cformsdata . "

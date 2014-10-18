@@ -171,8 +171,9 @@ class cforms2_mail {
 		$addr_str = $type . ': ';
 	    $addr_str .= $this->addr_fmt($addr[0]);
 	    if(count($addr)>1) {
-	      for($i = 1; $i < count($addr); $i++)
-	        $addr_str .= ', ' . $this->addr_fmt($addr[$i]);
+            for($i = 1; $i < count($addr); $i++) {
+                $addr_str .= ', ' . $this->addr_fmt($addr[$i]);
+            }
 	    }
 		return $addr_str . $this->eolH;
 	}
@@ -263,11 +264,11 @@ class cforms2_mail {
 	}
 	private function begin_b($boundary, $char_set, $content_type, $encoding) {
 	    if($char_set == '')
-	      $char_set = $this->char_set;
+            $char_set = $this->char_set;
 	    if($content_type == '')
-	      $content_type = $this->content_type;
+            $content_type = $this->content_type;
 	    if($encoding == '')
-	      $encoding = $this->enc;
+            $encoding = $this->enc;
 
 	    $r  = $this->t_line('--' . $boundary);
 	    $r .= sprintf("Content-Type: %s; charset = \"%s\"", $content_type, $char_set) . $this->eol;

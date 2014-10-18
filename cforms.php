@@ -113,7 +113,7 @@ function cforms2_start_session() {
 ###
 function cforms2($args = '',$no = '') {
 
-	global $subID, $wpdb, $track, $cformsSettings;
+	global $subID, $wpdb, $track, $cformsSettings, $trackf, $send2author;
 
 	### parse_str($args, $r); ### Oliver 6.8.2011
 
@@ -249,7 +249,6 @@ function cforms2($args = '',$no = '') {
 	}
 
 
-	$break='<br />';
 	$nl="\n";
 	$tab="\t";
 	$tt="\t\t";
@@ -338,6 +337,7 @@ function cforms2($args = '',$no = '') {
 		return $content;
 	else if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)<=0) || !cforms2_check_time($no) ){
 
+        global $cflimit;
 		if ( $cflimit == "reached" )
 			return stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']);
 		else
@@ -1015,7 +1015,7 @@ function cforms2($args = '',$no = '') {
 							$field .= $nttt . $tab . '<br />';
 						else
 							$field .= $nttt . $tab .
-								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b' . ($second?' cformradioplus':'') . ($field_required?' fldrequired':'') .'"'.$fieldTitle.'/>'.
+								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b' . ($field_required?' fldrequired':'') .'"'.$fieldTitle.'/>'.
 								  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-after"><span>'.$opt[0] . "</span></label>";
 
 					}
@@ -1141,7 +1141,6 @@ function cforms2_script() {
 
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
 			$nav = $cformsSettings['global']['cforms_dp_nav'];
-			$dformat = str_replace(array('M','EE','E'),array('m','dddd','ddd'),stripslashes($cformsSettings['global']['cforms_dp_date']));
 	
 			echo '<script type="text/javascript">'."\n".
 				 // "\t".'var cforms = jQuery.noConflict(false);'."\n".
@@ -1431,7 +1430,7 @@ function cforms2_enable_tellafriend($post_ID) {
 ### cforms widget
 function cforms2_widget_init() {
 
-	global $wp_registered_widgets, $cformsSettings;
+	global $cformsSettings;
 
     $cformsSettings = get_option('cforms_settings');
 	
@@ -1524,7 +1523,6 @@ function cforms2_widget_init() {
 
 	        function cforms2_widget_update($id_prefix, $options, $post, $sidebar, $option_name = ''){
 
-	                global $wp_registered_widgets;
 	                static $updated = false;
 
 				    $cformsSettings = get_option('cforms_settings');

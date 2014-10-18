@@ -92,8 +92,9 @@ function cforms2_all_tracks($session){
 	### clean up underscores
     foreach( array_keys($session) as $key){
 		if ( strpos($key,'cf_')===false ) continue;
-		foreach( $session[$key] as $k => $v )
+		foreach( $session[$key] as $k => $v ) {
             $t[$key.'_'.$k] = $v;
+        }
 	}
 
 	return $t;
@@ -740,8 +741,9 @@ if (!function_exists('cf_extra_comment_data')) {
 	function cf_extra_comment_data( $id ) {
 		global $wpdb;
 		$all = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT sub_id FROM {$wpdb->cformsdata} WHERE field_name='commentID' AND field_val='$id')");
-		foreach( $all as $a )
+		foreach( $all as $a ) {
 			$r[$a->field_name]=$a->field_val;
+        }
 		return $r;
 	}
 }

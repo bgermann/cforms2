@@ -3,6 +3,8 @@
 ### please see cforms.php for more information
 ###
 
+global $wpdb;
+
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
@@ -714,7 +716,11 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"></td>
 					<td class="obR">
 						<?php $j = $cformsSettings['form'.$no]['cforms'.$no.'_rss_count']; $j = (int)abs($j)>20 ? 20:(int)abs($j); ?>
-						<select name="cforms_rsscount" id="cforms_rsscount"><?php for ($i=1;$i<=20;$i++) echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>'; ?></select>
+						<select name="cforms_rsscount" id="cforms_rsscount"><?php
+                            for ($i=1;$i<=20;$i++) {
+                                echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>';
+                            }
+                        ?></select>
                     	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms'); ?></label>
                     </td>
 				</tr>
@@ -801,7 +807,11 @@ if( strlen($fd)<=2 ) {
                     <td class="obL"></td>
                     <td class="obR">
 						<?php $p = ((int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']>0)?(int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']:3; ?>
-						<select name="emailprio" id="emailprio"><?php for ($i=1;$i<=5;$i++) echo '<option'.(($i==$p)?' selected="selected"':'').'>' .$i. '</option>'; ?></select>
+						<select name="emailprio" id="emailprio"><?php
+                            for ($i=1;$i<=5;$i++) {
+                                echo '<option'.(($i==$p)?' selected="selected"':'').'>' .$i. '</option>';
+                            }
+                        ?></select>
                         <label for="emailprio"><?php echo sprintf(__('Email %spriority%s (1 = High, 3 = Normal, 5 = Low)', 'cforms'),'<strong>','</strong>') ?></label>
                     </td>
                 </tr>

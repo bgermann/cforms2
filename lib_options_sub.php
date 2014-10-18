@@ -140,8 +140,9 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] =      $_REQUEST['cforms_rsscount'];
 	if( isset($_REQUEST['cforms_rssfields']) ){
 		$i=1;
-		foreach($_REQUEST['cforms_rssfields'] as $e)
+		foreach($_REQUEST['cforms_rssfields'] as $e) {
         	$cformsSettings['form'.$no]['cforms'.$no.'_rss_fields'][$i++] = $e;
+        }
 	}
 
 
@@ -241,11 +242,13 @@
 
 	        ### need to insert empty fields in between?
 	        if( $_POST['AddFieldPos']<>'' && $_POST['AddFieldPos']<$_POST['field_count_submit'] ){
-	            for($i = $_POST['field_count_submit']; $i >= $_POST['AddFieldPos']; $i--)
+	            for($i = $_POST['field_count_submit']; $i >= $_POST['AddFieldPos']; $i--) {
 	                $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . (int)($i+$_POST['AddFieldNo'])] = $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . (int)($i)];
+                }
 
-	            for($i = $_POST['AddFieldPos']; $i < ($_POST['AddFieldPos']+$_POST['AddFieldNo']); $i++)
+	            for($i = $_POST['AddFieldPos']; $i < ($_POST['AddFieldPos']+$_POST['AddFieldNo']); $i++) {
 	                $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . (int)($i)] = '';
+                }
 	        }
 
 	}

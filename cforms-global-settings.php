@@ -683,7 +683,11 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					<td class="obL"></td>
 					<td class="obR">
 						<?php $j = $cformsSettings['global']['cforms_rssall_count']; $j = (int)abs($j)>20 ? 20:(int)abs($j); ?>
-						<select name="cforms_rsscount" id="cforms_rsscount"><?php for ($i=1;$i<=20;$i++) echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>'; ?></select>
+						<select name="cforms_rsscount" id="cforms_rsscount"><?php
+                            for ($i=1;$i<=20;$i++) {
+                                echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>';
+                            }
+                        ?></select>
                     	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms'); ?></label>
                     </td>
 				</tr>

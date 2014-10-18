@@ -4,7 +4,7 @@
 ### plugin removal
 if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
 
-	global $current_user,$user_ID;
+	global $current_user, $user_ID, $wpdb;
 	$u = get_currentuserinfo();
 
 	if( is_user_logged_in() && in_array('administrator',$current_user->roles) ) {
@@ -61,7 +61,6 @@ function cforms2_save_array($vArray){
 	global $buffer;
     // Every array starts with chr(1)+"{"
     $buffer .=  "\0{";
-    $i = 0;
 
     // Go through the given array
     reset($vArray);

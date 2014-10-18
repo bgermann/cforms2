@@ -49,6 +49,7 @@ cforms2_check_access_priv();
 
 <?php endif;
 
+global $wpdb;
 $c = str_replace('&','&amp;',$wpdb->get_var("SELECT option_value FROM `$wpdb->options` WHERE option_name='cforms_settings'"));
 
 ?>

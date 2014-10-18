@@ -253,8 +253,9 @@ if ( $isAjaxWPcomment ){
 	}
 	else{
 		$err='';
-		foreach( array_keys($_POST) as $postvar )
+		foreach( array_keys($_POST) as $postvar ) {
 			$err .= '&' . $postvar . '=' . urlencode($_POST[$postvar]);
+        }
 
 		header("HTTP/1.0 301 Temporary redirect");
 		header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=err'.$err. '#cforms'.$no.'form' );
