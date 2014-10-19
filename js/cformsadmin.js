@@ -20,27 +20,10 @@ jQuery(document).ready(
 
 	function () {
 
-		var k=new Kibo();
-
-		jQuery('.wrap :input').each(function(i,e) {
-			jQuery(this).attr('tabindex',(i+1)).addClass('tabbed'+(i+1));
-			if(this.id)
-				jQuery('label[for="' + this.id + '"]').attr('tabindex', (i+1)).addClass('tabbed'+(i+1));
-		} );
-
 		jQuery('.wrap').click(function(e) {
 			if(e.target.className.match(/allchk/)) {
 				jQuery(e.target).focus();
 			};
-		} );
-
-		k.down(['tab','down'],function(e) {
-			if(e.target.className.match(/tabbed/)) {
-				currentInput=parseInt(jQuery(e.target).attr('tabindex'));
-				if(k.lastKey('shift'))jQuery('.wrap .tabbed'+(--currentInput)).focus();
-				else jQuery('.wrap .tabbed'+(++currentInput)).focus();
-				return false;
-			}
 		} );
 
 		/* INFO BUTTONS */
