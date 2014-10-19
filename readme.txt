@@ -95,6 +95,18 @@ If you can afford it, please consider [making a donation](https://www.betterplac
 The original author who developed cforms until 2012 also has a [donation page](http://www.deliciousdays.com/cforms-donation).
 
 
+== Roadmap ==
+
+Some things are to be done:
+
+* filter user input
+* make attachments download support directories that are not exported via HTTP
+* use the standard wordpress upload directory as the standard attachments directory
+* replace the color picker with iris (wordpress standard since 3.5)
+* [support for Subscribe to Comments Reloaded](https://wordpress.org/support/topic/suggestion-support-subscribe-to-comments-reloaded)
+* long term: refactoring with object oriented approach
+
+
 == Frequently Asked Questions ==
 
 Please visit the [cforms plugin forum](http://www.deliciousdays.com/cforms-forum) for up-to-date [FAQs](http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/) and more help.

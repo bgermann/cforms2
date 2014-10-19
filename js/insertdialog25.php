@@ -8,7 +8,7 @@ $cformsSettings = get_option('cforms_settings');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>cforms</title>
-	<link type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__); ?>js/insertdialog25.css"></link>
+	<link type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__); ?>js/css/insertdialog25.css"></link>
 	<?php wp_enqueue_script( 'tiny_mce_popup.js', includes_url( 'js/tinymce/tiny_mce_popup.js' ) ); wp_print_scripts('tiny_mce_popup.js'); ?>
 
 	<script language="javascript" type="text/javascript">

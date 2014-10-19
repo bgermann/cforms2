@@ -1,5 +1,5 @@
 .mce_plugin_cforms_img{
-	background:url(../images/cformsmce.gif) no-repeat 5px center;
+	background:url(../../images/cformsmce.gif) no-repeat 5px center;
 	border:0;
 	border-top: 1px dotted #cccccc;
 	border-bottom: 1px dotted #cccccc;
@@ -13,7 +13,7 @@
 	overflow:visible;
 	width:99%;
 	padding:0;
-	background:white url(../images/cfii.gif) no-repeat right 1px;
+	background:white url(../../images/cfii.gif) no-repeat right 1px;
 }
 #cforms div.panel_wrapper div.current{
 	display:block;
