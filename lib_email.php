@@ -465,19 +465,10 @@ class cforms2_mail {
 
 	        $mime_arr[] = sprintf("Content-Disposition: %s; filename=\"%s\"%s", $dispo, $this->enc_h($this->fix_header($name)), $this->eol.$this->eol);
 
-	        if($bString) {
+        	$mime_arr[] = $this->enc_file($path, $encoding);
+        	if($this->is_err()) return '';
+	        $mime_arr[] = $this->eol.$this->eol;
 
-		        $mime_arr[] = $this->enc_str($string, $encoding);
-		    	if($this->is_err()) return '';
-		        $mime_arr[] = $this->eol.$this->eol;
-
-	        } else {
-
-	        	$mime_arr[] = $this->enc_file($path, $encoding);
-	        	if($this->is_err()) return '';
-		        $mime_arr[] = $this->eol.$this->eol;
-
-	        }
         }
 	    $mime_arr[] = sprintf("--%s--%s", $this->boundary[1], $this->eol);
 	    return join('', $mime_arr);
@@ -487,11 +478,6 @@ class cforms2_mail {
 	    if(!$fd = fopen($path, 'rb')) {
 	      $this->set_err(__('File Error: Could not open file: ','cforms'));
 	      return '';
-	    }
-	    if (function_exists('get_magic_quotes')) {
-	        function get_magic_quotes() {
-	            return false;
-	        }
 	    }
 	    if (version_compare(PHP_VERSION, '5.4', '<')) {
 	      $magic_q = get_magic_quotes_runtime();

@@ -2,25 +2,23 @@
 
 
 ### plugin removal
-if( isset($_POST['cfdeleteall']) && !function_exists("wp_get_current_user") ) {
+function cforms2_delete_db_and_deactivate () {
+    if( !isset($_POST['cfdeleteall']))
+        return;
 
-	global $current_user, $user_ID, $wpdb;
-	$u = get_currentuserinfo();
+    if( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
+        define( 'WP_UNINSTALL_PLUGIN', true );
+        require_once(dirname(__FILE__) . '/uninstall.php');
 
-	if( is_user_logged_in() && in_array('administrator',$current_user->roles) ) {
-		$alloptions =  $wpdb->query("DELETE FROM `$wpdb->options` WHERE option_name LIKE 'cforms%'");
-		$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformssubmissions");
-		$wpdb->query("DROP TABLE IF EXISTS $wpdb->cformsdata");
-	}
-
-    ### deactivate cforms plugin
-	$curPlugs = get_settings('active_plugins');
-	array_splice($curPlugs, array_search( 'cforms', $curPlugs), 1 ); // Array-function!
-	update_option('active_plugins', $curPlugs);
-	header('Location: plugins.php?deactivate=true');
+        ### deactivate cforms plugin
+        $curPlugs = get_option('active_plugins');
+        array_splice($curPlugs, array_search( 'cforms2', $curPlugs), 1 ); // Array-function!
+        update_option('active_plugins', $curPlugs);
+        header('Location: plugins.php?deactivate=true');
+        die();
+    }
 
 }
-
 
 ### backup/download cforms settings
 $buffer='';
@@ -319,17 +317,4 @@ function cforms2_add_admin_bar_item($admin_bar, $id,$ti,$hi,$ev,$p = 'cforms-bar
 				);
 	
 	$admin_bar->add_node( $arr );
-}
-
-
-### get_magic_quotes_gpc() workaround
-if ( !function_exists('get_magic_quotes_gpc') ) {
-	function get_magic_quotes_gpc(){
-		return false;
-	}
-}
-function cforms2_magic($v){
-	global $wp_version;
-	$vercomp = (version_compare(strval($wp_version), strval('2.9'), '>='));
-	return ( get_magic_quotes_gpc() || $vercomp ) ? $v : addslashes($v);
 }

@@ -77,7 +77,7 @@ if( isset($_REQUEST['addTAF']) || isset($_REQUEST['removeTAF']) )
 		}
 
 	} else if ( isset($_REQUEST['removeTAF']) ){
-		$wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key = 'tell-a-friend'");
+        $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key = 'tell-a-friend'");
 		$alldisabled=true;
 	}
 

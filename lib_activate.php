@@ -26,7 +26,7 @@ $cformsSettings['global']['cforms_style']['confirmationmsg'] = 'style="margin:4e
 
 
 ### file upload
-cforms2_setINI('form','cforms_upload_dir', plugin_dir_path( __FILE__ ) . '/attachments' );
+cforms2_setINI('form','cforms_upload_dir', plugin_dir_path( __FILE__ ) . 'attachments' );
 cforms2_setINI('form','cforms_upload_ext', 'txt,zip,doc,rtf,xls');
 cforms2_setINI('form','cforms_upload_size', '1024');
 cforms2_setINI('form','cforms_dontclear', false);

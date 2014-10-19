@@ -56,6 +56,7 @@ function cforms2_activate() {
 	}
 	require_once(dirname(__FILE__) . '/lib_activate.php');
 }
+// TODO check if this is run when updated without explicitly activating
 add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate' );
 
 
@@ -1728,6 +1729,7 @@ function cforms2_add_items_options( $admin_bar ){
 
 
 ### attaching to filters
+add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('admin_init', 'cforms2_adminstyle');
 add_filter('wp_head', 'cforms2_style');
 add_filter('the_content', 'cforms2_insert',101);

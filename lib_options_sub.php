@@ -16,7 +16,7 @@
 		if ($_REQUEST['field_' . $i . '_name']<>''){ ### safety
 
 	        $allgood=true;
-	        $name = cforms2_magic(str_replace('$#$', '$', $_REQUEST['field_' . $i . '_name']));
+	        $name = str_replace('$#$', '$', $_REQUEST['field_' . $i . '_name']);
 	        $type = $_REQUEST['field_' . $i . '_type'];
 	        $required = 0;
 	        $emailcheck = 0;
@@ -91,23 +91,23 @@
 
 
 	### update new settings container
-	$cformsSettings['form'.$no]['cforms'.$no.'_fname'] =          preg_replace( array('/\\\+/','/\//','/"/'), array('\\','-','\''), cforms2_magic($_REQUEST['cforms_fname']) );
+	$cformsSettings['form'.$no]['cforms'.$no.'_fname'] =          preg_replace( array('/\\\+/','/\//','/"/'), array('\\','-','\''), $_REQUEST['cforms_fname'] );
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_noid'] =           $_REQUEST['cforms_upload_noid']?'1':'0';
 	if( $uploadfield && $_REQUEST['cforms_upload_dir']<>'' )
-		$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] =     cforms2_magic($_REQUEST['cforms_upload_dir'].'$#$'.$_REQUEST['cforms_upload_dir_url']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] =     cforms2_magic($_REQUEST['cforms_upload_ext']);
+		$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] =     $_REQUEST['cforms_upload_dir'].'$#$'.$_REQUEST['cforms_upload_dir_url'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] =     $_REQUEST['cforms_upload_ext'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] =    $_REQUEST['cforms_upload_size'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] =  $_REQUEST['cforms_noattachments']?'1':'0';
 
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] =   cforms2_magic($_REQUEST['cforms_submit_text']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] =   $_REQUEST['cforms_submit_text'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_working'] =       $_REQUEST['cforms_working'];
   	$cformsSettings['form'.$no]['cforms'.$no.'_required'] =      $_REQUEST['cforms_required'];
   	$cformsSettings['form'.$no]['cforms'.$no.'_emailrequired'] = $_REQUEST['cforms_emailrequired'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_success'] =       cforms2_magic($_REQUEST['cforms_success']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] =       cforms2_magic($_REQUEST['cforms_failure']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_success'] =       $_REQUEST['cforms_success'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] =       $_REQUEST['cforms_failure'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_popup'] =         ($_REQUEST['cforms_popup1']?'y':'n').($_REQUEST['cforms_popup2']?'y':'n') ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] =       ($_REQUEST['cforms_showposa']?'y':'n').($_REQUEST['cforms_showposb']?'y':'n').
 																 ($_REQUEST['cforms_errorLI']?'y':'n').($_REQUEST['cforms_errorINS']?'y':'n').
@@ -130,7 +130,7 @@
     $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] =  					preg_replace("/\\\+/", "\\",$_REQUEST['cforms_enddate']).' '.
     																			preg_replace("/\\\+/", "\\",$_REQUEST['cforms_endtime']);
 	if( isset($_REQUEST['cforms_limittxt']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] =   				cforms2_magic($_REQUEST['cforms_limittxt']);
+		$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] =   				$_REQUEST['cforms_limittxt'];
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] =       $_REQUEST['cforms_redirect']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] =  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_redirect_page']);
@@ -148,13 +148,13 @@
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_emailoff'] =		 $_REQUEST['cforms_emailoff']?'1':'0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'] =		 $_REQUEST['cforms_emptyoff']?'1':'0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_fromemail'] =     cforms2_magic($_REQUEST['cforms_fromemail']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_email'] =         cforms2_magic($_REQUEST['cforms_email']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] =           cforms2_magic($_REQUEST['cforms_bcc']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] =       cforms2_magic($_REQUEST['cforms_subject']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_fromemail'] =     $_REQUEST['cforms_fromemail'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_email'] =         $_REQUEST['cforms_email'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] =           $_REQUEST['cforms_bcc'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] =       $_REQUEST['cforms_subject'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] = $_REQUEST['emailprio'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_header'] =        preg_replace("/\\\+/", "\\",cforms2_magic($_REQUEST['cforms_header']));
-	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] =   preg_replace("/\\\+/", "\\",cforms2_magic($_REQUEST['cforms_header_html']));
+	$cformsSettings['form'.$no]['cforms'.$no.'_header'] =        preg_replace("/\\\+/", "\\",$_REQUEST['cforms_header']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] =   preg_replace("/\\\+/", "\\",$_REQUEST['cforms_header_html']);
 	$cformsSettings['form'.$no]['cforms'.$no.'_formdata'] =      ($_REQUEST['cforms_formdata_txt']?'1':'0').($_REQUEST['cforms_formdata_html']?'1':'0').
     															 ($_REQUEST['cforms_admin_html']?'1':'0').($_REQUEST['cforms_user_html']?'1':'0') ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_space'] =         $_REQUEST['cforms_space'];
@@ -163,17 +163,17 @@
     $t=explode('$#$',$cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 
     if( $_REQUEST['cforms_confirm'] && $cformsSettings['form'.$no]['cforms'.$no.'_confirm']==1 ){
-        $t[0] = 													  preg_replace("/\\\+/", "\\",cforms2_magic($_REQUEST['cforms_csubject']));
+        $t[0] = 													  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_csubject']);
 	    $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0] = $_REQUEST['cforms_cattachment'];
-	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     	  preg_replace("/\\\+/", "\\",cforms2_magic($_REQUEST['cforms_cmsg']));
-	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] =	  preg_replace("/\\\+/", "\\",cforms2_magic($_REQUEST['cforms_cmsg_html']));
+	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     	  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_cmsg']);
+	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] =	  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_cmsg_html']);
 
 	}
 
     $cformsSettings['form'.$no]['cforms'.$no.'_confirm'] =		$_REQUEST['cforms_confirm']?'1':'0';
 
     if( $_REQUEST['cforms_ccsubject']!='' )
-		$t[1] = preg_replace("/\\\+/", "\\",cforms2_magic($_REQUEST['cforms_ccsubject']));
+		$t[1] = preg_replace("/\\\+/", "\\",$_REQUEST['cforms_ccsubject']);
 
     $cformsSettings['form'.$no]['cforms'.$no.'_csubject'] =		$t[0].'$#$'.$t[1];
 
@@ -187,9 +187,9 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_first'] = 		$_REQUEST['cforms_mp_first']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email'] =  		$_REQUEST['cforms_mp_email']?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_reset'] = 		$_REQUEST['cforms_mp_reset']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext']=	cforms2_magic($_REQUEST['cforms_mp_resettext']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext']=	$_REQUEST['cforms_mp_resettext'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back']     = 	$_REQUEST['cforms_mp_back']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] =	cforms2_magic($_REQUEST['cforms_mp_backtext']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] =	$_REQUEST['cforms_mp_backtext'];
 	if( $_REQUEST['cforms_mp_form'] ){
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax']       = '0';
 		$cformsSettings['form'.$no]['cforms'.$no.'_dontclear']  = false; // NOTE that it can't be set with MP!

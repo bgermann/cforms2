@@ -183,7 +183,8 @@ After updating please edit each form on your plugins config page to verify that 
 * enhanced: bump up ClockPick to the newest version
 * enhanced: bump up jqModal to the newest version
 * enhanced: use jQuery wrapper for md5.js
-* other:    removed kibo dependency
+* feature:  uninstallation deletes cforms database content
+* other:    remove kibo dependency
 * other:    replace donation button
 
 = 14.6.6 =
