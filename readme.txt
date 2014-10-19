@@ -179,7 +179,11 @@ After updating please edit each form on your plugins config page to verify that 
 == Changelog ==
 
 = 14.6.7 =
+* enhanced: reorganize JavaScript files to provide better dependency management
 * enhanced: bump up ClockPick to the newest version
+* enhanced: bump up jqModal to the newest version
+* enhanced: use jQuery wrapper for md5.js
+* other:    replace donation button
 
 = 14.6.6 =
 * bugfix:   wrong AJAX MIME type

@@ -332,7 +332,7 @@ function cforms_validate(no, upload) {
 
 
 		//normal visitor verification turned on?
-		if ( document.getElementById('cforms_q'+no) && (document.getElementById('cforms_a'+no).value != hex_md5(encodeURI(document.getElementById('cforms_q'+no).value.toLowerCase()) )) ) {
+		if ( document.getElementById('cforms_q'+no) && (document.getElementById('cforms_a'+no).value != jQuery.md5(encodeURI(document.getElementById('cforms_q'+no).value.toLowerCase()) )) ) {
 			document.getElementById('cforms_q'+no).className = "secinput cf_error";
 			if ( all_valid ) {
 				all_valid = false;
@@ -355,7 +355,7 @@ function cforms_validate(no, upload) {
 
 			if ( cookie_part[0]=='i' ) // case insensitive?
 				b = b.toLowerCase();
-			b = hex_md5(b);
+			b = jQuery.md5(b);
 
 			if ( a != b ) {
 

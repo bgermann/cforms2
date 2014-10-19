@@ -1198,8 +1198,8 @@ function cforms2_style() {
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
 			wp_enqueue_script('jquery-ui-datepicker');
 		}
-        wp_register_script( 'md5', plugin_dir_url(__FILE__) . 'js/md5.js', false, '2.1');
-		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery', 'md5'), $localversion);
+        wp_register_script( 'jquery-md5', plugin_dir_url(__FILE__) . "js/jquery.md5.js", array('jquery'), '1.2.1');
+		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery', 'jquery-md5'), $localversion);
 		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
 			'url'    => admin_url('admin-ajax.php'),
 			'nonces' => array(
