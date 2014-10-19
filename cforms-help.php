@@ -1147,7 +1147,7 @@ $fields['type'][2]   ='textonly';
 
 $fields['label'][3]='<?php _e('Deliver on#Please pick a month', 'cforms'); ?>|-#';
 
-$fp = fopen(dirname(__FILE__).'/months.txt', "r"); // <?php _e('Need to put this file into your themes dir!', 'cforms'); ?>
+$fp = fopen(plugin_dir_path(__FILE__).'months.txt', "r"); // <?php _e('Need to put this file into your themes dir!', 'cforms'); ?>
 
 while ($nextitem = fgets($fp, 512))
 	$fields['label'][3] .= $nextitem.'#';

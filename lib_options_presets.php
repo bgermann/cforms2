@@ -1,7 +1,6 @@
 <?php
 
-	$dirSep = strpos(dirname(__FILE__), '\\') !==false ? '\\' : '/';
-	$file = dirname(__FILE__) . $dirSep . 'formpresets'. $dirSep . $_REQUEST['formpresets'];
+	$file = plugin_dir_path(__FILE__) . 'formpresets'. DIRECTORY_SEPARATOR . $_REQUEST['formpresets'];
 
     if( is_file($file) && filesize($file) > 0)
         $fields = file($file);

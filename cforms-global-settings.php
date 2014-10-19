@@ -48,7 +48,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 	update_option('cforms_settings',$cformsSettings);
 
 } else if( isset($_REQUEST['restoreallcformsdata']) )
-	require_once(dirname(__FILE__) . '/lib_options_up.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
 
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
@@ -775,7 +775,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 function cforms2_get_files($dir,$currentfile,$ext){
 
 	$s = DIRECTORY_SEPARATOR;
-	$presetsdir		= dirname(__FILE__) .$s.'..'.$s .'cforms-custom';
+	$presetsdir		= plugin_dir_path(__FILE__) .'..'.$s .'cforms-custom';
 	$list 			= '';
 
 	if ( file_exists($presetsdir) ){
@@ -793,7 +793,7 @@ function cforms2_get_files($dir,$currentfile,$ext){
 		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('cform css files','cforms'). ' ***&nbsp;&nbsp;</option>';
 	}
 
-	$presetsdir		= dirname(__FILE__).$s. $dir .$s;
+	$presetsdir		= plugin_dir_path(__FILE__). $dir .$s;
 	if ($handle = opendir($presetsdir)) {
 	    while (false !== ($file = readdir($handle))) {
 	        if (preg_match('/\.'.$ext.'$/i',$file) && $file != "." && $file != ".." && filesize($presetsdir.$file) > 0)

@@ -20,9 +20,9 @@ $img_sz_width	= cforms2_prepVal($cap['w'],115);
 $img_sz_height	= cforms2_prepVal($cap['h'],25);
 
 $im_bg_type		= 1;
-$im_bg_url		= dirname(__FILE__) . '/captchabg/' . ( cforms2_prepVal($cap['bg'],'1.gif') );
+$im_bg_url		= plugin_dir_path(__FILE__) . 'captchabg/' . ( cforms2_prepVal($cap['bg'],'1.gif') );
 
-$font_url		= dirname(__FILE__) . '/captchafonts/' . ( cforms2_prepVal($cap['f'],'font4.ttf') );
+$font_url		= plugin_dir_path(__FILE__) . 'captchafonts/' . ( cforms2_prepVal($cap['f'],'font4.ttf') );
 
 $min_font_size	= cforms2_prepVal($cap['f1'],17);
 $max_font_size	= cforms2_prepVal($cap['f2'],19);

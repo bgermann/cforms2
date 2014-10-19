@@ -161,7 +161,7 @@ if ( $isAjaxWPcomment ){
 	if ( function_exists('wp_get_current_user') )
 		$user = wp_get_current_user();
 
-	require_once (dirname(__FILE__) . '/lib_validate.php');
+	require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
 
 	$comment_post_ID = (int) $_POST['comment_post_ID'];
 	$cfpre = ( strpos( get_permalink($_POST['comment_post_ID']) ,'?')!==false ) ? '&':'?';
@@ -178,8 +178,8 @@ if ( $isAjaxWPcomment ){
 		###
 		### Filter first?
 		###
-	    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-		$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
+	    $CFfunctionsC = plugin_dir_path(dirname(__FILE__)).'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+		$CFfunctions = plugin_dir_path(__FILE__).'my-functions.php';
         if ( file_exists($CFfunctionsC) )
 			include_once($CFfunctionsC);
 		else if ( file_exists($CFfunctions) )

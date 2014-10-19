@@ -22,16 +22,16 @@ if ( cforms2_check_erased() )
 $FORMCOUNT=$cformsSettings['global']['cforms_formcount'];
 
 if(isset($_REQUEST['addbutton'])){
-	require_once(dirname(__FILE__) . '/lib_options_add.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_add.php');
 
 } elseif(isset($_REQUEST['dupbutton'])) {
-	require_once(dirname(__FILE__) . '/lib_options_dup.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_dup.php');
 
 } elseif( isset($_REQUEST['uploadcformsdata']) ) {
-	require_once(dirname(__FILE__) . '/lib_options_up.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
 
 } elseif(isset($_REQUEST['delbutton']) && $FORMCOUNT>1) {
-	require_once(dirname(__FILE__) . '/lib_options_del.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_del.php');
 
 } else {
 
@@ -54,7 +54,7 @@ if(isset($_REQUEST['addbutton'])){
 
 ### PRESETS
 if ( isset($_REQUEST['formpresets']) )
-	require_once(dirname(__FILE__) . '/lib_options_presets.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_presets.php');
 
 
 ### default: $field_count = what's in the DB
@@ -86,7 +86,7 @@ if( isset($_REQUEST['addTAF']) || isset($_REQUEST['removeTAF']) )
 
 ### Update Settings
 if( isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_search("X", $_REQUEST) ){
-	require_once(dirname(__FILE__) . '/lib_options_sub.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_options_sub.php');
 }
 
 
@@ -137,7 +137,7 @@ if(strlen($cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $field_coun
 
 
 ### check possible errors
-require_once(dirname(__FILE__) . '/lib_options_err.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_options_err.php');
 
 
 ###
@@ -943,7 +943,7 @@ if( strlen($fd)<=2 ) {
 			    <?php
 			    $a=$cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
                 $err='';
-				$t = (substr($a,0,1)=='/')?$a:dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
+				$t = (substr($a,0,1)=='/')?$a:plugin_dir_path(__FILE__).$a;
 				if ( $t<>'' && !file_exists( $t ) ) {
 			        $err = '<br /><p class="error">' . sprintf(__('Can\'t find the specified <strong>Attachment</strong> (%s)! Please verify the server path!', 'cforms' ),$t) . '</p>';
 			    }

@@ -40,7 +40,7 @@ $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
 $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
 ### admin functions
-require_once(dirname(__FILE__) . '/lib_functions.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 
 
 
@@ -54,7 +54,7 @@ function cforms2_activate() {
 	if(!$role->has_cap('track_cforms')) {
 		$role->add_cap('track_cforms');
 	}
-	require_once(dirname(__FILE__) . '/lib_activate.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 }
 // TODO check if this is run when updated without explicitly activating
 add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate' );
@@ -67,14 +67,14 @@ if ( !is_array($cformsSettings) ){
     return;
 }
 function cforms2_settings_corrupted() {
-	$tmp = basename(dirname(__FILE__));
+	$tmp = plugin_dir_path(dirname(__FILE__));
 
 	if (function_exists('add_menu_page')){
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php', '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
-		add_submenu_page($tmp.'/cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php' );
+		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php', '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
+		add_submenu_page($tmp.'cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php' );
     }
 	elseif (function_exists('add_management_page'))
-		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'/cforms-corrupted.php');
+		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php');
 
     add_action('wp_print_scripts', 'cforms2_scripts_corrupted' );
 }
@@ -84,9 +84,9 @@ function cforms2_scripts_corrupted(){
 
 
 ### load add'l files
-require_once (dirname(__FILE__) . '/lib_email.php');
-require_once (dirname(__FILE__) . '/lib_aux.php');
-require_once (dirname(__FILE__) . '/lib_editor.php');
+require_once (plugin_dir_path(__FILE__) . 'lib_email.php');
+require_once (plugin_dir_path(__FILE__) . 'lib_aux.php');
+require_once (plugin_dir_path(__FILE__) . 'lib_editor.php');
 
 
 
@@ -215,7 +215,7 @@ function cforms2($args = '',$no = '') {
 
     ### non Ajax method
     if( isset($_REQUEST['sendbutton'.$no]) ) {
-		require_once (dirname(__FILE__) . '/lib_nonajax.php');
+		require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
 		$usermessage_class = $all_valid?' success':' failure';
 	}
 
@@ -1593,7 +1593,7 @@ function cforms2_get_submission_left($no='') {
 
 function cforms2_localization () {
 	// For compatibility reasons, use slug cforms, not cforms2.
-	load_plugin_textdomain( 'cforms',  false, dirname( plugin_basename( __FILE__ ) ) . '/____Plugin_Localization/' );
+	load_plugin_textdomain( 'cforms',  false, plugin_dir_path( plugin_basename( __FILE__ ) ) . '____Plugin_Localization/' );
 }
 
 ### add actions
@@ -1609,11 +1609,11 @@ if (function_exists('add_action')){
 
 	### dashboard
 	if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {
-		require_once(dirname(__FILE__) . '/lib_dashboard.php');
+		require_once(plugin_dir_path(__FILE__) . 'lib_dashboard.php');
 	}
 	### cforms specific stuff
 	if ( $cfadmin ) {
-		require_once(dirname(__FILE__) . '/lib_functions.php');
+		require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 		add_action('admin_head', 'cforms2_options_page_style');
 		add_action('init', 'cforms2_download');
         add_action('admin_print_scripts', 'cforms2_scripts' );
@@ -1625,7 +1625,7 @@ if (function_exists('add_action')){
 
  	### other admin stuff
 	if ( is_admin() ) {
-		require_once(dirname(__FILE__) . '/lib_functions.php');
+		require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 		add_action('admin_menu', 'cforms2_menu');
 
 	    ### Check all forms for TAF and set variables

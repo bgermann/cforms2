@@ -17,7 +17,7 @@ $s = DIRECTORY_SEPARATOR;
 
 ### CSS styles
 $style		= $cformsSettings['global']['cforms_css'];
-$stylefile	= dirname(__FILE__)."{$s}styling{$s}".$style;
+$stylefile	= plugin_dir_path(__FILE__)."styling{$s}".$style;
 
 ### Check Whether User Can Manage Database
 cforms2_check_access_priv();
@@ -78,7 +78,7 @@ if(!empty($_POST['save_css'])){
 	update_option('cforms_settings',$cformsSettings);
 
 	$style = $cformsSettings['global']['cforms_css'];
-	$stylefile  = dirname(__FILE__)."{$s}styling{$s}".$style;
+	$stylefile  = plugin_dir_path(__FILE__)."styling{$s}".$style;
 	echo ' <div id="message" class="updated fade"><p><strong>'. __('New theme selected.', 'cforms') .'</strong></p></div>'."\n";
 }
 
@@ -105,8 +105,8 @@ if(!empty($_POST['save_css'])){
 								<td class="cssHint"><?php _e('Please choose a theme file to style your forms' , 'cforms') ?></td>
 								<td class="cssStyles">
 									<?php ### include all css files
-										$d   = dirname(__FILE__)."{$s}styling";
-										$dCustom = dirname(__FILE__)."{$s}..{$s}cforms-custom";
+										$d   = plugin_dir_path(__FILE__)."styling";
+										$dCustom = plugin_dir_path(__FILE__)."..{$s}cforms-custom";
 
 										$exists = file_exists($d);
 										if ( $exists == false )

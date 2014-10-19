@@ -8,7 +8,7 @@ function cforms2_delete_db_and_deactivate () {
 
     if( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
         define( 'WP_UNINSTALL_PLUGIN', true );
-        require_once(dirname(__FILE__) . '/uninstall.php');
+        require_once(plugin_dir_path(__FILE__) . 'uninstall.php');
 
         ### deactivate cforms plugin
         $curPlugs = get_option('active_plugins');
@@ -101,11 +101,11 @@ function cforms2_check_access_priv($r='manage_cforms'){
 function cforms2_menu() {
 	global $wpdb;
 
-    $p = dirname(plugin_basename(__FILE__));
+    $p = plugin_dir_path(plugin_basename(__FILE__));
 
 	$tablesup = ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)?true:false;
 
-	$o = $p.'/cforms-options.php';
+	$o = $p.'cforms-options.php';
 
     if (function_exists('add_menu_page')) {
 		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o, '', plugin_dir_url(__FILE__).'images/cformsicon.png');
@@ -116,11 +116,11 @@ function cforms2_menu() {
 
 	if (function_exists('add_submenu_page')) {
 		add_submenu_page($o, __('Form Settings', 'cforms'), __('Form Settings', 'cforms'), 'manage_cforms', $o);
-		add_submenu_page($o, __('Global Settings', 'cforms'), __('Global Settings', 'cforms'), 'manage_cforms', $p.'/cforms-global-settings.php');
+		add_submenu_page($o, __('Global Settings', 'cforms'), __('Global Settings', 'cforms'), 'manage_cforms', $p.'cforms-global-settings.php');
 		if ( ($tablesup || isset($_REQUEST['cforms_database'])) && !isset($_REQUEST['deletetables']) )
-			add_submenu_page($o, __('Tracking', 'cforms'), __('Tracking', 'cforms'), 'track_cforms', $p.'/cforms-database.php');
-		add_submenu_page($o, __('Styling', 'cforms'), __('Styling', 'cforms'), 'manage_cforms', $p.'/cforms-css.php');
-		add_submenu_page($o, __('Help!', 'cforms'), __('Help!', 'cforms'), 'manage_cforms', $p.'/cforms-help.php');
+			add_submenu_page($o, __('Tracking', 'cforms'), __('Tracking', 'cforms'), 'track_cforms', $p.'cforms-database.php');
+		add_submenu_page($o, __('Styling', 'cforms'), __('Styling', 'cforms'), 'manage_cforms', $p.'cforms-css.php');
+		add_submenu_page($o, __('Help!', 'cforms'), __('Help!', 'cforms'), 'manage_cforms', $p.'cforms-help.php');
 	}
 }
 

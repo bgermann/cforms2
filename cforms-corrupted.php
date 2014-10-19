@@ -39,7 +39,7 @@ cforms2_check_access_priv();
     delete_option('cforms_settings');
 	global $cformsSettings;
     $cformsSettings = array();
-	require_once(dirname(__FILE__) . '/lib_activate.php');
+	require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 	die();
 ?>
 

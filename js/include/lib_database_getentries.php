@@ -14,8 +14,8 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 $cformsSettings = get_option('cforms_settings');
 
 ### get custom functions
-$CFfunctionsC = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-$CFfunctions = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctionsC = plugin_dir_path(dirname(dirname(dirname(__FILE__)))).'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctions = plugin_dir_path(dirname(dirname(__FILE__))).'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )

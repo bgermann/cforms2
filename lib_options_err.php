@@ -53,5 +53,5 @@ function cforms2_showmesssage($confirm){
 		update_option('cforms_settings',$cformsSettings);
     }
 	else
-		echo '<div id="message'.$confirm.'" class="updated fade"><p>'.$text.'</p><p><a href="?page='.dirname(plugin_basename(__FILE__)).'/cforms-options.php&cf_confirm=confirm'.$confirm.'" class="rm_button allbuttons">'.__('Remove Message','cforms').'</a></p></div>';
+		echo '<div id="message'.$confirm.'" class="updated fade"><p>'.$text.'</p><p><a href="?page='.plugin_dir_path(plugin_basename(__FILE__)).'cforms-options.php&cf_confirm=confirm'.$confirm.'" class="rm_button allbuttons">'.__('Remove Message','cforms').'</a></p></div>';
 }

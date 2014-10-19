@@ -15,8 +15,7 @@ check_admin_referer( 'cforms2_installpreset' );
 
 ### read all presets from the dir
 function cforms2_get_form_presets(){
-	$fullplugindir	= dirname(__FILE__);
-	$presetsdir		= $fullplugindir.'/../../formpresets/';
+	$presetsdir		= plugin_dir_path(__FILE__).'../../formpresets/';
 
 	$list = $title	= '';
 	$alldesc 		= '';

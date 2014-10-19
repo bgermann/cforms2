@@ -3,8 +3,8 @@
 ###  ajax submission of form
 ###
 
-require_once(dirname(__FILE__) . '/lib_email.php');
-require_once(dirname(__FILE__) . '/lib_aux.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
 
 add_action( 'wp_ajax_submitcomment', 'cforms2_submitcomment' );
 add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
@@ -43,8 +43,8 @@ function cforms2_submitcomment() {
 	$segments = explode('$#$', $content[0]);
 	$params = array();
 
-    $CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-    $CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
+    $CFfunctionsC = plugin_dir_path(dirname(__FILE__)).'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+    $CFfunctions = plugin_dir_path(__FILE__).'my-functions.php';
     if ( file_exists($CFfunctionsC) )
         include_once($CFfunctionsC);
     else if ( file_exists($CFfunctions) )
@@ -316,7 +316,7 @@ function cforms2_submitcomment() {
 
     ###  Catch WP-Comment function | if send2author just continue
     if ( $isAjaxWPcomment!==false && $track['send2author']=='0' ){
-		require_once (dirname(__FILE__) . '/lib_WPcomment.php');
+		require_once (plugin_dir_path(__FILE__) . 'lib_WPcomment.php');
 
 	    ###  Catch WP-Comment function: error
 	    if ( !$WPsuccess ) {
@@ -448,7 +448,7 @@ function cforms2_submitcomment() {
 
 	                ### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
+	                $a = (substr($a,0,1)=='/') ? $a : plugin_dir_path(__FILE__).$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
 	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
 	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );

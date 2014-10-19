@@ -3,14 +3,14 @@
 ###  Validate all fields
 ###
 
-$CFfunctionsC = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-$CFfunctions = dirname(__FILE__).DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctionsC = plugin_dir_path(dirname(__FILE__)) . 'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
+$CFfunctions = plugin_dir_path(__FILE__) . 'my-functions.php';
 if ( file_exists($CFfunctionsC) )
     include_once($CFfunctionsC);
 else if ( file_exists($CFfunctions) )
     include_once($CFfunctions);
 
-require_once (dirname(__FILE__) . '/lib_validate.php');
+require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
 
 
 if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
@@ -544,7 +544,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 					### auto conf attachment?
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
-	                $a = (substr($a,0,1)=='/') ? $a : dirname(__FILE__).DIRECTORY_SEPARATOR.$a;
+	                $a = (substr($a,0,1)=='/') ? $a : plugin_dir_path(__FILE__).$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
 	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
 	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
