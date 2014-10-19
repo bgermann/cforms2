@@ -1,6 +1,6 @@
 === cformsII - contact form ===
 Contributors: bgermann, olivers
-Donate link: http://www.deliciousdays.com/cforms-donation
+Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.3
 Tested up to: 4.0
@@ -74,7 +74,8 @@ previous release!
 
 Check out the [cforms CSS Guide and webcast](http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/) on layout customization.
 
-= Localization =
+
+== Localization ==
 
 If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
 
@@ -83,6 +84,14 @@ You can find a list of the [translations for the original cforms version](http:/
 If you would like to contribute a new language file, please file a ticket with the translation file attached.
 It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
 you must not redistribute them as long as it is not your translation.
+
+
+== Donations ==
+
+This fork is originally developed for the website of [tatkräftig](http://tatkraeftig.org) (only German), a German charitable organization that encourages and supports people in social engagement.
+If you can afford it, please consider [making a donation](https://www.betterplace.org/organisations/tatkraeftig/donations/new) to support that organization and further development.
+
+The original author who developed cforms until 2012 also has a [donation page](http://www.deliciousdays.com/cforms-donation).
 
 
 == Frequently Asked Questions ==
