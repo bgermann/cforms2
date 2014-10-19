@@ -113,9 +113,7 @@ function cforms2_start_session() {
 ###
 function cforms2($args = '',$no = '') {
 
-	global $subID, $wpdb, $track, $cformsSettings, $trackf, $send2author;
-
-	### parse_str($args, $r); ### Oliver 6.8.2011
+	global $subID, $track, $cformsSettings, $trackf, $send2author;
 
     $oldno = ($no=='1')?'':$no;  ### remeber old val, to reset session when in new MP form
 
@@ -1198,11 +1196,10 @@ function cforms2_style() {
 
 		### add jQuery script & calendar
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
-			wp_enqueue_script('jquery',false,false,false,false);
-			wp_enqueue_script('jquery-ui-core',false,false,false,false);
-			wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
+			wp_enqueue_script('jquery-ui-datepicker');
 		}
-		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', false, $localversion);
+        wp_register_script( 'md5', plugin_dir_url(__FILE__) . 'js/md5.js', false, '2.1');
+		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery', 'md5'), $localversion);
 		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
 			'url'    => admin_url('admin-ajax.php'),
 			'nonces' => array(
@@ -1357,7 +1354,7 @@ if (!function_exists('insert_custom_cform')) {
 
 ### check form names/id's
 function cforms2_check_form_name($no) {
-
+    $cformsSettings = get_option('cforms_settings');
 	if( is_numeric($no) || $no=='' ) return $no;
 
 	if( !(is_array($cformsSettings) && $cformsSettings['global']['cforms_formcount']>0) )
@@ -1413,7 +1410,6 @@ function cforms2_add_cforms_post_boxes(){
 
 ### Add Tell A Friend processing
 function cforms2_enable_tellafriend($post_ID) {
-	global $wpdb;
 
 	if ( isset($_POST['action']) && ($_POST['action']=='autosave' || $_POST['action']=='inline-save')  )
     	return;
@@ -1459,7 +1455,6 @@ function cforms2_widget_init() {
 	        }
 
 	        function cforms2_widget_options($args) {
-	            global $wpdb;
 
 	            $cformsSettings = get_option('cforms_settings');
 
@@ -1491,7 +1486,7 @@ function cforms2_widget_init() {
 	                }
 
 	                // clear unused options and update options in DB. return actual options array
-	                $options = cforms2_widget_update($prefix, $options, $_POST[$prefix], $_POST['sidebar'], 'cforms2_widget');
+	                $options = cforms2_widget_update($prefix, $options, $_POST['sidebar']);
 
 	            }
 
@@ -1521,7 +1516,7 @@ function cforms2_widget_init() {
 
 	        }
 
-	        function cforms2_widget_update($id_prefix, $options, $post, $sidebar, $option_name = ''){
+	        function cforms2_widget_update($id_prefix, $options, $sidebar){
 
 	                static $updated = false;
 
@@ -1681,9 +1676,7 @@ if (function_exists('add_action')){
 
 ### cforms runtime JS scripts
 function cforms2_adminstyle() {
-	wp_enqueue_script('jquery',false,false,false,false);
-	wp_enqueue_script('jquery-ui-core',false,false,false,false);
-	wp_enqueue_script('jquery-ui-datepicker',false,false,false,false);
+	wp_enqueue_script('jquery-ui-datepicker');
 }
 
 
