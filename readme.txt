@@ -16,6 +16,7 @@ This is a fork of cformsII, a highly customizable, flexible and powerful form bu
 
 The original author does not seem to further develop the plugin. This fork is an effort to keep it up to date.
 If you want to use non-GPL versions older than 10.2, you can [browse the original Trac](https://plugins.trac.wordpress.org/browser/cforms/).
+If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms".
 
 = Credits =
 
