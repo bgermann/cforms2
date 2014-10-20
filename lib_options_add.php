@@ -57,7 +57,7 @@
 
 	/*file upload*/
     $wp_upload_dir = wp_upload_dir();
-	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] = $wp_upload_dir['basedir'] . '/cforms-attachments';
+	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] = $wp_upload_dir['basedir'];
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] = 'txt,zip,doc,rtf,xls';
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] = '1024';
 

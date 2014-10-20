@@ -1,6 +1,0 @@
-
-
-***  If you plan on allowing file attachments/uploads, 
-***  make sure that this folder's permissions are set  
-***  properly to protect against abuse & google from 
-***  indexing it!
