@@ -13,7 +13,6 @@ cforms2_check_access_priv('track_cforms');
 
 ### New global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
-$plugindir   = dirname(plugin_basename(__FILE__));
 
 ### if all data has been erased quit
 if ( cforms2_check_erased() )

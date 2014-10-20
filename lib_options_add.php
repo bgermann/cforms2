@@ -56,7 +56,8 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] = 'http://';
 
 	/*file upload*/
-	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] = plugin_dir_path(__FILE__) . 'attachments';
+    $wp_upload_dir = wp_upload_dir();
+	$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] = $wp_upload_dir['basedir'] . '/cforms-attachments';
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] = 'txt,zip,doc,rtf,xls';
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] = '1024';
 

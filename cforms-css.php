@@ -12,7 +12,6 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 $cformsSettings = get_option('cforms_settings');
 
 $cformsSettings = get_option('cforms_settings');
-$plugindir   = dirname(plugin_basename(__FILE__));
 $s = DIRECTORY_SEPARATOR;
 
 ### CSS styles

@@ -507,7 +507,7 @@ class cforms2_rss {
     }
 
 	static function outputRSS() {
-		global $wpdb, $cformsSettings, $plugindir;
+		global $wpdb, $cformsSettings;
 		$temp=get_query_var('cformsRSS');
 		if( $temp <> '' ) {
 
@@ -550,7 +550,7 @@ class cforms2_rss {
                                 }
 							}
 
-			                $entrylink = network_site_url().'/wp-admin/admin.php?page='.$plugindir.'/cforms-database.php&amp;d-id='.$entry->id.'#entry'.$entry->id;
+			                $entrylink = network_site_url().'/wp-admin/admin.php?page='.plugin_dir_path(plugin_basename(__FILE__)).'cforms-database.php&amp;d-id='.$entry->id.'#entry'.$entry->id;
 							$description .= '<div style="margin:8px 0;"><a href="'.$entrylink.'">'.__('View details','cforms').'</a></div> ]]>';
 							$content.= "\t".'<item>'."\n".
 										"\t\t".'<title>'.$title.'</title>'."\n".

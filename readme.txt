@@ -101,7 +101,6 @@ Some things are to be done:
 
 * filter user input
 * make attachments download support directories that are not exported via HTTP
-* use the standard wordpress upload directory as the standard attachments directory
 * replace the color picker with iris (wordpress standard since 3.5)
 * [support for Subscribe to Comments Reloaded](https://wordpress.org/support/topic/suggestion-support-subscribe-to-comments-reloaded)
 * long term: refactoring with object oriented approach

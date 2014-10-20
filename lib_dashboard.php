@@ -8,7 +8,7 @@ function cforms2_dashboard_setup() {
 
 ### Show entries on dashboard
 function cforms2_dashboard() {
-	global $wpdb, $plugindir, $cformsSettings;
+	global $wpdb, $cformsSettings;
 
 	if (!current_user_can('track_cforms')) return;
 
@@ -38,7 +38,7 @@ function cforms2_dashboard() {
 		foreach($entries as $entry){
 				$dateConv = mysql2date(get_option('date_format'), $entry->sub_date);
 				$content.= '<li><img class="dashboardIcon" alt="" src="'.plugin_dir_url(__FILE__).'images/cformsicon.png">'.
-				"<a title=\"". __('click for details','cforms') ."\" href='admin.php?page=".$plugindir."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a> ".
+				"<a title=\"". __('click for details','cforms') ."\" href='admin.php?page=".plugin_dir_path(plugin_basename(__FILE__))."/cforms-database.php&d-id=$entry->id#entry$entry->id'>$entry->email</a> ".
 				__('via','cforms') . " <strong>". $cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']. "</strong>".
 				" on ". $dateConv ."</li>";
 		}
@@ -46,7 +46,7 @@ function cforms2_dashboard() {
 	else
 		$content.= '<li>'.__('No entries yet','cforms').'</li>';
 
-	$content .= "</ul><p class=\"youhave\"><a href='admin.php?page=".$plugindir."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </p>";
+	$content .= "</ul><p class=\"youhave\"><a href='admin.php?page=".plugin_dir_path(plugin_basename(__FILE__))."/cforms-database.php'>" . __('Visit the cforms tracking page for all entries ','cforms') . " &raquo;</a> </p>";
 
 	echo $content;
 }

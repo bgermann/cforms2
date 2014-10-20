@@ -89,11 +89,6 @@ require_once (plugin_dir_path(__FILE__) . 'lib_aux.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_editor.php');
 
 
-
-### http://trac.wordpress.org/ticket/3002
-$plugindir   = dirname(plugin_basename(__FILE__));
-
-
 ### session control for multi-page form
 add_action('template_redirect', 'cforms2_start_session');
 
@@ -1605,7 +1600,7 @@ if (function_exists('add_action')){
 	add_action('plugins_loaded', 'cforms2_widget_init');
 
 	$admin   = is_admin();
-	$cfadmin = ( strpos($_SERVER['QUERY_STRING'],$plugindir.'/cforms')!==false )?true:false;
+	$cfadmin = ( strpos($_SERVER['QUERY_STRING'],plugin_dir_path(plugin_basename(__FILE__)).'cforms')!==false )?true:false;
 
 	### dashboard
 	if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {
