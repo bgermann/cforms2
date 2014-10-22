@@ -492,8 +492,8 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					$cap = $cformsSettings['global']['cforms_captcha_def'];
 					$h = cforms2_prep( $cap['h'],25 );
 					$w = cforms2_prep( $cap['w'],115 );
-					$c = cforms2_prep( $cap['c'],'000066' );
-					$l = cforms2_prep( $cap['l'],'000066' );
+					$c = cforms2_prep( $cap['c'],'#000066' );
+					$l = cforms2_prep( $cap['l'],'#000066' );
 					$f = cforms2_prep( $cap['f'],'font4.ttf' );
 					$a1 = cforms2_prep( $cap['a1'],-12 );
 					$a2 = cforms2_prep( $cap['a2'],12 );
@@ -504,8 +504,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					$c2 = cforms2_prep( $cap['c2'],5 );
 					$i  = cforms2_prep( $cap['i'],'i' );
 					$ac = cforms2_prep( $cap['ac'],'abcdefghijkmnpqrstuvwxyz23456789' );
-
-					//$img = "&amp;c1={$c1}&amp;c2={$c2}&amp;ac={$ac}&amp;i={$i}&amp;w={$w}&amp;h={$h}&amp;c={$c}&amp;l={$l}&amp;f={$f}&amp;a1={$a1}&amp;a2={$a2}&amp;f1={$f1}&amp;f2={$f2}&amp;bg={$bg}";
 
 					$fonts = '<select name="cforms_cap_f" id="cforms_cap_f">'.cforms2_get_files('captchafonts',$f,'ttf').'</select>';
 					$backgrounds = '<select name="cforms_cap_b" id="cforms_cap_b">'.cforms2_get_files('captchabg',$bg,'gif').'</select>';
@@ -527,7 +525,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<tr class="ob">
 					<td class="obL"><strong><?php _e('Preview Image', 'cforms') ?></strong><br /><span id="pnote" style="display:none; color:red;"><?php _e('Don\'t forget to save your changes!', 'cforms'); ?></span></td>
 					<td class="obR" id="adminCaptcha">
-                        <a title="<?php _e('Reload Captcha Image', 'cforms'); ?>" href="javascript:resetAdminCaptcha()"><?php _e('Reload Captcha Image', 'cforms'); ?> &raquo;</a>
+                        <a title="<?php _e('Reload Captcha Image', 'cforms'); ?>" href="javascript:resetAdminCaptcha();"><?php _e('Reload Captcha Image', 'cforms'); ?> &raquo;</a>
 					</td>
 				</tr>
 
@@ -546,7 +544,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<tr class="ob">
 					<td class="obL"><label for="inputID1"><strong><?php _e('Border Color', 'cforms') ?></strong></label></td>
 					<td class="obR">
-						<input class="cap" type="text" id="inputID1" name="cforms_cap_l" onclick="javascript:currentEL=1;" value="<?php echo $l; ?>"/><input type="button" name="col-border" class="colorswatch" style="background-color:#<?php echo $l; ?>" id="plugID1" onclick="this.blur(); currentEL=1; $cfS('mini').display='block';"/>
+						<input class="cap colorpicker" type="text" id="inputID1" name="cforms_cap_l" value="<?php echo $l; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
@@ -579,7 +577,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<tr class="ob">
 					<td class="obL"><label for="inputID2"><strong><?php _e('Color', 'cforms') ?></strong></label></td>
 					<td class="obR">
-						<input class="cap" type="text" id="inputID2" name="cforms_cap_c" onclick="javascript:currentEL=2;" value="<?php echo $c; ?>"/><input type="button" name="col-border" class="colorswatch" style="background-color:#<?php echo $c; ?>" id="plugID2" onclick="this.blur(); currentEL=2; $cfS('mini').display='block';"/>
+						<input class="cap colorpicker" type="text" id="inputID2" name="cforms_cap_c" value="<?php echo $c; ?>"/>
 					</td>
 				</tr>
 

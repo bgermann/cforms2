@@ -1611,7 +1611,7 @@ if (function_exists('add_action')){
 		require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 		add_action('admin_head', 'cforms2_options_page_style');
 		add_action('init', 'cforms2_download');
-        add_action('admin_print_scripts', 'cforms2_scripts' );
+        add_action('admin_enqueue_scripts', 'cforms2_scripts' );
 	}
 
 	### public ajax
@@ -1726,6 +1726,6 @@ function cforms2_add_items_options( $admin_bar ){
 ### attaching to filters
 add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('admin_init', 'cforms2_adminstyle');
-add_filter('wp_head', 'cforms2_style');
+add_filter('wp_enqueue_scripts', 'cforms2_style');
 add_filter('the_content', 'cforms2_insert',101);
 add_filter('wp_footer', 'cforms2_script',99);

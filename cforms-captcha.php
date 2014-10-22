@@ -31,15 +31,15 @@ $min_angle		= cforms2_prepVal($cap['a1'],-12);
 $max_angle		= cforms2_prepVal($cap['a2'],12);
 
 $col_txt_type	= 4;
-$col			= cforms2_prepVal($cap['c'],'000066');
-$col_txt_r		= hexdec(substr($col,0,2));
-$col_txt_g		= hexdec(substr($col,2,2));
-$col_txt_b		= hexdec(substr($col,4,2));
+$col			= cforms2_prepVal($cap['c'],'#000066');
+$col_txt_r		= hexdec(substr($col,1,2));
+$col_txt_g		= hexdec(substr($col,3,2));
+$col_txt_b		= hexdec(substr($col,5,2));
 
-$border			= cforms2_prepVal($cap['l'],'000066');
-$border_r		= hexdec(substr($border,0,2));
-$border_g		= hexdec(substr($border,2,2));
-$border_b		= hexdec(substr($border,4,2));
+$border			= cforms2_prepVal($cap['l'],'#000066');
+$border_r		= hexdec(substr($border,1,2));
+$border_g		= hexdec(substr($border,3,2));
+$border_b		= hexdec(substr($border,5,2));
 
 $char_padding	= 2;
 $output_type	= 'png';

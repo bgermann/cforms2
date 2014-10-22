@@ -110,8 +110,8 @@ cforms2_setINI('global','cforms_rssall_count', 5 );
 ### form verification
 $cap['h'] = 25;
 $cap['w'] = 115;
-$cap['c'] = '000066';
-$cap['l'] = '000066';
+$cap['c'] = '#000066';
+$cap['l'] = '#000066';
 $cap['f'] = 'font4.ttf';
 $cap['a1'] = -12;
 $cap['a2'] = 12;

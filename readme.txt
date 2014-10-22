@@ -2,7 +2,7 @@
 Contributors: bgermann, olivers
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
-Requires at least: 3.3
+Requires at least: 3.5
 Tested up to: 4.0
 Stable tag: 14.6.6
 License: GPLv3
@@ -101,7 +101,6 @@ Some things are to be done:
 
 * filter user input
 * make attachments download support directories that are not exported via HTTP
-* replace the color picker with iris (wordpress standard since 3.5)
 * [support for Subscribe to Comments Reloaded](https://wordpress.org/support/topic/suggestion-support-subscribe-to-comments-reloaded)
 * long term: refactoring with object oriented approach
 
@@ -117,6 +116,9 @@ Please visit the [cforms plugin page](http://www.deliciousdays.com/cforms-plugin
 
 
 == Upgrade Notice ==
+
+= 14.6.7 =
+This is only compatible with Wordpress 3.5+. Version 3.3 and 3.4 support is dropped.
 
 = 14.6.3 =
 The Wordpress function wp_mail is now used for mails, which makes use of built-in PHPMailer. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
@@ -182,7 +184,9 @@ After updating please edit each form on your plugins config page to verify that 
 * enhanced: bump up ClockPick to the newest version
 * enhanced: bump up jqModal to the newest version
 * enhanced: use jQuery wrapper for md5.js
+* enhanced: replace the color picker with iris (wordpress standard since 3.5)
 * feature:  uninstallation deletes cforms database content
+* bugfix:   captcha preview in global settings redners correctly
 * other:    remove kibo dependency
 * other:    replace donation button
 
