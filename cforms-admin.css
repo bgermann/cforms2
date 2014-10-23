@@ -793,11 +793,6 @@ background:url(images/move.png) no-repeat top center;
 font:normal 8px Tahoma;
 }
 
-.sortHelper {
-background:#888;
-width:auto!important;
-}
-
 .groupWrapper p {
 height:1px;
 overflow:hidden;
@@ -1656,18 +1651,4 @@ text-align:left;
 text-align:right;
 margin:0;
 padding:0;
-}
-
-/****************************************************************
-  SORTABLE HOVER WIZ
-*****************************************************************/
-.sortHelperWiz,.sortableactiveWiz,.sortablehoverWiz {
-z-index:9999;
-position:absolute;
-}
-
-.sortHelperWiz {
-height:22px;
-border:2px dashed #666;
-width:600px;
 }

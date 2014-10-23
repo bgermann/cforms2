@@ -76,38 +76,9 @@ previous release!
 Check out the [cforms CSS Guide and webcast](http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/) on layout customization.
 
 
-== Localization ==
-
-If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
-
-You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/).
-
-If you would like to contribute a new language file, please file a ticket with the translation file attached.
-It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
-you must not redistribute them as long as it is not your translation.
-
-
-== Donations ==
-
-This fork is originally developed for the website of [tatkräftig](http://tatkraeftig.org) (only German), a German charitable organization that encourages and supports people in social engagement.
-If you can afford it, please consider [making a donation](https://www.betterplace.org/organisations/tatkraeftig/donations/new) to support that organization and further development.
-
-The original author who developed cforms until 2012 also has a [donation page](http://www.deliciousdays.com/cforms-donation).
-
-
-== Roadmap ==
-
-Some things are to be done:
-
-* filter user input
-* make attachments download support directories that are not exported via HTTP
-* [support for Subscribe to Comments Reloaded](https://wordpress.org/support/topic/suggestion-support-subscribe-to-comments-reloaded)
-* long term: refactoring with object oriented approach
-
-
 == Frequently Asked Questions ==
 
-Please visit the [cforms plugin forum](http://www.deliciousdays.com/cforms-forum) for up-to-date [FAQs](http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/) and more help.
+Please visit the [cforms plugin forum](http://www.deliciousdays.com/cforms-forum) for old [FAQs](http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/) and more help.
 
 
 == Screenshots ==
@@ -178,6 +149,11 @@ After updating please edit each form on your plugins config page to verify that 
 
 
 == Changelog ==
+
+= 14.6.8 =
+* enhanced: use jquery-ui-sortable instead of its ancient Interface Elements predecessor
+* added:    store version in database again
+* added:    migration for month and day names
 
 = 14.6.7 =
 * enhanced: reorganize JavaScript files to provide better dependency management
@@ -1474,3 +1450,32 @@ After updating please edit each form on your plugins config page to verify that 
 = 1.5 =
 
 * feature:  clean up, external css, multiple forms support & user auto confirmation
+
+
+== Localization ==
+
+If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
+
+You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/).
+
+If you would like to contribute a new language file, please file a ticket with the translation file attached.
+It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
+you must not redistribute it as long as it is not your translation.
+
+
+== Donations ==
+
+This fork is originally developed for the website of [tatkräftig](http://tatkraeftig.org) (only German), a German charitable organization that encourages and supports people in social engagement.
+If you can afford it, please consider [making a donation](https://www.betterplace.org/organisations/tatkraeftig/donations/new) to support that organization and further development.
+
+The original author who developed cforms until 2012 also has a [donation page](http://www.deliciousdays.com/cforms-donation).
+
+
+== Roadmap ==
+
+Some things are to be done:
+
+* filter user input
+* make attachments download support directories that are not exported via HTTP
+* [support for Subscribe to Comments Reloaded](https://wordpress.org/support/topic/suggestion-support-subscribe-to-comments-reloaded)
+* long term: refactoring with object oriented approach

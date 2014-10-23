@@ -1,5 +1,6 @@
 <?php
-global $wpdb, $cformsSettings;
+function cforms2_setup_db () {
+global $wpdb, $cformsSettings, $localversion;
 $cformsSettings = (array) $cformsSettings;
 
 ### new global settings container
@@ -7,6 +8,7 @@ $cformsSettings = (array) $cformsSettings;
 ### Common HTML message information
 
 $cformsSettings['global']['cforms_style_doctype'] 	= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
+$cformsSettings['global']['v'] = $localversion;
 
 unset ( $cformsSettings['global']['cforms_style'] );
 $cformsSettings['global']['cforms_style']['body'] 	= 'style="margin:0; padding:0; font-family: Verdana, Arial; font-size: 13px; color:#555;"';
@@ -92,8 +94,6 @@ cforms2_setINI('form','cforms_maxentries', '');
 cforms2_setINI('form','cforms_tellafriend', '01');
 cforms2_setINI('form','cforms_dashboard', '0');
 
-### $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext'];
-
 ### global file settings
 
 cforms2_setINI('global','cforms_formcount', '1');
@@ -178,7 +178,7 @@ for( $i=1; $i<=$cformsSettings['global']['cforms_formcount']; $i++ ){
     if( isset($cformsSettings['form'.$no]['mp']) && is_array($cformsSettings['form'.$no]['mp']) && !is_array($cformsSettings['form'.$no]['cforms'.$no.'_mp']) ){
 
 	    foreach( array_keys($cformsSettings['form'.$no]['mp']) as $k ){
-	        $tmp = preg_match('/cforms\d*_(.*)/',$k, $kk);
+	        preg_match('/cforms\d*_(.*)/',$k, $kk);
             $cformsSettings['form'.$no]['cforms'.$no.'_mp'][$kk[1]] = $cformsSettings['form'.$no]['mp'][$k];
 	    }
 
@@ -188,12 +188,14 @@ for( $i=1; $i<=$cformsSettings['global']['cforms_formcount']; $i++ ){
 
 
 ### migrate include/exclude pre v11.2 !
-
 if( isset($cformsSettings['global']['cforms_include']) && $cformsSettings['global']['cforms_include'] <> '' ){
-  $cformsSettings['global']['cforms_inexclude']['ids'] = $cformsSettings['global']['cforms_include'];
-  unset($cformsSettings['global']['cforms_include']);
+    $cformsSettings['global']['cforms_inexclude']['ids'] = $cformsSettings['global']['cforms_include'];
+    unset($cformsSettings['global']['cforms_include']);
 }
 
+### migrate quoted values in months/days fields
+$cformsSettings['global']['cforms_dp_days'] = str_replace('"', '', $cformsSettings['global']['cforms_dp_days']);
+$cformsSettings['global']['cforms_dp_months'] = str_replace('"', '', $cformsSettings['global']['cforms_dp_months']);
 
 ### UPDATE 'the one'
 if ( get_option('cforms_settings') )
@@ -219,6 +221,7 @@ if ( $wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata
                   CHANGE field_name field_name varchar(100) NOT NULL default '';";
         $wpdb->query($sql);
     }
+}
 }
 
 ### check if option is set

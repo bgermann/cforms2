@@ -296,7 +296,7 @@ if( strlen($fd)<=2 ) {
 
                     	$alternate = ($alternate=='')?' rowalt':''; ?>
 
-                    	<div id="f<?php echo $i; ?>" class="groupItem<?php echo $alternate; ?>">
+                    	<div id="allfields=f<?php echo $i; ?>" class="groupItem<?php echo $alternate; ?>">
 
                         	<div class="itemContent">
 

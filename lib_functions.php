@@ -164,6 +164,12 @@ function cforms2_enqueue_script_datepicker($localversion) {
     wp_enqueue_style('jquery-ui-datepicker');
 }
 
+function cforms2_enqueue_style_admin() {
+    global $localversion;
+    wp_register_style('cforms-admin', plugin_dir_url(__FILE__) . 'cforms-admin.css', false, $localversion );
+	wp_enqueue_style('cforms-admin');
+}
+
 function cforms2_admin_enqueue_scripts() {
 	global $localversion;
 
@@ -172,21 +178,11 @@ function cforms2_admin_enqueue_scripts() {
 
     wp_enqueue_style('wp-color-picker');
 
-	wp_register_style('cforms-admin', $r . 'cforms-admin.css', false, $localversion );
-	wp_enqueue_style('cforms-admin');
-
-    wp_register_style('jquery-flexigrid', $r . 'js/css/flexigrid.css', false, '1.1' );
-    wp_enqueue_style('jquery-flexigrid');
-
     wp_register_style('jquery-clockpick', $r . 'js/css/jquery.clockpick.css', false, '1.2.9' );
     wp_enqueue_style('jquery-clockpick');
-
-    // The Sortables with their dependencies seem to be used.
-    wp_register_script('jquery-interface',$r.'js/jquery.interface.js',array('jquery'));
-    wp_enqueue_script('jquery-interface');
-
-    wp_register_script('jquery-textarearesizer',$r.'js/jquery.textarearesizer.js',array('jquery'),'1.0.4');
-    wp_enqueue_script('jquery-textarearesizer');
+    
+    wp_register_style('jquery-flexigrid', $r . 'js/css/flexigrid.css', false, '1.1' );
+    wp_enqueue_style('jquery-flexigrid');
 
     wp_register_script('jquery-flexigrid',$r."js/jquery.flexigrid$suffix.js",array('jquery'),'1.1');
     wp_enqueue_script('jquery-flexigrid');
@@ -195,7 +191,10 @@ function cforms2_admin_enqueue_scripts() {
     wp_register_script('jquery-jqmodal',$r.'js/jquery.jqmodal.js',array('jquery', 'jquery-jqdnr'),'1.1.0');
     wp_register_script('jquery-clockpick',$r."js/jquery.clockpick$suffix.js",array('jquery'),'1.2.9');
     wp_register_script('jquery-in-place-editor',$r.'js/jquery.in-place-editor.js',array('jquery'),'2.3.0');
-    wp_register_script('cforms-admin',$r.'js/cformsadmin.js',array('jquery', 'jquery-jqmodal', 'jquery-in-place-editor', 'jquery-clockpick', 'wp-color-picker'),$localversion);
+    wp_register_script('jquery-textarearesizer',$r.'js/jquery.textarearesizer.js',array('jquery'),'1.0.4');
+    wp_register_script('cforms-admin',$r.'js/cformsadmin.js', array(
+        'jquery', 'jquery-jqmodal', 'jquery-clockpick', 'jquery-in-place-editor', 'jquery-textarearesizer', 'jquery-ui-sortable', 'wp-color-picker'
+    ), $localversion);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
         'reset_captcha' => wp_create_nonce('cforms2_reset_captcha'),
@@ -216,6 +215,7 @@ function cforms2_admin_enqueue_scripts() {
     ) );
     wp_enqueue_script('cforms-admin');
 
+    cforms2_enqueue_style_admin();
     cforms2_enqueue_script_datepicker($localversion);
 }
 

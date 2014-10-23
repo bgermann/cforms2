@@ -87,8 +87,9 @@ jQuery(document).ready(
 			var step = jQuery('#cf_edit_step').length ? jQuery('#cf_edit_step').val() : '';
 			var placeholder = jQuery('#cf_edit_placeholder').length ? jQuery('#cf_edit_placeholder').val() : '';
 			var sep = '\u00A4';
-			if(jQuery('#html5formfields').length)var l_html5 = '|html5:'+autocomplete+sep+autofocus+sep+min+sep+max+sep+pattern+sep+step+sep+placeholder;
-			else var l_html5 = '';
+            var l_html5;
+			if(jQuery('#html5formfields').length) l_html5 = '|html5:'+autocomplete+sep+autofocus+sep+min+sep+max+sep+pattern+sep+step+sep+placeholder;
+			else l_html5 = '';
 
 			temp='';
 			jQuery('.cf_edit_group_new').each( function (index, domEle) {
@@ -347,7 +348,7 @@ jQuery(document).ready(
 		jQuery('#cf_target').on('change',':input',function() {
 			if ( !trackChg ) {
 				trackChg = true;
-				jQuery('#wp-admin-bar-cforms-SubmitOptions').addClass('hiLightBar')
+				jQuery('#wp-admin-bar-cforms-SubmitOptions').addClass('hiLightBar');
 			}
 		});
 
@@ -397,7 +398,6 @@ jQuery(document).ready(
 			'html5number'         :'html5field',
 			'html5range'          :'html5field',
 			'html5search'         :'html5field',
-			'html5tel'            :'html5field',
 			'html5time'           :'html5field',
 			'html5url'            :'html5field',
 			'html5week'           :'html5field',
@@ -484,21 +484,16 @@ jQuery(document).ready(
 
 		/* MAKE FORM FIELDS SORTABLE */
 		if	(jQuery('.groupWrapper')) {
-			jQuery('.groupWrapper').Sortable(
+			jQuery('.groupWrapper').sortable(
 				{
-					accept: 		'groupItem',
-					helperclass:	'sortHelper',
-					activeclass : 	'sortableactive',
-					hoverclass : 	'sortablehover',
-					handle:			'span.itemHeader',
-					tolerance:		'pointer',
-					opacity:		0.5,
-					axis:			'vertically',
-					onStop : function()
-					{
-						serial = jQuery.SortSerialize('allfields');
+					items       : '> .groupItem',
+					handle      : 'span.itemHeader',
+					tolerance   : 'pointer',
+					opacity     : 0.5,
+					axis        : 'y',
+					stop        : function() {
 						document.getElementById('cformswarning').style.display = '';
-						document.mainform.field_order.value = serial.hash;
+						document.mainform.field_order.value = jQuery('.groupWrapper').sortable('serialize');
 					}
 				}
 			);

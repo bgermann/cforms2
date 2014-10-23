@@ -39,8 +39,8 @@ cforms2_check_access_priv();
     delete_option('cforms_settings');
 	global $cformsSettings;
     $cformsSettings = array();
-	require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
-	die();
+	cforms2_setup_db();
+	wp_die();
 ?>
 
 <?php else :?>

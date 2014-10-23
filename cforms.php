@@ -21,13 +21,13 @@
  * Plugin URI: https://wordpress.org/plugins/cforms2/
  * Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
  * Author: Oliver Seidel, Bastian Germann
- * Version: 14.6.7
+ * Version: 14.6.8
  * Text Domain: cforms
  * Domain Path: ____Plugin_Localization
  */
 
 global $localversion;
-$localversion = '14.6.7';
+$localversion = '14.6.8';
 
 ### db settings
 global $wpdb, $cformsSettings;
@@ -36,8 +36,8 @@ $cformsSettings				= get_option('cforms_settings');
 $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
 $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
-### admin functions
 require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 
 
 
@@ -51,7 +51,7 @@ function cforms2_activate() {
 	if(!$role->has_cap('track_cforms')) {
 		$role->add_cap('track_cforms');
 	}
-	require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
+    cforms2_setup_db();
 }
 // TODO check if this is run when updated without explicitly activating
 add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate' );
@@ -73,14 +73,10 @@ function cforms2_settings_corrupted() {
 	elseif (function_exists('add_management_page'))
 		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php');
 
-    add_action('wp_print_scripts', 'cforms2_scripts_corrupted' );
-}
-function cforms2_scripts_corrupted(){
-	echo	'<link rel="stylesheet" type="text/css" href="' . plugin_dir_url( __FILE__ ) . 'cforms-admin.css" />' . "\n";
+    add_action('admin_enqueue_scripts', 'cforms2_enqueue_style_admin' );
 }
 
 
-### load add'l files
 require_once (plugin_dir_path(__FILE__) . 'lib_email.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_aux.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_editor.php');
@@ -315,9 +311,9 @@ function cforms2($args = '',$no = '') {
     ##debug
     cforms2_dbg("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
 
-	##debug: optional
-	## cforms2_dbg(print_r($_SESSION,1));
-	## cforms2_dbg(print_r($track,1));
+	##debug
+	cforms2_dbg(print_r($_SESSION,1));
+	cforms2_dbg(print_r($track,1));
 
 	### redirect == 2 : hide form?    || or if max entries reached! w/ SESSION support if#2
 	if (  $all_valid && (
