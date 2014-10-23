@@ -186,8 +186,9 @@ After updating please edit each form on your plugins config page to verify that 
 * enhanced: use jQuery wrapper for md5.js
 * enhanced: replace the color picker with iris (wordpress standard since 3.5)
 * feature:  uninstallation deletes cforms database content
-* bugfix:   captcha preview in global settings redners correctly
+* bugfix:   captcha preview in global settings renders correctly
 * other:    remove kibo dependency
+* other:    removed unused images and code (including [GPL incompatible](http://www.dynamicdrive.com/notice.htm), stolen JavaScript code)
 * other:    replace donation button
 
 = 14.6.6 =

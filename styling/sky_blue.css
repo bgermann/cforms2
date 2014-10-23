@@ -1,7 +1,6 @@
 /*                                                    */
 /*  custom code on top the default style sheet        */
 /*                                                    */
-@import "calendar.css";
 
 .cform fieldset.cf-fs1 {
 	background:#C2DEF5 url(../images/customform_blue_bg_top.jpg) no-repeat;

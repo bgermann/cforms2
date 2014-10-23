@@ -1,5 +1,3 @@
-@import "js/css/fg.css";
-
 /****************************************************************
   menubar
 *****************************************************************/
@@ -369,6 +367,27 @@ background:none;
 input.stylebutton {
 width:158px;
 }
+
+.flexigrid {
+margin: 0 auto;
+}
+
+.flexigrid div.fbutton .add {
+background: url(images/view.png) no-repeat center left;
+}
+
+.flexigrid div.fbutton .delete {
+background: url(images/trash.gif) no-repeat top left;
+}
+
+.flexigrid div.fbutton .delete:hover {
+background-position: 0 -23px;
+}
+
+.flexigrid div.fbutton .dl {
+background: url(images/download.png) no-repeat center left;
+}
+
 
 /****************************************************************
   form settings

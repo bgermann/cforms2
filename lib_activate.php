@@ -146,8 +146,21 @@ cforms2_setINI('global','cforms_database', '0');
 cforms2_setINI('global','cforms_datepicker', '0');
 cforms2_setINI('global','cforms_dp_start', '0');
 cforms2_setINI('global','cforms_dp_date', 'mm/dd/yy');
-cforms2_setINI('global','cforms_dp_days', __('"S","M","T","W","T","F","S"', 'cforms'));
-cforms2_setINI('global','cforms_dp_months', __('"January","February","March","April","May","June","July","August","September","October","November","December"', 'cforms'));
+cforms2_setINI('global','cforms_dp_days', __('S,M,T,W,T,F,S', 'cforms'));
+cforms2_setINI('global','cforms_dp_months', implode(',', array(
+    __("January", 'cforms'),
+    __("February", 'cforms'),
+    __("March", 'cforms'),
+    __("April", 'cforms'),
+    __("May", 'cforms'),
+    __("June", 'cforms'),
+    __("July", 'cforms'),
+    __("August", 'cforms'),
+    __("September", 'cforms'),
+    __("October", 'cforms'),
+    __("November", 'cforms'),
+    __("December", 'cforms')
+)));
 
 $nav[0]=__('Previous Year', 'cforms');
 $nav[1]=__('Previous Month', 'cforms');

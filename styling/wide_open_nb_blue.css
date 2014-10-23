@@ -1,7 +1,6 @@
 /*                                                    */
 /*  main 'top-level' form elements                    */
 /*                                                    */
-@import "calendar.css";
 
 .cform { 
 	margin:10px auto 0 auto; 
@@ -235,7 +234,7 @@ p.cf-sb {
 	padding:5px; 
 	margin: 0px 18px 4px 0pt;
 	font-size:0.8em;
-	background:url(../images/button-bg.gif) repeat-x; 
+	background:url(../images/button-bg-blue.gif) repeat-x; 
 	border:1px solid #adadad!important;
 	border-left-color:#ececec!important; 
 	border-top-color:#ececec!important;

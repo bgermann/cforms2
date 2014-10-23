@@ -4,7 +4,6 @@
 /*  ** if you want this to apply to a different       */
 /*  ** form than to just the 2nd form change the '2'  */
 /*  ** (or remove for your 1st, default form)         */
-@import "calendar.css";
 
 .cform fieldset.cf-fs1 {
 	background: url(../images/customform_shiny_bg.jpg) no-repeat;

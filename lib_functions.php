@@ -138,40 +138,64 @@ function cforms2_get_request_uri() {
 }
 
 
-### cforms JS scripts
-function cforms2_scripts() {
+function cforms2_enqueue_script_datepicker($localversion) {
+    $cformsSettings = get_option('cforms_settings');
+	$nav = $cformsSettings['global']['cforms_dp_nav'];
+
+    wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), $localversion);
+    wp_localize_script('cforms-calendar', 'cfCAL', array(
+        'dateFormat'       => stripslashes($cformsSettings['global']['cforms_dp_date']),
+        'dayNames'         => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) ),
+        'abbrDayNames'     => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) ),
+        'monthNames'       => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_months']) ),
+        'abbrMonthNames'   => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_months']) ),
+        'firstDayOfWeek'   => stripslashes($cformsSettings['global']['cforms_dp_start']),
+        'fullYearStart'    => '20',
+        'TEXT_PREV_MONTH'  => stripslashes($nav[1]),
+        'TEXT_NEXT_MONTH'  => stripslashes($nav[3]),
+        'TEXT_CLOSE'       => stripslashes($nav[4]),
+        'TEXT_CHOOSE_DATE' => stripslashes($nav[5]),
+        'changeYear'       => $nav[6]==1,
+        'ROOT'             => plugin_dir_url( __FILE__ ),
+    ) );
+    wp_enqueue_script('cforms-calendar');
+    
+    wp_register_style('jquery-ui-datepicker', plugin_dir_url(__FILE__) . 'styling/calendar.css', false, $localversion );
+    wp_enqueue_style('jquery-ui-datepicker');
+}
+
+function cforms2_admin_enqueue_scripts() {
 	global $localversion;
 
 	$suffix = SCRIPT_DEBUG ? '' : '.min';
 	$r=plugin_dir_url(__FILE__);
 
-	### Add admin styles
-	wp_register_style('cforms-admin-style', $r . 'cforms-admin.css', false, $localversion );
-	wp_enqueue_style('cforms-admin-style');
+    wp_enqueue_style('wp-color-picker');
 
-	if ( strpos(cforms2_get_request_uri(),'cforms-options')!==false ){
-		wp_register_style('calendar-style', $r . 'styling/calendar.css', false, $localversion );
-		wp_enqueue_style('calendar-style'); 
+	wp_register_style('cforms-admin', $r . 'cforms-admin.css', false, $localversion );
+	wp_enqueue_style('cforms-admin');
 
-	    wp_enqueue_script('jquery-ui-core');
+    wp_register_style('jquery-flexigrid', $r . 'js/css/flexigrid.css', false, '1.1' );
+    wp_enqueue_style('jquery-flexigrid');
 
-	    wp_register_script('jquery-clockpick',$r."js/jquery.clockpick$suffix.js",array('jquery'),'1.2.9');
-	    wp_enqueue_script('jquery-clockpick');
-		
-		wp_register_style('jquery-clockpick-style', $r . 'js/css/jquery.clockpick.css', false, '1.2.9' );
-		wp_enqueue_style('jquery-clockpick-style');
-	}
+    wp_register_style('jquery-clockpick', $r . 'js/css/jquery.clockpick.css', false, '1.2.9' );
+    wp_enqueue_style('jquery-clockpick');
 
     // The Sortables with their dependencies seem to be used.
     wp_register_script('jquery-interface',$r.'js/jquery.interface.js',array('jquery'));
+    wp_enqueue_script('jquery-interface');
 
     wp_register_script('jquery-textarearesizer',$r.'js/jquery.textarearesizer.js',array('jquery'),'1.0.4');
+    wp_enqueue_script('jquery-textarearesizer');
+
+    wp_register_script('jquery-flexigrid',$r."js/jquery.flexigrid$suffix.js",array('jquery'),'1.1');
+    wp_enqueue_script('jquery-flexigrid');
 
     wp_register_script('jquery-jqdnr',$r.'js/jquery.jqdnr.js',array('jquery'),'r2');
     wp_register_script('jquery-jqmodal',$r.'js/jquery.jqmodal.js',array('jquery', 'jquery-jqdnr'),'1.1.0');
+    wp_register_script('jquery-clockpick',$r."js/jquery.clockpick$suffix.js",array('jquery'),'1.2.9');
     wp_register_script('jquery-in-place-editor',$r.'js/jquery.in-place-editor.js',array('jquery'),'2.3.0');
-    wp_register_script('jquery-flexigrid',$r."js/jquery.flexigrid$suffix.js",array('jquery'),'1.1');
-    wp_register_script('cforms-admin',$r.'js/cformsadmin.js',array('jquery', 'jquery-jqmodal', 'jquery-in-place-editor', 'jquery-flexigrid', 'wp-color-picker'),$localversion);
+    wp_register_script('cforms-admin',$r.'js/cformsadmin.js',array('jquery', 'jquery-jqmodal', 'jquery-in-place-editor', 'jquery-clockpick', 'wp-color-picker'),$localversion);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
         'reset_captcha' => wp_create_nonce('cforms2_reset_captcha'),
@@ -190,83 +214,10 @@ function cforms2_scripts() {
 		'getentries'    => wp_create_nonce('database_getentries'),
 		'savedata'      => wp_create_nonce('database_savedata')
     ) );
-
-    wp_enqueue_style('wp-color-picker');
-    wp_enqueue_script('jquery-interface');
-    wp_enqueue_script('jquery-textarearesizer');
     wp_enqueue_script('cforms-admin');
+
+    cforms2_enqueue_script_datepicker($localversion);
 }
-
-
-
-### some css for arranging the table fields in wp-admin
-function cforms2_options_page_style() {
-
-	$cformsSettings = get_option('cforms_settings');
-	$nav = $cformsSettings['global']['cforms_dp_nav'];
-
-	echo "\n<!-- Start of script generated by cformsII -->\n";
-    echo '<script type="text/javascript">'."\n/* <![CDATA[ */\n".
-		'var cfCAL={};'."\n".
-		'cfCAL.dayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
-		'cfCAL.abbrDayNames = ['.stripslashes($cformsSettings['global']['cforms_dp_days']).'];'."\n".
-		'cfCAL.monthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-		'cfCAL.abbrMonthNames = ['.stripslashes($cformsSettings['global']['cforms_dp_months']).'];'."\n".
-		'cfCAL.firstDayOfWeek = "'.stripslashes($cformsSettings['global']['cforms_dp_start']).'";'."\n".
-		'cfCAL.fullYearStart = "20";'."\n".
-		'cfCAL.TEXT_PREV_YEAR="'.stripslashes($nav[0]).'";'."\n". // not needed with 3.3
-		'cfCAL.TEXT_NEXT_YEAR="'.stripslashes($nav[2]).'";'."\n". // not needed with 3.3
-		'cfCAL.TEXT_PREV_MONTH="'.stripslashes($nav[1]).'";'."\n".
-		'cfCAL.TEXT_NEXT_MONTH="'.stripslashes($nav[3]).'";'."\n".
-		'cfCAL.TEXT_CLOSE="'.stripslashes($nav[4]).'";'."\n".
-		'cfCAL.TEXT_CHOOSE_DATE="'.stripslashes($nav[5]).'";'."\n". 
-		'cfCAL.changeYear='. ($nav[6]==1? 'true':'false') .';'."\n". 
-		'cfCAL.ROOT="'.plugin_dir_url( __FILE__ ).'";' ."\n\n"; 
-?>
-jQuery(function() {
-
-if( jQuery(".cf_timebutt1").length>0 && jQuery(".cf_timebutt2").length>0 ){
-    jQuery(".cf_timebutt1").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
-    jQuery(".cf_timebutt2").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
-}
-
-if( jQuery(".cf_date").length>0 ){
-
-	jQuery(".cf_date").datepicker({
-			"buttonImage": cfCAL.ROOT+"js/calendar.gif", changeYear: cfCAL.changeYear, buttonImageOnly: true, buttonText: cfCAL.TEXT_CHOOSE_DATE, showOn: "both",
-			"dateFormat": "dd/mm/yy", "dayNamesMin": cfCAL.dayNames, "dayNamesShort": cfCAL.dayNames, "monthNames": cfCAL.monthNames, "firstDay":cfCAL.firstDayOfWeek,
-			"nextText": cfCAL.TEXT_NEXT_MONTH, "prevText": cfCAL.TEXT_PREV_MONTH, "closeText": cfCAL.TEXT_CLOSE });
-
-    jQuery('#cforms_startdate').bind(
-        'dpClosed',
-        function(e, selectedDates)
-        {
-            var d = selectedDates[0];
-            if (d) {
-                d = new Date(d);
-                jQuery('#cforms_enddate').dpSetStartDate(d.asString());
-            }
-        }
-    );
-    jQuery('#cforms_enddate').bind(
-        'dpClosed',
-        function(e, selectedDates)
-        {
-            var d = selectedDates[0];
-            if (d) {
-                d = new Date(d);
-                jQuery('#cforms_startdate').dpSetEndDate(d.asString());
-            }
-        }
-    );
-
-}
-});
-<?php
-	echo  "/* ]]> */\n".'</script>'."\n";
-	echo '<!-- End Of Script Generated By cformsII -->'."\n\n";
-}
-
 
 
 ### footer

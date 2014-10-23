@@ -1,7 +1,24 @@
+/*
+ * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+ * Copyright (c) 2014      Bastian Germann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 (function() {
 
 	var Event = tinymce.dom.Event;
-	var DOM = tinymce.DOM;
 	var cfNODE = null;
 
 	tinymce.PluginManager.requireLangPack('cforms');
@@ -11,7 +28,7 @@
 		init : function(ed, url) {
 
 			ed.onInit.add(function() { 
-				ed.dom.loadCSS(purl + "insertdialog25.css");
+				ed.dom.loadCSS(url + "/css/insertdialog25.css");
 			});
 
 			ed.addCommand('mcecforms', function(ui,v) {
@@ -21,7 +38,7 @@
 					height : 125 + (tinyMCE.isNS7 ? 20 : 0) + (tinyMCE.isMSIE ? 0 : 0),
 					inline : 1
 				}, {
-					plugin_url:purl,
+					plugin_url:url,
 					some_custom_arg : 'custom arg' // Custom argument
 				});
 								
@@ -38,7 +55,7 @@
 				cm.setActive('cforms', (n.nodeName === 'SPAN' && ed.dom.hasClass(n, 'mce_plugin_cforms_img')) );
 			});
 			
-			ed.addButton('cforms', { title : 'cforms.desc', cmd : 'mcecforms', image : purl+'../images/button.gif' }); //???
+			ed.addButton('cforms', { title : 'cforms.desc', cmd : 'mcecforms', image : url+'../images/button.gif' }); //???
 			ed.addShortcut('ctrl+f', ed.getLang('cforms.desc'), 'mcecforms');
 
 			// Replace morebreak with images

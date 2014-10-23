@@ -1,8 +1,20 @@
-/********************************************************************************************/
-/********************************************************************************************/
-/*                                  init                                                    */
-/********************************************************************************************/
-/********************************************************************************************/
+/*
+ * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+ * Copyright (c) 2014      Bastian Germann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 var now=new Date();
 var timeout=new Date(now.getTime()+3*86400000);
@@ -128,8 +140,8 @@ jQuery(document).ready(
 
 			if ( document.getElementById('cf_edit_checked') ){
 				content = line.split('|set:');
-				console.log(content[0]);
-				console.log(content[1]);
+				if(console) console.log(content[0]);
+				if(console) console.log(content[1]);
 
 				if( content[1] != undefined && content[1].match(/true/) )
 					jQuery('#cf_edit_checked').attr( 'checked', 'checked' );
@@ -527,12 +539,14 @@ jQuery(document).ready(
 				jQuery('#wp-admin-bar-cforms-SubmitOptions').addClass('hiLightBar');
 			}
 		});
+        
+        jQuery('.colorpicker').wpColorPicker();
+
+        jQuery(".cf_timebutt1").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
+        jQuery(".cf_timebutt2").clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
+
 	}
 );
-
-function checkIfFormEl (t) {
-	return ( t.tagName.toUpperCase().match(/(INPUT|SELECT|TEXTAREA)/) );
-}
 
 function getFieldset (t) {
 	if ( !t || t == null )
@@ -552,8 +566,8 @@ function resetAdminCaptcha (){
 	i = jQuery('#cforms_cap_i').val();
 	w = jQuery('#cforms_cap_w').val();
 	h = jQuery('#cforms_cap_h').val();
-	c = jQuery('#inputID2').val();
-	l = jQuery('#inputID1').val();
+	c = jQuery('#inputID2').val().replace(/#/, '.');
+	l = jQuery('#inputID1').val().replace(/#/, '.');
 	bg= jQuery('#cforms_cap_b').val();
 	f = jQuery('#cforms_cap_f').val();
 	fo= jQuery('#cforms_cap_fo').val();
@@ -602,7 +616,7 @@ function cf_tracking_view(com,grid){
 	var sortOrder = jQuery('.sorted > div:first',grid).attr('class');
 	var query	  = jQuery('.qsbox','.sDiv').attr('value');
 	var qtype	  = jQuery('select','.sDiv').attr('value');
-	jQuery('#entries').load(ajaxurl, {showids: getString, sorted: sortBy, sortorder: sortOrder, query: query, qtype: qtype, action: 'database_getentries', _wpnonce: cforms2_nonces.getentries}, function(){ submissions_loaded(); } );
+	jQuery('#entries').load(ajaxurl, {showids: getString, sorted: sortBy, sortorder: sortOrder, query: query, qtype: qtype, action: 'database_getentries', _wpnonce: cforms2_nonces.getentries}, submissions_loaded );
 }
 function submissions_loaded(){
 	jQuery('.cdatabutton','#entries').bind("click", close_submission );
@@ -623,7 +637,7 @@ function submissions_loaded(){
 				return true;
 			},
 			didOpenEditInPlace : function (el, s) {
-				console.log( jQuery(el).find('.inplace_field').length );
+				if(console) console.log( jQuery(el).find('.inplace_field').length );
 				jQuery(el).find('.inplace_field').val(trackingEditTempVal.replace(/<br[^>]*>/ig,"\n"));
 				return true;
 			}
@@ -643,114 +657,6 @@ function close_submission(){
 	jQuery('#entry'+eid).fadeOut(500, function(){ jQuery(this).remove(); } );
 	return false;
 }
-
-var alwaysOnTop = {
-
-	dsettings: {
-		targetid:'',
-		orientation:2,
-		position:[10,30],
-		externalsource:'',
-		frequency:1,
-		hideafter:0,
-		fadeduration:[500,500],
-		display:0
-	},
-
-	settingscache: {},
-
-	positiontarget: function ($target, settings) {
-		var fixedsupport = !document.all || document.all && document.compatMode == "CSS1Compat" && window.XMLHttpRequest;
-		var posoptions = { position : fixedsupport ? 'fixed' : 'absolute', visibility : 'visible' };
-		if ( settings.fadeduration[0] > 0 )
-			posoptions.opacity = 0;
-
-		posoptions[(/^[13]$/.test(settings.orientation))?'left':'right'] = settings.position[0];
-		posoptions[(/^[12]$/.test(settings.orientation))?'top':'bottom'] = settings.position[1];
-		if(document.all&&!window.XMLHttpRequest)posoptions.width=$target.width();
-		$target.css(posoptions);
-		if ( !fixedsupport ) {
-			this.keepfixed($target,settings);
-			var evtstr='scroll.'+settings.targetid+' resize.'+settings.targetid;
-			jQuery(window).bind(evtstr,function(){alwaysOnTop.keepfixed($target,settings);});
-		}
-		this.revealdiv($target, settings, fixedsupport);
-	},
-
-	keepfixed: function($target, settings) {
-		var $window=jQuery(window);
-		var is1or3=/^[13]$/.test(settings.orientation);
-		var is1or2=/^[12]$/.test(settings.orientation);
-		var x=$window.scrollLeft()+(is1or3?settings.position[0]:$window.width()-$target.outerWidth()-settings.position[0]);
-		var y=$window.scrollTop()+(is1or2?settings.position[1]:$window.height()-$target.outerHeight()-settings.position[1]);
-		$target.css({left:x+'px',top:y+'px'});
-	},
-
-	revealdiv:function($target,settings){$target.show()},
-
-	init:function(options) {
-		var settings={};
-		settings=jQuery.extend(settings,this.dsettings,options);
-		this.settingscache[settings.targetid]=settings;
-		settings.display=1;
-		jQuery(document).ready(function(jQuery) {
-			var $target=jQuery('#'+settings.targetid);
-			alwaysOnTop.positiontarget($target,settings);
-		});
-	}
-};
-
-/********************************************************************************************/
-/********************************************************************************************/
-/*                                  rest                                                    */
-/********************************************************************************************/
-/********************************************************************************************/
-
-function checkentry(el) {
-  if ( document.getElementById(el).checked == 0 )
-	document.getElementById(el).checked = 1;
-  else
-	document.getElementById(el).checked = 0;
-};
-
-function checkonoff(formno,chkName) {
-  if ( document.forms[formno].checkflag.value == 0 ) {
-    document.forms[formno].checkflag.value =1;
-    document.forms[formno].allchktop.checked = 1;
-    document.forms[formno].allchkbottom.checked = 1;
-    SetChecked (formno,1,chkName);
-  }
-  else {
-    document.forms[formno].checkflag.value =0;
-    document.forms[formno].allchktop.checked = 0;
-    document.forms[formno].allchkbottom.checked = 0;
-    SetChecked (formno,0,chkName);
-  }
-}
-
-function SetChecked(formno,val,chkName) {
-  dml=document.forms[formno];
-  len = dml.elements.length;
-  var i=0;
-  for( i=0 ; i<len ; i++) {
-    if (dml.elements[i].name==chkName) {
-      dml.elements[i].checked=val;
-    }
-  }
-}
-
-function sort_entries(field) {
-	if( document.form.order.value==field ) {
-		if ( document.form.orderdir.value=='DESC' )
-			document.form.orderdir.value='ASC';
-		else
-			document.form.orderdir.value='DESC';
-	}
-	document.form.order.value=field;
-	document.form.submit();
-}
-
-
 function toggleui(th) {
 	var val=readcookie();
 	var c = 'cformsshowui=';
@@ -777,12 +683,6 @@ function setshow(el) {
 	document.cookie=c+a+0+b+";expires="+timeout.toGMTString()+";";
 	return false;
 }
-function showui(el) {
-	var val=readcookie();
-	if( val )
-		return val.substr(el,1);
-	return false;
-}
 function readcookie() {
 	var nameEQ = "cformsshowui=";
 	var ca = document.cookie.split(';');
@@ -795,11 +695,3 @@ function readcookie() {
 	}
 	return null;
 }
-
-(function( $ ) {
-
-    $(function() {
-        $('.colorpicker').wpColorPicker();
-    });
-
-})( jQuery );

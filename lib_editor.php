@@ -3,25 +3,24 @@
 ### adding TinyMCE button
 function cforms2_addbuttons() {
 
-		if ( 'true' == get_user_option('rich_editing') ) {
-				add_filter( 'mce_external_plugins', 'cforms2_plugin');
-				add_filter( 'mce_buttons', 'cforms2_button');
-		}
+    if ( 'true' == get_user_option('rich_editing') ) {
+        add_filter( 'mce_external_plugins', 'cforms2_plugin');
+        add_filter( 'mce_buttons', 'cforms2_button');
+    }
 }
 
 
 
 ### used to insert button in editor
 function cforms2_button($buttons) {
-		array_push($buttons, "separator", "cforms");
-		return $buttons;
+    array_push($buttons, "separator", "cforms");
+    return $buttons;
 }
 
 
 
 ### adding to TinyMCE
 function cforms2_plugin($plugins) {
-
 	$plugins['cforms'] = plugin_dir_url( __FILE__ ).'js/editor_plugin25.js';
 
 	return $plugins;
@@ -31,31 +30,31 @@ function cforms2_plugin($plugins) {
 
 ### retrieve all form names
 function cforms2_getAllformNames() {
-		global $cformsSettings;
-		$fns = '';
-		$forms = $cformsSettings['global']['cforms_formcount'];
-		for ($i=0;$i<$forms;$i++) {
-			$no = ($i==0)?'':($i+1);
-			$fns .= '"'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'",';
-		}
-		return substr($fns,0,-1);
+    global $cformsSettings;
+    $fns = '';
+    $forms = $cformsSettings['global']['cforms_formcount'];
+    for ($i=0;$i<$forms;$i++) {
+        $no = ($i==0)?'':($i+1);
+        $fns .= '"'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'",';
+    }
+    return substr($fns,0,-1);
 }
 
 
 
 ### Load the Script for the Button
 function cforms2_insert_script() {
-		global $cformsSettings;
+    global $cformsSettings;
 
-		$options = '';
-        $forms = $cformsSettings['global']['cforms_formcount'];
-		for ($i=0;$i<$forms;$i++) {
-			$no = ($i==0)?'':($i+1);
-			$options .= '<option value=\"'.sanitize_title_with_dashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'\">'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'</option>';
-		}
+    $options = '';
+    $forms = $cformsSettings['global']['cforms_formcount'];
+    for ($i=0;$i<$forms;$i++) {
+        $no = ($i==0)?'':($i+1);
+        $options .= '<option value=\"'.sanitize_title_with_dashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'\">'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'</option>';
+    }
 
-		$fns = cforms2_getAllformNames();
-		?>
+    $fns = cforms2_getAllformNames();
+    ?>
 <style>
 #cformsins{
 	font-size:11px;
@@ -88,11 +87,8 @@ function cforms2_insert_script() {
 }
 </style>
 <script type="text/javascript">
-var globalPURL = "<?php echo plugin_dir_url(__FILE__) ?>";
-
 var placeholder = "<?php _e('placeholder for:','cforms') ?>";
 var formnames = new Array(<?php echo $fns; ?>);
-var purl = globalPURL+'js/';
 
 function closeInsert(){
     var el = document.getElementById("quicktags");
