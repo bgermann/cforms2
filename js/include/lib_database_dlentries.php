@@ -1,4 +1,23 @@
-<?php add_action( 'wp_ajax_database_dlentries', 'cforms2_database_dlentries' );
+<?php
+/*
+ * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+ * Copyright (c) 2014      Bastian Germann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+add_action( 'wp_ajax_database_dlentries', 'cforms2_database_dlentries' );
 
 function cforms2_database_dlentries() {
 check_admin_referer( 'database_dlentries' );
@@ -146,8 +165,6 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 
 	foreach( $results as $entry ) {
 
-	### while( $entry = mysql_fetch_array($r) ){
-
 		if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
 			continue;
 
@@ -228,10 +245,6 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 	else
 	    fwrite($handle, $body . $br);
 
-/*
-	mysql_free_result($r);
-	mysql_close();
-*/
 	return;
 }
 
@@ -252,12 +265,9 @@ function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder
 	
     $sub_id ='';
     foreach( $results as $entry ) {
-	### while( $entry = mysql_fetch_array($r) ){
 
 	        if ( $entry->field_name=='page' || strpos($entry->field_name,'Fieldset')!==false )
 	            continue;
-
-			//echo '<br><pre>'."$key =>".print_r($entry,1).'</pre>';
 
 	        $n = ( $entry->form_id=='' )?'1':$entry->form_id;
 	        if( $sub_id<>$entry->id ){
@@ -270,14 +280,8 @@ function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder
 	            $sub_id = $entry->id;
 	        }
 	        fwrite($handle, '<data col="'.cforms2_enc_data_xml( stripslashes($entry->field_name), $charset ).'"><![CDATA['.cforms2_enc_data_xml( stripslashes($entry->field_val), $charset ).']]></data>'."\n");
-			//echo '<br><pre>'.$entry->field_name."=".$entry->field_val.'</pre>';
 
-	} ### while
-
-	/*
-	mysql_free_result($r);
-	mysql_close();
-	*/
+	}
 	
 	if($sub_id<>'')
 	 fwrite($handle, "</entry>\n</entries>\n");

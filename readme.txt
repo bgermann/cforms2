@@ -88,6 +88,9 @@ Please visit the [cforms plugin page](http://www.deliciousdays.com/cforms-plugin
 
 == Upgrade Notice ==
 
+= 14.6.8 =
+There are full German and Italian translations available now.
+
 = 14.6.7 =
 This is only compatible with Wordpress 3.5+. Version 3.3 and 3.4 support is dropped.
 
@@ -151,6 +154,7 @@ After updating please edit each form on your plugins config page to verify that 
 == Changelog ==
 
 = 14.6.8 =
+* enhanced: full German and Italian translations
 * enhanced: use jquery-ui-sortable instead of its ancient Interface Elements predecessor
 * added:    store version in database again
 * added:    migration for month and day names

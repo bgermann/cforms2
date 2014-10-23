@@ -714,7 +714,7 @@ function cforms2($args = '',$no = '') {
 
 			case "captcha":
 				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" value=""'.$fieldTitle.'/>'.
-						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="#" alt=""/><script>jQuery(function() {reset_captcha('.$no.');});</script>'.
+						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="#" alt=""/><script type="text/javascript">jQuery(function() {reset_captcha('.$no.');});</script>'.
 						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.plugin_dir_url(__FILE__).'images/spacer.gif" alt="Captcha"/></a>';
 		    	$captcha=true;
 				break;

@@ -1,7 +1,21 @@
 <?php
 /*
-please see cforms.php for more information
-*/
+ * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+ * Copyright (c) 2014      Bastian Germann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 ### db settings
 global $wpdb;
@@ -509,17 +523,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					$backgrounds = '<select name="cforms_cap_b" id="cforms_cap_b">'.cforms2_get_files('captchabg',$bg,'gif').'</select>';
 
 				?>
-
-				<div style="position:absolute; z-index:9999;">
-				<div id="mini" onmousedown="coreXY('mini',event)" style="top:0px; left:10px; display:none; margin-left:5%;">
-					<div class="north"><span id="mHEX">FFFFFF</span><div onmousedown="$cfS('mini').display='none';">x</div></div>
-					<div class="south" id="mSpec" style="height: 128px; width: 128px;" onmousedown="coreXY('mCur',event)">
-						<div id="mCur" style="top: 86px; left: 68px;"></div>
-						<img src="<?php echo plugin_dir_url(__FILE__); ?>images/circle.png" onmousedown="return false;" alt=""/>
-						<img src="<?php echo plugin_dir_url(__FILE__); ?>images/resize.gif" id="mSize" onmousedown="coreXY('mSize',event); return false;" alt=""/>
-					</div>
-				</div>
-				</div>
 
 				<table class="form-table">
 				<tr class="ob">

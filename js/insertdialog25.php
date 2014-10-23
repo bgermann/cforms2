@@ -1,4 +1,23 @@
-<?php add_action( 'wp_ajax_cforms2_insertmcedialog', 'cforms2_insertmcedialog' );
+<?php
+/*
+ * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+ * Copyright (c) 2014      Bastian Germann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+add_action( 'wp_ajax_cforms2_insertmcedialog', 'cforms2_insertmcedialog' );
 
 function cforms2_insertmcedialog () {
 
@@ -11,9 +30,7 @@ $cformsSettings = get_option('cforms_settings');
 	<link type="text/css" rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__); ?>js/css/insertdialog25.css"></link>
 	<?php wp_enqueue_script( 'tiny_mce_popup.js', includes_url( 'js/tinymce/tiny_mce_popup.js' ) ); wp_print_scripts('tiny_mce_popup.js'); ?>
 
-	<script language="javascript" type="text/javascript">
-	<!--
-
+	<script type="text/javascript">
 	tinyMCEPopup.onInit.add( function(){window.setTimeout(function(){document.getElementById('nodename').focus();},500);} );
 
 	<?php
@@ -41,7 +58,6 @@ $cformsSettings = get_option('cforms_settings');
 	 	tinyMCEPopup.execCommand("mceEndUndoLevel");
 	   	tinyMCEPopup.close();
 	}
-	//-->
 	</script>
 	<base target="_self" />
 </head>

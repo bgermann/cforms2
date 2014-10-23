@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII $Revision$\n"
 "POT-Creation-Date: 2014-10-22 21:47+0100\n"
-"PO-Revision-Date: 2014-10-22 22:12+0100\n"
+"PO-Revision-Date: 2014-10-23 21:49+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: cforms-corrupted.php:10 lib_functions.php:93
 msgid "cforms error"
-msgstr "cform Fehler"
+msgstr "cforms-Fehler"
 
 #: cforms-corrupted.php:14 cforms-corrupted.php:37
 msgid "Please deactivate and then re-activate the cforms plugin now."
-msgstr "Bitte deaktiviere und reaktiviere danach das cforms Plugin."
+msgstr "Bitte deaktiviere und reaktiviere danach das cforms-Plugin."
 
 #: cforms-corrupted.php:48
 msgid ""
@@ -348,11 +348,11 @@ msgstr "Keine Einträge"
 
 #: cforms-database.php:74
 msgid "of"
-msgstr ""
+msgstr "von"
 
 #: cforms-database.php:75
 msgid "Find"
-msgstr ""
+msgstr "Suche"
 
 #: cforms-database.php:76
 msgid "Page {%1} of"
@@ -640,7 +640,7 @@ msgstr "Monate"
 
 #: cforms-global-settings.php:354
 msgid "Enable year selection drop down"
-msgstr ""
+msgstr "Dropdown mit Jahresauswhl aktivieren"
 
 #: cforms-global-settings.php:357 lib_activate.php:166
 msgid "Previous Month"
@@ -926,7 +926,7 @@ msgstr "<strong>Questions &amp; Answers</strong><br />Format: Q=A"
 
 #: cforms-global-settings.php:651
 msgid "Database Input Tracking"
-msgstr "Datenbank Eingabe-Nachverfolgung"
+msgstr "Datenbank für Eingabe-Nachverfolgung"
 
 #: cforms-global-settings.php:655
 msgid ""
@@ -994,11 +994,11 @@ msgstr "Die vollständige RSS-URL &raquo;"
 
 #: cforms-global-settings.php:708
 msgid "Link Attribution"
-msgstr ""
+msgstr "Dankeschön-Link"
 
 #: cforms-global-settings.php:715
 msgid "Enable link attribution"
-msgstr ""
+msgstr "Aktiviere den Dankeschön-Link"
 
 #: cforms-global-settings.php:737
 msgid "Backup &amp; Restore All Settings"
@@ -3146,7 +3146,7 @@ msgstr "Wichtig!"
 
 #: cforms-help.php:1325
 msgid "Custom variables in MULTI-PAGE forms:"
-msgstr ""
+msgstr "Benutzerdefinierte Variablen in MULTI-PAGE-Formularen:"
 
 #: cforms-help.php:1330
 #, php-format
@@ -3155,6 +3155,9 @@ msgid ""
 "actual form the field is on, eg. {%scf_form6_%sYour Name} would reference "
 "the field labeled \"Your Name\" on form #6."
 msgstr ""
+"Bei der Referenzierung von Formularfeldern in Multi-Page-Formularen muss "
+"auch das jeweilige Formular angegeben werden, z.B. würde {%scf_form6_%sDein "
+"Name} das Feld in Fromular #6 referenzieren, das \"Dein Name\" heißt."
 
 #: cforms-help.php:1339
 msgid ""
@@ -3795,7 +3798,7 @@ msgstr "Feld mit Datum und Zeit"
 
 #: cforms-options.php:360
 msgid "Date/Time (local) Field"
-msgstr ""
+msgstr "Feld mit Datum/Zeit (lokal)"
 
 #: cforms-options.php:361
 msgid "Email Field"
@@ -3819,7 +3822,7 @@ msgstr "Suchfeld"
 
 #: cforms-options.php:366
 msgid "Telephone Number Field"
-msgstr ""
+msgstr "Feld mit Telefonnummer"
 
 #: cforms-options.php:367
 msgid "Time Field"
@@ -4266,12 +4269,12 @@ msgstr ""
 #: cforms-options.php:773
 #, php-format
 msgid "%sTurn off%s admin email"
-msgstr "%sAktiviere%s die E-Mail-Adresse des Administrators"
+msgstr "%sDektiviere%s die E-Mail an den Administrator"
 
 #: cforms-options.php:780
 #, php-format
 msgid "%sExclude empty fields%s from admin email"
-msgstr ""
+msgstr "%sSchließe leere Felder%s von der Admin-E-Mail aus"
 
 #: cforms-options.php:786
 msgid "FROM: email address"
@@ -4321,7 +4324,7 @@ msgstr "E-Mail %spriority%s (1 = Hoch, 3 = Normal, 5 = Niedrig)"
 
 #: cforms-options.php:822
 msgid "Reset admin message to default"
-msgstr ""
+msgstr "Setze die Nachricht an den Administrator zurück"
 
 #: cforms-options.php:828
 msgid "<strong>Admin TEXT message</strong><br />(Header)"
@@ -4829,7 +4832,7 @@ msgstr "Installiere eine Formular-Voreinstellung"
 
 #: cforms.php:1657
 msgid "Pick a form preset from the repository"
-msgstr ""
+msgstr "Wähle eine Formular-Voreinstellung aus dem Verzeichnis"
 
 #: cforms.php:1658
 msgid "Backup / restore this form only"
@@ -4837,7 +4840,7 @@ msgstr "Sichern / Wiederherstellen nur dieses Formulars"
 
 #: index.php:2
 msgid "Default: Reset to *default* contact form"
-msgstr ""
+msgstr "Standard: Setze auf das Standard-Kontaktformular zurück"
 
 #: index.php:3
 msgid "Does what it says, it'll reset all input fields to the default setup."
@@ -4846,23 +4849,28 @@ msgstr ""
 
 #: index.php:4
 msgid "Basic: Preset for *GREY BLOCKS* Theme"
-msgstr ""
+msgstr "Einfach: *GREY BLOCKS*-Design"
 
 #: index.php:5
 msgid ""
 "This preset will switch your current cforms theme to 'Grey Blocks'. It comes "
 "with basic contact form input fields and a custom error message example."
 msgstr ""
+"Diese Voreinstellung wird dein aktuelles cforms-Design zu 'Grey Blocks' "
+"ändern. Sie enthält grundlegende Eingabefelder und ein Beispiel für "
+"benutzerdefinierte Fehlermeldungen."
 
 #: index.php:6
 msgid "Basic: *Newsletter* subscription form (w/ titles)"
-msgstr ""
+msgstr "Einfach: Anmeldeformular für einen *Newsletter* (mit Titeln)"
 
 #: index.php:7
 msgid ""
 "A small, two input field form that showcases regexp's (default value "
 "exclusion) and input field titles."
 msgstr ""
+"Ein kleines Formular mit zwei Eingabefeldern, das Titel und reguläre "
+"Ausdrücke demonstriert (Ausschluss des Standardwerts)."
 
 #: index.php:8
 msgid "Basic: Tell A Friend Form"
@@ -4875,20 +4883,26 @@ msgid ""
 "and sets the TAF option, switches the current theme and sets a generic tell-"
 "a-friend message."
 msgstr ""
+"Wenn du ein spezielles TAF-Formular einrichten willst, dann benutze bitte "
+"diese Voreinstellung als Basis. Sie enthält die nötigen (speziellen) TAF-"
+"Felder, verifiziert und setzt das TAF-Merkmal, ändert das aktuelle Design "
+"und setzt eine allgemeingültige Tell-A-Friend-Nachricht."
 
 #: index.php:10
 msgid "Basic: Form for *dark-rounded.css* Theme"
-msgstr ""
+msgstr "Einfach: Formular für das Design *dark rounded*"
 
 #: index.php:11
 msgid ""
 "This will switch your current cforms theme to the dark-rounded.css one and "
 "will get you going with a set of basic contact form input fields."
 msgstr ""
+"Hierbei werden das cforms-Design dark-rounded sowie einige grundlegende "
+"Felder eines Kontaktformulars gesetzt."
 
 #: index.php:12
 msgid "Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme"
-msgstr ""
+msgstr "Erweitert: Multi-Fieldset-Formular für das Design *dark-rounded*"
 
 #: index.php:13
 msgid ""
@@ -4896,10 +4910,13 @@ msgid ""
 "fieldset form layouts. Check out this preset to see what is required to "
 "ensure a proper look."
 msgstr ""
+"Beim Design dark-rounded muss ein bisschen 'gezaubert' werden, um Multi-"
+"Fieldset-Formularlayouts zu erzeugen. Sieh dir diese Voreinstellung an, um "
+"das richtige Aussehen zu gewährleisten."
 
 #: index.php:14
 msgid "Advanced: Contact Form with Custom Err Messages"
-msgstr ""
+msgstr "Einfach: Kontaktformular mit benutzerdefinierten Fehlermeldungen"
 
 #: index.php:15
 msgid ""
@@ -4907,6 +4924,10 @@ msgid ""
 "specific custom error texts. Please check your fancy error message settings, "
 "to make sure they're actually displayed."
 msgstr ""
+"Diese Voreinstellung basiert auf der Standardeinstellung, bringt aber "
+"feldspezifische Fehlermeldungen mit. Bitte überprüfe die Einstellungen der "
+"außergewöhnlichen Fehlermitteilungen, um sicherzugehen, dass sie wirklich "
+"angezeigt werden."
 
 #: index.php:16
 msgid "Advanced: WP comment feature form"
@@ -4919,10 +4940,16 @@ msgid ""
 "included and configured, including some custom, field specific error "
 "messages. <em><br />Note: It will also change your current cforms theme.</em>"
 msgstr ""
+"Wenn du das originale Wordpress-Kommentarformular mit einem von cform "
+"erzeugten Formular ersetzen möchtest, benutze bitte dieses Formular für den "
+"Schnellstart. Alle nötigen Felder sind enthalten und konfiguriert, incl. "
+"einiger benutzerdefinierter, feldspezifischer Fehlermeldungen. <em><br /"
+">Beachte: Die Voreinstellung wird auch dein aktuelles cforms-Design ändern.</"
+"em>"
 
 #: index.php:18
 msgid "Advanced: Online booking form"
-msgstr ""
+msgstr "Erweitert: Reservierungsformular"
 
 #: index.php:19
 msgid ""
@@ -4932,10 +4959,15 @@ msgid ""
 "use this preset with your first form as it does some nifty things with its "
 "CSS.</em>"
 msgstr ""
+"Enthält eine ziemlich beeindruckende Menge Felder, die nützlich für "
+"Onlinereservierungen sind. Es werden benutzerdefinierte Inline-Stile "
+"verwendet, Plicht-Disclaimer mit externem Link zum Text & ein Anti-Spam-"
+"Feld. <br /><em>Beachte: Bitte benutze diese Voreinstellung nur für dein "
+"erstes Formular, weil sie einige raffinierte Dinge mit CSS anstellt.</em>"
 
 #: index.php:20
 msgid "Advanced: Sign up form (w/ limited seats available)"
-msgstr ""
+msgstr "Erweitert: Anmeldeformular mit Sitzplatzbeschränkung"
 
 #: index.php:21
 msgid ""
@@ -4945,6 +4977,11 @@ msgid ""
 "as country and state (US) drop down lists. It also features a must-check "
 "Disclaimer."
 msgstr ""
+"Ein typisches Anmeldeformular für einen Kurs, ein Projekt usw. Beschränkt "
+"auf 30 Plätze (bzw. Formulareinreichungen). Das Formular wird nach dem "
+"Einreichen versteckt, außerdem demonstriert es reguläre Ausdrücke zwecks "
+"Feldvalidierung und benutzerdefinierte Fehlermeldungen. Weiterhin enthält es "
+"ein Länder-Dropdownmenü und einen Pflicht-Disclaimer."
 
 #: js/include/checkbox.php:11
 msgid "Field label left of the checkbox..."
@@ -4999,11 +5036,11 @@ msgstr "Name der Feldgruppe (nur für neue Feldgruppen benötigt)"
 
 #: js/include/html5field.php:17
 msgid "Autocomplete flag"
-msgstr ""
+msgstr "Autocomplete-Merkmal"
 
 #: js/include/html5field.php:18
 msgid "Autofocus flag"
-msgstr ""
+msgstr "Autofocus-Merkmal"
 
 #: js/include/html5field.php:30
 msgid "Min value"
@@ -5019,7 +5056,7 @@ msgstr "Schrittweite"
 
 #: js/include/html5field.php:43
 msgid "Pattern attribute"
-msgstr ""
+msgstr "Pattern-Attribute"
 
 #: js/include/html5field.php:48
 msgid "Placeholder attribute"
@@ -5378,11 +5415,11 @@ msgstr "Details anzeigen"
 
 #: lib_dashboard.php:42
 msgid "via"
-msgstr ""
+msgstr "via"
 
 #: lib_dashboard.php:49
 msgid "Visit the cforms tracking page for all entries "
-msgstr ""
+msgstr "Besuche die Nachverfolgungsseite mit allen Einträgen"
 
 #: lib_editor.php:93
 msgid "placeholder for:"
@@ -5609,93 +5646,3 @@ msgstr ""
 #: lib_options_up.php:41
 msgid "All cforms settings have been restored from the backup file."
 msgstr "Alle cofrms-Einstellungen wurden vom Backup wiederhergestellt."
-
-#~ msgid "No Comments"
-#~ msgstr "Keine Kommentare"
-
-#~ msgid "1 Comment"
-#~ msgstr "1Kommentar"
-
-#~ msgid "% Comments"
-#~ msgstr "% Kommentare"
-
-#~ msgid "Leave a comment"
-#~ msgstr "Einen Kommentar abgeben"
-
-#~ msgid "Edit This"
-#~ msgstr "Bearbeiten"
-
-#~ msgid "No comments yet."
-#~ msgstr "Derzeit keine Einträge"
-
-#~ msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
-#~ msgstr ""
-#~ "Du musst <a href=\"%s\">eingeloggt</a> sein, um einen Kommentar abzugeben."
-
-#~ msgid "Log out &raquo;"
-#~ msgstr "Abmelden &raquo;"
-
-#~ msgid "Name"
-#~ msgstr "Name"
-
-#~ msgid "Mail (will not be published)"
-#~ msgstr "E-Mail (wird nicht veröffentlicht)"
-
-#~ msgid "Submit Comment"
-#~ msgstr "Sende den Kommentar"
-
-#~ msgid "Sorry, the comment form is closed at this time."
-#~ msgstr "Kommentieren ist derzeit nicht möglich."
-
-#~ msgid ""
-#~ "Please go to the <a href=\"%s\">cforms admin page</a> and run the update "
-#~ "process."
-#~ msgstr ""
-#~ "Bitte gehe auf die <a href=\"%s\">cforms Administratiosseite</a> und "
-#~ "starte den Update-Prozess."
-
-#~ msgid "Migrating cforms settings from pre-v9.0 versions"
-#~ msgstr "Umzug der cforms Einstellungen von pre-v9.0 Version"
-
-#~ msgid ""
-#~ "Phew. All settings successfully transferred. Please <a href=\"%s"
-#~ "\">continue here</a>."
-#~ msgstr ""
-#~ "Puh! Alle Einstellungen wurden erfolgreich übertragen. Bitte fahre <a "
-#~ "href=\"%s\">hier</a> fort."
-
-#~ msgid ""
-#~ "All settings found are listed below. If the findings make sense, please "
-#~ "scroll down and continue."
-#~ msgstr ""
-#~ "Alle gefundenen Einstellungen sind unterhalb aufgelistet. Sollten diese "
-#~ "Sinn ergeben, scrolle bitte nach unten und bestätige."
-
-#~ msgid ""
-#~ "Now before you do that, be aware that this might erase all of your cforms "
-#~ "settings, <strong>so please make a DB backup</strong> to be on the safe "
-#~ "side!"
-#~ msgstr ""
-#~ "Nun, bevor du das tust, sei Dir bewusst, dass alle cforms Einstellungen "
-#~ "gelöscht werden könnten. Bitte erstelle ein Backup der Datenbank, um auf "
-#~ "Nummer sicher zu gehen!"
-
-#~ msgid "Some new settings found:"
-#~ msgstr "Einige neue Einstellungen gefunden:"
-
-#~ msgid "Old wp_options() settings, to be moved to new settings container:"
-#~ msgstr ""
-#~ "Die alten wp_options() Einstellungen sind nun über den neuen Einstellungs-"
-#~ "Container erreichbar:"
-
-#~ msgid "Start migration"
-#~ msgstr "Beginne Umzug"
-
-#~ msgid ""
-#~ "Again, make sure you have a backup of your WP database, before continuing!"
-#~ msgstr ""
-#~ "Stelle bitte erneut sicher, dass du ein Backup der WP Datenbank "
-#~ "erstellst, bevor du fortfährst!"
-
-#~ msgid "Migrate now!"
-#~ msgstr "Ziehe nun um!"

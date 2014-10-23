@@ -52,27 +52,12 @@ overflow:hidden;
 margin:2em 0 0;
 }
 
-.wrap h2 {
-/*preWP2.7*/
-clear:none;
-line-height:35px;
-padding:14px 15px 3px 0;
-border:0;
-margin-bottom: 10px;
-/*preWP2.7*/
-}
 .code, code {
 font-family:monospace,Consolas,Courier;
 }
 
 .icon32 {
 background:transparent url(images/icons32.png) no-repeat -130px -5px;
-/*preWP2.7*/
-float:left;
-height:38px;
-margin:14px 6px 0 0;
-width:45px;
-/*preWP2.7*/
 }
 
 #icon-cforms-error {
@@ -126,12 +111,6 @@ margin-bottom:10px;
 .form-table {
 width:80%;
 margin-bottom:0;
-}
-
-.form-table tr {
-/* preWP2.7 */
-background:none;
-/* preWP2.7 */
 }
 
 .form-table td {
@@ -191,7 +170,7 @@ height:45px;
 }
 
 /****************************************************************
-  BUTTONS
+  buttons
 *****************************************************************/
 input {
 line-height:1em;
@@ -591,7 +570,7 @@ text-align:left;
 }
 
 /****************************************************************
-	  HIDE blocks
+  HIDE blocks
 *****************************************************************/
 .blindminus,.blindplus {
 overflow:hidden;
@@ -614,8 +593,8 @@ padding-bottom:10px;
 }
 
 /****************************************************************
-	  Docking Boxes core CSS: YOU MUST NOT CHANGE OR OVERRIDE THESE
-	*****************************************************************/
+  Docking Boxes core CSS: YOU MUST NOT CHANGE OR OVERRIDE THESE
+*****************************************************************/
 .tableheader {
 margin:25px auto 2px;
 width:790px;
@@ -671,8 +650,6 @@ box-sizing: border-box!important;
 #cforms_fname:focus,
 #wpcontent select.fieldtype:focus, .itemContent input.inpfld:focus {
 border-left:2px solid #2244ED;
-}
-#wpcontent select.fieldtype:focus{
 }
 
 #wpcontent select.fieldtype {
@@ -858,9 +835,6 @@ background:url(images/td-sep.gif) repeat-x 0 center!important;
 
 tr.ob {
 font-size:11px;
-/* preWP2.7 */
-background:none;
-/* preWP2.7 */
 }
 
 .form-table tr.space20 td {
@@ -931,12 +905,6 @@ line-height:1.3em;
 text-align:right;
 width:30%;
 margin-right:10px;
-}
-
-.obR table tr {
-/* preWP2.7 */
-background:none;
-/* preWP2.7 */
 }
 
 .obR table td {
@@ -1211,18 +1179,6 @@ height:0;
 clear:both;
 visibility:hidden;
 }
-
-/* Hides from IE-mac \*/
-* html .dataheader,
-* html .showformfield {
-height:1%;
-}
-
-.dataheader,
-.showformfield {
-display:block;
-}
-/* End hide from IE-mac */
 
 /****************************************************************
   HELP PAGE
