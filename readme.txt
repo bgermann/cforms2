@@ -78,7 +78,11 @@ Check out the [cforms CSS Guide and webcast](http://www.deliciousdays.com/cforms
 
 == Frequently Asked Questions ==
 
-Please visit the [cforms plugin forum](http://www.deliciousdays.com/cforms-forum) for old [FAQs](http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/) and more help.
+Please visit the [cforms plugin forum](http://www.deliciousdays.com/cforms-forum) for old [FAQ](http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/) and more help.
+
+= How can I contribute code =
+
+Please use [GitHub pull requests on our mirror](https://github.com/bgermann/cforms2/pulls).
 
 
 == Screenshots ==
