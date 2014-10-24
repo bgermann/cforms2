@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII $Revision$\n"
 "POT-Creation-Date: 2014-10-22 21:47+0100\n"
-"PO-Revision-Date: 2014-10-23 21:49+0100\n"
+"PO-Revision-Date: 2014-10-24 16:42+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -1818,7 +1818,7 @@ msgid ""
 "Adding the above field to a form, disables the form's specific admin email "
 "address setting."
 msgstr ""
-"Wenn du das Feld oberhalb zu Ihrem Formualr hinzufügst, wird dies die "
+"Wenn du das Feld oberhalb zu Ihrem Formular hinzufügst, wird dies die "
 "spezifischen Einstellungen der Admin-Mail-Adresse deaktivieren."
 
 #: cforms-help.php:448
@@ -2784,7 +2784,7 @@ msgstr ""
 #, php-format
 msgid "Function call to generate dynamic forms: %s with"
 msgstr ""
-"Ruft die Funktion für das dynamische generieren von Formualren ab: %s with"
+"Ruft die Funktion für das dynamische generieren von Formularen ab: %s with"
 
 #: cforms-help.php:1054
 msgid ""
@@ -3444,7 +3444,7 @@ msgstr ""
 
 #: cforms-help.php:1497
 msgid "Styling Your Forms (CSS theme files)"
-msgstr "Passe das Aussehen deines Formualrs an (CSS Theme Dateien)"
+msgstr "Passe das Aussehen deines Formulars an (CSS Theme Dateien)"
 
 #: cforms-help.php:1501
 #, php-format
