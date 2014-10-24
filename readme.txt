@@ -1460,9 +1460,11 @@ After updating please edit each form on your plugins config page to verify that 
 
 If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
 
+If there is a language file available, but not included in the standard distribution, please put the cforms-*.mo file in the wp-content/languages/plugins directory.
+
 You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/).
 
-If you would like to contribute a new language file, please file a ticket with the translation file attached.
+If you would like to contribute a new language file, please [file a ticket](https://github.com/bgermann/cforms2/issues/new) with the translation file attached.
 It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
 you must not redistribute it as long as it is not your translation.
 
