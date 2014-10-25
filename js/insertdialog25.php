@@ -42,20 +42,20 @@ $cformsSettings = get_option('cforms_settings');
 		$fns .= '"'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'",';
 	}
 	$fns = substr($fns,0,-1);
-	echo 'var formnames=new Array('.$fns.');';
 	?>
+    var formnames = [<?php echo $fns ?>];
 
 	function init() {
 		mcTabs.displayTab('tab', 'panel');
 	}
 
 	function insertSomething() {
-		no  = document.forms[0].nodename.value;
-		html = '<span title="'+formnames[no-1]+'" class="mce_plugin_cforms_img">'+formnames[no-1]+'</span>';
+		var no  = document.forms[0].nodename.value;
+		var html = '<span title="'+formnames[no-1]+'" class="mce_plugin_cforms_img">'+formnames[no-1]+'</span>';
 
-		tinyMCEPopup.execCommand("mceBeginUndoLevel");
+		tinyMCEPopup.execCommand('mceBeginUndoLevel');
 		tinyMCEPopup.execCommand('mceInsertContent', false, html);
-	 	tinyMCEPopup.execCommand("mceEndUndoLevel");
+	 	tinyMCEPopup.execCommand('mceEndUndoLevel');
 	   	tinyMCEPopup.close();
 	}
 	</script>

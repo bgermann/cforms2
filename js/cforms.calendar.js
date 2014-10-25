@@ -22,21 +22,7 @@ jQuery(function() {
         return;
     }
 
-    jQuery('.cf_date').datepicker({
-        buttonImage: cfCAL.ROOT + 'images/calendar.gif',
-        changeYear: cfCAL.changeYear,
-        buttonImageOnly: true,
-        buttonText: cfCAL.TEXT_CHOOSE_DATE,
-        showOn: 'both',
-        dateFormat: cfCAL.dateFormat,
-        dayNamesMin: cfCAL.dayNames,
-        dayNamesShort: cfCAL.dayNames,
-        monthNames: cfCAL.monthNames,
-        firstDay: cfCAL.firstDayOfWeek,
-        nextText: cfCAL.TEXT_NEXT_MONTH,
-        prevText: cfCAL.TEXT_PREV_MONTH,
-        closeText: cfCAL.TEXT_CLOSE
-    });
+    jQuery('.cf_date').datepicker(cforms2_cal);
 
     jQuery('#cforms_startdate').bind(
         'dpClosed',

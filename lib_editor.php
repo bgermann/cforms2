@@ -39,25 +39,8 @@ function cforms2_button($buttons) {
 ### adding to TinyMCE
 function cforms2_plugin($plugins) {
 	$plugins['cforms'] = plugin_dir_url( __FILE__ ).'js/editor_plugin25.js';
-
 	return $plugins;
 }
-
-
-
-### retrieve all form names
-function cforms2_getAllformNames() {
-    global $cformsSettings;
-    $fns = '';
-    $forms = $cformsSettings['global']['cforms_formcount'];
-    for ($i=0;$i<$forms;$i++) {
-        $no = ($i==0)?'':($i+1);
-        $fns .= '"'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'",';
-    }
-    return substr($fns,0,-1);
-}
-
-
 
 ### Load the Script for the Button
 function cforms2_insert_script() {
@@ -70,7 +53,6 @@ function cforms2_insert_script() {
         $options .= '<option value=\"'.sanitize_title_with_dashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'\">'.$cformsSettings['form'.$no]['cforms'.$no.'_fname'].'</option>';
     }
 
-    $fns = cforms2_getAllformNames();
     ?>
 <style>
 #cformsins{
@@ -103,64 +85,7 @@ function cforms2_insert_script() {
 	width:120px!important;
 }
 </style>
-<script type="text/javascript">
-var placeholder = "<?php _e('placeholder for:','cforms') ?>";
-var formnames = new Array(<?php echo $fns; ?>);
-
-function closeInsert(){
-    var el = document.getElementById("quicktags");
-    el.removeChild(document.getElementById("cformsins"));
-}
-function insertSomething(){
-    buttonsnap_settext('<!--cforms name="'+document.getElementById("cfselect").value+'"-->');
-    closeInsert();
-}
-function cforms_buttonscript() {
-        if ( document.getElementById("cformsins") ) {
-            return closeInsert();
-        }
-
-        function edInsertContent(myField, myValue) {
-            //IE support
-            if (document.selection) {
-                myField.focus();
-                sel = document.selection.createRange();
-                sel.text = myValue;
-                myField.focus();
-            }
-            //MOZILLA/NETSCAPE support
-            else if (myField.selectionStart || myField.selectionStart == '0') {
-                var startPos = myField.selectionStart;
-                var endPos = myField.selectionEnd;
-                myField.value = myField.value.substring(0, startPos)
-                              + myValue
-                              + myField.value.substring(endPos, myField.value.length);
-                myField.focus();
-                myField.selectionStart = startPos + myValue.length;
-                myField.selectionEnd = startPos + myValue.length;
-            } else {
-                myField.value += myValue;
-                myField.focus();
-            }
-        }
-
-    var rp = document.createElement("div");
-    var el = document.getElementById("quicktags");
-
-    rp.setAttribute("id","cformsins");
-
-    rp.innerHTML =  "<form onSubmit=\"insertSomething();\" action=\"#\"><label for=\"nodename\"><?php _e('Your forms:','cforms')?></label>"+
-            "<select id=\"cfselect\" name=\"nodename\"/><?php echo $options ?></select>"+
-            "<input type=\"button\" id=\"insert\" name=\"insert\" value=\"<?php _e('Insert','cforms') ?>\" onclick=\"javascript:insertSomething()\" />"+
-            "<input type=\"button\" id=\"cancel\" name=\"cancel\" value=\"<?php _e('Cancel','cforms') ?>\" onclick=\"javascript:closeInsert()\" />"+
-            "</form>";
-
-    el.appendChild(rp);
-
-}
-</script>
 <?php
-		return;
 }
 
 
@@ -174,7 +99,7 @@ if($cformsSettings['global']['cforms_show_quicktag'] == true) {
 	if( !$cformsSettings['global']['cforms_show_quicktag_js'] ) {
 		add_action('edit_page_form', 'cforms2_insert_script');
 		add_action('edit_form_advanced', 'cforms2_insert_script');
-	}else
+	} else
 		add_action('admin_head', 'cforms2_insert_script');
 
 }

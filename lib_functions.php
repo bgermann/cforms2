@@ -158,20 +158,21 @@ function cforms2_enqueue_script_datepicker($localversion) {
 	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
     wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), $localversion);
-    wp_localize_script('cforms-calendar', 'cfCAL', array(
+    $day_names = explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) );
+    wp_localize_script('cforms-calendar', 'cforms2_cal', array(
+        'buttonImageOnly'  => true,
+        'showOn'           => 'both',
         'dateFormat'       => stripslashes($cformsSettings['global']['cforms_dp_date']),
-        'dayNames'         => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) ),
-        'abbrDayNames'     => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) ),
+        'dayNamesMin'      => $day_names,
+        'dayNamesShort'    => $day_names,
         'monthNames'       => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_months']) ),
-        'abbrMonthNames'   => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_months']) ),
-        'firstDayOfWeek'   => stripslashes($cformsSettings['global']['cforms_dp_start']),
-        'fullYearStart'    => '20',
-        'TEXT_PREV_MONTH'  => stripslashes($nav[1]),
-        'TEXT_NEXT_MONTH'  => stripslashes($nav[3]),
-        'TEXT_CLOSE'       => stripslashes($nav[4]),
-        'TEXT_CHOOSE_DATE' => stripslashes($nav[5]),
+        'firstDay'         => stripslashes($cformsSettings['global']['cforms_dp_start']),
+        'prevText'         => stripslashes($nav[1]),
+        'nextText'         => stripslashes($nav[3]),
+        'closeText'        => stripslashes($nav[4]),
+        'buttonText'       => stripslashes($nav[5]),
         'changeYear'       => $nav[6]==1,
-        'ROOT'             => plugin_dir_url( __FILE__ ),
+        'buttonImage'      => plugin_dir_url( __FILE__ ) . 'images/calendar.gif',
     ) );
     wp_enqueue_script('cforms-calendar');
     

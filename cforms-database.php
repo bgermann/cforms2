@@ -87,7 +87,6 @@ jQuery("#flex1").flexigrid ( {
 	nomsg: '<?php _e('No items','cforms'); ?>',
 	outof: '<?php _e('of','cforms'); ?>',
 	findtext: '<?php _e('Find','cforms'); ?>',
-	/* pageof: '<?php _e('Page {%1} of','cforms'); ?>', */
 	useRp: true,
 	blockOpacity: 0.9,
 	rp: 30,
