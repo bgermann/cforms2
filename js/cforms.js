@@ -61,7 +61,7 @@ function cforms_validate(no, upload) {
         document.getElementById(msgbox+'b').className = "cf_info waiting";
     }
 
-    var waiting = unescape(decodeURI(document.getElementById('cf_working' + no).value));
+    var waiting = decodeURI(document.getElementById('cf_working' + no).value);
     waiting = waiting.replace(/\\/g,"");
 
     var insert_err = new Array();
@@ -309,7 +309,7 @@ function cforms_validate(no, upload) {
                 while (c.charAt(0)==' ')
                     c = c.substring(1,c.length);
                 if (c.indexOf(nameEQ) == 0)
-                    return unescape(c.substring(nameEQ.length,c.length));
+                    return decodeURIComponent(c.substring(nameEQ.length,c.length));
             }
             return '';
         };
@@ -373,7 +373,7 @@ function cforms_validate(no, upload) {
 
         if ( custom_error!='' ) custom_error = '<ol>'+custom_error+'</ol>';
 
-        err = unescape(decodeURI( err.value )) + custom_error;
+        err = decodeURI( err.value ) + custom_error;
 
         var stringXHTML = err.replace(/(\r\n)/g, '<br />');
 
