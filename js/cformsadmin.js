@@ -18,7 +18,7 @@
 
 var focusedFormControl = null;
 
-jQuery(document).ready( function () {
+jQuery(function() {
 
     var timeout = new Date(jQuery.now() + 3 * 86400000);
 
@@ -154,7 +154,8 @@ jQuery(document).ready( function () {
         var placeholder = jQuery('#cf_edit_placeholder').length ? jQuery('#cf_edit_placeholder').val() : '';
         var sep = '\u00A4';
         var l_html5;
-        if(jQuery('#html5formfields').length) l_html5 = '|html5:'+autocomplete+sep+autofocus+sep+min+sep+max+sep+pattern+sep+step+sep+placeholder;
+        if(jQuery('#html5formfields').length)
+            l_html5 = '|html5:'+autocomplete+sep+autofocus+sep+min+sep+max+sep+pattern+sep+step+sep+placeholder;
         else l_html5 = '';
 
         jQuery('.cf_edit_group_new').each( function (index, domEle) {
@@ -193,11 +194,11 @@ jQuery(document).ready( function () {
             content = content[1].split(sep);
             if ( content[0]=='1' ) jQuery('#cf_edit_checked_autocomplete').attr('checked', 'checked');
             if ( content[1]=='1' ) jQuery('#cf_edit_checked_autofocus').attr('checked', 'checked');
-            if ( content[2]!='' ) jQuery('#cf_edit_min').val(content[2]);
-            if ( content[3]!='' ) jQuery('#cf_edit_max').val(content[3]);
-            if ( content[4]!='' ) jQuery('#cf_edit_pattern').val(content[4]);
-            if ( content[5]!='' ) jQuery('#cf_edit_step').val(content[5]);
-            if ( content[6]!='' ) jQuery('#cf_edit_placeholder').val(content[6]);
+            if ( content[2]!=''  ) jQuery('#cf_edit_min').val(content[2]);
+            if ( content[3]!=''  ) jQuery('#cf_edit_max').val(content[3]);
+            if ( content[4]!=''  ) jQuery('#cf_edit_pattern').val(content[4]);
+            if ( content[5]!=''  ) jQuery('#cf_edit_step').val(content[5]);
+            if ( content[6]!=''  ) jQuery('#cf_edit_placeholder').val(content[6]);
         }
 
         if ( document.getElementById('cf_edit_customerr') ){
@@ -257,13 +258,17 @@ jQuery(document).ready( function () {
                 groupcount++; totalcount++;
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
                     '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
-                    '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'" value=""/>'+
-                    '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'" value="" class="inpOpt"/>'+
-                    '<input class="allchk cf_chked" type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'"/>'+
-                    '<input class="allchk cf_br" type="checkbox" id="cf_edit_group_br'+groupcount+'" name="cf_edit_group_br'+groupcount+'" value="lbr"/>'+
+                    '<input type="text" id="cf_edit_group_o'        + groupcount
+                        + '" name="cf_edit_group_o'    + groupcount + '" value=""/>'+
+                    '<input type="text" id="cf_edit_group_v'        + groupcount
+                        + '" name="cf_edit_group_v'    + groupcount + '" value="" class="inpOpt"/>'+
+                    '<input type="checkbox" id="cf_edit_group_chked'+ groupcount
+                        + '" name="cf_edit_group_chked'+ groupcount + '" class="allchk cf_chked"/>'+
+                    '<input type="checkbox" id="cf_edit_group_br'   + groupcount
+                        + '" name="cf_edit_group_br'   + groupcount + '" value="lbr" class="allchk cf_br"/>'+
                     '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a>'+
-                '</div>').appendTo("#cf_edit_groups");
+                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a></div>'
+                ).appendTo("#cf_edit_groups");
 
                 jQuery('a.cf_edit_move_up','#edit_group'+groupcount).bind("click", cfmoveup);
                 jQuery('a.cf_edit_move_down','#edit_group'+groupcount).bind("click", cfmovedown);
@@ -324,7 +329,12 @@ jQuery(document).ready( function () {
             if ( groupcount > 5 )
                 jQuery('#cf_edit_groups').css( { height:"9em", overflowY:"auto" } );
 
-            jQuery('.cf_edit_group_new > a.cf_edit_minus').bind("click", function(){ jQuery(this).parent().remove(); if ( totalcount-- < 5 ) jQuery('#cf_edit_groups').css( { height:"" } ); return false; });
+            jQuery('.cf_edit_group_new > a.cf_edit_minus').bind("click", function(){
+                jQuery(this).parent().remove();
+                if ( totalcount-- < 5 )
+                    jQuery('#cf_edit_groups').css( { height:"" } );
+                return false;
+            });
 
             line = '';
 
@@ -391,16 +401,20 @@ jQuery(document).ready( function () {
                     groupcount++; totalcount++;
                 }
 
-                jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
+                jQuery(
+                    '<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
                     '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
-                    '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'" value="'+defval[0].replace(/"/g,'&quot;')+'"/>'+
-                    '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'" value="'+defval[1].replace(/"/g,'&quot;')+'" class="inpOpt"/>'+
+                    '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'"'
+                        + ' value="'+defval[0].replace(/"/g,'&quot;')+'"/>'+
+                    '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'"'
+                        + ' value="'+defval[1].replace(/"/g,'&quot;')+'" class="inpOpt"/>'+
 
-                    '<input class="allchk cf_chked" type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'" '+chk+'/>'+
+                    '<input type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'"'
+                        + ' ' + chk + ' class="allchk cf_chked"/>'+
 
                     '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a>'+
-                '</div>').appendTo("#cf_edit_groups");
+                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a></div>'
+                ).appendTo("#cf_edit_groups");
 
             }
 
@@ -484,68 +498,129 @@ jQuery(document).ready( function () {
     };
 
     /* LAUNCHED BEFORE AJAX */
-    var open=function(hash) {
+    var open = function(hash) {
         hash.w.css('opacity',1).show();
         hasht = hash.t;
         var type = hash.t.parentNode.nextSibling.value;
-        jQuery('#cf_target').load(ajaxurl, {limit: 25, type: type, action: 'cforms2_field_' + files[type], _wpnonce: cforms2_nonces[files[type]]}, load );
+        jQuery('#cf_target').load(
+            ajaxurl,
+            {
+                limit    : 25,
+                type     : type,
+                action   : 'cforms2_field_' + files[type],
+                _wpnonce : cforms2_nonces[files[type]]}, load
+        );
     };
 
     /* LAUNCHED WHEN BOX CLOSED */
-    var close=function(hash){ jQuery('.cf_ed_main').removeClass('ajaxloaded'); hash.w.hide(); jQuery('#cf_target').html(''); hash.o.remove(); };
+    var close = function(hash){
+        jQuery('.cf_ed_main').removeClass('ajaxloaded');
+        hash.w.hide();
+        jQuery('#cf_target').html('');
+        hash.o.remove();
+    };
 
     /* ASSSOCIATE DIALOG */
     jQuery('#cf_editbox').jqm({ modal: true, overlay: 30, onShow: open, onHide: close }).jqDrag('.jqDrag');
 
     /* INSTALL PRESET FUNCTIONS */
-    jQuery('a#okInstall').click( document.installpreset.submit );
+    jQuery('a#okInstall').click( function(){document.installpreset.submit();} );
 
     var oldDesc;
     var loadInstall = function() {
-            oldDesc=0;
-            jQuery('select#formpresets').keypress( showDesc );
-            jQuery('select#formpresets').change( showDesc );
-            jQuery('.cf_ed_main').addClass('ajaxloaded');
-            jQuery('select#formpresets').focus();
-            };
+        oldDesc=0;
+        jQuery('select#formpresets').keypress( showDesc );
+        jQuery('select#formpresets').change( showDesc );
+        jQuery('.cf_ed_main').addClass('ajaxloaded');
+        jQuery('select#formpresets').focus();
+    };
 
-    var showDesc = function() { jQuery('span#descInstall'+oldDesc).toggle(); jQuery('span#descInstall'+this.selectedIndex).toggle(); oldDesc=this.selectedIndex; };
+    var showDesc = function() {
+        jQuery('span#descInstall' + oldDesc).toggle();
+        jQuery('span#descInstall' + this.selectedIndex).toggle();
+        oldDesc = this.selectedIndex;
+    };
 
     /* LAUNCHED BEFORE AJAX */
     var openInstall=function(hash) {
-            hash.w.css('opacity',1).show();
-            hasht = hash.t;
-            jQuery('#cf_installtarget').load( ajaxurl, {limit: 25, action: 'cforms2_installpreset', _wpnonce: cforms2_nonces.installpreset}, function(){ loadInstall(); } );
-            };
+        hash.w.css('opacity',1).show();
+        hasht = hash.t;
+        jQuery('#cf_installtarget').load(
+            ajaxurl,
+            {
+                limit: 25,
+                action: 'cforms2_installpreset',
+                _wpnonce: cforms2_nonces.installpreset
+            },
+            function(){ loadInstall(); }
+        );
+    };
 
     /* LAUNCHED WHEN BOX CLOSED */
-    var closeInstall=function(hash){ jQuery('span','p#descPreset').hide(); jQuery('.cf_ed_main').removeClass('ajaxloaded'); hash.w.hide(); jQuery('#cf_installtarget').html(''); hash.o.remove(); };
+    var closeInstall = function(hash){
+        jQuery('span','p#descPreset').hide();
+        jQuery('.cf_ed_main').removeClass('ajaxloaded');
+        hash.w.hide();
+        jQuery('#cf_installtarget').html('');
+        hash.o.remove();
+    };
 
     /* ASSSOCIATE DIALOG */
-    jQuery('#cf_installbox').jqm({ trigger: '.jqModalInstall', modal: true, overlay: 30, onShow: openInstall, onHide: closeInstall }).jqDrag('.jqDrag');
-    jQuery('#cf_backupbox').jqm({ trigger: '.jqModalBackup', modal: true, overlay:30 }).jqDrag('.jqDrag');
+    jQuery('#cf_installbox').jqm({
+        trigger : '.jqModalInstall',
+        modal   : true,
+        overlay : 30,
+        onShow  : openInstall,
+        onHide  : closeInstall
+    }).jqDrag('.jqDrag');
+    jQuery('#cf_backupbox'    ).jqm({ trigger: '.jqModalBackup', modal:true, overlay:30 }).jqDrag('.jqDrag');
     jQuery('#cf_delall_dialog').jqm({ trigger: '.jqModalDelAll', modal:true, overlay:30 }).jqDrag('.jqDrag');
 
 
     /* DELETE RECORDS DIALOG */
     var open_data=function(hash) { hash.w.css('opacity',1).show(); jQuery('.cf_ed_main').addClass('ajaxloaded'); };
     var close_data=function(hash){ hash.w.hide(); hash.o.remove(); };
-    jQuery('#cf_delete_dialog').jqm({ modal: true, overlay: 30, onShow: open_data, onHide: close_data }).jqDrag('.jqDrag');
+    jQuery('#cf_delete_dialog').jqm({
+        modal   : true,
+        overlay : 30,
+        onShow  : open_data,
+        onHide  : close_data
+    }).jqDrag('.jqDrag');
+
     jQuery('a#okDelete').click( function() {
         var getString='';
-        jQuery('.trSelected','#flex1').each( function (){ getString = getString + jQuery('td:first > div',this).html() + ',';} );
+        jQuery('.trSelected','#flex1').each( function (){
+            getString = getString + jQuery('td:first > div', this).html() + ',';
+        } );
         if ( getString=='' )
             getString = 'all';
         var query = jQuery('.qsbox','.sDiv').attr('value');
         var qtype = jQuery('select','.sDiv').attr('value');
-        jQuery.post(ajaxurl, {ids: getString, query: query, qtype: qtype, action: 'database_deleteentries', _wpnonce: cforms2_nonces.deleteentries}, function(ret){ jQuery('#ctrlmessage').show(); jQuery('#ctrlmessage').html(ret); jQuery('.pReload').trigger('click'); jQuery('#ctrlmessage').fadeOut(5000); } );
-        } );
+        jQuery.post(
+            ajaxurl,
+            {
+                ids      : getString,
+                query    : query,
+                qtype    : qtype,
+                action   : 'database_deleteentries',
+                _wpnonce : cforms2_nonces.deleteentries
+            },
+            function(ret){
+                jQuery('#ctrlmessage').show();
+                jQuery('#ctrlmessage').html(ret);
+                jQuery('.pReload').trigger('click');
+                jQuery('#ctrlmessage').fadeOut(5000);
+            }
+        );
+    } );
 
     /* DOWNLOAD RECORDS DIALOG */
     jQuery('#cf_dl_dialog').jqm({ modal: true, overlay: 30, onShow: open_data, onHide: close_data }).jqDrag('.jqDrag');
     jQuery('a#okDL').click( function() {
         var getString='';
-        jQuery('.trSelected','#flex1').each( function (){ getString = getString + jQuery('td:first > div',this).html() + ',';} );
+        jQuery('.trSelected','#flex1').each( function (){
+            getString = getString + jQuery('td:first > div',this).html() + ',';
+        } );
         if ( getString=='' )
             getString = 'all';
 
@@ -558,7 +633,12 @@ jQuery(document).ready( function () {
         var header    = jQuery('#header').is(':checked');
         var addIP     = jQuery('#addip').is(':checked');
         var addURL    = jQuery('#addurl').is(':checked');
-        location.href = ajaxurl+'?addurl='+addURL+'&addip='+addIP+'&header='+header+'&enc='+enc+'&format='+format+'&ids='+getString+'&sorted='+sortBy+'&sortorder='+sortOrder+'&query='+query+'&qtype='+qtype+'&action=database_dlentries&_wpnonce='+cforms2_nonces.dlentries;
+
+        location.href = ajaxurl
+            + '?addurl='   + addURL + '&addip=' + addIP     + '&header=' + header + '&enc='       + enc
+            + '&format='   + format + '&ids='   + getString + '&sorted=' + sortBy + '&sortorder=' + sortOrder
+            + '&query='    + query  + '&qtype=' + qtype     + '&action=database_dlentries'
+            + '&_wpnonce=' + cforms2_nonces.dlentries;
         } );
 
 
@@ -632,8 +712,22 @@ jQuery(document).ready( function () {
 
     jQuery('.colorpicker').wpColorPicker();
 
-    jQuery('.cf_timebutt1').clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_starttime' });
-    jQuery('.cf_timebutt2').clockpick({military:true, layout:'horizontal', starthour : 0,endhour : 23,showminutes : true, valuefield : 'cforms_endtime' });
+    jQuery('.cf_timebutt1').clockpick({
+        military    : true,
+        layout      : 'horizontal',
+        starthour   : 0,
+        endhour     : 23,
+        showminutes : true,
+        valuefield  : 'cforms_starttime'
+    });
+    jQuery('.cf_timebutt2').clockpick({
+        military    : true,
+        layout      : 'horizontal',
+        starthour   : 0,
+        endhour     : 23,
+        showminutes : true,
+        valuefield  : 'cforms_endtime'
+    });
 
 } );
 
@@ -652,13 +746,13 @@ function getFieldset (t) {
 /* global settings captcha reset */
 function resetAdminCaptcha (){
 
-    var i = jQuery('#cforms_cap_i').val();
-    var w = jQuery('#cforms_cap_w').val();
-    var h = jQuery('#cforms_cap_h').val();
-    var c = jQuery('#inputID2').val().replace(/#/, '.');
-    var l = jQuery('#inputID1').val().replace(/#/, '.');
-    var bg= jQuery('#cforms_cap_b').val();
-    var f = jQuery('#cforms_cap_f').val();
+    var i = jQuery('#cforms_cap_i' ).val();
+    var w = jQuery('#cforms_cap_w' ).val();
+    var h = jQuery('#cforms_cap_h' ).val();
+    var c = jQuery('#inputID2'     ).val().replace(/#/, '.');
+    var l = jQuery('#inputID1'     ).val().replace(/#/, '.');
+    var bg= jQuery('#cforms_cap_b' ).val();
+    var f = jQuery('#cforms_cap_f' ).val();
     var f1= jQuery('#cforms_cap_f1').val();
     var f2= jQuery('#cforms_cap_f2').val();
     var a1= jQuery('#cforms_cap_a1').val();
@@ -667,7 +761,11 @@ function resetAdminCaptcha (){
     var c2= jQuery('#cforms_cap_c2').val();
     var ac= jQuery('#cforms_cap_ac').val();
 
-    var data = ajaxurl+"?action=cforms2_reset_captcha&_wpnonce="+cforms2_nonces.reset_captcha+"&ts=0&c1="+c1+"&c2="+c2+"&ac="+ac+"&i="+i+"&w="+w+"&h="+h+"&c="+c+"&l="+l+"&f="+f+"&a1="+a1+"&a2="+a2+"&f1="+f1+"&f2="+f2+"&b="+bg+"&rnd="+Math.round(Math.random()*999999);
+    var data = ajaxurl
+        +"?action=cforms2_reset_captcha&_wpnonce=" + cforms2_nonces.reset_captcha
+        +"&ts=0&c1=" + c1 + "&c2=" + c2 + "&ac=" + ac + "&i="  + i  + "&w="  + w  + "&h="  + h  + "&c=" + c
+        +"&l="       + l  + "&f="  + f  + "&a1=" + a1 + "&a2=" + a2 + "&f1=" + f1 + "&f2=" + f2 + "&b=" + bg
+        +"&rnd="     + Math.round(Math.random()*999999);
 
     if ( jQuery('#cf_captcha_img').length>0 )
         jQuery('#cf_captcha_img').attr('src',data);
@@ -707,7 +805,15 @@ function cf_tracking_view(com,grid){
             jQuery('.xdatabutton','#entries').bind("click", function () {
                 var eid = this.id.substr(7,this.id.length);
                 jQuery('#entry'+eid).fadeOut(500, function(){ jQuery(this).remove(); } );
-                jQuery.post(ajaxurl, {id: eid, action: 'database_deleteentry', _wpnonce: cforms2_nonces.deleteentry}, function(){ jQuery('.pReload').trigger('click'); } );
+                jQuery.post(
+                    ajaxurl,
+                    {
+                        id       : eid,
+                        action   : 'database_deleteentry',
+                        _wpnonce : cforms2_nonces.deleteentry
+                    },
+                    function () { jQuery('.pReload').trigger('click'); }
+                );
                 return false;
             } );
 

@@ -18,7 +18,9 @@
 
 function reset_captcha(no){
     no = no || '';
-    document.getElementById('cf_captcha_img'+no).src = cforms2_ajax.url+'?action=cforms2_reset_captcha&_wpnonce='+cforms2_ajax.nonces['reset_captcha']+'&ts='+no+'&rnd='+Math.round(Math.random()*999999);
+    document.getElementById('cf_captcha_img' + no).src = cforms2_ajax.url
+        + '?action=cforms2_reset_captcha&_wpnonce='+cforms2_ajax.nonces['reset_captcha']
+        + '&ts=' + no + '&rnd=' + Math.round( Math.random() * 999999 );
 }
 
 function clearField(thefield) {
@@ -283,7 +285,10 @@ function cforms_validate(no, upload) {
 
 
     //normal visitor verification turned on?
-    if ( document.getElementById('cforms_q'+no) && (document.getElementById('cforms_a'+no).value != jQuery.md5(encodeURI(document.getElementById('cforms_q'+no).value.toLowerCase()) )) ) {
+    if ( document.getElementById('cforms_q' + no)
+      && document.getElementById('cforms_a' + no).value
+      != jQuery.md5( encodeURI( document.getElementById('cforms_q' + no).value.toLowerCase() ) )
+    ) {
         document.getElementById('cforms_q'+no).className = "secinput cf_error";
         if ( all_valid ) {
             all_valid = false;
@@ -481,9 +486,13 @@ function cforms_validate(no, upload) {
     //
     // at the end, spit it out
     var write_customerr = function () {
-        for (var n=0; n<insert_err_p.length;n++){
-            if ( document.getElementById( insert_err_p[n] ) )
-                document.getElementById( insert_err_p[n] ).insertBefore(insert_err[n],document.getElementById( insert_err_p[n] ).firstChild) ;
+        for (var n = 0; n < insert_err_p.length; n++) {
+            if (document.getElementById( insert_err_p[n] )) {
+                document.getElementById( insert_err_p[n] ).insertBefore(
+                    insert_err[n],
+                    document.getElementById( insert_err_p[n] ).firstChild
+                );
+            }
         }
     };
 
