@@ -781,6 +781,219 @@ After updating please edit each form on your plugins config page to verify that 
 * other:    added a patch to manage Wordpress annoying wp_autop 'feature' and thus
             fix xHTML validation (this should really be WP's task ;-)
 
+= 8.5 =
+
+* feature:  better custom-files support (CSS, CAPTCHA) to outwit the short comings of
+            the WP auto update feature that removes/overwrites custom files
+            *ALL custom files** should go into "/plugins/cforms-custom"
+* feature:  added/changed default way of referencing forms, now: <!--cforms name="XYZ"-->
+            for better transparency and persistence (when deleting forms)
+* feature:  WP comment feature:  extra admin notification option available now
+* bugfix:   radio option ID != label "for=", now they match up
+* bugfix:   fixed 'waiting' message while submitting (escaped characters & styling)
+* bugfix:   fixed RoleManager support for the new & enhanced tracking page
+* bugfix:   fixed HTML tags in checkbox group display text (wizard dialog)
+* bugfix:   fixed HTML tags in checkbox group display text (in form email)
+* other:    enhanced sanitizing of custom IDs for input fields
+* other:    added {Referer} & {PostID}
+* other:    enhanced XML download format
+* other:    replaced all deprecated get_settings()
+* feature:  added the possibility to change the FROM: address to fake the user's
+            this is not recommended, but a widely asked for 'feature', use at your own risk
+
+= 8.4.2 =
+
+* bugfix:   date picker field would be greyed out even if enabled in global settings
+* bugfix:   check box group label ID <> input field ID, broke xHTML strict
+* bugfix:   fixed support for special characters on the "Tracking" page (Viewing)
+* bugfix:   fixed support for special characters on the "Tracking" page (Downloading)
+
+= 8.4.1 =
+
+* bugfix:   some users experienced lost TAF setting when post was scheduled for a future date
+* bugfix:   forward slashes are not allowed in form names, and could have caused some issues
+* bugfix:   cforms WP comment feature : "Select:Email/Note" wizard dialog corrected
+* bugfix:   revived suppressed err msg when selecting more than one field of a unique field type
+* bugfix:   field type drop down entries 'misaligned' with wizard dialog(s)
+* other:    js/lang/en.js - renamed the lang file to the seemingly more common locale setting
+* other:    CC:me can (now post-form-submission) be suppressed
+
+= 8.4 =
+
+* feature:  success message is now being parsed for {default} and {custom} variables
+* feature:  custom variables (referencing input field) can now be written as {_fieldXY}
+            with XY being the input field no. as it appears in the admin form configuration, e.g
+            {_field2}  =  2nd form field
+            or even as {ID}  where id = [id:ID] when using custom IDS for your input fields
+* feature:  enhanced custom input field names: if "[id:]" present in field name string,
+            e.g. Your Name[id:fullname]|Your Name
+            then what's given as the 'id' is being used for the fields id/name
+* other:    changed focus to first missing/invalid input field, used to be the last field in
+            the form
+* bugfix:   checkboxgroup ID bug resolved (thanks Stephen!)
+* other:    included a fix for other plugins that unnecessarily impose "prototpye" on all plugin
+            pages
+
+= 8.3 =
+
+* feature:  Completely revised Tracking/Edit UI
+* feature:  Tracking: XML download
+* feature:  Tracking: Editable fields
+* bugfix:   fixed IIS issues with CAPTCHA RESET
+* bugfix:   datepicker default values (non-digit) would cause false start dates
+* bugfix:   "page" wasn't properly recorded in some cases for ajax submission
+* bugfix:   multiple upload fields: if the first field wasn't populated, none of the
+            following attachments would be send in the email (but saved on the server)
+* bugfix:   if all submissions were deleted from tracking tables, the first new form
+            submission would be partially broken
+
+= 8.2 =
+
+* feature:  new, more robust datepicker feature!
+* bugfix:   fixed T-A-F custom field display for post/pages for WP2.5
+* bugfix:   T-A-F custom field would not show for pages
+* bugfix:   fixed a rare but critical bug when using checkboxgroups|radiobuttons & datepicker
+* bugfix:   fixed escaped quotes in Fieldsets names in emails (text part)
+* bugfix:   one click updater was mistakenly disabled by "plugin name"
+* other:    fixed delete button on tracking (item) page
+* other:    if field is set to "auto clear", it will be also now cleared before
+            submission if the default value is still present
+
+= 8.1 =
+
+* feature:  additional form presets
+* feature:  |title:  now available to add 'titles' to input fields
+* feature:  auto guessing (during activation) of proper Ajax path settings (cforms.js)
+* feature:  drop down box- and radiob button options can now be moved around in the "edit dialog"
+* bugfix:   fixed issue textarea being erased when custom error triggered and shown
+* bugfix:   fixed/improved Javascript 'jump to error' feature
+* bugfix:   fixed issue with 'hanging' input field editor (wizard dialog)
+* bugfix:   fixed issue with field-2-field validation
+* bugfix:   fixed broken edit field dialog, 'wizard'(IE6, possibly IE7)
+* bugfix:   {Page} var corrected for Ajax
+* bugfix:   properly localized months in confirmation emails
+* other:    slimmer main cforms file, hopefully helping narrow down PHP MEM issues
+* other:    major code clean-up
+* other:    improved and streamlined 'Install Form Preset' Dialog
+* other:    admin UI WP2.5'yfied
+
+= 8.02 =
+
+* feature:  NEW PLUGIN ROOT FOLDER STRUCTURE to support one-click/auto plugin updates
+* feature:  next to supporting $post custom fields, HIDDEN fields can no be fed via URL parameters,
+            e.g.: URL?myVAR=test-string   | & the hidden field set to "myhiddenfield|<myVAR>"
+* bugfix:   critical fix for JS based input validation (regexp broken in v7.53!)
+* bugfix:   checkbox would not be validated if no custom value was provided
+* bugfix:   several issues with "WP comment feature" and sending a note to the post author
+* bugfix:   Better SMTP integration / support for other SMTP Plugins,eg. "WP Mail SMTP"
+* bugfix:   Fixed compliance with other 'greedy' buttonsnap-using-plugins
+* bugfix:   Fixed quotes " in input field values (default value)
+
+= 8.0 =
+
+* other:    WP 2.5 compatibility
+
+= 7.53 =
+
+* bugfix:   SMTP support for username/pw was only workign in conjunction with SSL/TSL
+* bugfix:   SMTP did not properly resolve multiple "TO:" admin addresses
+
+= 7.52 =
+
+* bugfix:   fixed widget support (xHTML compliant again)
+* bugfix:   WP comment PHP session mgmt fixed (CAPTCHA issue)
+* bugfix:   dialog stalls: admin UI error (dialog) when only label is given for a single input field
+* bugfix:   improved session mgmt for WP comments feature
+
+= 7.51 =
+
+* bugfix:   WP comment feature:  "comment in moderation" wasn't displayed properly
+* bugfix:   CAPTCHA reload didn't appreciate custom settings
+* bugfix:   fixed "values" for checkboxes (Help! has been updated, too)
+            if no value provided, 'X' is being used to indicate a checked box
+            if a value is given, then that value is being used in the admin email
+* other:    added <Line Break> capability to radio boxes!
+* other:    REGEXP Validation: if present, validation *WILL* happen regardless of 'is required setting'
+
+= 7.5 =
+
+* feature:  WP comments feature completely revised
+            +) no more dependency on wp-comments-post.php
+            +) fully supporting comment form validation (esp. nonAjax!)
+            +) Ajax'iefied
+
+* bugfix:   PHP regexp testing for '0' caused a false positive
+* bugfix:   T-A-F enable new posts/pages by default -> was broken if TAF form was your default (1st) form
+* bugfix:   a few CSS fixes (.mailerr and other)
+* other:    major admin UI clean-up, making it xHTML compliant again
+
+= 7.4 =
+
+* feature:  CHANGED and improved "custom processing" (see /my-functions.php)
+            function my_cforms_action : gets triggered after user input validation and processing
+            function my_cforms_filter : after validation, before processing (nonAJAX)
+            function my_cforms_ajax_filter : after validation, before processing (AJAX)
+
+* feature:  new system variables referencing the currently logged in user (see Help)
+* bugfix:   WP comment feature wasn't fully working for logged-in users
+* bugfix:   several, related to multi-selectbox (quotes in values, 'required' flag etc., ajax submission broken)
+* bugfix:   new option 'Extra variables' was reset under certain circumstances
+* bugfix:   general formatting issue with escaped input characters, e.g. ", \ etc.  - no one noticed??
+* bugfix:   email validity check now accepts the + character
+* bugfix:   removed bogus >>  echo"***WPCOMMENT";
+* other:    removed <br/> from radio boxes, now supporting inline radio-boxes
+
+= 7.3 =
+
+* feature:  added {Author} default variable
+* feature:  added IP lookup (GeoMapLookup) to Tracking Table
+* feature:  calendar shows "Year" navigation
+* feature:  enable cforms only for specified pages, keeps your blog neat
+* bugfix:   anyone using "WP Cache enabled" *may* be affected by malefunctioning form deletion/duplication
+* bugfix:   line breaks in multi-line text fields are now displayed correctly in the (HTML) admin email
+* bugfix:   captcha reset link was corrupted
+* other:    CAPTCHA now case sensitive (supporting UPPER and lower case)!
+* other:    enabled structuring of drop down "select lists" with multiple `&nbsp;`, e.g.
+            `item 1
+            &nbsp;&nbsp;item 1.1
+            item 2
+            &nbsp;&nbsp;item 2.1
+            &nbsp;&nbsp;&nbsp;item 2.1.1`
+
+= 7.2 =
+
+* feature:  system {variables} can now be used for the "default values"
+* feature:  "jump to error" (javascript) can now be turned off
+* feature:  added option to turn off CSS (styling) completely
+* feature:  added support for full CAPTCHA customization
+* bugfix:   fixed hidden field support for Ajax
+* bugfix:   added CharSet=utf-8 to SMTP mailer support
+* bugfix:   fixed support for complex field labels,e.g. "Your Name<span class="req">*</span>"
+* bugfix:   frozen widget panel corrected
+* bugfix:   minor XHTML tweak to fix STRICT compliance
+* bugfix:   corrected extra <li> when using cform's "WP COMMENT FEATURE"
+* other:    modified handling of unset/unknown {variables}, in v7x unset variables would be printed as such
+* other:    adjusted tracked time of submissions to reflect blog settings (offset)
+* other:    Show Message "below form" can be activated in "form HIDE mode"
+* other:    removed rawurldecode() for hidden fields
+
+= 7.11 =
+
+* bugfix:   some server / browser combos caused the site to stall
+
+= 7.1 =
+
+* feature:  4 additional themes (monospace light&dark, fancy white/blue)
+* bugfix:   WP comment feature - broken in v7.0
+* bugfix:   WP comment feature - success message now being displayed when sending email
+* bugfix:   WP comment feature - comment label points to right input field
+* bugfix:   fixed and enhanced dynamic form feature
+* bugfix:   fixed upload path config error (upload was still working though)
+* bugfix:   fixed possible issues with existing WP jQuery (1.1.4) library
+* other:    more CSS theme enhancements
+* other:    WP 2.3.2 certififed
+* other:    Turkish language pack available
+
 = 6.0 =
 
 * added:    TinyMCE: enhanced visual appearance of form placeholder in TinyMCE editor
