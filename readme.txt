@@ -1082,6 +1082,218 @@ After updating please edit each form on your plugins config page to verify that 
 * bugfix:   proper support for blogs with a URI prefix, e.g. /blog/wp-content/...
 * bugfix:   added user rights check for dashboard display
 
+= 6.0 =
+
+* added:    TinyMCE: enhanced visual appearance of form placeholder in TinyMCE editor
+* added:    TinyMCE: much improved TinyMCE & std editor button/insert dialog
+            (now with direct form select & fully localize-able )
+* added:    completely revamped admin UI JS core for drag&drop (fixing some IE issues)
+* added:    preset forms for "quick starts" (basic, T-A-F, WP Comment and custom err)
+* added:    if no 'required' text is given (empty), then HTML will be entirely omitted
+
+* bugfix:   CAPTCHA: finally fixed PHP/GD bug where image would not be shown
+* bugfix:   Date Picker/CSS : fixed nasty IE 6 'select box' bug
+* bugfix:   Date Picker/CSS : had a fix background color
+* bugfix:   Date Picker/CSS : wasn't working with some themes
+* bugfix:   Date Picker : wrong default setting for "date format"
+* bugfix:   fixed {Page} Variable - won't cut of last character anymore
+* bugfix:   fixed many structural HTML errors in the admin UI and other clean-up
+* bugfix:   hopefully fixed admin menu "non-shows" for good
+
+* other:    complete overhaul of the translation strings (major clean up)
+* other:    enhanced cforms uninstall/cleanup routine
+* other:    CSS adjustments for some themes; counteracting too aggressive WP themes
+            killing the cform layouts
+* other:    made several SQL calls more robust and less likely to cause SQL errors
+* other:    enhanced dashboard support
+
+* enhanced: the "simple example" for custom forms on help page (showing a more
+            flexible and elegant way of handling custom form field arrays!)
+
+= 5.52 =
+
+* bugfix:   Date Picker: fixed critical bug appearing on non "forms pages"
+* bugfix:   Date Picker: fixed semi critical bug when showing multiple forms on the same page
+* bugfix:   Dashboard feature:  fixed SQL error in case no forms have been submitted yet
+* other:    XHTML strict: fixed "name" attribut in form tag for compliance
+
+= 5.51 =
+
+* bugfix:   removed some debug code (echo) in T-A-F (disable/enable)
+* bugfix:   fixed empty `<ol>` tag
+* bugfix:   fixed admin menu for Windows IIS web server
+* bugfix:   minor version display fix
+* other:    JS file for "popup date picker" now only loaded when feature is enabled
+* other:    renamed JS functions in "popup date picker" code (to avoid possible incompatiblities)
+* other:    select boxes & upload fields now also show a "required" txt label
+
+= 5.5 =
+
+* feature:  special regexp use: compare two input fields for equal content (e.g. email verification)
+* feature:  'Tell-A-Friend' enable all posts/pages per click
+* feature:  'Tell-A-Friend' default behaviour for new posts/pages
+* feature:  Fancy Javascript date picker
+* feature:  "WP Comment/Message to author" Feature
+* feature:  added dashboad support (showing last 5 entries)
+* other:    since 2.3 comes with update support,
+            I removed local update notification code (saves a few kb)
+* bugfix:   corrected form layout when no FIELDSETS are being used
+* bugfix:   radio button fix, in case no label/li ID's are enabled
+* bugfix:   made some changes to session mgmt in favour of keeping form content
+            when hitting the browsers back button
+* bugfix:   fixed use of special character "." as an empty trailing line in TXT messages
+* other:    tuned code a bit, hopefully with a performance gain
+* bugfix:   fixed weird caching phenomena when deleting of forms
+* bugfix:   fixed non ajax regexp processing
+
+= 5.4 =
+
+* feature:  added Tell-A-Friend functionality, see Help documentation
+* feature:  added filter option for displaying data records on "Tracking" page
+* feature:  added support for individual input field CSS customization
+            ie. unique <li> ID's, see "Styling" page
+* feature:  added ajax captcha reset
+* feature:  added individual error messages (HTML enabled), see Help
+* feature:  added HTML support for field labels (field names), see examples on Help page
+* feature:  added HTML support for the general error and success message
+           (HTML gets stripped for popup alert() boxes!)
+
+* other:    changed {Page} variable to reflect query params (/?p=123)
+            if using the default permalink structure
+* other:    changed session_start() call in favour of gzip compression
+* other:    forcing chronological order of data records when downloading as CSV
+
+* bugfix:   fixed group check box bug (in ajax)
+* bugfix:   fixed special characters (e.g. Umlauts) in subject line
+* bugfix:   minor CSS bugs
+* bugfix:   check box select bug on "Tracking" page
+* bugfix:   fixed copying of attachment(s) to specified server dir, when Tracking is turned off
+* bugfix:   fixed sorting bug on 'Tracking' page for Internet Explorer
+
+= 5.3 =
+
+* bugfix:   admin HTML with non auto conf. TXT email would cause flawed HTML CC email
+* bugfix:   fixed mailer error messsages for ajax (they would not show)
+* other:    improved/simplified UI
+* other:    lots of clean up and making UI around email messaging more obvious, hopefully
+
+= 5.2 =
+
+* feature:  support for alternative SMTP server
+            Note: Due to an obvious WP bug, class-smtp.php needs to be renamed to class.smtp.php
+* feature:  post processing of submitted data (see documentation)
+* enhanced: simplified, and this made non-HTML (=TXT) emails more robust
+* enhanced: improved layout of textarea data (HTML) in admin emails
+* bugfix:   stopped leaking HTML in TXT part of message
+* bugfix:   fixed CC: feature for non-Ajax submissions
+* other:    re-implemented ajax support now utilizing POST to
+            avoid any input limitations (# of characters)
+* other:    more robust email address/name processing
+
+= 5.1 =
+
+* feature:  FROM: address can again be changed via UI, BE CAREFUL!
+* feature:  added hook for outside processing/manipulation of form data
+* bugfix:   Outlook (especially 2007) requires special HTML formatting
+* other:    bit of code clean up here and there
+
+= 5.0 =
+
+* feature:  added a couple of CSS Themes
+* feature:  multiple upload fields in the same form now supported
+* feature:  3rd party email tracking support, e.g. readnotify & didtheyreadit
+* feature:  basic widget support (make sure to double check Theme CSS!)
+* feature:  alternative form action supported (please read config info!)
+* feature:  BCC to copy additional admin(s)
+* feature:  additional themes: blue & green
+* feature:  full [additional] HTML formatting support for email messages
+
+* bugfix:   BACKUP & RESTORE fixed (not all fields were backed-up prev.)
+* bugfix:   "spacing between labels & data" error when number smaller than length(field name)
+* bugfix:   more CSS corrections
+* bugfix:   the use of single & double quotes fixed in FIELDSETS
+* bugfix:   one more single quote bug remedied in form labels
+* bugfix:   DB tracking of user verification input now consistent w/ and w/o Ajax mode
+* bugfix:   critical CAPTCHA issue resolved when more than one CAPTCHA fields are
+            displayed on the same page
+* bugfix:   a mail server error would cause a bogus redirect and on top "hide" the actual
+            error making any troubleshooting virtually impossible
+* bugfix:   critical javascript error when using more than 9 forms
+* bugfix:   regexp in non-ajax mode cause an error when using a slash '/'
+
+* other:    layout enhancements for all CSS Themes
+* other:    default variables fixed for auto confirmation message (subject & message)
+* other:    code clean up & major admin usability/accessibility improvements
+* other:    fixed leading _ in form object ID's
+* other:    now validates for XHTML 1.0 "Strict", too
+
+= 4.8 =
+
+* other:    added optional credit text - if you're happy with cforms you may want to
+            leave it enabled
+
+* feature:  added a configurable SPACE between labels & data in the form email
+* feature:  file uploads (form attachments) can now optionally be exlcuded from the email
+            they can be downloaded via "Tracking" (if enabled!) or accessed directly on the server
+* bugfix:   properly escaped subject lines (when using visitor defined subject)
+* bugfix:   fixed single quotes in field names
+* bugfix:   text-only fields would falsely be added to the Tracking Tables
+* bugfix:   non Ajax method: possible formatting issues with 1st fieldset in email
+* bugfix:   non Ajax method: DB tracking of check boxes corrupted
+* bugfix:   Ajax method: fixed possible "Multi-Recipients" bug
+* bugfix:   non Ajax method: added a missing error message for failed attempts email forms
+* bugfix:   DB Tracking: multi-line fields are now consistently stored (no extra <br/>)
+* other:    a few more form themes (wide & big, no border)
+* other:    slightly enhanced email formatting
+* other:    added seperate USER CAPability for tracking only! (use w/ Role Manager plugin!)
+
+= 4.7 =
+
+* bugfix:   field names would not show correctly when upgrading from 3.x to 4.6+
+* bugfix:   simple CSS changes to support Opera Browsers (tested on 9+)
+* other:    made some captcha mods for better readability
+
+= 4.6 =
+
+* feature:  page redirect on successful form submission
+* feature:  customizable admin form email (header, subject)
+* feature:  customizable auto confirmation message
+            (input field reference) & pre-defined variables
+* bugfix:   multiple, sequentially arranged check box groups would "collapse"
+* bugfix:   fixed adding/duplicating new forms with WP2.2 (WP caching issue)
+* bugfix:   db tracking in non-Ajax mode showed inconsistent input field names
+* other:    made the DB tracking tables creation process more flexible, hopefully
+            avoiding "CURRENT_TIMESTAMP" err msgs in the future!
+
+= 4.5 =
+
+* enhanced: the format for check box groups has been enhanced, see HELP!
+* feature:  (optional) ID's for labels for even greater level of customization!
+* bugfix:   "Subject for Email" could not be saved "Is Required"
+* other:    "Subject for Email", user definable subject is now appended
+* other:    "Subject for Email" is now part of the email form submission body
+* other:    form structure re-done! XHTML'fied; much more robust now
+* other:    streamlined CSS
+* other:    added a warning msg re: "Show messages" settings
+
+= 4.1 =
+
+* feature:  support for shown but disabled form element
+* feature:  "user message" positioning, now optionally at the bottom of the form
+* feature:  "multi-select" via check boxes, grouped check boxes
+* feature:  new special field: subject field
+* other:    revised and cleaned up Help! section
+
+= 4 =
+
+* feature:  captcha support for additional SPAM protection
+* feature:  select & configure stylesheets via admin UI
+* bugfix:   IE margin-bottom hover bug
+* bugfix:   deleting form fields (on the general form config page) was broken due a
+            new bug that was introduced as part of the localization effort
+* other:    change the INSERT queries using LAST_INSERT_ID() due to overly sensitive
+            SQL servers.
+
 
 == Localization ==
 
