@@ -587,6 +587,200 @@ After updating please edit each form on your plugins config page to verify that 
 * other:    a few minor UI adjustments to accomodate 1024px wide screens a tad better
 * other:    some cosmetic icon adjustments
 
+= 10.0 =
+
+* feature:  "manual/help page" now also offered in form of a PDF (see help page)
+* feature:  enhanced Opera Browser support
+* feature:  complete admin UI update: WP2.7'ized it (code and CSS)
+* feature:  multi-part/-page form support
+* feature:  added dashboard support for WP 2.7
+* feature:  general enhancements on tracking page (time stamps on entries etc)
+
+* bugfix:   regexp now allow OR | operator,e .g. ^(a|b)c
+* bugfix:   datepicker localization for admin interface
+* bugfix:   email verification fields (special regexp) would not work with custom err messages
+* bugfix:   fixed install bug that appeared on some WP 2.7 deployments (redeclare err)
+* bugfix:   fixed captcha issue for nonAjax forms
+* bugfix:   insert_cform() would show the default form versus a specified one
+* bugfix:   minor admin email issue re: inclusion of CAPTCHA input
+
+* other:    updated and cleaned up help page
+* other:    much improved admin captcha config preview (no saving necessary for preview anymore!)
+* other:    made some admin UI changes (font alternatives)
+* other:    enhanced handling of duplicate form fields for tracking/admin email (no more __x suffixes)
+* other:    revamped admin email assembly process
+
+= 9.4 =
+
+* feature:  specific insert position can now be determined when adding new fields
+* feature:  TAF: added support for proper WP 2.7 custom field registration (screen options)
+
+* bugfix:   fixed some WP2.7 admin UI incompatibilities
+* bugfix:   fixed TAF-option for WP2.7 New post/page UI (drag&drop, open/close)
+* bugfix:   multi-select / check box groups for multi-page form hack
+* bugfix:   special characters would cause captcha reload to revert back to certain default settings
+* bugfix:   fixed autosave issue with TellAFriend flag being deleted
+
+* other:    added default number (5) of shown RSS entries, if not configured by user
+
+= 9.3 =
+
+* feature:  added title feature to widget control
+
+* other:    added explanatory code to API call "to retrieve all tracking records"
+* other:    corrected some typos
+* other:    label and input fields now support capital letters
+
+* bugfix:   removed debug message in API call to retrieve all tracking records
+* bugfix:   v9.2 required plugin to be activated 2x for it to show up in the admin menu
+* bugfix:   for IIS servers abspath.php needs to escape the backslash
+
+= 9.2 =
+
+* feature:  added restore function when cforms settings get corrupted (for whatever reason)
+            the function kicks in as soon as cforms detects broken settings and will guide the user
+* feature:  added form specific success and failure classes for more CSS/styling control
+* feature:  added POP before SMTP authentication to SMTP feature
+            (global settings)
+* feature:  added filename modification for file uploads at run-time
+            (see my-functions.php!)
+* bugfix:   fixed a minor bug in the global settings backup routine
+* bugfix:   "don't clear" setting would not be saved
+* bugfix:   fixed disabling of headers when downloading tracked data
+* bugfix:   tracking data download: missed last record for CSV & TAB
+* bugfix:   fixed and simplified 'duplicate form' routine (FROM: was not copied properly)
+
+* other:    TinyMCE styling : made CSS more specific to cforms ("TinyMCE Advanced" compatible)
+* other:    update SMTP/PHPMailer support to v2.2.1
+
+= 9.1 =
+
+* feature:  timing of forms: added start and end date for forms availability
+* feature:  optionally include field names/header info when downloading data sets (CSV, TAB, XML)
+* feature:  new custom function to control application logic during run-time
+            my_cforms_logic() filter function, see my-functions.php
+            for now only page redirection is being supported, more to come in the future
+* feature:  revamped the code driving the deletion of forms (allowing also allowing the first form to be deleted)
+
+* bugfix:   PHPMailer support for attachments (couldn't attach files to email)
+* bugfix:   "Cannot use string offset as an array in lib_aux.php on line 12"
+* bugfix:   minor bug in rendering nonAjax action path in form tag
+* bugfix:   fixed paging on the tracking page
+* bugfix:   fixed issue with cforms WP comment feature and additional fields (on top of
+            the default comment fields) not showing up in notification email
+* bugfix:   fixed CC:me field bug (for Ajax submission)
+* bugfix:   form submission tracking : fixed dashboard & RSS link to actual form details
+* bugfix:   fixed RSS support (mime types and general compatiblity issues)
+* bugfix:   JS bug could have caused hiccups when refreshing CAPTCHA image
+* bugfix:   fixed restore bug "Error: Specified file failed upload test."
+
+* other:    added delete warning when deleting a form
+* other:    line breaks (CRs) in nonAjax confirmation msg are now translated to <br/>
+
+= 9.0b =
+
+* bugfix:   a couple of custom variables were broken, e.g. {Form Name}
+* bugfix:   fixed lib_WPcomment path issues
+* bugfix:   fixed include path in lib_ajax.php
+* bugfix:   now migrates successfully forms 10-... from pre v9 versions
+* other:    added warning message in case abspath.php could not be created
+* other:    made some missing text translatable
+
+= 9.0 =
+
+* feature:  API function: get_cforms_entries( $fname, $from, $to, $sort, $limit )
+            (see HELP for further info: "APIs...")
+* feature:  optionally redisplay user input after form submission (non Ajax mode only)
+* feature:  complete cforms backup option (see under "global settings")
+* feature:  enhanced support for WP_CONTENT_DIR, WP_CONTENT_URL, WP_PLUGIN_DIR, WP_PLUGIN_URL, PLUGINDIR
+* feature:  supports now 'check-box-activation' in "plugins" (no more "all data erased error")
+
+* bugfix:   installing the preset would add unwanted carriage returns (would break cforms Backup feature)
+* bugfix:   fixed widget/sidebar form display (if more than the default form was displayed)
+* bugfix:   fixed checkbox 'false' text addition if set to be not selected
+* bugfix:   form name filter on tracking page would only return results for one form
+* bugfix:   several minor bugfixes re: tracking page (filter + view, delete & download)
+
+* other:    my-functions.php can now be moved to the /cforms-custom/ folder
+* other:    data tracking page: made trash can icon(s) more obvious, added close button
+* other:    upload field: file extensions are case insensitive now!
+* other:    upload field: spaces in file names are now converted to _
+* other:    fixed a Javascript related security concern
+* other:    revamped form backup file (not compatible with pre v9.0 versions!)
+* other:    fixed GMAIL support for admin message layout
+* other:    tracking page layout more fluid (CSS: Show->Submissions)
+
+= 8.7 =
+
+* feature:  added support for other plugins using TinyMCE (causing the 'purl' err currently).
+            See buttons support, global settings.
+* feature:  RSS feeds (security key enabled) for form submissions, global feed and for single forms
+            See global settings and main form admin page.
+* feature:  option to force CAPTCHA & Q&A even for logged in users
+            See global settings.
+* feature:  CAPTCHA now compatible with WP Super Cache plugin working with super cached pages!
+* feature:  cforms "comment feature" now considers comment COOKIES (user preferences)
+
+* bugfix:   fixed email (data) issue when CAPTCHA or Visitor Verification (Q&A) field was not
+            at then end of the form
+* bugfix:   non-(at all)-selected radio buttons would cause issues
+
+* other:    rearrangement of options on the main config page & admin UI clean up
+
+= 8.6.2 =
+
+* feature:  Q&A now also not displayed for logged in users
+* bugfix:   email bug: broken HTML message when user was logged in while submitting a form
+* bugfix:   comment feature, ajax submission: 'wait a moment...' wasn't replaced by success message
+
+= 8.6.1 =
+
+* feature:  'Comment Luv' fully supported by cforms' WP comment form feature
+* feature:  'Subscribe To Comment' plugin fully supported by cforms' WP comment form feature
+* feature:  'WP Ajax Edit Comments' plugin fully supported by cforms' WP comment form feature
+* feature:  CAPTCHA not shown when users are logged in
+* feature:  WP comment form feature supports gravatars (see HTML template for new comments -> HELP)
+* bugfix:   turning WP's "wp_autop" filter off, could cause form rendering issues
+* bugfix:   fixed jumpin check box when check box is 'required' and toggled
+* bugfix:   when CAPTCHA was set to case insensitive, reloading proper captcha was iffy in some cases
+* other:    supports WP2.6 "wp-load" / alternative wp-config.php option
+* other:    added "wp-load" support to buttonsnap class
+* other:    enhanced rendering of cforms comments (for WP post/page comments)
+            see new comment template on global settings for new options and best pratice setup
+* other:    some general house keeping
+
+= 8.6 =
+
+* feature:  added user definable default states for check-, radio boxes, drop downs etc.
+
+* bugfix:   fixed proper cforms tag insertion when using PHP4 (known PHP strrpos issue)
+* bugfix:   fixed funny "!" characters in long emails (when lines had gotten too long)
+* bugfix:   fixed better handling of very large upload files (when "no email attachments" are selected)
+
+* other:    added 'echo' to insert_custom_cform()
+* other:    minor adjustments to the file upload handling routine
+* other:    changed to use of $_SERVER['REQUEST_URI'] to accommodate IIS server peculiarities
+
+= 8.5.2 =
+
+* bugfix:   line breaks in check box groups could cause field troubles (overwriting)
+* feature:  allowing other forms to "feed" into a (c)form and thus pre-populate cforms fields
+* bugfix:   fixed "custom err messages" when used with "custom IDs/Names"
+* bugfix:   fixed plugin_dir path logic to better support WPMU
+* bugfix:   tracking page: fixed getting all entries
+* other:    insert_cform() now prints directly the form (no echo needed)
+
+= 8.5.1 =
+
+* feature:  user CAPTCHA response can now be treated case insensitive
+* bugfix:   tracking page: "download all" fixed
+* bugfix:   tracking page: filtered results count fixed
+* bugfix:   fixed some annoying MSXML IE specific errors...
+* bugfix:   custom files had to be all lowercase, now case insensitive
+* bugfix:   custom CSS file would not be pre-selected in Styling/drop-down
+* other:    added a patch to manage Wordpress annoying wp_autop 'feature' and thus
+            fix xHTML validation (this should really be WP's task ;-)
+
 = 6.0 =
 
 * added:    TinyMCE: enhanced visual appearance of form placeholder in TinyMCE editor
