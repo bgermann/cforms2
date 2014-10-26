@@ -90,6 +90,71 @@ Please use [GitHub pull requests on our mirror](https://github.com/bgermann/cfor
 Please visit the [cforms plugin page](http://www.deliciousdays.com/cforms-plugin) for screenshots & user examples.
 
 
+== Upgrade Notice ==
+
+= 14.6.8 =
+There are full German and Italian translations available now.
+
+= 14.6.7 =
+This is only compatible with Wordpress 3.5+. Version 3.3 and 3.4 support is dropped.
+
+= 14.6.3 =
+The Wordpress function wp_mail is now used for mails, which makes use of built-in PHPMailer. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+
+= 14.5 =
+v14.5+ is only compatible with WP 3.3+
+
+= 10.6 =
+WP 2.8 compliance
+
+= 10.2 =
+GPL compliance!
+
+= 9.0 =
+v9+ introduces a completely new method of storing its settings, **please make a WP database backup first (!)** and then migrate your settings (cforms will guide you)!
+Then commence with a manual upgrade, including proper plugin deactivation and reactivation, followed by the guided data migration.
+
+= 8.2 =
+MAJOR CHANGES for ajax support; *cforms.js* doesn't have to be edited anymore. (ok, there is maybe a 1% that you do have to) Please do not replace new cforms.js with your old, customized cforms.js!
+
+= 8.0 =
+WP 2.5 compatibility
+
+= 5.52 =
+bugfix release
+
+= 5.51 =
+bugfix release
+
+= 5.0 =
+The extra settings for form ID's (in email messages) are obsolete, this feature is now available via the default variable {ID} - see Help!
+The special input field "Email subject" is now obsolete, since both message body and SUBJECT fully support default and custom variables
+
+= 4.8 =
+bugfixes mostly
+
+= 4.7 =
+bugfixes only
+
+= 4.6 =
+bugfixes & features
+
+= 4.5 =
+maintenance, bug fixes and enhancements
+
+= 4.1 =
+features
+
+= 4 =
+feature & bugfix
+
+= 3.5 =
+as part of the install/update either deactivate/reactive the plugin or delete the existing Tracking tables, to make use of the new table structure
+
+= 2 =
+After updating please edit each form on your plugins config page to verify that the email field is checked with "Is Email" to ensure email verification
+
+
 == Donations ==
 
 This fork is originally developed for the website of [tatkräftig](http://tatkraeftig.org) (only German), a German charitable organization that encourages and supports people in social engagement.
