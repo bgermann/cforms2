@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII $Revision$\n"
 "POT-Creation-Date: 2014-10-25 21:09+0100\n"
-"PO-Revision-Date: 2014-10-25 21:12+0100\n"
+"PO-Revision-Date: 2014-10-25 22:04+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -636,7 +636,7 @@ msgstr "Monate"
 
 #: cforms-global-settings.php:368
 msgid "Enable year selection drop down"
-msgstr "Dropdown mit Jahresauswhl aktivieren"
+msgstr "Dropdown mit Jahresauswahl aktivieren"
 
 #: cforms-global-settings.php:371 lib_activate.php:184
 msgid "Previous Month"
