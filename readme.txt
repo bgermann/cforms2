@@ -155,6 +155,173 @@ as part of the install/update either deactivate/reactive the plugin or delete th
 After updating please edit each form on your plugins config page to verify that the email field is checked with "Is Email" to ensure email verification
 
 
+== Changelog ==
+
+= 14.6.8 =
+* enhanced: full German and Italian translations
+* enhanced: use jquery-ui-sortable instead of its ancient Interface Elements predecessor
+* added:    store version in database again
+* added:    migration for month and day names
+
+= 14.6.7 =
+* enhanced: reorganize JavaScript files to provide better dependency management
+* enhanced: bump up ClockPick to the newest version
+* enhanced: bump up jqModal to the newest version
+* enhanced: use jQuery wrapper for md5.js
+* enhanced: replace the color picker with iris (wordpress standard since 3.5)
+* feature:  uninstallation deletes cforms database content
+* bugfix:   captcha preview in global settings renders correctly
+* other:    remove kibo dependency
+* other:    removed unused images and code (including [GPL incompatible](http://www.dynamicdrive.com/notice.htm), stolen JavaScript code)
+* other:    replace donation button
+
+= 14.6.6 =
+* bugfix:   wrong AJAX MIME type
+* added:    guideline to upgrade from original cforms
+* other:    removed old upgrade code
+* other:    moved some additional information in textfiles to readme.txt
+
+= 14.6.5 =
+* other:    reintroduced the public insert_cform function
+
+= 14.6.4 =
+* bugfix:   hanging form submission
+
+= 14.6.3 =
+* feature:  Use the ____Plugin_Localization directory to store and distribute some GPL translations
+* enhanced: unobfuscate JavaScript changes from version 10.3 on and kick out js_src.zip which was not updated since then
+* enhanced: Wordpress function wp_mail is used for mails and direct PHPMailer support is removed
+* enhanced: make use of the native Wordpress AJAX features
+* enhanced: get rid of the data.tmp and abspath.php files
+* enhanced: get rid of some paths and urls in the database
+* enhanced: bump up flexigrid to the newest version
+* other:    replaced the captcha fonts with GPL fonts
+* other:    reintroduced attribution link, that is opt-in now, which is demanded by the wordpress.org plugin guidelines
+* other:    prefix function names and class names with cforms2, which is demanded by wordpress.org
+* other:    remove the custom plugin update check
+* other:    remove of a lot of old code which is not needed for Wordpress 3.3+
+* other:    remove v13 update information
+* other:    move and rework changelog to be Markdown-compatible and have a tag subset
+
+= 14.6.2 =
+* bugfix:   issues upgrading from older versions of cforms
+* other:    removed link at the bottom of the contact form
+
+= 14.6.1 =
+* bugfix:   SSL support on file includes
+* bugfix:   double slash in file includes
+
+= 14.6 =
+
+* added:    NEW: my_cforms_filter()  in my-functions.php  (input filter)
+* bugfix:   Security/SPAM issue with TellAFriend feature
+* added:    Avoiding wpautop screwing with the layout
+* added:    Changed the_content filter priority to deal with themes demanding wpautop
+* bugfix:   multi-part forms: RESET button resets complete input and not just session
+
+= 14.5 =
+
+* added:    WP3.4 compliance
+* bugfix:   CAPTCHA security issue; can't override captcha settings via URL params
+* bugfix:   re-enabled version update info on the native WP plugins page
+
+= 14.2 =
+
+* added:    added more IQ to my-functions.php:
+            "adminEmailSUBJ" & "autoConfSUBJ" to change the subject line during run-time
+            Also, check out Regis' code example in this new section!
+            Thanks Regis!
+* added:    "\n" in the default text of textarea fields is recognised as a new line character
+* bugfix:   Call-time pass-by-reference in lib_aux.php
+* bugfix:   XML download, imports now nicely into excel, even with multi-line fields
+* bugfix:   corrected superfluous html5***** settings for non html5 fields
+* bugfix:   bigger field label issues when using custom IDs and regexp
+* bugfix:   localization issue with lib_editor.php and added French translation for the editor. Thanks Regis!
+
+= 14.1 =
+
+* bugfix:   localization in wizard popups
+* bugfix:   array declaration error some experienced in lib_activate.php
+* bugfix:   header inclusion/exclusion on specific pages
+
+= 14.0 =
+
+* enhanced: tabbed navigation between form configuration fields
+* added:    date picker support for year selection drop down
+* added:    HTML5 support, new Global Settings (must be enabled first) and Form Options:
+            html5color, html5date, html5datetime, html5datetime-local, html5email, html5month, 
+            html5number, html5range, html5search, html5tel, html5time, html5url, html5week
+* added:    new my_cforms_logic() routines "fileDestination", "fileDestinationTrackingPage" for uploads
+* bugfix:   date picker start day
+* bugfix:   loading of calendar style (css)
+* bugfix:   form submission restrictions (from/to date and number)
+* bugfix:   extra slash removed from plugin URL (fixes path to custom CSS file in /cforms-custom/)
+
+= 13.2.2 =
+
+* bugfix:   CC field issues for MP forms
+* bugfix:   Reply-To fixed in admin email
+* bugfix:   fixed 'custom names' form feature
+* added:    hidden field default value supports cforms {default variables},eg. UserID, Name etc.
+
+= 13.2.1 =
+
+* bugfix:   undefined function 'my_cforms_logic' 
+
+= 13.2 =
+
+* bugfix:   XSS security issue with lib_ajax.php
+* bugfix:   several fixes around "CC: me" field
+* enhanced: added Help Note on how to use {Custom Variables} in multi-page forms
+* bugfix:   default checkbox state is not restored on form reload (user choice remains)
+* bugfix:   removed depreciated eregi() & split() calls
+* enhanced: better support for SSL and multi-site deployments (WP v3x!)
+* bugfix:   "Corrupted Content Error" on FF when backing up settings
+* feature:  empty fields can now be excluded from the admin email 
+            (Admin Email Message Options)
+* bugfix:   multi-page forms: the "disable email attachments" setting for individual  
+            forms is now being considered in the final admin email 
+* enhanced: fixed several issues with multi page forms (accidental auto resets etc.),
+            forms now need to be manually reset via form reset button (setting),
+            no auto form reset anymore when on first form!
+            form session is properly remembered.
+* enhanced: calendar.css adjustments to make styles specific to cforms
+
+= 13.1 =
+
+* bugfix:   radio button fix
+ 
+= 13.0 =
+
+* other:    WP3.3 compliance
+* other:    a new more modern default theme/style (cforms2012.css)
+* other:    WP 3.3 jQuery / jQueryUI is now being used for the date picker!
+* other:    link to supported date formats added to global settings screen
+* other:    enhanced dashboard layout / listings
+* other:    enhanced in-field editing on tracking page ("view records area")
+* bugfix:   checkbox "default state" setting fixed
+* bugfix:   checkboxgroup "default states" & "new line" settings fixed 
+* bugfix:   several admin screens related fixes
+* bugfix:   tracking page, download options fixed (header, URLs etc.)
+* other:    checkbox fields now include a "checked symbol", instead of the word "on"
+* other:    email layout enhancements (optimized for gmail & HTML capable clients)
+            !!! NOTE: in order to fully enable the new layout for old forms, you MUST 
+            reset the Admin & Auto Confirmation Messages (see button above each)
+
+
+== Localization ==
+
+If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
+
+If there is a language file available, but not included in the standard distribution, please put the cforms-*.mo file in the wp-content/languages/plugins directory.
+
+You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/).
+
+If you would like to contribute a new language file, please [file a ticket](https://github.com/bgermann/cforms2/issues/new) with the translation file attached.
+It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
+you must not redistribute it as long as it is not your translation.
+
+
 == Donations ==
 
 This fork is originally developed for the website of [tatkräftig](http://tatkraeftig.org) (only German), a German charitable organization that encourages and supports people in social engagement.
