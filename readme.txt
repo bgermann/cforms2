@@ -308,6 +308,309 @@ After updating please edit each form on your plugins config page to verify that 
             !!! NOTE: in order to fully enable the new layout for old forms, you MUST 
             reset the Admin & Auto Confirmation Messages (see button above each)
 
+= 12.2 =
+
+* other:    pare_str() caused issues for some, commented out now
+
+= 12.1 =
+
+* bugfix:   minor datepicker adjustment (for anyone that uses non standard date display)
+
+= 12.0 =
+
+* other:    WP3.2.1 compliance
+* other:    upgraded to jQuery 1.6.2 (datepicker)
+* bugfix:   corrected WP comment form issue ($usermessage_text)
+* bugfix:   Zip Code RegExp in the Help Seection corrected
+* bugfix:   date picker fix for WP3.2
+
+= 11.9 =
+
+* bugfix:   IE9 date picker fix
+ 
+= 11.8 =
+
+* bugfix:   fixing PHP's issue with uksort()
+* bugfix:   upload fields in forms could cause hang ups when submitted from iphone/ipad
+* other:    enhanced path determination in cforms.js, should help to avoid issues going forward
+* other:    session check in cforms.php to better support existing sessions (shopping carts etc)
+ 
+= 11.7.3 =
+
+* bugfix:   stalling of upload forms fixed (or ones with alternative form action)
+
+= 11.7.2 =
+
+* other:    enhanced support for form field arrays, e.g. :  my-field[id:address[]]
+* bugfix:   fixed jQuery wizard editor error 
+* bugfix:   fixed "upload field" handling & form error (stalling)
+* bugfix:   sorting fixed for API call "get_cforms_entries()" - hopefully for good
+
+= 11.7.1 =
+
+* bugfix:   fixed function_exists() call in lib_functions.php
+* bugfix:   fixed some date picker related bugs
+* bugfix:   fixed PHP call insert_cforms() to accept "Form Names" as input (again)
+
+= 11.7 =
+
+* bugfix:   much enhanced/fixed REGEXP support for multi-line fields, to better support anti
+            SPAM measures, e.g. :   ^(?!.*(xxx|seo|ptimization)).*$
+
+= 11.6.1 =
+
+* bugfix:   fixed missing spaces in multi-line text fields
+
+= 11.6 =
+
+* added:    addded Form Name to `<form>` element for easier styling across sites
+* other:    changed edit / delete icon for better distinction
+* other:    plugged a potential (but unlikely to be exploited) security hole
+* other:    changed MySQL calls from direct code to using $wpdb
+* other:    updated included PHPMailer code to the latest release
+* bugfix:   fixed issue with undefined "file size limit"
+* bugfix:   sorting fixed for API call "get_cforms_entries()"
+* bugfix:   textual changes
+
+= 11.5 =
+
+* other:    WP 3.0 compliance
+
+= 11.4 =
+
+* feature:  added Belarusian (be_BY) by Marcis G.
+* feature:  NEW CORE OPTION : disables enctype, to support e.g. salesforce.com
+* feature:  enhanced JS regular expression validation, supporting multi-line searches/
+            prevention from using spam words, e.g. ^(?:(?!spam-word|seo).)*$
+* feature:  on UPLOAD forms, submit button gets disabled to prevent false resubmission
+* bugfix:   fixed double quote "" issue in XML tracking downloads
+* bugfix:   fixed loading issues of the TRACKING page
+* bugfix:   fixed deletion of ATTACHMENTS on server when deleting tracked submission
+* bugfix:   form names for recent submissions show accuratly now on WP DASHBOARD
+* enhanced: added security around "remove/delete plugin" function
+
+= 11.3 =
+
+* bugfix:   MULTIPLE RECIPIENTS: fixed issue with 'required' & non-valid entries
+
+= 11.2 =
+
+* bugfix:   WP 2.9 idiotic  $_REQUEST / get_magic_quotes_gpc() override in wp-settings.php
+
+* feature:  cforms headers: can now also be *excluded* on certain pages (Global Settings))
+* bugfix:   file upload: fixed renaming of multiple attachments (multiple '-' issue)
+* bugfix:   file upload: fixed missing default upload path (absolute path))
+* bugfix:   TAF: fixed *TAF show/noshow* for TAF forms in the sidebar and in a post/page
+* bugfix:   auto confirmation settings: fixes saving of "subject" text
+* bugfix:   drop down / select box: fixes "selection of last item" issue after form reload
+* other:    "don't clear on reset" auto. turned off when enabling multi part/page forms
+* other:    improved page load and UI experience, fixed some UI text areas
+
+= 11.1 =
+
+* bugfix:   SENDBUTTON: fixed support for quotes and single quotes in submit button text
+* bugfix:   get_cforms_entries: fixed old data issue in $cfdata
+* bugfix:   MULTI RECIPIENT: fix for non-valid '-' entries
+* bugfix:   TELL A FRIEND: added option to turn off CC: for submitting user
+* bugfix:   WP COMMENT FORM: major bugfix for ajax & non-ajax submission
+* bugfix:   UTF8 tracking page downloads are now properly coded utf8
+* bugfix:   Javascript for SAFARI optimized (no more time-outs)
+* bugfix:   MULTI-RECIPIENT documentation on Help! page corrected
+
+= 11.0 =
+
+* feature:  MULTIPLE RECIPIENTS support revamped (supporting multiple email accounts per option)!
+            PLEASE DOUBLE CHECK YOUR SETUP! see HELP! page as well.
+* feature:  admin UI revamped (please note the new fixed 'action box', right hand side!)
+* feature:  PHP 6 compliance: added input processing support to accomodate PHP's DEPRECATED
+            get_magic_quotes_gpc()
+* feature:  added a new my-functions.php logic routine: "successMessage"
+* feature:  UPLOAD field noid- (or ID) prefix can be turned off
+* feature:  enabled Email-Priority for the SMTP feature
+* feature:  admin UI option boxes: supporting clickable option titles bars
+* feature:  added two new system variables: {CurUserFirstName} & {CurUserLastName}
+* feature:  supporting multiple form fields with the same name in get_cforms_entries()
+* feature:  BCC field now supports multiple email addresses
+* feature:  conditional redirection (my-functions.php) can now return "" (empty string) to cancel
+            redirection altogether
+
+* bugfix:   fixed "magic deletion" of \ (backslashes) for some users when updating settings
+* bugfix:   fixed popup time entry for "submission limit"
+* bugfix:   form deletion: fixed error when having more than 10 forms.
+* bugfix:   fixed deletion of auto confirmation settings when turning off this feature
+* bugfix:   fixed form duplication bug that would prevent 'Multi-part settings' to be copied
+* bugfix:   form deletion: fixed proper consolidation of remaining forms / settings array
+* bugfix:   TAF: fixed WP quickedit; now keeping the TAF setting when updating post
+* bugfix:   fixed sorting for int() values in get_cforms_entries()
+* bugfix:   "geomaplookup" call adjusted to new URL
+* bugfix:   RSS title missed a stripslashes()
+* bugfix:   Admin email missed a stripslashes() for the form data title
+* bugfix:   Tracking/download of CSV: "Add URL for upload fields" option fixed for MP forms
+
+* other:    plugin removal code enhanced (turns off plugin automatically now)
+
+= 10.6 =
+
+* feature:  completely rewritten sidebar WIDGET SUPPORT, pls recheck your widget setup!
+* feature:  auto confirmation messages now support an attachment
+* feature:  radio buttons can now be "required" when no radio box should be checked by default!
+* feature:  added strip_tags() to TEXT message part of the admin email
+            (to avoid HTML in plain TXT)
+* other:    house keeping, cleaning up & rearranging admin UI
+* feature:  backwards compatible now: supporting PHP4
+* bugfix:   label issues with "(" and ")", which would not show in the admin email (&tracking)
+* bugfix:   minor code fixed, mostly cosmetic
+* bugfix:   nonAjax form submission would not allow single quotes in custom field ID/NAME
+* other:    amended Help section
+* other:    typos/corrections on Help! page
+
+= 10.5.2 =
+
+* bugfix:   WP comment form feature:: fixed {custom var} replacement in admin email (ajax mode)
+* bugfix:   WP comment form feature:: fixed "send to author" option in cforms'
+* other:    admin email addresses now support "+" , e.g. john+janey@mail.com
+
+= 10.5.1 =
+
+* feature:  Email Priority can now be set under "Core Options"
+* bugfix:   insert_cform('1') would cause minor issues if your default form was a TAF form
+* bugfix:   Limit Text is now saved even if no #-limit is provided
+* bugfix:   fixed =3D issue for some users (admin email layout)
+
+= 10.5 =
+
+* feature:  redirect options: "hide" & "redirect" have been split, allowing both
+            find 'hide' under 'core options' now
+            make sure to check both options, they may have been reset!
+
+* feature:  email: supporting mail server that strictly require CRLF
+            new option under GlobalSettings > Mail Server Settings
+
+* bugfix:   field labels that would have an escaped character (e.g quotes) would not be
+            referenced correctly and required a slash until now (e.g. {Your friend\'s Name} ).
+* bugfix:   fixed minor XSS cross site scripting vulnerability
+* bugfix:   select boxes: fixes the "auto select" of the last drop down option
+* bugfix:   email: fixes CR's in multi-line fields
+* bugfix:   email: fixing SMTP / PHPMailer attachments
+* bugfix:   email: MIME / boundary fix
+* bugfix:   email: several cosmetic fixes
+* bugfix:   WP comment: fixed Ajax submission of WP comments
+* bugfix:   fixed get_cforms_entries() when using "form name" parameter
+* bugfix:   fixed WP comment form 'comment id not found' error
+
+* other:    plugin update notice has become smaller / can be toggled
+* other:    updated Help page (API section)
+* other:    enhanced API function   get_cforms_entries()
+            Parameters:
+            get_cforms_entries( $fname,$from,$to,$cfsort,$limit,$cfsortdir )
+               $fname     = [text]    : form name (case sensitive!)
+               $from      = [date]    : e.g. 2008-09-17 15:00:00
+               $to        = [date]    : e.g. 2008-09-17 17:00:00
+               $cfsort    = [text]    : any input field label, e.g. 'Your Name'
+                                        or 'date', 'ip', 'id', 'form', 'email'
+               $limit     = [numeric] : limits number of records retrieved
+               $cfsortdir = [text]    : sort direction 'asc' or 'desc'
+
+            (see updated Help page too!)
+
+= 10.4 =
+
+* feature:  new my_cforms_logic() features:
+            "adminEmailTXT" & "adminEmailHTML", "autoConfTXT" & "autoConfHTML"
+            to support run-time changes in the email message part(s),
+            e.g. {user_variable} substitution supporting custom/one-off messages
+* feature:  tracking / download: revised and fixed downloads that include field headers
+            in several areas
+* feature:  tracking / download: added optional inclusion of attachment/file URLs
+* feature:  tracking / download: added optional inclusion of IP address in report
+* feature:  tracking / download: completely revised the tracking download function to
+            accommodate very large numbers of records, make sure that js/include/data.tmp
+            is writable!
+* bugfix:   fixed access to $subID from within my-functions.php for Ajax post method
+* bugfix:   file uploads/attachments: revised, better internal handling
+* bugfix:   file uploads/attachments: fixed link/URL issue for MP forms
+* bugfix:   file uploads/attachments: all files are now being attached to admin email for
+            MP forms
+* bugfix:   WP comment form: fixed email to author in non Ajax mode
+* bugfix:   Fixed "extra variables" (e.g. {Title}) to display again in admin email etc.
+* bugfix:   success message: fixed buggy message display ('*$#..') in special cases
+* other:    Javascript Date Picker updated to latest release
+* other:    admin emails: turned upper case HTML tags to lower case
+* other:    admin emails: swapped LF for CRLF (according to RFC822 Section 3)
+
+= 10.3 =
+
+* feature:  RSS feed: revised and enhanced feeds (all & indivudal form feeds)
+            supporting inclusion of form fields in the feed
+* feature:  new API function: cf_extra_comment_data( $id )
+            will retrieve all extra fields per given comment ID in a data [array]
+            see tutorial online (troubleshooting forum)
+* feature:  enhanced option to keep input field data (no reset) after submission
+            (both ajax & nonajax)
+* feature:  cforms allows now to optionally turn off the admin email (and only track via DB)
+* feature:  "redirect on success" can now be used to jump to any location on your page after
+            form submission
+* feature:  threaded comment support for cforms' WP comment feature
+            note: nonAjax will work as is, for the Ajax method you need to adjust your WP theme to
+            work nicely with cforms (dynamically set the parent container!)
+* bugfix:   multi-part forms: no more session resets / jumping to first form
+* bugfix:   multi-part forms: confusion of prev. entered field values when going to previous form
+* bugfix:   escaped '<' & '>' in input fields, which allows to properly send code in a form as well
+* bugfix:   a few admin CSS fixed (e.g. resizable text areas)
+* other:    smaller cosmetic fixes
+* other:    input field default values will now remain actual values and not be cleared!
+
+= 10.2 =
+
+* bugfix:   WP comment form : fixed issues when form #1 was enabled as WP comment form replacement
+* bugfix:   fixed Cross-site_scripting security hole (rarely to be exploited but anyway)
+* bugfix:   multi-part form: fixed issue, when first form is the default form (#1)
+* bugfix:   multi-part form: fixed escaped quotes when going back
+* bugfix:   textarea fields: fixed carriage returns in HTML part of admin email
+* other:    buttonsnap has been removed
+
+= 10.1 =
+
+* feature:  added form option to turn off tracking for a given form only
+
+* bugfix:   improved method of adding admin scripts/CSS (to better support preWP2.7 systems)
+* bugfix:   added UI CSS mods to accomodate pre WP2.7 admin interface
+* bugfix:   wrong dashboard icon extension (png vs gif)
+* bugfix:   hover text over AJAX option on 'form settings'
+* bugfix:   multi-page forms: after final submission, form #1 on occcasion would render only partly
+* bugfix:   multi-page forms: if used with "WP comment form feature" at the same time, comment form would also be replaced with the current multi-part form
+* bugfix:   multi-page forms: when deploying several MP form series the SESSION would in some cases not be reset
+* bugfix:   in v10.0 access priviliges for tracking required to be "manage_cforms"
+
+* other:    fixed CommentLuv support
+* other:    WP2.7+ fixed admin UI : support for removeable top err/warning messages
+* other:    a few minor UI adjustments to accomodate 1024px wide screens a tad better
+* other:    some cosmetic icon adjustments
+
+= 10.0 =
+
+* feature:  "manual/help page" now also offered in form of a PDF (see help page)
+* feature:  enhanced Opera Browser support
+* feature:  complete admin UI update: WP2.7'ized it (code and CSS)
+* feature:  multi-part/-page form support
+* feature:  added dashboard support for WP 2.7
+* feature:  general enhancements on tracking page (time stamps on entries etc)
+
+* bugfix:   regexp now allow OR | operator,e .g. ^(a|b)c
+* bugfix:   datepicker localization for admin interface
+* bugfix:   email verification fields (special regexp) would not work with custom err messages
+* bugfix:   fixed install bug that appeared on some WP 2.7 deployments (redeclare err)
+* bugfix:   fixed captcha issue for nonAjax forms
+* bugfix:   insert_cform() would show the default form versus a specified one
+* bugfix:   minor admin email issue re: inclusion of CAPTCHA input
+
+* other:    updated and cleaned up help page
+* other:    much improved admin captcha config preview (no saving necessary for preview anymore!)
+* other:    made some admin UI changes (font alternatives)
+* other:    enhanced handling of duplicate form fields for tracking/admin email (no more __x suffixes)
+* other:    revamped admin email assembly process
+
+
 
 == Localization ==
 
