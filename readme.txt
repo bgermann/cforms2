@@ -98,8 +98,8 @@ If your language is set correctly the language file in the ____Plugin_Localizati
 You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/), which also work with this fork.
 If there is a language file available for you, but it is not included in the standard distribution, please put the cforms-*.mo file in the wp-content/languages/plugins directory.
 
-If you would like to contribute a new language file, please [file a ticket](https://github.com/bgermann/cforms2/issues/new) with the translation file attached.
-It has to be GPL licensed. If an available translation on the original website is not GPL licensed,
+If you would like to contribute a new language file, please [submit a GitHub pull request](https://github.com/bgermann/cforms2/pulls) with the translation file included.
+It has to be GPL licensed. If an available translation on the original website is not GPL licensed (they can, because cformsII did not start as GPL project),
 you must not redistribute it as long as it is not your translation.
 
 
@@ -145,6 +145,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.6.9 =
+* bugfix:   [Download Entries on Tracking not working](https://wordpress.org/support/topic/download-entries-on-tracking-not-working)
 * other:    cut old changelog because of rendering problems with too big readme.txt file on wordpress.org
 
 = 14.6.8 =
