@@ -20,12 +20,6 @@ var focusedFormControl = null;
 
 jQuery(function() {
 
-    var timeout = new Date(jQuery.now() + 3 * 86400000);
-
-    if( !val || !(val.length===35) ) {
-        document.cookie="cformsshowui=11111111111111111111111111111111111;expires="+timeout.toGMTString()+";";
-    }
-
     window.setshow = function (el) {
         var val=readcookie();
         var c = 'cformsshowui=';
@@ -55,6 +49,11 @@ jQuery(function() {
     };
 
     var val = readcookie();
+    var timeout = new Date(jQuery.now() + 3 * 86400000);
+
+    if( !val || !(val.length===35) ) {
+        document.cookie="cformsshowui=11111111111111111111111111111111111;expires="+timeout.toGMTString()+";";
+    }
 
     // moving dialog box options
     var cfmoveup = function () {

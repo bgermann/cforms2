@@ -226,7 +226,7 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 		}
 
         $head .= ($_GET['header']=='true')?'"'.cforms2_enc_data(stripslashes($entry->field_name), $charset).'"' . $format . $urlTab:'';
-		$body .= '"' . str_replace('"','""', cforms2_enc_data(stripslashes($entry->field_val)), $charset) . '"' . $format . $url;
+		$body .= '"' . str_replace('"','""', cforms2_enc_data(stripslashes($entry->field_val), $charset)) . '"' . $format . $url;
 
 	} ### foreach
 
