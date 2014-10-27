@@ -4,7 +4,7 @@ Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 14.6.8
+Stable tag: 14.6.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
