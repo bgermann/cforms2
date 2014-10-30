@@ -17,11 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-### DB settings
-global $wpdb;
-$wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
-$wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
-
 ### New global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 

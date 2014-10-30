@@ -36,7 +36,7 @@ $newVal = addslashes($_POST['update_value']);
 if ( $f_id<>'' && $newVal<>$oldVal  ) {
 
 	$sql="UPDATE {$wpdb->cformsdata} SET field_val='$newVal' WHERE f_id = '$f_id'";
-	$entries = $wpdb->get_results($sql);
+	$wpdb->get_results($sql); //TODO check SQL injection
 	echo str_replace("\n",'<br />',stripslashes(stripslashes($newVal)));
 
 }

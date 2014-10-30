@@ -72,8 +72,9 @@ function cforms2_submitcomment() {
 	if ( function_exists('wp_get_current_user') )
 		$user = wp_get_current_user();
 
-	for($i = 1; $i <= sizeof($segments); $i++)
+	for($i = 1; $i <= sizeof($segments); $i++) {
 		$params['field_' . $i] = $segments[$i];
+    }
 
 	###  fix reference to first form
 	if ( $segments[0]=='1' ) $params['id'] = $no = ''; else $params['id'] = $no = $segments[0];
@@ -347,7 +348,7 @@ function cforms2_submitcomment() {
 
 	###  multiple recipients? and to whom is the email sent? to_one = picked recip.
 	if ( $isAjaxWPcomment!==false && $track['send2author']=='1' ){
-			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = {$Ajaxpid} AND U.ID=P.post_author");
+			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = {$Ajaxpid} AND U.ID=P.post_author"); //TODO check SQL injection
 			$to = $replyto = ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
 	else if ( !($to_one<>-1 && $to<>'') ){
@@ -502,7 +503,7 @@ function cforms2_submitcomment() {
 	                }
 
 	                if( $sent<>'1' ) {
-	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->ErrorInfo;
+	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
 	                    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
 	                    echo $pre . $err .'|!!!';
 						die();
@@ -548,7 +549,7 @@ function cforms2_submitcomment() {
 	else {  ###  no admin mail sent!
 
 		###  return error msg
-		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->ErrorInfo;
+		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
 	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
 	    echo $pre . $err .'|!!!';
 

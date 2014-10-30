@@ -43,7 +43,7 @@ function cforms2_dashboard() {
 	else
 		return;
 
-	$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformssubmissions} $WHERE ORDER BY sub_date DESC LIMIT 0,5");
+	$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformssubmissions} $WHERE ORDER BY sub_date DESC LIMIT 0,5"); //TODO check SQL injection
 
 	$content .= "<style>\n".
 				"img.dashboardIcon{\n".

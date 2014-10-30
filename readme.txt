@@ -144,6 +144,11 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.6.10 =
+* bugfix:   JavaScript error on flexigrid drag event
+* bugfix:   show errors on sending mail
+* bugfix:   mitigate possible SQL injection attack
+
 = 14.6.9 =
 * bugfix:   [Download Entries on Tracking not working](https://wordpress.org/support/topic/download-entries-on-tracking-not-working)
 * other:    cut old changelog because of rendering problems with too big readme.txt file on wordpress.org

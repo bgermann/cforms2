@@ -104,7 +104,7 @@ function cforms2_sanitize_ids($t) {
 
 ### map data
 function cforms2_all_tracks($session){
-	$t = array(); $i = array();
+	$t = array();
 
 	### clean up underscores
     foreach( array_keys($session) as $key){
@@ -252,7 +252,7 @@ function cforms2_write_tracking_record($no,$field_email,$c=''){
 			$page = (substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2')?$_POST['cforms_pl'.$no]:cforms2_get_current_page(); // WP comment fix
 
 			$wpdb->query("INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES ".
-						 "('" . $no . "', '" . $field_email . "', '" . cforms2_get_ip() . "', '".gmdate('Y-m-d H:i:s', current_time('timestamp'))."');");
+						 "('" . $no . "', '" . $field_email . "', '" . cforms2_get_ip() . "', '".gmdate('Y-m-d H:i:s', current_time('timestamp'))."');"); //TODO check SQL injection
 
     		$subID = $wpdb->get_row("select LAST_INSERT_ID() as number from $wpdb->cformssubmissions;");
     		$subID = ($subID->number=='')?'1':$subID->number;
@@ -262,7 +262,7 @@ function cforms2_write_tracking_record($no,$field_email,$c=''){
             else
 				$sql = "INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES ('$subID','page','$page'),".$sql;
 
-			$wpdb->query( substr(str_replace('-XXX-',$subID,$sql) ,0,-1));
+			$wpdb->query( substr(str_replace('-XXX-',$subID,$sql) ,0,-1)); //TODO check SQL injection
 		}
 		else
 			$subID = 'noid';
@@ -352,13 +352,9 @@ function cforms2_get_mime ($ext){
 
 
 ### replace standard & custom variables in message/subject text
-function cforms2_get_current_page($clean=false){
-	global $Ajaxpid;
+function cforms2_get_current_page(){
 
 	$page = $_SERVER['REQUEST_URI'];
-
-	if ($clean && strpos($page,'?')>0)
-	        $page = substr( $page, 0, strpos($page,'?'));
 
 	$page = (trim($page)=='' || strpos($page,'admin-ajax.php')!==false )?$_SERVER['HTTP_REFERER']:trim($page); // for ajax
 	return htmlspecialchars($page);
@@ -387,7 +383,7 @@ function cforms2_check_post_vars($fv){
 
 ### look for default/system variables
 function cforms2_check_default_vars($m,$no) {
-		global $subID, $Ajaxpid, $AjaxURL, $post, $wpdb, $cformsSettings;
+		global $subID, $Ajaxpid, $AjaxURL, $wpdb, $cformsSettings;
 
 	    $eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
@@ -417,7 +413,7 @@ function cforms2_check_default_vars($m,$no) {
 		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
 			$page = $permalink;
 
-		$find    = $wpdb->get_row("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID='$pid'");
+		$find    = $wpdb->get_row("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID='$pid'"); //TODO check SQL injection
 
 		$CurrUser = wp_get_current_user();
 
@@ -545,7 +541,7 @@ class cforms2_rss {
 					$WHERE = "WHERE form_id = '".$no."'";
 					$rsscount = ($cformsSettings['form'.$no]['cforms'.$no.'_rss_count']>0)?$cformsSettings['form'.$no]['cforms'.$no.'_rss_count']:5;
 				}
-				$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformssubmissions} $WHERE ORDER BY sub_date DESC LIMIT 0,".$rsscount);
+				$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformssubmissions} $WHERE ORDER BY sub_date DESC LIMIT 0,".$rsscount); //TODO check SQL injection
 
 				$content = '';
                 if( count($entries)>0 ){
@@ -559,7 +555,7 @@ class cforms2_rss {
 							$title = '['.$entry->id.'] '.$entry->email;
 
                             $description = '<![CDATA[ <div style="margin:8px 0;"><span style="font-size:150%; color:#aaa;font-weight:bold;">#'.$entry->id.'</span> '. "$date&nbsp;<strong>$time</strong>" .( $single?'':' &nbsp;<strong>"'.$cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname'].'"</strong>:' ).'</div>';
-							$data = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id='{$entry->id}'");
+							$data = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id='{$entry->id}'"); //TODO check SQL injection
                             if( is_array($f) && array_count_values($f)>0 ){
 								foreach( $data as $e ){
 									if( array_search($e->field_name,$f)!==false )
@@ -663,7 +659,7 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     $in = '';
 
     $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $ORDER_1 $limit";
-	$all = $wpdb->get_results($sql);
+	$all = $wpdb->get_results($sql); //TODO check SQL injection
 
 /*	
 	echo '<br> >>'.$sql;
@@ -687,7 +683,7 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 
 	$where = 'sub_id IN ('.substr($in,0,-1).')';
     $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE $where";
-	$all = $wpdb->get_results($sql);
+	$all = $wpdb->get_results($sql); //TODO check SQL injection
 
 	$offsets = array();
 	foreach ( $all as $d ){
@@ -757,7 +753,7 @@ function cforms2_compare( $a,$b ){
 if (!function_exists('cf_extra_comment_data')) {
 	function cf_extra_comment_data( $id ) {
 		global $wpdb;
-		$all = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT sub_id FROM {$wpdb->cformsdata} WHERE field_name='commentID' AND field_val='$id')");
+		$all = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT sub_id FROM {$wpdb->cformsdata} WHERE field_name='commentID' AND field_val='$id')"); //TODO check SQL injection
 		foreach( $all as $a ) {
 			$r[$a->field_name]=$a->field_val;
         }

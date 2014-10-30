@@ -746,7 +746,7 @@ if( strlen($fd)<=2 ) {
                     	<select name="cforms_rssfields[]" id="cforms_rssfields"  multiple="multiple">
                         <?php
                         	$f = $cformsSettings['form'.$no]['cforms'.$no.'_rss_fields'];
-							$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT id FROM {$wpdb->cformssubmissions} WHERE form_id='$no' LIMIT 0,1)");
+							$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT id FROM {$wpdb->cformssubmissions} WHERE form_id='$no' LIMIT 0,1)"); //TODO check SQL injection
 							foreach($entries as $e){
                             	if ($e->field_name <> 'page') echo '<option value="'.$e->field_name.'"'.( array_search($e->field_name,$f)!==false?' selected="selected"':'' ).'>'.stripslashes($e->field_name).'</option>';
                             }

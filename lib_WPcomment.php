@@ -56,7 +56,7 @@ if ( $isAjaxWPcomment ){
 		###
 		### Write Comment
 		###
-		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'");
+		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'"); //TODO check SQL injection
 
 		if ( empty($status->comment_status) ) {
 			$WPresp = __('Comment ID not found.','cforms');
@@ -86,7 +86,7 @@ if ( $isAjaxWPcomment ){
 
 			### If the user is logged in
 			if ( $user->ID ) {
-				$comment_author       = $wpdb->escape($user->display_name);
+				$comment_author       = $wpdb->escape($user->display_name); //TODO wpdb->escape is not a public WP method
 				$comment_author_email = $wpdb->escape($user->user_email);
 				$comment_author_url   = $wpdb->escape($user->user_url);
 				if ( current_user_can('unfiltered_html') ) {
@@ -110,10 +110,10 @@ if ( $isAjaxWPcomment ){
 			if($wpdb->get_var("SELECT comment_ID FROM {$wpdb->comments}	WHERE comment_post_ID = '".$wpdb->escape($comment_post_ID)."' AND ( comment_author = '".$wpdb->escape($comment_author)."' " .($comment_author_email?" OR comment_author_email = '".$wpdb->escape($comment_author_email)."'" : ""). ") AND comment_content = '".$wpdb->escape($comment_content)."' LIMIT 1;")){
 				$WPresp = __('You\'ve said that before. No need to repeat yourself.','cforms');
 				return;
-			}
+			} //TODO check SQL injection
 
 			### Simple flood-protection
-			if ( $lasttime = $wpdb->get_var("SELECT comment_date_gmt FROM $wpdb->comments WHERE comment_author_IP = '$comment_author_IP' OR comment_author_email = '".$wpdb->escape($comment_author_email)."' ORDER BY comment_date DESC LIMIT 1") ) {
+			if ( $lasttime = $wpdb->get_var("SELECT comment_date_gmt FROM $wpdb->comments WHERE comment_author_IP = '$comment_author_IP' OR comment_author_email = '".$wpdb->escape($comment_author_email)."' ORDER BY comment_date DESC LIMIT 1") ) {  //TODO check SQL injection
 				$time_lastcomment = mysql2date('U', $lasttime);
 				$time_newcomment  = mysql2date('U', current_time('mysql', 1));
 
@@ -209,7 +209,7 @@ if ( $isAjaxWPcomment ){
 		###
 		### Write Comment
 		###
-		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'");
+		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'"); //TODO check SQL injection
 
 		if ( empty($status->comment_status) ) {
 			do_action('comment_id_not_found', $comment_post_ID);
@@ -229,7 +229,7 @@ if ( $isAjaxWPcomment ){
 
 		### If the user is logged in
 		if ( $user->ID ) {
-			$comment_author       = $wpdb->escape($user->display_name);
+			$comment_author       = $wpdb->escape($user->display_name); //TODO not public
 			$comment_author_email = $wpdb->escape($user->user_email);
 			$comment_author_url   = $wpdb->escape($user->user_url);
 			if ( current_user_can('unfiltered_html') ) {

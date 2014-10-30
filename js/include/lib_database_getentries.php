@@ -47,48 +47,57 @@ for ($i=1; $i <= $cformsSettings['global']['cforms_formcount']; $i++){
 }
 
 $showIDs = $_POST['showids'];
-$sortBy = ($_POST['sortby']<>'')?$_POST['sortby']:'sub_id';
-$sortOrder = ($_POST['sortorder']<>'')?substr($_POST['sortorder'],1):'desc';
-
-$qtype = $_POST['qtype'];
-$query = $_POST['query'];
-
-### get form id from name
-$query = str_replace('*','',$query);
-$form_ids = false;
-if ( $qtype == 'form_id' && $query <> '' ){
-
-	$forms = $cformsSettings['global']['cforms_formcount'];
-
-	for ($i=0;$i<$forms;$i++) {
-		$no = ($i==0)?'':($i+1);
-
-		if ( preg_match( '/'.$query.'/i', $cformsSettings['form'.$no]['cforms'.$no.'_fname'] ) ){
-        	$form_ids = $form_ids . "'$no',";
-		}
-	}
-	$querystr = ( !$form_ids )?'$%&/':' form_id IN ('.substr($form_ids,0,-1).')';
-}else{
-	$querystr = '%'.$query.'%';
-}
-
-
-if ( $form_ids )
-	$where = "AND $querystr";
-elseif ( $query<>'' )
-	$where = "AND $qtype LIKE '$querystr'";
-else
-	$where = '';
-
 if ($showIDs<>'') {
+    $sortBy = isset($_POST['sortby']) && $_POST['sortby']<>'' ? $_POST['sortby'] : 'sub_id';
+    $sortOrder = isset($_POST['sortorder']) && $_POST['sortorder'] === 'asc' ? 'asc' : 'desc';
 
-	if ( $showIDs<>'all' )
-		$in_list = 'AND sub_id in ('.substr($showIDs,0,-1).')';
-	else
-		$in_list = '';
+    $qtype = $_POST['qtype'];
 
-	$sql="SELECT *, form_id, ip FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $in_list $where ORDER BY $sortBy $sortOrder, f_id";
+    ### get form id from name
+    $query = str_replace('*', '', $_POST['query']);
+    $form_ids = false;
+    if ( $qtype == 'form_id' && $query <> '' ){
+
+        $forms = $cformsSettings['global']['cforms_formcount'];
+
+        for ($i=0;$i<$forms;$i++) {
+            $no = ($i==0)?'':($i+1);
+
+            if ( preg_match( '/'.$query.'/i', $cformsSettings['form'.$no]['cforms'.$no.'_fname'] ) ){
+                $form_ids = $form_ids . "'$no',";
+            }
+        }
+        $querystr = ( !$form_ids )?'$%&/':' form_id IN ('.substr($form_ids,0,-1).')';
+    }else{
+        $querystr = '%'.$query.'%';
+    }
+
+    $sql = "SELECT *, form_id, ip FROM $wpdb->cformsdata, $wpdb->cformssubmissions WHERE sub_id=id ";
+    $sqlargs = array();
+
+	if ( $showIDs<>'all' ) {
+        $sub_ids = explode(',', substr($showIDs,0,-1));
+        $placeholder = implode(',', array_fill(0, count($sub_ids), '%d'));
+		$sql .= "AND sub_id in ($placeholder) ";
+        $sqlargs = array_merge($sqlargs, $sub_ids);
+    }
+
+    if ( $form_ids ) {
+        $sql .= "AND %s ";
+        $sqlargs[] = $querystr;
+    }
+    elseif ( $query<>'' ) {
+        $sql .= "AND %s LIKE %s ";
+        $sqlargs[] = $qtype;
+        $sqlargs[] = $querystr;
+    }
+
+    $sql .= "ORDER BY %s $sortOrder, f_id";
+    $sqlargs[] = $sortBy;
+
+    $sql = $wpdb->prepare($sql, $sqlargs);
 	$entries = $wpdb->get_results($sql);
+    cforms2_dbg($sql);
 	?>
 
 	<div id="top">

@@ -79,7 +79,6 @@ jQuery("#flex1").flexigrid ( {
 	sortname: "id",
 	sortorder: "desc",
 	usepager: true,
-	onDragCol: true,
 	title: '<?php _e('Form Submissions','cforms'); ?>',
 	errormsg: '<?php _e('Connection Error','cforms'); ?>',
 	pagestat: '<?php _e('Displaying {from} to {to} of {total} items','cforms'); ?>',

@@ -343,7 +343,7 @@ function cforms2($args = '',$no = '') {
 	else if( $isWPcommentForm )
 		$action = plugin_dir_url(__FILE__) . 'lib_WPcomment.php'; ### re-route and use WP comment processing
  	else
-		$action = cforms2_get_current_page(false) . '#usermessage'. $no . $actiontarget;
+		$action = cforms2_get_current_page() . '#usermessage'. $no . $actiontarget;
 
 
 	$enctype = $cformsSettings['form'.$no]['cforms'.$no.'_formaction'] ? 'enctype="application/x-www-form-urlencoded"':'enctype="multipart/form-data"';
@@ -1515,7 +1515,7 @@ function cforms2_get_submission_left($no='') {
 	if( $max == '' || $max == 0 || $cformsSettings['global']['cforms_database']=='0' )
 		return -1;
 
-	$entries = $wpdb->get_row("SELECT count(id) as submitted FROM {$wpdb->cformssubmissions} WHERE form_id='{$no}'");
+	$entries = $wpdb->get_row("SELECT count(id) as submitted FROM {$wpdb->cformssubmissions} WHERE form_id='{$no}'"); //TODO check SQL injection
 
 	if( $max-$entries->submitted > 0)
 		return ($max-$entries->submitted);

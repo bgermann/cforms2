@@ -351,7 +351,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	###  WP comment form > email to author
 	if ( $isTAF=='2' && $track['send2author']=='1'){
-			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = ".($_POST['comment_post_ID'.$no])." AND U.ID=P.post_author");
+			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = ".($_POST['comment_post_ID'.$no])." AND U.ID=P.post_author"); //TODO check SQL injection
 			$to = $replyto =  ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
 	else if ( !($to_one<>-1 && $to<>'') ){
@@ -598,7 +598,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                }
 
 	                if( $sent<>'1' )
-				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->ErrorInfo;
+				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
 	            }
 
 	        ###  redirect to a different page on suceess?
@@ -619,7 +619,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	    } ###  if $sentadmin
 	    else
-	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->ErrorInfo;
+	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
 	} ### if $MPok
 
 } ### if isset & valid sendbutton

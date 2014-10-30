@@ -423,14 +423,16 @@ class cforms2_mail {
 	    if ($body == '') return false;
 
 	    $to = '';
-	    for($i = 0; $i < count($this->to); $i++)
-          $to .= (($i != 0) ? ', ':'' ) . $this->addr_fmt($this->to[$i]);
+	    for($i = 0; $i < count($this->to); $i++) {
+            $to .= (($i != 0) ? ', ':'' ) . $this->addr_fmt($this->to[$i]);
+        }
 
 	    $to_all = explode(',', $to);
 
 	    if ($this->split_to === true && count($to_all) > 1) {
-	        foreach ($to_all as $key => $val)
-	          $rt = wp_mail($val, $this->enc_h($this->fix_header($this->subj)), $body, $header);
+	        foreach ($to_all as $val) {
+                $rt = wp_mail($val, $this->enc_h($this->fix_header($this->subj)), $body, $header);
+            }
 	    } else
 	        $rt = wp_mail($to, $this->enc_h($this->fix_header($this->subj)), $body, $header);
 
@@ -467,7 +469,6 @@ class cforms2_mail {
 	    for($i = 0; $i < count($this->up); $i++) {
 
 			$path		 = $this->up[$i][0];
-	        $filename    = $this->up[$i][1];
 	        $name        = $this->up[$i][2];
 	        $encoding    = $this->up[$i][3];
 	        $type        = $this->up[$i][4];

@@ -91,12 +91,12 @@ if ( $qtype=='id' )
 	$total = 1;
 else{
 	$sql = "SELECT count(id) FROM {$wpdb->cformssubmissions} $where";
-	$total = $wpdb->get_var($sql);
+	$total = $wpdb->get_var($sql); //TODO check SQL injection
 }
 
 ### get results
 $sql="SELECT * FROM {$wpdb->cformssubmissions} $where $sort $limit";
-$result = $wpdb->get_results($sql);
+$result = $wpdb->get_results($sql); //TODO check SQL injection
 
 /*
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT" );

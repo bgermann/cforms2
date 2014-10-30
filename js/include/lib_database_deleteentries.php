@@ -80,7 +80,7 @@ if ( $sub_ids<>'' ){
 			$sub_id = '1';
 
 		$sql = "SELECT field_val,form_id,sub_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE $sub_id $doquery AND id=sub_id AND field_name LIKE '%[*%'";
-		$filevalues = $wpdb->get_results($sql);
+		$filevalues = $wpdb->get_results($sql); //TODO check SQL injection
 
 		$del='';
 		$found = 0;
@@ -118,8 +118,8 @@ if ( $sub_ids<>'' ){
 		else
 			$dospecialquery = '';
 
-		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformsdata} WHERE $whereD $dospecialquery");
-		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE $whereS $doquery");
+		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformsdata} WHERE $whereD $dospecialquery"); //TODO check SQL injection
+		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE $whereS $doquery"); //TODO check SQL injection
 	endforeach;
 
 	 _e('Entries successfully removed from the tracking tables!', 'cforms');
