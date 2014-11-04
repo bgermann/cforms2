@@ -54,7 +54,7 @@
                 cm.setActive('cforms', (n.nodeName === 'SPAN' && ed.dom.hasClass(n, 'mce_plugin_cforms_img')) );
             });
             
-            ed.addButton('cforms', { title : 'cforms.desc', cmd : 'mcecforms', image : url+'../images/button.gif' }); //???
+            ed.addButton('cforms', { title : 'cforms.desc', cmd : 'mcecforms', image : url + '/../images/button.gif' }); //???
             ed.addShortcut('ctrl+f', ed.getLang('cforms.desc'), 'mcecforms');
 
             // Replace morebreak with images
