@@ -1372,17 +1372,15 @@ function cforms2_widget_init() {
     $control_ops = array('width' => 200, 'height' => 200, 'id_base' => 'cforms' );
 	$name = 'cforms';
 
-	if(isset($options[0])) unset($options[0]);
+	if(isset($options[0]))
+		unset($options[0]);
 
-	if(!empty($options)){
-		foreach(array_keys($options) as $widget_number){
-			wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'cforms2_widget', $widget_ops, array( 'number' => $widget_number ));
-			wp_register_widget_control($prefix.'-'.$widget_number, $name, 'cforms2_widget_options', $control_ops, array( 'number' => $widget_number ));
-		}
-	} else{
+	if(empty($options)){
 		$options = array();
-		$widget_number = 1;
-		wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'cforms2_widget', $widget_ops, array( 'number' => $widget_number ));
+		$options[1] = null;
+	}
+	foreach(array_keys($options) as $widget_number){
+		wp_register_sidebar_widget($prefix.'-'.$widget_number, $name, 'cforms2_widget',         $widget_ops,  array( 'number' => $widget_number ));
 		wp_register_widget_control($prefix.'-'.$widget_number, $name, 'cforms2_widget_options', $control_ops, array( 'number' => $widget_number ));
 	}
 }
