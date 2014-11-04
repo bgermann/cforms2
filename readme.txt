@@ -82,6 +82,11 @@ Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-cs
 That function was removed. The Wordpress function wp_mail is now used for mails, which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
 
+= I upgraded and lost my widgets. What can I do? =
+
+Beginning with 14.6.10 Wordpress 2.8 Widget API is used for cforms widgets.
+You have to recreate your widgets. You can find your old settings in debug output on the Global Settings Admin menu.
+Just search for widgets with your browser's search.
 
 = How can I contribute code? =
 
@@ -120,6 +125,9 @@ Some things are to be done:
 
 == Upgrade Notice ==
 
+= 14.6.10 =
+Wordpress 2.8 Widget API is now used for cforms widgets. You have to recreate your widgets.
+
 = 14.6.8 =
 There are full German and Italian translations available now.
 
@@ -142,9 +150,11 @@ GPL compliance!
 == Changelog ==
 
 = 14.6.10 =
+* enhanced: use Wordpress 2.8 Widget API
 * bugfix:   JavaScript error on flexigrid drag event
 * bugfix:   show errors on sending mail
 * bugfix:   mitigate possible SQL injection attack
+* other:    remove attribution link, because the original cforms site is shut down
 
 = 14.6.9 =
 * bugfix:   [Download Entries on Tracking not working](https://wordpress.org/support/topic/download-entries-on-tracking-not-working)
