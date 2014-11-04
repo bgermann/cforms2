@@ -1368,116 +1368,6 @@ function cforms2_widget_init() {
 
     $prefix = 'cforms';
 
-	        function cforms2_widget($args) {
-	            $cformsSettings = get_option('cforms_settings');
-	            $options = $cformsSettings['global']['widgets'];
-
-	            $id = substr($args['widget_id'], 7);
-	            $no = ($options[$id]['form']=='1')?'':$options[$id]['form'];
-	            $title = htmlspecialchars(stripslashes($options[$id]['title']));
-
-	            echo $args['before_widget'].$args['before_title'].$title.$args['after_title'];
-	            insert_cform($no);
-	            echo $args['after_widget'];
-	        }
-
-	        function cforms2_widget_options($args) {
-
-	            $cformsSettings = get_option('cforms_settings');
-
-				$options = array();
-				if( is_array($cformsSettings['global']['widgets']) )
-					$options = $cformsSettings['global']['widgets'];
-	            
-	            $prefix = 'cforms';
-
-	            if(empty($options)) $options = array();
-	            if(isset($options[0])) unset($options[0]);
-
-	           // update options array
-	            if( is_array($_POST) && !empty($_POST[$prefix]) ){
-	                foreach($_POST[$prefix] as $widget_number => $values){
-	                    if(empty($values) && isset($options[$widget_number])) // user clicked cancel
-	                        continue;
-
-	                    if(!isset($options[$widget_number]) && $args['number'] == -1){
-	                        $args['number'] = $widget_number;
-	                        $options['last_number'] = $widget_number;
-	                    }
-	                    $options[$widget_number] = $values;
-	                }
-
-	                // update number
-	                if($args['number'] == -1 && !empty($options['last_number'])){
-	                    $args['number'] = $options['last_number'];
-	                }
-
-	                // clear unused options and update options in DB. return actual options array
-	                $options = cforms2_widget_update($prefix, $options, $_POST['sidebar']);
-
-	            }
-
-	            $number = ($args['number'] == -1)? '%i%' : $args['number'];
-
-	            // stored data
-	            $opts  = $options[$number];
-	            $title = $opts['title'];
-	            $form = $opts['form'];
-
-
-                $opt = '';
-                $forms = $cformsSettings['global']['cforms_formcount'];
-                for ($i=1;$i<=$forms;$i++) {
-                    $no = ($i==1)?'':($i);
-                    $selected = ( $i==$form )? ' selected="selected"':'';
-                    $name = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']);
-                    $name = (strlen($name)>40) ? substr($name,0,40).'&#133':$name;
-                    $opt .= '<option value="'.$i.'"'. $selected .'>'.$name.'</option>';
-                }
-
-	            echo '<label for="' .$prefix. '-' . $number. '-title">' . __('Title', 'cforms') . ':</label>'.
-	                 '<input type="text" id="' .$prefix. '-' . $number. '-title" name="' .$prefix. '[' . $number. '][title]" value="' .$title. '" /><br />';
-
-				echo '<label for="' .$prefix. '-' . $number. '-form">' . __('Form', 'cforms') . ':</label>'.
-                	 '<select id="' .$prefix. '-' . $number. '-form" name="' .$prefix. '[' . $number. '][form]" style="width:220px; font-size:10px; font-family:Arial;">'. $opt .'</select>';
-
-	        }
-
-	        function cforms2_widget_update($id_prefix, $options, $sidebar){
-
-	                static $updated = false;
-
-				    $cformsSettings = get_option('cforms_settings');
-
-	                // get active sidebar
-	                $sidebars_widgets = wp_get_sidebars_widgets();
-	                if ( isset($sidebars_widgets[$sidebar]) )
-	                    $this_sidebar =& $sidebars_widgets[$sidebar];
-	                else
-	                    $this_sidebar = array();
-
-	                // search unused options
-	                foreach ( $this_sidebar as $_widget_id ) {
-	                    if(preg_match('/'.$id_prefix.'-([0-9]+)/i', $_widget_id, $match)){
-	                        $widget_number = $match[1];
-
-	                        if(!in_array($match[0], $_POST['widget-id'])){
-	                            unset($options[$widget_number]);
-	                        }
-	                    }
-	                }
-
-	                // update database
-	                $cformsSettings['global']['widgets'] = $options;
-                    update_option('cforms_settings',$cformsSettings);
-                    $updated = true;
-
-	                // return updated array
-	                return $options;
-
-            }
-
-
     $widget_ops = array('classname' => 'widgetcform', 'description' => __('Add any cforms form to your sidebar', 'cforms') );
     $control_ops = array('width' => 200, 'height' => 200, 'id_base' => 'cforms' );
 	$name = 'cforms';
@@ -1497,6 +1387,115 @@ function cforms2_widget_init() {
 	}
 }
 
+
+function cforms2_widget($args) {
+	$cformsSettings = get_option('cforms_settings');
+	$options = $cformsSettings['global']['widgets'];
+
+	$id = substr($args['widget_id'], 7);
+	$no = ($options[$id]['form']=='1')?'':$options[$id]['form'];
+	$title = htmlspecialchars(stripslashes($options[$id]['title']));
+
+	echo $args['before_widget'].$args['before_title'].$title.$args['after_title'];
+	insert_cform($no);
+	echo $args['after_widget'];
+}
+
+function cforms2_widget_options($args) {
+
+	$cformsSettings = get_option('cforms_settings');
+
+	$options = array();
+	if( is_array($cformsSettings['global']['widgets']) )
+		$options = $cformsSettings['global']['widgets'];
+
+	$prefix = 'cforms';
+
+	if(empty($options)) $options = array();
+	if(isset($options[0])) unset($options[0]);
+
+   // update options array
+	if( is_array($_POST) && !empty($_POST[$prefix]) ){
+		foreach($_POST[$prefix] as $widget_number => $values){
+			if(empty($values) && isset($options[$widget_number])) // user clicked cancel
+				continue;
+
+			if(!isset($options[$widget_number]) && $args['number'] == -1){
+				$args['number'] = $widget_number;
+				$options['last_number'] = $widget_number;
+			}
+			$options[$widget_number] = $values;
+		}
+
+		// update number
+		if($args['number'] == -1 && !empty($options['last_number'])){
+			$args['number'] = $options['last_number'];
+		}
+
+		// clear unused options and update options in DB. return actual options array
+		$options = cforms2_widget_update($prefix, $options, $_POST['sidebar']);
+
+	}
+
+	$number = ($args['number'] == -1)? '%i%' : $args['number'];
+
+	// stored data
+	$opts  = $options[$number];
+	$title = $opts['title'];
+	$form = $opts['form'];
+
+
+	$opt = '';
+	$forms = $cformsSettings['global']['cforms_formcount'];
+	for ($i=1;$i<=$forms;$i++) {
+		$no = ($i==1)?'':($i);
+		$selected = ( $i==$form )? ' selected="selected"':'';
+		$name = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']);
+		$name = (strlen($name)>40) ? substr($name,0,40).'&#133':$name;
+		$opt .= '<option value="'.$i.'"'. $selected .'>'.$name.'</option>';
+	}
+
+	echo '<label for="' .$prefix. '-' . $number. '-title">' . __('Title', 'cforms') . ':</label>'.
+		 '<input type="text" id="' .$prefix. '-' . $number. '-title" name="' .$prefix. '[' . $number. '][title]" value="' .$title. '" /><br />';
+
+	echo '<label for="' .$prefix. '-' . $number. '-form">' . __('Form', 'cforms') . ':</label>'.
+		 '<select id="' .$prefix. '-' . $number. '-form" name="' .$prefix. '[' . $number. '][form]" style="width:220px; font-size:10px; font-family:Arial;">'. $opt .'</select>';
+
+}
+
+function cforms2_widget_update($id_prefix, $options, $sidebar){
+
+	static $updated = false;
+
+	$cformsSettings = get_option('cforms_settings');
+
+	// get active sidebar
+	$sidebars_widgets = wp_get_sidebars_widgets();
+	if ( isset($sidebars_widgets[$sidebar]) )
+		$this_sidebar =& $sidebars_widgets[$sidebar];
+	else
+		$this_sidebar = array();
+
+	// search unused options
+	foreach ( $this_sidebar as $_widget_id ) {
+		if(preg_match('/'.$id_prefix.'-([0-9]+)/i', $_widget_id, $match)){
+			$widget_number = $match[1];
+
+			if(!in_array($match[0], $_POST['widget-id'])){
+				unset($options[$widget_number]);
+			}
+		}
+	}
+
+	// update database
+	$cformsSettings['global']['widgets'] = $options;
+	update_option('cforms_settings',$cformsSettings);
+	$updated = true;
+
+	// return updated array
+	return $options;
+
+}
 
 ### get # of submission left (max subs)
 function cforms2_get_submission_left($no='') {
