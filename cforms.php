@@ -1156,13 +1156,10 @@ function cforms2_findlast( $haystack,$needle,$offset=NULL ){
 
 ### replace placeholder by generated code
 function cforms2_insert( $content ) {
-	global $post, $cformsSettings; $newcontent='';
+	global $cformsSettings; $newcontent='';
 
 	$last=0;
 	if ( ($a=strpos($content,'<!--cforms'))!==false ) {  ### only if form tag is present!
-		
-		### get rid of WP's auto p...
-		//remove_filter('the_content',  'wpautop');
 
 		$p_offset= 0;
 		$part_content = substr( $content, 0, $a-$last );
@@ -1248,7 +1245,6 @@ function cforms2_build_fstat($f) {
 ### inserts a cform anywhere you want
 if (!function_exists('insert_cform')) {
 function insert_cform($no='',$custom='',$c='') {
-	global $post;
 
 	$pid = cforms2_cfget_pid();
 
@@ -1375,17 +1371,14 @@ function cforms2_widget_init() {
 	        function cforms2_widget($args) {
 	            $cformsSettings = get_option('cforms_settings');
 	            $options = $cformsSettings['global']['widgets'];
-	            extract($args);
 
-	            $prefix = 'cforms';
-
-	            $id = substr($widget_id, 7);
+	            $id = substr($args['widget_id'], 7);
 	            $no = ($options[$id]['form']=='1')?'':$options[$id]['form'];
 	            $title = htmlspecialchars(stripslashes($options[$id]['title']));
 
-	            echo $before_widget.$before_title.$title.$after_title;
+	            echo $args['before_widget'].$args['before_title'].$title.$args['after_title'];
 	            insert_cform($no);
-	            echo $after_widget;
+	            echo $args['after_widget'];
 	        }
 
 	        function cforms2_widget_options($args) {
