@@ -153,7 +153,7 @@ GPL compliance!
 * enhanced: use Wordpress 2.8 Widget API
 * bugfix:   JavaScript error on flexigrid drag event
 * bugfix:   show errors on sending mail
-* bugfix:   mitigate possible SQL injection attack
+* bugfix:   mitigate some possible SQL injection attacks
 * other:    remove attribution link, because the original cforms site is shut down
 
 = 14.6.9 =

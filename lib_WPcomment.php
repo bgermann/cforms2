@@ -56,7 +56,7 @@ if ( $isAjaxWPcomment ){
 		###
 		### Write Comment
 		###
-		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'"); //TODO check SQL injection
+		$status = $wpdb->get_row($wpdb->prepare("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = %s", $comment_post_ID));
 
 		if ( empty($status->comment_status) ) {
 			$WPresp = __('Comment ID not found.','cforms');
@@ -86,9 +86,9 @@ if ( $isAjaxWPcomment ){
 
 			### If the user is logged in
 			if ( $user->ID ) {
-				$comment_author       = $wpdb->escape($user->display_name); //TODO wpdb->escape is not a public WP method
-				$comment_author_email = $wpdb->escape($user->user_email);
-				$comment_author_url   = $wpdb->escape($user->user_url);
+				$comment_author       = esc_sql($user->display_name);
+				$comment_author_email = esc_sql($user->user_email);
+				$comment_author_url   = esc_sql($user->user_url);
 				if ( current_user_can('unfiltered_html') ) {
 					if ( wp_create_nonce('unfiltered-html-comment_' . $comment_post_ID) != $_POST['_wp_unfiltered_html_comment'] ) {
 						kses_remove_filters(); ### start with a clean slate
@@ -107,13 +107,13 @@ if ( $isAjaxWPcomment ){
 			$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 
 			### Simple duplicate check
-			if($wpdb->get_var("SELECT comment_ID FROM {$wpdb->comments}	WHERE comment_post_ID = '".$wpdb->escape($comment_post_ID)."' AND ( comment_author = '".$wpdb->escape($comment_author)."' " .($comment_author_email?" OR comment_author_email = '".$wpdb->escape($comment_author_email)."'" : ""). ") AND comment_content = '".$wpdb->escape($comment_content)."' LIMIT 1;")){
+			if( $wpdb->get_var($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %s AND ( comment_author = %s " .($comment_author_email ? " OR comment_author_email = '".esc_sql($comment_author_email)."'" : ""). ") AND comment_content = %s LIMIT 1;", $comment_post_ID, $comment_author, $comment_content)) ) {
 				$WPresp = __('You\'ve said that before. No need to repeat yourself.','cforms');
 				return;
-			} //TODO check SQL injection
+			}
 
 			### Simple flood-protection
-			if ( $lasttime = $wpdb->get_var("SELECT comment_date_gmt FROM $wpdb->comments WHERE comment_author_IP = '$comment_author_IP' OR comment_author_email = '".$wpdb->escape($comment_author_email)."' ORDER BY comment_date DESC LIMIT 1") ) {  //TODO check SQL injection
+			if ( $lasttime = $wpdb->get_var($wpdb->prepare("SELECT comment_date_gmt FROM $wpdb->comments WHERE comment_author_IP = %s OR comment_author_email = %s ORDER BY comment_date DESC LIMIT 1", $comment_author_IP, $comment_author_email)) ) {
 				$time_lastcomment = mysql2date('U', $lasttime);
 				$time_newcomment  = mysql2date('U', current_time('mysql', 1));
 
@@ -209,7 +209,7 @@ if ( $isAjaxWPcomment ){
 		###
 		### Write Comment
 		###
-		$status = $wpdb->get_row("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = '$comment_post_ID'"); //TODO check SQL injection
+		$status = $wpdb->get_row($wpdb->prepare("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = %s", $comment_post_ID));
 
 		if ( empty($status->comment_status) ) {
 			do_action('comment_id_not_found', $comment_post_ID);
@@ -229,9 +229,9 @@ if ( $isAjaxWPcomment ){
 
 		### If the user is logged in
 		if ( $user->ID ) {
-			$comment_author       = $wpdb->escape($user->display_name); //TODO not public
-			$comment_author_email = $wpdb->escape($user->user_email);
-			$comment_author_url   = $wpdb->escape($user->user_url);
+			$comment_author       = esc_sql($user->display_name);
+			$comment_author_email = esc_sql($user->user_email);
+			$comment_author_url   = esc_sql($user->user_url);
 			if ( current_user_can('unfiltered_html') ) {
 				if ( wp_create_nonce('unfiltered-html-comment_' . $comment_post_ID) != $_POST['_wp_unfiltered_html_comment'] ) {
 					kses_remove_filters(); ### start with a clean slate

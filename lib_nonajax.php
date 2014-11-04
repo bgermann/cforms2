@@ -351,7 +351,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	###  WP comment form > email to author
 	if ( $isTAF=='2' && $track['send2author']=='1'){
-			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = ".($_POST['comment_post_ID'.$no])." AND U.ID=P.post_author"); //TODO check SQL injection
+			$to = $wpdb->get_results($wpdb->prepare("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = %d AND U.ID=P.post_author", $_POST['comment_post_ID'.$no]));
 			$to = $replyto =  ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
 	else if ( !($to_one<>-1 && $to<>'') ){
