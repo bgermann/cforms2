@@ -1093,8 +1093,6 @@ function cforms2($args = '',$no = '') {
 
 
 	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form>';
-	if (isset($cformsSettings['global']['cforms_linklove']) && $cformsSettings['global']['cforms_linklove'])
-		$content .= '<p class="linklove" id="ll'. $no .'"><a href="http://www.deliciousdays.com/cforms-plugin"><em>cforms</em> contact form by delicious:days</a></p>';
 
 	### either show message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
@@ -1525,10 +1523,10 @@ if (function_exists('add_action')){
 
 	### widget init
 	add_action('plugins_loaded', 'cforms2_localization' );
-	add_action('plugins_loaded', 'cforms2_widget_init');
+	add_action('widgets_init', 'cforms2_widget_init');
 
-	$admin   = is_admin();
-	$cfadmin = ( strpos($_SERVER['QUERY_STRING'],plugin_dir_path(plugin_basename(__FILE__)).'cforms')!==false )?true:false;
+	$admin = is_admin();
+	$cfadmin = strpos($_SERVER['QUERY_STRING'],plugin_dir_path(plugin_basename(__FILE__)).'cforms') !== false;
 
 	### dashboard
 	if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {

@@ -420,23 +420,6 @@ div.mailerr {
 }
 
 /*                                                    */
-/*  Other: link love                                  */
-/*                                                    */
-.linklove {
-	width:410px;
-	margin:0 auto 10px!important;
-	padding:0!important;	
-	text-align:center!important;
-}
-.linklove a,
-.linklove a:visited {
-	font-size: 0.8em;
-	font-family: Tahoma;
-	color:#aaaaaa!important;
-}
-
-  
-/*                                                    */
 /*  Other: browser hacks                              */
 /*                                                    */
 * html .cform legend { 

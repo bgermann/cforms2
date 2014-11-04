@@ -189,7 +189,7 @@ if(!empty($_POST['save_css'])){
 							</tr>
 							<tr>
 								<td colspan="3">
-										<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/css-customization-guide-1'); ?></p>
+										<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 								</td>
 							</tr>
 

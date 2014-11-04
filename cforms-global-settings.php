@@ -67,7 +67,6 @@ if ( isset($_REQUEST['deletetables']) ) {
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
 
-	$cformsSettings['global']['cforms_linklove'] = $_REQUEST['cforms_linklove']?'1':'0';
 	$cformsSettings['global']['cforms_html5'] = $_REQUEST['cforms_html5']?'1':'0';
 	$cformsSettings['global']['cforms_show_quicktag'] = $_REQUEST['cforms_show_quicktag']?'1':'0';
 	$cformsSettings['global']['cforms_sec_qa'] = 		$_REQUEST['cforms_sec_qa'];
@@ -702,21 +701,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				</tr>
 				<?php endif; ?>
 
-				</table>
-			</div>
-		</fieldset>
-
-		<fieldset id="linklove" class="cformsoptions">
-			<div class="cflegend op-closed" id="p32" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Link Attribution', 'cforms')?>
-            </div>
-
-			<div class="cf-content" id="o32">
-				<table class="form-table">
-					<tr class="ob">
-						<td class="obL"></td>
-						<td class="obR"><input class="allchk" type="checkbox" id="cforms_linklove" name="cforms_linklove" <?php if($cformsSettings['global']['cforms_linklove']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_linklove"><strong><?php _e('Enable link attribution', 'cforms') ?></strong></label></td>
-					</tr>
 				</table>
 			</div>
 		</fieldset>

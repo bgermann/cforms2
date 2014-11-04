@@ -401,23 +401,6 @@ p.failure 	{
 }
 
 /*                                                    */
-/*  Other: link love                                  */
-/*                                                    */
-.linklove {
-	margin:6px auto 10px !important;
-	padding:0pt 6px 0pt 0pt !important;
-	text-align:right;
-	width:410px;
-}
-.linklove a,
-.linklove a:visited {
-	font-size: 0.8em;
-	font-family: Tahoma;
-	color:#aaaaaa!important;
-}
-
-
-/*                                                    */
 /*  Other: browser hacks                              */
 /*                                                    */
 *+html ol.cf-ol,

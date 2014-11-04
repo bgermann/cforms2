@@ -196,10 +196,7 @@ function cforms2_format_email($track,$no){
 
 	}
 	$r['text'] = $t;
-	$linklove = '';
-	if ( isset($cformsSettings['global']['cforms_linklove']) && $cformsSettings['global']['cforms_linklove'] )
-		$linklove = '<span '.$cformsSettings['global']['cforms_style']['cforms'].'>powered by <a href="http://www.deliciousdays.com/cforms-plugin">cformsII</a></span>';
-    $r['html'] = '<div '.$cformsSettings['global']['cforms_style']['admin'].'><span '.$cformsSettings['global']['cforms_style']['title'].'>'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'</span><table cellpadding="0" cellspacing="0" '.$cformsSettings['global']['cforms_style']['table'].'>'.stripslashes($h).'</table>' . $linklove . '</div>';
+    $r['html'] = '<div '.$cformsSettings['global']['cforms_style']['admin'].'><span '.$cformsSettings['global']['cforms_style']['title'].'>'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']).'</span><table cellpadding="0" cellspacing="0" '.$cformsSettings['global']['cforms_style']['table'].'>'.stripslashes($h).'</table></div>';
 	return $r;
 }
 

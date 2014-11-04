@@ -14,15 +14,13 @@ cformsII is the most customizable, flexible & powerful ajax supporting contact f
 
 This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi form management, you can even have multiple forms on the same page!
 
-The original author does not seem to further develop the plugin. This fork is an effort to keep it up to date.
+Oliver, the original author, does not further develop the plugin. This fork is an effort to keep it up to date.
 If you want to use non-GPL versions older than 10.2 or see their changelog, you can [browse the original Trac](https://plugins.trac.wordpress.org/browser/cforms/).
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms".
 
 = Credits =
 
 Some icons are based on the wonderful set of Jan Kovařík: [glyphicons](http://glyphicons.com).
-
-Oliver, the original author, believes in good karma, so it is up to you to activate the link attribution on the global settings page. Thanks for the consideration.
 
 = License Information =
 
@@ -74,28 +72,27 @@ Also note that it is always advisable to make or keep a backup of your
 current plugin directory just in case you need to revert back to a
 previous release!
 
-Check out the [cforms CSS Guide and webcast](http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/) on layout customization.
+Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf) on layout customization.
 
 
 == Frequently Asked Questions ==
 
-Please visit the [cforms plugin forum](http://www.deliciousdays.com/cforms-forum) for old [FAQ](http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/) and more help.
+= Where are the external SMTP settings? =
 
-= How can I contribute code =
+That function was removed. The Wordpress function wp_mail is now used for mails, which makes use of built-in PHPMailer.
+If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+
+
+= How can I contribute code? =
 
 Please use [GitHub pull requests on our mirror](https://github.com/bgermann/cforms2/pulls).
-
-
-== Screenshots ==
-
-Please visit the [cforms plugin page](http://www.deliciousdays.com/cforms-plugin) for screenshots & user examples.
 
 
 == Localization ==
 
 If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
 
-You can find a list of the [translations for the original cforms version](http://www.deliciousdays.com/cforms-plugin/), which also work with this fork.
+You can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/), which also work with this fork.
 If there is a language file available for you, but it is not included in the standard distribution, please put the cforms-*.mo file in the wp-content/languages/plugins directory.
 
 If you would like to contribute a new language file, please [submit a GitHub pull request](https://github.com/bgermann/cforms2/pulls) with the translation file included.

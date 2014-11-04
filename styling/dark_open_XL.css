@@ -397,22 +397,6 @@ div.waiting {
 }
 
 /*                                                    */
-/*  Other: link love                                  */
-/*                                                    */
-.linklove {
-	width:450px;
-	margin:6px 0 10px!important;
-	padding:0!important;	
-	text-align:left!important;
-}
-.linklove a,
-.linklove a:visited {
-	font-size: 0.8em;
-	font-family: Tahoma;
-	color:#aaaaaa!important;
-}
-
-/*                                                    */
 /*  Other: browser hacks                              */
 /*                                                    */
 * html .cform legend { 

@@ -400,20 +400,6 @@ html:root .cform input.cf_upload { 			/* FF only */
 .cform input.cf_upload:hover  {
 	width:242px!important;	
 }
-/*                                                    */
-/*  Other: link love                                  */
-/*                                                    */
-.linklove {
-	width:410px;
-	margin:0 auto 10px!important;
-	padding:0!important;	
-	text-align:right!important;
-}
-.linklove a,
-.linklove a:visited {
-	font:10px Tahoma;
-	color:#aaaaaa!important;
-}
 
 /*                                                    */
 /*  Other: browser hacks                              */

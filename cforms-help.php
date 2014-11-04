@@ -951,7 +951,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
         </div>
 
 		<div class="cf-content" id="o21">
-			<br/ >
+			<br/>
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
 					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: get_cforms_entries()', 'cforms'); ?>"><?php _e('API Function', 'cforms'); ?></span> &nbsp;&nbsp;&nbsp; <strong>get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;,$sortdir&nbsp;)</strong></td>
@@ -1016,7 +1016,6 @@ echo '&lt;/table&gt;';</pre></td></tr>
 				</tr>
 				<tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms'); ?>:</span></td></tr>
 				<tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored comment data in a multi-dimensional array.', 'cforms'); ?></td></tr>
-				<tr><td class="ball" colspan="2"><span class="abbr"><?php _e('Example', 'cforms'); ?></span> <?php echo sprintf(__('(see also the %sonline tutorial%s in the cforms forum)', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/troubleshooting/tutorial-wp-comment-feature-adding-and-using-extra-fields/">','</a>'); ?></td></tr>
 				<tr><td class="ball" colspan="2"><code>$xtra_comment_data = cf_extra_comment_data( get_comment_ID() );   /* all data, no filters */</code></td></tr>
 			</table>
 
@@ -1515,7 +1514,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
 			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
 			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
-			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/cforms-forum/css-styling-and-layout/css-customization-guide-1/'); ?></p>
+			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>
 
@@ -1525,7 +1524,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
         </div>
 
 		<div class="cf-content" id="o25">
-			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms'),'<a href="http://www.deliciousdays.com/cforms-forum/troubleshooting/frequently-asked-questions-faqs/page-1">','</a>','<a href="http://www.deliciousdays.com/cforms-forum">','</a>'); ?></p>
+			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms'),'<a href="https://wordpress.org/plugins/cforms2/faq/">','</a>','<a href="https://wordpress.org/support/plugin/cforms2">','</a>'); ?></p>
 		</div>
 
 	<?php cforms2_footer(); ?>
