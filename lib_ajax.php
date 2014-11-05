@@ -357,7 +357,7 @@ function cforms2_submitcomment() {
 
 
 	### from
-	$frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	$frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track);
 
 
 	###  T-A-F override?
@@ -373,7 +373,7 @@ function cforms2_submitcomment() {
 	if (function_exists('my_cforms_logic'))
 		$vsubject = my_cforms_logic($trackf,$vsubject,'adminEmailSUBJ');
 	$vsubject = cforms2_check_default_vars($vsubject,$no);
-	$vsubject = cforms2_check_cust_vars($vsubject,$track,$no);
+	$vsubject = cforms2_check_cust_vars($vsubject,$track);
 
 
 	###  prep message text, replace variables
@@ -381,7 +381,7 @@ function cforms2_submitcomment() {
 	if ( function_exists('my_cforms_logic') )
 		$message = my_cforms_logic($trackf, $message,'adminEmailTXT');
 	$message = cforms2_check_default_vars($message,$no);
-	$message = cforms2_check_cust_vars($message,$track,$no);
+	$message = cforms2_check_cust_vars($message,$track);
 
 	###  actual user message
     $htmlmessage='';
@@ -390,7 +390,7 @@ function cforms2_submitcomment() {
 	    if ( function_exists('my_cforms_logic') )
 	        $htmlmessage = my_cforms_logic($trackf, $htmlmessage,'adminEmailHTML');
 		$htmlmessage = cforms2_check_default_vars($htmlmessage,$no);
-	    $htmlmessage = cforms2_check_cust_vars($htmlmessage,$track,$no,true);
+	    $htmlmessage = cforms2_check_cust_vars($htmlmessage,$track,true);
 
 	}
 
@@ -426,14 +426,14 @@ function cforms2_submitcomment() {
 	    if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[data][$ccme]<>'') )  ###  not if no email & already CC'ed
 	    {
 
-	                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track,$no);
+	                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track);
 
 	                ###  actual user message
 	                $cmsg = stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_cmsg']);
 	                if ( function_exists('my_cforms_logic') )
 	                    $cmsg = my_cforms_logic($trackf, $cmsg,'autoConfTXT');
 	                $cmsg = cforms2_check_default_vars($cmsg,$no);
-	                $cmsg = cforms2_check_cust_vars($cmsg,$track,$no);
+	                $cmsg = cforms2_check_cust_vars($cmsg,$track);
 
 	                ###  HTML text
 	                $cmsghtml='';
@@ -442,7 +442,7 @@ function cforms2_submitcomment() {
 	                    if ( function_exists('my_cforms_logic') )
 	                        $cmsghtml = my_cforms_logic($trackf, $cmsghtml,'autoConfHTML');
 	                    $cmsghtml = cforms2_check_default_vars($cmsghtml,$no);
-	                    $cmsghtml = cforms2_check_cust_vars($cmsghtml,$track,$no,true);
+	                    $cmsghtml = cforms2_check_cust_vars($cmsghtml,$track,true);
 	                }
 
 	                ### subject
@@ -450,7 +450,7 @@ function cforms2_submitcomment() {
 					if (function_exists('my_cforms_logic'))
 						$subject2 = my_cforms_logic($trackf,$subject2,'autoConfSUBJ');
 					$subject2 = cforms2_check_default_vars($subject2,$no);
-	                $subject2 = cforms2_check_cust_vars($subject2,$track,$no);
+	                $subject2 = cforms2_check_cust_vars($subject2,$track);
 
 	                ###  different cc & ac subjects?
 	                $s=explode('$#$',$subject2);
@@ -521,7 +521,7 @@ function cforms2_submitcomment() {
 			$successMsg	= str_replace ( $mail->eol, '<br />', $successMsg);
 		}
 
-		$successMsg	= cforms2_check_cust_vars($successMsg,$track,$no);
+		$successMsg	= cforms2_check_cust_vars($successMsg,$track);
 
 	    ### logic: possibly change usermessage
 	    if ( function_exists('my_cforms_logic') )

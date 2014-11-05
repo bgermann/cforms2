@@ -450,7 +450,7 @@ function cforms2_check_default_vars($m,$no) {
 
 
 ### look for custom variables
-function cforms2_check_cust_vars($m,$t,$no,$html=false) {
+function cforms2_check_cust_vars($m,$t,$html=false) {
 	
 	global $cformsSettings;
     $eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";

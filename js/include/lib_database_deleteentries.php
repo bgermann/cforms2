@@ -82,7 +82,6 @@ if ( $sub_ids<>'' ){
 		$sql = "SELECT field_val,form_id,sub_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE $sub_id $doquery AND id=sub_id AND field_name LIKE '%[*%'";
 		$filevalues = $wpdb->get_results($sql); //TODO check SQL injection
 
-		$del='';
 		$found = 0;
 
 		foreach( $filevalues as $fileval ) {

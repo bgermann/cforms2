@@ -243,7 +243,7 @@ function cforms2($args = '',$no = '') {
 
 	### either show info message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
-	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track,$no);
+	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track);
 	### logic: possibly change usermessage
 	if ( function_exists('my_cforms_logic') )
 	    $usermessage_text = my_cforms_logic($trackf, $usermessage_text,'successMessage');
@@ -1095,7 +1095,7 @@ function cforms2($args = '',$no = '') {
 
 	### either show message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
-	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track,$no);
+	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track);
 
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
 		$content .= $tt . '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>' . $nl;

@@ -40,12 +40,6 @@ if ( file_exists($CFfunctionsC) )
 else if ( file_exists($CFfunctions) )
     include_once($CFfunctions);
 
-### get form names
-for ($i=1; $i <= $cformsSettings['global']['cforms_formcount']; $i++){
-	$n = ( $i==1 )?'':$i;
-	$fnames[$i]=stripslashes($cformsSettings['form'.$n]['cforms'.$n.'_fname']);
-}
-
 $showIDs = $_POST['showids'];
 if ($showIDs<>'') {
     $sortBy = isset($_POST['sortby']) && $_POST['sortby']<>'' ? $_POST['sortby'] : 'sub_id';
