@@ -347,9 +347,9 @@ function cforms2_submitcomment() {
 
 
 	###  multiple recipients? and to whom is the email sent? to_one = picked recip.
-	if ( $isAjaxWPcomment!==false && $track['send2author']=='1' ){
-			$to = $wpdb->get_results("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = {$Ajaxpid} AND U.ID=P.post_author"); //TODO check SQL injection
-			$to = $replyto = ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
+	if ( $isAjaxWPcomment!==false && $track['send2author']=='1' ) {
+		$to = $wpdb->get_results($wpdb->prepare("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = %d AND U.ID=P.post_author", $Ajaxpid));
+		$to = $replyto = ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
 	}
 	else if ( !($to_one<>-1 && $to<>'') ){
 		$to = $replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );

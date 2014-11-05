@@ -1366,7 +1366,7 @@ function cforms2_get_submission_left($no='') {
 	if( $max == '' || $max == 0 || $cformsSettings['global']['cforms_database']=='0' )
 		return -1;
 
-	$entries = $wpdb->get_row("SELECT count(id) as submitted FROM {$wpdb->cformssubmissions} WHERE form_id='{$no}'"); //TODO check SQL injection
+	$entries = $wpdb->get_row($wpdb->prepare("SELECT count(id) as submitted FROM {$wpdb->cformssubmissions} WHERE form_id=%s", $no));
 
 	if( $max-$entries->submitted > 0)
 		return ($max-$entries->submitted);

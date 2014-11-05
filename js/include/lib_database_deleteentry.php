@@ -36,8 +36,8 @@ $sub_id = $_POST['id'];
 
 if ( $sub_id<>'' && $sub_id >= 0){
 
-	$sql 		= "SELECT field_val,form_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id = '$sub_id' AND id=sub_id AND field_name LIKE '%[*%'";
-	$filevalues = $wpdb->get_results($sql); //TODO check SQL injection
+	$sql 		= "SELECT field_val,form_id FROM $wpdb->cformsdata, $wpdb->cformssubmissions WHERE sub_id = %s AND id=sub_id AND field_name LIKE '%%[*%%'";
+	$filevalues = $wpdb->get_results($wpdb->prepare($sql, $sub_id));
 
 	$del='';
 	$found = 0;
@@ -67,8 +67,8 @@ if ( $sub_id<>'' && $sub_id >= 0){
 	else if ( $found==1 )
 		$del = ' '.__('(including all attachment/s)','cforms');
 
-	$nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE id = '$sub_id'"); //TODO check SQL injection
-	$nuked = $wpdb->query("DELETE FROM {$wpdb->cformsdata} WHERE sub_id = '$sub_id'"); //TODO check SQL injection
+	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformssubmissions WHERE id = %s", $sub_id));
+	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformsdata WHERE sub_id = %s", $sub_id));
 
 	?>
 	<p><strong><?php echo $i; ?> <?php _e('Entry successfully removed', 'cforms'); echo $del; ?>.</strong></p>

@@ -240,7 +240,7 @@ function cforms2_write_tracking_record($no,$field_email,$c=''){
 	                $k = $r[1];
 
 
-                $sql .= "('-XXX-','".addslashes($k)."','".addslashes($v)."'),";
+                $sql .= $wpdb->prepare("('-XXX-',%s,%s),", $k, $v);
                	$dosave=true;
             }
             if( !$dosave ) return;
@@ -248,18 +248,20 @@ function cforms2_write_tracking_record($no,$field_email,$c=''){
 			### good to go:
 			$page = (substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2')?$_POST['cforms_pl'.$no]:cforms2_get_current_page(); // WP comment fix
 
-			$wpdb->query("INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES ".
-						 "('" . $no . "', '" . $field_email . "', '" . cforms2_get_ip() . "', '".gmdate('Y-m-d H:i:s', current_time('timestamp'))."');"); //TODO check SQL injection
+			$wpdb->query($wpdb->prepare(
+				"INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES (%s, %s, %s, %s);",
+				$no, $field_email, cforms2_get_ip(), gmdate('Y-m-d H:i:s', current_time('timestamp'))
+			));
 
     		$subID = $wpdb->get_row("select LAST_INSERT_ID() as number from $wpdb->cformssubmissions;");
     		$subID = ($subID->number=='')?'1':$subID->number;
 
 			if( $c <> '' )
-				$sql = "INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES ('$subID','commentID','$c'),('$subID','email','$field_email'),".$sql;
+				$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'commentID',%s),(%s,'email',%s),", $subID, $c, $subID, $field_email).$sql;
             else
-				$sql = "INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES ('$subID','page','$page'),".$sql;
+				$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s),", $subID, $page).$sql;
 
-			$wpdb->query( substr(str_replace('-XXX-',$subID,$sql) ,0,-1)); //TODO check SQL injection
+			$wpdb->query( substr(str_replace('-XXX-',esc_sql($subID),$sql) ,0,-1));
 		}
 		else
 			$subID = 'noid';
@@ -410,7 +412,7 @@ function cforms2_check_default_vars($m,$no) {
 		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
 			$page = $permalink;
 
-		$find    = $wpdb->get_row("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID='$pid'"); //TODO check SQL injection
+		$find = $wpdb->get_row($wpdb->prepare("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID=%s", $pid));
 
 		$CurrUser = wp_get_current_user();
 
@@ -552,7 +554,7 @@ class cforms2_rss {
 							$title = '['.$entry->id.'] '.$entry->email;
 
                             $description = '<![CDATA[ <div style="margin:8px 0;"><span style="font-size:150%; color:#aaa;font-weight:bold;">#'.$entry->id.'</span> '. "$date&nbsp;<strong>$time</strong>" .( $single?'':' &nbsp;<strong>"'.$cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname'].'"</strong>:' ).'</div>';
-							$data = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id='{$entry->id}'"); //TODO check SQL injection
+							$data = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id=%s", $entry->id));
                             if( is_array($f) && array_count_values($f)>0 ){
 								foreach( $data as $e ){
 									if( array_search($e->field_name,$f)!==false )
@@ -651,21 +653,14 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 	$where .= $from?($where?' AND':'')." sub_date > '$from'":'';
 	$where .= $to?($where?' AND':'')." sub_date < '$to'":'';
     $where = $where?'WHERE'.$where:'';
-	//
 	
     $in = '';
 
     $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $ORDER_1 $limit";
 	$all = $wpdb->get_results($sql); //TODO check SQL injection
-
-/*	
-	echo '<br> >>'.$sql;
-	echo '<br><pre>'.print_r($all,1).'</pre>';
-	die();
-*/
 	
 	foreach ( $all as $d ){
-    	$in = $in . $d->id . ',';
+    	$in .= $wpdb->prepare("%d,", $d->id);
 	    $n = ( $d->form_id=='' )?1:$d->form_id;
     	$cfdata[$d->id]['id'] = $d->id;
     	$cfdata[$d->id]['form'] = $fnames[$n];
@@ -678,9 +673,8 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     if ( $in=='' )
     	return false;
 
-	$where = 'sub_id IN ('.substr($in,0,-1).')';
-    $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE $where";
-	$all = $wpdb->get_results($sql); //TODO check SQL injection
+    $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE sub_id IN (".substr($in,0,-1).")";
+	$all = $wpdb->get_results($sql);
 
 	$offsets = array();
 	foreach ( $all as $d ){
@@ -716,15 +710,12 @@ function cforms2_compare( $a,$b ){
 		$na = ($cfdataTMP[$a]['data'][$cfsort]<>'') ? $cfdataTMP[$a]['data'][$cfsort]:false;
 		$nb = ($cfdataTMP[$b]['data'][$cfsort]<>'') ? $cfdataTMP[$b]['data'][$cfsort]:false;
 	
-		if ( !($na && $nb) ){ 
-			//echo "err: ($a=$naD) :: ($b=$nbD)<br>";
+		if ( !($na && $nb) ) {
 			if ( !$na ) return 1;
 			if ( !$nb ) return -1;
 			return 0;
 		}
 	}
-	
-	//echo "($a=$na) :: ($b=$nb)<br>";
 
     $tmpA=(int)trim($na);
     $tmpB=(int)trim($nb);
@@ -738,7 +729,6 @@ function cforms2_compare( $a,$b ){
 	    if ( stristr($cfsortdir,'asc')===false ){
 	        return strcasecmp($nb, $na);
 	    }else{
-//	    	echo "$nb < $na = ".strcasecmp($nb, $na)."<br/>";
 	        return strcasecmp($na, $nb);
     	}
 	}
@@ -750,7 +740,7 @@ function cforms2_compare( $a,$b ){
 if (!function_exists('cf_extra_comment_data')) {
 	function cf_extra_comment_data( $id ) {
 		global $wpdb;
-		$all = $wpdb->get_results("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT sub_id FROM {$wpdb->cformsdata} WHERE field_name='commentID' AND field_val='$id')"); //TODO check SQL injection
+		$all = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT sub_id FROM {$wpdb->cformsdata} WHERE field_name='commentID' AND field_val=%s)", $id));
 		foreach( $all as $a ) {
 			$r[$a->field_name]=$a->field_val;
         }
