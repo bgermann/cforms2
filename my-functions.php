@@ -259,7 +259,7 @@ function my_cforms_filter($formID) {
 ###
 ###
 
-//  <--- move or remove this line to uncomment functions below (and check the end as well!)
+/*  <--- move or remove this line to uncomment functions below (and check the end as well!)
 
 function my_cforms_action($cformsdata) {
 
@@ -279,7 +279,7 @@ function my_cforms_action($cformsdata) {
 
 	### Send to 3d party or do something else.
 	### You can throw an Exception. Its message is printed on the screen.
-	//if (!wp_mail('your@email.com', 'cforms my_action test', print_r($form,1), 'From: your@blog.com'))
+	if (!wp_mail('your@email.com', 'cforms my_action test', print_r($form,1), 'From: your@blog.com'))
 		throw new Exception('Mail could not be sent');
 
 }
