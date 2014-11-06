@@ -339,8 +339,14 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	$trackf['id'] = $no;
 	$trackf['data'] = $track;
-	if( function_exists('my_cforms_action') )
-		my_cforms_action($trackf);
+	if( function_exists('my_cforms_action') ) {
+		try {
+			my_cforms_action($trackf);
+		} catch ( Exception $exc ) {
+			$usermessage_text = $exc->getMessage();
+			$sentadmin = 1;
+		}
+	}
 
 
 

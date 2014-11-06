@@ -328,9 +328,14 @@ function cforms2_submitcomment() {
 	###
 	$trackf['id'] = $no;
 	$trackf['data'] = $track;
-	if( function_exists('my_cforms_action') )
-		my_cforms_action($trackf);
-
+	if( function_exists('my_cforms_action') ) {
+		try {
+			my_cforms_action($trackf);
+		} catch ( Exception $exc ) {
+			echo $segments[0].'*$#y' . $exc->getMessage() .'|---';
+			die();
+		}
+	}
 
 
     ###  Catch WP-Comment function | if send2author just continue
