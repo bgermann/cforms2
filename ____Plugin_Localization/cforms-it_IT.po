@@ -5861,51 +5861,6 @@ msgstr ""
 #~ "PHPmailer 2.0: da ora, le autentificazioni in <strong>SSL</strong> ed in "
 #~ "<strong>TLS</strong> sono <strong>supportate</strong>."
 
-#~ msgid "SMTP server address"
-#~ msgstr "Indirizzo del server SMTP"
-
-#~ msgid "Secure Connection"
-#~ msgstr "Connessione sicura"
-
-#~ msgid "No"
-#~ msgstr "No"
-
-#~ msgid "SSL (e.g. gmail)"
-#~ msgstr "SSL (ad es. gmail)"
-
-#~ msgid "TLS"
-#~ msgstr "TLS"
-
-#~ msgid "Port"
-#~ msgstr "Porta"
-
-#~ msgid "Usually 465 (e.g. gmail) or 587"
-#~ msgstr "Generalmente 465 (ad es. gmail) oppure 587"
-
-#~ msgid "SMTP Authentication (leave blank if not needed!):"
-#~ msgstr "Autentificazione SMTP (lascia in bianco se non richiesta!):"
-
-#~ msgid "Username"
-#~ msgstr "Nome utente"
-
-#~ msgid "Password"
-#~ msgstr "Password"
-
-#~ msgid "POP before SMTP"
-#~ msgstr "POP before SMTP"
-
-#~ msgid "POP server address"
-#~ msgstr "Indirizzo POP del server:"
-
-#~ msgid "POP Port"
-#~ msgstr "Porta POP"
-
-#~ msgid "POP Login"
-#~ msgstr "POP Login"
-
-#~ msgid "POP Password"
-#~ msgstr "POP Password"
-
 #~ msgid "Please note the main changes for v13.0"
 #~ msgstr "Nota le principali modifiche per la v13.0"
 
@@ -6229,9 +6184,6 @@ msgstr ""
 #~ msgid "CSS class"
 #~ msgstr "Classe CSS"
 
-#~ msgid "<br />"
-#~ msgstr "<br />"
-
 #~ msgid ""
 #~ "Alternatively, you can also include any of your form input fields by "
 #~ "referring to the exact (!) <strong>field name</strong>:<br /><u>Example:</"
@@ -6248,12 +6200,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Le variabili corrispondenti saranno: %1$s{Il tuo nome}%2$s &amp; "
 #~ "%1$s{Sito web}%2$s."
-
-#~ msgid "\""
-#~ msgstr "\""
-
-#~ msgid "</em>"
-#~ msgstr "</em>"
 
 #~ msgid ""
 #~ "Note: If you erroneously deleted an entry, no worries, you should still "
@@ -6274,9 +6220,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Utilizza i seguenti campi <img src=\"%s\" alt=\"Filter\" title=\"Click to "
 #~ "filter\"/> per filtrare i dati."
-
-#~ msgid "?"
-#~ msgstr "?"
 
 #~ msgid "Search"
 #~ msgstr "Ricerca"
@@ -6310,12 +6253,6 @@ msgstr ""
 
 #~ msgid "download selected entries"
 #~ msgstr "scarica le scritture selezionate"
-
-#~ msgid "CSV"
-#~ msgstr "CSV"
-
-#~ msgid "TXT (tab delimited)"
-#~ msgstr "TXT"
 
 #~ msgid "No data available at this time."
 #~ msgstr "Nessun dato al momento disponibile."

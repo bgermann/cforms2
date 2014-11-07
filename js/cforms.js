@@ -51,6 +51,295 @@ function cforms_validate(no, upload) {
 
     };
 
+    var stripslashes = function (str) {
+        str = str.replace(/\\'/g,'\'');
+        str = str.replace(/\\"/g,'"');
+        str = str.replace(/\\\\/g,'\\');
+        str = str.replace(/\\0/g,'\0');
+        return str;
+    };
+
+    // track and store all errors until end
+    var check_for_customerr = function (id) {
+
+        var parent_el = document.getElementById(id).parentNode;
+        if( show_err_li=='y' ) {
+            parent_el.className = "cf_li_err";
+        }
+
+        var gotone = all_custom_error[id];
+        if ( all_custom_error[id] && gotone !='' ){
+
+            if( show_err_ins=='y' ){
+                insert_err_p[insert_err_count] = parent_el.id;
+
+                var ul = document.createElement('UL');
+                var li = document.createElement('LI');
+                li.innerHTML = stripslashes(gotone);
+
+                var cl = document.createAttribute('class');
+                cl.nodeValue  = 'cf_li_text_err';
+
+                ul.appendChild(li);
+                ul.setAttributeNode(cl);
+
+                insert_err[insert_err_count++] = ul;
+            }
+
+            if ( parent_el.id != '' )
+                return custom_error + '<li><a href="#'+parent_el.id+'">' + gotone + ' &raquo;</li></a>';
+            else
+                return custom_error + '<li>' + gotone + '</li>';
+
+        }
+        else
+            return custom_error;
+    };
+
+    var check_for_customerr_radio = function (id, cerr) {
+        var parent_el = document.getElementById( id.substr(0, id.length - 5) );
+        if ( show_err_li == 'y' ) {
+            parent_el.className = "cf-box-title cf_li_err";
+        }
+
+        var gotone = all_custom_error[cerr];
+        if ( all_custom_error[cerr] && gotone != '' ) {
+            if ( show_err_ins == 'y') {
+                insert_err_p[insert_err_count] = parent_el.id;
+                var ul = document.createElement('UL');
+                var li = document.createElement('LI');
+                li.innerHTML = stripslashes(gotone);
+                var cl = document.createAttribute('class');
+                cl.nodeValue = 'cf_li_text_err';
+                ul.appendChild(li);
+                ul.setAttributeNode(cl);
+                insert_err[insert_err_count++] = ul;
+            }
+            if ( parent_el.id != '' )
+                return custom_error + '<li><a href="#' + parent_el.id + '">' + gotone + ' &raquo;</li></a>';
+            else
+                return custom_error + '<li>' + gotone + '</li>';
+        }
+        else return custom_error;
+    };
+
+    var isParentChkBoxGroup = function (el){
+        while( el.parentNode ){
+            if ( el.parentNode.className=='cf-box-group' )
+                return true;
+            else
+                el = el.parentNode;
+        }
+        return false;
+    };
+
+    var cforms_submitcomment = function (no) {
+        var regexp = new RegExp('[$][#][$]', ['g']);
+        var prefix = '$#$';
+
+        var params;
+        if ( no=='' ) params = '1'; else params = no;
+
+        var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
+
+        for (var i = 0, j = objColl.length; i < j; i++) {
+
+            var fld = objColl[i].nodeName.toLowerCase();
+            var typ = objColl[i].type;
+
+            if ( fld == "input" || fld == "textarea" || fld == "select" ) {
+
+                if ( typ == "checkbox" ) {
+
+                    if ( objColl[i].name.match(/\[\]/) ){
+                        var group='';
+
+                        while ( i<j && isParentChkBoxGroup(objColl[i]) ){
+                            if ( objColl[i].type == 'checkbox' && objColl[i].name.match(/\[\]/) && objColl[i].checked ) {
+                                group = group + objColl[i].value + ',';
+                            }
+                            i++;
+                        }
+
+                        if ( group.length > 1 )
+                            params = params + prefix + group.substring(0,group.length-1);
+                        else
+                            params = params + prefix + "";
+                    }
+                    else
+                        params = params + prefix + (objColl[i].checked?( (objColl[i].value!="")?objColl[i].value:"X"):"");
+
+                } else if ( typ == "radio" ) {
+
+                    var group = objColl[i].checked ? ( (objColl[i].value!="")?objColl[i].value:"X" ) : '' ;
+
+                    while ( i<j && isParentChkBoxGroup(objColl[i+1]) ){
+
+                        if ( objColl[i+1].type == 'radio' && objColl[i+1].checked ){
+                            group = group + ',' + objColl[i+1].value;
+                        }
+
+                        i++;
+                    }
+                    if ( group.charAt(0)==',' )
+                        params = params + prefix + group.substring(1,group.length);
+                    else
+                        params = params + prefix + group;
+
+
+                } else if ( typ == "select-multiple" ) {
+                    var all_child_obj='';
+                    for (z=0;z<objColl[i].childNodes.length; z++) {
+                        if ( objColl[i].childNodes[z].nodeName.toLowerCase()=='option' && objColl[i].childNodes[z].selected ) {
+                            all_child_obj = all_child_obj + objColl[i].childNodes[z].value.replace(regexp, '$') + ',';
+                        }
+                    }
+                    params = params + prefix + all_child_obj.substring(0,all_child_obj.length-1);
+                } else if ( typ == "hidden" && objColl[i].name.match(/comment_post_ID/) ) {
+                    params = params + '+++' + objColl[i].value;
+                } else if ( typ == "hidden" && objColl[i].name.match(/cforms_pl/) ) {
+                    params = params + '+++' + objColl[i].value;
+                } else if ( typ == "hidden" && objColl[i].name.match(/comment_parent/) ) {
+                    params = params + '+++' + objColl[i].value;
+                } else if ( typ == "hidden" && objColl[i].className.match(/cfhidden/) ) {
+                    params = params + prefix + objColl[i].value;
+                } else if ( typ != "hidden" && typ != "submit" && typ != "radio") {
+                    params = params + prefix + objColl[i].value.replace(regexp, '$');
+                }
+            }
+        }
+        if ( document.getElementById('cforms'+no+'form').action.match('lib_WPcomment.php') )
+            params = params + '***';
+
+        var post_data = 'action=submitcomment&_wpnonce='
+            + cforms2_ajax.nonces['submitcomment']
+            + "&rsargs="
+            + encodeURIComponent(params);
+        jQuery.post(
+            cforms2_ajax.url,
+            post_data,
+            function( data ) {cforms_setsuccessmessage(data);}
+        );
+    };
+
+    var cforms_setsuccessmessage = function (message) {
+
+        var hide = false;
+        var end = message.match(/|/) ? message.indexOf('|') : message.length;
+        end = (end < 0) ? message.length : end;
+
+        var result;
+        if ( message.match(/---/) ) {
+            result = " failure";
+        }
+        else if ( message.match(/!!!/) ) {
+            result = " mailerr";
+        }
+        else if ( message.match(/~~~/) ) {
+            result = "success";
+            hide = true;
+        }
+        else {
+            result = "success";
+        }
+
+        var offset = message.indexOf('*$#');
+        var no = message.substring(0,offset);
+        var pop = message.charAt(offset+3); // check with return val from php call!
+
+        if ( no == '1' ) no='';
+
+        if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
+            document.getElementById('cforms'+no+'form').reset();
+
+        document.getElementById('sendbutton'+no).style.cursor = "auto";
+        document.getElementById('sendbutton'+no).disabled = false;
+
+
+        var stringXHTML = message.substring(offset+4,end);
+
+
+        // Is it a WP comment?
+        if ( stringXHTML.match(/\$#\$/) ) {
+            var newcomment = stringXHTML.split('$#$');
+            var commentParent  = newcomment[0];
+            var newcommentText = newcomment[1];
+            stringXHTML    = newcomment[2];
+
+            if ( document.getElementById(commentParent) ){
+                var alt = '';
+                var allLi = document.getElementById(commentParent).childNodes.length - 1;
+                for (i=allLi; i>=0; i--){
+                    var elLi = document.getElementById(commentParent).childNodes[i];
+                    if ( elLi.nodeType!='3' && elLi.tagName.toLowerCase() == 'li' ) {
+                        if ( elLi.className.match(/alt/) )
+                            alt='alt';
+                        i=-1;
+                    }
+                }
+
+                if( alt=='alt' )
+                    newcommentText = newcommentText.replace('class="alt"', '');
+
+                document.getElementById(commentParent).innerHTML = document.getElementById(commentParent).innerHTML + newcommentText;
+
+                //wp ajax edit support
+                if( window.AjaxEditComments )
+                    AjaxEditComments.init();
+            }
+
+            // ajax comment plugin?
+            var dEl = newcommentText.match(/edit-comment-(user|admin)-link(s|-)[^" ]+/);
+            if ( dEl!=null && dEl[0]!='' && document.getElementById( dEl[0] ) ){
+                document.getElementById( dEl[0] ).style.display = 'block';
+            }
+        }
+
+
+
+        // for both message boxes
+        var isA = false;
+        var ucm = ( parseInt(no)>1 ) ? ' '+result+no : '';
+        if ( document.getElementById('usermessage'+no+'a') ) {
+            document.getElementById('usermessage'+no+'a').className = "cf_info "+result+ucm;
+            isA = true;
+        }
+        if ( document.getElementById('usermessage'+no+'b') && !(hide && isA) ) {
+            document.getElementById('usermessage'+no+'b').className = "cf_info "+result+ucm;
+        }
+
+        doInnerXHTML('usermessage'+no, stringXHTML);
+
+        if ( hide ) {
+            document.getElementById('cforms'+no+'form').style.display = 'none';
+            document.getElementById('ll'+no).style.display = 'none';
+            if ( !message.match(/>>>/) )
+                location.hash = '#usermessage' + no + 'a';
+        }
+
+        if (pop == 'y') {
+            stringXHTML = stringXHTML.replace(/<br.?\/>/g,'\r\n');
+            stringXHTML = stringXHTML.replace(/(<.?strong>|<.?b>)/g,'*');
+            stringXHTML = stringXHTML.replace(/(<([^>]+)>)/ig, '');
+            alert( stringXHTML );  //debug
+        }
+        
+        if ( message.match(/>>>/) ) {
+            location.href = message.substring( message.indexOf('|>>>') + 4, message.length );
+        }
+    };
+
+    var write_customerr = function () {
+        for (var n = 0; n < insert_err_p.length; n++) {
+            if (document.getElementById( insert_err_p[n] )) {
+                document.getElementById( insert_err_p[n] ).insertBefore(
+                    insert_err[n],
+                    document.getElementById( insert_err_p[n] ).firstChild
+                );
+            }
+        }
+    };
+
     if (!no) no='';
 
     var msgbox = 'usermessage' + no;
@@ -409,297 +698,5 @@ function cforms_validate(no, upload) {
     }
 
     return false;
-
-
-    var stripslashes = function (str) {
-        str = str.replace(/\\'/g,'\'');
-        str = str.replace(/\\"/g,'"');
-        str = str.replace(/\\\\/g,'\\');
-        str = str.replace(/\\0/g,'\0');
-        return str;
-    };
-
-    // track and store all errors until end
-    var check_for_customerr = function (id) {
-
-        var parent_el = document.getElementById(id).parentNode;
-        if( show_err_li=='y' ) {
-            parent_el.className = "cf_li_err";
-        }
-
-        var gotone = all_custom_error[id];
-        if ( all_custom_error[id] && gotone !='' ){
-
-            if( show_err_ins=='y' ){
-                insert_err_p[insert_err_count] = parent_el.id;
-
-                var ul = document.createElement('UL');
-                var li = document.createElement('LI');
-                li.innerHTML = stripslashes(gotone);
-
-                var cl = document.createAttribute('class');
-                cl.nodeValue  = 'cf_li_text_err';
-
-                ul.appendChild(li);
-                ul.setAttributeNode(cl);
-
-                insert_err[insert_err_count++] = ul;
-            }
-
-            if ( parent_el.id != '' )
-                return custom_error + '<li><a href="#'+parent_el.id+'">' + gotone + ' &raquo;</li></a>';
-            else
-                return custom_error + '<li>' + gotone + '</li>';
-
-        }
-        else
-            return custom_error;
-    };
-
-    var check_for_customerr_radio = function (id, cerr) {
-        var parent_el = document.getElementById( id.substr(0, id.length - 5) );
-        if ( show_err_li == 'y' ) {
-            parent_el.className = "cf-box-title cf_li_err";
-        }
-
-        var gotone = all_custom_error[cerr];
-        if ( all_custom_error[cerr] && gotone != '' ) {
-            if ( show_err_ins == 'y') {
-                insert_err_p[insert_err_count] = parent_el.id;
-                var ul = document.createElement('UL');
-                var li = document.createElement('LI');
-                li.innerHTML = stripslashes(gotone);
-                var cl = document.createAttribute('class');
-                cl.nodeValue = 'cf_li_text_err';
-                ul.appendChild(li);
-                ul.setAttributeNode(cl);
-                insert_err[insert_err_count++] = ul;
-            }
-            if ( parent_el.id != '' )
-                return custom_error + '<li><a href="#' + parent_el.id + '">' + gotone + ' &raquo;</li></a>';
-            else
-                return custom_error + '<li>' + gotone + '</li>';
-        }
-        else return custom_error;
-    };
-
-    //
-    // at the end, spit it out
-    var write_customerr = function () {
-        for (var n = 0; n < insert_err_p.length; n++) {
-            if (document.getElementById( insert_err_p[n] )) {
-                document.getElementById( insert_err_p[n] ).insertBefore(
-                    insert_err[n],
-                    document.getElementById( insert_err_p[n] ).firstChild
-                );
-            }
-        }
-    };
-
-    var isParentChkBoxGroup = function (el){
-        while( el.parentNode ){
-            if ( el.parentNode.className=='cf-box-group' )
-                return true;
-            else
-                el = el.parentNode;
-        }
-        return false;
-    };
-
-    var cforms_submitcomment = function (no) {
-        var regexp = new RegExp('[$][#][$]', ['g']);
-        var prefix = '$#$';
-
-        var params;
-        if ( no=='' ) params = '1'; else params = no;
-
-        var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
-
-        for (var i = 0, j = objColl.length; i < j; i++) {
-
-            var fld = objColl[i].nodeName.toLowerCase();
-            var typ = objColl[i].type;
-
-            if ( fld == "input" || fld == "textarea" || fld == "select" ) {
-
-                if ( typ == "checkbox" ) {
-
-                    if ( objColl[i].name.match(/\[\]/) ){
-                        var group='';
-
-                        while ( i<j && isParentChkBoxGroup(objColl[i]) ){
-                            if ( objColl[i].type == 'checkbox' && objColl[i].name.match(/\[\]/) && objColl[i].checked ) {
-                                group = group + objColl[i].value + ',';
-                            }
-                            i++;
-                        }
-
-                        if ( group.length > 1 )
-                            params = params + prefix + group.substring(0,group.length-1);
-                        else
-                            params = params + prefix + "";
-                    }
-                    else
-                        params = params + prefix + (objColl[i].checked?( (objColl[i].value!="")?objColl[i].value:"X"):"");
-
-                } else if ( typ == "radio" ) {
-
-                    var group = objColl[i].checked ? ( (objColl[i].value!="")?objColl[i].value:"X" ) : '' ;
-
-                    while ( i<j && isParentChkBoxGroup(objColl[i+1]) ){
-
-                        if ( objColl[i+1].type == 'radio' && objColl[i+1].checked ){
-                            group = group + ',' + objColl[i+1].value;
-                        }
-
-                        i++;
-                    }
-                    if ( group.charAt(0)==',' )
-                        params = params + prefix + group.substring(1,group.length);
-                    else
-                        params = params + prefix + group;
-
-
-                } else if ( typ == "select-multiple" ) {
-                    var all_child_obj='';
-                    for (z=0;z<objColl[i].childNodes.length; z++) {
-                        if ( objColl[i].childNodes[z].nodeName.toLowerCase()=='option' && objColl[i].childNodes[z].selected ) {
-                            all_child_obj = all_child_obj + objColl[i].childNodes[z].value.replace(regexp, '$') + ',';
-                        }
-                    }
-                    params = params + prefix + all_child_obj.substring(0,all_child_obj.length-1);
-                } else if ( typ == "hidden" && objColl[i].name.match(/comment_post_ID/) ) {
-                    params = params + '+++' + objColl[i].value;
-                } else if ( typ == "hidden" && objColl[i].name.match(/cforms_pl/) ) {
-                    params = params + '+++' + objColl[i].value;
-                } else if ( typ == "hidden" && objColl[i].name.match(/comment_parent/) ) {
-                    params = params + '+++' + objColl[i].value;
-                } else if ( typ == "hidden" && objColl[i].className.match(/cfhidden/) ) {
-                    params = params + prefix + objColl[i].value;
-                } else if ( typ != "hidden" && typ != "submit" && typ != "radio") {
-                    params = params + prefix + objColl[i].value.replace(regexp, '$');
-                }
-            }
-        }
-        if ( document.getElementById('cforms'+no+'form').action.match('lib_WPcomment.php') )
-            params = params + '***';
-
-        var post_data = 'action=submitcomment&_wpnonce='
-            + cforms2_ajax.nonces['submitcomment']
-            + "&rsargs="
-            + encodeURIComponent(params);
-        jQuery.post(
-            cforms2_ajax.url,
-            post_data,
-            function( data ) {cforms_setsuccessmessage(data);}
-        );
-    };
-
-    var cforms_setsuccessmessage = function (message) {
-
-        var hide = false;
-        var end = message.match(/|/) ? message.indexOf('|') : message.length;
-        end = (end < 0) ? message.length : end;
-
-        var result;
-        if ( message.match(/---/) ) {
-            result = " failure";
-        }
-        else if ( message.match(/!!!/) ) {
-            result = " mailerr";
-        }
-        else if ( message.match(/~~~/) ) {
-            result = "success";
-            hide = true;
-        }
-        else {
-            result = "success";
-        }
-
-        var offset = message.indexOf('*$#');
-        var no = message.substring(0,offset);
-        var pop = message.charAt(offset+3); // check with return val from php call!
-
-        if ( no == '1' ) no='';
-
-        if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
-            document.getElementById('cforms'+no+'form').reset();
-
-        document.getElementById('sendbutton'+no).style.cursor = "auto";
-        document.getElementById('sendbutton'+no).disabled = false;
-
-
-        var stringXHTML = message.substring(offset+4,end);
-
-
-        // Is it a WP comment?
-        if ( stringXHTML.match(/\$#\$/) ) {
-            var newcomment = stringXHTML.split('$#$');
-            var commentParent  = newcomment[0];
-            var newcommentText = newcomment[1];
-            stringXHTML    = newcomment[2];
-
-            if ( document.getElementById(commentParent) ){
-                var alt = '';
-                var allLi = document.getElementById(commentParent).childNodes.length - 1;
-                for (i=allLi; i>=0; i--){
-                    var elLi = document.getElementById(commentParent).childNodes[i];
-                    if ( elLi.nodeType!='3' && elLi.tagName.toLowerCase() == 'li' ) {
-                        if ( elLi.className.match(/alt/) )
-                            alt='alt';
-                        i=-1;
-                    }
-                }
-
-                if( alt=='alt' )
-                    newcommentText = newcommentText.replace('class="alt"', '');
-
-                document.getElementById(commentParent).innerHTML = document.getElementById(commentParent).innerHTML + newcommentText;
-
-                //wp ajax edit support
-                if( window.AjaxEditComments )
-                    AjaxEditComments.init();
-            }
-
-            // ajax comment plugin?
-            var dEl = newcommentText.match(/edit-comment-(user|admin)-link(s|-)[^" ]+/);
-            if ( dEl!=null && dEl[0]!='' && document.getElementById( dEl[0] ) ){
-                document.getElementById( dEl[0] ).style.display = 'block';
-            }
-        }
-
-
-
-        // for both message boxes
-        var isA = false;
-        var ucm = ( parseInt(no)>1 ) ? ' '+result+no : '';
-        if ( document.getElementById('usermessage'+no+'a') ) {
-            document.getElementById('usermessage'+no+'a').className = "cf_info "+result+ucm;
-            isA = true;
-        }
-        if ( document.getElementById('usermessage'+no+'b') && !(hide && isA) ) {
-            document.getElementById('usermessage'+no+'b').className = "cf_info "+result+ucm;
-        }
-
-        doInnerXHTML('usermessage'+no, stringXHTML);
-
-        if ( hide ) {
-            document.getElementById('cforms'+no+'form').style.display = 'none';
-            document.getElementById('ll'+no).style.display = 'none';
-            if ( !message.match(/>>>/) )
-                location.hash = '#usermessage' + no + 'a';
-        }
-
-        if (pop == 'y') {
-            stringXHTML = stringXHTML.replace(/<br.?\/>/g,'\r\n');
-            stringXHTML = stringXHTML.replace(/(<.?strong>|<.?b>)/g,'*');
-            stringXHTML = stringXHTML.replace(/(<([^>]+)>)/ig, '');
-            alert( stringXHTML );  //debug
-        }
-        
-        if ( message.match(/>>>/) ) {
-            location.href = message.substring( message.indexOf('|>>>') + 4, message.length );
-        }
-    };
 
 }

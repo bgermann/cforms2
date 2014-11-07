@@ -151,6 +151,7 @@ GPL compliance!
 
 = 14.6.11 =
 * enhanced: API function my_cforms_action() can throw an exception
+* bugfix:   several AJAX related JavaScript undefined function bugs introduced in 14.6.8
 * other:    remove support for old Comment Luv versions
 
 = 14.6.10 =

@@ -5613,6 +5613,3 @@ msgstr ""
 "Einreichen versteckt, außerdem demonstriert es reguläre Ausdrücke zwecks "
 "Feldvalidierung und benutzerdefinierte Fehlermeldungen. Weiterhin enthält es "
 "ein Länder-Dropdownmenü und einen Pflicht-Disclaimer."
-
-#~ msgid "Comment Luv"
-#~ msgstr "Kommentar Luv"
