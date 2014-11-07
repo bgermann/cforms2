@@ -20,13 +20,13 @@
  * Plugin URI: https://wordpress.org/plugins/cforms2/
  * Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
  * Author: Oliver Seidel, Bastian Germann
- * Version: 14.6.10
+ * Version: 14.6.11
  * Text Domain: cforms
  * Domain Path: ____Plugin_Localization
  */
 
 global $localversion;
-$localversion = '14.6.10';
+$localversion = '14.6.11';
 
 ### db settings
 global $wpdb, $cformsSettings;
@@ -340,7 +340,7 @@ function cforms2($args = '',$no = '') {
 		$alt_action=true;
 	}
 	else if( $isWPcommentForm )
-		$action = plugin_dir_url(__FILE__) . 'lib_WPcomment.php'; ### re-route and use WP comment processing
+		$action = admin_url('admin-ajax.php'); ### re-route and use WP comment processing
  	else
 		$action = cforms2_get_current_page() . '#usermessage'. $no . $actiontarget;
 
@@ -1030,7 +1030,9 @@ function cforms2($args = '',$no = '') {
 	else if ( ($upload || $custom || $alt_action) && $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' )
 		$ajaxenabled = ' onclick="return cforms_validate(\''.$no.'\', true)"';
 	else
-		$ajaxenabled = '';
+		$ajaxenabled = '/>'
+			. '<input type="hidden" name="action" value="submitcomment_direct"/>'
+			. '<input type="hidden" name="_wpnonce" value="' . wp_create_nonce('submitcomment_direct') . '"';
 
 
 	### just to appease html "strict"
@@ -1122,7 +1124,7 @@ function cforms2_enqueue_scripts() {
 		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
 			'url'    => admin_url('admin-ajax.php'),
 			'nonces' => array(
-				'reset_captcha'        => wp_create_nonce('cforms2_reset_captcha'),
+				'reset_captcha' => wp_create_nonce('cforms2_reset_captcha'),
 				'submitcomment' => wp_create_nonce('submitcomment')
 			)
 		) );
@@ -1492,8 +1494,15 @@ function cforms2_add_items_options( $admin_bar ){
 
 }
 
+function cforms2_submitcomment_direct() {
+	check_admin_referer( 'submitcomment_direct' );
+	require_once (plugin_dir_path(__FILE__) . 'lib_WPcomment.php');
+	die();
+}
 
 ### attaching to filters
 add_action('init', 'cforms2_delete_db_and_deactivate');
+add_action( 'wp_ajax_submitcomment_direct', 'cforms2_submitcomment_direct' );
+add_action( 'wp_ajax_nopriv_submitcomment_direct', 'cforms2_submitcomment_direct' );
 add_filter('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_filter('the_content', 'cforms2_insert', 101);

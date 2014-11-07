@@ -4,7 +4,7 @@ Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 14.6.10
+Stable tag: 14.6.11
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -152,6 +152,7 @@ GPL compliance!
 = 14.6.11 =
 * enhanced: API function my_cforms_action() can throw an exception
 * bugfix:   several AJAX related JavaScript undefined function bugs introduced in 14.6.8
+* bugfix:   repair non-AJAX comment form
 * other:    remove support for old Comment Luv versions
 
 = 14.6.10 =
