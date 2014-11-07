@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII $Revision$\n"
-"POT-Creation-Date: 2014-11-07 01:44+0100\n"
-"PO-Revision-Date: 2014-11-07 01:44+0100\n"
+"POT-Creation-Date: 2014-11-07 03:36+0100\n"
+"PO-Revision-Date: 2014-11-07 03:37+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -4709,91 +4709,91 @@ msgstr "Beschädigte Einstellungen"
 msgid "reset captcha image"
 msgstr "Setze CAPTCHA-Grafik zurück"
 
-#: cforms.php:1073
+#: cforms.php:1075
 msgid "Note: This will reset all your input!"
 msgstr "Beachte: Dies wird alle deine Eingaben zurücksetzen!"
 
-#: cforms.php:1321 cforms.php:1322
+#: cforms.php:1323 cforms.php:1324
 msgid "cforms Tell-A-Friend"
 msgstr "cforms Tell-A-Friend"
 
-#: cforms.php:1416
+#: cforms.php:1418
 msgid "T-A-F enable this post/page"
 msgstr "T-A-F aktiviere diese/n Beitrag/Seite"
 
-#: cforms.php:1465
+#: cforms.php:1467
 msgid "Produce debug output"
 msgstr "Debug-Meldungen ausgeben"
 
-#: cforms.php:1465
+#: cforms.php:1467
 msgid "Outputs -for debug purposes- all cforms settings"
 msgstr "Gibt alle cforms Einstellungen zu Zwecken der Fehlerbehebung aus"
 
-#: cforms.php:1466
+#: cforms.php:1468
 msgid "Uninstalling / removing cforms"
 msgstr "cforms deinstallieren / entfernen"
 
-#: cforms.php:1466 cforms.php:1469
+#: cforms.php:1468 cforms.php:1471
 msgid "Be careful here..."
 msgstr "Sei hierbei sehr vorsichtig..."
 
-#: cforms.php:1469
+#: cforms.php:1471
 msgid "Delete cforms tracking tables"
 msgstr "Die Nachverfolgungs-Tabellen von cforms löschen"
 
-#: cforms.php:1469
+#: cforms.php:1471
 msgid "Do you really want to erase all collected data?"
 msgstr "Möchtest du wirklich alle gesammelten Daten löschen?"
 
-#: cforms.php:1471
+#: cforms.php:1473
 msgid "Backup / restore all settings"
 msgstr "Sichern / Wiederherstellen aller Einstellungen"
 
-#: cforms.php:1471 cforms.php:1489
+#: cforms.php:1473 cforms.php:1491
 msgid "Better safe than sorry ;)"
 msgstr "Lieber auf Nummer sicher gehen ;)"
 
-#: cforms.php:1473 cforms.php:1491
+#: cforms.php:1475 cforms.php:1493
 msgid "Save & update form settings"
 msgstr "Sichere aktuelle Formular-Einstellungen"
 
-#: cforms.php:1483
+#: cforms.php:1485
 msgid "Add new form"
 msgstr "Füge ein neues Formular hinzu"
 
-#: cforms.php:1483
+#: cforms.php:1485
 msgid "Adds a new form with default values"
 msgstr "fügt ein neues Formular mit Standardwerten hinzu"
 
-#: cforms.php:1484
+#: cforms.php:1486
 msgid "Duplicate current form"
 msgstr "Dupliziere das aktuelle Formular"
 
-#: cforms.php:1484
+#: cforms.php:1486
 msgid "Clones the current form"
 msgstr "Dupliziert das aktuelle Formular"
 
-#: cforms.php:1486
+#: cforms.php:1488
 msgid "Delete current form (!)"
 msgstr "Lösche das aktuelle Formular (!)"
 
-#: cforms.php:1486
+#: cforms.php:1488
 msgid "Clicking this button WILL delete this form"
 msgstr "Wenn auf diesen Button geklickt wird, wird dieses Formular gelöscht."
 
-#: cforms.php:1486
+#: cforms.php:1488
 msgid "This will delete the current form!"
 msgstr "Dies wird das aktuelle Formular löschen!"
 
-#: cforms.php:1488
+#: cforms.php:1490
 msgid "Install a form preset"
 msgstr "Installiere eine Formular-Voreinstellung"
 
-#: cforms.php:1488
+#: cforms.php:1490
 msgid "Pick a form preset from the repository"
 msgstr "Wähle eine Formular-Voreinstellung aus dem Verzeichnis"
 
-#: cforms.php:1489
+#: cforms.php:1491
 msgid "Backup / restore this form only"
 msgstr "Sichern / Wiederherstellen nur dieses Formulars"
 
