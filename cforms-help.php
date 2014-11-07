@@ -727,7 +727,6 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 					<code><strong><?php _e('Author\'s URL', 'cforms'); ?></strong></code><br />
 					<code><strong><?php _e('Author\'s Comment', 'cforms'); ?></strong></code><br />
 					<code><strong>Subscribe To Comments <small><?php _e('(if plugin installed)', 'cforms'); ?></small></strong></code><br />
-					<code><strong>Comment Luv <small><?php _e('(if plugin installed)', 'cforms'); ?></small></strong></code>
 				</td>
 			</tr>
 			<tr>
@@ -777,7 +776,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<strong><?php _e('Other comment plugins?', 'cforms'); ?></strong> <?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/commentluv/">CommentLuv</a>, <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a> &amp; <a href="https://wordpress.org/plugins/wp-ajax-edit-comments/">WP Ajax Edit Comments</a>.
+					<strong><?php _e('Other comment plugins?', 'cforms'); ?></strong> <?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a> &amp; <a href="https://wordpress.org/plugins/wp-ajax-edit-comments/">WP Ajax Edit Comments</a>.
 				</td>
 			</tr>
 			<tr>
@@ -1098,7 +1097,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('Multi select boxes', 'cforms'); ?>:</td><td> <code>multiselectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s Comment', 'cforms'); ?>:</td><td> <code>comment</code></td></tr>
 	                <tr><td><?php _e('Radio buttons', 'cforms'); ?>:</td><td> <code>radiobuttons</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Select: Email/Comment', 'cforms'); ?>:</td><td> <code>send2author</code></td></tr>
 	                <tr><td><?php _e('\'CC\' check box', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Subscribe To Comments', 'cforms'); ?>:</td><td> <code>subscribe</code></td></tr>
-	                <tr><td><?php _e('Multi-recipients field', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Comment Luv', 'cforms'); ?>:</td><td> <code>luv</code></td></tr>
+	                <tr><td><?php _e('Multi-recipients field', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>verification</code></td></tr>
 	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?>:</td><td> <code>captcha</code></td></tr>
 	                <tr><td><?php _e('File upload fields', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>upload</code></td></tr>

@@ -442,10 +442,10 @@ function cforms2($args = '',$no = '') {
 		
 
 		### special treatment for selectboxes
-		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','luv','subscribe','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
+		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','subscribe','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
 
 			$chkboxClicked = array();
-			if (  in_array($field_type,array('luv','subscribe','checkbox','ccbox')) && strpos($obj[0],'|set:')>1 ){
+			if (  in_array($field_type,array('subscribe','checkbox','ccbox')) && strpos($obj[0],'|set:')>1 ){
 				$chkboxClicked = explode('|set:', stripslashes($obj[0]) );
 				$obj[0] = $chkboxClicked[0];
 			}
@@ -490,7 +490,7 @@ function cforms2($args = '',$no = '') {
 
 		$defaultvalue = '';
 		### setting the default val & regexp if it exists
-		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','luv','subscribe','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox','verification')) ) {
+		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','subscribe','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox','verification')) ) {
 
 		    ### check if default val & regexp are set
 		    $obj = explode('|', $obj[0],3);
@@ -549,9 +549,6 @@ function cforms2($args = '',$no = '') {
 		$field_value = '';
 
 		switch ($field_type){
-			case 'luv':
-				$input_id = $input_name = 'luv';
-				break;
 			case 'subscribe':
 				$input_id = $input_name = 'subscribe';
 				break;
@@ -647,7 +644,7 @@ function cforms2($args = '',$no = '') {
 
 
 		### print label only for non "textonly" fields! Skip some others too, and handle them below indiv.
-		if( ! in_array($field_type,array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','luv','subscribe','checkbox','checkboxgroup','send2author','radiobuttons')) )
+		if( ! in_array($field_type,array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','subscribe','checkbox','checkboxgroup','send2author','radiobuttons')) )
 			$content .= $nttt . '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_id.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
 
 
@@ -812,15 +809,6 @@ function cforms2($args = '',$no = '') {
 						continue;
 					}
 					$val = ' value="subscribe"';
-				}
-			case "luv":
-				if ( function_exists('comment_luv') && $field_type=='luv' ){
-					get_currentuserinfo() ;
-					global $user_level;
-					if( $user_level==10 )
-						continue (2);
-					//empty for now
-					$val = ' value="luv"';
 				}
 	   		case "ccbox":
 			case "checkbox":
@@ -1019,11 +1007,11 @@ function cforms2($args = '',$no = '') {
 		### adding "required" text if needed
 		if($field_emailcheck == 1)
 			$content .= '<span class="emailreqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_emailrequired']).'</span>';
-		else if($field_required == 1 && !in_array($field_type,array('ccbox','luv','subscribe','checkbox','radiobuttons')) )
+		else if($field_required == 1 && !in_array($field_type,array('ccbox','subscribe','checkbox','radiobuttons')) )
 			$content .= '<span class="reqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_required']).'</span>';
 
 		### close out li item
-		if ( ! in_array($field_type,array('hidden','fieldsetstart','fieldsetend','radiobuttons','luv','subscribe','checkbox','checkboxgroup','ccbox','textonly','send2author')) )
+		if ( ! in_array($field_type,array('hidden','fieldsetstart','fieldsetend','radiobuttons','subscribe','checkbox','checkboxgroup','ccbox','textonly','send2author')) )
 			$content .= '</li>';
 
 	} ### all fields

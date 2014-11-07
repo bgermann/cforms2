@@ -109,9 +109,6 @@ function cforms2_submitcomment() {
 		die();
 	}
 
-	### for comment luv
-	get_currentuserinfo();
-
 	### Subscribe-To-Comments
 	$isSubscribed='';
 	if ( class_exists('sg_subscribe') ){
@@ -199,7 +196,7 @@ function cforms2_submitcomment() {
 
 
 			###  special WP comment fields
-			if( in_array($field_stat[1],array('luv','subscribe','cauthor','email','url','comment','send2author')) ){
+			if( in_array($field_stat[1],array('subscribe','cauthor','email','url','comment','send2author')) ){
 			    $temp = explode('#', $field_name,2);
 
 				if ( $temp[0] == '' )

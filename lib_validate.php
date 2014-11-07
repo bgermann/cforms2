@@ -88,14 +88,6 @@ for($i = 1; $i <= $field_count; $i++) {
 		if( in_array($field_type,array('subscribe')) && $isSubscribed<>'' )
 			continue;
 
-		### comment luv
-		get_currentuserinfo();
-		
-		global $user_level;
-				
-		if( in_array($field_type,array('luv')) && $user_level==10 )
-			continue;
-
 		### input field names & label
 		$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
 		$isFieldArray = false;
@@ -151,7 +143,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		else
 			$current_field = $_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)];
 
-		if( in_array($field_type,array('luv','subscribe','comment','url','email','cauthor')) )  ### WP comment field name exceptions
+		if( in_array($field_type,array('subscribe','comment','url','email','cauthor')) )  ### WP comment field name exceptions
 			$current_field = $_REQUEST[$field_type];
 
 		$current_field = is_array($current_field) ? $current_field : stripslashes($current_field);

@@ -149,6 +149,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.6.11 =
+* enhanced: API function my_cforms_action() can throw an exception
+* other:    remove support for old Comment Luv versions
+
 = 14.6.10 =
 * enhanced: use Wordpress 2.8 Widget API
 * bugfix:   JavaScript error on flexigrid drag event

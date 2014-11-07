@@ -80,10 +80,6 @@ if ( $isAjaxWPcomment ){
 			if ( class_exists('sg_subscribe') && trim($track['subscribe'])=='subscribe' )
 				$_POST['subscribe'] = 'subscribe';
 
-			###supporting commentluv
-			if ( function_exists('comment_luv') && trim($track['luv'])=='luv' )
-				$_POST['luv'] = 'luv';
-
 			### If the user is logged in
 			if ( $user->ID ) {
 				$comment_author       = esc_sql($user->display_name);

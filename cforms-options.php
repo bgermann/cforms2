@@ -344,9 +344,6 @@ if( strlen($fd)<=2 ) {
 									<?php if ( class_exists('sg_subscribe') ) : ?>
 										<option<?php echo $dis; ?> value="subscribe" <?php echo($field_type == 'subscribe'?' selected="selected"':''); ?>><?php _e('Subscribe To Comments', 'cforms'); ?></option>
 									<?php endif; ?>
-									<?php if ( function_exists('commentluv_setup') ) : ?>
-										<option<?php echo $dis; ?> value="luv" <?php echo($field_type == 'luv'?' selected="selected"':''); ?>><?php _e('Comment Luv', 'cforms'); ?></option>
-									<?php endif; ?>
 								</optgroup>
 
                                 <?php if ( $isTAF<>1 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
@@ -1123,7 +1120,7 @@ if( strlen($fd)<=2 ) {
 
 				</table>
 
-				<p><?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/commentluv/">CommentLuv</a>, <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a> &amp; <a href="https://wordpress.org/plugins/wp-ajax-edit-comments/">WP Ajax Edit Comments</a>.</p>
+				<p><?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a> &amp; <a href="https://wordpress.org/plugins/wp-ajax-edit-comments/">WP Ajax Edit Comments</a>.</p>
 			</div>
 		</fieldset>
 

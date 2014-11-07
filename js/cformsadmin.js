@@ -479,7 +479,6 @@ jQuery(function() {
         'comment'             :'textfield',
         'send2author'         :'checkboxgroup',
         'subscribe'           :'checkbox',
-        'luv'                 :'checkbox',
 
         'html5color'          :'html5field',
         'html5date'           :'html5field',
