@@ -259,7 +259,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 						<code>
 						[...]&lt;/h2&gt;<br />
 						&lt;ol id="<u style="color:#f37891">mycommentlist</u>"&gt;<br />
-						&nbsp;&nbsp;&lt;li id="comment-126"&gt;[...]<br />
+						&nbsp;&nbspwp_list_comments()[...]<br />
 						</code></td>
                 </tr>
 
