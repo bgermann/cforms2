@@ -76,10 +76,6 @@ if ( $isAjaxWPcomment ){
 			$comment_content      = trim($track['comment']);
 			$user_ID			  = $user->ID;
 
-			###supporting subscribe-to
-			if ( class_exists('sg_subscribe') && trim($track['subscribe'])=='subscribe' )
-				$_POST['subscribe'] = 'subscribe';
-
 			### If the user is logged in
 			if ( $user->ID ) {
 				$comment_author       = esc_sql($user->display_name);

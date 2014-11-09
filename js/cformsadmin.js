@@ -478,7 +478,6 @@ jQuery(function() {
         'url'                 :'textfield',
         'comment'             :'textfield',
         'send2author'         :'checkboxgroup',
-        'subscribe'           :'checkbox',
 
         'html5color'          :'html5field',
         'html5date'           :'html5field',

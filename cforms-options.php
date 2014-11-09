@@ -341,9 +341,6 @@ if( strlen($fd)<=2 ) {
 									<option<?php if ( $emailtoboxused && $field_type<>"emailtobox" ) echo ' disabled="disabled" class="disabled"'; ?>  value="emailtobox" <?php echo($field_type == 'emailtobox'?' selected="selected"':''); ?>><?php _e('Multiple Recipients', 'cforms'); ?></option>
 									<option<?php if ( $verificationused && $field_type<>"verification" ) echo ' disabled="disabled" class="disabled"'; ?>  value="verification" <?php echo($field_type == 'verification'?' selected="selected"':''); ?>><?php _e('Visitor verification (Q&amp;A)', 'cforms'); ?></option>
 									<option<?php if ( $captchaused && $field_type<>"captcha" ) echo ' disabled="disabled" class="disabled"'; ?>  value="captcha" <?php echo($field_type == 'captcha'?' selected="selected"':''); ?>><?php _e('Captcha verification (image)', 'cforms'); ?></option>
-									<?php if ( class_exists('sg_subscribe') ) : ?>
-										<option<?php echo $dis; ?> value="subscribe" <?php echo($field_type == 'subscribe'?' selected="selected"':''); ?>><?php _e('Subscribe To Comments', 'cforms'); ?></option>
-									<?php endif; ?>
 								</optgroup>
 
                                 <?php if ( $isTAF<>1 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
@@ -1120,7 +1117,6 @@ if( strlen($fd)<=2 ) {
 
 				</table>
 
-				<p><?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a>.</p>
 			</div>
 		</fieldset>
 

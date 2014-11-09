@@ -726,7 +726,6 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 					<code><strong><?php _e('Author\'s Email', 'cforms'); ?></strong></code><br />
 					<code><strong><?php _e('Author\'s URL', 'cforms'); ?></strong></code><br />
 					<code><strong><?php _e('Author\'s Comment', 'cforms'); ?></strong></code><br />
-					<code><strong>Subscribe To Comments <small><?php _e('(if plugin installed)', 'cforms'); ?></small></strong></code><br />
 				</td>
 			</tr>
 			<tr>
@@ -772,16 +771,6 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 						<li><?php echo sprintf(__('I recommend you choose the <strong>wide_form.css</strong> theme under the <a href="%s">Styling</a> menu. And adjust to your liking.', 'cforms'),'?page='.$plugindir.'/cforms-css.php'); ?></li>
 						<li><?php _e('If you intend to make certain fields "required", I further recommend you add the text "<em>required</em>" to the input field label and set this style: <code  style="color:red">span.reqtxt, span.emailreqtxt {...</code> to <code  style="color:red">display:none;</code> (using the CSS editor on the <em>Styling</em> page)', 'cforms'); ?></li>
 					</ol>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('Other comment plugins?', 'cforms'); ?></strong> <?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a>.
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('Tutorial:', 'cforms'); ?></strong> <?php echo sprintf(__('<a href="%s">Here you\'ll find</a> a comprehensive write up by Erum Munir on how to use cforms in combination with the Subscribe-To plugin, and a more <a href="%s">general one</a> for using cforms as a stand in replacement for the default WP comment functionality.', 'cforms'), 'http://www.erummunir.com/76/cforms-ii-the-all-in-one-contact-form-solution','http://www.erummunir.com/154/cforms-ii-more-on-using-as-a-comment-form'); ?>
 				</td>
 			</tr>
 		</table>
@@ -1096,7 +1085,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('Drop down fields', 'cforms'); ?>:</td><td> <code>selectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s URL', 'cforms'); ?>:</td><td> <code>url</code></td></tr>
 	                <tr><td><?php _e('Multi select boxes', 'cforms'); ?>:</td><td> <code>multiselectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s Comment', 'cforms'); ?>:</td><td> <code>comment</code></td></tr>
 	                <tr><td><?php _e('Radio buttons', 'cforms'); ?>:</td><td> <code>radiobuttons</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Select: Email/Comment', 'cforms'); ?>:</td><td> <code>send2author</code></td></tr>
-	                <tr><td><?php _e('\'CC\' check box', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Subscribe To Comments', 'cforms'); ?>:</td><td> <code>subscribe</code></td></tr>
+	                <tr><td><?php _e('\'CC\' check box', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>verification</code></td></tr>
 	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?>:</td><td> <code>captcha</code></td></tr>

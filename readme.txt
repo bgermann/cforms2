@@ -119,11 +119,13 @@ Some things are to be done:
 
 * filter user input
 * make attachments download support directories that are not exported via HTTP
-* [support for Subscribe to Comments Reloaded](https://wordpress.org/support/topic/suggestion-support-subscribe-to-comments-reloaded)
 * long term: refactoring with object oriented approach
 
 
 == Upgrade Notice ==
+
+= 14.7 =
+Explicit Subscribe To Comments support is removed. Please delete all the remaining input elements from your forms. Also check the styling on comment forms!
 
 = 14.6.10 =
 Wordpress 2.8 Widget API is now used for cforms widgets. You have to recreate your widgets.
@@ -150,6 +152,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.7 =
+* enhanced: replace Subscribe To Comments support with a more general approach to also support Subscribe To Comments Reloaded
 * added:    Ukrainian translation
 * other:    remove old WP Ajax Edit Comments support, because current versions work without special support
 

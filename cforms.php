@@ -234,13 +234,6 @@ function cforms2($args = '',$no = '') {
 		}
 	}
 
-
-	$nl="\n";
-	$tab="\t";
-	$tt="\t\t";
-	$ntt="\n\t\t";
-	$nttt="\n\t\t\t";
-
 	### either show info message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
 	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track);
@@ -255,7 +248,7 @@ function cforms2($args = '',$no = '') {
 
 	### where to show message
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],0,1)=='y' ) {
-		$content .= $ntt . '<div id="usermessage'.$no.'a" class="cf_info' . $usermessage_class . $umc .' ">' . $usermessage_text . '</div>';
+		$content .= '<div id="usermessage'.$no.'a" class="cf_info' . $usermessage_class . $umc .' ">' . $usermessage_text . '</div>';
 		$actiontarget = 'a';
  	} else if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' )
 		$actiontarget = 'b';
@@ -348,7 +341,7 @@ function cforms2($args = '',$no = '') {
 	$enctype = $cformsSettings['form'.$no]['cforms'.$no.'_formaction'] ? 'enctype="application/x-www-form-urlencoded"':'enctype="multipart/form-data"';
 
 	### start with form tag
-	$content .= $ntt . '<form '.$enctype.' action="' . $action . '" method="post" class="cform ' . sanitize_title_with_dashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']). ' ' .( $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']?' cfnoreset':'' ). '" id="cforms'.$no.'form">' . $nl;
+	$content .= '<form '.$enctype.' action="' . $action . '" method="post" class="cform ' . sanitize_title_with_dashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']). ' ' .( $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']?' cfnoreset':'' ). '" id="cforms'.$no.'form">';
 
 
     ### Session item counter (for default values)
@@ -442,10 +435,10 @@ function cforms2($args = '',$no = '') {
 		
 
 		### special treatment for selectboxes
-		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','subscribe','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
+		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
 
 			$chkboxClicked = array();
-			if (  in_array($field_type,array('subscribe','checkbox','ccbox')) && strpos($obj[0],'|set:')>1 ){
+			if (  in_array($field_type,array('checkbox','ccbox')) && strpos($obj[0],'|set:')>1 ){
 				$chkboxClicked = explode('|set:', stripslashes($obj[0]) );
 				$obj[0] = $chkboxClicked[0];
 			}
@@ -455,7 +448,7 @@ function cforms2($args = '',$no = '') {
 
 			$options = explode('#', stripslashes($obj[0]) );
 			
-            if (  in_array($field_type,array('subscribe','checkbox','ccbox'))  )
+            if (  in_array($field_type,array('checkbox','ccbox'))  )
 				$field_name = ( $options[0]=='' ) ? $options[1]:$options[0];
 			else
 				$field_name = $options[0];
@@ -468,7 +461,7 @@ function cforms2($args = '',$no = '') {
 
 		### check if fieldset is open
 		if ( !$fieldsetopen && !$ol && $field_type<>'fieldsetstart') {
-			$content .= $tt . '<ol class="cf-ol">';
+			$content .= '<ol class="cf-ol">';
 			$ol = true;
 		}
 
@@ -490,7 +483,7 @@ function cforms2($args = '',$no = '') {
 
 		$defaultvalue = '';
 		### setting the default val & regexp if it exists
-		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','subscribe','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox','verification')) ) {
+		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox','verification')) ) {
 
 		    ### check if default val & regexp are set
 		    $obj = explode('|', $obj[0],3);
@@ -549,9 +542,6 @@ function cforms2($args = '',$no = '') {
 		$field_value = '';
 
 		switch ($field_type){
-			case 'subscribe':
-				$input_id = $input_name = 'subscribe';
-				break;
 			case 'verification':
 				if( is_user_logged_in() && $cformsSettings['global']['cforms_captcha_def']['foqa']<>'1' )
 					continue(2);
@@ -644,8 +634,8 @@ function cforms2($args = '',$no = '') {
 
 
 		### print label only for non "textonly" fields! Skip some others too, and handle them below indiv.
-		if( ! in_array($field_type,array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','subscribe','checkbox','checkboxgroup','send2author','radiobuttons')) )
-			$content .= $nttt . '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_id.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
+		if( ! in_array($field_type,array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','checkbox','checkboxgroup','send2author','radiobuttons')) )
+			$content .= '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_id.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
 
 
 		### if not reloaded (due to err) then use default values
@@ -672,23 +662,22 @@ function cforms2($args = '',$no = '') {
 				break;
 
 			case "textonly":
-				$field .= $nttt . '<li'.$liID.' class="textonly' . (($defaultvalue<>'')?' '.$defaultvalue:'') . '"' . (($reg_exp<>'')?' style="'.$reg_exp.'" ':'') . '>' . stripslashes(($field_name)) . '</li>';
+				$field .= '<li'.$liID.' class="textonly' . (($defaultvalue<>'')?' '.$defaultvalue:'') . '"' . (($reg_exp<>'')?' style="'.$reg_exp.'" ':'') . '>' . stripslashes(($field_name)) . '</li>';
 				break;
 
 			case "fieldsetstart":
 				if ($fieldsetopen) {
-						$field = $ntt . '</ol>' . $nl .
-								 $tt . '</fieldset>' . $nl;
+						$field = '</ol></fieldset>';
 						$fieldsetopen = false;
 						$ol = false;
 				}
 				if (!$fieldsetopen) {
 						if ($ol)
-							$field = $ntt . '</ol>' . $nl;
+							$field = '</ol>';
 
-						$field .= $tt .'<fieldset class="cf-fs'.$fscount++.'">' . $nl .
-								  $tt . '<legend>' . stripslashes($field_name) . '</legend>' . $nl .
-								  $tt . '<ol class="cf-ol">';
+						$field .= '<fieldset class="cf-fs'.$fscount++.'">'
+						       .  '<legend>' . stripslashes($field_name) . '</legend>'
+						       .  '<ol class="cf-ol">';
 						$fieldsetopen = true;
 						$ol = true;
 		 		}
@@ -696,8 +685,7 @@ function cforms2($args = '',$no = '') {
 
 			case "fieldsetend":
 				if ($fieldsetopen) {
-						$field = $ntt . '</ol>' . $nl .
-								 $tt . '</fieldset>' . $nl;
+						$field = '</ol></fieldset>';
 						$fieldsetopen = false;
 						$ol = false;
 				} else $field='';
@@ -785,7 +773,7 @@ function cforms2($args = '',$no = '') {
                 if ( preg_match('/^<([a-zA-Z0-9]+)>$/',$field_value,$getkey) )
                     $field_value = $_GET[$getkey[1]];
 
-				$field .= $nttt . '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="'.$input_name.'" id="'.$input_id.'" value="' . $field_value  . '"'.$fieldTitle.'/></li>';
+				$field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="'.$input_name.'" id="'.$input_id.'" value="' . $field_value  . '"'.$fieldTitle.'/></li>';
 				break;
 
 			case "comment":
@@ -797,19 +785,6 @@ function cforms2($args = '',$no = '') {
 	           		 $field .= '<input type="hidden" name="'.$input_name.'_regexp" id="'.$input_id.'_regexp" value="'.$reg_exp.'"'.$fieldTitle.'/>';
 				break;
 
-			case "subscribe":
-				if ( class_exists('sg_subscribe') && $field_type=='subscribe' ){
-					global $sg_subscribe;
-					sg_subscribe_start();
-					if( ($email = $sg_subscribe->current_viewer_subscription_status())=='admin' && current_user_can('manage_options') ){
-						$field .= '<li'.$liID.'>'.str_replace('[manager_link]', $sg_subscribe->manage_link($email, true, false), $sg_subscribe->author_text).'</li>';
-						continue;
-					}else if($email<>''){
-						$field .= '<li'.$liID.'>'.str_replace('[manager_link]', $sg_subscribe->manage_link($email, true, false), $sg_subscribe->subscribed_text).'</li>';
-						continue;
-					}
-					$val = ' value="subscribe"';
-				}
 	   		case "ccbox":
 			case "checkbox":
 				if ( !$all_valid || ($all_valid && $cformsSettings['form'.$no]['cforms'.$no.'_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form'.$no])) ) //exclude MP! if first time on the form = array = null
@@ -836,7 +811,7 @@ function cforms2($args = '',$no = '') {
 				if( $val=='' )
 					$val = ($opt[1]<>'')?' value="'.$opt[1].'"':'';
 					
-				$field = $nttt . $before . '<input' . $readonly.$disabled . ' type="checkbox" name="'.$input_name.'" id="'.$input_id.'" class="cf-box-' . $ba . $field_class . '"'.$val.$fieldTitle.$preChecked.'/>' . $after;
+				$field = $before . '<input' . $readonly.$disabled . ' type="checkbox" name="'.$input_name.'" id="'.$input_id.'" class="cf-box-' . $ba . $field_class . '"'.$val.$fieldTitle.$preChecked.'/>' . $after;
 
 				break;
 
@@ -844,8 +819,8 @@ function cforms2($args = '',$no = '') {
 			case "checkboxgroup":
 				$liID_b = ($liID <>'')?substr($liID,0,-1) . 'items"':'';
 				array_shift($options);
-				$field .= $nttt . '<li'.$liID.' class="cf-box-title">' . (($field_name)) . '</li>' .
-						  $nttt . '<li'.$liID_b.' class="cf-box-group">';
+				$field .= '<li'.$liID.' class="cf-box-title">' . (($field_name)) . '</li>' .
+						  '<li'.$liID_b.' class="cf-box-group">';
 				$id=1; $j=0;
 
                 ### mp session support
@@ -878,18 +853,17 @@ function cforms2($args = '',$no = '') {
 						if ( $labelID<>'' ) $labelIDx = substr($labelID,0,-1) . $id . '"';
 
 						if ( $opt[0]=='' )
-							$field .= $nttt . $tab . '<br />';
+							$field .= '<br />';
 						else
-							$field .= $nttt . $tab . '<input' . $readonly.$disabled . ' type="checkbox" id="'. $input_id .'-'. $id . '" name="'. $input_name . $brackets .'" value="'.$opt[1].'" '.$checked.' class="cf-box-b"'.$fieldTitle.'/>'.
+							$field .= '<input' . $readonly.$disabled . ' type="checkbox" id="'. $input_id .'-'. $id . '" name="'. $input_name . $brackets .'" value="'.$opt[1].'" '.$checked.' class="cf-box-b"'.$fieldTitle.'/>'.
 									  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-group-after"><span>'.$opt[0] . "</span></label>";
 
 					}
-				$field .= $nttt . '</li>';
+				$field .= '</li>';
 				break;
 
 
 			case "multiselectbox":
-				### $field .= $nttt . '<li><label ' . $labelID . ' for="'.$input_name.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
 				$field .= '<select' . $readonly.$disabled . ' multiple="multiple" name="'.$input_name.'[]" id="'.$input_id.'" class="cfselectmulti ' . $field_class . '"'.$fieldTitle.'>';
 				array_shift($options);
 				$j=0;
@@ -919,10 +893,10 @@ function cforms2($args = '',$no = '') {
 						    $checked = ' selected="selected"';
 	                }
 
-                    $field.= $nttt . $tab . '<option value="'. str_replace('"','&quot;',$opt[1]) .'"'.$checked.'>'.$opt[0].'</option>';
+                    $field.= '<option value="'. str_replace('"','&quot;',$opt[1]) .'"'.$checked.'>'.$opt[0].'</option>';
 
 				}
-				$field.= $nttt . '</select>';
+				$field.= '</select>';
 				break;
 
 			case "emailtobox":
@@ -951,10 +925,10 @@ function cforms2($args = '',$no = '') {
 							if ( $opt[1]==$field_value || $jj==$field_value )
 								$checked = ' selected="selected"';
 
-					$field.= $nttt . $tab . '<option value="'.(($field_type=='emailtobox')?$jj:$opt[1]).'"'.$checked.'>'.$opt[0].'</option>';
+					$field.= '<option value="'.(($field_type=='emailtobox')?$jj:$opt[1]).'"'.$checked.'>'.$opt[0].'</option>';
 
 				}
-				$field.= $nttt . '</select>';
+				$field.= '</select>';
 				break;
 
 			case "send2author":
@@ -963,8 +937,8 @@ function cforms2($args = '',$no = '') {
 				$liID_b = ($liID <>'')?substr($liID,0,-1) . 'items"':'';	### only if label ID's active
 
 				array_shift($options);
-				$field .= $nttt . '<li'.$liID.' class="'.$liERR.' cf-box-title">'. $insertErr . (($field_name)) . '</li>' .
-						  $nttt . '<li'.$liID_b.' class="cf-box-group">';
+				$field .= '<li'.$liID.' class="'.$liERR.' cf-box-title">'. $insertErr . (($field_name)) . '</li>' .
+						  '<li'.$liID_b.' class="cf-box-group">';
 
 				$id=1;
 				foreach( $options as $option  ) {
@@ -986,14 +960,14 @@ function cforms2($args = '',$no = '') {
 						if ( $labelID<>'' ) $labelIDx = substr($labelID,0,-1) . $id . '"';
 
 						if ( $opt[0]=='' )
-							$field .= $nttt . $tab . '<br />';
+							$field .= '<br />';
 						else
-							$field .= $nttt . $tab .
+							$field .=
 								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b' . ($field_required?' fldrequired':'') .'"'.$fieldTitle.'/>'.
 								  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-after"><span>'.$opt[0] . "</span></label>";
 
 					}
-				$field .= $nttt  . '</li>';
+				$field .= '</li>';
 				break;
 
 		}
@@ -1007,11 +981,11 @@ function cforms2($args = '',$no = '') {
 		### adding "required" text if needed
 		if($field_emailcheck == 1)
 			$content .= '<span class="emailreqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_emailrequired']).'</span>';
-		else if($field_required == 1 && !in_array($field_type,array('ccbox','subscribe','checkbox','radiobuttons')) )
+		else if($field_required == 1 && !in_array($field_type,array('ccbox','checkbox','radiobuttons')) )
 			$content .= '<span class="reqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_required']).'</span>';
 
 		### close out li item
-		if ( ! in_array($field_type,array('hidden','fieldsetstart','fieldsetend','radiobuttons','subscribe','checkbox','checkboxgroup','ccbox','textonly','send2author')) )
+		if ( ! in_array($field_type,array('hidden','fieldsetstart','fieldsetend','radiobuttons','checkbox','checkboxgroup','ccbox','textonly','send2author')) )
 			$content .= '</li>';
 
 	} ### all fields
@@ -1019,9 +993,9 @@ function cforms2($args = '',$no = '') {
 
 	### close any open tags
 	if ( $ol )
-		$content .= $ntt . '</ol>';
+		$content .= '</ol>';
 	if ( $fieldsetopen )
-		$content .= $ntt . '</fieldset>';
+		$content .= '</fieldset>';
 
 
 	### rest of the form
@@ -1036,12 +1010,12 @@ function cforms2($args = '',$no = '') {
 
 
 	### just to appease html "strict"
-	$content .= $ntt . '<fieldset class="cf_hidden">'.$nttt.'<legend>&nbsp;</legend>';
+	$content .= '<fieldset class="cf_hidden"><legend>&nbsp;</legend>';
 
 
 	### if visitor verification turned on:
 	if ( $verification )
-		$content .= $nttt .'<input type="hidden" name="cforms_a'.$no.'" id="cforms_a'.$no.'" value="' . md5(rawurlencode(strtolower($q[1]))) . '"/>';
+		$content .= '<input type="hidden" name="cforms_a'.$no.'" id="cforms_a'.$no.'" value="' . md5(rawurlencode(strtolower($q[1]))) . '"/>';
 
 	### custom error
 	$custom_error=substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],4,1).$custom_error;
@@ -1053,20 +1027,20 @@ function cforms2($args = '',$no = '') {
 		$nono = $isWPcommentForm?'':$no;
 
 		if ( $isWPcommentForm )
-			$content .= $nttt . '<input type="hidden" name="comment_parent" id="comment_parent" value="'.( ($_REQUEST['replytocom']<>'')?$_REQUEST['replytocom']:'0' ).'"/>';
+			$content .= '<input type="hidden" name="comment_parent" id="comment_parent" value="'.( ($_REQUEST['replytocom']<>'')?$_REQUEST['replytocom']:'0' ).'"/>';
 
-		$content .= $nttt . '<input type="hidden" name="comment_post_ID'.$nono.'" id="comment_post_ID'.$nono.'" value="' . ( isset($_GET['pid'])? $_GET['pid'] : get_the_ID() ) . '"/>' .
-					$nttt . '<input type="hidden" name="cforms_pl'.$no.'" id="cforms_pl'.$no.'" value="' . ( isset($_GET['pid'])? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
+		$content .= '<input type="hidden" name="comment_post_ID'.$nono.'" id="comment_post_ID'.$nono.'" value="' . ( isset($_GET['pid'])? $_GET['pid'] : get_the_ID() ) . '"/>' .
+					'<input type="hidden" name="cforms_pl'.$no.'" id="cforms_pl'.$no.'" value="' . ( isset($_GET['pid'])? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
 	}
 
 
-	$content .= $nttt . '<input type="hidden" name="cf_working'.$no.'" id="cf_working'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_working']).'</span>"/>'.
-				$nttt . '<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'</span>"/>'.
-				$nttt . '<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="<span>'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'</span>"/>'.
-				$nttt . '<input type="hidden" name="cf_customerr'.$no.'" id="cf_customerr'.$no.'" value="'.rawurlencode($custom_error).'"/>'.
-				$nttt . '<input type="hidden" name="cf_popup'.$no.'" id="cf_popup'.$no.'" value="'.$cformsSettings['form'.$no]['cforms'.$no.'_popup'].'"/>';
+	$content .= '<input type="hidden" name="cf_working'.$no.'" id="cf_working'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_working']).'</span>"/>'.
+				'<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'</span>"/>'.
+				'<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="<span>'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'</span>"/>'.
+				'<input type="hidden" name="cf_customerr'.$no.'" id="cf_customerr'.$no.'" value="'.rawurlencode($custom_error).'"/>'.
+				'<input type="hidden" name="cf_popup'.$no.'" id="cf_popup'.$no.'" value="'.$cformsSettings['form'.$no]['cforms'.$no.'_popup'].'"/>';
 
-	$content .= $ntt . '</fieldset>';
+	$content .= '</fieldset>';
 
 
     ### multi page form: reset
@@ -1081,14 +1055,20 @@ function cforms2($args = '',$no = '') {
 		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] . '">';
 
 
-	$content .= $ntt . '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form>';
+	$content .= '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p>';
+	if ($isWPcommentForm) {
+		ob_start();
+		do_action( 'comment_form', get_the_ID() );
+		$content .= ob_get_clean();
+	}
+	$content .= '</form>';
 
 	### either show message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
 	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track);
 
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
-		$content .= $tt . '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>' . $nl;
+		$content .= '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>';
 
 	### debug
 	cforms2_dbg( "(cforms) Last stop...".print_r($_SESSION,1) );

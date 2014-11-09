@@ -109,14 +109,6 @@ function cforms2_submitcomment() {
 		die();
 	}
 
-	### Subscribe-To-Comments
-	$isSubscribed='';
-	if ( class_exists('sg_subscribe') ){
-		global $sg_subscribe;
-		sg_subscribe_start();
-		$isSubscribed = $sg_subscribe->current_viewer_subscription_status();
-	}
-
 	$captchaopt = $cformsSettings['global']['cforms_captcha_def'];
 
 	for($i = 1; $i <= sizeof($params)-2; $i++) {
@@ -196,7 +188,7 @@ function cforms2_submitcomment() {
 
 
 			###  special WP comment fields
-			if( in_array($field_stat[1],array('subscribe','cauthor','email','url','comment','send2author')) ){
+			if( in_array($field_stat[1],array('cauthor','email','url','comment','send2author')) ){
 			    $temp = explode('#', $field_name,2);
 
 				if ( $temp[0] == '' )

@@ -78,16 +78,6 @@ for($i = 1; $i <= $field_count; $i++) {
 
 		if( $jump )	continue;
 
-		### if subscribe not shown, skip
-		$isSubscribed='';
-		if ( class_exists('sg_subscribe') ){
-			global $sg_subscribe;
-			sg_subscribe_start();
-			$isSubscribed = $sg_subscribe->current_viewer_subscription_status();
-		}
-		if( in_array($field_type,array('subscribe')) && $isSubscribed<>'' )
-			continue;
-
 		### input field names & label
 		$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
 		$isFieldArray = false;
@@ -143,7 +133,7 @@ for($i = 1; $i <= $field_count; $i++) {
 		else
 			$current_field = $_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)];
 
-		if( in_array($field_type,array('subscribe','comment','url','email','cauthor')) )  ### WP comment field name exceptions
+		if( in_array($field_type,array('comment','url','email','cauthor')) )  ### WP comment field name exceptions
 			$current_field = $_REQUEST[$field_type];
 
 		$current_field = is_array($current_field) ? $current_field : stripslashes($current_field);
