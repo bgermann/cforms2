@@ -149,6 +149,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.7 =
+* added:    Ukrainian translation
+* other:    remove old WP Ajax Edit Comments support, because current versions work without special support
+
 = 14.6.11 =
 * enhanced: API function my_cforms_action() can throw an exception
 * bugfix:   several AJAX related JavaScript undefined function bugs introduced in 14.6.8

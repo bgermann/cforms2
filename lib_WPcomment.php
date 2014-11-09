@@ -139,12 +139,6 @@ if ( $isAjaxWPcomment ){
 			$template = str_replace('{moderation}', preg_replace ( '|\r?\n|', '<br />',$comment_in_mod),$template);
 			$template = str_replace('{id}',         $comment_id,$template);
 
-			### support for AjaxEditComments
-			if ( class_exists('WPrapAjaxEditComments') ){
-				$WPrapAjaxEditComments = new WPrapAjaxEditComments();
-				### $WPrapAjaxEditComments->commentClassName = '';
-				$comment->comment_content = $WPrapAjaxEditComments->add_edit_links($comment->comment_content);
-			}
 			$template = str_replace('{usercomment}',preg_replace ( '|\r?\n|', '<br />',$comment->comment_content),$template);
 
 			$template = str_replace('{url}',        $comment_author_url,$template);

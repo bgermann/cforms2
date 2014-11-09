@@ -1120,7 +1120,7 @@ if( strlen($fd)<=2 ) {
 
 				</table>
 
-				<p><?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a> &amp; <a href="https://wordpress.org/plugins/wp-ajax-edit-comments/">WP Ajax Edit Comments</a>.</p>
+				<p><?php _e('cforms\' WP comment feature supports the following comment plugins:', 'cforms') ?> <a href="https://wordpress.org/plugins/subscribe-to-comments/">Subscribe to Comments</a>.</p>
 			</div>
 		</fieldset>
 
