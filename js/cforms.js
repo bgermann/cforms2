@@ -59,7 +59,7 @@ function cforms_validate(no, upload) {
         return str;
     };
 
-    var set_customerr = function (id) {
+    var set_customerr = function (id, parent_el) {
         var gotone = all_custom_error[id];
         if ( all_custom_error[id] && gotone !='' ){
 
