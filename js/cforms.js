@@ -59,14 +59,7 @@ function cforms_validate(no, upload) {
         return str;
     };
 
-    // track and store all errors until end
-    var check_for_customerr = function (id) {
-
-        var parent_el = document.getElementById(id).parentNode;
-        if( show_err_li=='y' ) {
-            parent_el.className = "cf_li_err";
-        }
-
+    var set_customerr = function (id) {
         var gotone = all_custom_error[id];
         if ( all_custom_error[id] && gotone !='' ){
 
@@ -77,11 +70,8 @@ function cforms_validate(no, upload) {
                 var li = document.createElement('LI');
                 li.innerHTML = stripslashes(gotone);
 
-                var cl = document.createAttribute('class');
-                cl.nodeValue  = 'cf_li_text_err';
-
                 ul.appendChild(li);
-                ul.setAttributeNode(cl);
+                ul.setAttribute('class', 'cf_li_text_err');
 
                 insert_err[insert_err_count++] = ul;
             }
@@ -96,31 +86,24 @@ function cforms_validate(no, upload) {
             return custom_error;
     };
 
+    // track and store all errors until end
+    var check_for_customerr = function (id) {
+
+        var parent_el = document.getElementById(id).parentNode;
+        if( show_err_li=='y' ) {
+            parent_el.className = "cf_li_err";
+        }
+
+        return set_customerr(id, parent_el);
+    };
+
     var check_for_customerr_radio = function (id, cerr) {
         var parent_el = document.getElementById( id.substr(0, id.length - 5) );
         if ( show_err_li == 'y' ) {
             parent_el.className = "cf-box-title cf_li_err";
         }
 
-        var gotone = all_custom_error[cerr];
-        if ( all_custom_error[cerr] && gotone != '' ) {
-            if ( show_err_ins == 'y') {
-                insert_err_p[insert_err_count] = parent_el.id;
-                var ul = document.createElement('UL');
-                var li = document.createElement('LI');
-                li.innerHTML = stripslashes(gotone);
-                var cl = document.createAttribute('class');
-                cl.nodeValue = 'cf_li_text_err';
-                ul.appendChild(li);
-                ul.setAttributeNode(cl);
-                insert_err[insert_err_count++] = ul;
-            }
-            if ( parent_el.id != '' )
-                return custom_error + '<li><a href="#' + parent_el.id + '">' + gotone + ' &raquo;</li></a>';
-            else
-                return custom_error + '<li>' + gotone + '</li>';
-        }
-        else return custom_error;
+        return set_customerr(cerr, parent_el);
     };
 
     var isParentChkBoxGroup = function (el){
@@ -312,7 +295,6 @@ function cforms_validate(no, upload) {
 
         if ( hide ) {
             document.getElementById('cforms'+no+'form').style.display = 'none';
-            document.getElementById('ll'+no).style.display = 'none';
             if ( !message.match(/>>>/) )
                 location.hash = '#usermessage' + no + 'a';
         }
