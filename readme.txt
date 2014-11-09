@@ -22,6 +22,14 @@ If you want to use plugin versions older than 14.6.3, you should rename the dire
 
 Some icons are based on the wonderful set of Jan Kovařík: [glyphicons](http://glyphicons.com).
 
+Translations are provided by:
+
+* Buy-Hosting.net
+* Leadvirus
+* Gianni Diurno
+* Gill Ajoft
+* Stas Mykhajlyuk
+
 = License Information =
 
 Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
