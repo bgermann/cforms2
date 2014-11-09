@@ -336,7 +336,7 @@ function cforms2_submitcomment() {
 
 
     ###  Catch WP-Comment function | if send2author just continue
-    if ( $isAjaxWPcomment!==false && $track['send2author']=='0' ){
+    if ( $isAjaxWPcomment!==false && (!isset($track['send2author']) || $track['send2author']=='0') ){
 		require_once (plugin_dir_path(__FILE__) . 'lib_WPcomment.php');
 
 	    ###  Catch WP-Comment function: error
