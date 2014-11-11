@@ -24,11 +24,13 @@ Some icons are based on the wonderful set of Jan Kovařík: [glyphicons](http://
 
 Translations are provided by:
 
-* Buy-Hosting.net
+* www.alpenimmobilien.de
+* Michael Lederstatter / Buy-Hosting.net
 * Leadvirus
 * Gianni Diurno
 * Gill Ajoft
 * Stas Mykhajlyuk
+* Charles Tang
 
 = License Information =
 
@@ -161,7 +163,7 @@ GPL compliance!
 
 = 14.7 =
 * enhanced: replace Subscribe To Comments support with a more general approach to also support Subscribe To Comments Reloaded
-* added:    Ukrainian translation
+* added:    Bosnian, Croatian, Serbian, Simplified Chinese and full Ukrainian translations
 * other:    remove old WP Ajax Edit Comments support, because current versions work without special support
 
 = 14.6.11 =

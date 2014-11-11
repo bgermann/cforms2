@@ -1,4 +1,4 @@
-# Copyright (c) 2008 Stas Mykhajlyuk (http://kosivart.if.ua/2008/10/02/471/)
+# Copyright (c) 2008-2014 Stas Mykhajlyuk (http://kosivart.if.ua/2008/10/02/471/)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,16 +15,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cformsII $Revision$\n"
+"Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2014-11-07 03:36+0100\n"
-"PO-Revision-Date: 2014-11-08 20:53+0100\n"
-"Last-Translator: Bastian Germann\n"
+"PO-Revision-Date: 2014-11-11 11:05+0200\n"
+"Last-Translator: Stanislav Mykhajlyuk <office@kosivart.com>\n"
 "Language-Team: Stas Mykhajlyuk <office@kosivart.com>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: cforms-corrupted.php:24 lib_functions.php:108
 msgid "cforms error"
@@ -144,7 +144,7 @@ msgstr "догори"
 
 #: cforms-css.php:103
 msgid "Styling options"
-msgstr ""
+msgstr "Налаштування вигляду"
 
 #: cforms-css.php:113
 msgid "Please choose a theme file to style your forms"
@@ -210,7 +210,7 @@ msgstr "Реактивувати CSS стилі!"
 
 #: cforms-css.php:186
 msgid "No styles are being used"
-msgstr ""
+msgstr "Стилі не вибрані."
 
 #: cforms-css.php:192 cforms-help.php:1516
 #, php-format
@@ -345,11 +345,11 @@ msgstr "Немає записів"
 
 #: cforms-database.php:87
 msgid "of"
-msgstr ""
+msgstr "з"
 
 #: cforms-database.php:88
 msgid "Find"
-msgstr ""
+msgstr "Знайти"
 
 #: cforms-database.php:118 cforms-database.php:127
 msgid "Please Confirm"
@@ -451,11 +451,11 @@ msgstr ""
 
 #: cforms-global-settings.php:217
 msgid "HTML5 Input Field Support"
-msgstr ""
+msgstr "Підтримка HTML5 Input Field"
 
 #: cforms-global-settings.php:224
 msgid "Enable HTML5 fields"
-msgstr ""
+msgstr "Активувати поля HTML5 "
 
 #: cforms-global-settings.php:232
 msgid "WP Comment Feature Settings"
@@ -614,7 +614,7 @@ msgstr "Формат дати"
 
 #: cforms-global-settings.php:354
 msgid "See supported date formats &raquo;"
-msgstr ""
+msgstr "Гляньте дозволені формати дати &raquo;"
 
 #: cforms-global-settings.php:357
 msgid "Days (Columns)"
@@ -626,7 +626,7 @@ msgstr "Місяці"
 
 #: cforms-global-settings.php:367
 msgid "Enable year selection drop down"
-msgstr ""
+msgstr "Активувати випадаючий список року"
 
 #: cforms-global-settings.php:370 lib_activate.php:184
 msgid "Previous Month"
@@ -1070,7 +1070,7 @@ msgstr "Гарно дякую!"
 
 #: cforms-help.php:29
 msgid "Donate"
-msgstr ""
+msgstr "Пожертва"
 
 #: cforms-help.php:33
 msgid "Help"
@@ -1776,8 +1776,8 @@ msgid ""
 "field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s "
 "Name3..."
 msgstr ""
-"назва поля %1$s Назва1 | email адреса(и) %1$s %1$s Назва2 | email "
-"адреса(и)%1$s Назва3..."
+"назва поля %1$s Назва1 | email адреса(и) %1$s %1$s Назва2 | email адреса"
+"(и)%1$s Назва3..."
 
 #: cforms-help.php:443
 msgid "Send to#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com"
@@ -2232,10 +2232,10 @@ msgid ""
 msgstr ""
 "Відредагуйте ваш шаблон теми WP для коментарів: Повністю видаліть поточний "
 "<strong><u>comment_form() in comments.php</u></strong>. На заміну замініть "
-"PHP-викликом до cforms: <code  style=\"color:red\">&lt;?php "
-"insert_cform(X); ?&gt;</code> з <u>пропущеним</u> <strong>X</strong>, якщо "
-"форма це ваша стандартна форма або починається з <strong>'2'</strong> (з "
-"одинарними лапками!) для наступної форми #."
+"PHP-викликом до cforms: <code  style=\"color:red\">&lt;?php insert_cform"
+"(X); ?&gt;</code> з <u>пропущеним</u> <strong>X</strong>, якщо форма це ваша "
+"стандартна форма або починається з <strong>'2'</strong> (з одинарними "
+"лапками!) для наступної форми #."
 
 #: cforms-help.php:759
 #, php-format
@@ -3114,7 +3114,7 @@ msgstr "Важливо!"
 
 #: cforms-help.php:1337
 msgid "Custom variables in MULTI-PAGE forms:"
-msgstr ""
+msgstr "Кастомні змінні у багатосторінкових формах:"
 
 #: cforms-help.php:1342
 #, php-format
@@ -3123,6 +3123,9 @@ msgid ""
 "actual form the field is on, eg. {%scf_form6_%sYour Name} would reference "
 "the field labeled \"Your Name\" on form #6."
 msgstr ""
+"Посилання значення форми у багатосторінкових формах потребує визначення поля "
+"актуальної форми , наприклад. {%scf_form6_%sYour Name} буде посилатись на "
+"поле з міткою \"Your Name\" у формі #6."
 
 #: cforms-help.php:1351
 msgid ""
@@ -3146,8 +3149,8 @@ msgstr ""
 #: cforms-help.php:1366
 #, php-format
 msgid ""
-"Here is an example for a simple <a href=\"%s\" %s>Admin HTML message</a> "
-"<em>(you can copy and paste the below code or change to your liking)</em>:"
+"Here is an example for a simple <a href=\"%s\" %s>Admin HTML message</a> <em>"
+"(you can copy and paste the below code or change to your liking)</em>:"
 msgstr ""
 "Ось приклад простого <a href=\"%s\" %s>HTML повідомлення адміністратора</a> "
 "<em>(ви можете скопіювати та вставити код внизу або змінити його як вам "
@@ -3375,16 +3378,16 @@ msgstr "Важливо:"
 msgid ""
 "Accessing %1$s {custom variables} %2$s in the final form differs from how "
 "you would reference these in individual forms. Use the %1$s mail() %2$s "
-"example in my-functions.php to examine the user data array; e.g. "
-"%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
-"the series)."
+"example in my-functions.php to examine the user data array; e.g. %1$s"
+"{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the "
+"series)."
 msgstr ""
 "Навряд чи простий користувач буде це читати (користуватись цими функціями), "
 "а якщо і буде, то технічну англійську він знає :) Accessing %1$s {custom "
 "variables} %2$s in the final form differs from how you would reference these "
 "in individual forms. Use the %1$s mail() %2$s example in my-functions.php to "
-"examine the user data array; e.g. %1$s{Email}%2$s would become "
-"%1$s{cf_form_Email}%2$s (for the first form of the series)."
+"examine the user data array; e.g. %1$s{Email}%2$s would become %1$s"
+"{cf_form_Email}%2$s (for the first form of the series)."
 
 #: cforms-help.php:1501
 #, php-format
@@ -3659,7 +3662,7 @@ msgstr "Виберіть тип поля"
 
 #: cforms-options.php:321
 msgid "----- General form fields ----"
-msgstr ""
+msgstr "----- Загальні поля форми ----"
 
 #: cforms-options.php:322
 msgid "Begin Fieldset"
@@ -3747,59 +3750,59 @@ msgstr "--- Поля форми коментування WP ---"
 
 #: cforms-options.php:367
 msgid "--- HTML5 form fields ---"
-msgstr ""
+msgstr "--- Поля форми HTML5 ---"
 
 #: cforms-options.php:368
 msgid "Color Field"
-msgstr ""
+msgstr "Колір поля"
 
 #: cforms-options.php:369
 msgid "Date Field"
-msgstr ""
+msgstr "Поле дати"
 
 #: cforms-options.php:370
 msgid "Date/Time Field"
-msgstr ""
+msgstr "Поле Дати/Години"
 
 #: cforms-options.php:371
 msgid "Date/Time (local) Field"
-msgstr ""
+msgstr "Поле Дати/Години (локальної)"
 
 #: cforms-options.php:372
 msgid "Email Field"
-msgstr ""
+msgstr "Поле E-mail"
 
 #: cforms-options.php:373
 msgid "Month Field"
-msgstr ""
+msgstr "Поле місяця"
 
 #: cforms-options.php:374
 msgid "Number Field"
-msgstr ""
+msgstr "Поле Числа"
 
 #: cforms-options.php:375
 msgid "Range Field"
-msgstr ""
+msgstr "Поле відрізку"
 
 #: cforms-options.php:376
 msgid "Search Field"
-msgstr ""
+msgstr "Поле пошуку"
 
 #: cforms-options.php:377
 msgid "Telephone Number Field"
-msgstr ""
+msgstr "Поле телефонного номеру"
 
 #: cforms-options.php:378
 msgid "Time Field"
-msgstr ""
+msgstr "Поле часу"
 
 #: cforms-options.php:379
 msgid "URL Field"
-msgstr ""
+msgstr "Поле посилання"
 
 #: cforms-options.php:380
 msgid "Week Field"
-msgstr ""
+msgstr "Поле тижня"
 
 #: cforms-options.php:385
 msgid "Remove input field"
@@ -3999,9 +4002,9 @@ msgstr "Ключові опції адміна / email форми"
 #: cforms-options.php:586
 #, php-format
 msgid ""
-"These settings determine basic cforms behaviour and the form email "
-"recipient(s). Both %s and %s formats are valid, but check if your mail "
-"server does accept the format of choice!"
+"These settings determine basic cforms behaviour and the form email recipient"
+"(s). Both %s and %s formats are valid, but check if your mail server does "
+"accept the format of choice!"
 msgstr ""
 "Ці налаштування визначають основну поведінку cforms та email отримувача(ів) "
 "форми. Обидва %s та %s формати вірні, але перевірте чи ваш поштовий сервер "
@@ -4244,7 +4247,7 @@ msgstr "%sВимкнути%semail адміна"
 #: cforms-options.php:792
 #, php-format
 msgid "%sExclude empty fields%s from admin email"
-msgstr ""
+msgstr "%sExclude empty fields%s з email адміна"
 
 #: cforms-options.php:798
 msgid "FROM: email address"
@@ -4300,7 +4303,7 @@ msgstr "Email %spriority%s (1 = Високий, 3 = Нормальний, 5 = Н
 
 #: cforms-options.php:834
 msgid "Reset admin message to default"
-msgstr ""
+msgstr "Скинути до замовчувань повідомленян адміністратора"
 
 #: cforms-options.php:840
 msgid "<strong>Admin TEXT message</strong><br />(Header)"
@@ -4407,7 +4410,7 @@ msgstr "Тема автопідтвердження"
 
 #: cforms-options.php:929
 msgid "Reset auto confirmation message to default"
-msgstr ""
+msgstr "Скинути до замовчувань автоматичне підтверджуюче повідомлення"
 
 #: cforms-options.php:933
 msgid "TEXT message"
@@ -4736,11 +4739,11 @@ msgstr "Р-Д активувати цей запис/сторінку"
 
 #: cforms.php:1467
 msgid "Produce debug output"
-msgstr ""
+msgstr "Виконати дебаг"
 
 #: cforms.php:1467
 msgid "Outputs -for debug purposes- all cforms settings"
-msgstr ""
+msgstr "Результати -for debug purposes- всі налаштувань cforms"
 
 #: cforms.php:1468
 msgid "Uninstalling / removing cforms"
@@ -4764,7 +4767,7 @@ msgstr "Зберегти &amp; Відновити всі налаштуванн�
 
 #: cforms.php:1473 cforms.php:1491
 msgid "Better safe than sorry ;)"
-msgstr ""
+msgstr "Краще безпечніше чим потім шкодувати ;)"
 
 #: cforms.php:1475 cforms.php:1493
 msgid "Save & update form settings"
@@ -4804,11 +4807,11 @@ msgstr "Інсталювати попередні налаштування фо�
 
 #: cforms.php:1490
 msgid "Pick a form preset from the repository"
-msgstr ""
+msgstr "Виберіть шаблон форми з репозитарію"
 
 #: cforms.php:1491
 msgid "Backup / restore this form only"
-msgstr ""
+msgstr "Зробити бекап / відновлення тільки цієї форми"
 
 #: js/include/checkbox.php:30
 msgid "Field label left of the checkbox..."
@@ -4861,11 +4864,11 @@ msgstr "Назва Набору ( необхідно лише для <em>Нов�
 
 #: js/include/html5field.php:35
 msgid "Autocomplete flag"
-msgstr ""
+msgstr "Прапорець автозаповнення"
 
 #: js/include/html5field.php:36
 msgid "Autofocus flag"
-msgstr ""
+msgstr "Прапорець автофокусу"
 
 #: js/include/html5field.php:48
 msgid "Min value"
@@ -4877,15 +4880,15 @@ msgstr "Макс. кут"
 
 #: js/include/html5field.php:50
 msgid "Step value"
-msgstr ""
+msgstr "Значення кроку"
 
 #: js/include/html5field.php:61
 msgid "Pattern attribute"
-msgstr ""
+msgstr "Атрибут шаблону"
 
 #: js/include/html5field.php:66
 msgid "Placeholder attribute"
-msgstr ""
+msgstr "Атрибут Placeholder"
 
 #: js/include/installpreset.php:28
 msgid "Please select a predefined form:"
@@ -5235,11 +5238,11 @@ msgstr "Дивитись подробиці"
 
 #: lib_dashboard.php:61
 msgid "via"
-msgstr ""
+msgstr "через"
 
 #: lib_dashboard.php:68
 msgid "Visit the cforms tracking page for all entries "
-msgstr ""
+msgstr "Гляньте сторінку cforms з усіма параметрами"
 
 #: lib_email.php:401
 msgid "You must provide at least one recipient email address."
@@ -5288,7 +5291,7 @@ msgstr ""
 
 #: lib_functions.php:245
 msgid "Translation provided by Oliver Seidel."
-msgstr ""
+msgstr "Переклад Олівера Шайделя."
 
 #: lib_functions.php:262
 msgid ""
@@ -5470,30 +5473,36 @@ msgstr "Заголовок"
 #: strings.php:2
 msgid "Default: Reset to *default* contact form"
 msgstr ""
+"По-замовчуванню: скинути налашутвання до *стандартної* контактної форми"
 
 #: strings.php:3
 msgid "Does what it says, it'll reset all input fields to the default setup."
 msgstr ""
+"Робить те що написано, скидає налаштування всіх поліввводу до стандартних."
 
 #: strings.php:4
 msgid "Basic: Preset for *GREY BLOCKS* Theme"
-msgstr ""
+msgstr "Основна: налаштування для теми *GREY BLOCKS*"
 
 #: strings.php:5
 msgid ""
 "This preset will switch your current cforms theme to 'Grey Blocks'. It comes "
 "with basic contact form input fields and a custom error message example."
 msgstr ""
+"Ці налаштування перемкнуть поточну тему до теми 'Grey Blocks'. Вона містить "
+"поля воду базової контактної форми та зразок повідомлення про помилку."
 
 #: strings.php:6
 msgid "Basic: *Newsletter* subscription form (w/ titles)"
-msgstr ""
+msgstr "Базова:  Форма підписки *Newsletter* (з заголовками)"
 
 #: strings.php:7
 msgid ""
 "A small, two input field form that showcases regexp's (default value "
 "exclusion) and input field titles."
 msgstr ""
+"Невеличка форма з двома полями вводу, які мають регулярні вирази (окрім "
+"значення по-замовчуванню) та назви полів вводу."
 
 #: strings.php:8
 msgid "Basic: Tell A Friend Form"
@@ -5506,20 +5515,26 @@ msgid ""
 "and sets the TAF option, switches the current theme and sets a generic tell-"
 "a-friend message."
 msgstr ""
+"Якщо ви хочете налаштувати особливу T-A-F форму, тоді будь-ласка застосуйте "
+"цей шаблон як основу. Він містить (спеціальні) поля вводу TAF, перевіряє та "
+"встановлює опції, перемикає поточну тему та встановлює базове повідомлення "
+"\"Розказати другу\"."
 
 #: strings.php:10
 msgid "Basic: Form for *dark-rounded.css* Theme"
-msgstr ""
+msgstr "Базова: Форма для теми *dark-rounded.css*"
 
 #: strings.php:11
 msgid ""
 "This will switch your current cforms theme to the dark-rounded.css one and "
 "will get you going with a set of basic contact form input fields."
 msgstr ""
+"Це перемкне поточний вигляд теми у  dark-rounded.css та надасть набір "
+"базових полів контактної форми."
 
 #: strings.php:12
 msgid "Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme"
-msgstr ""
+msgstr "Розширена: Форма з кількома філдсетами для теми *dark-rounded.css*"
 
 #: strings.php:13
 msgid ""
@@ -5527,10 +5542,13 @@ msgid ""
 "fieldset form layouts. Check out this preset to see what is required to "
 "ensure a proper look."
 msgstr ""
+"Тема dark-rounded.css потребує трішки 'магії' щоб мати підтимку шаблонів "
+"мульти філдсетів. Подивіться цей шаблон щоб дізнатись, що потрібно для "
+"коректного відображення."
 
 #: strings.php:14
 msgid "Advanced: Contact Form with Custom Err Messages"
-msgstr ""
+msgstr "Розширена: Контактна форма з повідомленнями про помилку"
 
 #: strings.php:15
 msgid ""
@@ -5538,6 +5556,9 @@ msgid ""
 "specific custom error texts. Please check your fancy error message settings, "
 "to make sure they're actually displayed."
 msgstr ""
+"Цей шаблон форми оснований на стандартному шаблоні, проте він містить "
+"особливі повідомлення про помилки. Будь-ласка, перевірте ваші налаштування "
+"повідомлень про помилки, щоб впевнитись що вони справді відображаються."
 
 #: strings.php:16
 msgid "Advanced: WP comment feature form"
@@ -5550,10 +5571,15 @@ msgid ""
 "included and configured, including some custom, field specific error "
 "messages. <em><br />Note: It will also change your current cforms theme.</em>"
 msgstr ""
+"Якщо ви плануєте замінити вашу стандартну тему коментування Wordpress на (c)"
+"form, будь-ласка, використовуйте цей шаблон форми як основу. Всі необхідні "
+"поля вже включені та налаштовані, включно з додатковими особливими полями "
+"для повідомлень про помилки.<br /><em>Примітка: це також змінить вашу "
+"поточну тему cforms.</em>"
 
 #: strings.php:18
 msgid "Advanced: Online booking form"
-msgstr ""
+msgstr "Розширена: Форма он-лайн резервування"
 
 #: strings.php:19
 msgid ""
@@ -5563,10 +5589,15 @@ msgid ""
 "use this preset with your first form as it does some nifty things with its "
 "CSS.</em>"
 msgstr ""
+"Містить досить велику кількість полів, що пригодиться для форм он-лайн "
+"резервування. Також містить кастомні стилі,  поля 'Для згоди' з зовнішнім "
+"посиланням та текстом угоди і анти-спам полем.<br /><em>Примітка: Будь-"
+"ласка, використовуйте цей шаблон у вашій першій формі, так як вона робить "
+"всілякі файні штучки з CSS.</em>"
 
 #: strings.php:20
 msgid "Advanced: Sign up form (w/ limited seats available)"
-msgstr ""
+msgstr "Розширена: форма підписки (з обмеженою кількістю доступних місць)"
 
 #: strings.php:21
 msgid ""
@@ -5576,3 +5607,8 @@ msgid ""
 "as country and state (US) drop down lists. It also features a must-check "
 "Disclaimer."
 msgstr ""
+"Типова форма реєстрації для класу чи проекту. Обмежена 30 полями та опцією "
+"приховування форми після заповнення. Форма має підтримку перевірки "
+"регулярних виразів для полів, редаговані повідомлення про помилки а також "
+"списки країн і штатів (для США). Вона також має текст Пояснення, який "
+"необхідно відмітити перед заповненням."

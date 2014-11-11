@@ -15,21 +15,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cformsII $Revision$\n"
+"Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2014-11-07 03:36+0100\n"
-"PO-Revision-Date: 2014-11-07 03:37+0100\n"
+"PO-Revision-Date: 2014-11-11 12:47+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.9\n"
-"X-Poedit-KeywordsList: _;__;_e\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: cforms-corrupted.php:24 lib_functions.php:108
 msgid "cforms error"
