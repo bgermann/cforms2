@@ -4,7 +4,7 @@ Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 14.6.11
+Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -20,7 +20,7 @@ If you want to use plugin versions older than 14.6.3, you should rename the dire
 
 = Credits =
 
-Some icons are based on the wonderful set of Jan Kovařík: [glyphicons](http://glyphicons.com).
+Some icons are based on the wonderful [Glyphicons](http://glyphicons.com) Halflings set of Jan Kovařík, taken from Twitter Bootstrap (MIT license, see images/LICENSE file).
 
 Translations are provided by:
 
@@ -31,6 +31,8 @@ Translations are provided by:
 * Gill Ajoft
 * Stas Mykhajlyuk
 * Charles Tang
+
+Please see the *.po gettext files for further information.
 
 = License Information =
 
@@ -100,7 +102,7 @@ Just search for widgets with your browser's search.
 
 = How can I contribute code? =
 
-Please use [GitHub pull requests on our mirror](https://github.com/bgermann/cforms2/pulls).
+Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 
 == Localization ==
@@ -129,7 +131,9 @@ Some things are to be done:
 
 * filter user input
 * make attachments download support directories that are not exported via HTTP
+* grunt build process similar to WordPress core
 * long term: refactoring with object oriented approach
+* long term: unit tests and continuous integration
 
 
 == Upgrade Notice ==
