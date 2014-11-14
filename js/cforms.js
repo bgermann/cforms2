@@ -191,8 +191,6 @@ function cforms_validate(no, upload) {
                 }
             }
         }
-        if ( document.getElementById('cforms'+no+'form').action.match(cforms2_ajax.url) )
-            params = params + '***';
 
         var post_data = 'action=submitcomment&_wpnonce='
             + cforms2_ajax.nonces['submitcomment']

@@ -40,12 +40,6 @@ function cforms2_submitcomment() {
 		$content = $_POST['rsargs'];
 
     $WPsuccess=false;
-	
-	### WP Comment flag
-	$isAjaxWPcomment = strpos($content,'***');###  WP comment feature
-
-	$content = explode('***', $content);
-	$content = $content[0];
 
 	$content = explode('+++', $content); ###  Added special fields
 
@@ -325,6 +319,7 @@ function cforms2_submitcomment() {
 		}
 	}
 
+	$isAjaxWPcomment = substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'], 0, 1) === '2';
 
     ###  Catch WP-Comment function | if send2author just continue
     if ( $isAjaxWPcomment!==false && (!isset($track['send2author']) || $track['send2author']=='0') ){
