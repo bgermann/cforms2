@@ -1316,6 +1316,8 @@ function cforms2_enable_tellafriend($post_ID) {
 
 ### cforms widget
 function cforms2_widget_init() {
+	global $cformsSettings;
+	$cformsSettings = get_option('cforms_settings');
 	require_once(plugin_dir_path(__FILE__) . 'lib_widget.php');
 	register_widget('cforms2_widget');
 }
