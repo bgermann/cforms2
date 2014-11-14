@@ -69,8 +69,7 @@ function cforms2_submitcomment() {
         include_once($CFfunctions);
 
 
-	if ( function_exists('wp_get_current_user') )
-		$user = wp_get_current_user();
+	$user = wp_get_current_user();
 
 	for($i = 1; $i <= sizeof($segments); $i++) {
 		$params['field_' . $i] = $segments[$i];

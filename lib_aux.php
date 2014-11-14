@@ -390,14 +390,14 @@ function cforms2_check_default_vars($m,$no) {
 			$pid = $_POST['comment_post_ID'.$no];
 		else if ( $Ajaxpid<>'' )
 			$pid = $Ajaxpid;
-		else if ( function_exists('get_the_ID') )
+		else
 			$pid = get_the_ID();
 
 		if ( $_POST['cforms_pl'.$no] )
 			$permalink = $_POST['cforms_pl'.$no];
 		else if ( $Ajaxpid<>'' )
 			$permalink = $AjaxURL;
-		else if ( function_exists('get_permalink') && function_exists('get_userdata') )
+		else
 			$permalink = get_permalink($pid);
 
 		###

@@ -29,7 +29,7 @@ global $localversion;
 $localversion = '14.7';
 
 ### db settings
-global $wpdb, $cformsSettings;
+global $wpdb;
 
 $cformsSettings				= get_option('cforms_settings');
 $wpdb->cformssubmissions	= $wpdb->prefix . 'cformssubmissions';
@@ -65,12 +65,8 @@ if ( !is_array($cformsSettings) ){
 function cforms2_settings_corrupted() {
 	$tmp = plugin_dir_path(dirname(__FILE__));
 
-	if (function_exists('add_menu_page')){
-		add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php', '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
-		add_submenu_page($tmp.'cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php' );
-    }
-	elseif (function_exists('add_management_page'))
-		add_management_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php');
+	add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php', '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
+	add_submenu_page($tmp.'cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php' );
 
     add_action('admin_enqueue_scripts', 'cforms2_enqueue_style_admin' );
 }
@@ -195,9 +191,7 @@ function cforms2($args = '',$no = '') {
 	$usermessage_class='';
 
 
-	### get user credentials
-	if ( function_exists('wp_get_current_user') )
-		$user = wp_get_current_user();
+	$user = wp_get_current_user();
 
 
     ### non Ajax method
@@ -1352,80 +1346,77 @@ function cforms2_localization () {
 
 ### add actions
 global $tafstring;
-if (function_exists('add_action')){
 
-	### widget init
-	add_action('plugins_loaded', 'cforms2_localization' );
-	add_action('widgets_init', 'cforms2_widget_init');
+### widget init
+add_action('plugins_loaded', 'cforms2_localization' );
+add_action('widgets_init', 'cforms2_widget_init');
 
-	$admin = is_admin();
-	$cfadmin = strpos($_SERVER['QUERY_STRING'],plugin_dir_path(plugin_basename(__FILE__)).'cforms') !== false;
+$admin = is_admin();
+$cfadmin = strpos($_SERVER['QUERY_STRING'],plugin_dir_path(plugin_basename(__FILE__)).'cforms') !== false;
 
-	### dashboard
-	if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {
-		require_once(plugin_dir_path(__FILE__) . 'lib_dashboard.php');
-	}
-	### cforms specific stuff
-	if ( $cfadmin ) {
-		require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
-		add_action('init', 'cforms2_download');
-        add_action('admin_enqueue_scripts', 'cforms2_admin_enqueue_scripts' );
-	}
-
-	### public ajax
-	require_once ('lib_ajax.php');
-	require_once ('cforms-captcha.php');
-
- 	### other admin stuff
-	if ( is_admin() ) {
-		require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
-		add_action('admin_menu', 'cforms2_menu');
-
-	    ### Check all forms for TAF and set variables
-	    for ( $i=1;$i<=$cformsSettings['global']['cforms_formcount'];$i++ ) {
-	        $tafenabled = ( substr($cformsSettings['form'.(($i=='1')?'':$i)]['cforms'.(($i=='1')?'':$i).'_tellafriend'],0,1)=='1') ? true : false;
-	        if ( $tafenabled ) break;
-	    }
-	    $tafform = ($i==1)?'':$i;
-
-	    if ( $tafenabled ){
-	        $edit_post = intval($_GET['post']);
-            $tmp = get_post_custom($edit_post);
-            $taf = $tmp["tell-a-friend"][0];
-
-            $tafchk = ($taf=='1' || ($edit_post=='' && substr($cformsSettings['form'.$tafform]['cforms'.$tafform.'_tellafriend'],1,1)=='1') )?'checked="checked"':'';
-
-			$tafstring = '<label for="tellafriend" class="selectit"><input type="checkbox" id="tellafriend" name="tellafriend" value="1"'. $tafchk .'/>&nbsp;'. __('T-A-F enable this post/page', 'cforms').'</label>';
-
-	        ### add admin boxes
-	        add_action('admin_menu', 'cforms2_add_cforms_post_boxes');
-			add_action('save_post', 'cforms2_enable_tellafriend');
-
-	    } ### if tafenabled
-
-		### admin ajax
-		require_once ('js/include/installpreset.php');
-
-		require_once ('js/include/checkbox.php');
-		require_once ('js/include/checkboxgroup.php');
-		require_once ('js/include/fieldsetstart.php');
-		require_once ('js/include/html5field.php');
-		require_once ('js/include/selectbox.php');
-		require_once ('js/include/textfield.php');
-		require_once ('js/include/textonly.php');
-
-		require_once ('js/include/lib_database_deleteentries.php');
-		require_once ('js/include/lib_database_deleteentry.php');
-		require_once ('js/include/lib_database_dlentries.php');
-		require_once ('js/include/lib_database_getentries.php');
-		require_once ('js/include/lib_database_overview.php');
-		require_once ('js/include/lib_database_savedata.php');
-
-		require_once ('js/insertdialog25.php');
-
-	} ### if admin
-
+### dashboard
+if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {
+	require_once(plugin_dir_path(__FILE__) . 'lib_dashboard.php');
 }
+### cforms specific stuff
+if ( $cfadmin ) {
+	require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
+	add_action('init', 'cforms2_download');
+	add_action('admin_enqueue_scripts', 'cforms2_admin_enqueue_scripts' );
+}
+
+### public ajax
+require_once ('lib_ajax.php');
+require_once ('cforms-captcha.php');
+
+### other admin stuff
+if ( is_admin() ) {
+	require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
+	add_action('admin_menu', 'cforms2_menu');
+
+	### Check all forms for TAF and set variables
+	for ( $i=1;$i<=$cformsSettings['global']['cforms_formcount'];$i++ ) {
+		$tafenabled = ( substr($cformsSettings['form'.(($i=='1')?'':$i)]['cforms'.(($i=='1')?'':$i).'_tellafriend'],0,1)=='1') ? true : false;
+		if ( $tafenabled ) break;
+	}
+	$tafform = ($i==1)?'':$i;
+
+	if ( $tafenabled ){
+		$edit_post = intval($_GET['post']);
+		$tmp = get_post_custom($edit_post);
+		$taf = $tmp["tell-a-friend"][0];
+
+		$tafchk = ($taf=='1' || ($edit_post=='' && substr($cformsSettings['form'.$tafform]['cforms'.$tafform.'_tellafriend'],1,1)=='1') )?'checked="checked"':'';
+
+		$tafstring = '<label for="tellafriend" class="selectit"><input type="checkbox" id="tellafriend" name="tellafriend" value="1"'. $tafchk .'/>&nbsp;'. __('T-A-F enable this post/page', 'cforms').'</label>';
+
+		### add admin boxes
+		add_action('admin_menu', 'cforms2_add_cforms_post_boxes');
+		add_action('save_post', 'cforms2_enable_tellafriend');
+
+	} ### if tafenabled
+
+	### admin ajax
+	require_once ('js/include/installpreset.php');
+
+	require_once ('js/include/checkbox.php');
+	require_once ('js/include/checkboxgroup.php');
+	require_once ('js/include/fieldsetstart.php');
+	require_once ('js/include/html5field.php');
+	require_once ('js/include/selectbox.php');
+	require_once ('js/include/textfield.php');
+	require_once ('js/include/textonly.php');
+
+	require_once ('js/include/lib_database_deleteentries.php');
+	require_once ('js/include/lib_database_deleteentry.php');
+	require_once ('js/include/lib_database_dlentries.php');
+	require_once ('js/include/lib_database_getentries.php');
+	require_once ('js/include/lib_database_overview.php');
+	require_once ('js/include/lib_database_savedata.php');
+
+	require_once ('js/insertdialog25.php');
+
+} ### if admin
 
 
 ### admin bar
