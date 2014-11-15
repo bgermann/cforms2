@@ -2,7 +2,7 @@
 Contributors: bgermann, olivers
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
-Requires at least: 3.5
+Requires at least: 3.9
 Tested up to: 4.0
 Stable tag: trunk
 License: GPLv3
@@ -138,6 +138,9 @@ Some things are to be done:
 
 == Upgrade Notice ==
 
+= 14.7.1 =
+This is only compatible with Wordpress 3.9+. Version 3.5 to 3.8 support is dropped.
+
 = 14.7 =
 Explicit Subscribe To Comments support is removed. Please delete all the remaining input elements from your forms. Also check the styling on comment forms!
 
@@ -164,6 +167,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.7.1 =
+* enhanced: make TinyMCE plugin localization part of gettext
 
 = 14.7 =
 * enhanced: replace Subscribe To Comments support with a more general approach to also support Subscribe To Comments Reloaded

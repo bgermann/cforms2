@@ -18,7 +18,7 @@
  */
 
 ### used to insert button in editor
-function cforms2_button($buttons) {
+function cforms2_mce_button($buttons) {
     array_push($buttons, "separator", "cforms");
     return $buttons;
 }
@@ -26,13 +26,18 @@ function cforms2_button($buttons) {
 
 
 ### adding to TinyMCE
-function cforms2_plugin($plugins) {
+function cforms2_mce($plugins) {
 	$plugins['cforms'] = plugin_dir_url( __FILE__ ).'js/editor_plugin25.js';
 	return $plugins;
 }
 
+function cforms2_mce_translation($mce_translation) {
+	$mce_translation['Insert a form'] = __('Insert a form', 'cforms');
+    return $mce_translation;
+}
+
 ### Load the Script for the Button
-function cforms2_insert_script() {
+function cforms2_mce_script() {
     global $cformsSettings;
 
     $options = '';
@@ -82,9 +87,10 @@ function cforms2_insert_script() {
 ### only insert buttons if enabled!
 if($cformsSettings['global']['cforms_show_quicktag'] == true) {
 
-	add_filter('mce_external_plugins', 'cforms2_plugin');
-	add_filter('mce_buttons', 'cforms2_button');
-	add_action('edit_page_form', 'cforms2_insert_script');
-	add_action('edit_form_advanced', 'cforms2_insert_script');
+	add_filter('mce_external_plugins', 'cforms2_mce');
+	add_filter('wp_mce_translation'  , 'cforms2_mce_translation');
+	add_filter('mce_buttons'         , 'cforms2_mce_button');
+	add_action('edit_page_form'      , 'cforms2_mce_script');
+	add_action('edit_form_advanced'  , 'cforms2_mce_script');
 
 }
