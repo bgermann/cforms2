@@ -29,7 +29,7 @@ Translations are provided by:
 * Leadvirus
 * Gianni Diurno
 * Gill Ajoft
-* Stas Mykhajlyuk
+* [Stas Mykhajlyuk](http://kosivart.if.ua)
 * Charles Tang
 
 Please see the *.po gettext files for further information.
