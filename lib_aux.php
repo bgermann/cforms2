@@ -594,7 +594,7 @@ class cforms2_rss {
 </channel>
 </rss>
 <?php
-				exit;
+				die();
 			}
 		}
 	}

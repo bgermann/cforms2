@@ -132,7 +132,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$cap['ac']= $_REQUEST['cforms_cap_ac'];
 
     ###	update new settings container
-	$cformsSettings['global']['cforms_show_quicktag_js'] = $_REQUEST['cforms_show_quicktag_js']?true:false;
 	$cformsSettings['global']['cforms_rssall'] = $_REQUEST['cforms_rss']?true:false;
 	$cformsSettings['global']['cforms_rssall_count'] = $_REQUEST['cforms_rsscount'];
     $cformsSettings['global']['cforms_captcha_def'] = $cap;
@@ -483,11 +482,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<tr class="ob">
 					<td class="obL"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/button.gif" alt=""/></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_show_quicktag" name="cforms_show_quicktag" <?php if($cformsSettings['global']['cforms_show_quicktag']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_show_quicktag"><strong><?php _e('Enable TinyMCE', 'cforms') ?></strong> <?php _e('&amp; Code editor buttons', 'cforms') ?></label></td>
-				</tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_show_quicktag_js"><strong><?php _e('Fix TinyMCE error', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_show_quicktag_js" name="cforms_show_quicktag_js" <?php if( $cformsSettings['global']['cforms_show_quicktag_js']==true) echo "checked=\"checked\""; ?>/> <?php _e('Select in case you experience a TinyMCE editor error caused by other plugins.', 'cforms') ?></td>
 				</tr>
 				</table>
 			</div>

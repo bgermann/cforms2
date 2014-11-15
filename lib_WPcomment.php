@@ -174,7 +174,7 @@ if ( $isAjaxWPcomment ){
 			cforms( '',$no );
 			header("HTTP/1.0 301 Temporary redirect");
 			header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=sent#cforms'.$no.'form' );
-			exit;
+			die();
 		}
 
 		###
@@ -197,13 +197,13 @@ if ( $isAjaxWPcomment ){
 
 		if ( empty($status->comment_status) ) {
 			do_action('comment_id_not_found', $comment_post_ID);
-			exit;
+			die();
 		} elseif ( 'closed' ==  $status->comment_status ) {
 			do_action('comment_closed', $comment_post_ID);
 			wp_die( __('Sorry, comments are closed for this item.','cforms') );
 		} elseif ( in_array($status->post_status, array('draft', 'pending') ) ) {
 			do_action('comment_on_draft', $comment_post_ID);
-			exit;
+			die();
 		}
 
 		$comment_author       = trim(strip_tags($_POST['cauthor']));

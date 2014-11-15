@@ -1475,7 +1475,7 @@ function cforms2_submitcomment_direct() {
 
 ### attaching to filters
 add_action('init', 'cforms2_delete_db_and_deactivate');
-add_action( 'wp_ajax_submitcomment_direct', 'cforms2_submitcomment_direct' );
-add_action( 'wp_ajax_nopriv_submitcomment_direct', 'cforms2_submitcomment_direct' );
-add_filter('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
+add_action('wp_ajax_submitcomment_direct', 'cforms2_submitcomment_direct');
+add_action('wp_ajax_nopriv_submitcomment_direct', 'cforms2_submitcomment_direct');
+add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_filter('the_content', 'cforms2_insert', 101);

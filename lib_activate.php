@@ -145,7 +145,6 @@ cforms2_setINI('global','cforms_sec_qa', __('What color is snow?=white', 'cforms
 cforms2_setINI('global','cforms_codeerr', __('Please double-check your verification code.', 'cforms'));
 
 cforms2_setINI('global','cforms_show_quicktag', '1');
-cforms2_setINI('global','cforms_show_quicktag_js', false );
 
 ### comment feature
 cforms2_setINI('global','cforms_commentsuccess', __('Thank you for leaving a comment.', 'cforms'));

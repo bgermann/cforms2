@@ -76,8 +76,6 @@ for($i=0; $i<$length; $i++) {
 
 $tu = ($cap['i']=='i')?strtolower($turing):$turing;
 
-//die( 'turing_string_'.$no.'***'.$cap['i'].'+'.md5($tu).'***'.(time()+60*60*5).'***'."/" );
-
 if ( ! ( isset($_GET['c1']) || isset($_GET['c2']) || isset($_GET['ac']) ) )
 	setcookie("turing_string_".$no, $cap['i'].'+'.md5($tu),(time()+60*60*5),"/");
 

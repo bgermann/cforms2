@@ -17,17 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-### adding TinyMCE button
-function cforms2_addbuttons() {
-
-    if ( 'true' == get_user_option('rich_editing') ) {
-        add_filter( 'mce_external_plugins', 'cforms2_plugin');
-        add_filter( 'mce_buttons', 'cforms2_button');
-    }
-}
-
-
-
 ### used to insert button in editor
 function cforms2_button($buttons) {
     array_push($buttons, "separator", "cforms");
@@ -93,13 +82,9 @@ function cforms2_insert_script() {
 ### only insert buttons if enabled!
 if($cformsSettings['global']['cforms_show_quicktag'] == true) {
 
-	add_action('init', 'cforms2_addbuttons');
-
-    ### TinyMCE error fix
-	if( !$cformsSettings['global']['cforms_show_quicktag_js'] ) {
-		add_action('edit_page_form', 'cforms2_insert_script');
-		add_action('edit_form_advanced', 'cforms2_insert_script');
-	} else
-		add_action('admin_head', 'cforms2_insert_script');
+	add_filter('mce_external_plugins', 'cforms2_plugin');
+	add_filter('mce_buttons', 'cforms2_button');
+	add_action('edit_page_form', 'cforms2_insert_script');
+	add_action('edit_form_advanced', 'cforms2_insert_script');
 
 }
