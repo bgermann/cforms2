@@ -96,7 +96,8 @@ jQuery("#flex1").flexigrid ( {
 	rpOptions: [10,30,50,100,200],
 	showTableToggleBtn: true,
 	width: 900,
-	height: 250 });
+	height: 250
+});
 </script>
 <?php
 

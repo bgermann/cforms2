@@ -480,7 +480,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obL"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/button.gif" alt=""/></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_show_quicktag" name="cforms_show_quicktag" <?php if($cformsSettings['global']['cforms_show_quicktag']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_show_quicktag"><strong><?php _e('Enable TinyMCE', 'cforms') ?></strong> <?php _e('&amp; Code editor buttons', 'cforms') ?></label></td>
 				</tr>
 				</table>

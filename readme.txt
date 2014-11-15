@@ -169,7 +169,9 @@ GPL compliance!
 == Changelog ==
 
 = 14.7.1 =
+* feature:  add Shortcode to insert forms
 * enhanced: make TinyMCE plugin localization part of gettext
+* enhanced: use TinyMCE 4 API and redesign TinyMCE form insertion
 
 = 14.7 =
 * enhanced: replace Subscribe To Comments support with a more general approach to also support Subscribe To Comments Reloaded

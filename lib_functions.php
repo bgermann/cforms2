@@ -201,7 +201,7 @@ function cforms2_admin_enqueue_scripts() {
     wp_register_script('jquery-clockpick',$r."js/jquery.clockpick$suffix.js",array('jquery'),'1.2.9');
     wp_register_script('jquery-in-place-editor',$r.'js/jquery.in-place-editor.js',array('jquery'),'2.3.0');
     wp_register_script('jquery-textarearesizer',$r.'js/jquery.textarearesizer.js',array('jquery'),'1.0.4');
-    wp_register_script('cforms-admin',$r.'js/cformsadmin.js', array(
+    wp_register_script('cforms-admin',$r.'js/cforms.admin.js', array(
         'jquery', 'jquery-jqmodal', 'jquery-clockpick', 'jquery-in-place-editor', 'jquery-textarearesizer', 'jquery-ui-sortable', 'wp-color-picker'
     ), $localversion);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(

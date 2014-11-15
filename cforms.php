@@ -1115,7 +1115,10 @@ function cforms2_findlast( $haystack,$needle,$offset=NULL ){
 }
 
 
-### replace placeholder by generated code
+/**
+ * replace placeholder by generated code
+ * @deprecated since version 14.7.1
+ */
 function cforms2_insert( $content ) {
 	global $cformsSettings; $newcontent='';
 
@@ -1219,6 +1222,15 @@ function insert_cform($no='',$custom='',$c='') {
 }
 }
 
+function cform2_shortcode($atts, $content) {
+	if (empty($atts))
+		$callform = $content;
+	else
+		$callform = array_pop( $atts );
+	if (empty($callform))
+		return '';
+	return insert_cform($callform);
+}
 
 ### GET $pid
 function cforms2_cfget_pid() {
@@ -1246,10 +1258,8 @@ if (!function_exists('insert_custom_cform')) {
 ### check form names/id's
 function cforms2_check_form_name($no) {
     $cformsSettings = get_option('cforms_settings');
-	if( is_numeric($no) || $no=='' ) return $no;
-
-	if( !(is_array($cformsSettings) && $cformsSettings['global']['cforms_formcount']>0) )
-		$cformsSettings = get_option('cforms_settings');
+	if( is_numeric($no) || $no=='' )
+		return $no;
 
 	$forms = $cformsSettings['global']['cforms_formcount'];
 
@@ -1416,7 +1426,7 @@ if ( is_admin() ) {
 	require_once ('js/include/lib_database_overview.php');
 	require_once ('js/include/lib_database_savedata.php');
 
-	require_once ('js/insertdialog25.php');
+	require_once ('lib_editor_insertformnames.php');
 
 } ### if admin
 
@@ -1479,3 +1489,4 @@ add_action('wp_ajax_submitcomment_direct', 'cforms2_submitcomment_direct');
 add_action('wp_ajax_nopriv_submitcomment_direct', 'cforms2_submitcomment_direct');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_filter('the_content', 'cforms2_insert', 101);
+add_shortcode('cforms' , 'cform2_shortcode' );
