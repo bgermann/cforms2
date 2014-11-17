@@ -74,7 +74,7 @@
 				}
 				if( $type=='emailtobox' ){
 					$allgood = $emailtobox?false:true;
-					$usermsg .= $emailtobox?'<span class="exMsg">'.__('Only one <em>Multiple Recipients</em> field is permitted!'.'</span>', 'cforms'):'';
+					$usermsg .= $emailtobox?'<span class="exMsg">'.__('Only one <em>Multiple Recipients</em> field is permitted!', 'cforms').'</span>':'';
 					$emailtobox=true;
 				}
 

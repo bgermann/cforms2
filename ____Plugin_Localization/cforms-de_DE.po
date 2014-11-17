@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2014-11-15 13:16+0100\n"
-"PO-Revision-Date: 2014-11-15 13:26+0100\n"
+"POT-Creation-Date: 2014-11-17 20:22+0100\n"
+"PO-Revision-Date: 2014-11-17 20:32+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -125,8 +125,8 @@ msgstr ""
 #: cforms-global-settings.php:231 cforms-global-settings.php:317
 #: cforms-global-settings.php:338 cforms-global-settings.php:395
 #: cforms-global-settings.php:419 cforms-global-settings.php:475
-#: cforms-global-settings.php:492 cforms-global-settings.php:606
-#: cforms-global-settings.php:647 cforms-help.php:62 cforms-help.php:86
+#: cforms-global-settings.php:491 cforms-global-settings.php:605
+#: cforms-global-settings.php:646 cforms-help.php:62 cforms-help.php:86
 #: cforms-help.php:106 cforms-help.php:138 cforms-help.php:168
 #: cforms-help.php:203 cforms-help.php:237 cforms-help.php:282
 #: cforms-help.php:322 cforms-help.php:358 cforms-help.php:399
@@ -162,7 +162,7 @@ msgstr ""
 msgid "custom css files"
 msgstr "benutzerdefinierte CSS-Dateien"
 
-#: cforms-css.php:145 cforms-global-settings.php:772
+#: cforms-css.php:145 cforms-global-settings.php:771
 msgid "cform css files"
 msgstr "cform css-Dateien"
 
@@ -232,8 +232,8 @@ msgstr "Design Vorschau"
 #: cforms-global-settings.php:230 cforms-global-settings.php:316
 #: cforms-global-settings.php:337 cforms-global-settings.php:394
 #: cforms-global-settings.php:418 cforms-global-settings.php:474
-#: cforms-global-settings.php:491 cforms-global-settings.php:605
-#: cforms-global-settings.php:646 cforms-help.php:61 cforms-help.php:85
+#: cforms-global-settings.php:490 cforms-global-settings.php:604
+#: cforms-global-settings.php:645 cforms-help.php:61 cforms-help.php:85
 #: cforms-help.php:105 cforms-help.php:897 cforms-help.php:937
 #: cforms-help.php:1040 cforms-help.php:1184 cforms-help.php:1430
 #: cforms-help.php:1497 cforms-help.php:1510 cforms-options.php:443
@@ -347,51 +347,50 @@ msgstr "von"
 msgid "Find"
 msgstr "Suche"
 
-#: cforms-database.php:118 cforms-database.php:127
+#: cforms-database.php:119 cforms-database.php:128
 msgid "Please Confirm"
 msgstr "Bitte bestätige"
 
-#: cforms-database.php:121
+#: cforms-database.php:122
 msgid "Are you sure you want to delete the record(s)?"
 msgstr "Bist du sicher, dass du die Einträge löschen willst?"
 
-#: cforms-database.php:122 cforms-database.php:144 cforms-options.php:1172
+#: cforms-database.php:123 cforms-database.php:145 cforms-options.php:1172
 msgid "Install"
 msgstr "Installieren"
 
-#: cforms-database.php:122 cforms-database.php:144 cforms-options.php:1164
+#: cforms-database.php:123 cforms-database.php:145 cforms-options.php:1164
 #: cforms-options.php:1172
 msgid "OK"
 msgstr "OK"
 
-#: cforms-database.php:122 cforms-database.php:144
-#: cforms-global-settings.php:729 cforms-global-settings.php:746
+#: cforms-database.php:123 cforms-database.php:145
+#: cforms-global-settings.php:728 cforms-global-settings.php:745
 #: cforms-options.php:1164 cforms-options.php:1172 cforms-options.php:1188
-#: js/insertdialog25.php:89
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: cforms-database.php:135
+#: cforms-database.php:136
 msgid "Please pick a format!"
 msgstr "Bitte wähle ein Format!"
 
-#: cforms-database.php:137
+#: cforms-database.php:138
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: cforms-database.php:138
+#: cforms-database.php:139
 msgid "ISO-8859-1"
 msgstr "ISO-8859-1"
 
-#: cforms-database.php:140
+#: cforms-database.php:141
 msgid "Include field names / header"
 msgstr "Feldnamen/Kopfzeile einschließen"
 
-#: cforms-database.php:141
+#: cforms-database.php:142
 msgid "Include IP address of submitting user"
 msgstr "IP-Adresse des Users einschließen"
 
-#: cforms-database.php:142
+#: cforms-database.php:143
 msgid "Add URL for upload fields"
 msgstr "Füge eine URL für das Upload-Formular hinzu."
 
@@ -485,7 +484,7 @@ msgid "Parent Comment Container"
 msgstr "Container für ursprüngliche Kommentare"
 
 #: cforms-global-settings.php:255 cforms-global-settings.php:347
-#: cforms-global-settings.php:620 cforms-global-settings.php:656
+#: cforms-global-settings.php:619 cforms-global-settings.php:655
 msgid "Note &raquo;"
 msgstr "Notiz &raquo;"
 
@@ -749,19 +748,19 @@ msgstr ""
 "Wenn du die Editor-Buttons nutzen möchtest, um diese für cforms zu "
 "verwenden, aktiviere diese bitte."
 
-#: cforms-global-settings.php:484
+#: cforms-global-settings.php:483
 msgid "Enable TinyMCE"
 msgstr "Aktiviere TinyMCE"
 
-#: cforms-global-settings.php:484
+#: cforms-global-settings.php:483
 msgid "&amp; Code editor buttons"
 msgstr "&amp; Code Editor Button"
 
-#: cforms-global-settings.php:492
+#: cforms-global-settings.php:491
 msgid "CAPTCHA Image Settings"
 msgstr "Einstellungen für CAPTCHA"
 
-#: cforms-global-settings.php:496
+#: cforms-global-settings.php:495
 msgid ""
 "Below you can find a few switches and options to change the default look of "
 "the captcha image. Feel free to upload your own backgrounds and fonts to the "
@@ -775,93 +774,93 @@ msgstr ""
 "captchabg/</code> &amp; <code>cforms/captchafonts/</code> oder dein "
 "benutzerdefinierter Ordner: <code>/plugins/cforms-custom/</code> ) laden."
 
-#: cforms-global-settings.php:522
+#: cforms-global-settings.php:521
 msgid "Preview Image"
 msgstr "Vorschaubild"
 
-#: cforms-global-settings.php:522
+#: cforms-global-settings.php:521
 msgid "Don't forget to save your changes!"
 msgstr "Vergiss nicht, deine Änderungen zu speichern!"
 
-#: cforms-global-settings.php:524
+#: cforms-global-settings.php:523
 msgid "Reload Captcha Image"
 msgstr "Lade das CAPTCHA erneut"
 
-#: cforms-global-settings.php:529 cforms-global-settings.php:614
+#: cforms-global-settings.php:528 cforms-global-settings.php:613
 msgid "Force display"
 msgstr "Anzeige erzwingen"
 
-#: cforms-global-settings.php:530
+#: cforms-global-settings.php:529
 msgid "Force CAPTCHA display for logged in users"
 msgstr "Erzwinge die Anzeige von CAPTCHA für eingeloggte Benutzer"
 
-#: cforms-global-settings.php:534
+#: cforms-global-settings.php:533
 msgid "Width"
 msgstr "Breite"
 
-#: cforms-global-settings.php:537
+#: cforms-global-settings.php:536
 msgid "Height"
 msgstr "Höhe"
 
-#: cforms-global-settings.php:541
+#: cforms-global-settings.php:540
 msgid "Border Color"
 msgstr "Rahmenfarbe"
 
-#: cforms-global-settings.php:547
+#: cforms-global-settings.php:546
 msgid "Background Image"
 msgstr "Hintergrundbild"
 
-#: cforms-global-settings.php:554
+#: cforms-global-settings.php:553
 msgid "Font Type"
 msgstr "Schriftart"
 
-#: cforms-global-settings.php:560
+#: cforms-global-settings.php:559
 msgid "Min Size"
 msgstr "Mindestgröße"
 
-#: cforms-global-settings.php:563
+#: cforms-global-settings.php:562
 msgid "Max Size"
 msgstr "Maximalgröße"
 
-#: cforms-global-settings.php:567
+#: cforms-global-settings.php:566
 msgid "Min Angle"
 msgstr "Mindestwinkel"
 
-#: cforms-global-settings.php:570
+#: cforms-global-settings.php:569
 msgid "Max Angle"
 msgstr "Maximalwinkel"
 
-#: cforms-global-settings.php:574
+#: cforms-global-settings.php:573
 msgid "Color"
 msgstr "Farbe"
 
-#: cforms-global-settings.php:582
+#: cforms-global-settings.php:581
 msgid "Number of shown characters"
 msgstr "Anzahl der angezeigten Zeichen"
 
-#: cforms-global-settings.php:585
+#: cforms-global-settings.php:584
 msgid "Minimum"
 msgstr "Minimum"
 
-#: cforms-global-settings.php:588
+#: cforms-global-settings.php:587
 msgid "Maximum"
 msgstr "Maximum"
 
-#: cforms-global-settings.php:592
+#: cforms-global-settings.php:591
 msgid "Allowed characters"
 msgstr "Erlaubte Zeichen"
 
-#: cforms-global-settings.php:597
+#: cforms-global-settings.php:596
 msgid "User response is treated case insensitive"
 msgstr ""
 "Die Rückmeldung des Users wird unabhängig von Groß- und Kleinschreibung "
 "behandelt"
 
-#: cforms-global-settings.php:606
+#: cforms-global-settings.php:605
 msgid "Visitor Verification Settings (Q&amp;A)"
 msgstr "Besucher Verifikationseinstellungen (Q&amp;A)"
 
-#: cforms-global-settings.php:610
+#: cforms-global-settings.php:609
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
@@ -873,18 +872,18 @@ msgstr ""
 "Verifizierung einzusetzen, nutze das dafür vorgesehene Feld \"<code>Visitor "
 "verification</code>\" in einer eigener Feldgruppe."
 
-#: cforms-global-settings.php:615
+#: cforms-global-settings.php:614
 msgid "Force Q&amp;A display for logged in users"
 msgstr "Erzwinge die Anzeige von Q&amp;A für eingeloggte Benutzer"
 
-#: cforms-global-settings.php:623
+#: cforms-global-settings.php:622
 msgid ""
 "The below error/failure message is also used for <strong>captcha</strong> "
 "verification!"
 msgstr ""
 "Die Fehlermeldung unterhalb wird auch für die CAPTCHA-Verifizierung genutzt!"
 
-#: cforms-global-settings.php:624
+#: cforms-global-settings.php:623
 #, php-format
 msgid ""
 "Depending on your personal preferences and level of SPAM security you intend "
@@ -894,19 +893,19 @@ msgstr ""
 "Je nachdem, wie stark dein SPAM-Aufkommen ist, kannst du das <a href=\"%s\" "
 "%s>cforms' CAPTCHA Feature</a> nutzen!"
 
-#: cforms-global-settings.php:628
+#: cforms-global-settings.php:627
 msgid "<strong>Failure message</strong><br />(for a wrong answer)"
 msgstr "<strong>Fehlermeldung</strong><br />(falsche Antwort)"
 
-#: cforms-global-settings.php:637
+#: cforms-global-settings.php:636
 msgid "<strong>Questions &amp; Answers</strong><br />format: Q=A"
 msgstr "<strong>Questions &amp; Answers</strong><br />Format: Q=A"
 
-#: cforms-global-settings.php:647
+#: cforms-global-settings.php:646
 msgid "Database Input Tracking"
 msgstr "Datenbank für Eingabe-Nachverfolgung"
 
-#: cforms-global-settings.php:651
+#: cforms-global-settings.php:650
 msgid ""
 "If you like to track your form submissions also via the database, please "
 "enable this feature below. If required, two new tables will be created and "
@@ -917,7 +916,7 @@ msgstr ""
 "neue Tabellen generiert und du wirst ein neues Tab \"<strong>Tracking</"
 "strong>\" im cforms Menü vorfinden."
 
-#: cforms-global-settings.php:658
+#: cforms-global-settings.php:657
 #, php-format
 msgid ""
 "If you've enabled the <a href=\"%s\" %s>auto confirmation message</a> "
@@ -929,52 +928,52 @@ msgstr ""
 "das Feld \"CC: an mich\" eingebunden hast, kannst du optional den Betreff "
 "der E-Mail konfigurieren, in dem du die Variable {ID} einbindest."
 
-#: cforms-global-settings.php:661
+#: cforms-global-settings.php:660
 msgid "Enable Database Tracking"
 msgstr "Aktiviere Datenbank-Nachverfolgung"
 
-#: cforms-global-settings.php:662
+#: cforms-global-settings.php:661
 msgid "Will create two new tables in your WP database."
 msgstr "Wird zwei neue Tabellen in deiner WP-Datenbank erstellen."
 
-#: cforms-global-settings.php:666
+#: cforms-global-settings.php:665
 msgid "Show on dashboard"
 msgstr "Auf Dashboard anzeigen"
 
-#: cforms-global-settings.php:667
+#: cforms-global-settings.php:666
 msgid "Make sure to enable your forms individually as well!"
 msgstr "Stelle sicher, dass deine Formulare individuell aktiviert sind!"
 
-#: cforms-global-settings.php:671
+#: cforms-global-settings.php:670
 msgid "Enable global RSS"
 msgstr "Aktiviere globales RSS"
 
-#: cforms-global-settings.php:672
+#: cforms-global-settings.php:671
 msgid "Enables an RSS feed to track all new submissions across all forms."
 msgstr ""
 "Aktiviere RSS-Feed, um alle neuen Einträge aller Formulare zu verfolgen."
 
-#: cforms-global-settings.php:685 cforms-options.php:732
+#: cforms-global-settings.php:684 cforms-options.php:732
 msgid "Number of shown RSS entries"
 msgstr "Anzahl der anzuzeigenden RSS-Einträge"
 
-#: cforms-global-settings.php:689 cforms-options.php:754
+#: cforms-global-settings.php:688 cforms-options.php:754
 msgid "RSS Feed Security Key"
 msgstr "Sicherheitsschlüssel des RSS-feeds"
 
-#: cforms-global-settings.php:692 cforms-options.php:757
+#: cforms-global-settings.php:691 cforms-options.php:757
 msgid "Reset RSS Key"
 msgstr "RSS-Key zurücksetzen"
 
-#: cforms-global-settings.php:693 cforms-options.php:762
+#: cforms-global-settings.php:692 cforms-options.php:762
 msgid "The complete RSS URL &raquo;"
 msgstr "Die vollständige RSS-URL &raquo;"
 
-#: cforms-global-settings.php:718
+#: cforms-global-settings.php:717
 msgid "Backup &amp; Restore All Settings"
 msgstr "Sichern &amp; Wiederherstellen aller Einstellungen"
 
-#: cforms-global-settings.php:723
+#: cforms-global-settings.php:722
 msgid ""
 "Restoring all settings will overwrite all form specific &amp; global "
 "settings!"
@@ -982,15 +981,15 @@ msgstr ""
 "Das Wiederherstellen aller Dateien wird die bisherigen Einstellungen "
 "überschreiben!"
 
-#: cforms-global-settings.php:725
+#: cforms-global-settings.php:724
 msgid "Backup all settings now!"
 msgstr "Alle Einstellungen nun sichern!"
 
-#: cforms-global-settings.php:726
+#: cforms-global-settings.php:725
 msgid "Restore all settings now!"
 msgstr "Alle Einstellungen nun wiederherstellen!"
 
-#: cforms-global-settings.php:726
+#: cforms-global-settings.php:725
 msgid ""
 "With a broken backup file, this action may erase all your settings! Do you "
 "want to continue?"
@@ -998,7 +997,7 @@ msgstr ""
 "Möchtest du wirklich fortfahren? Mit einem fehlerhaften Backup könnte diese "
 "Aktion alle Einstellungen löschen."
 
-#: cforms-global-settings.php:728
+#: cforms-global-settings.php:727
 msgid ""
 "PS: Individual form configurations can be backup up on the respective form "
 "admin page."
@@ -1006,15 +1005,15 @@ msgstr ""
 "PS: Individuelle Formular-Konfigurationen können auf den jeweiligen "
 "Administrationsseiten der entsprechenden Formulare gesichert werden."
 
-#: cforms-global-settings.php:737
+#: cforms-global-settings.php:736
 msgid "Uninstalling / Removing cforms"
 msgstr "cforms Entfernen / Deinstallieren"
 
-#: cforms-global-settings.php:740
+#: cforms-global-settings.php:739
 msgid "Warning!"
 msgstr "Warnung!"
 
-#: cforms-global-settings.php:742
+#: cforms-global-settings.php:741
 msgid ""
 "Generally, simple deactivation of cforms does <strong>not</strong> erase any "
 "of its data. If you like to quit using cforms for good, please erase all "
@@ -1024,27 +1023,27 @@ msgstr ""
 "irgendwelcher Daten zur Folge. Wenn du cforms endgültig nicht mehr nutzen "
 "magst, löschst du bitte alle Daten vor dem Deaktivieren des Plugins. "
 
-#: cforms-global-settings.php:743
+#: cforms-global-settings.php:742
 msgid "This is irrevocable!"
 msgstr "Dies ist unwiderruflich!"
 
-#: cforms-global-settings.php:744
+#: cforms-global-settings.php:743
 msgid "Are you sure you want to do this?!"
 msgstr "Bist du Dir sicher?"
 
-#: cforms-global-settings.php:744
+#: cforms-global-settings.php:743
 msgid "DELETE *ALL* CFORMS DATA"
 msgstr "LÖSCHE ALLE CFORMS DATEN"
 
-#: cforms-global-settings.php:744
+#: cforms-global-settings.php:743
 msgid "Final Warning!"
 msgstr "Letzte Warnung!"
 
-#: cforms-global-settings.php:762
+#: cforms-global-settings.php:761
 msgid "custom files"
 msgstr "benutzerdefinierte Dateien"
 
-#: cforms-global-settings.php:784 js/include/installpreset.php:81
+#: cforms-global-settings.php:783 js/include/installpreset.php:81
 msgid "Not available"
 msgstr "Nicht verfügbar"
 
@@ -4664,87 +4663,87 @@ msgstr "Setze CAPTCHA-Grafik zurück"
 msgid "Note: This will reset all your input!"
 msgstr "Beachte: Dies wird alle deine Eingaben zurücksetzen!"
 
-#: cforms.php:1297 cforms.php:1298
+#: cforms.php:1307 cforms.php:1308
 msgid "cforms Tell-A-Friend"
 msgstr "cforms Tell-A-Friend"
 
-#: cforms.php:1393
+#: cforms.php:1403
 msgid "T-A-F enable this post/page"
 msgstr "T-A-F aktiviere diese/n Beitrag/Seite"
 
-#: cforms.php:1440
+#: cforms.php:1450
 msgid "Produce debug output"
 msgstr "Debug-Meldungen ausgeben"
 
-#: cforms.php:1440
+#: cforms.php:1450
 msgid "Outputs -for debug purposes- all cforms settings"
 msgstr "Gibt alle cforms Einstellungen zu Zwecken der Fehlerbehebung aus"
 
-#: cforms.php:1441
+#: cforms.php:1451
 msgid "Uninstalling / removing cforms"
 msgstr "cforms deinstallieren / entfernen"
 
-#: cforms.php:1441 cforms.php:1444
+#: cforms.php:1451 cforms.php:1454
 msgid "Be careful here..."
 msgstr "Sei hierbei sehr vorsichtig..."
 
-#: cforms.php:1444
+#: cforms.php:1454
 msgid "Delete cforms tracking tables"
 msgstr "Die Nachverfolgungs-Tabellen von cforms löschen"
 
-#: cforms.php:1444
+#: cforms.php:1454
 msgid "Do you really want to erase all collected data?"
 msgstr "Möchtest du wirklich alle gesammelten Daten löschen?"
 
-#: cforms.php:1446
+#: cforms.php:1456
 msgid "Backup / restore all settings"
 msgstr "Sichern / Wiederherstellen aller Einstellungen"
 
-#: cforms.php:1446 cforms.php:1464
+#: cforms.php:1456 cforms.php:1474
 msgid "Better safe than sorry ;)"
 msgstr "Lieber auf Nummer sicher gehen ;)"
 
-#: cforms.php:1448 cforms.php:1466
+#: cforms.php:1458 cforms.php:1476
 msgid "Save & update form settings"
 msgstr "Sichere aktuelle Formular-Einstellungen"
 
-#: cforms.php:1458
+#: cforms.php:1468
 msgid "Add new form"
 msgstr "Füge ein neues Formular hinzu"
 
-#: cforms.php:1458
+#: cforms.php:1468
 msgid "Adds a new form with default values"
 msgstr "fügt ein neues Formular mit Standardwerten hinzu"
 
-#: cforms.php:1459
+#: cforms.php:1469
 msgid "Duplicate current form"
 msgstr "Dupliziere das aktuelle Formular"
 
-#: cforms.php:1459
+#: cforms.php:1469
 msgid "Clones the current form"
 msgstr "Dupliziert das aktuelle Formular"
 
-#: cforms.php:1461
+#: cforms.php:1471
 msgid "Delete current form (!)"
 msgstr "Lösche das aktuelle Formular (!)"
 
-#: cforms.php:1461
+#: cforms.php:1471
 msgid "Clicking this button WILL delete this form"
 msgstr "Wenn auf diesen Button geklickt wird, wird dieses Formular gelöscht."
 
-#: cforms.php:1461
+#: cforms.php:1471
 msgid "This will delete the current form!"
 msgstr "Dies wird das aktuelle Formular löschen!"
 
-#: cforms.php:1463
+#: cforms.php:1473
 msgid "Install a form preset"
 msgstr "Installiere eine Formular-Voreinstellung"
 
-#: cforms.php:1463
+#: cforms.php:1473
 msgid "Pick a form preset from the repository"
 msgstr "Wähle eine Formular-Voreinstellung aus dem Verzeichnis"
 
-#: cforms.php:1464
+#: cforms.php:1474
 msgid "Backup / restore this form only"
 msgstr "Sichern / Wiederherstellen nur dieses Formulars"
 
@@ -4937,18 +4936,6 @@ msgstr "CSS (weist diesem Formular-Element eine Klasse zu)"
 #, php-format
 msgid "Inline style (e.g. %s)"
 msgstr "Inline-Style (e.g. %s)"
-
-#: js/insertdialog25.php:70
-msgid "Pick a form"
-msgstr "Wähle ein Formular"
-
-#: js/insertdialog25.php:77
-msgid "Your forms:"
-msgstr "Deine Formulare:"
-
-#: js/insertdialog25.php:86
-msgid "Insert"
-msgstr "Einfügen"
 
 #: lib_WPcomment.php:62
 msgid "Comment ID not found."
@@ -5190,7 +5177,7 @@ msgstr "via"
 msgid "Visit the cforms tracking page for all entries "
 msgstr "Besuche die Nachverfolgungsseite mit allen Einträgen"
 
-#: lib_editor_lang.php:21
+#: lib_editor.php:33
 msgid "Insert a form"
 msgstr "Füge ein Formular ein"
 
@@ -5391,7 +5378,7 @@ msgid "Only one <em>CC:</em> field is permitted!"
 msgstr "Nur ein <em>CC:</em> Feld ist zugelassen!"
 
 #: lib_options_sub.php:77
-msgid "Only one <em>Multiple Recipients</em> field is permitted!</span>"
+msgid "Only one <em>Multiple Recipients</em> field is permitted!"
 msgstr "Es ist nur ein Feld für mehrere Empfänger erlaubt!"
 
 #: lib_options_sub.php:274
