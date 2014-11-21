@@ -29,6 +29,8 @@ Translations are provided by:
 * Leadvirus
 * Gianni Diurno
 * Gill Ajoft
+* Serge Rauber
+* Cyrille Sanson-Stern
 * Pedro Germani Ghiorzi
 * Cátia Kitahara
 * [Stas Mykhajlyuk](http://kosivart.if.ua)
@@ -174,7 +176,7 @@ GPL compliance!
 * feature:  add Shortcode to insert forms
 * enhanced: make TinyMCE plugin localization part of gettext
 * enhanced: use TinyMCE 4 API and redesign TinyMCE form insertion
-* added:    Brazilian Portuguese translation
+* added:    Brazilian Portuguese and French translations
 
 = 14.7 =
 * enhanced: replace Subscribe To Comments support with a more general approach to also support Subscribe To Comments Reloaded

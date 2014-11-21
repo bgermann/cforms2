@@ -1426,8 +1426,6 @@ if ( is_admin() ) {
 	require_once ('js/include/lib_database_overview.php');
 	require_once ('js/include/lib_database_savedata.php');
 
-	require_once ('lib_editor_insertformnames.php');
-
 } ### if admin
 
 
