@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 You can install the plugin via Wordpress Dashboard. It should show up by searching
 for cforms2. If this does not work for you, there should be an option to upload a
 zip file, which is available on the
-[wordpress.org plugin directory](https://downloads.wordpress.org/plugin/cforms2).
+[wordpress.org plugin directory](https://wordpress.org/plugins/cforms2/).
 
 If you want to install manually, please upload the complete plugin folder "cforms2",
 contained in the zip file, to your WP plugin directory!
