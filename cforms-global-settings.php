@@ -102,7 +102,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$cformsSettings['global']['cforms_commentInMod'] =	$_REQUEST['cforms_commentInMod'];
 	$cformsSettings['global']['cforms_avatar'] =	   	$_REQUEST['cforms_avatar'];
 
-	$cformsSettings['global']['cforms_crlf']['h'] =	   	$_REQUEST['cforms_crlfH']?'1':'0';
 	$cformsSettings['global']['cforms_crlf']['b'] =	   	$_REQUEST['cforms_crlf']?'1':'0';
 
 	$cformsSettings['global']['cforms_smtp'] = null ;
@@ -399,10 +398,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 				<p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you may want to try and turn on the below option.', 'cforms') ?>
 				<table class="form-table">
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlfH" name="cforms_crlfH" <?php if($cformsSettings['global']['cforms_crlf']['h']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlfH"><?php echo sprintf(__('Separate lines in email %sheader%s with LF only (CR suppressed)', 'cforms'),'<strong>','</strong>') ?></label></td>
-				</tr>
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php echo sprintf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms'),'<strong>','</strong>') ?></label></td>

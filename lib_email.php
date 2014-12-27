@@ -18,7 +18,6 @@
  */
 
 class cforms2_mail {
-	public $eolH;
 	public $eol;
 	public $html_show;
 	public $html_show_ac;
@@ -64,8 +63,7 @@ class cforms2_mail {
     public function __construct($no, $from, $to, $replyto='',$adminEmail=false){
 		$cformsSettings = get_option('cforms_settings');
 
-	    $this->eolH = ($cformsSettings['global']['cforms_crlf'][h]!=1)?"\r\n":"\n";
-	    $this->eol  = ($cformsSettings['global']['cforms_crlf'][b]!=1)?"\r\n":"\n";
+	    $this->eol  = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
         if( (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] > 0 )
 	        $this->priority = (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'];
@@ -193,7 +191,7 @@ class cforms2_mail {
                 $addr_str .= ', ' . $this->addr_fmt($addr[$i]);
             }
 	    }
-		return $addr_str . $this->eolH;
+		return $addr_str;
 	}
 	private function addr_fmt($addr) {
 		return empty($addr[1]) ? $this->fix_header($addr[0]) : $this->enc_h($this->fix_header($addr[1]), 'phrase') . " <" . $this->fix_header($addr[0]) . ">";
@@ -204,8 +202,9 @@ class cforms2_mail {
 	    return str_replace("\n", "", $t);
 	}
 	private function mail_header() {
-	    $r = $this->h_line('Date', $this->get_date());
-	    $r .= ($this->sender == '')?$this->h_line('Return-Path', trim($this->from)):$this->h_line('Return-Path', trim($this->sender));
+		$r = array();
+	    $r[] = 'Date: ' . $this->get_date();
+	    $r[] = 'Return-Path: ' . $this->sender == '' ? trim($this->from) : trim($this->sender);
 
 	    $u_id = md5(uniqid(time()));
 	    $this->boundary[1] = 'b1_' . $u_id;
@@ -214,37 +213,37 @@ class cforms2_mail {
 	    $from = array();
 	    $from[0][0] = trim($this->from);
 	    $from[0][1] = $this->fname;
-	    $r .= $this->addr_add('From', $from);
+	    $r[] = $this->addr_add('From', $from);
 
-		$r .= (count($this->cc) > 0) ? $this->addr_add('Cc', $this->cc):'';
-        $r .= (count($this->bcc) > 0) ? $this->addr_add('Bcc', $this->bcc):'';
-	    $r .= (count($this->replyto) > 0) ? $this->addr_add('Reply-to', $this->replyto):'';
-	    $r .= ($this->msg_id != '') ? $this->h_line('Message-ID',$this->msg_id):sprintf("Message-ID: <%s@%s>%s", $u_id, $this->server_name(), $this->eolH);
+		$r[] = (count($this->cc) > 0) ? $this->addr_add('Cc', $this->cc):'';
+        $r[] = (count($this->bcc) > 0) ? $this->addr_add('Bcc', $this->bcc):'';
+	    $r[] = (count($this->replyto) > 0) ? $this->addr_add('Reply-to', $this->replyto):'';
 
-	    $r .= $this->h_line('X-Priority', $this->priority);
-	    $r .= ($this->confirm_to != '') ? $this->h_line('Disposition-Notification-To', '<' . trim($this->confirm_to) . '>'):'';
-	    $r .= $this->h_line('MIME-Version', '1.0');
+	    $r[] = 'X-Priority: ' . $this->priority;
+	    $r[] = ($this->confirm_to != '') ? 'Disposition-Notification-To: <' . trim($this->confirm_to) . '>' : '';
+	    $r[] = 'MIME-Version: 1.0';
 
         ### get mime
 	    switch($this->msg_type) {
-	      case 'plain':
-	        $r .= $this->h_line('Content-Transfer-Encoding', $this->enc) . sprintf("Content-Type: %s; charset=\"%s\"", $this->content_type, $this->char_set);
-	        break;
-	      case 'attachments':
-	      case 'alt_attachments':
-	        if( $this->has_inline_img() )
-	          $r .= sprintf("Content-Type: %s;%s\ttype=\"text/html\";%s\tboundary=\"%s\"%s", 'multipart/related', $this->eolH, $this->eolH, $this->boundary[1], $this->eolH);
-	        else
-	          $r .= $this->h_line('Content-Type', 'multipart/mixed;') . $this->t_line("\tboundary=\"" . $this->boundary[1] . '"');
-	        break;
-	      case 'alt':
-	        $r .= $this->h_line('Content-Type', 'multipart/alternative;') . $this->t_line("\tboundary=\"" . $this->boundary[1] . '"');
-	        break;
+			case 'plain':
+				$r[] = 'Content-Transfer-Encoding: ' . $this->enc . sprintf("Content-Type: %s; charset=\"%s\"", $this->content_type, $this->char_set);
+				break;
+			case 'attachments':
+			case 'alt_attachments':
+				if( $this->has_inline_img() )
+					$modifier = 'related;type="text/html"';
+				else
+					$modifier = 'mixed';
+				$r[] = 'Content-Type: multipart/'.$modifier.';boundary="' . $this->boundary[1] . '"';
+				break;
+			case 'alt':
+				$r[] = 'Content-Type: multipart/alternative;boundary="' . $this->boundary[1] . '"';
+				break;
 	    }
 	    return $r;
 	}
 	private function h_line($n, $v) {
-		return $n . ': ' . $v . $this->eolH;
+		return $n . ': ' . $v;
 	}
 
 	###
