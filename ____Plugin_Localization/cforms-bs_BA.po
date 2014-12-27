@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2014-11-17 20:22+0100\n"
+"POT-Creation-Date: 2014-12-26 19:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: www.alpenimmobilien.de <info@alpenimmobilien.de>\n"
@@ -3873,8 +3873,8 @@ msgid "Allowed file extensions"
 msgstr "Dozvoljene datoteke dodataka programa"
 
 #: cforms-options.php:479
-msgid "[empty=all files are allowed]"
-msgstr "[prazan= sve datoteke su dozvoljene]"
+msgid "[empty=no files are allowed]"
+msgstr "[prazan=nema datoteke su dozvoljene]"
 
 #: cforms-options.php:483
 msgid "Maximum file size<br />in kilobyte"
@@ -4722,79 +4722,79 @@ msgstr "cforms Reci-prijatelju"
 msgid "T-A-F enable this post/page"
 msgstr "Т-A-F  aktivira ovaj članak/ stranicu"
 
-#: cforms.php:1450
+#: cforms.php:1448
 msgid "Produce debug output"
 msgstr "Napraviti izlaz za otklanjanje greški"
 
-#: cforms.php:1450
+#: cforms.php:1448
 msgid "Outputs -for debug purposes- all cforms settings"
 msgstr "izlaz - za otklanjanje greški - sva cforms podešavanja"
 
-#: cforms.php:1451
+#: cforms.php:1449
 msgid "Uninstalling / removing cforms"
 msgstr "Deinstalacija/Uklanjanje cforms"
 
-#: cforms.php:1451 cforms.php:1454
+#: cforms.php:1449 cforms.php:1452
 msgid "Be careful here..."
 msgstr "Pažljivo postupajte sa ovim!"
 
-#: cforms.php:1454
+#: cforms.php:1452
 msgid "Delete cforms tracking tables"
 msgstr "Brisanje cforms tabli za praćenje"
 
-#: cforms.php:1454
+#: cforms.php:1452
 msgid "Do you really want to erase all collected data?"
 msgstr "Da li zaista želite da obrišete sve prikupljene podatke?"
 
-#: cforms.php:1456
+#: cforms.php:1454
 msgid "Backup / restore all settings"
 msgstr "Sigurnosna kopija & vraćanje svih podešavanja"
 
-#: cforms.php:1456 cforms.php:1474
+#: cforms.php:1454 cforms.php:1472
 msgid "Better safe than sorry ;)"
 msgstr ""
 
-#: cforms.php:1458 cforms.php:1476
+#: cforms.php:1456 cforms.php:1474
 msgid "Save & update form settings"
 msgstr ""
 
-#: cforms.php:1468
+#: cforms.php:1466
 msgid "Add new form"
 msgstr "Dodaj novi obrazac"
 
-#: cforms.php:1468
+#: cforms.php:1466
 msgid "Adds a new form with default values"
 msgstr "dodajte novi obrazac sa unaprijed zadatim vrijednostima"
 
-#: cforms.php:1469
+#: cforms.php:1467
 msgid "Duplicate current form"
 msgstr "Duplikat trenutnog obrasca"
 
-#: cforms.php:1469
+#: cforms.php:1467
 msgid "Clones the current form"
 msgstr "klonovi trenutnog obrasca"
 
-#: cforms.php:1471
+#: cforms.php:1469
 msgid "Delete current form (!)"
 msgstr "Brisanje trenutnog obrasca (!)"
 
-#: cforms.php:1471
+#: cforms.php:1469
 msgid "Clicking this button WILL delete this form"
 msgstr "Pritiskom na dugme WILL uklanja se ovaj obrazac."
 
-#: cforms.php:1471
+#: cforms.php:1469
 msgid "This will delete the current form!"
 msgstr "Ovo će ukloniti sadašnji obrazac!"
 
-#: cforms.php:1473
+#: cforms.php:1471
 msgid "Install a form preset"
 msgstr "Instalirajte unaprijed obrazac"
 
-#: cforms.php:1473
+#: cforms.php:1471
 msgid "Pick a form preset from the repository"
 msgstr ""
 
-#: cforms.php:1474
+#: cforms.php:1472
 msgid "Backup / restore this form only"
 msgstr ""
 

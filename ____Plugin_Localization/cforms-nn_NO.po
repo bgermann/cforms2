@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2014-11-17 20:22+0100\n"
-"PO-Revision-Date: 2014-11-17 20:33+0100\n"
+"POT-Creation-Date: 2014-12-26 19:57+0100\n"
+"PO-Revision-Date: 2014-12-27 01:09+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Gill Ajoft <info@ajoft.com>\n"
 "Language: nn_NO\n"
@@ -3849,8 +3849,8 @@ msgid "Allowed file extensions"
 msgstr "Tillatte filtyper"
 
 #: cforms-options.php:479
-msgid "[empty=all files are allowed]"
-msgstr "[tomme = alle filene som har lov]"
+msgid "[empty=no files are allowed]"
+msgstr "[tomme=ingen filer som har lov]"
 
 #: cforms-options.php:483
 msgid "Maximum file size<br />in kilobyte"
@@ -4687,79 +4687,79 @@ msgstr "cforms Tips-en-venn"
 msgid "T-A-F enable this post/page"
 msgstr "T-A-F aktivere dette innlegget / siden"
 
-#: cforms.php:1450
+#: cforms.php:1448
 msgid "Produce debug output"
 msgstr ""
 
-#: cforms.php:1450
+#: cforms.php:1448
 msgid "Outputs -for debug purposes- all cforms settings"
 msgstr ""
 
-#: cforms.php:1451
+#: cforms.php:1449
 msgid "Uninstalling / removing cforms"
 msgstr ""
 
-#: cforms.php:1451 cforms.php:1454
+#: cforms.php:1449 cforms.php:1452
 msgid "Be careful here..."
 msgstr ""
 
-#: cforms.php:1454
+#: cforms.php:1452
 msgid "Delete cforms tracking tables"
 msgstr ""
 
-#: cforms.php:1454
+#: cforms.php:1452
 msgid "Do you really want to erase all collected data?"
 msgstr "Har du virkelig ønsker å slette alle innsamlede data?"
 
-#: cforms.php:1456
+#: cforms.php:1454
 msgid "Backup / restore all settings"
 msgstr ""
 
-#: cforms.php:1456 cforms.php:1474
+#: cforms.php:1454 cforms.php:1472
 msgid "Better safe than sorry ;)"
 msgstr ""
 
-#: cforms.php:1458 cforms.php:1476
+#: cforms.php:1456 cforms.php:1474
 msgid "Save & update form settings"
 msgstr ""
 
-#: cforms.php:1468
+#: cforms.php:1466
 msgid "Add new form"
 msgstr "Legg til nytt skjema"
 
-#: cforms.php:1468
+#: cforms.php:1466
 msgid "Adds a new form with default values"
 msgstr ""
 
-#: cforms.php:1469
+#: cforms.php:1467
 msgid "Duplicate current form"
 msgstr "Duplicate nåværende form"
 
-#: cforms.php:1469
+#: cforms.php:1467
 msgid "Clones the current form"
 msgstr ""
 
-#: cforms.php:1471
+#: cforms.php:1469
 msgid "Delete current form (!)"
 msgstr "Slett nåværende form (!)"
 
-#: cforms.php:1471
+#: cforms.php:1469
 msgid "Clicking this button WILL delete this form"
 msgstr ""
 
-#: cforms.php:1471
+#: cforms.php:1469
 msgid "This will delete the current form!"
 msgstr "Dette vil slette den nåværende form!"
 
-#: cforms.php:1473
+#: cforms.php:1471
 msgid "Install a form preset"
 msgstr "nstaller en form forhåndsinnstilt"
 
-#: cforms.php:1473
+#: cforms.php:1471
 msgid "Pick a form preset from the repository"
 msgstr ""
 
-#: cforms.php:1474
+#: cforms.php:1472
 msgid "Backup / restore this form only"
 msgstr ""
 

@@ -181,7 +181,7 @@ for($i = 1; $i <= $field_count; $i++) {
 
 				}else if( $field_type=="upload" ) {  ### prelim upload check
 
-							$validations[$i+$off] = !($_FILES['cf_uploadfile'.$no][name][$filefield++]=='');
+							$validations[$i+$off] = !($_FILES['cf_uploadfile'.$no]['name'][$filefield]=='');
 							if ( !$validations[$i+$off] && $err==0 )
 									{ $err=3; $fileerr = $cformsSettings['global']['cforms_upload_err2']; }
 				}else if( in_array($field_type,array('cauthor','url','email','comment')) ) {
@@ -221,10 +221,13 @@ for($i = 1; $i <= $field_count; $i++) {
 				}
 
 		}
-		else
+		else {
 			$validations[$i+$off] = 1;
+		}
 
-
+		if ( $field_type=="upload" && isset($_FILES['cf_uploadfile'.$no]['name'][$filefield]) ) {
+			$filefield++;
+		}
 
 		### REGEXP now outside of 'is required'
 		if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
@@ -281,19 +284,25 @@ for($i = 1; $i <= $field_count; $i++) {
 ###
 
 global $file;
-$file='';
-$i=0;
+$file=array();
 
 if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 
- 	$file = $_FILES['cf_uploadfile'.$no];
+	for ($i=0; $i<$filefield; $i++) {
+		$file['name'][] = $_FILES['cf_uploadfile'.$no]['name'][$i];
+		$file['type'][] = $_FILES['cf_uploadfile'.$no]['type'][$i];
+		$file['tmp_name'][] = $_FILES['cf_uploadfile'.$no]['tmp_name'][$i];
+		$file['error'][] = $_FILES['cf_uploadfile'.$no]['error'][$i];
+		$file['size'][] = $_FILES['cf_uploadfile'.$no]['size'][$i];
+	}
 
-	foreach( $file[name] as $value ) {
+	$i=0;
+	foreach( $file['name'] as $value ) {
 
 		if(!empty($value)){   ### this will check if any blank field is entered
 
 			if ( function_exists('my_cforms_logic') )
-                $file[name][$i] = my_cforms_logic($_REQUEST,$_FILES['cf_uploadfile'.$no][name][$i],"filename");
+                $file['name'][$i] = my_cforms_logic($_REQUEST,$_FILES['cf_uploadfile'.$no]['name'][$i],"filename");
 
             $fileerr = '';
               ### A successful upload will pass this test. It makes no sense to override this one.
@@ -304,7 +313,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
               $fileext[$i] = strtolower( substr($value,strrpos($value, '.')+1,strlen($value)) );
               $allextensions = explode(',' ,  preg_replace('/\s/', '', strtolower($cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'])) );
 
-              if ( $cformsSettings['form'.$no]['cforms'.$no.'_upload_ext']<>'' && !in_array($fileext[$i], $allextensions) )
+              if ( !in_array($fileext[$i], $allextensions) )
                       $fileerr = $cformsSettings['global']['cforms_upload_err5'];
 
               ### A non-empty file will pass this test.

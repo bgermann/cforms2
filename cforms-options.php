@@ -476,7 +476,7 @@ if( strlen($fd)<=2 ) {
 
 				<tr class="ob space15">
 					<td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms') ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'])); ?>"/> <?php _e('[empty=all files are allowed]', 'cforms') ?></td>
+					<td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'])); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms') ?></td>
 				</tr>
 
 				<tr class="ob">
