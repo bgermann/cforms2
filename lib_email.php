@@ -24,27 +24,22 @@ class cforms2_mail {
 
 	public $f_txt;
 	public $f_html;
-	public $frommail;
 
-	public $priority = 3;
 	public $char_set = 'utf-8';
-	public $content_type = 'text/plain';
-	public $enc = '8bit';
 	public $err  = '';
 
-	public $from = '';
-	public $fname = 'cforms';
-	public $split_to  = false;
-    public $confirm_to = '';
-
-	public $sender = '';
 	public $subj  = '';
 
 	public $body = '';
 	public $body_alt  = '';
 
-	public $host = '';
-	public $msg_id = '';
+	private $priority = 3;
+	private $content_type = 'text/plain';
+	private $enc = '8bit';
+	private $from = '';
+	private $fname = 'cforms';
+
+	private $host = '';
 
 	private $to = array();
 	private $cc = array();
@@ -83,7 +78,6 @@ class cforms2_mail {
 	    ### from
 	    if ( $from=='' )
 	        $from = '"'.get_option('blogname').'" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
-		$this->frommail = $from;
 
 	    $fe=array();
 	    $f=array();
@@ -146,10 +140,10 @@ class cforms2_mail {
 	public function is_html($bool) {
 		$this->content_type = $bool?'text/html':'text/plain';
 	}
-	public function is_err() {
+	private function is_err() {
 		return ($this->err_count > 0);
 	}
-	public function has_inline_img() {
+	private function has_inline_img() {
 	    $r = false;
 	    for($i = 0; $i < count($this->up); $i++) {
 	      if($this->up[$i][6] == 'inline') {
@@ -163,22 +157,22 @@ class cforms2_mail {
 	###
 	### Header Functions
 	###
-	public function add_addr($address, $name = '') {
+	private function add_addr($address, $name = '') {
 	    $t = count($this->to);
 	    $this->to[$t][0] = trim($address);
 	    $this->to[$t][1] = $name;
 	}
-	public function add_cc($address, $name = '') {
+	private function add_cc($address, $name = '') {
 	    $t = count($this->cc);
 	    $this->cc[$t][0] = trim($address);
 	    $this->cc[$t][1] = $name;
 	}
-	public function add_bcc($address, $name = '') {
+	private function add_bcc($address, $name = '') {
 	    $t = count($this->bcc);
 	    $this->bcc[$t][0] = trim($address);
 	    $this->bcc[$t][1] = $name;
 	}
-	public function add_reply($address, $name = '') {
+	private function add_reply($address, $name = '') {
 	    $t = count($this->replyto);
 	    $this->replyto[$t][0] = trim($address);
 	    $this->replyto[$t][1] = $name;
@@ -204,7 +198,6 @@ class cforms2_mail {
 	private function mail_header() {
 		$r = array();
 	    $r[] = 'Date: ' . $this->get_date();
-	    $r[] = 'Return-Path: ' . $this->sender == '' ? trim($this->from) : trim($this->sender);
 
 	    $u_id = md5(uniqid(time()));
 	    $this->boundary[1] = 'b1_' . $u_id;
@@ -220,7 +213,6 @@ class cforms2_mail {
 	    $r[] = (count($this->replyto) > 0) ? $this->addr_add('Reply-to', $this->replyto):'';
 
 	    $r[] = 'X-Priority: ' . $this->priority;
-	    $r[] = ($this->confirm_to != '') ? 'Disposition-Notification-To: <' . trim($this->confirm_to) . '>' : '';
 	    $r[] = 'MIME-Version: 1.0';
 
         ### get mime
@@ -241,9 +233,6 @@ class cforms2_mail {
 				break;
 	    }
 	    return $r;
-	}
-	private function h_line($n, $v) {
-		return $n . ': ' . $v;
 	}
 
 	###
@@ -268,7 +257,7 @@ class cforms2_mail {
 	        break;
 	      case 'alt_attachments':
 	        $r  = sprintf("--%s%s", $this->boundary[1], $this->eol);
-	        $r .= sprintf("Content-Type: %s;%s" . "\tboundary=\"%s\"%s", 'multipart/alternative', $this->eol, $this->boundary[2], $this->eol.$this->eol);
+	        $r .= sprintf("Content-Type: multipart/alternative;%s" . "\tboundary=\"%s\"%s", $this->eol, $this->boundary[2], $this->eol.$this->eol);
 	        $r .= $this->begin_b($this->boundary[2], '', 'text/plain', '') . $this->eol;
 	        $r .= $this->enc_str($this->body_alt, $this->enc) . $this->eol.$this->eol;
 	        $r .= $this->begin_b($this->boundary[2], '', 'text/html', '') . $this->eol;
@@ -289,7 +278,7 @@ class cforms2_mail {
 
 	    $r  = $this->t_line('--' . $boundary);
 	    $r .= sprintf("Content-Type: %s; charset = \"%s\"", $content_type, $char_set) . $this->eol;
-	    return $r . $this->h_line('Content-Transfer-Encoding', $encoding) . $this->eol;
+	    return $r . 'Content-Transfer-Encoding: ' . $encoding . $this->eol . $this->eol;
 	}
 	private function end_b($b) {
 		return $this->eol . '--' . $b . '--' . $this->eol;
@@ -425,15 +414,7 @@ class cforms2_mail {
 	    for($i = 0; $i < count($this->to); $i++) {
             $to .= (($i != 0) ? ', ':'' ) . $this->addr_fmt($this->to[$i]);
         }
-
-	    $to_all = explode(',', $to);
-
-	    if ($this->split_to === true && count($to_all) > 1) {
-	        foreach ($to_all as $val) {
-                $rt = wp_mail($val, $this->enc_h($this->fix_header($this->subj)), $body, $header);
-            }
-	    } else
-	        $rt = wp_mail($to, $this->enc_h($this->fix_header($this->subj)), $body, $header);
+		$rt = wp_mail($to, $this->enc_h($this->fix_header($this->subj)), $body, $header);
 
 	    if(!$rt) {
 	      $this->set_err(__('Could not instantiate wp_mail function.','cforms'));
