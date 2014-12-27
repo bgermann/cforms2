@@ -337,19 +337,6 @@ function cforms2_base64($fn, $attachFlag=false){
 }
 
 
-### MIME / extensions
-function cforms2_get_mime ($ext){
-    $all_mime = array('txt'=>'text/plain', 'htm'=>'text/html', 'html'=>'text/html', 'gif'=>'image/gif', 'png'=>'image/png',
-                 'jpeg'=>'image/jpeg', 'jpg'=>'image/jpeg', 'tif'=>'image/tiff', 'bmp'=>'image/x-ms-bmp', 'wav'=>'audio/wav',
-                 'mpeg'=>'video/mpeg', 'mpg'=>'video/mpeg', 'mov'=>'video/quicktime', 'avi'=>'video/x-msvideo',
-                 'rtf'=>'application/rtf', 'pdf'=>'application/pdf', 'zip'=>'application/zip', 'hqx'=>'application/mac-binhex40',
-                 'sit'=>'application/x-stuffit', 'exe'=>'application/octet-stream', 'ppz'=>'application/mspowerpoint',
-                 'ppt'=>'application/vnd.ms-powerpoint', 'ppj'=>'application/vnd.ms-project', 'xls'=>'application/vnd.ms-excel',
-                 'doc'=>'application/msword');
-    return (!$all_mime[$ext])?'application/octet-stream':$all_mime[$ext];
-}
-
-
 ### replace standard & custom variables in message/subject text
 function cforms2_get_current_page(){
 

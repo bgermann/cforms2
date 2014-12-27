@@ -458,7 +458,7 @@ function cforms2_submitcomment() {
 	                $a = (substr($a,0,1)=='/') ? $a : plugin_dir_path(__FILE__).$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
 	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
-	                    $m = cforms2_get_mime( strtolower( substr($n,strrpos($n, '.')+1,strlen($n)) ) );
+	                    $m = wp_check_filetype( strtolower( $n ) );
 	                    $mail->add_file($a, $n,'base64',$m); ### optional name
 	                }
 
