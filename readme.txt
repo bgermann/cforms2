@@ -33,6 +33,7 @@ Translations are provided by:
 * Cyrille Sanson-Stern
 * Pedro Germani Ghiorzi
 * Cátia Kitahara
+* Sofia Panchenko
 * [Stas Mykhajlyuk](http://kosivart.if.ua)
 * Charles Tang
 
