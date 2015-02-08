@@ -383,10 +383,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	### end of session:
     if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
     	foreach ( array_keys($_SESSION['cforms']['upload']) as $n ) {
-	    	foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ) {
-				if( file_exists($_SESSION['cforms']['upload'][$n]['files'][$m]) )
-	                rename($_SESSION['cforms']['upload'][$n]['files'][$m],str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]));
-            }
+			if (  is_array( $_SESSION['cforms']['upload'][$n]['files']) ) {
+				foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ) {
+					if( file_exists($_SESSION['cforms']['upload'][$n]['files'][$m]) )
+						rename($_SESSION['cforms']['upload'][$n]['files'][$m],str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]));
+				}
+			}
         }
     }
 
