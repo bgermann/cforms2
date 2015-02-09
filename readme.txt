@@ -71,6 +71,13 @@ zip file, which is available on the
 If you want to install manually, please upload the complete plugin folder "cforms2",
 contained in the zip file, to your WP plugin directory!
 
+If you want to check integrity of the download, please use the cforms2.*.zip.sig
+GPG signature files that are published via
+[GitHub releases](https://github.com/bgermann/cforms2/releases).
+The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53)
+has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`.
+The git tags themselves are also signed beginning with version 14.8.
+
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please
