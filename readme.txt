@@ -15,7 +15,6 @@ cformsII is the most customizable, flexible & powerful ajax supporting contact f
 This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi form management, you can even have multiple forms on the same page!
 
 Oliver, the original author, does not further develop the plugin. This fork is an effort to keep it up to date.
-If you want to use non-GPL versions older than 10.2 or see their changelog, you can [browse the original Trac](https://plugins.trac.wordpress.org/browser/cforms/).
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms".
 
 = Credits =
@@ -100,6 +99,14 @@ Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-cs
 
 
 == Frequently Asked Questions ==
+
+= I do not get any emails from my form. Why? =
+
+Most pobably this is not cformsII's fault. Please check your WordPress mail configuration with a plugin like [Check Email](https://wordpress.org/plugins/check-email/).
+
+= Where can I find old cformsII versions? =
+
+You can find old versions in the [Developers section](https://wordpress.org/plugins/cforms2/developers/).
 
 = Where are the external SMTP settings? =
 
