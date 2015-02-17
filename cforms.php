@@ -112,7 +112,8 @@ function cforms2($args = '',$no = '') {
 	##debug
     cforms2_dbg("Comment form = $isWPcommentForm");
     cforms2_dbg("Multi-page form = $isMPform");
-    cforms2_dbg("PHP Session = ".(isset($_SESSION)?"yes":"no").$_SESSION['cforms']['current'] );
+   	if (isset($_SESSION['cforms']['current']))
+		cforms2_dbg("PHP Session = ".(isset($_SESSION)?"yes":"no").$_SESSION['cforms']['current'] );
 
 	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && !$isWPcommentForm ){
 		cforms2_dbg("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
@@ -189,13 +190,20 @@ function cforms2($args = '',$no = '') {
 	$c_errflag=false;
 	$custom_error='';
 	$usermessage_class='';
-
+	$usermessage_text	= "";
 
 	$user = wp_get_current_user();
-
+	$server_upload_size_error = false;
+	$displayMaxSize = ini_get('post_max_size');
+	if ( $_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
+		 empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0 ){
+		$server_upload_size_error = true;
+		$msgSize = $_SERVER['CONTENT_LENGTH'] / 1048576  ;
+		echo ("<pre>Maximum size allowed:" . $displayMaxSize . "; size of your message:" . number_format((float)$msgSize, 2, '.', '') . "M</pre>");
+	}
 
     ### non Ajax method
-    if( isset($_REQUEST['sendbutton'.$no]) ) {
+    if( isset($_REQUEST['sendbutton'.$no]) || $server_upload_size_error ) {
 		require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
 		$usermessage_class = $all_valid?' success':' failure';
 	}
@@ -249,6 +257,7 @@ function cforms2($args = '',$no = '') {
 
 
 	### multi page form: overwrite $no, move on to next form
+   	$oldcurrent = $no;
 	if( $all_valid && isset($_REQUEST['sendbutton'.$no]) ){
 
 		$isMPformNext=false; ### default
@@ -289,11 +298,21 @@ function cforms2($args = '',$no = '') {
 	        $_SESSION['cforms']['pos']=1;
 
 			$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
-
-        }
-
+        } else {
+	        unset( $_SESSION['cforms'] );
+	        $_SESSION['cforms']['current']=0;
+	        $_SESSION['cforms']['first']=$no;
+	        $_SESSION['cforms']['pos']=1;
+			}
+	} else {
+		unset( $_SESSION['cforms'] );
+		$_SESSION['cforms']['current']=0;
+		$_SESSION['cforms']['first']=$no;
+		$_SESSION['cforms']['pos']=1;
 	}
 
+	
+	
     ##debug
     cforms2_dbg("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
 
@@ -350,8 +369,7 @@ function cforms2($args = '',$no = '') {
 	$fscount = 1;
 	$ol = false;
 
-	$inpFieldArr = array(); // for var[] type input fields
-		
+	$inpFieldArr = array(); // for var[] type input fields	
 	for($i = 1; $i <= $field_count; $i++) {
 
 		if ( !$custom )
@@ -371,10 +389,12 @@ function cforms2($args = '',$no = '') {
 		### ommit certain fields
 		if( in_array($field_type,array('cauthor','url','email')) && $user->ID )
 			continue;
-			
- 
+
+
+		
 		### check for html5 attributes
 	    $obj = explode('|html5:', $field_name,2);
+		$obj[] = "";
 		$html5 = ($obj[1]<>'') ? preg_split('/\x{00A4}/u',$obj[1], -1) : '';
 
 		###debug
@@ -382,7 +402,8 @@ function cforms2($args = '',$no = '') {
 		
 		### check for custom err message and split field_name
 	    $obj = explode('|err:', $obj[0],2);
-	    $fielderr = $obj[1];
+		$obj[] = "";
+		$fielderr = $obj[1];
 		
 		###debug
 		cforms2_dbg("\t adding $field_type field: $field_name");
@@ -422,6 +443,7 @@ function cforms2($args = '',$no = '') {
 
 		### check for title attrib
 	    $obj = explode('|title:', $obj[0],2);
+		$obj[] = "";
 		$fieldTitle = ($obj[1]<>'')?' title="'.str_replace('"','&quot;',stripslashes($obj[1])).'"':'';
 
 		###debug
@@ -436,7 +458,8 @@ function cforms2($args = '',$no = '') {
 				$chkboxClicked = explode('|set:', stripslashes($obj[0]) );
 				$obj[0] = $chkboxClicked[0];
 			}
-			
+			$chkboxClicked[] = "";
+			$chkboxClicked[] = "";
 			###debug
 			cforms2_dbg("\t\t found checkbox:, obj[0] = ".$obj[0]);
 
@@ -481,6 +504,8 @@ function cforms2($args = '',$no = '') {
 
 		    ### check if default val & regexp are set
 		    $obj = explode('|', $obj[0],3);
+			$obj[] = "";
+			$obj[] = "";
 
 			if ( $obj[2] <> '')	$reg_exp = str_replace('"','&quot;',stripslashes($obj[2])); else $reg_exp='';
 		    if ( $obj[1] <> '')	$defaultvalue = str_replace( array('"','\n'),array('&quot;',"\r"), cforms2_check_default_vars(stripslashes(($obj[1])),$no) );
@@ -597,7 +622,9 @@ function cforms2($args = '',$no = '') {
 
 		if( !$all_valid ){
 			### errors...
-			if ( $validations[$i]==1 )
+			if ( $server_upload_size_error)
+				$field_class .= '';
+			else if ( $validations[$i]==1 )
 				$field_class .= '';
 			else{
 				$field_class .= ' cf_error';
@@ -609,7 +636,7 @@ function cforms2($args = '',$no = '') {
 					$insertErr = ($fielderr<>'')?'<ul class="cf_li_text_err"><li>'.stripslashes($fielderr).'</li></ul>':'';
 			}
 
-
+			if (!isset($_REQUEST[$input_name])) $_REQUEST[$input_name] = ""; //the field could not be there al all
 			if ( $field_type == 'multiselectbox' || $field_type == 'checkboxgroup' ){
 				$field_value = $_REQUEST[$input_name];  ### in this case it's an array! will do the stripping later
 			}
@@ -787,10 +814,12 @@ function cforms2($args = '',$no = '') {
 					$preChecked = ( strpos($chkboxClicked[1],'true') !== false ) ? ' checked="checked"':'';  // $all_valid = user choice prevails
 
 				$err='';
-				if( !$all_valid && $validations[$i]<>1 )
-					$err = ' cf_errortxt';
+				if (!$server_upload_size_error)
+					if( !$all_valid && $validations[$i]<>1 )
+						$err = ' cf_errortxt';
 
 			    $opt = explode('|', $field_name,2);
+				$opt[] = "";
 				if ( $options[1]<>'' ) {  ### $options =  explode('#', stripslashes($obj[0]) ) (line 476)
 				 		$before = '<li'.$liID.' class="'.$liERR.'">'.$insertErr;
 						$after  = '<label'. $labelID . ' for="'.$input_id.'" class="cf-after'.$err.'"><span>' . $opt[0] . '</span></label></li>';
@@ -902,9 +931,11 @@ function cforms2($args = '',$no = '') {
 
 					### supporting names & values
 					$optPreset = explode('|set:', $option );
+					$optPreset[] = "";
 				    $opt = explode('|', $optPreset[0],2);
+					$opt[]="";
 					if ( $opt[1]=='' ) $opt[1] = $opt[0];
-
+					
 					### email-to-box valid entry?
 			    if ( $field_type == 'emailtobox' && $opt[1]<>'-' )
 							$jj = $j; else $jj = '-';
@@ -941,6 +972,7 @@ function cforms2($args = '',$no = '') {
 						### supporting names & values
 						$radioPreset = explode('|set:', $option );
 				    	$opt = explode('|', $radioPreset[0],2);
+						$opt[]="";
 						if ( $opt[1]=='' ) $opt[1] = $opt[0];
 
 						if( $field_value == '' ) {

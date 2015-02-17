@@ -53,7 +53,7 @@ function cforms2_download(){
 	    	$buffer .= cforms2_save_array($cformsSettings);
 			$filename = 'all-cforms-settings.txt';
 		}
-        ob_end_clean();
+        if (ob_get_contents())ob_end_clean();
 		header('Pragma: public;');
 		header('Expires: 0;');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0;');
@@ -76,6 +76,7 @@ function cforms2_save_array($vArray){
 
     // Go through the given array
     reset($vArray);
+	$i=0;
     while (true)
     {
         $Current = current($vArray);

@@ -68,6 +68,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i ]);
 			else
 				$field_stat = explode('$#$', $customfields[$i-1]);
+			$field_stat[] = "";
 
 			###  filter non input fields
 			while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
@@ -91,6 +92,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
                     $field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i ]);
                 else
                     $field_stat = explode('$#$', $customfields[$i-1]);
+				$field_stat[] = "";
 
                 if( $field_stat[1] == '')
                         break 2; ###  all fields searched, break both while & for
@@ -110,7 +112,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				if ( strpos($tmpName,'[id:')!==false ){
 					$isFieldArray = strpos($tmpName,'[]');
 
-				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
+				preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // CB 2.4.2014  
+//				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
 				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 
@@ -134,11 +137,13 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			
 			###  dissect field
 		    $obj = explode('|', $field_name,3);
+			$obj[]="";
 			$defaultval = stripslashes($obj[1]);
 
 			###  strip out default value
 			$field_name = $obj[0];
-
+			if (!isset ($_POST[$current_field])) 	
+				$_POST[$current_field] = "";
 			###  special Tell-A-Friend fields
 			if ( !$taf_friendsemail && $field_type=='friendsemail' && $field_stat[3]=='1')
 					$field_email = $taf_friendsemail = $_POST[$current_field];
@@ -203,7 +208,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
  		}
  		else if ( $field_type == "upload" ){
 
-			if ( is_array($file) && is_array($file['name']) ) {
+			if ( is_array($file) && is_array($file['name']) && isset($file['name'][$filefield])) {
 				### $fsize = $file['size'][$filefield]/1000;
 				$value = str_replace(' ','_',$file['name'][$filefield++]);
 			}else{
@@ -271,7 +276,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
         $inc='';
         $trackname = trim( ($field_type == "upload") ? $field_name.'[*'.($no==''?1:$no).']' : $field_name );
         if ( array_key_exists($trackname, $track) ){
-            if ( $trackinstance[$trackname]==''  )
+            if ( !isset ($trackinstance[$trackname]) || $trackinstance[$trackname]==''  )
                 $trackinstance[$trackname]=2;
             $inc = '___'.($trackinstance[$trackname]++);
         }
@@ -523,7 +528,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    if( $sentadmin == 1 ) {
 
 				#debug
-				cforms2_dbg("is CC: = $ccme, active = {$trackf[data][$ccme]} | ");
+				if (!isset($trackf['data'][$ccme]))  $trackf['data'][$ccme] = '';
+				cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
 
 	            ###  send copy or notification?
                 ###  not if no email & already CC'ed				
