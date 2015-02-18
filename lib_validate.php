@@ -30,15 +30,35 @@ $captchaopt = $cformsSettings['global']['cforms_captcha_def'];
 
 ###debug
 cforms2_dbg("lib_validate.php: validating fields for form no. $no");
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
+	 empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0 )
+{      
+	$all_valid = false;
+	$err = 3;
+	$fileerr = $cformsSettings['global']['cforms_upload_err3'];
+//	cforms2_dbg( "inside validate - CONTENT LENGTH: " . $_SERVER['CONTENT_LENGTH'],DBG_FORCE );
+}
 
-for($i = 1; $i <= $field_count; $i++) {
-
+cforms2_dbg("REQUEST:".print_r($_REQUEST,1));
+cforms2_dbg("FILES:".print_r($_FILES,1));
+$off = 0;
+if ($all_valid)
+{
+for($i = 1; $i <= $field_count; $i++) {	
 		if ( !$custom )
 			$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_'.((int)$i+(int)$off)]);
 		else
 			$field_stat = explode('$#$', $customfields[((int)$i+(int)$off) - 1]);
+		$field_stat[] = "";
+		$field_stat[] = "";
+		$field_stat[] = "";
 
 		### filter non input fields
+		if ( $field_stat[1] == 'fieldsetstart' || $field_stat[1] == 'fieldsetend' || $field_stat[1] == 'textonly' ) {
+			$validations[$i+$off] = 1;   ### auto approved
+			continue;
+		} 
+		
 		while ( $field_stat[1] == 'fieldsetstart' || $field_stat[1] == 'fieldsetend' || $field_stat[1] == 'textonly' ) {
 				$off++;
 
@@ -46,6 +66,9 @@ for($i = 1; $i <= $field_count; $i++) {
                     $field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . ((int)$i+(int)$off)]);
                 else
                     $field_stat = explode('$#$', $customfields[((int)$i+(int)$off) - 1]);
+				$field_stat[] = "";
+				$field_stat[] = "";
+				$field_stat[] = "";
 
 				if( $field_stat[1] == '')
 						break 2; ### all fields searched, break both while & for
@@ -54,6 +77,7 @@ for($i = 1; $i <= $field_count; $i++) {
 
 		### custom error set?
 		$c_err = explode('|err:', $field_stat[0], 2);
+		$c_err[] = "";
 		$c_title = explode('|title:', $c_err[0], 2);
 
 		$field_name = $c_title[0];
@@ -93,8 +117,8 @@ for($i = 1; $i <= $field_count; $i++) {
 			if ( strpos($tmpName,'[id:')!==false ){
 
 				$isFieldArray = strpos($tmpName,'[]');
-				
-				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
+				preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2014  CB MOD	
+//				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
 				$trackingID	= cforms2_sanitize_ids( $input_name[2] );
 
@@ -108,9 +132,11 @@ for($i = 1; $i <= $field_count; $i++) {
 		[4] => yy
 	)
 */
+				if (!isset($_REQUEST[ $trackingID ])) 
+					$_REQUEST[ $trackingID ]= "";
 				if( $isFieldArray ){				
 
-					if( !$inpFieldArr[$trackingID] || $inpFieldArr[$trackingID]=='' )
+					if( !isset($inpFieldArr[$trackingID]) || !$inpFieldArr[$trackingID] || $inpFieldArr[$trackingID]=='' )
 						$inpFieldArr[$trackingID]=0;
 					
 					$current_field	= $_REQUEST[ $trackingID ][$inpFieldArr[$trackingID]++];
@@ -126,12 +152,12 @@ for($i = 1; $i <= $field_count; $i++) {
 						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
 					else
 						preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
-					$current_field = $_REQUEST[ cforms2_sanitize_ids($input_name[1]) ];
+					$current_field = isset($_REQUEST[ cforms2_sanitize_ids($input_name[1]) ]) ? $_REQUEST[ cforms2_sanitize_ids($input_name[1]) ]:"" ;
 			}
 			
 		}
 		else
-			$current_field = $_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)];
+			$current_field = isset($_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)]) ? $_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)] : "";
 
 		if( in_array($field_type,array('comment','url','email','cauthor')) )  ### WP comment field name exceptions
 			$current_field = $_REQUEST[$field_type];
@@ -234,6 +260,8 @@ for($i = 1; $i <= $field_count; $i++) {
 
 				### regexp set for textfields?
 				$obj = explode('|', $c_title[0], 3);
+				$obj[] = "";
+				$obj[] = "";
 
   				if ( $obj[2] <> '') { ### check against other field!
 
@@ -300,6 +328,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
 	foreach( $file['name'] as $value ) {
 
 		if(!empty($value)){   ### this will check if any blank field is entered
+			
 
 			if ( function_exists('my_cforms_logic') )
                 $file['name'][$i] = my_cforms_logic($_REQUEST,$_FILES['cf_uploadfile'.$no]['name'][$i],"filename");
@@ -313,7 +342,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
               $fileext[$i] = strtolower( substr($value,strrpos($value, '.')+1,strlen($value)) );
               $allextensions = explode(',' ,  preg_replace('/\s/', '', strtolower($cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'])) );
 
-              if ( !in_array($fileext[$i], $allextensions) )
+              if ( !in_array($fileext[$i], $allextensions) && $allextensions[0] !== "*")
                       $fileerr = $cformsSettings['global']['cforms_upload_err5'];
 
               ### A non-empty file will pass this test.
@@ -343,7 +372,7 @@ if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
     } ### while all file
 
 } ### no file upload triggered
-
+} ##### upload generic error
 ###
 ### what kind of error message?
 ###

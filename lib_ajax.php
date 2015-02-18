@@ -163,8 +163,8 @@ function cforms2_submitcomment() {
 
 			### remove [id: ] first
 			if ( strpos($field_name,'[id:')!==false ){
-				
-				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$field_name,$input_name); // 2.6.2012  
+				preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$field_name,$input_name); // CB 2.4.2014  
+//				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$field_name,$input_name); // 2.6.2012  
 				$field_name = $input_name[1].$input_name[4];
 				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 

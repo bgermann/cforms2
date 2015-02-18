@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!isset($cformsSettings['form'.$no]['cforms'.$no.'_confirmerr']))
+	$cformsSettings['form'.$no]['cforms'.$no.'_confirmerr'] = "";
 $userconfirm = $cformsSettings['form'.$no]['cforms'.$no.'_confirmerr'];
 
 echo '<form name="errmessages" action="#" method="post"><input type="hidden" name="switchform" value="'.$noDISP.'"/>';

@@ -44,6 +44,12 @@ $cformsSettings['global']['cforms_style']['dear'] 		= 'style="margin:0.5em 30px;
 $cformsSettings['global']['cforms_style']['confp'] 		= 'style="margin:0.5em 30px;"';
 $cformsSettings['global']['cforms_style']['confirmationmsg'] = 'style="margin:4em 30px 0; padding-bottom:1em; font-size:80%; color:#aaa; font-family:Tahoma,Arial;"';
 
+cforms2_setINI('global','cforms_showdashboard', '');
+if (!isset($cformsSettings['global']['cforms_inexclude']['ex']))
+	$cformsSettings['global']['cforms_inexclude']['ex'] = '';
+if (!isset($cformsSettings['global']['cforms_inexclude']['ids']))
+	$cformsSettings['global']['cforms_inexclude']['ids'] = '';
+cforms2_setINI('global','cforms_no_css', '');
 
 ### file upload
 $wp_upload_dir = wp_upload_dir();
@@ -240,6 +246,8 @@ if ( $wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata
     }
 }
 }
+
+//cforms2_setINI('global','cforms_showdashboard', '');
 
 ### check if option is set
 function cforms2_setINI($s,$v,$d) {
