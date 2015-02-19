@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -112,8 +112,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				if ( strpos($tmpName,'[id:')!==false ){
 					$isFieldArray = strpos($tmpName,'[]');
 
-				preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // CB 2.4.2014  
-//				preg_match('/^([^\[]*)\[id:([^\|]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // 2.6.2012  
+				preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // author: cbacchini
 				$field_name = $input_name[1].$input_name[4];
 				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
 
@@ -528,8 +527,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    if( $sentadmin == 1 ) {
 
 				#debug
-				if (!isset($trackf['data'][$ccme]))  $trackf['data'][$ccme] = '';
-				cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
+				if (isset($trackf['data'][$ccme]))
+					cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
 
 	            ###  send copy or notification?
                 ###  not if no email & already CC'ed				

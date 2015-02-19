@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  */
 
 if (!isset($cformsSettings['form'.$no]['cforms'.$no.'_confirmerr']))
-	$cformsSettings['form'.$no]['cforms'.$no.'_confirmerr'] = "";
+	$cformsSettings['form'.$no]['cforms'.$no.'_confirmerr'] = 0;
 $userconfirm = $cformsSettings['form'.$no]['cforms'.$no.'_confirmerr'];
 
 echo '<form name="errmessages" action="#" method="post"><input type="hidden" name="switchform" value="'.$noDISP.'"/>';

@@ -1,5 +1,5 @@
 === cformsII - contact form ===
-Contributors: bgermann, olivers
+Contributors: bgermann, olivers, cbacchini
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.9
@@ -42,7 +42,7 @@ Please see the *.po gettext files for further information.
 
 Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
 
-Copyright (c) 2014      Bastian Germann
+Copyright (c) 2014-2015 Bastian Germann
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -186,6 +186,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.8.2 =
+* enhanced: elimination of notices in debug mode
 
 = 14.8.1 =
 * bugfix:   fix warning introduced with last version's remote code execution fix

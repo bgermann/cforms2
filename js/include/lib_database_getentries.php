@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -140,15 +140,14 @@ if ($showIDs<>'') {
 
 					$passID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '':$entry->sub_id;
 					$fileInfoArr = array('name'=>strip_tags($val), 'path'=>$fileurl, 'subID'=>$passID);
-					$results[] = "";
 
 					if ( function_exists('my_cforms_logic') )
-						$fileInfoArr = my_cforms_logic( $results, $fileInfoArr, 'fileDestinationTrackingPage');
+						$fileInfoArr = my_cforms_logic( $entries, $fileInfoArr, 'fileDestinationTrackingPage');
 
 					if( ! array_key_exists('modified', $fileInfoArr) )
 						$fileInfoArr['name'] = $subID . $fileInfoArr['name'];
 					
-					$fileurl = $fileInfoArr['path'] . '/' . $fileInfoArr['name']; //. $format;
+					$fileurl = $fileInfoArr['path'] . '/' . $fileInfoArr['name'] . $_GET['format'];
 					
 					echo '<div class="showformfield meta"><div class="L">';
 					echo substr($name, 0,strpos($name,'[*'));

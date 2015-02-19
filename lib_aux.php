@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,23 +27,14 @@ $AjaxURL = '';
 
 
 ### debug message handling
-define('DBG_FORCE',1);
-// to turn on debugging take away the 0 in the if 
-// $force parameter used to activate debug only in some positions in the source 
-// DBG_FORCE facilitates search of activated debug instructions 
-function cforms2_dbg($m, $force=0)
-	{
-    if ( WP_DEBUG & 0 || $force) 
-		{ 
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS|DEBUG_BACKTRACE_PROVIDE_OBJECT); 
-		echo "<pre>". $m . " at " . $trace[0]['file'] . " line " . $trace[0]['line']. "</pre>"; 
-		} 
-	} 
+function cforms2_dbg($m){
+    if ( WP_DEBUG ) trigger_error('DEBUG cforms2: ' . $m);
+} 
 
 
 
 ### make time
-function cforms2_sec2hms($s){
+function cforms2_sec2hms($s) {
 	$t='';
     $h = intval(intval($s) / 3600);
     $m = intval(($s / 60) % 60);
@@ -385,19 +376,14 @@ function cforms2_check_default_vars($m,$no) {
 
 	    $eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
-		if ( !isset($_POST['comment_post_ID'.$no] ))
-			$_POST['comment_post_ID'.$no] = "";
-
-		if ( $_POST['comment_post_ID'.$no] )
+		if ( isset($_POST['comment_post_ID'.$no] ) && $_POST['comment_post_ID'.$no] )
 			$pid = $_POST['comment_post_ID'.$no];
 		else if ( $Ajaxpid<>'' )
 			$pid = $Ajaxpid;
 		else
 			$pid = get_the_ID();
-		if ( !isset($_POST['cforms_pl'.$no] ))
-			$_POST['cforms_pl'.$no] = "";
 
-		if ( $_POST['cforms_pl'.$no] )
+		if ( isset($_POST['cforms_pl'.$no] ) && $_POST['cforms_pl'.$no] )
 			$permalink = $_POST['cforms_pl'.$no];
 		else if ( $Ajaxpid<>'' )
 			$permalink = $AjaxURL;

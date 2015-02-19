@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,83 +111,58 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_fname'] =          preg_replace( array('/\\\+/','/\//','/"/'), array('\\','-','\''), $_REQUEST['cforms_fname'] );
 	if (!isset($_REQUEST['cforms_upload_noid']))
 		$_REQUEST['cforms_upload_noid'] = "";
-	$cformsSettings['form'.$no]['cforms'.$no.'_noid'] =           $_REQUEST['cforms_upload_noid']?'1':'0';
-	if (!isset($_REQUEST['cforms_upload_dir']))
-		$_REQUEST['cforms_upload_dir'] = "";
-	if (!isset($_REQUEST['cforms_upload_dir_url']))
-		$_REQUEST['cforms_upload_dir_url'] = "";
-	if( $uploadfield && $_REQUEST['cforms_upload_dir']<>'' )
-		$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] =     $_REQUEST['cforms_upload_dir'].'$#$'.$_REQUEST['cforms_upload_dir_url'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] =     (isset($_REQUEST['cforms_upload_ext'])) ?  $_REQUEST['cforms_upload_ext']:"";
-	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] =    (isset($_REQUEST['cforms_upload_size'])) ? $_REQUEST['cforms_upload_size']:"";
-	$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] =  (isset($_REQUEST['cforms_noattachments']) && $_REQUEST['cforms_noattachments'])?'1':'0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_noid'] =           cforms2_get_boolean_from_request('cforms_upload_noid');
+	if( $uploadfield && cforms2_get_from_request('cforms_upload_dir')<>'' )
+		$cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'] =     cforms2_get_from_request('cforms_upload_dir').'$#$'.cforms2_get_from_request('cforms_upload_dir_url');
+	$cformsSettings['form'.$no]['cforms'.$no.'_upload_ext'] =     cforms2_get_from_request('cforms_upload_ext');
+	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] =    cforms2_get_from_request('cforms_upload_size');
+	$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] =  cforms2_get_boolean_from_request('cforms_noattachments');
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] =   isset($_REQUEST['cforms_submit_text']) ? $_REQUEST['cforms_submit_text']:"";
-	$cformsSettings['form'.$no]['cforms'.$no.'_working'] =       isset($_REQUEST['cforms_working']) ? $_REQUEST['cforms_working']:0;
-  	$cformsSettings['form'.$no]['cforms'.$no.'_required'] =      isset($_REQUEST['cforms_required']) ? $_REQUEST['cforms_required']:"";
-  	$cformsSettings['form'.$no]['cforms'.$no.'_emailrequired'] = isset($_REQUEST['cforms_emailrequired']) ? $_REQUEST['cforms_emailrequired']:"";
-	$cformsSettings['form'.$no]['cforms'.$no.'_success'] =       isset($_REQUEST['cforms_success']) ? $_REQUEST['cforms_success']:"";
-	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] =       isset($_REQUEST['cforms_failure']) ? $_REQUEST['cforms_failure']:"";
+	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] =   cforms2_get_from_request('cforms_submit_text');
+	$cformsSettings['form'.$no]['cforms'.$no.'_working'] =       cforms2_get_from_request('cforms_working');
+  	$cformsSettings['form'.$no]['cforms'.$no.'_required'] =      cforms2_get_from_request('cforms_required');
+  	$cformsSettings['form'.$no]['cforms'.$no.'_emailrequired'] = cforms2_get_from_request('cforms_emailrequired');
+	$cformsSettings['form'.$no]['cforms'.$no.'_success'] =       cforms2_get_from_request('cforms_success');
+	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] =       cforms2_get_from_request('cforms_failure');
 
-	if (!isset($_REQUEST['cforms_popup1']))   $_REQUEST['cforms_popup1']="";
-	if (!isset($_REQUEST['cforms_popup2']))   $_REQUEST['cforms_popup2']="";
-	if (!isset($_REQUEST['cforms_showposa'])) $_REQUEST['cforms_showposa']="";
-	if (!isset($_REQUEST['cforms_showposb'])) $_REQUEST['cforms_showposb']="";
-	if (!isset($_REQUEST['cforms_errorLI']))  $_REQUEST['cforms_errorLI']="";
-	if (!isset($_REQUEST['cforms_errorINS'])) $_REQUEST['cforms_errorINS']="";
+	$cformsSettings['form'.$no]['cforms'.$no.'_popup'] =   (cforms2_get_from_request('cforms_popup1')?'y':'n').(cforms2_get_from_request('cforms_popup2')?'y':'n') ;
+	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] = (cforms2_get_from_request('cforms_showposa')?'y':'n').(cforms2_get_from_request('cforms_showposb')?'y':'n').
+																	(cforms2_get_from_request('cforms_errorLI')?'y':'n').(cforms2_get_from_request('cforms_errorINS')?'y':'n').
+																	(cforms2_get_from_request('cforms_jump')?'y':'n');
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_popup'] =   ($_REQUEST['cforms_popup1']?'y':'n').($_REQUEST['cforms_popup2']?'y':'n') ;
-	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] = ($_REQUEST['cforms_showposa']?'y':'n').($_REQUEST['cforms_showposb']?'y':'n').
-																	($_REQUEST['cforms_errorLI']?'y':'n').($_REQUEST['cforms_errorINS']?'y':'n').
-																	($_REQUEST['cforms_jump']?'y':'n') ;
+	$cformsSettings['form'.$no]['cforms'.$no.'_formaction'] =    cforms2_get_from_request('cforms_formaction')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] =     cforms2_get_from_request('cforms_dontclear')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_dashboard'] =	 cforms2_get_boolean_from_request('cforms_dashboard');
+    $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] =    cforms2_get_from_request('cforms_notracking')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_customnames'] =	 cforms2_get_boolean_from_request('cforms_customnames');
+	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] =			 cforms2_get_from_request('cforms_hide')?true:false;
 
-    if (!isset($_REQUEST['cforms_formaction']))  $_REQUEST['cforms_formaction']  = "";
-    if (!isset($_REQUEST['cforms_dontclear']))   $_REQUEST['cforms_dontclear']   = "";
-	if (!isset($_REQUEST['cforms_dashboard']))   $_REQUEST['cforms_dashboard']   = "";
-	if (!isset($_REQUEST['cforms_notracking']))  $_REQUEST['cforms_notracking']  = "";
-	if (!isset($_REQUEST['cforms_customnames'])) $_REQUEST['cforms_customnames'] = "";
-	if (!isset($_REQUEST['cforms_hide']))		 $_REQUEST['cforms_hide']		 = "";
+	$cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] =	 				cforms2_get_from_request('cforms_maxentries')==''?'':(int)cforms2_get_from_request('cforms_maxentries');
 
-	if (!isset($_REQUEST['cforms_startdate']))  $_REQUEST['cforms_startdate'] ="";
-	if (!isset($_REQUEST['cforms_starttime']))  $_REQUEST['cforms_starttime'] ="";
-	if (!isset($_REQUEST['cforms_enddate']))    $_REQUEST['cforms_enddate']   ="";
-	if (!isset($_REQUEST['cforms_endtime']))    $_REQUEST['cforms_endtime']   ="";
-	
-	
-	$cformsSettings['form'.$no]['cforms'.$no.'_formaction'] =    $_REQUEST['cforms_formaction']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] =     $_REQUEST['cforms_dontclear']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_dashboard'] =	 $_REQUEST['cforms_dashboard']?'1':'0';
-    $cformsSettings['form'.$no]['cforms'.$no.'_notracking'] =    $_REQUEST['cforms_notracking']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_customnames'] =	 $_REQUEST['cforms_customnames']?'1':'0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] =			 $_REQUEST['cforms_hide']?true:false;
+	$startdate = cforms2_get_from_request('cforms_startdate');
+	$starttime = cforms2_get_from_request('cforms_starttime');
+	$enddate = cforms2_get_from_request('cforms_enddate');
+	$endtime = cforms2_get_from_request('cforms_endtime');
+	if ($startdate<>'' && $starttime=='')
+		$_REQUEST['cforms_starttime'] = '00:00';
+	if ($starttime<>'' && $startdate=='')
+		$_REQUEST['cforms_startdate'] = date('d/m/Y');
+	if ($enddate<>'' && $endtime=='')
+		$_REQUEST['cforms_endtime'] = '00:00';
+	if ($endtime<>'' && $enddate=='')
+		$_REQUEST['cforms_enddate'] = date('d/m/Y');
+	$cformsSettings['form'.$no]['cforms'.$no.'_startdate'] = 	preg_replace("/\\\+/", "\\",$startdate).' '.
+    															preg_replace("/\\\+/", "\\",$starttime);
+    $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] =  	preg_replace("/\\\+/", "\\",$enddate).' '.
+    															preg_replace("/\\\+/", "\\",$endtime);
+	$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] = cforms2_get_from_request('cforms_limittxt');
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] =	 				$_REQUEST['cforms_maxentries']==''?'':(int)$_REQUEST['cforms_maxentries'];
-	if ($_REQUEST['cforms_startdate']<>'' && $_REQUEST['cforms_starttime']=='') $_REQUEST['cforms_starttime'] = '00:00';
-	if ($_REQUEST['cforms_starttime']<>'' && $_REQUEST['cforms_startdate']=='') $_REQUEST['cforms_startdate'] = date('d/m/Y');
-	if ($_REQUEST['cforms_enddate']<>'' && $_REQUEST['cforms_endtime']=='')     $_REQUEST['cforms_endtime'] = '00:00';
-	if ($_REQUEST['cforms_endtime']<>'' && $_REQUEST['cforms_enddate']=='')     $_REQUEST['cforms_enddate'] = date('d/m/Y');
-	$cformsSettings['form'.$no]['cforms'.$no.'_startdate'] = 					preg_replace("/\\\+/", "\\",$_REQUEST['cforms_startdate']).' '.
-    																			preg_replace("/\\\+/", "\\",$_REQUEST['cforms_starttime']);
-    $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] =  					preg_replace("/\\\+/", "\\",$_REQUEST['cforms_enddate']).' '.
-    																			preg_replace("/\\\+/", "\\",$_REQUEST['cforms_endtime']);
-	if( isset($_REQUEST['cforms_limittxt']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] = $_REQUEST['cforms_limittxt'];
-	else
-		$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] = "";
-
-	if (!isset($_REQUEST['cforms_redirect']))        $_REQUEST['cforms_redirect']="";
-	if (!isset($_REQUEST['cforms_redirect_page']))   $_REQUEST['cforms_redirect_page']="";
-	if (!isset($_REQUEST['cforms_action']))          $_REQUEST['cforms_action']="";
-	if (!isset($_REQUEST['cforms_action_page']))     $_REQUEST['cforms_action_page']="";
-	if (!isset($_REQUEST['cforms_rss']))             $_REQUEST['cforms_rss']="";
-	if (!isset($_REQUEST['cforms_rsscount']))        $_REQUEST['cforms_rsscount']="";
-	
-	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] =       $_REQUEST['cforms_redirect']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] =  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_redirect_page']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_action'] =         $_REQUEST['cforms_action']?'1':'0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] =    preg_replace("/\\\+/", "\\",$_REQUEST['cforms_action_page']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_rss'] =            $_REQUEST['cforms_rss']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] =      $_REQUEST['cforms_rsscount'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] =       cforms2_get_from_request('cforms_redirect')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] =  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_redirect_page'));
+	$cformsSettings['form'.$no]['cforms'.$no.'_action'] =         cforms2_get_boolean_from_request('cforms_action');
+	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] =    preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_action_page'));
+	$cformsSettings['form'.$no]['cforms'.$no.'_rss'] =            cforms2_get_from_request('cforms_rss')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] =      cforms2_get_from_request('cforms_rsscount');
 	
 	if( isset($_REQUEST['cforms_rssfields']) ){
 		$i=1;
@@ -196,103 +171,71 @@
         }
 	}
 
-	if (!isset($_REQUEST['cforms_emailoff']     ))  $_REQUEST['cforms_emailoff']= "";
-	if (!isset($_REQUEST['cforms_emptyoff']     ))  $_REQUEST['cforms_emptyoff']= "";
-	if (!isset($_REQUEST['cforms_fromemail']    ))  $_REQUEST['cforms_fromemail']= "";
-	if (!isset($_REQUEST['cforms_email']        ))  $_REQUEST['cforms_email']= "";
-	if (!isset($_REQUEST['cforms_bcc']          ))  $_REQUEST['cforms_bcc']= "";
-	if (!isset($_REQUEST['cforms_subject']      ))  $_REQUEST['cforms_subject']= "";
-	if (!isset($_REQUEST['emailprio']           ))  $_REQUEST['emailprio']= "";
-	if (!isset($_REQUEST['cforms_header']       ))  $_REQUEST['cforms_header']= "";
-	if (!isset($_REQUEST['cforms_header_html']  ))  $_REQUEST['cforms_header_html']= "";
-	if (!isset($_REQUEST['cforms_formdata_txt'] ))  $_REQUEST['cforms_formdata_txt']= "";
-	if (!isset($_REQUEST['cforms_formdata_html']))  $_REQUEST['cforms_formdata_html']= "";
-	if (!isset($_REQUEST['cforms_admin_html']   ))  $_REQUEST['cforms_admin_html']= "";
-	if (!isset($_REQUEST['cforms_user_html']    ))  $_REQUEST['cforms_user_html']= "";
-	if (!isset($_REQUEST['cforms_space']        ))  $_REQUEST['cforms_space']= "";
-
-	$cformsSettings['form'.$no]['cforms'.$no.'_emailoff'] =		 $_REQUEST['cforms_emailoff']?'1':'0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'] =		 $_REQUEST['cforms_emptyoff']?'1':'0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_fromemail'] =     $_REQUEST['cforms_fromemail'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_email'] =         $_REQUEST['cforms_email'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] =           $_REQUEST['cforms_bcc'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] =       $_REQUEST['cforms_subject'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] = $_REQUEST['emailprio'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_header'] =        preg_replace("/\\\+/", "\\",$_REQUEST['cforms_header']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] =   preg_replace("/\\\+/", "\\",$_REQUEST['cforms_header_html']);
-	$cformsSettings['form'.$no]['cforms'.$no.'_formdata'] =      ($_REQUEST['cforms_formdata_txt']?'1':'0').($_REQUEST['cforms_formdata_html']?'1':'0').
-    															 ($_REQUEST['cforms_admin_html']?'1':'0').($_REQUEST['cforms_user_html']?'1':'0') ;
-	$cformsSettings['form'.$no]['cforms'.$no.'_space'] =         $_REQUEST['cforms_space'];
+	$cformsSettings['form'.$no]['cforms'.$no.'_emailoff'] =		 cforms2_get_boolean_from_request('cforms_emailoff');
+	$cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'] =		 cforms2_get_boolean_from_request('cforms_emptyoff');
+	$cformsSettings['form'.$no]['cforms'.$no.'_fromemail'] =     cforms2_get_from_request('cforms_fromemail');
+	$cformsSettings['form'.$no]['cforms'.$no.'_email'] =         cforms2_get_from_request('cforms_email');
+	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] =           cforms2_get_from_request('cforms_bcc');
+	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] =       cforms2_get_from_request('cforms_subject');
+	$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] = cforms2_get_from_request('emailprio');
+	$cformsSettings['form'.$no]['cforms'.$no.'_header'] =        preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_header'));
+	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] =   preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_header_html'));
+	$cformsSettings['form'.$no]['cforms'.$no.'_formdata'] =      cforms2_get_boolean_from_request('cforms_formdata_txt').cforms2_get_boolean_from_request('cforms_formdata_html').
+    															 cforms2_get_boolean_from_request('cforms_admin_html').cforms2_get_boolean_from_request('cforms_user_html');
+	$cformsSettings['form'.$no]['cforms'.$no.'_space'] =         cforms2_get_from_request('cforms_space');
 
     ## quickly get old vals
     $t=explode('$#$',$cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
-	if( !isset($_REQUEST['cforms_confirm']))  $_REQUEST['cforms_confirm'] = "";
-	if( !isset($_REQUEST['cforms_cattachment']))  $_REQUEST['cforms_cattachment'] = "";
-	if( !isset($_REQUEST['cforms_csubject']))     $_REQUEST['cforms_csubject'] = "";
-	if( !isset($_REQUEST['cforms_cmsg']))         $_REQUEST['cforms_cmsg'] = "";
-	if( !isset($_REQUEST['cforms_cmsg_html']))    $_REQUEST['cforms_cmsg_html'] = "";
 	
     if( $_REQUEST['cforms_confirm'] && $cformsSettings['form'.$no]['cforms'.$no.'_confirm']==1 ){
-        $t[0] = 													  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_csubject']);
-	    $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0] = $_REQUEST['cforms_cattachment'];
-	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     	  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_cmsg']);
-	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] =	  preg_replace("/\\\+/", "\\",$_REQUEST['cforms_cmsg_html']);
+        $t[0] = 													  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_csubject'));
+	    $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0] = cforms2_get_from_request('cforms_cattachment');
+	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     	  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_cmsg'));
+	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] =	  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_cmsg_html'));
 
 	}
 
-    $cformsSettings['form'.$no]['cforms'.$no.'_confirm'] =		$_REQUEST['cforms_confirm']?'1':'0';
+    $cformsSettings['form'.$no]['cforms'.$no.'_confirm'] = cforms2_get_boolean_from_request('cforms_confirm');
 
-    if( $_REQUEST['cforms_ccsubject']!='' )
-		$t[1] = preg_replace("/\\\+/", "\\",$_REQUEST['cforms_ccsubject']);
+    if( cforms2_get_from_request('cforms_ccsubject')!='' )
+		$t[1] = preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_ccsubject'));
 
-    $cformsSettings['form'.$no]['cforms'.$no.'_csubject'] =		$t[0].'$#$'.$t[1];
+    $cformsSettings['form'.$no]['cforms'.$no.'_csubject'] =	$t[0].'$#$'.$t[1];
 
-	if (!isset($_REQUEST['cforms_mp_form'])) $_REQUEST['cforms_mp_form'] = "";
-	if (!isset($_REQUEST['cforms_mp_next'])) $_REQUEST['cforms_mp_next'] = "";
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] = 	 (isset($_REQUEST['cforms_mp_form']) && $_REQUEST['cforms_mp_form'])?true:false;
-	if ( $_REQUEST['cforms_mp_form']==true && $_REQUEST['cforms_mp_next']=='' )
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] = cforms2_get_from_request('cforms_mp_form')?true:false;
+	if ( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && cforms2_get_from_request('cforms_mp_next')=='' )
 		$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] = -1;
     else
-		$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] = $_REQUEST['cforms_mp_next'];
-
-	if( !isset($_REQUEST['cforms_mp_first']))        $_REQUEST['cforms_mp_first']="";
-	if( !isset($_REQUEST['cforms_mp_email']))        $_REQUEST['cforms_mp_email']="";
-	if( !isset($_REQUEST['cforms_mp_reset']))        $_REQUEST['cforms_mp_reset']="";
-	if( !isset($_REQUEST['cforms_mp_resettext']))    $_REQUEST['cforms_mp_resettext']="";
-	if( !isset($_REQUEST['cforms_mp_back']))         $_REQUEST['cforms_mp_back']="";
-	if( !isset($_REQUEST['cforms_mp_backtext']))     $_REQUEST['cforms_mp_backtext']="";
+		$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] = cforms2_get_from_request('cforms_mp_next');
 	
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_first'] = 		$_REQUEST['cforms_mp_first']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email'] =  		$_REQUEST['cforms_mp_email']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_reset'] = 		$_REQUEST['cforms_mp_reset']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext']=	$_REQUEST['cforms_mp_resettext'];
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back']     = 	$_REQUEST['cforms_mp_back']?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] =	$_REQUEST['cforms_mp_backtext'];
-	if( !isset($_REQUEST['cforms_mp_form'])) $_REQUEST['cforms_mp_form']="";
-	if( !isset($_REQUEST['cforms_ajax'])) $_REQUEST['cforms_ajax'] = "";
-	if( !isset($_REQUEST['cforms_tafCC'])) $_REQUEST['cforms_tafCC'] = "";
-	if( $_REQUEST['cforms_mp_form'] ){
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_first'] = 		cforms2_get_from_request('cforms_mp_first')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email'] =  		cforms2_get_from_request('cforms_mp_email')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_reset'] = 		cforms2_get_from_request('cforms_mp_reset')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext']=	cforms2_get_from_request('cforms_mp_resettext');
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_back']     = 	cforms2_get_from_request('cforms_mp_back')?true:false;
+	$cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] =	cforms2_get_from_request('cforms_mp_backtext');
+	if( cforms2_get_from_request('cforms_mp_form') ){
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax']       = '0';
 		$cformsSettings['form'.$no]['cforms'.$no.'_dontclear']  = false; // NOTE that it can't be set with MP!
 	} else
-		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = 			$_REQUEST['cforms_ajax']?'1':'0';
+		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = 			cforms2_get_boolean_from_request('cforms_ajax');
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 		'01'; ### default
-	$cformsSettings['form'.$no]['cforms'.$no.'_tafCC'] = 	   		$_REQUEST['cforms_tafCC']?'1':'0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_tafCC'] = 	   		cforms2_get_boolean_from_request('cforms_tafCC');
 
 	if ( isset($_REQUEST['cforms_taftrick']) )
 		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 	'31';
 
 	if ( isset($_REQUEST['cforms_tellafriend']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'1'.(isset($_REQUEST['cforms_tafdefault']) && $_REQUEST['cforms_tafdefault']?'1':'0') ;
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'1'.cforms2_get_boolean_from_request('cforms_tafdefault');
 
 
 	if ( isset($_REQUEST['cforms_commentrep']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'2'.(isset($_REQUEST['cforms_commentXnote']) && $_REQUEST['cforms_commentXnote']?'1':'0') ;
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'2'.cforms2_get_boolean_from_request('cforms_commentXnote');
 
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] =      preg_replace("/\\\+/", "\\",isset($_REQUEST['cforms_tracking'])&& $_REQUEST['cforms_tracking']);
+	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] =      preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_tracking'));
 
 
 	### reorder fields

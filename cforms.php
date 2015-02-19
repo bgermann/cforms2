@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -112,8 +112,8 @@ function cforms2($args = '',$no = '') {
 	##debug
     cforms2_dbg("Comment form = $isWPcommentForm");
     cforms2_dbg("Multi-page form = $isMPform");
-   	if (isset($_SESSION['cforms']['current']))
-		cforms2_dbg("PHP Session = ".(isset($_SESSION)?"yes":"no").$_SESSION['cforms']['current'] );
+   	if (isset($_SESSION) && isset($_SESSION['cforms']['current']))
+		cforms2_dbg("PHP Session = ".$_SESSION['cforms']['current'] );
 
 	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && !$isWPcommentForm ){
 		cforms2_dbg("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
@@ -193,12 +193,13 @@ function cforms2($args = '',$no = '') {
 	$usermessage_text	= "";
 
 	$user = wp_get_current_user();
+	// TODO
 	$server_upload_size_error = false;
 	$displayMaxSize = ini_get('post_max_size');
 	if ( $_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
 		 empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0 ){
 		$server_upload_size_error = true;
-		$msgSize = $_SERVER['CONTENT_LENGTH'] / 1048576  ;
+		$msgSize = $_SERVER['CONTENT_LENGTH'] / 1048576;
 		echo ("<pre>Maximum size allowed:" . $displayMaxSize . "; size of your message:" . number_format((float)$msgSize, 2, '.', '') . "M</pre>");
 	}
 
@@ -636,10 +637,10 @@ function cforms2($args = '',$no = '') {
 					$insertErr = ($fielderr<>'')?'<ul class="cf_li_text_err"><li>'.stripslashes($fielderr).'</li></ul>':'';
 			}
 
-			if (!isset($_REQUEST[$input_name])) $_REQUEST[$input_name] = ""; //the field could not be there al all
-			if ( $field_type == 'multiselectbox' || $field_type == 'checkboxgroup' ){
+			if (!isset($_REQUEST[$input_name]))
+				$_REQUEST[$input_name] = '';            ### the field could not be there at all
+			if ( $field_type == 'multiselectbox' || $field_type == 'checkboxgroup' )
 				$field_value = $_REQUEST[$input_name];  ### in this case it's an array! will do the stripping later
-			}
 			else
 				$field_value = htmlspecialchars(stripslashes($_REQUEST[$input_name]));
 
@@ -814,9 +815,8 @@ function cforms2($args = '',$no = '') {
 					$preChecked = ( strpos($chkboxClicked[1],'true') !== false ) ? ' checked="checked"':'';  // $all_valid = user choice prevails
 
 				$err='';
-				if (!$server_upload_size_error)
-					if( !$all_valid && $validations[$i]<>1 )
-						$err = ' cf_errortxt';
+				if( !$server_upload_size_error && !$all_valid && $validations[$i]<>1 )
+					$err = ' cf_errortxt';
 
 			    $opt = explode('|', $field_name,2);
 				$opt[] = "";
