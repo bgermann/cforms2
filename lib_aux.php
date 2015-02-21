@@ -27,8 +27,11 @@ $AjaxURL = '';
 
 
 ### debug message handling
+if (!defined('WP_DEBUG_CFORMS2')) {
+	define('WP_DEBUG_CFORMS2', false);
+}
 function cforms2_dbg($m){
-    if ( WP_DEBUG ) trigger_error('DEBUG cforms2: ' . $m);
+    if ( WP_DEBUG_CFORMS2 ) trigger_error('DEBUG cforms2: ' . $m);
 } 
 
 

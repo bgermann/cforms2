@@ -189,6 +189,7 @@ GPL compliance!
 
 = 14.8.2 =
 * enhanced: elimination of notices in debug mode
+* added:    introduce WP_DEBUG_CFORMS2 constant for debug messages
 * other:    remove donation button in help section
 
 = 14.8.1 =
