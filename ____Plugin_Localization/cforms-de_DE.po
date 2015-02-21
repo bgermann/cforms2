@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2014-12-26 19:57+0100\n"
-"PO-Revision-Date: 2014-12-26 19:58+0100\n"
+"PO-Revision-Date: 2015-02-21 14:41+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -2882,7 +2882,7 @@ msgstr "März"
 
 #: cforms-help.php:1185
 msgid "Using variables in email subject and messages"
-msgstr "Nutzung vin Variblen in den Betreffzeilen und Nachrichten der E-Mails"
+msgstr "Nutzung von Variablen in den Betreffzeilen und Nachrichten der E-Mails"
 
 #: cforms-help.php:1190
 #, php-format
