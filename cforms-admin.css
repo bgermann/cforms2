@@ -1183,19 +1183,6 @@ display:block;
 /****************************************************************
   HELP PAGE
 *****************************************************************/
-.donateTXT{
-float: right;
-width: 290px;
-background: #F7F7F7;
-padding: 10px;
-line-height: 1.3em;
-}
-a.allbuttons.donatebutton{
-font-size: 14px;
-padding: 4px 10px;
-line-height: 2.3em;
-}
-
 h4 a.helptop {
 color:#fff!important;
 border-bottom:1px solid #fff;

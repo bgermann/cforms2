@@ -189,6 +189,7 @@ GPL compliance!
 
 = 14.8.2 =
 * enhanced: elimination of notices in debug mode
+* other:    remove donation button in help section
 
 = 14.8.1 =
 * bugfix:   fix warning introduced with last version's remote code execution fix

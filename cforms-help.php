@@ -24,11 +24,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 
 ?>
 <div class="wrap" id="top">
-		<p class="donateTXT">
-        	<?php _e('If cforms provides great services to you and/or your business, <strong>please consider making a donation</strong> to support future development.', 'cforms'); ?>:<br/>
-			<a class="allbuttons donatebutton" href="https://www.betterplace.org/organisations/tatkraeftig/donations/new" title="<?php _e('Thank you!', 'cforms'); ?>"><?php _e('Donate', 'cforms'); ?></a><br/>
-			<strong><?php _e('Thank you!', 'cforms'); ?></strong>
-		</p>
 
 		<div id="icon-cforms-help" class="icon32"><br/></div><h2><?php _e('Help','cforms')?></h2>
 
