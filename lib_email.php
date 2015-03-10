@@ -218,7 +218,8 @@ class cforms2_mail {
         ### get mime
 	    switch($this->msg_type) {
 			case 'plain':
-				$r[] = 'Content-Transfer-Encoding: ' . $this->enc . sprintf("Content-Type: %s; charset=\"%s\"", $this->content_type, $this->char_set);
+				$r[] = 'Content-Transfer-Encoding: ' . $this->enc;
+				$r[] = sprintf("Content-Type: %s; charset=\"%s\"", $this->content_type, $this->char_set);
 				break;
 			case 'attachments':
 			case 'alt_attachments':
