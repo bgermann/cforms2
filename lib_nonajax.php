@@ -476,11 +476,11 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		### debug
 		cforms2_dbg( 'File Attachments:' );
 
-	    ###  attachments wanted for current form? (tracking session form uploads handled above!)
+		### attachments wanted for current form? (tracking session form uploads handled above!)
 		$doAttach = !($cformsSettings['form'.$no]['cforms'.$no.'_noattachments']);
 		
 		### form w/ files, within session or single form 
-		if ( $doAttach && $ongoingSession!='0' && is_array($file) ){
+		if ( $doAttach && $ongoingSession!='0' && is_array($file)  && !empty($file) ){
 			foreach( $file[tmp_name] as $fn ){
 				cforms2_base64($fn, $doAttach);
 				### debug
