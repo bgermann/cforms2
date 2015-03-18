@@ -812,19 +812,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obR"><input type="text" name="cforms_subject" id="cforms_subject" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_subject'])); ?>" /> <?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
 				</tr>
 
-                <tr class="ob">
-                    <td class="obL"></td>
-                    <td class="obR">
-						<?php $p = ((int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']>0)?(int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority']:3; ?>
-						<select name="emailprio" id="emailprio"><?php
-                            for ($i=1;$i<=5;$i++) {
-                                echo '<option'.(($i==$p)?' selected="selected"':'').'>' .$i. '</option>';
-                            }
-                        ?></select>
-                        <label for="emailprio"><?php echo sprintf(__('Email %spriority%s (1 = High, 3 = Normal, 5 = Low)', 'cforms'),'<strong>','</strong>') ?></label>
-                    </td>
-                </tr>
-
 				<tr class="ob space20">
 					<td class="obL" style="padding-bottom:0">&nbsp;</td>				
 					<td class="obR" style="padding-bottom:0">

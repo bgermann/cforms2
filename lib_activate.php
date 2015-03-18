@@ -76,7 +76,6 @@ cforms2_setINI('form','cforms_emailrequired', __('(valid email required)', 'cfor
 
 cforms2_setINI('form','cforms_confirm', '0');
 cforms2_setINI('form','cforms_ajax', '1');
-cforms2_setINI('form','cforms_emailpriority', '3');
 cforms2_setINI('form','cforms_fname', __('Your default form', 'cforms'));
 cforms2_setINI('form','cforms_csubject', __('Re: Your note', 'cforms').'$#$'.__('Re: Submitted form (copy)', 'cforms'));
 ### below is also in cforms-options.php!

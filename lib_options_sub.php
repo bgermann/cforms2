@@ -177,7 +177,6 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_email'] =         cforms2_get_from_request('cforms_email');
 	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] =           cforms2_get_from_request('cforms_bcc');
 	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] =       cforms2_get_from_request('cforms_subject');
-	$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] = cforms2_get_from_request('emailprio');
 	$cformsSettings['form'.$no]['cforms'.$no.'_header'] =        preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_header'));
 	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] =   preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_header_html'));
 	$cformsSettings['form'.$no]['cforms'.$no.'_formdata'] =      cforms2_get_boolean_from_request('cforms_formdata_txt').cforms2_get_boolean_from_request('cforms_formdata_html').

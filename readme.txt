@@ -1,5 +1,5 @@
 === cformsII - contact form ===
-Contributors: bgermann, olivers, cbacchini
+Contributors: bgermann, olivers, cbacchini, codifex
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.9
@@ -190,7 +190,10 @@ GPL compliance!
 = 14.8.2 =
 * enhanced: elimination of notices in debug mode
 * added:    introduce WP_DEBUG_CFORMS2 constant for debug messages
+* bugfix:   Content-Transfer-Encoding and Content-Type separation
 * other:    remove donation button in help section
+* other:    remove extra MIME-Version and X-Priority headers
+* other:    remove email priority settings
 
 = 14.8.1 =
 * bugfix:   fix warning introduced with last version's remote code execution fix

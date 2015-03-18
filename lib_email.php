@@ -33,7 +33,6 @@ class cforms2_mail {
 	public $body = '';
 	public $body_alt  = '';
 
-	private $priority = 3;
 	private $content_type = 'text/plain';
 	private $enc = '8bit';
 	private $from = '';
@@ -58,10 +57,7 @@ class cforms2_mail {
     public function __construct($no, $from, $to, $replyto='',$adminEmail=false){
 		$cformsSettings = get_option('cforms_settings');
 
-	    $this->eol  = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
-
-        if( (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'] > 0 )
-	        $this->priority = (int)$cformsSettings['form'.$no]['cforms'.$no.'_emailpriority'];
+		$this->eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
 		$this->html_show    = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' )?true:false;
 		$this->html_show_ac = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' )?true:false;
@@ -208,12 +204,9 @@ class cforms2_mail {
 	    $from[0][1] = $this->fname;
 	    $r[] = $this->addr_add('From', $from);
 
-		$r[] = (count($this->cc) > 0) ? $this->addr_add('Cc', $this->cc):'';
-        $r[] = (count($this->bcc) > 0) ? $this->addr_add('Bcc', $this->bcc):'';
+            $r[] = (count($this->cc) > 0) ? $this->addr_add('Cc', $this->cc):'';
+            $r[] = (count($this->bcc) > 0) ? $this->addr_add('Bcc', $this->bcc):'';
 	    $r[] = (count($this->replyto) > 0) ? $this->addr_add('Reply-to', $this->replyto):'';
-
-	    $r[] = 'X-Priority: ' . $this->priority;
-	    $r[] = 'MIME-Version: 1.0';
 
         ### get mime
 	    switch($this->msg_type) {
