@@ -192,7 +192,7 @@ GPL compliance!
 * added:    introduce WP_DEBUG_CFORMS2 constant for debug messages
 * bugfix:   Content-Transfer-Encoding and Content-Type separation
 * other:    remove donation button in help section
-* other:    remove extra MIME-Version and X-Priority headers
+* other:    remove extra Date, MIME-Version and X-Priority headers
 * other:    remove email priority settings
 
 = 14.8.1 =

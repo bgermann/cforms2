@@ -192,8 +192,7 @@ class cforms2_mail {
 	    return str_replace("\n", "", $t);
 	}
 	private function mail_header() {
-		$r = array();
-	    $r[] = 'Date: ' . $this->get_date();
+	    $r = array();
 
 	    $u_id = md5(uniqid(time()));
 	    $this->boundary[1] = 'b1_' . $u_id;
@@ -616,14 +615,6 @@ class cforms2_mail {
 	private function set_err($m) {
 	    $this->err = $m;
 	    $this->err_count++;
-	}
-	private static function get_date() {
-	    $d = date('Z');
-	    $ds = ($d < 0) ? '-' : '+';
-	    $d = abs($d);
-	    $d = (int)($d/3600)*100 + ($d%3600)/60;
-	    $r = sprintf("%s %s%04d", date('D, j M Y H:i:s'), $ds, $d);
-	    return $r;
 	}
 	private function server_name() {
         if (!empty($this->host))				return $this->host;
