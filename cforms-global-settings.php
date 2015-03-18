@@ -64,20 +64,6 @@ if ( isset($_REQUEST['deletetables']) ) {
 } else if( isset($_REQUEST['restoreallcformsdata']) )
 	require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
 
-function cforms2_get_boolean_from_request($index) {
-	if (isset($_REQUEST[$index]) && $_REQUEST[$index])
-		return '1';
-	else
-		return '0';
-}
-
-function cforms2_get_from_request($index) {
-	if (isset($_REQUEST[$index]) && $_REQUEST[$index])
-		return $_REQUEST[$index];
-	else
-		return '';
-}
-
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
 		

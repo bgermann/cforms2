@@ -281,3 +281,17 @@ function cforms2_add_admin_bar_item($admin_bar, $id,$ti,$hi,$ev,$p = 'cforms-bar
 	
 	$admin_bar->add_node( $arr );
 }
+
+function cforms2_get_boolean_from_request($index) {
+	if (isset($_REQUEST[$index]) && $_REQUEST[$index])
+		return '1';
+	else
+		return '0';
+}
+
+function cforms2_get_from_request($index) {
+	if (isset($_REQUEST[$index]) && $_REQUEST[$index])
+		return $_REQUEST[$index];
+	else
+		return '';
+}
