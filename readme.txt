@@ -187,6 +187,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.8.3 =
+* other:    remove basic style editor
+
 = 14.8.2 =
 * enhanced: elimination of notices in debug mode
 * enhanced: better mail handling

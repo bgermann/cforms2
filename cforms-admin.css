@@ -993,9 +993,6 @@ padding:0 10px;
 /****************************************************************
   STYLING PAGE
 *****************************************************************/
-textarea#stylebox{
-	width:90%;
-}
 #selectcss .op-closed {
 -moz-border-radius: 3px 3px 0 0;
 -khtml-border-radius: 3px 3px 0 0;

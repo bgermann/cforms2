@@ -60,24 +60,7 @@ else if(isset($_POST['no-css'])){
 ###
 ### Select new CSS?
 ###
-
-if(!empty($_POST['save_css'])){
-
-	$newcss = stripslashes( $_POST['csseditor'] );
-
-	if(is_writeable($stylefile)) {
-
-	    $f = fopen($stylefile, 'w+');
-	    fwrite($f, $newcss);
-	    fclose($f);
-
-	    echo ' <div id="message" class="updated fade"><p><strong>'. __('The stylesheet has been updated.', 'cforms') .'</strong></p></div>'."\n";
-
-	} else
-
-	    echo ' <div id="message" class="updated fade"><p><strong>'. __('Write Error! Please verify write permissions on the style file.', 'cforms') .'</strong></p></div>'."\n";
-
-} else if ( !empty($_POST['style']) ){
+if ( !empty($_POST['style']) ){
 
 	$cformsSettings['global']['cforms_css'] = $_POST['style'];
 	update_option('cforms_settings',$cformsSettings);
@@ -208,37 +191,4 @@ if(!empty($_POST['save_css'])){
                 </div>
 			</fieldset>
 	 </form>
-<?php
-###
-### Edit current style
-###
-?>
-	<form id="editcss" method="post" action="" name="editcss">
-			 <fieldset class="cformsoptions">
-	            <div id="p15" class="cflegend op-closed" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Basic CSS editor: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?>
-	            </div>
-
-				<div class="cf-content" id="o15">
-	                <p><?php _e('Use this simple editor to further tailor your forms\' style to meet your requirements. Currently you\'re editing: ', 'cforms'); echo '<span style="color:#D54E21;">'.$style.'</span>' ?></p>
-	                <p><input type="submit" name="save_css" class="allbuttons updbutton" value="<?php _e('Update Settings &raquo;', 'cforms'); ?>" onclick="javascript:document.mainform.action='#fileupload';" /></p>
-
-	                <textarea rows="16" cols="118" id="stylebox" name="csseditor"><?php
-
-	                    if( is_file($stylefile) && filesize($stylefile) > 0) {
-
-	                        $f = "";
-	                        $f = fopen($stylefile, 'r');
-	                        $file = fread($f, filesize($stylefile));
-	                        echo $file;
-	                        fclose($f);
-
-	                    } else
-	                        echo __('Sorry. The file you are looking for doesn\'t exist.', 'cforms');
-
-	                ?></textarea>
-				</div>
-
-		  </fieldset>
-	</form>
 </div>
