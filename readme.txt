@@ -189,7 +189,9 @@ GPL compliance!
 
 = 14.8.2 =
 * enhanced: elimination of notices in debug mode
+* enhanced: better mail handling
 * added:    introduce WP_DEBUG_CFORMS2 constant for debug messages
+* added:    check for upload_max_filesize
 * bugfix:   Content-Transfer-Encoding and Content-Type separation
 * other:    remove donation button in help section
 * other:    remove extra Date, MIME-Version and X-Priority headers

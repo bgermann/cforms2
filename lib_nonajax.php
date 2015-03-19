@@ -446,7 +446,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	$mail = new cforms2_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
-	$mail->char_set = 'utf-8';
 
 	### HTML email
 	if ( $mail->html_show ) {
@@ -481,7 +480,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		
 		### form w/ files, within session or single form 
 		if ( $doAttach && $ongoingSession!='0' && is_array($file)  && !empty($file) ){
-			foreach( $file[tmp_name] as $fn ){
+			foreach( $file['tmp_name'] as $fn ){
 				cforms2_base64($fn, $doAttach);
 				### debug
 				cforms2_dbg( "File = $fn, attach = $doAttach" );
@@ -500,12 +499,10 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		}
 		### parse through all files (both single and mp forms)
 		foreach ( $fdata as $file ) {
-			if ( $file[doAttach] && $file[name] <> '' ){
-				$n = substr( $file[name], strrpos($file[name],DIRECTORY_SEPARATOR)+1, strlen($file[name]) );
-				$m = wp_check_filetype( strtolower( $n ) );
-				$mail->add_file($file[name], $n,'base64',$m); ### optional name
+			if ( $file[doAttach] && $file['name'] <> '' ){
+				$mail->add_file($file['name']); ### optional name
 				### debug
-				cforms2_dbg( 'Attaching file ('.$file[name].') to email' );
+				cforms2_dbg( 'Attaching file ('.$file['name'].') to email' );
 			}
 		}
 
@@ -577,12 +574,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
 	                $a = (substr($a,0,1)=='/') ? $a : plugin_dir_path(__FILE__).$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
-	                    $m = wp_check_filetype( strtolower( $n ) );
-	                    $mail->add_file($a, $n,'base64',$m); ### optional name
+	                    $mail->add_file($a); ### optional name
                     }
-
-	                $mail->char_set = 'utf-8';
 
                     ### CC or auto conf?
 	                if ( $ccme&&$trackf[data][$ccme]<>'' ) {

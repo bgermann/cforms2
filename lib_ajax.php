@@ -389,7 +389,6 @@ function cforms2_submitcomment() {
 	
 	$mail = new cforms2_mail($no,$frommail,$to,$userReplyTo, true);
 	$mail->subj  = $vsubject;
-	$mail->char_set = 'utf-8';
 
 	### HTML email
 	if ( $mail->html_show ) {
@@ -456,12 +455,8 @@ function cforms2_submitcomment() {
 	                $a = $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0];
 	                $a = (substr($a,0,1)=='/') ? $a : plugin_dir_path(__FILE__).$a;
 	                if ( $a<>'' && file_exists( $a ) ) {
-	                    $n = substr( $a, strrpos($a,DIRECTORY_SEPARATOR)+1, strlen($a) );
-	                    $m = wp_check_filetype( strtolower( $n ) );
-	                    $mail->add_file($a, $n,'base64',$m); ### optional name
+	                    $mail->add_file($a); ### optional name
 	                }
-
-	                $mail->char_set = 'utf-8';
 
 	                ### CC or auto conf?
 	                if ( $ccme&&$trackf[data][$ccme]<>'' ) {
