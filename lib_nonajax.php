@@ -20,14 +20,6 @@
 ###
 ###  Validate all fields
 ###
-
-$CFfunctionsC = plugin_dir_path(dirname(__FILE__)) . 'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-$CFfunctions = plugin_dir_path(__FILE__) . 'my-functions.php';
-if ( file_exists($CFfunctionsC) )
-    include_once($CFfunctionsC);
-else if ( file_exists($CFfunctions) )
-    include_once($CFfunctions);
-
 require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
 
 
@@ -37,7 +29,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    ###  all valid? get ready to send
 	    ###
 		if( function_exists('my_cforms_filter') )
-			$_POST = my_cforms_filter($_POST);
+			my_cforms_filter(&$_POST);
 
 		if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
 			$cflimit = 'reached';
@@ -290,7 +282,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	
 	###  prefilter user input
 	if( function_exists('my_cforms_filter') )
-        my_cforms_filter($no);
+        my_cforms_filter(&$no);
 
 
     ### multi-form session

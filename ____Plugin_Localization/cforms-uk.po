@@ -2631,10 +2631,10 @@ msgstr "Доступні функції користувача"
 
 #: cforms-help.php:1017
 msgid ""
-"(see <strong>my-functions.php</strong> file (plugin root directory), "
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
 "including examples)"
 msgstr ""
-"(дивіться файл <strong>my-functions.php</strong> (корінна директорія "
+"(дивіться файл <strong>my-functions.php.txt</strong> (корінна директорія "
 "плагіна), включно з прикладами)"
 
 #: cforms-help.php:1021
@@ -3246,8 +3246,8 @@ msgid "Defining first, next and last form via configuration"
 msgstr "Визначення першої, наступної та останньої форми через налаштування"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php"
-msgstr "Перевизначення \"наступної форми\" динамічно через my-functions.php"
+msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgstr "Перевизначення \"наступної форми\" динамічно через my-functions.php.txt"
 
 #: cforms-help.php:1449
 msgid "Optionally send/suppress partial admin emails on a per form basis"
@@ -3332,14 +3332,14 @@ msgstr "Важливо:"
 msgid ""
 "Accessing %1$s {custom variables} %2$s in the final form differs from how "
 "you would reference these in individual forms. Use the %1$s mail() %2$s "
-"example in my-functions.php to examine the user data array; e.g. "
+"example in my-functions.php.txt to examine the user data array; e.g. "
 "%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
 "the series)."
 msgstr ""
 "Навряд чи простий користувач буде це читати (користуватись цими функціями), "
 "а якщо і буде, то технічну англійську він знає :) Accessing %1$s {custom "
 "variables} %2$s in the final form differs from how you would reference these "
-"in individual forms. Use the %1$s mail() %2$s example in my-functions.php to "
+"in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to "
 "examine the user data array; e.g. %1$s{Email}%2$s would become "
 "%1$s{cf_form_Email}%2$s (for the first form of the series)."
 

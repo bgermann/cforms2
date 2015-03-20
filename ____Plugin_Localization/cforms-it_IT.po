@@ -2687,10 +2687,10 @@ msgstr "Funzioni utente disponibili"
 
 #: cforms-help.php:1017
 msgid ""
-"(see <strong>my-functions.php</strong> file (plugin root directory), "
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
 "including examples)"
 msgstr ""
-"(vedi il file <strong>my-functions.php</strong> (cartella principale del "
+"(vedi il file <strong>my-functions.php.txt</strong> (cartella principale del "
 "plugin), contenente una serie di esempi)"
 
 #: cforms-help.php:1021
@@ -3317,9 +3317,9 @@ msgid "Defining first, next and last form via configuration"
 msgstr "Definire il primo modulo, il successivo e l'ultimo via configurazione"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php"
+msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
 msgstr ""
-"Priorità \"modulo successivo\" all'avvio (dinamico) via my-functions.php"
+"Priorità \"modulo successivo\" all'avvio (dinamico) via my-functions.php.txt"
 
 #: cforms-help.php:1449
 msgid "Optionally send/suppress partial admin emails on a per form basis"
@@ -3409,13 +3409,13 @@ msgstr "Note importanti:"
 msgid ""
 "Accessing %1$s {custom variables} %2$s in the final form differs from how "
 "you would reference these in individual forms. Use the %1$s mail() %2$s "
-"example in my-functions.php to examine the user data array; e.g. "
+"example in my-functions.php.txt to examine the user data array; e.g. "
 "%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
 "the series)."
 msgstr ""
 "L'accesso alla %1$s {custom variables} %2$s nel modulo finale differisce dal "
 "come tu vorrai riferirla nei moduli individuali. Utilizza ad esempio %1$s "
-"mail() %2$s in my-functions.php per verificare l'ordine dei dati utente; ad "
+"mail() %2$s in my-functions.php.txt per verificare l'ordine dei dati utente; ad "
 "es. %1$s{Email}%2$s diverrà %1$s{cf_form_Email}%2$s (per il primo modulo "
 "della serie)."
 

@@ -102,7 +102,7 @@ Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-cs
 
 = I do not get any emails from my form. Why? =
 
-Most pobably this is not cformsII's fault. Please check your WordPress mail configuration with a plugin like [Check Email](https://wordpress.org/plugins/check-email/).
+Most pobably this is not cformsII's fault. Please check your Wordpress mail configuration with a plugin like [Check Email](https://wordpress.org/plugins/check-email/).
 
 = Where can I find old cformsII versions? =
 
@@ -150,12 +150,15 @@ Some things are to be done:
 
 * filter user input
 * make attachments download support directories that are not exported via HTTP
-* grunt build process similar to WordPress core
+* grunt build process similar to Wordpress core
 * long term: refactoring with object oriented approach
 * long term: unit tests and continuous integration
 
 
 == Upgrade Notice ==
+
+= 14.9 =
+If you use my-functions.php, you have to take action (see my-functions.php.txt).
 
 = 14.8 =
 This is only compatible with Wordpress 3.9+. Version 3.5 to 3.8 support is dropped.
@@ -187,7 +190,8 @@ GPL compliance!
 
 == Changelog ==
 
-= 14.8.3 =
+= 14.9 =
+* enhanced: change the my-functions API to be an extra plugin
 * other:    remove basic style editor
 
 = 14.8.2 =

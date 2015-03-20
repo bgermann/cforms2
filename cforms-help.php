@@ -1009,7 +1009,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms'); ?>"><?php _e('Available User Functions', 'cforms'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php</strong> file (plugin root directory), including examples)', 'cforms');?></td>
+					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms'); ?>"><?php _e('Available User Functions', 'cforms'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php.txt</strong> file (plugin root directory), including examples)', 'cforms');?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_filter()</code></strong></td>
@@ -1028,7 +1028,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
                     <td class="bright"><?php _e('function gets called <strong>at</strong> various stages of input processing', 'cforms'); ?></td>
                 </tr>
 			</table>
-			<p class="ex" ><?php echo sprintf(__('%s can reside in your /plugins/cforms-custom folder to protect it from future (auto) upgrades.', 'cforms'),'<strong>my-functions.php</strong>'); ?></p>
+			<p class="ex" ><?php echo sprintf(__('%s can reside in your /plugins/cforms-custom folder to protect it from future (auto) upgrades.', 'cforms'),'<strong>my-functions.php.txt</strong>'); ?></p>
 		</div>
 
 
@@ -1438,7 +1438,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 					<td class="ball" colspan="2"><?php _e('Defining first, next and last form via configuration', 'cforms'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2"><?php _e('Overriding "next form" at run-time (dynamically) via my-functions.php', 'cforms'); ?></td>
+					<td class="ball" colspan="2"><?php _e('Overriding "next form" at run-time (dynamically) via my-functions.php.txt', 'cforms'); ?></td>
 				</tr>
 				<tr>
 					<td class="ball" colspan="2"><?php _e('Optionally send/suppress partial admin emails on a per form basis', 'cforms'); ?></td>
@@ -1481,7 +1481,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 
         <p class="ex"><strong><?php _e('Important Notes:', 'cforms'); ?></strong></p>
         <ul style="margin-top:10px;">
-            <li><?php echo sprintf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms. Use the %1$s mail() %2$s example in my-functions.php to examine the user data array; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms'),'<strong>','</strong>'); ?></li>
+            <li><?php echo sprintf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to examine the user data array; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms'),'<strong>','</strong>'); ?></li>
             <li><?php echo sprintf(__('%1s File attachments %2s will not be included in the admin email unless the upload fields are on the last form. However, they will be stored and tracked.', 'cforms'),'<strong>','</strong>'); ?></li>
             <li><?php echo sprintf(__('Once the multi page form support is enabled, %1$sAjax is being disabled%2$s for this form.', 'cforms'),'<strong>','</strong>'); ?></li>
         </ul>

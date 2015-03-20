@@ -2504,10 +2504,10 @@ msgstr "可用的用户函数"
 
 #: cforms-help.php:1017
 msgid ""
-"(see <strong>my-functions.php</strong> file (plugin root directory), "
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
 "including examples)"
 msgstr ""
-"（查看<strong>my-functions.php</strong>文件（插件根目录下），包括了范例）"
+"（查看<strong>my-functions.php.txt</strong>文件（插件根目录下），包括了范例）"
 
 #: cforms-help.php:1021
 msgid ""
@@ -3087,8 +3087,8 @@ msgid "Defining first, next and last form via configuration"
 msgstr "通过配置定义第一个，下一个和最后一个表单"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php"
-msgstr "通过my-functions.php在运行时（动态地）重新定义\"下张表单\" "
+msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgstr "通过my-functions.php.txt在运行时（动态地）重新定义\"下张表单\" "
 
 #: cforms-help.php:1449
 msgid "Optionally send/suppress partial admin emails on a per form basis"
@@ -3171,12 +3171,12 @@ msgstr "重要提示："
 msgid ""
 "Accessing %1$s {custom variables} %2$s in the final form differs from how "
 "you would reference these in individual forms. Use the %1$s mail() %2$s "
-"example in my-functions.php to examine the user data array; e.g. "
+"example in my-functions.php.txt to examine the user data array; e.g. "
 "%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
 "the series)."
 msgstr ""
 "在最后一张表单中访问%1$s {自定义变量} %2$s与您在单独的表单中访问它们不同。使"
-"用my-functions.php中的%1$s mail() %2$s 函数来做个检查用户数组的例子；"
+"用my-functions.php.txt中的%1$s mail() %2$s 函数来做个检查用户数组的例子；"
 "如，%1$s{Email}%2$s 应该变成 %1$s{cf_form_Email}%2$s （对于此系列的第一张表单"
 "来说）。"
 

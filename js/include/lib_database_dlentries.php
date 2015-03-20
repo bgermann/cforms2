@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,15 +31,6 @@ $wpdb->cformsdata       	= $wpdb->prefix . 'cformsdata';
 
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
-
-
-### get custom functions
-$CFfunctionsC = plugin_dir_path(dirname(dirname(dirname(__FILE__)))).'cforms-custom'.DIRECTORY_SEPARATOR.'my-functions.php';
-$CFfunctions = plugin_dir_path(dirname(dirname(__FILE__))).'my-functions.php';
-if ( file_exists($CFfunctionsC) )
-    include_once($CFfunctionsC);
-else if ( file_exists($CFfunctions) )
-    include_once($CFfunctions);
 
 
 ### get form names

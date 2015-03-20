@@ -2647,10 +2647,10 @@ msgstr "Доступне корисничке функције"
 
 #: cforms-help.php:1017
 msgid ""
-"(see <strong>my-functions.php</strong> file (plugin root directory), "
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
 "including examples)"
 msgstr ""
-"погледати <strong>my-functions.php </ strong> file (plugin root directory), "
+"погледати <strong>my-functions.php.txt </ strong> file (plugin root directory), "
 "including examples)"
 
 #: cforms-help.php:1021
@@ -3262,7 +3262,7 @@ msgid "Defining first, next and last form via configuration"
 msgstr "Дефинисање првог, сљедећег и последњег обрасца путем конфигурације"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php"
+msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
 msgstr ""
 "Прескакање \"следећи образац \" у време извршавања (динамички), путем my-"
 "functions.php"
@@ -3355,13 +3355,13 @@ msgstr "Важне напомене:"
 msgid ""
 "Accessing %1$s {custom variables} %2$s in the final form differs from how "
 "you would reference these in individual forms. Use the %1$s mail() %2$s "
-"example in my-functions.php to examine the user data array; e.g. "
+"example in my-functions.php.txt to examine the user data array; e.g. "
 "%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
 "the series)."
 msgstr ""
 "Приступ%1$s {подешеним вредностима}%2$s у коначном обрасцу се разликује  од "
 "тога како желите  га означите у појединачном обрасцу. Користите"
-"%1$ smail()%2$s пример у my-functions.php да би се испитао низ корисникових "
+"%1$ smail()%2$s пример у my-functions.php.txt да би се испитао низ корисникових "
 "података; нпр %1$s{Email}%2$s би био %1$s{cf_form_Email}%2$s (za prvi "
 "obrazac iz serije)."
 
