@@ -1261,7 +1261,7 @@ function cform2_shortcode($atts, $content) {
 		$callform = array_pop( $atts );
 	if (empty($callform))
 		return '';
-	return insert_cform($callform);
+	return cforms2('',cforms2_check_form_name($callform));
 }
 
 ### GET $pid

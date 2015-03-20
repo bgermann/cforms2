@@ -213,10 +213,9 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 ###
 ###
 ### Your custom user data input filter
-### This is called by reference
 ###
 ###
-function my_cforms_filter($formIDOrPostData) {
+function my_cforms_filter(&$formIDOrPostData) {
 
 	global $track;
 
@@ -281,7 +280,6 @@ function my_cforms_action($cformsdata) {
 ###
 ###
 ### Your custom user data input filter (ajax)
-### This is called by reference
 ###
 ###
 function my_cforms_ajax_filter($params) {

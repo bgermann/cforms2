@@ -71,7 +71,7 @@ function cforms2_submitcomment() {
 
 	###  user filter ?
 	if( function_exists('my_cforms_ajax_filter') )
-		my_cforms_ajax_filter(&$params);
+		my_cforms_ajax_filter($params);
 
 
 	###  init variables
@@ -282,7 +282,7 @@ function cforms2_submitcomment() {
 
 	###  prefilter user input
 	if( function_exists('my_cforms_filter') )
-        my_cforms_filter(&$no);
+        my_cforms_filter($no);
 
 	###  assemble text & html email
 	$r = cforms2_format_email($track,$no);

@@ -181,7 +181,7 @@ if ( $isAjaxWPcomment ){
 		### Filter first?
 		###
 		if( function_exists('my_cforms_filter') )
-			my_cforms_filter(&$_POST);
+			my_cforms_filter($_POST);
 
 		###
 		### Write Comment

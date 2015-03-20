@@ -192,6 +192,7 @@ GPL compliance!
 
 = 14.9 =
 * enhanced: change the my-functions API to be an extra plugin
+* bugfix:   Shortcode puts the form to the right place
 * other:    remove basic style editor
 
 = 14.8.2 =
