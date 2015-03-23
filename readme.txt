@@ -5,7 +5,7 @@ Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, a
 Requires at least: 3.9
 Tested up to: 4.1
 Stable tag: trunk
-License: GPLv3
+License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
 cformsII is the most customizable, flexible & powerful ajax supporting contact form plugin (& comment form)!
