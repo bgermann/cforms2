@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2007-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -550,21 +550,6 @@ function cforms_validate(no, upload) {
         }
 
 
-    } // for
-
-
-    //normal visitor verification turned on?
-    if ( document.getElementById('cforms_q' + no)
-      && document.getElementById('cforms_a' + no).value
-      != jQuery.md5( encodeURI( document.getElementById('cforms_q' + no).value.toLowerCase() ) )
-    ) {
-        document.getElementById('cforms_q'+no).className = "secinput cf_error";
-        if ( all_valid ) {
-            all_valid = false;
-            code_err = true;
-            if (!last_one) last_one='cforms_q'+no;
-        }
-        custom_error = check_for_customerr('cforms_q'+no);
     }
 
     //captcha verification turned on?

@@ -193,7 +193,7 @@ function cforms2($args = '',$no = '') {
 	$usermessage_text	= "";
 
 	$user = wp_get_current_user();
-	// TODO
+	// TODO integrate this check better
 	$server_upload_size_error = false;
 	$displayMaxSize = ini_get('post_max_size');
 	if ( $_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
@@ -363,7 +363,6 @@ function cforms2($args = '',$no = '') {
 
 	### start with no fieldset
 	$fieldsetopen = false;
-	$verification = false;
 
 	$captcha = false;
 	$upload = false;
@@ -419,10 +418,6 @@ function cforms2($args = '',$no = '') {
 					$custom_error .= 'cforms_captcha' . $no . '$#$'.$fielderr.'|';
 	    			break;
 
-			    case 'verification':
-					$custom_error .= 'cforms_q'. $no . '$#$'.$fielderr.'|';
-	    			break;
-
 				case "cauthor":
 				case "url":
 				case "email":
@@ -437,7 +432,6 @@ function cforms2($args = '',$no = '') {
 
 					$custom_error .= ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?cforms2_sanitize_ids($input_name[1]):'cf'.$no.'_field_'.$i;
 					$custom_error .= '$#$'.$fielderr.'|';
-	    			break;
 		    }
 		}
 
@@ -445,7 +439,7 @@ function cforms2($args = '',$no = '') {
 		### check for title attrib
 	    $obj = explode('|title:', $obj[0],2);
 		$obj[] = "";
-		$fieldTitle = ($obj[1]<>'')?' title="'.str_replace('"','&quot;',stripslashes($obj[1])).'"':'';
+		$fieldTitle = ($obj[1]<>'')?str_replace('"','&quot;',stripslashes($obj[1])):'';
 
 		###debug
 		cforms2_dbg("\t\t title check, obj[0] = ".$obj[0]);
@@ -484,24 +478,9 @@ function cforms2($args = '',$no = '') {
 		}
 
 
-		$labelclass='';
-		### visitor verification
-		if ( !$verification && $field_type == 'verification' ) {
-			srand(microtime()*1000003);
-        	$qall = explode( "\r\n", $cformsSettings['global']['cforms_sec_qa'] );
-			$n = rand(0,(count(array_keys($qall))-1));
-			$q = $qall[ $n ];
-			$q = explode( '=', $q );  ### q[0]=qestion  q[1]=answer
-			$field_name = stripslashes(htmlspecialchars($q[0]));
-			$labelclass = ' class="secq"';
-		}
-		else if ( $field_type == 'captcha' )
-			$labelclass = ' class="seccap"';
-
-
 		$defaultvalue = '';
 		### setting the default val & regexp if it exists
-		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox','verification')) ) {
+		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox')) ) {
 
 		    ### check if default val & regexp are set
 		    $obj = explode('|', $obj[0],3);
@@ -561,12 +540,11 @@ function cforms2($args = '',$no = '') {
 		$field_class = '';
 		$field_value = '';
 
+		$captchas = cforms2_get_pluggable_captchas();
+		if ( array_key_exists($field_type, $captchas) && is_user_logged_in() &&  !$captchas[$field_type]->check_authn_users())
+			continue;
+
 		switch ($field_type){
-			case 'verification':
-				if( is_user_logged_in() && $cformsSettings['global']['cforms_captcha_def']['foqa']<>'1' )
-					continue(2);
-				$input_id = $input_name = 'cforms_q'.$no;
-				break;
 			case 'captcha':
 				if( is_user_logged_in() && $cformsSettings['global']['cforms_captcha_def']['fo']<>'1' )
 					continue(2);
@@ -600,6 +578,7 @@ function cforms2($args = '',$no = '') {
 			case 'textarea':
 				$field_class = 'area';
 				break;
+			default:
 		}
 
 
@@ -623,11 +602,7 @@ function cforms2($args = '',$no = '') {
 
 		if( !$all_valid ){
 			### errors...
-			if ( $server_upload_size_error)
-				$field_class .= '';
-			else if ( $validations[$i]==1 )
-				$field_class .= '';
-			else{
+			if ( !$server_upload_size_error && $validations[$i]!=1) {
 				$field_class .= ' cf_error';
 
 				### enhanced error display
@@ -656,8 +631,12 @@ function cforms2($args = '',$no = '') {
 
 
 		### print label only for non "textonly" fields! Skip some others too, and handle them below indiv.
-		if( ! in_array($field_type,array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','checkbox','checkboxgroup','send2author','radiobuttons')) )
-			$content .= '<li'.$liID.' class="'.$liERR.'">'.$insertErr.'<label' . $labelID . ' for="'.$input_id.'"'. $labelclass . '><span>' . stripslashes(($field_name)) . '</span></label>';
+		$standard_field = !in_array($field_type, array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','checkbox','checkboxgroup','send2author','radiobuttons'));
+		if($standard_field) {
+			$content .= '<li'.$liID.' class="'.$liERR.'">'.$insertErr;
+			if (!in_array($field_type, array_keys($captchas)))
+				$content .= '<label' . $labelID . ' for="'.$input_id.'"'. $field_type == 'captcha' ? ' class="seccap"' : '' . '><span>' . stripslashes(($field_name)) . '</span></label>';
+		}
 
 
 		### if not reloaded (due to err) then use default values
@@ -675,12 +654,15 @@ function cforms2($args = '',$no = '') {
 		$val = '';
 		$force_checked = false;
 		$cookieset = '';
-
-		switch($field_type) {
+		if (array_key_exists($field_type, $captchas)){
+			$req = $captchas[$field_type]->get_request('secinput '.$field_class, $fieldTitle);
+			$field = $req['html'].'<input type="hidden" name="'.$field_type.'/hint" value="' . rawurlencode($req['hint']) . '"/>';
+		}
+		else switch($field_type) {
 
 			case "upload":
 	  			$upload=true;  ### set upload flag for ajax suppression!
-				$field = '<input' . $readonly.$disabled . ' type="file" name="cf_uploadfile'.$no.'[]" id="cf_uploadfile'.$no.'-'.$i.'" class="cf_upload ' . $field_class . '"'.$fieldTitle.'/>';
+				$field = '<input' . $readonly.$disabled . ' type="file" name="cf_uploadfile'.$no.'[]" id="cf_uploadfile'.$no.'-'.$i.'" class="cf_upload ' . $field_class . '" title="'.$fieldTitle.'"/>';
 				break;
 
 			case "textonly":
@@ -713,13 +695,8 @@ function cforms2($args = '',$no = '') {
 				} else $field='';
 				break;
 
-			case "verification":
-				$field = '<input type="text" name="'.$input_name.'" id="cforms_q'.$no.'" class="secinput ' . $field_class . '" value=""'.$fieldTitle.'/>';
-		    	$verification=true;
-				break;
-
 			case "captcha":
-				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" value=""'.$fieldTitle.'/>'.
+				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" title="'.$fieldTitle.'"/>'.
 						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="#" alt=""/><script type="text/javascript">jQuery(function() {reset_captcha('.$no.');});</script>'.
 						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><img class="captcha-reset" src="'.plugin_dir_url(__FILE__).'images/spacer.gif" alt="Captcha"/></a>';
 		    	$captcha=true;
@@ -780,9 +757,9 @@ function cforms2($args = '',$no = '') {
 
 			    $onfocus = $field_clear?' onfocus="clearField(this)" onblur="setField(this)"' : '';
 
-				$field = '<input' . $h5.$readonly.$disabled . ' type="'.$type.'" name="'.$input_name.'" id="'.$input_id.'" class="' . $field_class . '" value="' . $field_value  . '"'.$onfocus.$fieldTitle.'/>';
+				$field = '<input' . $h5.$readonly.$disabled . ' type="'.$type.'" name="'.$input_name.'" id="'.$input_id.'" class="' . $field_class . '" value="' . $field_value  . '"'.$onfocus.' title="'.$fieldTitle.'"/>';
 				  if ( $reg_exp<>'' )
-	           		 $field .= '<input type="hidden" name="'.$input_name.'_regexp" id="'.$input_id.'_regexp" value="'.$reg_exp.'"'.$fieldTitle.'/>';
+	           		 $field .= '<input type="hidden" name="'.$input_name.'_regexp" id="'.$input_id.'_regexp" value="'.$reg_exp.'" title="'.$fieldTitle.'"/>';
 
 				$field .= $dp;
 				break;
@@ -795,16 +772,16 @@ function cforms2($args = '',$no = '') {
                 if ( preg_match('/^<([a-zA-Z0-9]+)>$/',$field_value,$getkey) )
                     $field_value = $_GET[$getkey[1]];
 
-				$field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="'.$input_name.'" id="'.$input_id.'" value="' . $field_value  . '"'.$fieldTitle.'/></li>';
+				$field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="'.$input_name.'" id="'.$input_id.'" value="' . $field_value  . '" title="'.$fieldTitle.'"/></li>';
 				break;
 
 			case "comment":
 			case "textarea":
 			    $onfocus = $field_clear?' onfocus="clearField(this)" onblur="setField(this)"' : '';
 
-				$field = '<textarea' . $readonly.$disabled . ' cols="30" rows="8" name="'.$input_name.'" id="'.$input_id.'" class="' . $field_class . '"'. $onfocus.$fieldTitle.'>' . $field_value  . '</textarea>';
+				$field = '<textarea' . $readonly.$disabled . ' cols="30" rows="8" name="'.$input_name.'" id="'.$input_id.'" class="' . $field_class . '"'. $onfocus.' title="'.$fieldTitle.'">' . $field_value  . '</textarea>';
 				  if ( $reg_exp<>'' )
-	           		 $field .= '<input type="hidden" name="'.$input_name.'_regexp" id="'.$input_id.'_regexp" value="'.$reg_exp.'"'.$fieldTitle.'/>';
+	           		 $field .= '<input type="hidden" name="'.$input_name.'_regexp" id="'.$input_id.'_regexp" value="'.$reg_exp.'" title="'.$fieldTitle.'"/>';
 				break;
 
 	   		case "ccbox":
@@ -834,7 +811,7 @@ function cforms2($args = '',$no = '') {
 				if( $val=='' )
 					$val = ($opt[1]<>'')?' value="'.$opt[1].'"':'';
 					
-				$field = $before . '<input' . $readonly.$disabled . ' type="checkbox" name="'.$input_name.'" id="'.$input_id.'" class="cf-box-' . $ba . $field_class . '"'.$val.$fieldTitle.$preChecked.'/>' . $after;
+				$field = $before . '<input' . $readonly.$disabled . ' type="checkbox" name="'.$input_name.'" id="'.$input_id.'" class="cf-box-' . $ba . $field_class . '"'.$val.' title="'.$fieldTitle.'"'.$preChecked.'/>' . $after;
 
 				break;
 
@@ -878,7 +855,7 @@ function cforms2($args = '',$no = '') {
 						if ( $opt[0]=='' )
 							$field .= '<br />';
 						else
-							$field .= '<input' . $readonly.$disabled . ' type="checkbox" id="'. $input_id .'-'. $id . '" name="'. $input_name . $brackets .'" value="'.$opt[1].'" '.$checked.' class="cf-box-b"'.$fieldTitle.'/>'.
+							$field .= '<input' . $readonly.$disabled . ' type="checkbox" id="'. $input_id .'-'. $id . '" name="'. $input_name . $brackets .'" value="'.$opt[1].'" '.$checked.' class="cf-box-b" title="'.$fieldTitle.'"/>'.
 									  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-group-after"><span>'.$opt[0] . "</span></label>";
 
 					}
@@ -887,7 +864,7 @@ function cforms2($args = '',$no = '') {
 
 
 			case "multiselectbox":
-				$field .= '<select' . $readonly.$disabled . ' multiple="multiple" name="'.$input_name.'[]" id="'.$input_id.'" class="cfselectmulti ' . $field_class . '"'.$fieldTitle.'>';
+				$field .= '<select' . $readonly.$disabled . ' multiple="multiple" name="'.$input_name.'[]" id="'.$input_id.'" class="cfselectmulti ' . $field_class . '" title="'.$fieldTitle.'">';
 				array_shift($options);
 				$j=0;
 
@@ -924,7 +901,7 @@ function cforms2($args = '',$no = '') {
 
 			case "emailtobox":
 			case "selectbox":
-				$field = '<select' . $readonly.$disabled . ' name="'.$input_name.'" id="'.$input_id.'" class="cformselect' . $field_class . '" '.$fieldTitle.'>';
+				$field = '<select' . $readonly.$disabled . ' name="'.$input_name.'" id="'.$input_id.'" class="cformselect' . $field_class . '" title="'.$fieldTitle.'">';
 				array_shift($options); $jj=$j=0;
 
 				foreach( $options as $option  ) {
@@ -989,7 +966,7 @@ function cforms2($args = '',$no = '') {
 							$field .= '<br />';
 						else
 							$field .=
-								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b' . ($field_required?' fldrequired':'') .'"'.$fieldTitle.'/>'.
+								  '<input' . $readonly.$disabled . ' type="radio" id="'. $input_id .'-'. $id . '" name="'.$input_name.'" value="'.$opt[1].'"'.$checked.' class="cf-box-b' . ($field_required?' fldrequired':'') .'" title="'.$fieldTitle.'"/>'.
 								  '<label' . $labelIDx . ' for="'. $input_id .'-'. ($id++) . '" class="cf-after"><span>'.$opt[0] . "</span></label>";
 
 					}
@@ -1011,7 +988,7 @@ function cforms2($args = '',$no = '') {
 			$content .= '<span class="reqtxt">'.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_required']).'</span>';
 
 		### close out li item
-		if ( ! in_array($field_type,array('hidden','fieldsetstart','fieldsetend','radiobuttons','checkbox','checkboxgroup','ccbox','textonly','send2author')) )
+		if ($standard_field)
 			$content .= '</li>';
 
 	} ### all fields
@@ -1037,11 +1014,6 @@ function cforms2($args = '',$no = '') {
 
 	### just to appease html "strict"
 	$content .= '<fieldset class="cf_hidden"><legend>&nbsp;</legend>';
-
-
-	### if visitor verification turned on:
-	if ( $verification )
-		$content .= '<input type="hidden" name="cforms_a'.$no.'" id="cforms_a'.$no.'" value="' . md5(rawurlencode(strtolower($q[1]))) . '"/>';
 
 	### custom error
 	$custom_error=substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],4,1).$custom_error;

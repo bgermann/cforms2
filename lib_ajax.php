@@ -102,9 +102,9 @@ function cforms2_submitcomment() {
 
 			while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
 
-				if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && !$captchaopt['fo']=='1') )
+				if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && $captchaopt['fo']!='1') )
 					break;
-				if ( $field_stat[1] == 'verification' && !(is_user_logged_in() && !$captchaopt['foqa']=='1') )
+				if ( $field_stat[1] == 'verification' && !(is_user_logged_in() && $captchaopt['foqa']!='1') )
 					break;
 
                 if ( $field_stat[1] == 'fieldsetstart' ){
@@ -248,11 +248,6 @@ function cforms2_submitcomment() {
 			### only if hidden!
 			if( $field_type == 'hidden' )
 				$value = rawurldecode($value);
-
-
-			###  Q&A verification
-			if ( $field_type == "verification" )
-					$field_name = __('Q&A','cforms');
 
 			### check boxes
 			if ( $field_type == "checkbox" || $field_type == "ccbox" ) {

@@ -190,6 +190,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.1 =
+* enhanced: convert Q&A feature to the new pluggable captcha API
+* added:    pluggable captcha API
+
 = 14.9 =
 * enhanced: change the my-functions API to be an extra plugin
 * bugfix:   Shortcode puts the form to the right place

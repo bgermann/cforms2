@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -256,7 +256,6 @@ if( strlen($fd)<=2 ) {
                     ### pre-check for verification field
                     $ccboxused=false;
                     $emailtoboxused=false;
-                    $verificationused=false;
                     $captchaused=false;
                     $fileupload=false; ### only for hide/show options
 
@@ -265,12 +264,13 @@ if( strlen($fd)<=2 ) {
 
                     for($i = 1; $i <= $field_count; $i++) {
                             $allfields[$i] = $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i];
-                            if ( strpos($allfields[$i],'verification')!==false )    $verificationused = true;
                             if ( strpos($allfields[$i],'captcha')!==false )         $captchaused = true;
                             if ( strpos($allfields[$i],'emailtobox')!==false )      $emailtoboxused = true;
                             if ( strpos($allfields[$i],'ccbox')!==false )           $ccboxused = true;
                             if ( strpos($allfields[$i],'upload')!==false )          $fileupload = true; //needed for config
                     }
+					
+					$captchas = cforms2_get_pluggable_captchas();
 
                     for($i = 1; $i <= $field_count; $i++) {
 
@@ -299,16 +299,22 @@ if( strlen($fd)<=2 ) {
                             $fieldsadded = true;
                         }
 
+						
+						// convert old CAPTCHAs
+						if ($field_type == 'verification')
+							$field_type = 'cforms2_question_and_answer';
+
                     	switch ( $field_type ) {
 	                       case 'emailtobox':   $specialclass = 'style="background:#CBDDFE"'; break;
 	                        case 'ccbox':       $specialclass = 'style="background:#D8FFCA"'; break;
-	                        case 'verification':
 	                        case 'captcha':     $specialclass = 'style="background:#D1B6E9"'; break;
 	                        case 'textonly':    $specialclass = 'style="background:#E1EAE6"'; break;
 	                        case 'fieldsetstart':
 	                        case 'fieldsetend': $specialclass = 'style="background:#ECFEA5"'; break;
 	                        default:            $specialclass = ''; break;
                         }
+						if (in_array($field_type, array_keys($captchas)))
+							$specialclass = 'style="background:#D1B6E9"';
 
                     	$alternate = ($alternate=='')?' rowalt':''; ?>
 
@@ -341,8 +347,23 @@ if( strlen($fd)<=2 ) {
 								<optgroup label="<?php _e('--------- Special ------------', 'cforms'); ?>">
 									<option<?php if ( $ccboxused && $field_type<>"ccbox" ) echo ' disabled="disabled" class="disabled"'; ?> value="ccbox" <?php echo($field_type == 'ccbox'?' selected="selected"':''); ?>><?php _e('CC: option for user', 'cforms'); ?></option>
 									<option<?php if ( $emailtoboxused && $field_type<>"emailtobox" ) echo ' disabled="disabled" class="disabled"'; ?>  value="emailtobox" <?php echo($field_type == 'emailtobox'?' selected="selected"':''); ?>><?php _e('Multiple Recipients', 'cforms'); ?></option>
-									<option<?php if ( $verificationused && $field_type<>"verification" ) echo ' disabled="disabled" class="disabled"'; ?>  value="verification" <?php echo($field_type == 'verification'?' selected="selected"':''); ?>><?php _e('Visitor verification (Q&amp;A)', 'cforms'); ?></option>
 									<option<?php if ( $captchaused && $field_type<>"captcha" ) echo ' disabled="disabled" class="disabled"'; ?>  value="captcha" <?php echo($field_type == 'captcha'?' selected="selected"':''); ?>><?php _e('Captcha verification (image)', 'cforms'); ?></option>
+									<?php
+										$out = '';
+										foreach ($captchas as $captcha_id => $captcha) {
+											$out .= '<option';
+											if ( $field_type == $captcha_id )
+												$out .= ' selected="selected"';
+											elseif (strpos($allfields[$i], $captcha_id) !== false)
+												// This CAPTCHA type is already used
+												$out .= ' disabled="disabled" class="disabled"';
+											
+											$out .= ' value="'. $captcha_id .'">';
+											$out .= $captcha->get_name();
+											$out .= '</option>';
+										}
+										echo $out;
+									?>
 								</optgroup>
 
                                 <?php if ( $isTAF<>1 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
@@ -383,7 +404,7 @@ if( strlen($fd)<=2 ) {
 
                             echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
 
-                            if( in_array($field_type,array('hidden','checkboxgroup', 'fieldsetstart','fieldsetend','ccbox','captcha','verification','textonly')) )
+                            if( in_array($field_type,array_merge(array_keys($captchas), array('hidden','checkboxgroup', 'fieldsetstart','fieldsetend','ccbox','captcha','textonly'))) )
                                 echo '<img class="chkno" src="'.plugin_dir_url(__FILE__).'images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
                             else
                                 echo '<input tabindex="'.($ti++).'" class="allchk fieldisreq chkfld" type="checkbox" title="'.__('input required', 'cforms').'" name="field_'.($i).'_required" value="required"'.($field_required == '1'?' checked="checked"':'').'/>';

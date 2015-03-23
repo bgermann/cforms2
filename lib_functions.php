@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -294,4 +294,12 @@ function cforms2_get_from_request($index) {
 		return $_REQUEST[$index];
 	else
 		return '';
+}
+function cforms2_get_pluggable_captchas() {
+	static $captchas = array();
+	if (empty($captchas))
+		// This filter is meant to add one element to the associative array per cforms2_captcha
+		// implementation consisting of the classname as key and object as value
+		$captchas = apply_filters('cforms2_add_captcha', $captchas);
+	return $captchas;
 }

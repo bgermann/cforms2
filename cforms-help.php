@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1082,7 +1082,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('Radio buttons', 'cforms'); ?>:</td><td> <code>radiobuttons</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Select: Email/Comment', 'cforms'); ?>:</td><td> <code>send2author</code></td></tr>
 	                <tr><td><?php _e('\'CC\' check box', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
-	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>verification</code></td></tr>
+	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>cforms2_question_and_answer</code></td></tr>
 	                <tr><td><?php _e('Spam/captcha verification', 'cforms'); ?>:</td><td> <code>captcha</code></td></tr>
 	                <tr><td><?php _e('File upload fields', 'cforms'); ?> <sup>*)</sup>:</td><td> <code>upload</code></td></tr>
 	                <tr><td><?php _e('Begin of a fieldset', 'cforms'); ?>:</td><td> <code>fieldsetstart</code></td></tr>

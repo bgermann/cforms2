@@ -25,36 +25,62 @@ require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
 
 if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
-	    ###
-	    ###  all valid? get ready to send
-	    ###
-		if( function_exists('my_cforms_filter') )
-			my_cforms_filter($_POST);
+	###
+	###  all valid? get ready to send
+	###
+	if( function_exists('my_cforms_filter') )
+		my_cforms_filter($_POST);
 
-		if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
-			$cflimit = 'reached';
-			return;
-		}
+	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
+		$cflimit = 'reached';
+		return;
+	}
 
-		$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
+	$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
 
-		$track = array();
-		$trackinstance = array();
+	$track = array();
+	$trackinstance = array();
 
-  		$to_one = -1;
-		$ccme = false;
-		$field_email = '';
+	$to_one = -1;
+	$ccme = false;
+	$field_email = '';
 
-		$filefield=0;
-		$taf_youremail = false;
-		$taf_friendsemail = false;
-		$send2author = false;
+	$filefield=0;
+	$taf_youremail = false;
+	$taf_friendsemail = false;
+	$send2author = false;
 
-		$inpFieldArr = array(); // for var[] type input fields
+	$inpFieldArr = array(); // for var[] type input fields
 
-		$key = 0;
+	$captchas = cforms2_get_pluggable_captchas();
 
-		for($i = 1; $i <= $field_count; $i++) {
+	$key = 0;
+
+	for($i = 1; $i <= $field_count; $i++) {
+
+		if ( !$custom )
+			$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i ]);
+		else
+			$field_stat = explode('$#$', $customfields[$i-1]);
+		$field_stat[] = "";
+
+		###  filter non input fields
+		while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
+
+			if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && !$captchaopt['fo']=='1') )
+				break;
+			if ( $field_stat[1] == 'verification' && !(is_user_logged_in() && !$captchaopt['foqa']=='1') )
+				break;
+
+			if ( $field_stat[1] == 'fieldsetstart' ){
+				$track['$$$'.$i] = 'Fieldset'.$fieldsetnr;
+				$track['Fieldset'.$fieldsetnr++] = $field_stat[0];
+			}elseif ( $field_stat[1] == 'fieldsetend' ){
+				$track['FieldsetEnd'.$fieldsetnr++] = '--';
+			}
+
+			### get next in line...
+			$i++;
 
 			if ( !$custom )
 				$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i ]);
@@ -62,128 +88,104 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 				$field_stat = explode('$#$', $customfields[$i-1]);
 			$field_stat[] = "";
 
-			###  filter non input fields
-			while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
+			if( $field_stat[1] == '')
+					break 2; ###  all fields searched, break both while & for
+		}
 
-				if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && !$captchaopt['fo']=='1') )
-					break;
-				if ( $field_stat[1] == 'verification' && !(is_user_logged_in() && !$captchaopt['foqa']=='1') )
-					break;
+		$field_name = $field_stat[0];
+		$field_type = $field_stat[1];
 
-                if ( $field_stat[1] == 'fieldsetstart' ){
-                    $track['$$$'.$i] = 'Fieldset'.$fieldsetnr;
-                    $track['Fieldset'.$fieldsetnr++] = $field_stat[0];
-                }elseif ( $field_stat[1] == 'fieldsetend' ){
-                    $track['FieldsetEnd'.$fieldsetnr++] = '--';
-                }
+		$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
 
-                ### get next in line...
-                $i++;
+		if ( $custom_names ){
 
-                if ( !$custom )
-                    $field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i ]);
-                else
-                    $field_stat = explode('$#$', $customfields[$i-1]);
-				$field_stat[] = "";
+			###preg_match('/^([^#\|]*).*/',$field_name,$input_name);
+			###preg_match('/^([^\|]*).*/',$field_name,$input_name);
+			$tmpName = $field_name; ###hardcoded for now
 
-                if( $field_stat[1] == '')
-                        break 2; ###  all fields searched, break both while & for
+			if ( strpos($tmpName,'[id:')!==false ){
+				$isFieldArray = strpos($tmpName,'[]');
+
+			preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // author: cbacchini
+			$field_name = $input_name[1].$input_name[4];
+			$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
+
+			$current_field = cforms2_sanitize_ids( $customTrackingID );
+
+			} else{
+				if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
+					preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
+				else
+					preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
+				$current_field = cforms2_sanitize_ids($input_name[1]);
+				$customTrackingID='';
 			}
 
-			$field_name = $field_stat[0];
-  			$field_type = $field_stat[1];
+		}
+		else
+			$current_field = 'cf'.$no.'_field_' . $i;
 
-			$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
+		###debug
+		cforms2_dbg("lib_nonajax.php: looking at field: $current_field");
 
-    		if ( $custom_names ){
+		###  dissect field
+		$obj = explode('|', $field_name,3);
+		$obj[]="";
+		$defaultval = stripslashes($obj[1]);
 
-				###preg_match('/^([^#\|]*).*/',$field_name,$input_name);
-				###preg_match('/^([^\|]*).*/',$field_name,$input_name);
-				$tmpName = $field_name; ###hardcoded for now
+		###  strip out default value
+		$field_name = $obj[0];
+		if (!isset ($_POST[$current_field])) 	
+			$_POST[$current_field] = "";
+		###  special Tell-A-Friend fields
+		if ( !$taf_friendsemail && $field_type=='friendsemail' && $field_stat[3]=='1')
+				$field_email = $taf_friendsemail = $_POST[$current_field];
 
-				if ( strpos($tmpName,'[id:')!==false ){
-					$isFieldArray = strpos($tmpName,'[]');
+		if ( !$taf_youremail && $field_type=='youremail' && $field_stat[3]=='1')
+				$taf_youremail = $_POST[$current_field];
 
-				preg_match('/^([^\[]*)\[id:([^\|\]]+(\[\])?)\]([^\|]*).*/',$tmpName,$input_name); // author: cbacchini
-				$field_name = $input_name[1].$input_name[4];
-				$customTrackingID	= cforms2_sanitize_ids( $input_name[2] );
+		if ( $field_type=='friendsname' )
+				$taf_friendsname = $_POST[$current_field];
 
-				$current_field = cforms2_sanitize_ids( $customTrackingID );
-	
-				} else{
-					if( strpos($tmpName,'#')!==false && strpos($tmpName,'#')==0 )
-						preg_match('/^#([^\|]*).*/',$field_name,$input_name); ###special case with checkboxes w/ right label only & no ID
-					else
-						preg_match('/^([^#\|]*).*/',$field_name,$input_name); ###just take front part
-					$current_field = cforms2_sanitize_ids($input_name[1]);
-					$customTrackingID='';
-				}
+		if ( $field_type=='yourname' )
+				$taf_yourname = $_POST[$current_field];
 
+
+		###  special email field in WP Commente
+		if ( $field_type=='email' )
+				$field_email = (isset($_POST['email']))?$_POST['email']:$user->user_email;
+
+
+		###  special radio button WP Comments
+		if( $field_type=='send2author' && $_POST['send2author']=='1') {
+			$send2author=true;
+			continue; ###  don't record it.
+		}
+
+		###  find email address
+		if ( $field_email == '' && $field_stat[3]=='1')
+				$field_email = $_POST[$current_field];
+
+
+		###  special case: select box & radio box
+		if ( $field_type == "checkboxgroup" || $field_type == "multiselectbox" || $field_type == "selectbox" || $field_type == "radiobuttons" ) { ### only needed for field name
+		  $field_name = explode('#',$field_name);
+		  $field_name = $field_name[0];
+		}
+
+
+		###  special case: check box
+		if ( $field_type == "checkbox" || $field_type == "ccbox" ) {
+		  $field_name = explode('#',$field_name);
+		  $field_name = ($field_name[1]=='')?$field_name[0]:$field_name[1];
+			###  if ccbox
+		  if ($field_type == "ccbox" && isset($_POST[$current_field]) ){
+			if( $isMPform )
+			  $ccme = 'cf_form'.$no.'_'.$field_name;
+			 else				 
+			  $ccme = $field_name;
 			}
-			else
-				$current_field = 'cf'.$no.'_field_' . $i;
-
-			###debug
-			cforms2_dbg("lib_nonajax.php: looking at field: $current_field");
-			
-			###  dissect field
-		    $obj = explode('|', $field_name,3);
-			$obj[]="";
-			$defaultval = stripslashes($obj[1]);
-
-			###  strip out default value
-			$field_name = $obj[0];
-			if (!isset ($_POST[$current_field])) 	
-				$_POST[$current_field] = "";
-			###  special Tell-A-Friend fields
-			if ( !$taf_friendsemail && $field_type=='friendsemail' && $field_stat[3]=='1')
-					$field_email = $taf_friendsemail = $_POST[$current_field];
-
-			if ( !$taf_youremail && $field_type=='youremail' && $field_stat[3]=='1')
-					$taf_youremail = $_POST[$current_field];
-
-			if ( $field_type=='friendsname' )
-					$taf_friendsname = $_POST[$current_field];
-
-			if ( $field_type=='yourname' )
-					$taf_yourname = $_POST[$current_field];
-
-
-			###  special email field in WP Commente
-			if ( $field_type=='email' )
-					$field_email = (isset($_POST['email']))?$_POST['email']:$user->user_email;
-
-
-			###  special radio button WP Comments
-			if( $field_type=='send2author' && $_POST['send2author']=='1') {
-				$send2author=true;
-				continue; ###  don't record it.
-			}
-
-			###  find email address
-			if ( $field_email == '' && $field_stat[3]=='1')
-					$field_email = $_POST[$current_field];
-
-
-			###  special case: select box & radio box
-			if ( $field_type == "checkboxgroup" || $field_type == "multiselectbox" || $field_type == "selectbox" || $field_type == "radiobuttons" ) { ### only needed for field name
-			  $field_name = explode('#',$field_name);
-			  $field_name = $field_name[0];
-			}
-
-
-			###  special case: check box
-			if ( $field_type == "checkbox" || $field_type == "ccbox" ) {
-			  $field_name = explode('#',$field_name);
-			  $field_name = ($field_name[1]=='')?$field_name[0]:$field_name[1];
-				###  if ccbox
-			  if ($field_type == "ccbox" && isset($_POST[$current_field]) ){
-				if( $isMPform )
-				  $ccme = 'cf_form'.$no.'_'.$field_name;
-				 else				 
-				  $ccme = $field_name;
-				}
-			}
+		}
 
 
 		if ( $field_type == "emailtobox" ){  				### special case where the value needs to bet get from the DB!
@@ -216,16 +218,12 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
                 $value = '';
 
         }
-		else if ( $field_stat[1] == 'captcha' ) ###  captcha response
-
+		else if ( $field_stat[1] == 'captcha' )
 			$value = $_POST['cforms_captcha'.$no];
 
-		else if ( $field_stat[1] == 'verification' ) { ###  verification Q&A response
+		else if ( array_key_exists($field_stat[1], $captchas) )
+			$value = $_POST[ $field_stat[1] ];
 
-			$value = $_POST['cforms_q'.$no]; ###  add Q&A label!
-			$field_name = __('Q&A','cforms');
-
-		}
 		else if( $field_type == 'cauthor' )  ###  WP Comments special fields
 			$value = ($user->display_name<>'')?$user->display_name:$_POST[$field_type];
 
@@ -241,15 +239,15 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		else if( $field_type == 'hidden' )
 			$value = rawurldecode($_POST[$current_field]);
 
-		else{
-			if( $isFieldArray ){
+		else {
+			if( $isFieldArray ) {
 
-				if( !$inpFieldArr[$current_field] || $inpFieldArr[$current_field]=='' ){
+				if( !$inpFieldArr[$current_field] || $inpFieldArr[$current_field]=='' ) {
 					$inpFieldArr[$current_field]=0;
 				} 
 				$value = $_POST[$current_field][$inpFieldArr[$current_field]++];       ###  covers all other fields' values
 
-			}else
+			} else
 				$value = $_POST[$current_field];       ###  covers all other fields' values
 		}
 
@@ -287,7 +285,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
     ### multi-form session
 	$ongoingSession = 'noSess';
-	if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] ){
+	if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] ) {
 
 		if( $field_email<>'' )
        		$_SESSION['cforms']['email']=$field_email;
@@ -313,7 +311,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
         is_array($_SESSION['cforms']) ){
 			$track = cforms2_all_tracks($_SESSION['cforms']);
             $ongoingSession = '0';
-		}
+	}
 	### debug
 	cforms2_dbg( '$track = '.print_r($track,1) );
 
