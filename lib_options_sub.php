@@ -20,7 +20,6 @@
 	### set to nothing
 	$usermsg='';
 
-	$verification=false;
 	$captcha=false;
 	$ccbox=false;
 	$emailtobox=false;
@@ -57,11 +56,6 @@
 					$taf=true;
 				}
 
-				if( $type=='verification' ){
-					$allgood = $verification?false:true;
-					$usermsg .= $verification?'<span class="exMsg">'.__('Only one <em>Visitor verification</em> field is permitted!', 'cforms').'</span>':'';
-					$verification=true;
-				}
 				if( $type=='captcha' ){
 					$allgood = $captcha?false:true;
 					$usermsg .= $captcha?'<span class="exMsg">'.__('Only one <em>captcha</em> field is permitted!', 'cforms').'</span>':'';

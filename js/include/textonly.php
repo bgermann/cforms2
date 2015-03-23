@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-add_action( 'wp_ajax_cforms2_field_textonly', 'cforms2_field_textonly' );
-
-function cforms2_field_textonly() {
-check_admin_referer( 'cforms2_field_textonly' );
-
 ?>
 
 
@@ -37,5 +31,3 @@ check_admin_referer( 'cforms2_field_textonly' );
 	<input type="text" id="cf_edit_style" name="cf_edit_style" value="">
 
 </form>
-<?php die();
-}

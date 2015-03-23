@@ -1385,6 +1385,83 @@ if ( $cfadmin ) {
 require_once ('lib_ajax.php');
 require_once ('cforms-captcha.php');
 
+function cforms2_field() {
+	check_admin_referer( 'cforms2_field' );
+
+	static $html5 = array(
+		'html5color',
+        'html5date',
+        'html5datetime',
+        'html5datetime-local',
+        'html5email',
+        'html5month',
+        'html5number',
+        'html5range',
+        'html5search',
+        'html5time',
+        'html5url',
+        'html5week',
+        'html5tel'
+	);
+	static $fieldsetstart = array(
+        'fieldsetstart',
+		'fieldsetend'
+	);
+	static $checkbox = array(
+        'ccbox',
+        'checkbox'
+	);
+	static $selectbox = array(
+        'emailtobox',
+        'selectbox',
+        'multiselectbox'
+	);
+	static $textfield = array(
+		'upload',
+		'datepicker',
+		'textfield',
+		'textarea',
+		'pwfield',
+		'hidden',
+		'captcha',
+		'yourname',
+		'youremail',
+		'friendsname',
+		'friendsemail',
+		'cauthor',
+		'email',
+		'url',
+		'comment'
+	);
+	static $checkboxgroup = array(
+        'checkboxgroup',
+        'radiobuttons',
+        'send2author'
+    );
+
+	$type = $_REQUEST['type'];
+	if (in_array($type, $html5))
+		require ('js/include/html5field.php');
+	else if (in_array($type, $checkbox))
+		require ('js/include/checkbox.php');
+	else if (in_array($type, $checkboxgroup))
+		require ('js/include/checkboxgroup.php');
+	else if (in_array($type, $fieldsetstart))
+		require ('js/include/fieldsetstart.php');
+	else if (in_array($type, $selectbox))
+		require ('js/include/selectbox.php');
+	else if (in_array($type, $textfield))
+		require ('js/include/textfield.php');
+	else if ($type == 'textonly')
+		require ('js/include/textonly.php');
+	else {
+		$captchas = cforms2_get_pluggable_captchas();
+		if (array_key_exists($type, $captchas))
+			$captchas[$type]->render_settings();
+	}
+	die();
+}
+
 ### other admin stuff
 if ( is_admin() ) {
 	require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
@@ -1412,16 +1489,10 @@ if ( is_admin() ) {
 
 	} ### if tafenabled
 
+	add_action( 'wp_ajax_cforms2_field', 'cforms2_field' );
+
 	### admin ajax
 	require_once ('js/include/installpreset.php');
-
-	require_once ('js/include/checkbox.php');
-	require_once ('js/include/checkboxgroup.php');
-	require_once ('js/include/fieldsetstart.php');
-	require_once ('js/include/html5field.php');
-	require_once ('js/include/selectbox.php');
-	require_once ('js/include/textfield.php');
-	require_once ('js/include/textonly.php');
 
 	require_once ('js/include/lib_database_deleteentries.php');
 	require_once ('js/include/lib_database_deleteentry.php');

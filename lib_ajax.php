@@ -104,7 +104,7 @@ function cforms2_submitcomment() {
 
 				if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && $captchaopt['fo']!='1') )
 					break;
-				if ( $field_stat[1] == 'verification' && !(is_user_logged_in() && $captchaopt['foqa']!='1') )
+				if ( cforms2_check_pluggable_captchas_authn_users($field_stat[1]) )
 					break;
 
                 if ( $field_stat[1] == 'fieldsetstart' ){

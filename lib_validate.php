@@ -91,9 +91,11 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		}
 	}
 
+	$captchas = cforms2_get_pluggable_captchas();
+
 	### captcha not for logged in users
 	$jump = ($field_stat[1] == 'captcha') && is_user_logged_in() && $captchaopt['fo']<>'1';
-	$jump = $jump || ( ($field_stat[1] == 'verification') && is_user_logged_in() && $captchaopt['foqa']<>'1' );
+	$jump = $jump || cforms2_check_pluggable_captchas_authn_users($field_stat[1]);
 
 	if ( $jump )
 		continue;
@@ -158,7 +160,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		$current_field = $_REQUEST[$field_type];
 
 	$current_field = is_array($current_field) ? $current_field : stripslashes($current_field);
-	$captchas = cforms2_get_pluggable_captchas();
 
 	if ( $field_emailcheck ) {  ### email field
 
@@ -174,7 +175,32 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		if ( !$validations[$i+$off] && $err==0 ) $err=1;
 
 	}
-	else if( $field_required && !in_array($field_type,array('verification','captcha'))  ) { ### just required
+	else if( array_key_exists($field_type, $captchas) ){  ### pluggable captcha
+
+		$validations[$i+$off] = 1;
+		trigger_error(var_export($_REQUEST,1));
+		if ( !$captchas[$field_type]->check_response($_REQUEST[$field_type + '/hint'], $_REQUEST[$field_type]) ) {
+			$validations[$i+$off] = 0;
+			$err = $err ? $err : 2;
+		}
+
+	}
+	else if( $field_type == 'captcha' ){  ### captcha verification
+
+		$validations[$i+$off] = 1;
+
+		$a = explode('+',$_COOKIE['turing_string_'.$no]);
+
+		$a = $a[1];
+		$b = md5( ($captchaopt['i'] == 'i')?strtolower($_REQUEST['cforms_captcha'.$no]):$_REQUEST['cforms_captcha'.$no]);
+
+		if ( $a <> $b ) {
+			$validations[$i+$off] = 0;
+			$err = !($err)?2:$err;
+		}
+
+	}
+	else if( $field_required ) { ### just required
 
 		###debug
 		cforms2_dbg("\t\t ...is required! check: current_field=$current_field");
@@ -220,31 +246,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 
 		if ( !$validations[$i+$off] && $err==0 )
 			$err=1;
-
-	}
-	else if( array_key_exists($field_type, $captchas) ){  ### pluggable captcha
-
-		$validations[$i+$off] = 1;
-		trigger_error(var_export($_REQUEST,1));
-		if ( !$captchas[$field_type]->check_response($_REQUEST[$field_type + '/hint'], $_REQUEST[$field_type]) ) {
-			$validations[$i+$off] = 0;
-			$err = $err ? $err : 2;
-		}
-
-	}
-	else if( $field_type == 'captcha' ){  ### captcha verification
-
-		$validations[$i+$off] = 1;
-
-		$a = explode('+',$_COOKIE['turing_string_'.$no]);
-
-		$a = $a[1];
-		$b = md5( ($captchaopt['i'] == 'i')?strtolower($_REQUEST['cforms_captcha'.$no]):$_REQUEST['cforms_captcha'.$no]);
-
-		if ( $a <> $b ) {
-			$validations[$i+$off] = 0;
-			$err = !($err)?2:$err;
-		}
 
 	}
 	else {

@@ -448,52 +448,6 @@ jQuery(function() {
 
     };
 
-
-    /* ASSOCIATE PROPER POPUP BOX / PHP FILE */
-    var files = {
-        'fieldsetstart'       :'fieldsetstart',
-        'textonly'            :'textonly',
-        'textfield'           :'textfield',
-        'textarea'            :'textfield',
-        'checkbox'            :'checkbox',
-        'checkboxgroup'       :'checkboxgroup',
-        'radiobuttons'        :'checkboxgroup',
-        'selectbox'           :'selectbox',
-        'multiselectbox'      :'selectbox',
-        'upload'              :'textfield',
-        'datepicker'          :'textfield',
-        'pwfield'             :'textfield',
-        'hidden'              :'textfield',
-        'fieldsetend'         :'fieldsetstart',
-        'ccbox'               :'checkbox',
-        'emailtobox'          :'selectbox',
-        'verification'        :'textfield',
-        'captcha'             :'textfield',
-        'yourname'            :'textfield',
-        'youremail'           :'textfield',
-        'friendsname'         :'textfield',
-        'friendsemail'        :'textfield',
-        'cauthor'             :'textfield',
-        'email'               :'textfield',
-        'url'                 :'textfield',
-        'comment'             :'textfield',
-        'send2author'         :'checkboxgroup',
-
-        'html5color'          :'html5field',
-        'html5date'           :'html5field',
-        'html5datetime'       :'html5field',
-        'html5datetime-local' :'html5field',
-        'html5email'          :'html5field',
-        'html5month'          :'html5field',
-        'html5number'         :'html5field',
-        'html5range'          :'html5field',
-        'html5search'         :'html5field',
-        'html5time'           :'html5field',
-        'html5url'            :'html5field',
-        'html5week'           :'html5field',
-        'html5tel'            :'html5field'
-    };
-
     /* LAUNCHED BEFORE AJAX */
     var open = function(hash) {
         hash.w.css('opacity',1).show();
@@ -504,8 +458,9 @@ jQuery(function() {
             {
                 limit    : 25,
                 type     : type,
-                action   : 'cforms2_field_' + files[type],
-                _wpnonce : cforms2_nonces[files[type]]}, load
+                action   : 'cforms2_field',
+                _wpnonce : cforms2_nonces['cforms2_field']
+			}, load
         );
     };
 

@@ -209,13 +209,7 @@ function cforms2_admin_enqueue_scripts() {
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
         'reset_captcha' => wp_create_nonce('cforms2_reset_captcha'),
 
-		'checkbox'      => wp_create_nonce('cforms2_field_checkbox'),
-		'checkboxgroup' => wp_create_nonce('cforms2_field_checkboxgroup'),
-		'fieldsetstart' => wp_create_nonce('cforms2_field_fieldsetstart'),
-		'html5field'    => wp_create_nonce('cforms2_field_html5field'),
-		'selectbox'     => wp_create_nonce('cforms2_field_selectbox'),
-		'textfield'     => wp_create_nonce('cforms2_field_textfield'),
-		'textonly'      => wp_create_nonce('cforms2_field_textonly'),
+		'cforms2_field' => wp_create_nonce('cforms2_field'),
 
         'deleteentries' => wp_create_nonce('database_deleteentries'),
 		'deleteentry'   => wp_create_nonce('database_deleteentry'),
@@ -302,4 +296,9 @@ function cforms2_get_pluggable_captchas() {
 		// implementation consisting of the classname as key and object as value
 		$captchas = apply_filters('cforms2_add_captcha', $captchas);
 	return $captchas;
+}
+function cforms2_check_pluggable_captchas_authn_users($field_type) {
+	$captchas = cforms2_get_pluggable_captchas();
+	return array_key_exists($field_type, $captchas) && is_user_logged_in()
+	       && !$captchas[$field_type]->check_authn_users();
 }

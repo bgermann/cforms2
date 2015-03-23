@@ -50,6 +50,11 @@ abstract class cforms2_captcha {
 	abstract public function check_response($hint, $answer);
 
 	/**
+	 * Renders the HTML required for the settings modal dialog.
+	 */
+	abstract public function render_settings();
+
+	/**
 	 * Adds this instance with the classname as a key to the array.
 	 * 
 	 * @param array $captchas
@@ -119,6 +124,10 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 		$q = explode( '=', $qall[$n]);
 		array_unshift($q, $n);
 		return $q;
+	}
+
+	public function render_settings() {
+		require ('js/include/textfield.php');
 	}
 
 }

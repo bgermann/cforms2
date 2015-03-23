@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-add_action( 'wp_ajax_cforms2_field_selectbox', 'cforms2_field_selectbox' );
-
-function cforms2_field_selectbox() {
-check_admin_referer( 'cforms2_field_selectbox' );
-
 ?>
 
 <form method="post">
@@ -46,5 +40,3 @@ check_admin_referer( 'cforms2_field_selectbox' );
 	<input type="text" id="cf_edit_customerr" name="cf_edit_customerr" value="">
 
 </form>
-<?php die();
-}
