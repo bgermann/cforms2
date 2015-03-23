@@ -282,7 +282,7 @@ function my_cforms_action($cformsdata) {
 ### Your custom user data input filter (ajax)
 ###
 ###
-function my_cforms_ajax_filter($params) {
+function my_cforms_ajax_filter(&$params) {
 
 	### triggers on your third form
 	if ( $params['id']=='3' ) {
