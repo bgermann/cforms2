@@ -58,7 +58,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 } else if( isset($_REQUEST['cforms_rsskeysnew']) ) {
 
 	### new RSS key computed
-	$cformsSettings['global']['cforms_rsskeyall'] = md5(rand());
+	$cformsSettings['global']['cforms_rsskeyall'] = md5(mt_rand());
 	update_option('cforms_settings',$cformsSettings);
 
 } else if( isset($_REQUEST['restoreallcformsdata']) )

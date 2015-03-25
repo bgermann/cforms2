@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 	$cformsSettings['global']['cforms_formcount'] = (string)($FORMCOUNT);
 
 	### new settings container
-	$cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] = md5(rand());
+	$cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] = md5(mt_rand());
 	$cformsSettings['form'.$no]['cforms'.$no.'_rss'] = false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] = 5;
 

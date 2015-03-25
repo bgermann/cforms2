@@ -108,7 +108,7 @@ if( isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_s
 
 ### new RSS key computed
 if( isset($_REQUEST['cforms_rsskeysnew']) ) {
-	$cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] = md5(rand());
+	$cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] = md5(mt_rand());
 	update_option('cforms_settings',$cformsSettings);
 }
 

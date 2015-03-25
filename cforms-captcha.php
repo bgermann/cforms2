@@ -82,7 +82,6 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 	private $cforms_settings;
 
 	public function __construct() {
-		srand(microtime()*1000003);
 		$this->cforms_settings = get_option('cforms_settings');
 	}
 
@@ -120,7 +119,7 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 	private function question_and_answer($n = -1) {
 		$qall = explode( "\r\n", $this->cforms_settings['global']['cforms_sec_qa'] );
 		if ($n < 0)
-			$n = rand( 0, count($qall)-1 );
+			$n = mt_rand( 0, count($qall)-1 );
 		$q = explode( '=', $qall[$n]);
 		array_unshift($q, $n);
 		return $q;
@@ -132,7 +131,7 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 
 }
 
-add_action('cforms2_add_captcha', array(new cforms2_question_and_answer(), 'add_instance'));
+add_filter('cforms2_add_captcha', array(new cforms2_question_and_answer(), 'add_instance'));
 
 add_action( 'wp_ajax_cforms2_reset_captcha', 'cforms2_reset_captcha' );
 add_action( 'wp_ajax_nopriv_cforms2_reset_captcha', 'cforms2_reset_captcha' );
