@@ -635,7 +635,7 @@ function cforms2($args = '',$no = '') {
 		if($standard_field) {
 			$content .= '<li'.$liID.' class="'.$liERR.'">'.$insertErr;
 			if (!in_array($field_type, array_keys($captchas)))
-				$content .= '<label' . $labelID . ' for="'.$input_id.'"'. $field_type == 'captcha' ? ' class="seccap"' : '' . '><span>' . stripslashes(($field_name)) . '</span></label>';
+				$content .= '<label' . $labelID . ' for="'.$input_id.'"'. ($field_type == 'captcha' ? ' class="seccap"' : '') . '><span>' . stripslashes(($field_name)) . '</span></label>';
 		}
 
 
