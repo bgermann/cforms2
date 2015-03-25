@@ -190,6 +190,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.2 =
+* bugfix:   eliminate scattered > and missing labels
+* bugfix:   fix corrupt settings page path
+
 = 14.9.1 =
 * enhanced: convert Q&A feature to the new pluggable captcha API
 * added:    pluggable captcha API
