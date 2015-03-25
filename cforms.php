@@ -63,10 +63,10 @@ if ( !is_array($cformsSettings) ){
     return;
 }
 function cforms2_settings_corrupted() {
-	$tmp = plugin_dir_path(dirname(__FILE__));
+	$tmp = plugin_dir_path(__FILE__).'cforms-corrupted.php';
 
-	add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php', '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
-	add_submenu_page($tmp.'cforms-corrupted.php', __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp.'cforms-corrupted.php' );
+	add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp, '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
+	add_submenu_page($tmp, __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp );
 
     add_action('admin_enqueue_scripts', 'cforms2_enqueue_style_admin' );
 }
