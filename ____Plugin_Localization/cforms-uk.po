@@ -107,11 +107,9 @@ msgstr "Вибрано нову тему."
 
 #: cforms-css.php:94
 msgid ""
-"Please select a theme file that comes closest to what you're looking for and "
-"apply your own custom changes via the editor below."
+"Please select a theme file that comes closest to what you're looking for."
 msgstr ""
-"Будь-ласка, виберіть файл, який підходить під цю тему та внесіть потрібні "
-"зміни через редактор внизу."
+"Будь-ласка, виберіть файл, який підходить під цю тему."
 
 #: cforms-css.php:95
 msgid ""
@@ -2260,14 +2258,12 @@ msgid ""
 "If you intend to make certain fields \"required\", I further recommend you "
 "add the text \"<em>required</em>\" to the input field label and set this "
 "style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
-"to <code  style=\"color:red\">display:none;</code> (using the CSS editor on "
-"the <em>Styling</em> page)"
+"to <code  style=\"color:red\">display:none;</code>"
 msgstr ""
 "Якщо ви маєте намір зробити деякі поля \"обов'язковими\", я надалі "
 "рекомендую вам добавити текст \"<em>обов'язкове</em>\" до мітки полів вводу "
 "і встановити цей стиль: <code  style=\"color:red\">span.reqtxt, span."
-"emailreqtxt {...</code> до <code  style=\"color:red\">display:none;</code> "
-"(використовуючи CSS редактор на сторінці <em>Дизайн</em>)"
+"emailreqtxt {...</code> до <code  style=\"color:red\">display:none;</code>"
 
 #: cforms-help.php:788
 msgid ""

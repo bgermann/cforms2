@@ -106,11 +106,9 @@ msgstr "Nytt tema valgt."
 
 #: cforms-css.php:94
 msgid ""
-"Please select a theme file that comes closest to what you're looking for and "
-"apply your own custom changes via the editor below."
+"Please select a theme file that comes closest to what you're looking for."
 msgstr ""
-"Velg et tema fil som kommer nærmest det du leter etter og søke dine egne "
-"endringer via redaktøren nedenfor."
+"Velg et tema fil som kommer nærmest det du leter etter."
 
 #: cforms-css.php:95
 msgid ""
@@ -2262,14 +2260,13 @@ msgid ""
 "If you intend to make certain fields \"required\", I further recommend you "
 "add the text \"<em>required</em>\" to the input field label and set this "
 "style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
-"to <code  style=\"color:red\">display:none;</code> (using the CSS editor on "
-"the <em>Styling</em> page)"
+"to <code  style=\"color:red\">display:none;</code>"
 msgstr ""
 "Hvis du har tenkt å gjøre visse felter \"nødvendige \", jeg videre anbefaler "
-"at du legger til teksten  \"<em> nødvendig </ em> \" til inntastingsfeltet  "
+"at du legger til teksten  \"<em> nødvendig </em> \" til inntastingsfeltet  "
 "etiketten  og sett denne stilen: <code style = \"farge: rød \"> span.reqtxt, "
-"span.emailreqtxt  {...</  code> for å <code style=\"color:red\">  display:  "
-"none; </ code> (ved hjelp av CSS editor på <em> Styling </ em> siden)"
+"span.emailreqtxt  {...</code> for å <code style=\"color:red\">  display:  "
+"none; </code>"
 
 #: cforms-help.php:788
 msgid ""

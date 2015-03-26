@@ -107,11 +107,10 @@ msgstr "Neues Design ausgewählt."
 
 #: cforms-css.php:94
 msgid ""
-"Please select a theme file that comes closest to what you're looking for and "
-"apply your own custom changes via the editor below."
+"Please select a theme file that comes closest to what you're looking for."
 msgstr ""
 "Bitte markiere eine Design-Datei, die deinen Ansprüchen am ehesten gerecht "
-"wird, und nimm deine individuellen Änderungen mit Hilfe des Editors vor."
+"wird."
 
 #: cforms-css.php:95
 msgid ""
@@ -1114,7 +1113,7 @@ msgstr "Feldgruppen"
 
 #: cforms-help.php:50 cforms-help.php:829
 msgid "Using regular expressions with form fields"
-msgstr "Nutze regul Ausdrücke für Formularfelder"
+msgstr "Nutze reguläre Ausdrücke für Formularfelder"
 
 #: cforms-help.php:52 cforms-help.php:898
 msgid "Custom error messages &amp; input field titles"
@@ -2258,8 +2257,7 @@ msgid ""
 "If you intend to make certain fields \"required\", I further recommend you "
 "add the text \"<em>required</em>\" to the input field label and set this "
 "style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
-"to <code  style=\"color:red\">display:none;</code> (using the CSS editor on "
-"the <em>Styling</em> page)"
+"to <code  style=\"color:red\">display:none;</code>"
 msgstr ""
 "Wenn du vor hast, einige Felder \"notwendig\" zu machen, empfehlen wir dir, "
 "diesen Text \"notwendig\" zum Eingabefeld zu schreiben und den Style <code  "

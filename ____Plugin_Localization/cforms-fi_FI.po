@@ -105,13 +105,9 @@ msgstr "Uusi teema valittu."
 
 #: cforms-css.php:94
 msgid ""
-"Please select a theme file that comes closest to what you're looking for and "
-"apply your own custom changes via the editor below."
+"Please select a theme file that comes closest to what you're looking for."
 msgstr ""
-"Did you mean: Please select a theme file that comes closest to what you're "
-"looking for and apply your own custom changes to the editor below.Valitse "
-"teema tiedosto, joka tulee lähinnä mitä etsit ja soveltaa omia muutoksia "
-"kautta editorin alla."
+"Valitse teema tiedosto, joka tulee lähinnä mitä etsit."
 
 #: cforms-css.php:95
 msgid ""
@@ -2263,14 +2259,13 @@ msgid ""
 "If you intend to make certain fields \"required\", I further recommend you "
 "add the text \"<em>required</em>\" to the input field label and set this "
 "style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
-"to <code  style=\"color:red\">display:none;</code> (using the CSS editor on "
-"the <em>Styling</em> page)"
+"to <code  style=\"color:red\">display:none;</code>"
 msgstr ""
 "Jos aiot tehdä tiettyjä kenttiä \"tarvitaan\", olen edelleen suosittelen "
 "lisäät tekstiä \"<em> tarvitaan </em> \" tuloon kentän otsikon ja asettaa "
 "tähän tyyliin: <koodi style = \"väri: punainen \"> span.reqtxt, span."
 "emailreqtxt {... </code> ja <code style=\"color:red\"> display: none; </"
-"code> (käyttämällä CSS-editori on <em> Styling </em> sivu)"
+"code>"
 
 #: cforms-help.php:788
 msgid ""

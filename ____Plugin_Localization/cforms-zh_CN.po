@@ -99,11 +99,9 @@ msgstr "新主题已经被选定。"
 
 #: cforms-css.php:94
 msgid ""
-"Please select a theme file that comes closest to what you're looking for and "
-"apply your own custom changes via the editor below."
+"Please select a theme file that comes closest to what you're looking for."
 msgstr ""
-"请选择一个与您想要的表单样式最接近的主题文件，然后通过下面的编辑器把您的自定"
-"义修改应用上去。"
+"请选择一个与您想要的表单样式最接近的主题文件。"
 
 #: cforms-css.php:95
 msgid ""
@@ -2157,13 +2155,11 @@ msgid ""
 "If you intend to make certain fields \"required\", I further recommend you "
 "add the text \"<em>required</em>\" to the input field label and set this "
 "style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
-"to <code  style=\"color:red\">display:none;</code> (using the CSS editor on "
-"the <em>Styling</em> page)"
+"to <code  style=\"color:red\">display:none;</code>"
 msgstr ""
 "如果您想要设定某些域为“必填”，我推荐您在输入域标签上要加上提示“必填”，并且把"
 "<code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> 设定成 "
-"<code  style=\"color:red\">display:none;</code>（在<em>样式</em>页面使用CSS编"
-"辑器来设定）"
+"<code  style=\"color:red\">display:none;</code>"
 
 #: cforms-help.php:788
 msgid ""

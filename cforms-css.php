@@ -74,8 +74,7 @@ if ( !empty($_POST['style']) ){
 <div class="wrap" id="top">
 		<div id="icon-cforms-css" class="icon32"><br/></div><h2><?php _e('Styling your forms','cforms')?></h2>
 
-	<p><?php _e('Please select a theme file that comes closest to what you\'re looking for and apply your own custom changes via the editor below.', 'cforms') ?></p>
-	<p><?php _e('This is <strong>optional</strong> of course, if you\'re happy with the default look and feel, no need to do anything here.', 'cforms') ?></p>
+	<p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms') ?></p>
 
 	<form id="selectcss" method="post" action="" name="selectcss">
 			 <fieldset class="cformsoptions">

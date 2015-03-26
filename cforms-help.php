@@ -764,7 +764,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 					<strong><?php _e('Suggestions:', 'cforms'); ?></strong>
 					<ol>
 						<li><?php echo sprintf(__('I recommend you choose the <strong>wide_form.css</strong> theme under the <a href="%s">Styling</a> menu. And adjust to your liking.', 'cforms'),'?page='.$plugindir.'/cforms-css.php'); ?></li>
-						<li><?php _e('If you intend to make certain fields "required", I further recommend you add the text "<em>required</em>" to the input field label and set this style: <code  style="color:red">span.reqtxt, span.emailreqtxt {...</code> to <code  style="color:red">display:none;</code> (using the CSS editor on the <em>Styling</em> page)', 'cforms'); ?></li>
+						<li><?php _e('If you intend to make certain fields "required", I further recommend you add the text "<em>required</em>" to the input field label and set this style: <code  style="color:red">span.reqtxt, span.emailreqtxt {...</code> to <code  style="color:red">display:none;</code> ', 'cforms'); ?></li>
 					</ol>
 				</td>
 			</tr>

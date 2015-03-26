@@ -108,11 +108,9 @@ msgstr "Нова тема је изабрана."
 
 #: cforms-css.php:94
 msgid ""
-"Please select a theme file that comes closest to what you're looking for and "
-"apply your own custom changes via the editor below."
+"Please select a theme file that comes closest to what you're looking for."
 msgstr ""
-"Изаберите датотеку за тему која најближе одговара ономе што  тражите  и "
-"примените своје измене  у едитору испод."
+"Изаберите датотеку за тему која најближе одговара ономе што  тражите."
 
 #: cforms-css.php:95
 msgid ""
@@ -2274,14 +2272,13 @@ msgid ""
 "If you intend to make certain fields \"required\", I further recommend you "
 "add the text \"<em>required</em>\" to the input field label and set this "
 "style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
-"to <code  style=\"color:red\">display:none;</code> (using the CSS editor on "
-"the <em>Styling</em> page)"
+"to <code  style=\"color:red\">display:none;</code>"
 msgstr ""
 "Уколико намеравате да одређена поља дефинишете као \"обавезно \", "
 "препоручујем Вам да додате текст \"<em> обавезно </еm> \" у ознаку поља за "
 "унос и  подесите овај стил: <code style = \"color:red \"> span.reqtxt, span."
-"emailreqtxt {...</ code> za <code style=\"color:red\"> display: none; </ "
-"code> (користећи CSS едитор на <em> Styling </ em> страни)"
+"emailreqtxt {...</code> za <code style=\"color:red\"> display: none; </"
+"code>"
 
 #: cforms-help.php:788
 msgid ""
