@@ -856,13 +856,13 @@ msgstr "Налаштування перевірки користувача (В �
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
-"the corresponding input field \"<code>Visitor verification</code>\" "
+"the corresponding input field %s "
 "preferably in its own FIELDSET!"
 msgstr ""
 "Отримуєте купу <strong>СПАМУ</strong>? Користуйтесь цими Відповідями-"
 "Запитаннями, щоб уникнути спаму та бути впевненим, що форму заповнює людина. "
-"Щоб використати це у формі, добавте відповідне поле вводу\"<code>Перевірка "
-"користувача</code>\" і бажано у власному філдсеті!"
+"Щоб використати це у формі, добавте відповідне поле вводу %s "
+"і бажано у власному філдсеті!"
 
 #: cforms-global-settings.php:614
 msgid "Force Q&amp;A display for logged in users"

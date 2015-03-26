@@ -861,11 +861,11 @@ msgstr "Настройка защиты от спама  (вопрос-отве�
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
-"the corresponding input field \"<code>Visitor verification</code>\" "
+"the corresponding input field %s "
 "preferably in its own FIELDSET!"
 msgstr ""
 "Достал <strong>СПАМ</strong>? Включите защиту от спама «вопрос-ответ»: при "
-"создании формы выберите типа поля \"<code>защита от спама</code>\"!"
+"создании формы выберите типа поля %s!"
 
 #: cforms-global-settings.php:614
 msgid "Force Q&amp;A display for logged in users"

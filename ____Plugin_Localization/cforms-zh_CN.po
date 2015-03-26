@@ -833,11 +833,11 @@ msgstr "问答题验证码设置"
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
-"the corresponding input field \"<code>Visitor verification</code>\" "
+"the corresponding input field %s "
 "preferably in its own FIELDSET!"
 msgstr ""
 "有很多<strong>SPAM</strong>？使用这些问答题来阻止spam并确保表单都是由人提交的"
-"吧。要在您的表单中插入，添加对应的输入域“<code>用户验证问题</code>”即可，最好"
+"吧。要在您的表单中插入，添加对应的输入域%s即可，最好"
 "添加到一个专门的FIELDSET里！"
 
 #: cforms-global-settings.php:614

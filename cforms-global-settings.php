@@ -600,7 +600,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
             </div>
 
 			<div class="cf-content" id="o13">
-				<p><?php _e('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field "<code>Visitor verification</code>" preferably in its own FIELDSET!', 'cforms') ?></p>
+				<p><?php echo sprintf(__('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field %s preferably in its own FIELDSET!', 'cforms'), '<code>' . __('Visitor verification (Q&amp;A)', 'cforms') . '</code>'); ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
