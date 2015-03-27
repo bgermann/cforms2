@@ -65,7 +65,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$field_stat[] = "";
 
 		###  filter non input fields
-		while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
+		while ( in_array($field_stat[1], array_merge(array_keys($captchas), array('fieldsetstart','fieldsetend','textonly','captcha'))) ) {
 
 			if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && !$captchaopt['fo']=='1') )
 				break;
@@ -75,7 +75,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			if ( $field_stat[1] == 'fieldsetstart' ){
 				$track['$$$'.$i] = 'Fieldset'.$fieldsetnr;
 				$track['Fieldset'.$fieldsetnr++] = $field_stat[0];
-			}elseif ( $field_stat[1] == 'fieldsetend' ){
+			} elseif ( $field_stat[1] == 'fieldsetend' ){
 				$track['FieldsetEnd'.$fieldsetnr++] = '--';
 			}
 

@@ -12,14 +12,27 @@ cformsII is the most customizable, flexible & powerful ajax supporting contact f
 
 == Description ==
 
-This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi form management, you can even have multiple forms on the same page!
+This is a fork of cformsII, a highly customizable, flexible and powerful form
+builder plugin, covering a variety of use cases and features from attachments to
+multi form management, you can even have multiple forms on the same page!
 
-Oliver, the original author, does not further develop the plugin. This fork is an effort to keep it up to date.
-If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms".
+Oliver, the original author, does not further develop the plugin.
+This fork is an effort to keep it up to date.
+If you want to use plugin versions older than 14.6.3, you should rename the
+directory containing the plugin from "cforms2" to "cforms".
+
+= Related Plugins =
+
+cformsII has pluggable CAPTCHA support.
+[Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
+provides an image CAPTCHA. With future cformsII version 14.11 the now built-in
+CAPTCHA will be removed in favour of that plugin.
 
 = Credits =
 
-Some icons are based on the wonderful [Glyphicons](http://glyphicons.com) Halflings set of Jan Kovařík, taken from Twitter Bootstrap (MIT license, see images/LICENSE file).
+Some icons are based on the wonderful [Glyphicons](http://glyphicons.com)
+Halflings set of Jan Kovařík, taken from Twitter Bootstrap
+(MIT license, see images/LICENSE file).
 
 Translations are provided by:
 
@@ -62,13 +75,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = Installing the plugin =
 
-You can install the plugin via Wordpress Dashboard. It should show up by searching
-for cforms2. If this does not work for you, there should be an option to upload a
-zip file, which is available on the
+You can install the plugin via Wordpress Dashboard. It should show up by
+searching for cforms2. If this does not work for you, there should be an option
+to upload a zip file, which is available on the
 [wordpress.org plugin directory](https://wordpress.org/plugins/cforms2/).
 
-If you want to install manually, please upload the complete plugin folder "cforms2",
-contained in the zip file, to your WP plugin directory!
+If you want to install manually, please upload the complete plugin folder
+"cforms2", contained in the zip file, to your WP plugin directory!
 
 If you want to check integrity of the download, please use the cforms2.*.zip.sig
 GPG signature files that are published via
@@ -80,43 +93,49 @@ The git tags themselves are also signed beginning with version 14.8.
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please
-upgrade to the original version 14.6 first, make sure you upgraded your settings and
-backup your database. Then deactivate the original plugin and install this fork.
+upgrade to the original version 14.6 first, make sure you upgraded your settings
+and backup your database. Then deactivate the original plugin and install this
+fork.
 
-If you want to delete the original version, make sure you do not delete your upload
-directory.
+If you want to delete the original version, make sure you do not delete your
+upload directory.
 
 = Did you modify any cforms theme (CSS) files, images etc? =
 
-Create a custom folder under your WP plugin directory & call it "cforms-custom". Move
-all your custom files into it. This folder will protect your changes going forward.
+Create a custom folder under your WP plugin directory & call it "cforms-custom".
+Move all your custom files into it. This folder will protect your changes going
+forward.
 
-Also note that it is always advisable to make or keep a backup of your
-current plugin directory just in case you need to revert back to a
-previous release!
-
-Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf) on layout customization.
+Check out the
+[cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf)
+on layout customization.
 
 
 == Frequently Asked Questions ==
 
 = I do not get any emails from my form. Why? =
 
-Most pobably this is not cformsII's fault. Please check your Wordpress mail configuration with a plugin like [Check Email](https://wordpress.org/plugins/check-email/).
+Most pobably this is not cformsII's fault. Please check your Wordpress mail
+configuration with a plugin like
+[Check Email](https://wordpress.org/plugins/check-email/).
 
 = Where can I find old cformsII versions? =
 
-You can find old versions in the [Developers section](https://wordpress.org/plugins/cforms2/developers/).
+You can find old versions in the
+[Developers section](https://wordpress.org/plugins/cforms2/developers/).
 
 = Where are the external SMTP settings? =
 
-That function was removed. The Wordpress function wp_mail is now used for mails, which makes use of built-in PHPMailer.
-If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+That function was removed. The Wordpress function wp_mail is now used for mails,
+which makes use of built-in PHPMailer.
+If you want to configure it to use an external SMTP server, use an appropriate
+plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
 
 = I upgraded and lost my widgets. What can I do? =
 
 Beginning with 14.6.10 Wordpress 2.8 Widget API is used for cforms widgets.
-You have to recreate your widgets. You can find your old settings in debug output on the Global Settings Admin menu.
+You have to recreate your widgets. You can find your old settings in debug
+output on the Global Settings Admin menu.
 Just search for widgets with your browser's search.
 
 = How can I contribute code? =
@@ -126,22 +145,34 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 == Localization ==
 
-If your language is set correctly the language file in the ____Plugin_Localization directory should be picked up immediately.
+If your language is set correctly the language file in the
+____Plugin_Localization directory should be picked up immediately.
 
-You can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/), which also work with this fork.
-If there is a language file available for you, but it is not included in the standard distribution, please put the cforms-*.mo file in the wp-content/languages/plugins directory.
+You can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
+which also work with this fork.
+If there is a language file available for you, but it is not included in the
+standard distribution, please put the cforms-*.mo file into the
+wp-content/languages/plugins directory.
 
-If you would like to contribute a new language file, please [submit a GitHub pull request](https://github.com/bgermann/cforms2/pulls) with the translation file included.
-It has to be GPL licensed. If an available translation on the original website is not GPL licensed (they can, because cformsII did not start as GPL project),
+If you would like to contribute a new language file, please
+[submit a GitHub pull request](https://github.com/bgermann/cforms2/pulls)
+with the translation file included.
+It has to be GPL licensed. If an available translation on the original website
+is not GPL licensed (they can, because cformsII did not start as GPL project),
 you must not redistribute it as long as it is not your translation.
 
 
 == Donations ==
 
-This fork is originally developed for the website of [tatkräftig](http://tatkraeftig.org) (only German), a German charitable organization that encourages and supports people in social engagement.
-If you can afford it, please consider [making a donation](https://www.betterplace.org/organisations/tatkraeftig/donations/new) to support that organization and further development.
+This fork is originally developed for the website of
+[tatkräftig](http://tatkraeftig.org) (only German), a German charitable
+organization that encourages and supports people in social engagement.
+If you can afford it, please consider
+[making a donation](https://www.betterplace.org/organisations/tatkraeftig/donations/new)
+to support that organization and further development.
 
-The original author who developed cforms until 2012 also has a [donation page](http://www.deliciousdays.com/cforms-donation).
+The original author who developed cforms until 2012 also has a
+[donation page](http://www.deliciousdays.com/cforms-donation).
 
 
 == Roadmap ==
@@ -189,6 +220,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.9.3 =
+* bugfix:   pluggable captchas are checked for AJAX forms
 
 = 14.9.2 =
 * bugfix:   eliminate scattered > and missing labels

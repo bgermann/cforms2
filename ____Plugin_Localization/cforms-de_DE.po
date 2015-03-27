@@ -582,7 +582,7 @@ msgstr "Leer lassen, um den cforms Header immer auf deinem Blog einzubinden."
 
 #: cforms-global-settings.php:338
 msgid "Popup Date Picker"
-msgstr "Popup Datumswahl"
+msgstr "Datumswähler"
 
 #: cforms-global-settings.php:342
 #, php-format
@@ -592,7 +592,7 @@ msgid ""
 "field</strong> for you to add to your form. See <a href=\"%s\" %s>Help!</a> "
 "for more info and <strong>date formats</strong>."
 msgstr ""
-"Wenn du einen auf Javascript basierenden Datumswähler anbieten möchtest, "
+"Wenn du einen auf JavaScript basierenden Datumswähler anbieten möchtest, "
 "aktiviere dieses Feature hier. Dies wird ein neues Eingabefeld hinzufügen, "
 "damit du es nutzen kannst. Für weitere Informationen steht dir die <a href="
 "\"%s\" %s>Hilfe</a> bereit."
@@ -1477,9 +1477,9 @@ msgid ""
 "date format (\"mm/dd/yyyy\" !)"
 msgstr ""
 "Das Beispiel oberhalb wird einen Standardwert von \"mm/dd/yyyy\" festlegen, "
-"sodass der Benutzer das erwartete Format erfährt. Beachte: Unter der  <a "
-"href=\"%s\" %s>configure the date picker options</a> muss du Einstellungen "
-"vornehmen, damit das Format  (\"mm/dd/yyyy\" !) identisch ist."
+"sodass der Benutzer das erwartete Format erfährt. Beachte: Du musst auch <a "
+"href=\"%s\" %s>den Datumswähler konfigurieren</a>, "
+"damit das Datumsformat identisch ist (\"mm/dd/yyyy\" !)."
 
 #: cforms-help.php:189
 msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
