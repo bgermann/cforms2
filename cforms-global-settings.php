@@ -67,7 +67,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
 		
-	$cformsSettings['global']['cforms_html5'] 		  = cforms2_get_from_request('cforms_html5','1','0');
+	$cformsSettings['global']['cforms_html5'] 		  = cforms2_get_boolean_from_request('cforms_html5');
 	$cformsSettings['global']['cforms_show_quicktag'] = cforms2_get_boolean_from_request('cforms_show_quicktag');
 	$cformsSettings['global']['cforms_sec_qa'] = 		cforms2_get_from_request('cforms_sec_qa');
 	$cformsSettings['global']['cforms_codeerr'] = 		cforms2_get_from_request('cforms_codeerr');
