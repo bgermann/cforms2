@@ -19,7 +19,7 @@
 
 function cforms2_setup_db () {
 global $wpdb, $cformsSettings, $localversion;
-$cformsSettings = (array) $cformsSettings;
+$cformsSettings = get_option('cforms_settings');
 
 ### new global settings container
 
@@ -220,11 +220,7 @@ $cformsSettings['global']['cforms_dp_days'] = str_replace('"', '', $cformsSettin
 $cformsSettings['global']['cforms_dp_months'] = str_replace('"', '', $cformsSettings['global']['cforms_dp_months']);
 
 ### UPDATE 'the one'
-if ( get_option('cforms_settings') )
-    update_option('cforms_settings',$cformsSettings);
-else
-    add_option('cforms_settings',$cformsSettings);
-
+update_option('cforms_settings',$cformsSettings);
 
 
 ### updates existing tracking db

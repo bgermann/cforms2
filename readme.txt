@@ -223,6 +223,7 @@ GPL compliance!
 
 = 14.9.3 =
 * bugfix:   pluggable captchas are checked for AJAX forms
+* bugfix:   settings are not removed anymore on plugin activation
 
 = 14.9.2 =
 * bugfix:   eliminate scattered > and missing labels
