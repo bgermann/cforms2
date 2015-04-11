@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2014-12-26 19:57+0100\n"
-"PO-Revision-Date: 2014-12-27 01:10+0100\n"
+"PO-Revision-Date: 2015-04-11 16:49+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Stas Mykhajlyuk <office@kosivart.com>\n"
 "Language: uk\n"
@@ -108,8 +108,7 @@ msgstr "Вибрано нову тему."
 #: cforms-css.php:94
 msgid ""
 "Please select a theme file that comes closest to what you're looking for."
-msgstr ""
-"Будь-ласка, виберіть файл, який підходить під цю тему."
+msgstr "Будь-ласка, виберіть файл, який підходить під цю тему."
 
 #: cforms-css.php:95
 msgid ""
@@ -856,13 +855,12 @@ msgstr "Налаштування перевірки користувача (В �
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
-"the corresponding input field %s "
-"preferably in its own FIELDSET!"
+"the corresponding input field %s preferably in its own FIELDSET!"
 msgstr ""
 "Отримуєте купу <strong>СПАМУ</strong>? Користуйтесь цими Відповідями-"
 "Запитаннями, щоб уникнути спаму та бути впевненим, що форму заповнює людина. "
-"Щоб використати це у формі, добавте відповідне поле вводу %s "
-"і бажано у власному філдсеті!"
+"Щоб використати це у формі, добавте відповідне поле вводу %s і бажано у "
+"власному філдсеті!"
 
 #: cforms-global-settings.php:614
 msgid "Force Q&amp;A display for logged in users"
@@ -3242,8 +3240,10 @@ msgid "Defining first, next and last form via configuration"
 msgstr "Визначення першої, наступної та останньої форми через налаштування"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
-msgstr "Перевизначення \"наступної форми\" динамічно через my-functions.php.txt"
+msgid ""
+"Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgstr ""
+"Перевизначення \"наступної форми\" динамічно через my-functions.php.txt"
 
 #: cforms-help.php:1449
 msgid "Optionally send/suppress partial admin emails on a per form basis"
@@ -3335,8 +3335,8 @@ msgstr ""
 "Навряд чи простий користувач буде це читати (користуватись цими функціями), "
 "а якщо і буде, то технічну англійську він знає :) Accessing %1$s {custom "
 "variables} %2$s in the final form differs from how you would reference these "
-"in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to "
-"examine the user data array; e.g. %1$s{Email}%2$s would become "
+"in individual forms. Use the %1$s mail() %2$s example in my-functions.php."
+"txt to examine the user data array; e.g. %1$s{Email}%2$s would become "
 "%1$s{cf_form_Email}%2$s (for the first form of the series)."
 
 #: cforms-help.php:1490

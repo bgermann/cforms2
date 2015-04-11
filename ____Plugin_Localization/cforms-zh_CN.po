@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2014-11-17 20:22+0100\n"
-"PO-Revision-Date: 2014-11-17 20:33+0100\n"
+"PO-Revision-Date: 2015-04-11 16:50+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Charles Tang <tangchao.zju@gmail.com>\n"
 "Language: zh_CN\n"
@@ -100,8 +100,7 @@ msgstr "新主题已经被选定。"
 #: cforms-css.php:94
 msgid ""
 "Please select a theme file that comes closest to what you're looking for."
-msgstr ""
-"请选择一个与您想要的表单样式最接近的主题文件。"
+msgstr "请选择一个与您想要的表单样式最接近的主题文件。"
 
 #: cforms-css.php:95
 msgid ""
@@ -833,12 +832,11 @@ msgstr "问答题验证码设置"
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
-"the corresponding input field %s "
-"preferably in its own FIELDSET!"
+"the corresponding input field %s preferably in its own FIELDSET!"
 msgstr ""
 "有很多<strong>SPAM</strong>？使用这些问答题来阻止spam并确保表单都是由人提交的"
-"吧。要在您的表单中插入，添加对应的输入域%s即可，最好"
-"添加到一个专门的FIELDSET里！"
+"吧。要在您的表单中插入，添加对应的输入域%s即可，最好添加到一个专门的FIELDSET"
+"里！"
 
 #: cforms-global-settings.php:614
 msgid "Force Q&amp;A display for logged in users"
@@ -3083,7 +3081,8 @@ msgid "Defining first, next and last form via configuration"
 msgstr "通过配置定义第一个，下一个和最后一个表单"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgid ""
+"Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
 msgstr "通过my-functions.php.txt在运行时（动态地）重新定义\"下张表单\" "
 
 #: cforms-help.php:1449
@@ -3946,15 +3945,12 @@ msgid "Enable RSS feed to track new submissions"
 msgstr "启用一个RSS供稿来追踪新的表单提交"
 
 #: cforms-options.php:720
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "For the RSS feed to work you must have %sDatabase Tracking%s turned on under "
 "<em>Global-Settings</em>! In order to pick &amp; include input fields in "
 "your feed your Tracking page must show at least one record for reference."
 msgstr ""
-"为了使RSS能够正常工作，您必须在<em>全局设定</em>中启用 %s数据库跟踪%s！In "
-"order to pick & include input fields in your feed you must have at least on "
-"submission in the database for reference."
 
 #: cforms-options.php:739
 msgid "Form fields included in feed:"
