@@ -222,7 +222,6 @@ GPL compliance!
 == Changelog ==
 
 = 14.9.3 =
-* bugfix:   pluggable captchas are checked for AJAX forms
 * bugfix:   settings are not removed anymore on plugin activation
 * bugfix:   make HTML5 checkbox have the right status (global settings)
 * bugfix:   do not depend on slash in request string to check for admin page (WordPress 4.2 incompatibility)
