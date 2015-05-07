@@ -123,8 +123,7 @@ function cforms_validate(no, upload) {
         var params;
         if ( no=='' ) params = '1'; else params = no;
 
-        var formId = 'cforms'+no+'form';
-        var objColl = document.getElementById(formId).getElementsByTagName('*');
+        var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
 
         for (var i = 0, j = objColl.length; i < j; i++) {
 
@@ -185,8 +184,6 @@ function cforms_validate(no, upload) {
                     params = params + '+++' + objColl[i].value;
                 } else if ( typ == "hidden" && objColl[i].name.match(/comment_parent/) ) {
                     params = params + '+++' + objColl[i].value;
-				} else if ( typ == "hidden" && objColl[i].name.match(/\/hint$/) ) {
-                    params = params + ':::' + objColl[i].value;
                 } else if ( typ == "hidden" && objColl[i].className.match(/cfhidden/) ) {
                     params = params + prefix + objColl[i].value;
                 } else if ( typ != "hidden" && typ != "submit" && typ != "radio") {
@@ -195,11 +192,10 @@ function cforms_validate(no, upload) {
             }
         }
 
-        // Override params, TODO check what else has to be done to delete the above code
-		params = jQuery('#' + formId).serialize();
         var post_data = 'action=submitcomment&_wpnonce='
             + cforms2_ajax.nonces['submitcomment']
-            + '&' + params;
+            + "&rsargs="
+            + encodeURIComponent(params);
         jQuery.post(
             cforms2_ajax.url,
             post_data,
