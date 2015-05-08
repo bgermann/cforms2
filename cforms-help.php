@@ -163,8 +163,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Javascript Date Picker', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-dp.png"  alt=""/>
-		<table class="hf" cellspacing="2" border="4">
+		<table class="hf" cellspacing="2" border="4" width="95%">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
 				<td class="bright"><?php echo sprintf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms'),'<span style="color:red; font-weight:bold;">|</span>','#regexp'); ?></td>
@@ -176,17 +175,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<tr>
 				<td class="ball" colspan="2">
 					<?php echo sprintf(__('The example above will set a <em>default value</em> of "mm/dd/yyyy" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("mm/dd/yyyy" !)', 'cforms'),'?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"'); ?>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-				<table class="dateinfo" width="100%">
-					<tr><td colspan="3"><strong><?php _e('Supported Date Formats (see "Plugin Settings" tab)', 'cforms');?><br /></strong></td></tr>
-					<tr><th><?php _e('Field', 'cforms');?></th><th><?php _e('Full Form', 'cforms');?></th><th><?php _e('Short Form', 'cforms');?></th></tr>
-					<tr><td><strong><?php _e('Year', 'cforms');?></strong></td><td><?php _e('yyyy (4 digits)', 'cforms');?></td><td><?php _e('yy (2 digits)', 'cforms');?></td></tr>
-					<tr><td><strong><?php _e('Month', 'cforms');?></strong></td><td><?php _e('mmm (name)', 'cforms');?></td><td><?php _e('mm (2 digits)', 'cforms');?></td></tr>
-					<tr><td><strong><?php _e('Day of Month', 'cforms');?></strong></td><td><?php _e('dd (2 digits)', 'cforms');?></td><td></td></tr>
-				</table>
 				</td>
 			</tr>
 		</table>

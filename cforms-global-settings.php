@@ -722,7 +722,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
                 <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
 
             </div>
-            <input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
+            <input type="hidden" name="noSub" value="<?php if (!empty($noDISP)) echo $noDISP; ?>"/>
         </form>
     </div>
 </div>

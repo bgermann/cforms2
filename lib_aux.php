@@ -50,6 +50,9 @@ function cforms2_sec2hms($s) {
 
 ### make time
 function cforms2_make_time($t) {
+    global $cformsSettings;
+    $js_format = $cformsSettings['global']['cforms_dp_date'];
+	// TODO convert date with equivalent to $js_format
     $dh = explode(' ',$t);
 	$dh[] = "";
     $d  = explode('/',$dh[0]);

@@ -24,25 +24,4 @@ jQuery(function() {
 
     jQuery('.cf_date').datepicker(cforms2_cal);
 
-    jQuery('#cforms_startdate').bind(
-        'dpClosed',
-        function(e, selectedDates) {
-            var d = selectedDates[0];
-            if (d) {
-                d = new Date(d);
-                jQuery('#cforms_enddate').dpSetStartDate(d.asString());
-            }
-        }
-    );
-
-    jQuery('#cforms_enddate').bind(
-        'dpClosed',
-        function(e, selectedDates) {
-            var d = selectedDates[0];
-            if (d) {
-                d = new Date(d);
-                jQuery('#cforms_startdate').dpSetEndDate(d.asString());
-            }
-        }
-    );
 });
