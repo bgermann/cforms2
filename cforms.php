@@ -1095,7 +1095,7 @@ function cforms2_enqueue_scripts() {
 
 		### add calendar
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
-			cforms2_enqueue_script_datepicker($localversion);
+			cforms2_enqueue_script_datepicker($localversion, stripslashes($cformsSettings['global']['cforms_dp_date']));
 		}
         wp_register_script( 'jquery-md5', plugin_dir_url(__FILE__) . "js/jquery.md5.js", array('jquery'), '1.2.1');
 		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery', 'jquery-md5'), $localversion);

@@ -50,16 +50,8 @@ function cforms2_sec2hms($s) {
 
 ### make time
 function cforms2_make_time($t) {
-    global $cformsSettings;
-    $js_format = $cformsSettings['global']['cforms_dp_date'];
-	// TODO convert date with equivalent to $js_format
-    $dh = explode(' ',$t);
-	$dh[] = "";
-    $d  = explode('/',$dh[0]);
-	$d[] = "";
-    $h  = explode(':',$dh[1]);
-	$h[] = "";
-    return mktime((int)$h[0], (int)$h[1], 0, (int)$d[1], (int)$d[0], (int)$d[2]);
+	$tz = new DateTimeZone(get_option('timezone_string'));
+	return DateTime::createFromFormat( "!d/m/Y H:i", $t, $tz )->getTimestamp();
 }
 
 

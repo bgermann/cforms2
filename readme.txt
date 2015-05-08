@@ -221,6 +221,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.4 =
+* bugfix:   set static datepicker format on forms options page
+* other:    remove ClockPick
+
 = 14.9.3 =
 * bugfix:   settings are not removed anymore on plugin activation
 * bugfix:   make HTML5 checkbox have the right status (global settings)

@@ -147,7 +147,7 @@ function cforms2_get_request_uri() {
 }
 
 
-function cforms2_enqueue_script_datepicker($localversion) {
+function cforms2_enqueue_script_datepicker($localversion, $dateFormat) {
     $cformsSettings = get_option('cforms_settings');
 	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
@@ -156,7 +156,7 @@ function cforms2_enqueue_script_datepicker($localversion) {
     wp_localize_script('cforms-calendar', 'cforms2_cal', array(
         'buttonImageOnly'  => true,
         'showOn'           => 'both',
-        'dateFormat'       => stripslashes($cformsSettings['global']['cforms_dp_date']),
+        'dateFormat'       => $dateFormat,
         'dayNamesMin'      => $day_names,
         'dayNamesShort'    => $day_names,
         'monthNames'       => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_months']) ),
@@ -166,7 +166,7 @@ function cforms2_enqueue_script_datepicker($localversion) {
         'closeText'        => stripslashes($nav[4]),
         'buttonText'       => stripslashes($nav[5]),
         'changeYear'       => $nav[6]==1,
-        'buttonImage'      => plugin_dir_url( __FILE__ ) . 'images/calendar.gif',
+        'buttonImage'      => plugin_dir_url( __FILE__ ) . 'images/calendar.gif'
     ) );
     wp_enqueue_script('cforms-calendar');
     
@@ -187,9 +187,6 @@ function cforms2_admin_enqueue_scripts() {
 	$r=plugin_dir_url(__FILE__);
 
     wp_enqueue_style('wp-color-picker');
-
-    wp_register_style('jquery-clockpick', $r . 'js/css/jquery.clockpick.css', false, '1.2.9' );
-    wp_enqueue_style('jquery-clockpick');
     
     wp_register_style('jquery-flexigrid', $r . 'js/css/flexigrid.css', false, '1.1' );
     wp_enqueue_style('jquery-flexigrid');
@@ -199,11 +196,10 @@ function cforms2_admin_enqueue_scripts() {
 
     wp_register_script('jquery-jqdnr',$r.'js/jquery.jqdnr.js',array('jquery'),'r2');
     wp_register_script('jquery-jqmodal',$r.'js/jquery.jqmodal.js',array('jquery', 'jquery-jqdnr'),'1.1.0');
-    wp_register_script('jquery-clockpick',$r."js/jquery.clockpick$suffix.js",array('jquery'),'1.2.9');
     wp_register_script('jquery-in-place-editor',$r.'js/jquery.in-place-editor.js',array('jquery'),'2.3.0');
     wp_register_script('jquery-textarearesizer',$r.'js/jquery.textarearesizer.js',array('jquery'),'1.0.4');
     wp_register_script('cforms-admin',$r.'js/cforms.admin.js', array(
-        'jquery', 'jquery-jqmodal', 'jquery-clockpick', 'jquery-in-place-editor', 'jquery-textarearesizer', 'jquery-ui-sortable', 'wp-color-picker'
+        'jquery', 'jquery-jqmodal', 'jquery-in-place-editor', 'jquery-textarearesizer', 'jquery-ui-sortable', 'wp-color-picker'
     ), $localversion);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
@@ -220,7 +216,7 @@ function cforms2_admin_enqueue_scripts() {
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();
-    cforms2_enqueue_script_datepicker($localversion);
+    cforms2_enqueue_script_datepicker($localversion, 'dd/mm/yy');
 }
 
 

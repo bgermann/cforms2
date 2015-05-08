@@ -664,23 +664,6 @@ jQuery(function() {
 
     jQuery('.colorpicker').wpColorPicker();
 
-    jQuery('.cf_timebutt1').clockpick({
-        military    : true,
-        layout      : 'horizontal',
-        starthour   : 0,
-        endhour     : 23,
-        showminutes : true,
-        valuefield  : 'cforms_starttime'
-    });
-    jQuery('.cf_timebutt2').clockpick({
-        military    : true,
-        layout      : 'horizontal',
-        starthour   : 0,
-        endhour     : 23,
-        showminutes : true,
-        valuefield  : 'cforms_endtime'
-    });
-
 } );
 
 function getFieldset (t) {

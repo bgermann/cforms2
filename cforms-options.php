@@ -668,8 +668,8 @@ if( strlen($fd)<=2 ) {
 					<td class="obL" style="padding-top:7px"><strong><?php _e('Start Date', 'cforms'); ?></strong></td>
 					<?php $date = explode(' ',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])) ); ?>
 					<td class="obR">
-                    	<input type="text" class="cf_date" id="cforms_startdate" name="cforms_startdate" value="<?php echo $date[0]; ?>"/>
-                        <input type="text" id="cforms_starttime" name="cforms_starttime" value="<?php echo $date[1]; ?>"/><a class="cf_timebutt1" href="javascript:void(0);"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/clock.gif" alt="" title="<?php _e('Time entry.', 'cforms') ?>"/></a>
+                    	<input type="text" class="cf_date" id="cforms_startdate" name="cforms_startdate" placeholder="DD/MM/YYYY" value="<?php echo $date[0]; ?>"/>
+                        <input type="text" id="cforms_starttime" name="cforms_starttime" placeholder="HH:MM" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms') ?>"/>
 						<label for="cforms_startdate"><?php
 						$dt='x';
                         if( strlen($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])>1 ):
@@ -689,8 +689,8 @@ if( strlen($fd)<=2 ) {
 					<td class="obL" style="padding-top:7px"><strong><?php _e('End Date', 'cforms'); ?></strong></td>
 					<?php $date = explode(' ',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])) ); ?>
 					<td class="obR">
-                    	<input type="text" class="cf_date" id="cforms_enddate" name="cforms_enddate" value="<?php echo $date[0]; ?>"/>
-                        <input type="text" id="cforms_endtime" name="cforms_endtime" value="<?php echo $date[1]; ?>"/><a class="cf_timebutt2" href="javascript:void(0);"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/clock.gif" alt="" title="<?php _e('Time entry.', 'cforms') ?>"/></a>
+                    	<input type="text" class="cf_date" id="cforms_enddate" name="cforms_enddate" placeholder="DD/MM/YYYY" value="<?php echo $date[0]; ?>"/>
+                        <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="HH:MM" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms') ?>"/>
 						<label for="cforms_startdate"><?php
                         if( $dt=='x' && strlen($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])>1 ):
                             $dt = cforms2_make_time(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])) - time();
