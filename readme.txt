@@ -129,7 +129,8 @@ You can find old versions in the
 That function was removed. The Wordpress function wp_mail is now used for mails,
 which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate
-plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/)
+or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
 
 = I upgraded and lost my widgets. What can I do? =
 
