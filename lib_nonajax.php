@@ -212,7 +212,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
  		else if ( $field_type == "multiselectbox" || $field_type == "checkboxgroup"){
 
             $all_options = $_POST[$current_field];
- 		    if ( count($all_options) > 0)
+ 		    if ( !empty($all_options))
                 $value = stripslashes(implode(',', $all_options));
             else
                 $value = '';

@@ -222,6 +222,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.9.4 =
+* bugfix:   remove warning message after form submission
 * bugfix:   set static datepicker format on forms options page
 * other:    remove ClockPick
 
