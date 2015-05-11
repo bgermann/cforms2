@@ -222,6 +222,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.5 =
+* bugfix:   circumvent fatal error on wrong form date settings
+
 = 14.9.4 =
 * bugfix:   remove warning message after form submission
 * bugfix:   set static datepicker format on forms options page

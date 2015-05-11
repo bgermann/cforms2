@@ -51,7 +51,10 @@ function cforms2_sec2hms($s) {
 ### make time
 function cforms2_make_time($t) {
 	$tz = new DateTimeZone(get_option('timezone_string'));
-	return DateTime::createFromFormat( "!d/m/Y H:i", $t, $tz )->getTimestamp();
+	$time = DateTime::createFromFormat( "!d/m/Y H:i", $t, $tz );
+	if ($time === false)
+		return 0;
+	return $time->getTimestamp();
 }
 
 
