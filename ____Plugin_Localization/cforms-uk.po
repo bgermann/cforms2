@@ -3376,25 +3376,12 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
+"put it in the %s directory."
 msgstr ""
 "cforms має кілька готових тем (деякі з них потрібно налаштувати, щоб вони "
 "працювали з <strong>вашими</strong> формами!), проте ви можете створити свій "
 "власний файл теми на основі стандартного файлу <strong>cforms.css</strong> і "
-"помістити його в директорію <code>/styling</code>."
-
-#: cforms-help.php:1504
-#, php-format
-msgid ""
-"With v8.5+ cforms supports a separate custom user folder to store your "
-"tailored CSS, font and image files! Simply create the folder: %s and move "
-"your CSS (including <strong>all</strong> images!), font &amp; background "
-"image files (CAPTCHA) to it."
-msgstr ""
-"З версії 8.5+ cforms підтримує окремі папки користувача для зберігання "
-"спеціальних графічних файлів, файлів шрифтів та CSS! Просто створіть папку  "
-"%s та помістіть в неї ваш CSS (включно з  <strong>всіма</strong> "
-"зображеннями!), шрифти та файли фонових зображень (для капчі)."
+"помістити його в директорію %s."
 
 #: cforms-help.php:1506
 msgid ""

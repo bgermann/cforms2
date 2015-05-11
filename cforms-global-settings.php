@@ -486,7 +486,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
             </div>
 
 			<div class="cf-content" id="o26">
-				<p><?php _e('Below you can find a few switches and options to change the default look of the captcha image. Feel free to upload your own backgrounds and fonts to the respective directories (<code>cforms/captchabg/</code> &amp; <code>cforms/captchafonts/</code> or your custom folder: <code>/plugins/cforms-custom/</code> ).', 'cforms') ?></p>
 
 				<?php
 					$cap = $cformsSettings['global']['cforms_captcha_def'];
@@ -744,6 +743,9 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 <?php
 
+/**
+ * @deprecated since version 14.9.5
+ */
 function cforms2_get_files($dir,$currentfile,$ext){
 
 	$s = DIRECTORY_SEPARATOR;

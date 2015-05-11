@@ -100,7 +100,7 @@ fork.
 If you want to delete the original version, make sure you do not delete your
 upload directory.
 
-= Did you modify any cforms theme (CSS) files, images etc? =
+= Did you modify any cforms theme (CSS) files? =
 
 Create a custom folder under your WP plugin directory & call it "cforms-custom".
 Move all your custom files into it. This folder will protect your changes going

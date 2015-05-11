@@ -3207,11 +3207,11 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
+"put it in the %s directory."
 msgstr ""
 "cforms已经带有了一些主题范例（它们中有一些可能需要调整一下才能适用于<strong>"
 "您的</strong>表单！） ，您当然可以基于默认的<strong>cforms.css</strong>文件来"
-"创建您自己的主题文件，放在<code>/styling</code>目录下即可。"
+"创建您自己的主题文件，放在%s目录下即可。"
 
 #: cforms-help.php:1504
 #, php-format

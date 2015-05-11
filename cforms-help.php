@@ -1016,7 +1016,6 @@ echo '&lt;/table&gt;';</pre></td></tr>
                     <td class="bright"><?php _e('function gets called <strong>at</strong> various stages of input processing', 'cforms'); ?></td>
                 </tr>
 			</table>
-			<p class="ex" ><?php echo sprintf(__('%s can reside in your /plugins/cforms-custom folder to protect it from future (auto) upgrades.', 'cforms'),'<strong>my-functions.php.txt</strong>'); ?></p>
 		</div>
 
 
@@ -1483,8 +1482,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 
 		<div class="cf-content" id="o24">
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
-			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
-			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
+			<p><?php echo sprintf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
 			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>

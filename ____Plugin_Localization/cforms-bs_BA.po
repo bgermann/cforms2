@@ -3406,13 +3406,12 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
+"put it in the %s directory."
 msgstr ""
 "cforms se pojavljuje sa par tema primjera (neka će tražiti prijavu da bi "
-"moglo da se radi na njima)<strong> Vaših</strong> obrazaca!), ali vi naravno "
+"moglo da se radi na njima) <strong>Vaših</strong> obrazaca!), ali vi naravno "
 "možete napraviti svoju datoteku teme koja je u osnovi dodjeljena u "
-"<strong>cforms.css  </strong>datoteci i staviti je u <code>  / styling </"
-"cod>direktorijum."
+"<strong>cforms.css</strong> datoteci i staviti je u %s direktorijum."
 
 #: cforms-help.php:1504
 #, php-format

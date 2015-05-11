@@ -3379,22 +3379,11 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
+"put it in the %s directory."
 msgstr ""
 "cforms kommt mit einigen Theme-Beispielen daher, aber natürlich kannst du "
-"auch deine eigene Theme-Datei (cforms.css) erstellen und entsprechend nutzen."
-
-#: cforms-help.php:1504
-#, php-format
-msgid ""
-"With v8.5+ cforms supports a separate custom user folder to store your "
-"tailored CSS, font and image files! Simply create the folder: %s and move "
-"your CSS (including <strong>all</strong> images!), font &amp; background "
-"image files (CAPTCHA) to it."
-msgstr ""
-"Mit Version 8.5 oder höher untersützt cforms benutzerdefinierte Ordner, um "
-"CSS, Fonts oder Bilder zu speichern. Erstelle einfach einen Ordner: %s und "
-"transferiere alle Dateien in diesen."
+"auch deine eigene Theme-Datei - z.B. basierend auf <strong>cforms.css</strong>"
+" - erstellen und im Verzeichnis %s ablegen."
 
 #: cforms-help.php:1506
 msgid ""
@@ -5221,8 +5210,8 @@ msgid ""
 "For more information and support, visit the <strong>cforms</strong> %s "
 "support forum %s. "
 msgstr ""
-"Für weitere Informationen und Hilfe besuche bitte das cforms %s support "
-"forum %s. "
+"Für weitere Informationen und Hilfe besuche bitte das cforms %ssupport "
+"forum%s. "
 
 #: lib_functions.php:238
 msgid "Translation provided by Oliver Seidel."

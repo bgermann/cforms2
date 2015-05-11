@@ -3419,26 +3419,12 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
+"put it in the %s directory."
 msgstr ""
 "O cforms vem com alguns poucos temas de exemplo (alguns deles podem "
 "necessitar ajustes para funcionarem com <strong>seus</strong> formulários!), "
 "mas você pode, é claro, criar o seu próprio arquivo de tema - com base no "
-"arquivo padrão <strong>cforms.css</strong> - e colocá-lo no diretório <code>/"
-"styling</code>."
-
-#: cforms-help.php:1504
-#, php-format
-msgid ""
-"With v8.5+ cforms supports a separate custom user folder to store your "
-"tailored CSS, font and image files! Simply create the folder: %s and move "
-"your CSS (including <strong>all</strong> images!), font &amp; background "
-"image files (CAPTCHA) to it."
-msgstr ""
-"A partir da versão 8.5 o cforms suporta uma pasta separada e customizada "
-"para armazenar arquivos personalizados de CSS, fontes e imagens. "
-"Simplesmente crie a pasta: %s e mova para ela seu CSS (incluindo "
-"<strong>todas</strong> imagens!), fontes e imagens de fundo (CAPTCHA)."
+"arquivo padrão <strong>cforms.css</strong> - e colocá-lo no diretório %s."
 
 #: cforms-help.php:1506
 msgid ""
