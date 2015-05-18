@@ -458,7 +458,7 @@ msgstr "Aktiviere HTML5"
 
 #: cforms-global-settings.php:231
 msgid "WP Comment Feature Settings"
-msgstr "WP Kommentar-Einstellungen für featured Einträge"
+msgstr "WP Kommentar-Einstellungen"
 
 #: cforms-global-settings.php:235
 msgid "Find below the additional settings for cforms WP comment feature."
@@ -655,7 +655,7 @@ msgstr "0=Sonntag, 1=Montag, etc."
 
 #: cforms-global-settings.php:395
 msgid "Mail Server Settings"
-msgstr "Enstellungen des Mail-Servers"
+msgstr "Einstellungen des Mail-Servers"
 
 #: cforms-global-settings.php:400
 msgid ""
@@ -698,8 +698,8 @@ msgid ""
 "Form specific settings (directory path etc.) have been moved to <a href=\"%s"
 "\" %s>here</a>."
 msgstr ""
-"Formular-spezifische Einstellungen (Ordnerpfad, etc.) wurden nach <a href="
-"\"%s\" %s>hier</a> umgezogen"
+"Formular-spezifische Einstellungen (Ordnerpfad, etc.) wurden <a href="
+"\"%s\" %s>umgezogen</a>."
 
 #: cforms-global-settings.php:429
 msgid ""
@@ -889,7 +889,7 @@ msgid ""
 "a>!"
 msgstr ""
 "Je nachdem, wie stark dein SPAM-Aufkommen ist, kannst du das <a href=\"%s\" "
-"%s>cforms' CAPTCHA Feature</a> nutzen!"
+"%s>CAPTCHA Feature</a> nutzen!"
 
 #: cforms-global-settings.php:627
 msgid "<strong>Failure message</strong><br />(for a wrong answer)"
@@ -2710,7 +2710,7 @@ msgstr ""
 #, php-format
 msgid "Function call to generate dynamic forms: %s with"
 msgstr ""
-"Ruft die Funktion für das dynamische generieren von Formularen ab: %s with"
+"Ruft die Funktion für das dynamische generieren von Formularen ab: %s mit"
 
 #: cforms-help.php:1055
 msgid ""
@@ -3168,7 +3168,7 @@ msgid ""
 "<a href=\"mailto:#\">john.doe@doe.com</a> and might want to check out his/"
 "her web page at <a href=\"#\">http://website.com</a>"
 msgstr ""
-"John Doe nutzte gerade MY NEW FORM. Du kannst Kontakt mit dieser Person via "
+"Max Mustermann nutzte gerade MY NEW FORM. Du kannst Kontakt mit dieser Person via "
 "&lt;a href=\"mailto:{Email}\"&gt;{Email}&lt;/a&gt; aufnehmen oder die "
 "Website auf &lt;a href=\"{Website}\"&gt;{Website}&lt;/a&gt; besuchen."
 
@@ -3194,12 +3194,12 @@ msgid ""
 "And a final example for a <a href=\"%s\" %s>HTML auto confirmation message</"
 "a>:"
 msgstr ""
-"Und ein finales Beispiels für eine <a href=\"%s\" %s>HTML Auto-"
+"Und ein finales Beispiel für eine <a href=\"%s\" %s>HTML Auto-"
 "Bestätigungsnachricht</a>:"
 
 #: cforms-help.php:1411 cforms-help.php:1420
 msgid "auto confirmation message"
-msgstr "Auto-Bestätitgung"
+msgstr "Auto-Bestätigung"
 
 #: cforms-help.php:1412 cforms-options.php:120 cforms-options.php:121
 #: lib_activate.php:77 lib_activate.php:78 lib_options_add.php:46
@@ -3221,7 +3221,7 @@ msgstr "Wir werden versuchen, Dir so schnell wie möglich zu antworten."
 
 #: cforms-help.php:1421
 msgid "Dear John Doe,"
-msgstr "Guten Tag John Doe,"
+msgstr "Guten Tag Max Mustermann,"
 
 #: cforms-help.php:1435
 #, php-format
