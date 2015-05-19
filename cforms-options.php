@@ -383,7 +383,6 @@ if( strlen($fd)<=2 ) {
 									<option<?php echo $dis; ?> value="send2author" <?php echo($field_type == 'send2author'?' selected="selected"':''); ?>><?php _e('Select: Email/Comment', 'cforms'); ?></option>
 								</optgroup>
 
-                                <?php if ( $cformsSettings['global']['cforms_html5'] ) : ?>
 								<optgroup label="<?php _e('--- HTML5 form fields ---', 'cforms'); ?>">
 									<option value="html5color" <?php echo($field_type == 'html5color'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Color Field', 'cforms'); ?></option>
 									<option value="html5date" <?php echo($field_type == 'html5date'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Date Field', 'cforms'); ?></option>
@@ -399,7 +398,6 @@ if( strlen($fd)<=2 ) {
 									<option value="html5url" <?php echo($field_type == 'html5url'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('URL Field', 'cforms'); ?></option>
 									<option value="html5week" <?php echo($field_type == 'html5week'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Week Field', 'cforms'); ?></option>
 								</optgroup>
-                                <?php endif; ?>
                             	</select><?php
 
                             echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';

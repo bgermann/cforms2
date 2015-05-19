@@ -159,7 +159,6 @@ cforms2_setINI('global','cforms_commentParent', 'mycommentlist');
 cforms2_setINI('global','cforms_commentHTML', "<li id=\"comment-{id}\">{moderation}\n<p>{usercomment}</p>\n<p>\n<cite>Comment by <a href=\"{url}\" rel=\"external nofollow\">{author}</a> &mdash; {date} @ <a href=\"#comment-{id}\">{time}</a></cite>\n</p>\n</li>");
 cforms2_setINI('global','cforms_commentInMod', '<em>'.__('Your comment is awaiting moderation.', 'cforms').'</em>');
 cforms2_setINI('global','cforms_avatar', '32');
-cforms2_setINI('global','cforms_html5', '1');
 cforms2_setINI('global','cforms_crlf', array('b' => '0'));
 
 cforms2_setINI('global','cforms_css', 'cforms2012.css');
