@@ -222,6 +222,11 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.6 =
+* enhanced: make PHP 5.2 compatible again (in 14.9.4 one 5.3 function was introduced)
+* enhanced: on style settings do not include ../.. in request parameters to not cause a false positive in application firewalls
+* other:    always show HTML5 field types in form settings
+
 = 14.9.5 =
 * bugfix:   circumvent fatal error on wrong form date settings
 

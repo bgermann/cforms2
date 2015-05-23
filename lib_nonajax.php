@@ -95,7 +95,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$field_name = $field_stat[0];
 		$field_type = $field_stat[1];
 
-		$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
+		$custom_names = $cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1';
 
 		if ( $custom_names ){
 
@@ -188,7 +188,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		}
 
 
-		if ( $field_type == "emailtobox" ){  				### special case where the value needs to bet get from the DB!
+		if ( $field_type == "emailtobox" ){  				### special case where the value needs to be fetched from the DB!
 
             $to_one = $_POST[$current_field];
             $field_name = explode('#',$field_stat[0]);  	### can't use field_name, since '|' check earlier

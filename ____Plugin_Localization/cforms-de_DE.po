@@ -4177,7 +4177,7 @@ msgstr ""
 #: cforms-options.php:782
 #, php-format
 msgid "%sTurn off%s admin email"
-msgstr "%sDektiviere%s die E-Mail an den Administrator"
+msgstr "%sDeaktiviere%s die E-Mail an den Administrator"
 
 #: cforms-options.php:789
 #, php-format
