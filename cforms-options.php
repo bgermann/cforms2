@@ -548,7 +548,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obR">
                     	<table><tr>
 						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_success" id="cforms_success"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_success'])); ?></textarea></td>
-						<td><input class="allchk" type="checkbox" id="cforms_popup1" name="cforms_popup1" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_popup1"><?php _e('Opt. Popup Msg', 'cforms'); ?></label></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -558,7 +557,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obR">
                     	<table><tr>
 						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_failure" id="cforms_failure" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_failure'])); ?></textarea></td>
-						<td><input class="allchk" type="checkbox" id="cforms_popup2" name="cforms_popup2" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_popup2"><?php _e('Opt. Popup Msg', 'cforms'); ?></label></td>
                     	</tr></table>
 					</td>
 				</tr>

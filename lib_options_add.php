@@ -62,7 +62,6 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] = __('Please fill in all the required fields.', 'cforms');
 	$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] = '<strong>'.__('No more submissions accepted at this time.', 'cforms').'</strong>';
 	$cformsSettings['form'.$no]['cforms'.$no.'_working'] = __('One moment please...', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_popup'] = 'nn';
 	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] = 'ynyyy';
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] = false;

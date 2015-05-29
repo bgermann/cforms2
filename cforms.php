@@ -1036,7 +1036,6 @@ function cforms2($args = '',$no = '') {
 				'<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'</span>"/>'.
 				'<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="<span>'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'</span>"/>'.
 				'<input type="hidden" name="cf_customerr'.$no.'" id="cf_customerr'.$no.'" value="'.rawurlencode($custom_error).'"/>'.
-				'<input type="hidden" name="cf_popup'.$no.'" id="cf_popup'.$no.'" value="'.$cformsSettings['form'.$no]['cforms'.$no.'_popup'].'"/>';
 
 	$content .= '</fieldset>';
 

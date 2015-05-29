@@ -89,7 +89,7 @@ function cforms2_submitcomment() {
 
 	###  form limit reached
 	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
-	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
+	    $pre = $segments[0].'*$#n';
 	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']));
 		die();
 	}
@@ -313,7 +313,7 @@ function cforms2_submitcomment() {
 
 	    ###  Catch WP-Comment function: error
 	    if ( !$WPsuccess ) {
-    	    echo $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
+    	    echo $segments[0].'*$#n'. $WPresp .'|---';
 			die();
 		}
     } ### Catch WP-Comment function
@@ -473,14 +473,14 @@ function cforms2_submitcomment() {
 
 	                if( $sent<>'1' ) {
 	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
-	                    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
+	                    $pre = $segments[0].'*$#n';
 	                    echo $pre . $err .'|!!!';
 						die();
 	                }
 	    } ###  cc
 
 		###  return success msg
-	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
+	    $pre = $segments[0].'*$#n';
 
 		###  WP-Comment: override
 		if ( $WPsuccess )
@@ -519,7 +519,7 @@ function cforms2_submitcomment() {
 
 		###  return error msg
 		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
-	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
+	    $pre = $segments[0].'*$#n';
 	    echo $pre . $err .'|!!!';
 
 	}

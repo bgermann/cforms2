@@ -226,7 +226,6 @@ function cforms_validate(no, upload) {
 
         var offset = message.indexOf('*$#');
         var no = message.substring(0,offset);
-        var pop = message.charAt(offset+3); // check with return val from php call!
 
         if ( no == '1' ) no='';
 
@@ -295,13 +294,6 @@ function cforms_validate(no, upload) {
             document.getElementById('cforms'+no+'form').style.display = 'none';
             if ( !message.match(/>>>/) )
                 location.hash = '#usermessage' + no + 'a';
-        }
-
-        if (pop == 'y') {
-            stringXHTML = stringXHTML.replace(/<br.?\/>/g,'\r\n');
-            stringXHTML = stringXHTML.replace(/(<.?strong>|<.?b>)/g,'*');
-            stringXHTML = stringXHTML.replace(/(<([^>]+)>)/ig, '');
-            alert( stringXHTML );  //debug
         }
         
         if ( message.match(/>>>/) ) {
@@ -619,7 +611,7 @@ function cforms_validate(no, upload) {
         cforms_submitcomment(no);
     }
 
-    var call_err = function (no,err,custom_error,popFlag){
+    var call_err = function (no,err,custom_error){
 
         //temp. turn send button back on
         document.getElementById('sendbutton'+no).style.cursor = "auto";
@@ -640,25 +632,15 @@ function cforms_validate(no, upload) {
             document.getElementById(msgbox+'b').className = "cf_info failure" + ucm;
 
         doInnerXHTML(msgbox, stringXHTML.replace(/\\/g,""));
-
-        //popup error
-        err = err.replace(/\\/g,"");
-        if ( document.getElementById('cf_popup'+no).value.charAt(popFlag) == 'y'){
-            err = err.replace(/<li>/g,"\r\n");
-            err = err.replace(/<.?strong>/g,'*');
-            err = err.replace(/(<([^>]+)>)/ig, '');
-            err = err.replace(/&raquo;/ig, '');
-            alert( err );
-        }
     };
 
     if ( !all_valid && !code_err ){
-        call_err(no,document.getElementById('cf_failure'+no),custom_error,1);
+        call_err(no,document.getElementById('cf_failure'+no),custom_error);
         return false;
     }
 
     if ( !all_valid ){
-        call_err(no,document.getElementById('cf_codeerr'+no),custom_error,1);
+        call_err(no,document.getElementById('cf_codeerr'+no),custom_error);
         return false;
     }
 

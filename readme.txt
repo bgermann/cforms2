@@ -222,6 +222,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.7 =
+* other:    remove possibility to show JavaScript alert messages
+
 = 14.9.6 =
 * enhanced: make PHP 5.2 compatible again (in 14.9.4 one 5.3 function was introduced)
 * enhanced: on style settings do not include ../.. in request parameters to not cause a false positive in application firewalls

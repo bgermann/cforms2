@@ -100,7 +100,6 @@ cforms2_setINI('form','cforms_failure', __('Please fill in all the required fiel
 cforms2_setINI('form','cforms_limittxt', '<strong>'.__('No more submissions accepted at this time.', 'cforms').'</strong>');
 
 cforms2_setINI('form','cforms_working', __('One moment please...', 'cforms'));
-cforms2_setINI('form','cforms_popup', 'nn');
 cforms2_setINI('form','cforms_showpos', 'ynyyy');
 
 cforms2_setINI('form','cforms_hide', false);
