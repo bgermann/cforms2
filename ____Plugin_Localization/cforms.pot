@@ -1328,11 +1328,11 @@ msgstr ""
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
 
 #: cforms-help.php:189
@@ -4901,4 +4901,16 @@ msgid ""
 "regular expressions for field validation and custom error messages, as well "
 "as country and state (US) drop down lists. It also features a must-check "
 "Disclaimer."
+msgstr ""
+
+msgid "yyyy"
+msgstr ""
+
+msgid "mm"
+msgstr ""
+
+msgid "dd"
+msgstr ""
+
+msgid "HH:MM"
 msgstr ""

@@ -1472,17 +1472,17 @@ msgstr "Датум доласка"
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
-"Горе наведени примјер ће поставити <em>понуђену вриједност</em>\"mm/dd/yyyy"
+"Горе наведени примјер ће поставити <em>понуђену вриједност</em>\"%s"
 "\" тако корисници знају који је формат очекиван. <strong> regxp </ strong> "
 "на крају осигурава да ће само овај формат бити прихваћен. <strong>  "
 "Напомена: </ strong> Takođe je potrebno da<a href=\"%s\" %s>подесите опције "
-"за бирање датума </ а> да одговара формату датума ( \"mm / dd / yyyy \"!)"
+"за бирање датума </ а> да одговара формату датума ( \"%s\")!"
 
 #: cforms-help.php:189
 msgid "Supported Date Formats (see \"Plugin Settings\" tab)"

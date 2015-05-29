@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
+
 ### new Global Settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
@@ -170,11 +172,11 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms'); ?></td><td class="bright">
-					<code><?php _e('Arrival Date', 'cforms'); ?>|mm/dd/yyyy|^[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$</code></td>
+					<code><?php _e('Arrival Date', 'cforms'); echo '|'; echo cforms2_admin_date_format(); ?>|^[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$</code></td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('The example above will set a <em>default value</em> of "mm/dd/yyyy" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("mm/dd/yyyy" !)', 'cforms'),'?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"'); ?>
+					<?php echo sprintf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"', cforms2_admin_date_format()); ?>
 				</td>
 			</tr>
 		</table>

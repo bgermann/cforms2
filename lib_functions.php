@@ -298,3 +298,7 @@ function cforms2_check_pluggable_captchas_authn_users($field_type) {
 	return array_key_exists($field_type, $captchas) && is_user_logged_in()
 	       && !$captchas[$field_type]->check_authn_users();
 }
+
+function cforms2_admin_date_format() {
+	return __('dd', 'cforms') .'/'. __('mm', 'cforms') .'/'. __('yyyy', 'cforms');
+}

@@ -1491,18 +1491,18 @@ msgstr "Data di arrivo"
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
-"L'esempio qui sopra imposta il <em>valore predefinito</em> in \"mm/dd/yyyy\" "
+"L'esempio qui sopra imposta il <em>valore predefinito</em> in \"%s\" "
 "affinché l'utente sappia quale formato utilizzare. L' <strong>espressione "
 "regolare</strong> verificherà che le regole del formato siano state "
 "rispettate. <strong>NOTA:</strong> Sarà inoltre necessario che tu abbia <a "
 "href=\"%s\" %s>configurato le opzioni del selettore della data</a> affinché "
-"esse possano coincidere con il formato della data (\"MM/dd/yyyy\" !)"
+"esse possano coincidere con il formato della data (\"%s\")!"
 
 #: cforms-help.php:189
 msgid "Supported Date Formats (see \"Plugin Settings\" tab)"

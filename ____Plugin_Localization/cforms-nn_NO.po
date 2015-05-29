@@ -1458,17 +1458,16 @@ msgstr "Ankomst Dato"
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
-"Eksempelet ovenfor vil angi en <em> standardverdi  </ em> av \"mm / dd / "
-"åååå \" slik at brukere vet det forventede  formatet. Den <strong>  regexp  "
+"Eksempelet ovenfor vil angi en <em> standardverdi  </ em> av \"%s\" slik at brukere vet det forventede  formatet. Den <strong>  regexp  "
 "</ strong> på slutten sikrer at bare dette formatet er akseptert. <strong>  "
 "MERK: </ strong> Du må også <a href=\"%s\"  %s>  konfigurere  datovelgeren  "
-"alternativene  </ a> å matche datoformatet  ( \"mm / dd / åååå \" !)"
+"alternativene  </ a> å matche datoformatet  ( \"%s\")!"
 
 #: cforms-help.php:189
 msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
@@ -5506,3 +5505,6 @@ msgid ""
 "as country and state (US) drop down lists. It also features a must-check "
 "Disclaimer."
 msgstr ""
+
+msgid "yyyy"
+msgstr "åååå"

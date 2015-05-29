@@ -1458,17 +1458,16 @@ msgstr "Дата прибуття"
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
-"Приклад вверху встановлює <em>значення по замовчуванню</em> у вигляді \"mm/"
-"dd/yyyy\", щоб користувачі знали як вводити дату. <strong>Регулярний вираз</"
+"Приклад вверху встановлює <em>значення по замовчуванню</em> у вигляді \"%s\", щоб користувачі знали як вводити дату. <strong>Регулярний вираз</"
 "strong> в кінці перевіряє, що дозволений тільки цей формат.<strong>ПРИМІТКА:"
 "</strong> Вам також потрібно <a href=\"%s\" %s> налаштувати опції фасульки "
-"вибору дати</a> щоб формат дати співпадав з (\"mm/dd/yyyy\" !)"
+"вибору дати</a> щоб формат дати співпадав з (\"%s\")!"
 
 #: cforms-help.php:189
 msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
