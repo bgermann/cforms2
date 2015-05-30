@@ -24,6 +24,17 @@
 require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
 
+function cforms2_json_die($no, $result, $html, $hide = false, $redirection = NULL) {
+	header ('Content-Type: application/json');
+	echo json_encode(array(
+		'no' => $no,
+		'result' => $result,
+		'html' => $html,
+		'hide' => $hide,
+		'redirection' => $redirection
+	));
+	die();
+}
 add_action( 'wp_ajax_submitcomment', 'cforms2_submitcomment' );
 add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 
@@ -32,38 +43,23 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###
 function cforms2_submitcomment() {
 	check_admin_referer( 'submitcomment' );
-	global $cformsSettings, $wpdb, $subID, $track, $trackf, $Ajaxpid, $AjaxURL, $WPresp, $commentparent;
-
-	header ('Content-Type: text/plain');
-	$content = '';
-	trigger_error(var_export($_POST['params'], 1));
-	if (isset($_POST['rsargs']))
-		$content = $_POST['rsargs'];
+	global $cformsSettings, $wpdb, $subID, $trackf, $Ajaxpid, $AjaxURL, $WPresp, $commentparent;
 
     $WPsuccess=false;
 
-	$content = explode('+++', $content); ###  Added special fields
+    $commentparent = $_POST['comment_parent'];
+    $Ajaxpid = $_POST['comment_post_ID'];
+    $AjaxURL = $_POST['cforms_pl'];
 
-	if ( count($content) > 3 ) {
-	    $commentparent = $content[1];
-	    $Ajaxpid = $content[2];
-	    $AjaxURL = $content[3];
-    } else {
-	    $Ajaxpid = $content[1];
-	    $AjaxURL = $content[2];
-    }
-
-	$segments = explode('$#$', $content[0]);
 	$params = array();
 
 	$user = wp_get_current_user();
 
-	for($i = 1; $i <= sizeof($segments); $i++) {
-		$params['field_' . $i] = $segments[$i];
+	for($i = 1; $i <= $cformsSettings['form'.$no]['cforms'.$no.'_count_fields']; $i++) {
+		$params['field_' . $i] = $_POST['cf' . $no . '_field_' . $i];
     }
 
-	###  fix reference to first form
-	if ( $segments[0]=='1' ) $params['id'] = $no = ''; else $params['id'] = $no = $segments[0];
+	$params['id'] = $no = $_POST['cforms_id'];
 
 
 	### TAF flag
@@ -89,9 +85,8 @@ function cforms2_submitcomment() {
 
 	###  form limit reached
 	if ( ($cformsSettings['form'.$no]['cforms'.$no.'_maxentries']<>'' && cforms2_get_submission_left($no)==0) || !cforms2_check_time($no) ){
-	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
-	    echo $pre . preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']));
-		die();
+		$html = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_limittxt']));
+		cforms2_json_die($no, 'success', $html);
 	}
 
 	$captchaopt = $cformsSettings['global']['cforms_captcha_def'];
@@ -295,8 +290,7 @@ function cforms2_submitcomment() {
 		try {
 			my_cforms_action($trackf);
 		} catch ( Exception $exc ) {
-			echo $segments[0].'*$#y' . $exc->getMessage() .'|---';
-			die();
+			cforms2_json_die($no, ' failure', $exc->getMessage());
 		}
 	}
 
@@ -308,8 +302,7 @@ function cforms2_submitcomment() {
 
 	    ###  Catch WP-Comment function: error
 	    if ( !$WPsuccess ) {
-    	    echo $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1) . $WPresp .'|---';
-			die();
+    	    cforms2_json_die($no, ' failure', $WPresp);
 		}
     } ### Catch WP-Comment function
 
@@ -468,14 +461,11 @@ function cforms2_submitcomment() {
 
 	                if( $sent<>'1' ) {
 	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
-	                    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-	                    echo $pre . $err .'|!!!';
-						die();
+	                    cforms2_json_die($no, ' mailerr', $err);
 	                }
 	    } ###  cc
 
 		###  return success msg
-	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1);
 
 		###  WP-Comment: override
 		if ( $WPsuccess )
@@ -492,32 +482,23 @@ function cforms2_submitcomment() {
 	        $successMsg = my_cforms_logic($trackf, $successMsg,'successMessage');
 
 
-		$opt='';
-		###  hide?
-        if ( $cformsSettings['form'.$no]['cforms'.$no.'_hide'] || cforms2_get_submission_left($no)==0 )
-			$opt .= '|~~~';
+		$hide = $cformsSettings['form'.$no]['cforms'.$no.'_hide'] || cforms2_get_submission_left($no)==0;
 
 		###  redirect to a different page on suceess?
 		if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] ) {
 			if ( function_exists('my_cforms_logic') ){
 				$red = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');
-            	if ( $red<>'' )
-                	$opt .= '|>>>' . $red;  ### use trackf!
             } else
-				$opt .= '|>>>' . $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
+				$red = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 		}
 
-	    echo $pre.$successMsg.$opt;
+	    cforms2_json_die($no, 'success', $successMsg, $hide, $red);
 
 	}
 	else {  ###  no admin mail sent!
 
 		###  return error msg
 		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
-	    $pre = $segments[0].'*$#'.substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1);
-	    echo $pre . $err .'|!!!';
-
+		cforms2_json_die( $no, ' mailerr', $err);
 	}
-
-	die();
 }

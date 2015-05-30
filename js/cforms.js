@@ -118,10 +118,9 @@ function cforms_validate(no, upload) {
 
     var cforms_submitcomment = function (no) {
         var regexp = new RegExp('[$][#][$]', ['g']);
-        var prefix = '$#$';
+        var prefix = '\n';
 
-        var params;
-        if ( no=='' ) params = '1'; else params = no;
+        var params = '';
 
         var formId = 'cforms'+no+'form';
         var objColl = document.getElementById(formId).getElementsByTagName('*');
@@ -173,23 +172,15 @@ function cforms_validate(no, upload) {
 
                 } else if ( typ == "select-multiple" ) {
                     var all_child_obj='';
-                    for (z=0;z<objColl[i].childNodes.length; z++) {
+                    for ( var z=0;z<objColl[i].childNodes.length; z++) {
                         if ( objColl[i].childNodes[z].nodeName.toLowerCase()=='option' && objColl[i].childNodes[z].selected ) {
                             all_child_obj = all_child_obj + objColl[i].childNodes[z].value.replace(regexp, '$') + ',';
                         }
                     }
                     params = params + prefix + all_child_obj.substring(0,all_child_obj.length-1);
-                } else if ( typ == "hidden" && objColl[i].name.match(/comment_post_ID/) ) {
-                    params = params + '+++' + objColl[i].value;
-                } else if ( typ == "hidden" && objColl[i].name.match(/cforms_pl/) ) {
-                    params = params + '+++' + objColl[i].value;
-                } else if ( typ == "hidden" && objColl[i].name.match(/comment_parent/) ) {
-                    params = params + '+++' + objColl[i].value;
-				} else if ( typ == "hidden" && objColl[i].name.match(/\/hint$/) ) {
-                    params = params + ':::' + objColl[i].value;
                 } else if ( typ == "hidden" && objColl[i].className.match(/cfhidden/) ) {
                     params = params + prefix + objColl[i].value;
-                } else if ( typ != "hidden" && typ != "submit" && typ != "radio") {
+                } else if ( typ != "hidden" && typ != "submit") {
                     params = params + prefix + objColl[i].value.replace(regexp, '$');
                 }
             }
@@ -199,7 +190,7 @@ function cforms_validate(no, upload) {
 		params = jQuery('#' + formId).serialize();
         var post_data = 'action=submitcomment&_wpnonce='
             + cforms2_ajax.nonces['submitcomment']
-            + '&' + params;
+            + '&cforms_id=' + no + '&' + params;
         jQuery.post(
             cforms2_ajax.url,
             post_data,
@@ -209,30 +200,7 @@ function cforms_validate(no, upload) {
 
     var cforms_setsuccessmessage = function (message) {
 
-        var hide = false;
-        var end = message.match(/|/) ? message.indexOf('|') : message.length;
-        end = (end < 0) ? message.length : end;
-
-        var result;
-        if ( message.match(/---/) ) {
-            result = " failure";
-        }
-        else if ( message.match(/!!!/) ) {
-            result = " mailerr";
-        }
-        else if ( message.match(/~~~/) ) {
-            result = "success";
-            hide = true;
-        }
-        else {
-            result = "success";
-        }
-
-        var offset = message.indexOf('*$#');
-        var no = message.substring(0,offset);
-        var pop = message.charAt(offset+3); // check with return val from php call!
-
-        if ( no == '1' ) no='';
+        var no = message.no;
 
         if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
             document.getElementById('cforms'+no+'form').reset();
@@ -241,7 +209,7 @@ function cforms_validate(no, upload) {
         document.getElementById('sendbutton'+no).disabled = false;
 
 
-        var stringXHTML = message.substring(offset+4,end);
+        var stringXHTML = message.html;
 
 
         // Is it a WP comment?
@@ -284,32 +252,25 @@ function cforms_validate(no, upload) {
 
         // for both message boxes
         var isA = false;
-        var ucm = ( parseInt(no)>1 ) ? ' '+result+no : '';
+        var ucm = ( parseInt(no)>1 ) ? ' '+message.result+no : '';
         if ( document.getElementById('usermessage'+no+'a') ) {
-            document.getElementById('usermessage'+no+'a').className = "cf_info "+result+ucm;
+            document.getElementById('usermessage'+no+'a').className = "cf_info "+message.result+ucm;
             isA = true;
         }
-        if ( document.getElementById('usermessage'+no+'b') && !(hide && isA) ) {
-            document.getElementById('usermessage'+no+'b').className = "cf_info "+result+ucm;
+        if ( document.getElementById('usermessage'+no+'b') && !(message.hide && isA) ) {
+            document.getElementById('usermessage'+no+'b').className = "cf_info "+message.result+ucm;
         }
 
         doInnerXHTML('usermessage'+no, stringXHTML);
 
-        if ( hide ) {
+        if ( message.hide ) {
             document.getElementById('cforms'+no+'form').style.display = 'none';
-            if ( !message.match(/>>>/) )
+            if ( !message.redirection )
                 location.hash = '#usermessage' + no + 'a';
         }
-
-        if (pop == 'y') {
-            stringXHTML = stringXHTML.replace(/<br.?\/>/g,'\r\n');
-            stringXHTML = stringXHTML.replace(/(<.?strong>|<.?b>)/g,'*');
-            stringXHTML = stringXHTML.replace(/(<([^>]+)>)/ig, '');
-            alert( stringXHTML );  //debug
-        }
         
-        if ( message.match(/>>>/) ) {
-            location.href = message.substring( message.indexOf('|>>>') + 4, message.length );
+        if ( message.redirection ) {
+            location.href = message.redirection;
         }
     };
 
@@ -351,7 +312,7 @@ function cforms_validate(no, upload) {
     var error_container = decodeURIComponent( rest );
     error_container = error_container.split('|');
 
-    for ( i=0; i<error_container.length; i++ ) {
+    for (var i=0; i<error_container.length; i++ ) {
         var keyvalue = error_container[i].split('$#$');
         all_custom_error[keyvalue[0]] = keyvalue[1];
     }
