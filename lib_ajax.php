@@ -42,7 +42,16 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###  submit comment
 ###
 function cforms2_submitcomment() {
+	global $all_valid, $no, $usermessage_class, $usermessage_text;
 	check_admin_referer( 'submitcomment' );
+	$all_valid = true;
+	$no = $_POST['cforms_id'];
+	$_POST['sendbutton'.$no] = true;
+	require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
+	cforms2_json_die($no, $usermessage_class, $usermessage_text);
+}
+function cforms2_dead_code() {
+	
 	global $cformsSettings, $wpdb, $subID, $trackf, $Ajaxpid, $AjaxURL, $WPresp, $commentparent;
 
     $WPsuccess=false;

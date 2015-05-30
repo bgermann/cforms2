@@ -37,6 +37,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	}
 
 	$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
+	$usermessage_class = ' success';
 
 	$track = array();
 	$trackinstance = array();
@@ -338,6 +339,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			my_cforms_action($trackf);
 		} catch ( Exception $exc ) {
 			$usermessage_text = $exc->getMessage();
+			$usermessage_class = ' failure';
 			$sentadmin = 1;
 		}
 	}
@@ -595,6 +597,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	                if( $sent<>'1' )
 				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
+						$usermessage_class = ' mailerr';
 	            }
 
 	        ###  redirect to a different page on suceess?
@@ -616,6 +619,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    } ###  if $sentadmin
 	    else
 	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
+			$usermessage_class = ' mailerr';
 	} ### if $MPok
 
 } ### if isset & valid sendbutton
