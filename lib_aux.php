@@ -50,13 +50,11 @@ function cforms2_sec2hms($s) {
 
 ### make time
 function cforms2_make_time($t) {
-    $dh = explode(' ',$t);
-	$dh[] = "";
-    $d  = explode('/',$dh[0]);
-	$d[] = "";
-    $h  = explode(':',$dh[1]);
-	$h[] = "";
-    return mktime((int)$h[0], (int)$h[1], 0, (int)$d[1], (int)$d[0], (int)$d[2]);
+	$time = str_replace('/', '.', $t) . ' ' . get_option('timezone_string');
+	$time = strtotime($time);
+	if ($time === false)
+		return 0;
+	return $time;
 }
 
 
@@ -375,7 +373,7 @@ function cforms2_check_post_vars($fv){
 
 ### look for default/system variables
 function cforms2_check_default_vars($m,$no) {
-		global $subID, $Ajaxpid, $AjaxURL, $wpdb, $cformsSettings;
+		global $subID, $Ajaxpid, $AjaxURL, $cformsSettings;
 
 	    $eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
@@ -393,10 +391,6 @@ function cforms2_check_default_vars($m,$no) {
 		else
 			$permalink = get_permalink($pid);
 
-		###
-		### if the "month" is not spelled correctly, try the commented out line instead of the one after
-		###
-		### $date = utf8_encode(html_entity_decode( mysql2date(get_option('date_format'), current_time('mysql')) ));
 		$date = mysql2date(get_option('date_format'), current_time('mysql'));
 
 		$time = gmdate(get_option('time_format'), current_time('timestamp'));
@@ -405,7 +399,15 @@ function cforms2_check_default_vars($m,$no) {
 		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
 			$page = $permalink;
 
-		$find = $wpdb->get_row($wpdb->prepare("SELECT p.post_title, p.post_excerpt, u.display_name FROM $wpdb->posts AS p LEFT JOIN ($wpdb->users AS u) ON p.post_author = u.ID WHERE p.ID=%s", $pid));
+		$find = get_post($pid);
+		if (!empty($find)) {
+			$user = get_user_by('id', $find->post_author);
+			$user_name = $user->display_name;
+			$post_title = $find->post_title;
+			$post_excerpt = $find->post_excerpt;
+		} else {
+			$user_name = $post_title = $post_excerpt = '';
+		}
 
 		$CurrUser = wp_get_current_user();
 
@@ -415,7 +417,7 @@ function cforms2_check_default_vars($m,$no) {
 		$m 	= str_replace( '{Form Name}',	$cformsSettings['form'.$no]['cforms'.$no.'_fname'], $m );
 		$m 	= str_replace( '{Page}',		$page, $m );
 		$m 	= str_replace( '{Date}',		$date, $m );
-		$m 	= str_replace( '{Author}',		$find->display_name, $m );
+		$m 	= str_replace( '{Author}',		$user_name, $m );
 		$m 	= str_replace( '{Time}',		$time, $m );
 		$m 	= str_replace( '{IP}',			cforms2_get_ip(), $m );
 		$m 	= str_replace( '{BLOGNAME}',	get_option('blogname'), $m );
@@ -427,8 +429,8 @@ function cforms2_check_default_vars($m,$no) {
 		$m 	= str_replace( '{CurUserLastName}',	$CurrUser->user_lastname, $m );
 
 		$m 	= str_replace( '{Permalink}',	$permalink, $m );
-		$m 	= str_replace( '{Title}',		$find->post_title, $m );
-		$m 	= str_replace( '{Excerpt}',		$find->post_excerpt, $m );
+		$m 	= str_replace( '{Title}',		$post_title, $m );
+		$m 	= str_replace( '{Excerpt}',		$post_excerpt, $m );
 
 		$m 	= preg_replace( "/\r\n\./", "\n", $m );
 

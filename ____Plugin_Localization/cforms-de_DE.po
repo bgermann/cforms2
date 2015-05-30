@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2014-12-26 19:57+0100\n"
-"PO-Revision-Date: 2015-02-21 14:41+0100\n"
+"PO-Revision-Date: 2015-04-11 16:49+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Buy-Hosting.net <info@buy-hosting.net>\n"
 "Language: de_DE\n"
@@ -458,7 +458,7 @@ msgstr "Aktiviere HTML5"
 
 #: cforms-global-settings.php:231
 msgid "WP Comment Feature Settings"
-msgstr "WP Kommentar-Einstellungen für featured Einträge"
+msgstr "WP Kommentar-Einstellungen"
 
 #: cforms-global-settings.php:235
 msgid "Find below the additional settings for cforms WP comment feature."
@@ -655,7 +655,7 @@ msgstr "0=Sonntag, 1=Montag, etc."
 
 #: cforms-global-settings.php:395
 msgid "Mail Server Settings"
-msgstr "Enstellungen des Mail-Servers"
+msgstr "Einstellungen des Mail-Servers"
 
 #: cforms-global-settings.php:400
 msgid ""
@@ -698,8 +698,8 @@ msgid ""
 "Form specific settings (directory path etc.) have been moved to <a href=\"%s"
 "\" %s>here</a>."
 msgstr ""
-"Formular-spezifische Einstellungen (Ordnerpfad, etc.) wurden nach <a href="
-"\"%s\" %s>hier</a> umgezogen"
+"Formular-spezifische Einstellungen (Ordnerpfad, etc.) wurden <a href="
+"\"%s\" %s>umgezogen</a>."
 
 #: cforms-global-settings.php:429
 msgid ""
@@ -863,12 +863,12 @@ msgstr "Besucher Verifikationseinstellungen (Q&amp;A)"
 msgid ""
 "Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
 "spam and ensure it's a human submitting the form. To use in your form, add "
-"the corresponding input field %s "
-"preferably in its own FIELDSET!"
+"the corresponding input field %s preferably in its own FIELDSET!"
 msgstr ""
 "Du hast großes SPAM-Aufkommen? Nutze diese Q&amp;A's, um SPAM zu verhindern "
 "und sicherzustellen, dass ein echter Mensch das Formular benutzt. Um diese "
-"Verifizierung einzusetzen, nutze das dafür vorgesehene Feld %s in einer eigenen Feldgruppe."
+"Verifizierung einzusetzen, nutze das dafür vorgesehene Feld %s in einer "
+"eigenen Feldgruppe."
 
 #: cforms-global-settings.php:614
 msgid "Force Q&amp;A display for logged in users"
@@ -889,7 +889,7 @@ msgid ""
 "a>!"
 msgstr ""
 "Je nachdem, wie stark dein SPAM-Aufkommen ist, kannst du das <a href=\"%s\" "
-"%s>cforms' CAPTCHA Feature</a> nutzen!"
+"%s>CAPTCHA Feature</a> nutzen!"
 
 #: cforms-global-settings.php:627
 msgid "<strong>Failure message</strong><br />(for a wrong answer)"
@@ -1470,16 +1470,16 @@ msgstr "Ankunftsdatum"
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
-"Das Beispiel oberhalb wird einen Standardwert von \"mm/dd/yyyy\" festlegen, "
+"Das Beispiel oberhalb wird einen Standardwert von \"%s\" festlegen, "
 "sodass der Benutzer das erwartete Format erfährt. Beachte: Du musst auch <a "
-"href=\"%s\" %s>den Datumswähler konfigurieren</a>, "
-"damit das Datumsformat identisch ist (\"mm/dd/yyyy\" !)."
+"href=\"%s\" %s>den Datumswähler konfigurieren</a>, damit das Datumsformat "
+"identisch ist (\"%s\")!"
 
 #: cforms-help.php:189
 msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
@@ -2710,7 +2710,7 @@ msgstr ""
 #, php-format
 msgid "Function call to generate dynamic forms: %s with"
 msgstr ""
-"Ruft die Funktion für das dynamische generieren von Formularen ab: %s with"
+"Ruft die Funktion für das dynamische generieren von Formularen ab: %s mit"
 
 #: cforms-help.php:1055
 msgid ""
@@ -3168,7 +3168,7 @@ msgid ""
 "<a href=\"mailto:#\">john.doe@doe.com</a> and might want to check out his/"
 "her web page at <a href=\"#\">http://website.com</a>"
 msgstr ""
-"John Doe nutzte gerade MY NEW FORM. Du kannst Kontakt mit dieser Person via "
+"Max Mustermann nutzte gerade MY NEW FORM. Du kannst Kontakt mit dieser Person via "
 "&lt;a href=\"mailto:{Email}\"&gt;{Email}&lt;/a&gt; aufnehmen oder die "
 "Website auf &lt;a href=\"{Website}\"&gt;{Website}&lt;/a&gt; besuchen."
 
@@ -3194,12 +3194,12 @@ msgid ""
 "And a final example for a <a href=\"%s\" %s>HTML auto confirmation message</"
 "a>:"
 msgstr ""
-"Und ein finales Beispiels für eine <a href=\"%s\" %s>HTML Auto-"
+"Und ein finales Beispiel für eine <a href=\"%s\" %s>HTML Auto-"
 "Bestätigungsnachricht</a>:"
 
 #: cforms-help.php:1411 cforms-help.php:1420
 msgid "auto confirmation message"
-msgstr "Auto-Bestätitgung"
+msgstr "Auto-Bestätigung"
 
 #: cforms-help.php:1412 cforms-options.php:120 cforms-options.php:121
 #: lib_activate.php:77 lib_activate.php:78 lib_options_add.php:46
@@ -3221,7 +3221,7 @@ msgstr "Wir werden versuchen, Dir so schnell wie möglich zu antworten."
 
 #: cforms-help.php:1421
 msgid "Dear John Doe,"
-msgstr "Guten Tag John Doe,"
+msgstr "Guten Tag Max Mustermann,"
 
 #: cforms-help.php:1435
 #, php-format
@@ -3242,7 +3242,8 @@ msgid "Defining first, next and last form via configuration"
 msgstr "Definiere das erste, weitere und letzte Formular via Konfiguration"
 
 #: cforms-help.php:1446
-msgid "Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgid ""
+"Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
 msgstr ""
 "Überschreiben von \"next form\" bei der Laufzeit (dynamisch) via my-"
 "functions.php"
@@ -3378,22 +3379,11 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
+"put it in the %s directory."
 msgstr ""
 "cforms kommt mit einigen Theme-Beispielen daher, aber natürlich kannst du "
-"auch deine eigene Theme-Datei (cforms.css) erstellen und entsprechend nutzen."
-
-#: cforms-help.php:1504
-#, php-format
-msgid ""
-"With v8.5+ cforms supports a separate custom user folder to store your "
-"tailored CSS, font and image files! Simply create the folder: %s and move "
-"your CSS (including <strong>all</strong> images!), font &amp; background "
-"image files (CAPTCHA) to it."
-msgstr ""
-"Mit Version 8.5 oder höher untersützt cforms benutzerdefinierte Ordner, um "
-"CSS, Fonts oder Bilder zu speichern. Erstelle einfach einen Ordner: %s und "
-"transferiere alle Dateien in diesen."
+"auch deine eigene Theme-Datei - z.B. basierend auf <strong>cforms.css</strong>"
+" - erstellen und im Verzeichnis %s ablegen."
 
 #: cforms-help.php:1506
 msgid ""
@@ -4187,7 +4177,7 @@ msgstr ""
 #: cforms-options.php:782
 #, php-format
 msgid "%sTurn off%s admin email"
-msgstr "%sDektiviere%s die E-Mail an den Administrator"
+msgstr "%sDeaktiviere%s die E-Mail an den Administrator"
 
 #: cforms-options.php:789
 #, php-format
@@ -5220,8 +5210,8 @@ msgid ""
 "For more information and support, visit the <strong>cforms</strong> %s "
 "support forum %s. "
 msgstr ""
-"Für weitere Informationen und Hilfe besuche bitte das cforms %s support "
-"forum %s. "
+"Für weitere Informationen und Hilfe besuche bitte das cforms %ssupport "
+"forum%s. "
 
 #: lib_functions.php:238
 msgid "Translation provided by Oliver Seidel."

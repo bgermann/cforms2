@@ -19,7 +19,7 @@
 
 function cforms2_setup_db () {
 global $wpdb, $cformsSettings, $localversion;
-$cformsSettings = (array) $cformsSettings;
+$cformsSettings = get_option('cforms_settings');
 
 ### new global settings container
 
@@ -37,7 +37,6 @@ $cformsSettings['global']['cforms_style']['table'] 	= 'style="width:auto; margin
 $cformsSettings['global']['cforms_style']['fs'] 	= 'style="color:#555; padding:1em 0 0.4em; font-size: 110%; font-weight:bold; text-shadow:0 1px 0 #fff;"';
 $cformsSettings['global']['cforms_style']['key_td']	= 'style="padding: 0.3em 1em; border-bottom:1px dotted #ddd; padding-right:2em; color:#888; width:1%;"';
 $cformsSettings['global']['cforms_style']['val_td'] = 'style="padding: 0.3em 1em; border-bottom:1px dotted #ddd; padding-left:0; color:#333;"';
-$cformsSettings['global']['cforms_style']['cforms'] = 'style="display:block; padding:1em 0.6em; margin-top:1em; background:#f7f7f7; color:#777; font-size:90%; text-align:right; font-family:Tahoma,Arial;"';
 
 $cformsSettings['global']['cforms_style']['autoconf'] 	= 'style="padding:1em 1em 0; background:#f0f0f0; color:#333;"';
 $cformsSettings['global']['cforms_style']['dear'] 		= 'style="margin:0.5em 30px; font-weight:bold; margin-bottom:1.2em;"';
@@ -101,7 +100,6 @@ cforms2_setINI('form','cforms_failure', __('Please fill in all the required fiel
 cforms2_setINI('form','cforms_limittxt', '<strong>'.__('No more submissions accepted at this time.', 'cforms').'</strong>');
 
 cforms2_setINI('form','cforms_working', __('One moment please...', 'cforms'));
-cforms2_setINI('form','cforms_popup', 'nn');
 cforms2_setINI('form','cforms_showpos', 'ynyyy');
 
 cforms2_setINI('form','cforms_hide', false);
@@ -145,6 +143,8 @@ $cap['c1'] = 4;
 $cap['c2'] = 5;
 $cap['ac'] = 'abcdefghijkmnpqrstuvwxyz23456789';
 $cap['i'] = 'i';
+$cap['fo'] = '0';
+$cap['foqa'] = '0';
 cforms2_setINI('global','cforms_captcha_def', $cap );
 cforms2_setINI('global','cforms_sec_qa', __('What color is snow?=white', 'cforms'). "\r\n" . __('The color of grass is=green', 'cforms'). "\r\n" . __('Ten minus five equals=five', 'cforms'));
 cforms2_setINI('global','cforms_codeerr', __('Please double-check your verification code.', 'cforms'));
@@ -158,6 +158,7 @@ cforms2_setINI('global','cforms_commentParent', 'mycommentlist');
 cforms2_setINI('global','cforms_commentHTML', "<li id=\"comment-{id}\">{moderation}\n<p>{usercomment}</p>\n<p>\n<cite>Comment by <a href=\"{url}\" rel=\"external nofollow\">{author}</a> &mdash; {date} @ <a href=\"#comment-{id}\">{time}</a></cite>\n</p>\n</li>");
 cforms2_setINI('global','cforms_commentInMod', '<em>'.__('Your comment is awaiting moderation.', 'cforms').'</em>');
 cforms2_setINI('global','cforms_avatar', '32');
+cforms2_setINI('global','cforms_crlf', array('b' => '0'));
 
 cforms2_setINI('global','cforms_css', 'cforms2012.css');
 cforms2_setINI('global','cforms_labelID', '0');
@@ -190,6 +191,7 @@ $nav[2]=__('Next Year', 'cforms');
 $nav[3]=__('Next Month', 'cforms');
 $nav[4]=__('Close', 'cforms');
 $nav[5]=__('Choose Date', 'cforms');
+$nav[6]='0';
 cforms2_setINI('global','cforms_dp_nav', $nav);
 
 
@@ -220,11 +222,7 @@ $cformsSettings['global']['cforms_dp_days'] = str_replace('"', '', $cformsSettin
 $cformsSettings['global']['cforms_dp_months'] = str_replace('"', '', $cformsSettings['global']['cforms_dp_months']);
 
 ### UPDATE 'the one'
-if ( get_option('cforms_settings') )
-    update_option('cforms_settings',$cformsSettings);
-else
-    add_option('cforms_settings',$cformsSettings);
-
+update_option('cforms_settings',$cformsSettings);
 
 
 ### updates existing tracking db
@@ -249,6 +247,10 @@ if ( $wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata
 ### check if option is set
 function cforms2_setINI($s,$v,$d) {
 	global $cformsSettings;
-	if( !is_array($cformsSettings[$s]) || !in_array($v, array_keys($cformsSettings[$s]) ) )
+	if( !is_array($cformsSettings) )
+		$cformsSettings = array();
+	if( !array_key_exists($s, $cformsSettings) || !is_array($cformsSettings[$s]) )
+		$cformsSettings[$s] = array();
+	if( !in_array($v, array_keys($cformsSettings[$s]) ) )
     	$cformsSettings[$s][$v]=$d;
 }

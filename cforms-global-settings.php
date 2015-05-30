@@ -67,7 +67,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 // Update Settings
 if( isset($_REQUEST['SubmitOptions']) ) {
 		
-	$cformsSettings['global']['cforms_html5'] 		  = cforms2_get_from_request('cforms_html5','1','0');
+	$cformsSettings['global']['cforms_html5'] 		  = cforms2_get_boolean_from_request('cforms_html5');
 	$cformsSettings['global']['cforms_show_quicktag'] = cforms2_get_boolean_from_request('cforms_show_quicktag');
 	$cformsSettings['global']['cforms_sec_qa'] = 		cforms2_get_from_request('cforms_sec_qa');
 	$cformsSettings['global']['cforms_codeerr'] = 		cforms2_get_from_request('cforms_codeerr');
@@ -208,21 +208,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="">
 		<input type="hidden" name="cforms_database_new" value="<?php if($cformsSettings['global']['cforms_database']=="0") echo 'true'; ?>"/>
-
-		<fieldset id="wpeditor" class="cformsoptions">
-			<div class="cflegend op-closed" id="p31" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('HTML5 Input Field Support', 'cforms')?>
-            </div>
-
-			<div class="cf-content" id="o31">
-				<table class="form-table">
-					<tr class="ob">
-						<td class="obL"></td>
-						<td class="obR"><input class="allchk" type="checkbox" id="cforms_html5" name="cforms_html5" <?php if($cformsSettings['global']['cforms_html5']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_html5"><strong><?php _e('Enable HTML5 fields', 'cforms') ?></strong></label></td>
-					</tr>
-				</table>
-			</div>
-		</fieldset>
 		
 		<fieldset id="wpcomment" class="cformsoptions">
 			<div class="cflegend op-closed" id="p28" title="<?php _e('Expand/Collapse', 'cforms') ?>">
@@ -486,7 +471,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
             </div>
 
 			<div class="cf-content" id="o26">
-				<p><?php _e('Below you can find a few switches and options to change the default look of the captcha image. Feel free to upload your own backgrounds and fonts to the respective directories (<code>cforms/captchabg/</code> &amp; <code>cforms/captchafonts/</code> or your custom folder: <code>/plugins/cforms-custom/</code> ).', 'cforms') ?></p>
 
 				<?php
 					$cap = $cformsSettings['global']['cforms_captcha_def'];
@@ -722,7 +706,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
                 <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
 
             </div>
-            <input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
+            <input type="hidden" name="noSub" value="<?php if (!empty($noDISP)) echo $noDISP; ?>"/>
         </form>
     </div>
 </div>
@@ -744,6 +728,9 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 <?php
 
+/**
+ * @deprecated since version 14.9.5
+ */
 function cforms2_get_files($dir,$currentfile,$ext){
 
 	$s = DIRECTORY_SEPARATOR;

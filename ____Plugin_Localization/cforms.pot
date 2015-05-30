@@ -1328,11 +1328,11 @@ msgstr ""
 #: cforms-help.php:183
 #, php-format
 msgid ""
-"The example above will set a <em>default value</em> of \"mm/dd/yyyy\" so "
+"The example above will set a <em>default value</em> of \"%s\" so "
 "users know the expected format. The <strong>regexp</strong> at the end "
 "ensures that only this format is accepted. <strong>NOTE:</strong> You also "
 "need to <a href=\"%s\" %s>configure the date picker options</a> to match the "
-"date format (\"mm/dd/yyyy\" !)"
+"date format (\"%s\")!"
 msgstr ""
 
 #: cforms-help.php:189
@@ -2955,16 +2955,7 @@ msgid ""
 "cforms comes with a few theme examples (some of them may require adjustments "
 "to work with <strong>your</strong> forms!) but you can of course create your "
 "own theme file -based on the default <strong>cforms.css</strong> file- and "
-"put it in the <code>/styling</code> directory."
-msgstr ""
-
-#: cforms-help.php:1504
-#, php-format
-msgid ""
-"With v8.5+ cforms supports a separate custom user folder to store your "
-"tailored CSS, font and image files! Simply create the folder: %s and move "
-"your CSS (including <strong>all</strong> images!), font &amp; background "
-"image files (CAPTCHA) to it."
+"put it in the %s directory."
 msgstr ""
 
 #: cforms-help.php:1506
@@ -4910,4 +4901,16 @@ msgid ""
 "regular expressions for field validation and custom error messages, as well "
 "as country and state (US) drop down lists. It also features a must-check "
 "Disclaimer."
+msgstr ""
+
+msgid "yyyy"
+msgstr ""
+
+msgid "mm"
+msgstr ""
+
+msgid "dd"
+msgstr ""
+
+msgid "HH:MM"
 msgstr ""

@@ -20,13 +20,13 @@
  * Plugin URI: https://wordpress.org/plugins/cforms2/
  * Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
  * Author: Oliver Seidel, Bastian Germann
- * Version: 14.9.2
+ * Version: 14.9.6
  * Text Domain: cforms
  * Domain Path: ____Plugin_Localization
  */
 
 global $localversion;
-$localversion = '14.9.2';
+$localversion = '14.9.6';
 
 ### db settings
 global $wpdb;
@@ -1036,7 +1036,6 @@ function cforms2($args = '',$no = '') {
 				'<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'</span>"/>'.
 				'<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="<span>'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'</span>"/>'.
 				'<input type="hidden" name="cf_customerr'.$no.'" id="cf_customerr'.$no.'" value="'.rawurlencode($custom_error).'"/>'.
-				'<input type="hidden" name="cf_popup'.$no.'" id="cf_popup'.$no.'" value="'.$cformsSettings['form'.$no]['cforms'.$no.'_popup'].'"/>';
 
 	$content .= '</fieldset>';
 
@@ -1095,7 +1094,7 @@ function cforms2_enqueue_scripts() {
 
 		### add calendar
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
-			cforms2_enqueue_script_datepicker($localversion);
+			cforms2_enqueue_script_datepicker($localversion, stripslashes($cformsSettings['global']['cforms_dp_date']));
 		}
         wp_register_script( 'jquery-md5', plugin_dir_url(__FILE__) . "js/jquery.md5.js", array('jquery'), '1.2.1');
 		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery', 'jquery-md5'), $localversion);
@@ -1368,7 +1367,7 @@ add_action('plugins_loaded', 'cforms2_localization' );
 add_action('widgets_init', 'cforms2_widget_init');
 
 $admin = is_admin();
-$cfadmin = strpos($_SERVER['QUERY_STRING'],plugin_dir_path(plugin_basename(__FILE__)).'cforms') !== false;
+$cfadmin = strpos($_SERVER['QUERY_STRING'], 'cforms') !== false;
 
 ### dashboard
 if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {

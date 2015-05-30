@@ -87,6 +87,7 @@ function cforms2_dead_code() {
  	$to_one = -1;
   	$ccme = false;
 	$field_email = '';
+	$off = 0;
 	$fieldsetnr=1;
 
 	$taf_youremail = false;
@@ -99,59 +100,63 @@ function cforms2_dead_code() {
 	}
 
 	$captchaopt = $cformsSettings['global']['cforms_captcha_def'];
-	$captchas = cforms2_get_pluggable_captchas();
 
-	for($i = 1, $off = 1; $i < sizeof($params)-1; $i++) {
+	for($i = 1; $i <= sizeof($params)-2; $i++) {
 
-			list($field_name, $field_type, , $field_rest) = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . $i] );
+			$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . ((int)$i+(int)$off)] );
 
-			if( $field_type == '')
-                break; ###  all fields searched
+			while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
 
-			if ( in_array($field_type, array_merge(array_keys($captchas), array('fieldsetstart','fieldsetend','textonly','captcha'))) ) {
+				if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && $captchaopt['fo']!='1') )
+					break;
+				if ( cforms2_check_pluggable_captchas_authn_users($field_stat[1]) )
+					break;
 
-				if ( $field_type == 'captcha' && !(is_user_logged_in() && $captchaopt['fo']!='1') )
-					continue;
-				elseif ( cforms2_check_pluggable_captchas_authn_users($field_type) )
-					continue;
-				trigger_error($field_name.','. $field_type.','.($i + $off).','.$params['field_' . ($i + $off)]);
-				trigger_error(var_export($params,1));
-				if (array_key_exists($field_type, $captchas)) {
-					$captchas[$field_type]->check_response('', '');
-				}
-
-                if ( $field_type == 'fieldsetstart' ) {
-                        $track['$$$'.$i] = 'Fieldset'.$fieldsetnr;
-                        $track['Fieldset'.$fieldsetnr++] = $field_name;
-                } elseif ( $field_type == 'fieldsetend' ) {
+                if ( $field_stat[1] == 'fieldsetstart' ){
+                        $track['$$$'.((int)$i+(int)$off)] = 'Fieldset'.$fieldsetnr;
+                        $track['Fieldset'.$fieldsetnr++] = $field_stat[0];
+                    } elseif ( $field_stat[1] == 'fieldsetend' ){
                         $track['FieldsetEnd'.$fieldsetnr++] = '--';
                 }
 
-				$off++;
+                ### get next in line...
+                $off++;
+                $field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . ((int)$i+(int)$off)] );
+
+                if( $field_stat[1] == '')
+                    break 2; ###  all fields searched, break both while & for
 
 			}
-			
+
 			###  filter all redundant WP comment fields if user is logged in
-			if ( in_array($field_type,array('cauthor','email','url')) && $user->ID ) {
+			while ( in_array($field_stat[1],array('cauthor','email','url')) && $user->ID ) {
 
-			    $temp = explode('|', $field_name,3); ### get field name
+			    $temp = explode('|', $field_stat[0],3); ### get field name
 			    $temp = explode('#', $temp[0],2);
-		 		switch( $field_type ) {
-					case 'cauthor':
-						$track['cauthor'] = $track[$temp[0]] = $user->display_name;
-						$track['$$$'.$i] = $temp[0];
-						break;
-					case 'email':
-						$track['email'] = $track[$temp[0]] = $field_email = $user->user_email;
-						$track['$$$'.$i] = $temp[0];
-						break;
-					case 'url':
-						$track['url'] = $track[$temp[0]] = $user->user_url;
-						$track['$$$'.$i] = $temp[0];
-						break;
-				}
-				$off++;
+		 		switch( $field_stat[1] ){
+						case 'cauthor':
+							$track['cauthor'] = $track[$temp[0]] = $user->display_name;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
+							break;
+						case 'email':
+							$track['email'] = $track[$temp[0]] = $field_email = $user->user_email;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
+							break;
+						case 'url':
+							$track['url'] = $track[$temp[0]] = $user->user_url;
+							$track['$$$'.((int)$i+(int)$off)] = $temp[0];
+							break;
+					}
+
+					$off++;
+					$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . ((int)$i+(int)$off)] );
+
+					if( $field_stat[1] == '')
+						break 2; ###  all fields searched, break both while & for
 			}
+
+			$field_name = $field_stat[0];
+			$field_type = $field_stat[1];
 
 			### remove [id: ] first
 			if ( strpos($field_name,'[id:')!==false ){
@@ -172,64 +177,65 @@ function cforms2_dead_code() {
 
 
 			###  special WP comment fields
-			if( in_array($field_type,array('cauthor','email','url','comment','send2author')) ){
+			if( in_array($field_stat[1],array('cauthor','email','url','comment','send2author')) ){
 			    $temp = explode('#', $field_name,2);
 
 				if ( $temp[0] == '' )
-                	$field_name = $field_type;
+                	$field_name = $field_stat[1];
 				else
                 	$field_name = $temp[0];
 
 				### keep copy of values
-    			$track[$field_type] = stripslashes( $params['field_' . ($i + $off)] );
+    			$track[$field_stat[1]] = stripslashes( $params['field_' . $i] );
 
-				if ( $field_type == 'email' )
-					$field_email = $params['field_' . ($i + $off)];
+				if ( $field_stat[1] == 'email' )
+					$field_email = $params['field_' . $i];
 			}
 
 			###  special Tell-A-Friend fields
-			if ( $taf_friendsemail == '' && $field_type=='friendsemail' && $field_rest=='1'){
-
-				preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i", $params ['field_' . ($i + $off)], $r);
-				$field_email = $taf_friendsemail = $r[1];  // double checking anti spam TAF
+			if ( $taf_friendsemail == '' && $field_type=='friendsemail' && $field_stat[3]=='1'){
+					
+					preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i", $params ['field_' . $i], $r);
+					$field_email = $taf_friendsemail = $r[1];  // double checking anti spam TAF
 
 			}
-			if ( $taf_youremail == '' && $field_type=='youremail' && $field_rest=='1')
-				$taf_youremail = $params ['field_' . ($i + $off)];
+			if ( $taf_youremail == '' && $field_type=='youremail' && $field_stat[3]=='1')
+					$taf_youremail = $params ['field_' . $i];
 			if ( $field_type=='friendsname' )
-				$taf_friendsname = $params ['field_' . ($i + $off)];
+					$taf_friendsname = $params ['field_' . $i];
 			if ( $field_type=='yourname' )
-				$taf_yourname = $params ['field_' . ($i + $off)];
+					$taf_yourname = $params ['field_' . $i];
 
 
 			###  lets find an email field ("Is Email") and that's not empty!
-			if ( $field_email == '' && $field_rest=='1') {
-				$field_email = $params ['field_' . ($i + $off)];
+			if ( $field_email == '' && $field_stat[3]=='1') {
+					$field_email = $params ['field_' . $i];
 			}
 
 			###  special case: select & radio
 			if ( $field_type == "multiselectbox" || $field_type == "selectbox" || $field_type == "radiobuttons" || $field_type == "checkboxgroup") {
-				$field_name = explode('#',$field_name);
-				$field_name = $field_name[0];
+			  $field_name = explode('#',$field_name);
+			  $field_name = $field_name[0];
 			}
 
 			###  special case: check box
 			if ( $field_type == "checkbox" || $field_type == "ccbox" ) {
-				$field_name = explode('#',$field_name);
-				$field_name = ($field_name[1]=='')?$field_name[0]:$field_name[1];
+			  $field_name = explode('#',$field_name);
+			  $field_name = ($field_name[1]=='')?$field_name[0]:$field_name[1];
 
-				$field_name = explode('|',$field_name);
-				$field_name = $field_name[0];
+			  $field_name = explode('|',$field_name);
+			  $field_name = $field_name[0];
 
-				  ###  if ccbox & checked
-				if ($field_type == "ccbox" && $params ['field_' . ($i + $off)]<>"" )
-					$ccme = $field_name;
+				###  if ccbox & checked
+			  if ($field_type == "ccbox" && $params ['field_' . $i]<>"" ) //10.2. removed "-"
+			      ##$ccme = 'field_' . $i;
+			      $ccme = $field_name;
 			}
 
 			if ( $field_type == "emailtobox" ){  			### special case where the value needs to bet get from the DB!
 
-                $to_one = $params ['field_' . ($i + $off)];
-				$field_name = explode('#',$field_name);  ### can't use field_name, since '|' check earlier
+                $to_one = $params ['field_' . $i];
+				$field_name = explode('#',$field_stat[0]);  ### can't use field_name, since '|' check earlier
 
 	            $tmp = explode('|', $field_name[$to_one+1] );   ###  remove possible |set:true
 	            $value  = $tmp[0];                              ###  values start from 0 or after!
@@ -239,9 +245,9 @@ function cforms2_dead_code() {
 	 		}
 			else {
 			    if ( strtoupper(get_option('blog_charset')) <> 'UTF-8' && function_exists('mb_convert_encoding'))
-        		    $value = mb_convert_encoding(utf8_decode( stripslashes( $params['field_' . ($i + $off)] ) ), get_option('blog_charset'));   ###  convert back and forth to support also other than UTF8 charsets
+        		    $value = mb_convert_encoding(utf8_decode( stripslashes( $params['field_' . $i] ) ), get_option('blog_charset'));   ###  convert back and forth to support also other than UTF8 charsets
                 else
-                    $value = stripslashes( $params['field_' . ($i + $off)] );
+                    $value = stripslashes( $params['field_' . $i] );
             }
 
 			### only if hidden!
@@ -267,7 +273,7 @@ function cforms2_dead_code() {
 				$inc = '___'.($trackinstance[$trackname]++);
 			}
 
-			$track['$$$'.$i] = $trackname.$inc;
+			$track['$$$'.(int)($i+$off)] = $trackname.$inc;
 			$track[$trackname.$inc] = $value;
 			if( $customTrackingID<>'' )
 				$track['$$$'.$customTrackingID] = $trackname.$inc;

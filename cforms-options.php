@@ -383,7 +383,6 @@ if( strlen($fd)<=2 ) {
 									<option<?php echo $dis; ?> value="send2author" <?php echo($field_type == 'send2author'?' selected="selected"':''); ?>><?php _e('Select: Email/Comment', 'cforms'); ?></option>
 								</optgroup>
 
-                                <?php if ( $cformsSettings['global']['cforms_html5'] ) : ?>
 								<optgroup label="<?php _e('--- HTML5 form fields ---', 'cforms'); ?>">
 									<option value="html5color" <?php echo($field_type == 'html5color'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Color Field', 'cforms'); ?></option>
 									<option value="html5date" <?php echo($field_type == 'html5date'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Date Field', 'cforms'); ?></option>
@@ -399,7 +398,6 @@ if( strlen($fd)<=2 ) {
 									<option value="html5url" <?php echo($field_type == 'html5url'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('URL Field', 'cforms'); ?></option>
 									<option value="html5week" <?php echo($field_type == 'html5week'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Week Field', 'cforms'); ?></option>
 								</optgroup>
-                                <?php endif; ?>
                             	</select><?php
 
                             echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
@@ -550,7 +548,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obR">
                     	<table><tr>
 						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_success" id="cforms_success"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_success'])); ?></textarea></td>
-						<td><input class="allchk" type="checkbox" id="cforms_popup1" name="cforms_popup1" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],0,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_popup1"><?php _e('Opt. Popup Msg', 'cforms'); ?></label></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -560,7 +557,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obR">
                     	<table><tr>
 						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_failure" id="cforms_failure" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_failure'])); ?></textarea></td>
-						<td><input class="allchk" type="checkbox" id="cforms_popup2" name="cforms_popup2" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_popup'],1,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_popup2"><?php _e('Opt. Popup Msg', 'cforms'); ?></label></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -668,8 +664,8 @@ if( strlen($fd)<=2 ) {
 					<td class="obL" style="padding-top:7px"><strong><?php _e('Start Date', 'cforms'); ?></strong></td>
 					<?php $date = explode(' ',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])) ); ?>
 					<td class="obR">
-                    	<input type="text" class="cf_date" id="cforms_startdate" name="cforms_startdate" value="<?php echo $date[0]; ?>"/>
-                        <input type="text" id="cforms_starttime" name="cforms_starttime" value="<?php echo $date[1]; ?>"/><a class="cf_timebutt1" href="javascript:void(0);"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/clock.gif" alt="" title="<?php _e('Time entry.', 'cforms') ?>"/></a>
+                    	<input type="text" class="cf_date" id="cforms_startdate" name="cforms_startdate" placeholder="<?php echo cforms2_admin_date_format(); ?>" value="<?php echo $date[0]; ?>"/>
+                        <input type="text" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms') ?>"/>
 						<label for="cforms_startdate"><?php
 						$dt='x';
                         if( strlen($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])>1 ):
@@ -689,8 +685,8 @@ if( strlen($fd)<=2 ) {
 					<td class="obL" style="padding-top:7px"><strong><?php _e('End Date', 'cforms'); ?></strong></td>
 					<?php $date = explode(' ',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])) ); ?>
 					<td class="obR">
-                    	<input type="text" class="cf_date" id="cforms_enddate" name="cforms_enddate" value="<?php echo $date[0]; ?>"/>
-                        <input type="text" id="cforms_endtime" name="cforms_endtime" value="<?php echo $date[1]; ?>"/><a class="cf_timebutt2" href="javascript:void(0);"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/clock.gif" alt="" title="<?php _e('Time entry.', 'cforms') ?>"/></a>
+                    	<input type="text" class="cf_date" id="cforms_enddate" name="cforms_enddate" placeholder="<?php echo cforms2_admin_date_format(); ?>" value="<?php echo $date[0]; ?>"/>
+                        <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms') ?>"/>
 						<label for="cforms_startdate"><?php
                         if( $dt=='x' && strlen($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])>1 ):
                             $dt = cforms2_make_time(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])) - time();

@@ -3,7 +3,7 @@ Contributors: bgermann, olivers, cbacchini, codifex
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.9
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
@@ -100,7 +100,7 @@ fork.
 If you want to delete the original version, make sure you do not delete your
 upload directory.
 
-= Did you modify any cforms theme (CSS) files, images etc? =
+= Did you modify any cforms theme (CSS) files? =
 
 Create a custom folder under your WP plugin directory & call it "cforms-custom".
 Move all your custom files into it. This folder will protect your changes going
@@ -129,7 +129,8 @@ You can find old versions in the
 That function was removed. The Wordpress function wp_mail is now used for mails,
 which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate
-plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/)
+or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
 
 = I upgraded and lost my widgets. What can I do? =
 
@@ -221,8 +222,26 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.7 =
+* other:    remove possibility to show JavaScript alert messages
+
+= 14.9.6 =
+* enhanced: make PHP 5.2 compatible again (in 14.9.4 one 5.3 function was introduced)
+* enhanced: on style settings do not include ../.. in request parameters to not cause a false positive in application firewalls
+* other:    always show HTML5 field types in form settings
+
+= 14.9.5 =
+* bugfix:   circumvent fatal error on wrong form date settings
+
+= 14.9.4 =
+* bugfix:   remove warning message after form submission
+* bugfix:   set static datepicker format on forms options page
+* other:    remove ClockPick
+
 = 14.9.3 =
-* bugfix:   pluggable captchas are checked for AJAX forms
+* bugfix:   settings are not removed anymore on plugin activation
+* bugfix:   make HTML5 checkbox have the right status (global settings)
+* bugfix:   do not depend on slash in request string to check for admin page (WordPress 4.2 incompatibility)
 
 = 14.9.2 =
 * bugfix:   eliminate scattered > and missing labels

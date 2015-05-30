@@ -290,6 +290,9 @@ foreach($data as $d) {
 ### a nice border
 ImageRectangle($im, 0, 0, $image_width-1, $image_height-1, $color_border);
 
+// There can be some output from other loaded PHP files, therefore clean output.
+ob_end_clean();
+
 switch ($output_type) {
 	case 'jpeg': Header('Content-type: image/jpeg'); ImageJPEG($im,NULL,100); break;
 	case 'png':

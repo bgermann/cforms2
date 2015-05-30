@@ -96,7 +96,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$field_name = $field_stat[0];
 		$field_type = $field_stat[1];
 
-		$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
+		$custom_names = $cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1';
 
 		if ( $custom_names ){
 
@@ -189,7 +189,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		}
 
 
-		if ( $field_type == "emailtobox" ){  				### special case where the value needs to bet get from the DB!
+		if ( $field_type == "emailtobox" ){  				### special case where the value needs to be fetched from the DB!
 
             $to_one = $_POST[$current_field];
             $field_name = explode('#',$field_stat[0]);  	### can't use field_name, since '|' check earlier
@@ -213,7 +213,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
  		else if ( $field_type == "multiselectbox" || $field_type == "checkboxgroup"){
 
             $all_options = $_POST[$current_field];
- 		    if ( count($all_options) > 0)
+ 		    if ( !empty($all_options))
                 $value = stripslashes(implode(',', $all_options));
             else
                 $value = '';
@@ -482,7 +482,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		### end of session w/ files
 		if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
 			foreach ( array_keys($_SESSION['cforms']['upload']) as $n ) {
-				foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ){
+				if ($_SESSION['cforms']['upload'][$n]['files']) foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ){
 					cforms2_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'] );
 					### debug
 					cforms2_dbg( "(end of session) File = ".$_SESSION['cforms']['upload'][$n]['files'][$m].", attach = ".$_SESSION['cforms']['upload'][$n]['doAttach'] );

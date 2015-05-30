@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
+
 ### new Global Settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
@@ -163,30 +165,18 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a>
 			<?php _e('Javascript Date Picker', 'cforms'); ?>
 		</p>
-		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-dp.png"  alt=""/>
-		<table class="hf" cellspacing="2" border="4">
+		<table class="hf" cellspacing="2" border="4" width="95%">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms'); ?>"><?php _e('Format:', 'cforms'); ?></span></td>
 				<td class="bright"><?php echo sprintf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms'),'<span style="color:red; font-weight:bold;">|</span>','#regexp'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms'); ?></td><td class="bright">
-					<code><?php _e('Arrival Date', 'cforms'); ?>|mm/dd/yyyy|^[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$</code></td>
+					<code><?php _e('Arrival Date', 'cforms'); echo '|'; echo cforms2_admin_date_format(); ?>|^[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$</code></td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('The example above will set a <em>default value</em> of "mm/dd/yyyy" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("mm/dd/yyyy" !)', 'cforms'),'?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"'); ?>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-				<table class="dateinfo" width="100%">
-					<tr><td colspan="3"><strong><?php _e('Supported Date Formats (see "Plugin Settings" tab)', 'cforms');?><br /></strong></td></tr>
-					<tr><th><?php _e('Field', 'cforms');?></th><th><?php _e('Full Form', 'cforms');?></th><th><?php _e('Short Form', 'cforms');?></th></tr>
-					<tr><td><strong><?php _e('Year', 'cforms');?></strong></td><td><?php _e('yyyy (4 digits)', 'cforms');?></td><td><?php _e('yy (2 digits)', 'cforms');?></td></tr>
-					<tr><td><strong><?php _e('Month', 'cforms');?></strong></td><td><?php _e('mmm (name)', 'cforms');?></td><td><?php _e('mm (2 digits)', 'cforms');?></td></tr>
-					<tr><td><strong><?php _e('Day of Month', 'cforms');?></strong></td><td><?php _e('dd (2 digits)', 'cforms');?></td><td></td></tr>
-				</table>
+					<?php echo sprintf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"', cforms2_admin_date_format()); ?>
 				</td>
 			</tr>
 		</table>
@@ -1028,7 +1018,6 @@ echo '&lt;/table&gt;';</pre></td></tr>
                     <td class="bright"><?php _e('function gets called <strong>at</strong> various stages of input processing', 'cforms'); ?></td>
                 </tr>
 			</table>
-			<p class="ex" ><?php echo sprintf(__('%s can reside in your /plugins/cforms-custom folder to protect it from future (auto) upgrades.', 'cforms'),'<strong>my-functions.php.txt</strong>'); ?></p>
 		</div>
 
 
@@ -1495,8 +1484,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 
 		<div class="cf-content" id="o24">
 			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
-			<p><?php _e('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the <code>/styling</code> directory.', 'cforms'); ?></p>
-			<p class="ex"><?php echo sprintf(__('With v8.5+ cforms supports a separate custom user folder to store your tailored CSS, font and image files! Simply create the folder: %s and move your CSS (including <strong>all</strong> images!), font &amp; background image files (CAPTCHA) to it.', 'cforms'),'<strong>/plugins/cforms-custom</strong>'); ?></p>
+			<p><?php echo sprintf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
 			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms'); ?></p>
 		</div>

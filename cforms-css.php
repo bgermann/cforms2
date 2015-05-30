@@ -62,7 +62,10 @@ else if(isset($_POST['no-css'])){
 ###
 if ( !empty($_POST['style']) ){
 
-	$cformsSettings['global']['cforms_css'] = $_POST['style'];
+	$newstyle = $_POST['style'];
+	if ( strpos($newstyle,'cforms-custom/')!==false)
+		$newstyle = '../../' . $newstyle;
+	$cformsSettings['global']['cforms_css'] = $newstyle;
 	update_option('cforms_settings',$cformsSettings);
 
 	$style = $cformsSettings['global']['cforms_css'];
@@ -119,9 +122,9 @@ if ( !empty($_POST['style']) ){
 													sort($allcustomCSS);
 													foreach ( $allcustomCSS as $f ) {
 														if( strpos($style,$f)!==false )
-														    	echo '<option style="background:#fbd0d3" selected="selected" value="../../cforms-custom/'.$f.'">'.$f.'</option>'."\n";
+														    	echo '<option style="background:#fbd0d3" selected="selected" value="cforms-custom/'.$f.'">'.$f.'</option>'."\n";
 														else
-																echo '<option value="../../cforms-custom/'.$f.'">'.$f.'</option>';
+																echo '<option value="cforms-custom/'.$f.'">'.$f.'</option>';
 													}
 
 													echo '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** '.__('cform css files','cforms').' ***&nbsp;&nbsp;</option>';
