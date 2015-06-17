@@ -223,6 +223,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.9.7 =
+* bugfix:   do not depend on TLD consisting of only 2-4 characters
 * bugfix:   undo problematic change from 14.9.6
 * other:    remove possibility to show JavaScript alert messages
 

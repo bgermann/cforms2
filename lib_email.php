@@ -71,7 +71,7 @@ class cforms2_mail {
 
 	    $fe=array();
 	    $f=array();
-	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',$from,$fe) )
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,63})/',$from,$fe) )
 	        $this->from = $fe[0];
 
 	    if( preg_match('/(.*)\s+(([\w-\.]+@|<)).*/',$from,$f) )
@@ -82,7 +82,7 @@ class cforms2_mail {
 	    ### reply-to
 	    $te=array();
 	    $t=array();
-	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',$replyto,$te) ) {
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,63})/',$replyto,$te) ) {
 	        if ( preg_match('/(.*)\s+(([\w-\+\.]+@|<)).*/',$replyto,$t) )
 	            $this->add_reply($te[0] ,str_replace('"','',$t[1]) );
 	        else
@@ -99,7 +99,7 @@ class cforms2_mail {
 
 	    $addresses = explode(',',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']) );
 	    foreach( $addresses as $a ){
-	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) && $adminEmail) {
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,63})/',$a,$te) && $adminEmail) {
 	            if ( preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/',$a,$t) )
 	                $this->add_bcc($te[0] ,str_replace('"','',$t[1]) );
 	            else
@@ -114,7 +114,7 @@ class cforms2_mail {
 	    $addresses = explode(',',$to);
 
 	    foreach( $addresses as $a ){
-	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) ) {
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,63})/',$a,$te) ) {
 	            if ( preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/',$a,$t) )
 	                $this->add_addr($te[0] ,str_replace('"','',$t[1]) );
 	            else

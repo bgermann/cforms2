@@ -354,7 +354,7 @@ function cforms_validate(no, upload) {
     var all_valid = true;
     var code_err  = false;
 
-    var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$','i');  // email regexp
+    var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,63})$','i');  // email regexp
 
 
     //clean enhanced error if present
