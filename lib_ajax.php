@@ -47,7 +47,7 @@ function cforms2_submitcomment() {
 	    $commentparent = $content[1];
 	    $Ajaxpid = $content[2];
 	    $AjaxURL = $content[3];
-    } elseif ( count($content) === 3 ) {
+    } else {
 	    $Ajaxpid = $content[1];
 	    $AjaxURL = $content[2];
     }
@@ -57,7 +57,7 @@ function cforms2_submitcomment() {
 
 	$user = wp_get_current_user();
 
-	for($i = 1; $i < sizeof($segments); $i++) {
+	for($i = 1; $i <= sizeof($segments); $i++) {
 		$params['field_' . $i] = $segments[$i];
     }
 

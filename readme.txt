@@ -223,6 +223,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.9.7 =
+* bugfix:   undo problematic change from 14.9.6
 * other:    remove possibility to show JavaScript alert messages
 
 = 14.9.6 =
