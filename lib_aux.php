@@ -50,7 +50,7 @@ function cforms2_sec2hms($s) {
 
 ### make time
 function cforms2_make_time($t) {
-	$time = str_replace('/', '.', $t) . ' ' . get_option('timezone_string');
+	$time = str_replace('/', '.', $t) . sprintf(' %+d', get_option('gmt_offset'));
 	$time = strtotime($time);
 	if ($time === false)
 		return 0;
