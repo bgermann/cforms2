@@ -115,7 +115,7 @@ on layout customization.
 
 = I do not get any emails from my form. Why? =
 
-Most pobably this is not cformsII's fault. Please check your Wordpress mail
+Most probably this is not cformsII's fault. Please check your Wordpress mail
 configuration with a plugin like
 [Check Email](https://wordpress.org/plugins/check-email/).
 
