@@ -222,6 +222,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.8 =
+* bugfix:   no duplicate form rendering
+
 = 14.9.7 =
 * bugfix:   cforms2_make_time: do not depend on timezone being a region
 * bugfix:   do not depend on TLD consisting of only 2-4 characters
