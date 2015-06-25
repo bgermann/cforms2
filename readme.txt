@@ -222,6 +222,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.9 =
+* enhanced: remove old picture in help section
+
 = 14.9.8 =
 * bugfix:   no duplicate form rendering
 
