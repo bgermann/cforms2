@@ -222,11 +222,9 @@ GPL compliance!
 
 == Changelog ==
 
-= 14.9.10 =
+= 14.9.9 =
 * bugfix:   do not depend on TLD consisting of only 2-4 characters, even on non-AJAX forms
 * bugfix:   do not reset multipage form on back button
-
-= 14.9.9 =
 * enhanced: remove old picture in help section
 
 = 14.9.8 =
