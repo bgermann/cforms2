@@ -305,7 +305,7 @@ function cforms2($args = '',$no = '') {
 	        $_SESSION['cforms']['first']=$no;
 	        $_SESSION['cforms']['pos']=1;
 			}
-	} else {
+	} elseif (!$isMPform) {
 		unset( $_SESSION['cforms'] );
 		$_SESSION['cforms']['current']=0;
 		$_SESSION['cforms']['first']=$no;
