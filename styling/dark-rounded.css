@@ -219,7 +219,7 @@ span.emailreqtxt {
 /*                                                    */
 
 p.cf-sb {
-	background: url(../images/customform_dark_button_bg.jpg) no-repeat bottom left;
+	background: black;
 	padding: 0!important;
 	margin: 0;
 	text-align:right;

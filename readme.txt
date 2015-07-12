@@ -33,10 +33,6 @@ CAPTCHA will be removed in favour of that plugin.
 
 = Credits =
 
-Some icons are based on the wonderful [Glyphicons](http://glyphicons.com)
-Halflings set of Jan Kovařík, taken from Twitter Bootstrap
-(MIT license, see images/LICENSE file).
-
 Translations are provided by:
 
 * www.alpenimmobilien.de
