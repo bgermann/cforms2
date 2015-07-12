@@ -42,7 +42,7 @@ if ( cforms2_check_erased() )
 	<div id="ctrlmessage"></div>
 	<div class="bborderx"><table id="flex1" style="display:none"><tr><td></td></tr></table></div>
 	<div id="entries"></div>
-	<div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>js/include/"></div>
+	<div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>include/"></div>
 
 	<?php
 	### if called from dashboard

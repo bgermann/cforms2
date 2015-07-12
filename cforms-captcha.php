@@ -126,7 +126,7 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 	}
 
 	public function render_settings() {
-		require ('js/include/textfield.php');
+		require ('include/textfield.php');
 	}
 
 }
