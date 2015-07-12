@@ -234,15 +234,15 @@ if( strlen($fd)<=2 ) {
 		</div>
 
 		<div class="tableheader">
-        	<div id="cformswarning" style="display:none"><?php echo __('Please save the new order of fields (<em>Update Settings</em>)!','cforms'); ?></div>
+        	<div id="cformswarning" class="dashicons-before dashicons-info" style="display:none"><?php _e('Please save the new order of fields (<em>Update Settings</em>)!','cforms'); ?></div>
         	<div>
 	            <div class="fh1" title="<?php _e('Can be a simple label or a more complex expression. See Help!', 'cforms'); ?>"><br /><span class="abbr"><?php _e('Field Name', 'cforms'); ?></span></div>
 	            <div class="fh2" title="<?php _e('Pick one of the supported input field types.', 'cforms'); ?>"><br /><span class="abbr"><?php _e('Type', 'cforms'); ?></span></div>
-	            <div><img src="<?php echo plugin_dir_url(__FILE__); ?>images/ic_required.png" title="<?php _e('Makes an input field required for proper form validation.', 'cforms'); ?>" alt="" /><br /><?php _e('required', 'cforms'); ?></div>
-	            <div><img src="<?php echo plugin_dir_url(__FILE__); ?>images/ic_email.png" title="<?php _e('Makes the field required and verifies the email address.', 'cforms'); ?>" alt="" /><br /><?php _e('e-mail', 'cforms'); ?></div>
-	            <div><img src="<?php echo plugin_dir_url(__FILE__); ?>images/ic_clear.png" title="<?php _e('Clears the field (default value) upon focus.', 'cforms'); ?>" alt="" /><br /><?php _e('auto-clear', 'cforms'); ?></div>
-	            <div><img src="<?php echo plugin_dir_url(__FILE__); ?>images/ic_disabled.png" title="<?php _e('Grey\'s out a form field (field will be completely disabled).', 'cforms'); ?>" alt="" /><br /><?php _e('disabled', 'cforms'); ?></div>
-	            <div><img src="<?php echo plugin_dir_url(__FILE__); ?>images/ic_readonly.png" title="<?php _e('Form field will be readonly!', 'cforms'); ?>" alt="" /><br /><?php _e('read-only', 'cforms'); ?></div>
+	            <div title="<?php _e('Makes an input field required for proper form validation.', 'cforms'); ?>"><span class="dashicons dashicons-forms"></span><br /><?php _e('required', 'cforms'); ?></div>
+	            <div title="<?php _e('Makes the field required and verifies the email address.', 'cforms'); ?>"><span class="dashicons dashicons-email-alt"></span><br /><?php _e('e-mail', 'cforms'); ?></div>
+	            <div title="<?php _e('Clears the field (default value) upon focus.', 'cforms'); ?>"><span class="dashicons dashicons-editor-removeformatting"></span><br /><?php _e('auto-clear', 'cforms'); ?></div>
+	            <div title="<?php _e('Grey\'s out a form field (field will be completely disabled).', 'cforms'); ?>"><span class="dashicons dashicons-dismiss"></span><br /><?php _e('disabled', 'cforms'); ?></div>
+	            <div title="<?php _e('Form field will be readonly!', 'cforms'); ?>"><span class="dashicons dashicons-lock"></span><br /><?php _e('read-only', 'cforms'); ?></div>
        		</div>
 		</div>
 
@@ -324,7 +324,7 @@ if( strlen($fd)<=2 ) {
 
 	                            <span class="itemHeader<?php echo ($alternate<>'')?' altmove':''; ?>" title="<?php _e('Drag me','cforms')?>"><?php echo (($i<10)?'0':'').$i; ?></span>
 
-	                            <input tabindex="<?php echo $ti++ ?>" title="<?php _e('Please enter field definition', 'cforms'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend')?'--':$field_name; ?>" /><span title="<?php echo plugin_dir_url(__FILE__).'js/include/'; ?>"><input value="" type="submit" onfocus="this.blur()" class="wrench jqModal" title="<?php _e('Edit', 'cforms'); ?>"/></span><select tabindex="<?php echo $ti++ ?>" title="<?php _e('Pick a field type', 'cforms'); ?>" class="fieldtype selfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_type" id="field_<?php echo($i); ?>_type">
+	                            <input tabindex="<?php echo $ti++ ?>" title="<?php _e('Please enter field definition', 'cforms'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend')?'--':$field_name; ?>" /><span title="<?php echo plugin_dir_url(__FILE__).'js/include/'; ?>"><input value="&#xF111;" type="submit" onfocus="this.blur()" class="wrench jqModal" title="<?php _e('Edit', 'cforms'); ?>"/></span><select tabindex="<?php echo $ti++ ?>" title="<?php _e('Pick a field type', 'cforms'); ?>" class="fieldtype selfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_type" id="field_<?php echo($i); ?>_type">
 
 								<optgroup label="<?php _e('----- General form fields ----', 'cforms'); ?>">
 									<option value="fieldsetstart" <?php echo($field_type == 'fieldsetstart'?' selected="selected"':''); ?>><?php _e('Begin Fieldset', 'cforms'); ?></option>
@@ -400,36 +400,37 @@ if( strlen($fd)<=2 ) {
 								</optgroup>
                             	</select><?php
 
-                            echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="" title="'.__('Remove input field', 'cforms').'" alt="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
+                            echo '<input tabindex="'.($ti++).'" '.(($field_count<=1)?'disabled="disabled"':'').' class="'.(($field_count<=1)?'noxbutton':'xbutton').'" type="submit" name="DeleteField'.$i.'" value="&#xF153;" title="'.__('Remove input field', 'cforms').'" onfocus="this.blur()"/>';
 
-                            if( in_array($field_type,array_merge(array_keys($captchas), array('hidden','checkboxgroup', 'fieldsetstart','fieldsetend','ccbox','captcha','textonly'))) )
-                                echo '<img class="chkno" src="'.plugin_dir_url(__FILE__).'images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
-                            else
-                                echo '<input tabindex="'.($ti++).'" class="allchk fieldisreq chkfld" type="checkbox" title="'.__('input required', 'cforms').'" name="field_'.($i).'_required" value="required"'.($field_required == '1'?' checked="checked"':'').'/>';
+                            
+                            echo '<input tabindex="'.($ti++).'" class="allchk fieldisreq chkfld" type="checkbox" title="'.__('input required', 'cforms').'" name="field_'.($i).'_required"'.($field_required == '1'?' checked="checked"':'');
+							if ( in_array($field_type,array_merge(array_keys($captchas), array('hidden','checkboxgroup', 'fieldsetstart','fieldsetend','ccbox','captcha','textonly'))) )
+									echo ' disabled="disabled"';
+							echo '/>';
 
 
+                            echo '<input tabindex="'.($ti++).'" class="allchk fieldisemail chkfld" type="checkbox" title="'.__('email required', 'cforms').'" name="field_'.($i).'_emailcheck"'.($field_emailcheck == '1'?' checked="checked"':'');
                             if( ! in_array($field_type,array('html5email','textfield','youremail','friendsemail','email')) )
-                                echo '<img class="chkno" src="'.plugin_dir_url(__FILE__).'images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
-                            else
-                                echo '<input tabindex="'.($ti++).'" class="allchk fieldisemail chkfld" type="checkbox" title="'.__('email required', 'cforms').'" name="field_'.($i).'_emailcheck" value="required"'.($field_emailcheck == '1'?' checked="checked"':'').'/>';
+                                echo ' disabled="disabled"';
+							echo '/>';
 
 
+                            echo '<input tabindex="'.($ti++).'" class="allchk fieldclear chkfld" type="checkbox" title="'.__('clear field', 'cforms').'" name="field_'.($i).'_clear"'.($field_clear == '1'?' checked="checked"':'');
                             if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker','yourname','youremail','friendsname','friendsemail','email','author','url','comment'))) )
-                                echo '<img class="chkno" src="'.plugin_dir_url(__FILE__).'images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
-                            else
-                                echo '<input tabindex="'.($ti++).'" class="allchk fieldclear chkfld" type="checkbox" title="'.__('clear field', 'cforms').'" name="field_'.($i).'_clear" value="required"'.($field_clear == '1'?' checked="checked"':'').'/>';
+                                echo ' disabled="disabled"';
+							echo '/>';
 
 
+                            echo '<input tabindex="'.($ti++).'" class="allchk fielddisabled chkfld" type="checkbox" title="'.__('disabled', 'cforms').'" name="field_'.($i).'_disabled"'.($field_disabled == '1'?' checked="checked"':'');
                             if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker','checkbox','checkboxgroup','selectbox','multiselectbox','radiobuttons','upload'))) )
-                                echo '<img class="chkno" src="'.plugin_dir_url(__FILE__).'images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
-                            else
-                                echo '<input tabindex="'.($ti++).'" class="allchk fielddisabled chkfld" type="checkbox" title="'.__('disabled', 'cforms').'" name="field_'.($i).'_disabled" value="required"'.($field_disabled == '1'?' checked="checked"':'').'/>';
+                                echo ' disabled="disabled"';
+							echo '/>';
 
 
+                            echo '<input tabindex="'.($ti++).'" class="allchk fieldreadonly chkfld" type="checkbox" title="'.__('read-only', 'cforms').'" name="field_'.($i).'_readonly"'.($field_readonly == '1'?' checked="checked"':'');
                             if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker','checkbox','checkboxgroup','selectbox','multiselectbox','radiobuttons','upload'))) )
-                                echo '<img class="chkno" src="'.plugin_dir_url(__FILE__).'images/chkbox_grey.gif" alt="'.__('n/a', 'cforms').'" title="'.__('Not available.', 'cforms').'"/>';
-                            else
-                                echo '<input tabindex="'.($ti++).'" class="allchk fieldreadonly chkfld" type="checkbox" title="'.__('read-only', 'cforms').'" name="field_'.($i).'_readonly" value="required"'.($field_readonly == '1'?' checked="checked"':'').'/>';
+                                echo ' disabled="disabled"';
+							echo '/>';
 
                         ?></div> <!--itemContent-->
 
@@ -1085,7 +1086,7 @@ if( strlen($fd)<=2 ) {
 						<span><a class="infobutton" href="#" name="it9"><?php _e('Please read note &raquo;', 'cforms'); ?></a></span>
 		 			</td>
 				</tr>
-				<tr id="it9" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo __('You will find a <strong>cforms Tell-A-Friend</strong> checkbox on your <strong>admin/edit page</strong> (typically under "Post/Author")! <br /><u>Check it</u> if you want to have the form to appear on the given post or page.', 'cforms');?></td></tr>
+				<tr id="it9" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('You will find a <strong>cforms Tell-A-Friend</strong> checkbox on your <strong>admin/edit page</strong> (typically under "Post/Author")! <br /><u>Check it</u> if you want to have the form to appear on the given post or page.', 'cforms');?></td></tr>
 				<?php endif; ?>
 
 				</table>
@@ -1167,7 +1168,7 @@ function cforms2_insert_modal(){
 		<div class="cf_ed_header jqDrag"><?php _e('Input Field Settings','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<div id="cf_target"></div>
-			<div class="controls"><a href="#" id="ok" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_ok.gif" alt="<?php _e('OK', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+			<div class="controls"><a href="#" id="ok" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms') ?>"></a><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms') ?>"></a></div>
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_installbox">
@@ -1175,7 +1176,7 @@ function cforms2_insert_modal(){
 		<div class="cf_ed_main">
 			<form action="" name="installpreset" method="post">
 				<div id="cf_installtarget"></div>
-				<div class="controls"><a href="#" id="okInstall" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" id="cancelInstall" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+				<div class="controls"><a href="#" id="okInstall" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms') ?>"></a><a href="#" id="cancelInstall" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms') ?>"></a></div>
 				<input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
 			</form>
 		</div>
@@ -1191,7 +1192,7 @@ function cforms2_insert_modal(){
 	                <input type="file" id="upload" name="importall" size="25" />
 	                <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
 
-                    <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+                    <p class="cancel"><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms') ?>"></a></p>
 
         	    </div>
 				<input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>

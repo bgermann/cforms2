@@ -118,11 +118,18 @@ padding:2px 10px 4px;
 }
 
 ul.ex,p.ex,.form-table td.ex {
-background:url(images/attn.gif) no-repeat;
-padding:2px 35px 10px 41px;
+padding:2px 35px 10px 0;
 font-size:11px;
 line-height:17px;
 text-align:justify;
+}
+ul.ex:before,p.ex:before,.form-table td.ex:before {
+content:"\f348";
+font-family:dashicons;
+font-size:40px;
+height:30px;
+line-height:30px;
+float:left;
 }
 
 #cf_target {
@@ -130,9 +137,8 @@ margin-left:0;
 margin-top:10px;
 }
 
-abbr,
 span.abbr {
-background: url(images/dots.gif) repeat-x 0 bottom;
+text-decoration: underline dotted;
 cursor: help;
 }
 
@@ -351,23 +357,6 @@ width:158px;
 margin: 0 auto;
 }
 
-.flexigrid div.fbutton .add {
-background: url(images/view.png) no-repeat center left;
-}
-
-.flexigrid div.fbutton .delete {
-background: url(images/trash.gif) no-repeat top left;
-}
-
-.flexigrid div.fbutton .delete:hover {
-background-position: 0 -23px;
-}
-
-.flexigrid div.fbutton .dl {
-background: url(images/download.png) no-repeat center left;
-}
-
-
 /****************************************************************
   form settings
 *****************************************************************/
@@ -515,20 +504,6 @@ input.backupbutton,input.restorebutton {
 font-weight:400;
 }
 
-input.addfield:focus,input.addfield {
-cursor:pointer;
-background:url(images/add_field.jpg) no-repeat 0 0;
-border:none;
-width:176px;
-height:35px;
-overflow:hidden;
-}
-
-input.addfield:active {
-background-position:0 -35px;
-border:none;
-}
-
 select.addfieldno,
 input.addfieldno {
 line-height:1em;
@@ -559,8 +534,6 @@ background:#fff!important;
 }
 
 #cformswarning {
-background:url(images/attn.gif) no-repeat;
-padding:2px 35px 10px 41px;
 font-size:11px;
 line-height:17px;
 
@@ -672,32 +645,24 @@ overflow:hidden;
 border:none;
 margin-right:8px;
 cursor:pointer;
+font-family:"dashicons";
+font-size:16px;
+background:none;
+padding:0;
 }
 
 .noxbutton {
-background:url(images/x_grey.gif) no-repeat;
+color:gray;
 cursor:not-allowed;
 }
 
 .xbutton {
-background:url(images/x.png) no-repeat 0 0;
-background-color:transparent!important;
+color:red;
 margin-left:2px;
-margin-top:3px;
 }
 
 .wrench {
-background:url(images/wrench.png) no-repeat 0 0;
-background-color:transparent!important;
 margin-right:2px;
-}
-
-input.wrench:focus, input.wrench:focus,
-input.altx:focus, input.xbutton:focus,
-input.wrench:hover, input.wrench:active,
-input.altx:hover, input.xbutton:hover,
-input.altx:active, input.xbutton:active {
-background-position:0 -20px!important;
 }
 
 option.disabled {
@@ -709,18 +674,14 @@ color:#666666;
 background-color:#ccc;
 }
 
-.chkno, input[type="checkbox"].fieldisreq, input[type="checkbox"].fieldisemail, input[type="checkbox"].fielddisabled, input[type="checkbox"].fieldreadonly, input[type="checkbox"].fieldclear {
-margin:0 9px 0 19px;
+input[type="checkbox"].fieldisreq, input[type="checkbox"].fieldisemail, input[type="checkbox"].fielddisabled, input[type="checkbox"].fieldreadonly, input[type="checkbox"].fieldclear {
+margin:0 10px 0 15px;
 width:13px;
 height:13px;
 padding:0;
 }
 input[type="checkbox"]:focus, input[type="radio"]:focus {
 outline: 1px solid #2244ED;
-}
-
-.chkno {
-vertical-align:top;
 }
 
 .alternate, .rowalt, .rowalt input[type="checkbox"].fieldisreq, .rowalt input[type="checkbox"].fieldisemail, .rowalt input[type="checkbox"].fielddisabled, .rowalt input[type="checkbox"].fieldreadonly, .rowalt input[type="checkbox"].fieldclear {
@@ -827,10 +788,8 @@ border-radius:3px;
 }
 
 tr.obSEP {
-font-size:1px;
 line-height:10px;
 height:10px;
-background:url(images/td-sep.gif) repeat-x 0 center!important;
 }
 
 tr.ob {
@@ -1090,7 +1049,6 @@ padding-left:30px;
 .dataheader td.e {
 font-size:12px;
 vertical-align: bottom;
-padding-left:20px;
 font-weight: bold;
 }
 
@@ -1111,18 +1069,12 @@ a.xdatabutton:hover{
 }
 
 a.cdatabutton{
-background:url(images/close.png) no-repeat 0 0;
-font-size:1px;
 height:20px;
 width:20px;
 overflow:hidden;
 display:block;
 margin-left: 10px;
 cursor:pointer;
-}
-
-a.cdatabutton:hover {
-background-position:0 -20px!important;
 }
 
 .showformfield {
@@ -1417,6 +1369,8 @@ margin-bottom:4px;
 margin-left:5px;
 margin-right:5px;
 border:0;
+text-decoration:none;
+font-size:35px;
 }
 
 .jqmWindow input {
@@ -1465,7 +1419,6 @@ font-weight:bold;
 
 .jqmWindow .cf_edit_groups_header {
 margin-top:5px;
-padding-left:20px;
 }
 
 .jqmWindow .cf_edit_groups_header span,.jqmWindow #cf_edit_groups input {
@@ -1503,14 +1456,14 @@ width:196px;
 .jqmWindow .cf_edit_groups_header span.cf_chked {
 width:16px;
 height:16px;
-background:url(images/dlg_checked.gif) no-repeat;
+font-size:20px;
 cursor:help;
 }
 
 .jqmWindow .cf_edit_groups_header span.cf_br {
 width:16px;
 height:16px;
-background:url(images/dlg_return.gif) no-repeat;
+font-size:20px;
 cursor:help;
 }
 
@@ -1541,30 +1494,22 @@ clear:both;
 
 .jqmWindow .cf_edit_move_up,.jqmWindow .cf_edit_move_down,.jqmWindow .cf_edit_minus {
 border:none;
-background:url(images/cf_edit_minus.gif) no-repeat;
+color:red;
 float:left;
 display:block;
 width:13px;
 height:13px;
-font-size:1px;
+font-size:13px;
 margin:5px 2px 0 0;
-}
-
-.jqmWindow .cf_edit_move_up {
-background:url(images/cf_edit_updown.gif) no-repeat 0 0;
-}
-
-.jqmWindow .cf_edit_move_down {
-background:url(images/cf_edit_updown.gif) no-repeat -13px 0;
 }
 
 .jqmWindow .cf_edit_plus {
 border:none;
-background:url(images/cf_edit_plus.gif) no-repeat;
+color:red;
 display:block;
 width:16px;
 height:16px;
-font-size:1px;
+font-size:16px;
 margin-top:1px;
 }
 

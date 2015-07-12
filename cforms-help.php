@@ -64,8 +64,8 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<ol style="margin:10px 0 0 100px;">
 				<li><?php echo sprintf(__('First take a look at the <a href="%s">default form</a>', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
 					<ul style="margin:10px 0 0 30px;">
-						<li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.gif" alt="" title=""/>?</li>
-						<li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench"></button> </li>
+						<li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.png" alt="" title=""/>?</li>
+						<li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench">&#xF111;</button> </li>
 						<li><?php _e('Check the flags for each field (check boxes to the right).', 'cforms'); ?></li>
 						<li><?php echo sprintf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms'),'#qa','onclick="setshow(19)"','#captcha','onclick="setshow(19)"','?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></li>
 					</ul>
@@ -597,8 +597,8 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 						<li><?php echo sprintf(__('The <a href="%s" %s>Tell A Friend feature</a> needs to be <strong>enabled for the respective form</strong> (<em>check if it\'s the right one!</em>), otherwise you won\'t see the above input fields in the [<em>Field Type</em>] select box.', 'cforms'),'?page='.$plugindir.'/cforms-options.php#tellafriend','onclick="setshow(6)"'); ?></li>
 						<li><?php echo sprintf(__('The <a href="%s" %s>auto confirmation</a> message will be used as a <strong>message template</strong> and needs to be defined. See example below.', 'cforms'),'?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?></li>
 						<li><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be used in the <a href="%s" %s>message template</a>.', 'cforms'),'#tafvariables','onclick="setshow(23)"','?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?></li>
-						<li><?php echo _e('<strong>Add the form</strong> to your post/page php templates (see deployment options further below).', 'cforms'); ?></li>
-						<li><img style="float:right;" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-t-a-f2.png"  alt=""/><?php echo _e('Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F field in the WP post (page) editor.', 'cforms'); ?></li>
+						<li><?php _e('<strong>Add the form</strong> to your post/page php templates (see deployment options further below).', 'cforms'); ?></li>
+						<li><img style="float:right;" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-t-a-f2.png"  alt=""/><?php _e('Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F field in the WP post (page) editor.', 'cforms'); ?></li>
 					</ol>
 
 				</td>
@@ -652,7 +652,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 [...]
 </code>
 						</li>
-						<li><?php echo _e('Suggestion: For a less crowded layout, optionally add some Javascript code to show/hide the form.', 'cforms'); ?></li>
+						<li><?php _e('Suggestion: For a less crowded layout, optionally add some Javascript code to show/hide the form.', 'cforms'); ?></li>
 					</ol>
 				</td>
 			</tr>
@@ -671,7 +671,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 [...]
 </code>
 						</li>
-						<li><?php echo _e('In <em>single.php &amp; index.php</em> and/or <em>page.php</em> add beneath the "the_content()" call the link to the new page created above, e.g.:', 'cforms'); ?>
+						<li><?php _e('In <em>single.php &amp; index.php</em> and/or <em>page.php</em> add beneath the "the_content()" call the link to the new page created above, e.g.:', 'cforms'); ?>
 
 <code  style="font-size: 11px;"><br />
 [...]<br />
@@ -683,7 +683,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 [...]<br />
 </code>
 						</li>
-						<li><?php echo _e('Replace <strong>[your-new-page]</strong> with <strong>the permalink</strong> of your newly created page.', 'cforms'); ?></li>
+						<li><?php _e('Replace <strong>[your-new-page]</strong> with <strong>the permalink</strong> of your newly created page.', 'cforms'); ?></li>
 					</ol>
 
 				</td>
@@ -738,7 +738,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 					<ol>
 						<li><?php echo sprintf(__('Turn on the <a href="%s" %s>WP Comment feature</a> for the given form. (<em>Make sure it\'s the right one!</em>), otherwise you won\'t see the above input fields in the [<em>Field Type</em>] select box.', 'cforms'),'?page='.$plugindir.'/cforms-options.php#commentrep','onclick="setshow(7)"'); ?></li>
 						<li><?php _e('Modify this form to include all the necessary (new) input fields, make them required or not, add regexp, anti SPAM fields or even custom err messages. All up to you. Or better yet, start with the built-in preset: "<strong>Advanced: WP comment...</strong>" form.', 'cforms'); ?></li>
-						<li><?php echo __('Edit your WP Theme template for comments. Remove the current <strong><u>comment_form() in comments.php</u></strong> entirely. Instead replace with a PHP call to cforms: <code  style="color:red">&lt;?php insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> if the form is your default form or starting at <strong>\'2\'</strong> (with single quotes!) for any subsequent form #.', 'cforms'); ?></li>
+						<li><?php _e('Edit your WP Theme template for comments. Remove the current <strong><u>comment_form() in comments.php</u></strong> entirely. Instead replace with a PHP call to cforms: <code  style="color:red">&lt;?php insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> if the form is your default form or starting at <strong>\'2\'</strong> (with single quotes!) for any subsequent form #.', 'cforms'); ?></li>
 						<li><?php echo sprintf(__('Double check the extended <a href="%s" %s>WP comment feature settings here</a> (especially the Ajax specific ones!). ', 'cforms'),'?page='.$plugindir.'/cforms-global-settings.php#wpcomment','onclick="setshow(28)"'); ?></li>
 						<li><?php echo '<strong>'.__('Important:','cforms').'</strong> '; _e('To make Ajax work in case there are no comments yet, make sure that the comment container <strong>is always</strong> being rendered.', 'cforms'); ?></li>
 					</ol>

@@ -19,11 +19,14 @@ multi form management, you can even have multiple forms on the same page!
 Oliver, the original author, does not further develop the plugin.
 This fork is an effort to keep it up to date.
 If you want to use plugin versions older than 14.6.3, you should rename the
-directory containing the plugin from "cforms2" to "cforms".
+directory containing the plugin from "cforms2" to "cforms". But bear in mind
+that old versions should not be used in public systems, because they contain
+known serious vulnerabilities that are exploited in the wild. The current
+security baseline version is 14.8.
 
 = Related Plugins =
 
-cformsII has pluggable CAPTCHA support.
+cformsII has pluggable CAPTCHA support. The experimental
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
 provides an image CAPTCHA. With future cformsII version 14.11 the now built-in
 CAPTCHA will be removed in favour of that plugin.
@@ -83,7 +86,8 @@ to upload a zip file, which is available on the
 If you want to install manually, please upload the complete plugin folder
 "cforms2", contained in the zip file, to your WP plugin directory!
 
-If you want to check integrity of the download, please use the cforms2.*.zip.sig
+If you want to check integrity of the download, please use the cforms2.*.zip
+downloads and the corresponding cforms2.*.zip.sig
 GPG signature files that are published via
 [GitHub releases](https://github.com/bgermann/cforms2/releases).
 The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53)
@@ -93,12 +97,14 @@ The git tags themselves are also signed beginning with version 14.8.
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please
-upgrade to the original version 14.6 first, make sure you upgraded your settings
-and backup your database. Then deactivate the original plugin and install this
-fork.
+upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip)
+first, make sure you upgraded your settings (resave your global settings and every form)
+and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database).
+Then deactivate the original plugin and install the current version of this fork.
 
-If you want to delete the original version, make sure you do not delete your
-upload directory.
+If you want to delete the 14.6.0.5 version by deleting directory "cforms" and
+you have any cforms-uploaded files, make sure you do not delete your attachments
+directory, which is contained in the cforms directory by default.
 
 = Did you modify any cforms theme (CSS) files? =
 
@@ -126,8 +132,9 @@ You can find old versions in the
 
 = Where are the external SMTP settings? =
 
-That function was removed. The Wordpress function wp_mail is now used for mails,
-which makes use of built-in PHPMailer.
+That function was removed. The Wordpress function
+[wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for
+mails now, which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate
 plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/)
 or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
@@ -221,6 +228,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.9.10 =
+* enhanced: replace some icons with Dashicons
 
 = 14.9.9 =
 * bugfix:   do not depend on TLD consisting of only 2-4 characters, even on non-AJAX forms

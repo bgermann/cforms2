@@ -105,7 +105,7 @@ if ($showIDs<>'') {
 				echo '<div class="showform" id="entry'.$entry->sub_id.'">'.
 					 '<table class="dataheader"><tr><td>'.__('Form:','cforms').' </td><td class="b">'. stripslashes($cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']) . '</td><td class="e">(ID:' . $entry->sub_id . ')</td><td class="d">' . $time.' &nbsp; '.$date. '</td>' .
 					 '<td class="s">&nbsp;</td><td><a href="#" class="xdatabutton allbuttons deleteall" type="submit" id="xbutton'.$entry->sub_id.'">'.__('Delete this entry', 'cforms').'</a></td>' .
-					 '<td><a class="cdatabutton" type="submit" id="cbutton'.$entry->sub_id.'" title="'.__('close this entry', 'cforms').'" value=""></a></td>' .
+					 '<td><a class="cdatabutton dashicons dashicons-dismiss" type="submit" id="cbutton'.$entry->sub_id.'" title="'.__('close this entry', 'cforms').'"></a></td>' .
                      "</tr></table>\n";
 			}
 

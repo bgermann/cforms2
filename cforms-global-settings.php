@@ -386,7 +386,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					<td class="obL">&nbsp;</td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php echo sprintf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms'),'<strong>','</strong>') ?></label></td>
 				</tr>
-				<tr class="obSEP"><td colspan="2"></td></tr>
 				</table>
 
 			</div>
@@ -703,7 +702,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
                 	<input type="file" id="importall" name="importall" size="25" /><input type="submit" name="restoreallcformsdata" title="<?php _e('Restore all settings now!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('Restore all settings now!', 'cforms') ?>" onclick="return confirm('<?php _e('With a broken backup file, this action may erase all your settings! Do you want to continue?', 'cforms') ?>');"/>
 				</p>
 				<em><?php _e('PS: Individual form configurations can be backup up on the respective form admin page.', 'cforms') ?></em>
-                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+                <p class="cancel"><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms') ?>"></a></p>
 
             </div>
             <input type="hidden" name="noSub" value="<?php if (!empty($noDISP)) echo $noDISP; ?>"/>
@@ -720,7 +719,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<p><strong><?php _e('This is irrevocable!', 'cforms') ?></strong>&nbsp;&nbsp;&nbsp;<br />
 					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms') ?>');"/></p>
 
-                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+                <p class="cancel"><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms') ?>"></a></p>
             </div>
         </form>
     </div>

@@ -256,7 +256,7 @@ jQuery(function() {
             jQuery('a#add_group_button').click(function() {
                 groupcount++; totalcount++;
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'        + groupcount
                         + '" name="cf_edit_group_o'    + groupcount + '" value=""/>'+
                     '<input type="text" id="cf_edit_group_v'        + groupcount
@@ -265,8 +265,8 @@ jQuery(function() {
                         + '" name="cf_edit_group_chked'+ groupcount + '" class="allchk cf_chked"/>'+
                     '<input type="checkbox" id="cf_edit_group_br'   + groupcount
                         + '" name="cf_edit_group_br'   + groupcount + '" value="lbr" class="allchk cf_br"/>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a></div>'
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a></div>'
                 ).appendTo("#cf_edit_groups");
 
                 jQuery('a.cf_edit_move_up','#edit_group'+groupcount).bind("click", cfmoveup);
@@ -314,13 +314,13 @@ jQuery(function() {
                 groupcount++; totalcount++;
 
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'" value="'+defval[0].replace(/"/g,'&quot;')+'"/>'+
                     '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'" value="'+defval[1].replace(/"/g,'&quot;')+'" class="inpOpt"/>'+
                     '<input class="allchk cf_chked" type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'" '+chk+'/>'+
                     '<input class="allchk cf_br" type="checkbox" id="cf_edit_group_br'+groupcount+'" name="cf_edit_group_br'+groupcount+'" value="lbr" '+lbr+'/>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a>'+
                 '</div>').appendTo("#cf_edit_groups");
 
             }
@@ -346,12 +346,12 @@ jQuery(function() {
             jQuery('a#add_group_button').click(function() {
                 groupcount++; totalcount++;
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'" value=""/>'+
                     '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'" value="" class="inpOpt"/>'+
                     '<input class="allchk cf_chked" type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'"/>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a>'+
                 '</div>').appendTo("#cf_edit_groups");
 
                 jQuery('a.cf_edit_move_up','#edit_group'+groupcount).bind("click", cfmoveup);
@@ -402,7 +402,7 @@ jQuery(function() {
 
                 jQuery(
                     '<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'"'
                         + ' value="'+defval[0].replace(/"/g,'&quot;')+'"/>'+
                     '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'"'
@@ -411,8 +411,8 @@ jQuery(function() {
                     '<input type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'"'
                         + ' ' + chk + ' class="allchk cf_chked"/>'+
 
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a></div>'
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a></div>'
                 ).appendTo("#cf_edit_groups");
 
             }
