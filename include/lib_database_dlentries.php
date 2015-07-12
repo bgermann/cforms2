@@ -198,7 +198,7 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 			$subID = $cformsSettings['form'.$no]['cforms'.$no.'_noid'] ? '' : $entry->id.'-';
 
             if ( $fdirURL=='' ) {
-				$plugindir = dirname(dirname(dirname(plugin_basename(__FILE__))));
+				$plugindir = dirname(dirname(plugin_basename(__FILE__)));
                 $url = plugin_dir_url( __FILE__ ).substr( $fdir, strpos($fdir,$plugindir) + strlen($plugindir) + 1 );
 			} else
                 $url = $fdirURL;

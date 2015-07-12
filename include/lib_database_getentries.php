@@ -124,10 +124,9 @@ if ($showIDs<>'') {
 					$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$entry->sub_id.'-';
 
 					if ( $fileuploaddirurl=='' ) {
-						$plugindir = dirname(dirname(dirname(plugin_basename(__FILE__))));
-	                    $fileurl = plugin_dir_url( __FILE__ ).substr($fileuploaddir,strpos($fileuploaddir,$plugindir)+strlen($plugindir)+1);
+	                    $fileurl = plugin_dir_url($fileuploaddir);
 					} else
-	                    $fileurl = $fileuploaddirurl;
+	                    $fileurl = trailingslashit($fileuploaddirurl);
 
 
 					$passID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '':$entry->sub_id;
@@ -139,7 +138,7 @@ if ($showIDs<>'') {
 					if( ! array_key_exists('modified', $fileInfoArr) )
 						$fileInfoArr['name'] = $subID . $fileInfoArr['name'];
 					
-					$fileurl = $fileInfoArr['path'] . '/' . $fileInfoArr['name'] . $_GET['format'];
+					$fileurl = $fileInfoArr['path'] . $fileInfoArr['name'] . $_GET['format'];
 					
 					echo '<div class="showformfield meta"><div class="L">';
 					echo substr($name, 0,strpos($name,'[*'));
