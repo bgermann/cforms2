@@ -53,7 +53,7 @@ ol.cf-ol li.newcaptionclass {
 ol.cf-ol { 
 	margin:0!important; 
 	padding:0 0 0 0!important; 	/*  use this one if you have multiple fieldsets support !!!  */ 
-	background: url(../images/customform_dark_bg.jpg) repeat-y; 
+	background: black;
 }
 ol.cf-ol li	{
 	background:none!important; 
