@@ -167,7 +167,7 @@ if ($showIDs<>'') {
 			} else {
 
 					echo '<div class="showformfield"><div class="L">' . $name . '</div>' .
-							'<div id="'.$entry->f_id.'" class="R editable" title="'.__('edit this field', 'cforms').'">' . str_replace("\n","<br />", strip_tags($val) ) . '</div></div>' . "\n";
+							'<div id="'.$entry->f_id.'" class="R">' . str_replace("\n","<br />", strip_tags($val) ) . '</div></div>' . "\n";
 
 			}
 

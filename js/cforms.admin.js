@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -748,30 +748,6 @@ function cf_tracking_view(com,grid){
                     function () { jQuery('.pReload').trigger('click'); }
                 );
                 return false;
-            } );
-
-            var trackingEditTempVal = '';
-            jQuery('.editable').editInPlace( {
-                bg_out : '#dddddd',
-                bg_over : '#f7f7f7',
-                use_html : true,
-                field_type : 'textarea',
-                url : ajaxurl,
-                params : 'action=database_savedata&_wpnonce=' + cforms2_nonces.savedata,
-                saving_image : jQuery('#geturl').attr('title')+'../css/images/load.gif',
-                textarea_cols : '30',
-                textarea_rows : '4',
-                delegate : {
-                    shouldOpenEditInPlace : function (el) {
-                        trackingEditTempVal = jQuery(el).html();
-                        return true;
-                    },
-                    didOpenEditInPlace : function (el) {
-                        if(console) console.log( jQuery(el).find('.inplace_field').length );
-                        jQuery(el).find('.inplace_field').val(trackingEditTempVal.replace(/<br[^>]*>/ig,"\n"));
-                        return true;
-                    }
-                }
             } );
 
             location.href = '#entries';

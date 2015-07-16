@@ -229,6 +229,7 @@ GPL compliance!
 = 14.9.10 =
 * enhanced: replace some icons with Dashicons
 * other:    remove jQuery TextAreaResizer plugin as this is default browser behaviour with CSS 3
+* other:    remove possibility to overwrite tracking fields
 
 = 14.9.9 =
 * bugfix:   do not depend on TLD consisting of only 2-4 characters, even on non-AJAX forms

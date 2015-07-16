@@ -1498,7 +1498,6 @@ if ( is_admin() ) {
 	require_once ('include/lib_database_dlentries.php');
 	require_once ('include/lib_database_getentries.php');
 	require_once ('include/lib_database_overview.php');
-	require_once ('include/lib_database_savedata.php');
 
 } ### if admin
 
