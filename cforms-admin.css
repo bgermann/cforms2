@@ -142,30 +142,6 @@ text-decoration: underline dotted;
 cursor: help;
 }
 
-/****************************************************************
-  Textareas Resize
-*****************************************************************/
-div.grippie {
-background:#E7423A url(images/handle.gif) no-repeat center top;
-border-color:#DDD;
-border-style:solid;
-border-width:0 1px 1px;
-cursor:s-resize;
-height:6px;
-overflow:hidden;
-}
-
-.resizable-textarea textarea {
-display:block;
-margin-bottom:0;
-width:95%;
-height:20%;
--moz-border-radius:4px 4px 0 0;
--khtml-border-radius:4px 4px 0 0;
--webkit-border-radius:4px 4px 0 0;
-border-radius:4px 4px 0 0;
-}
-
 .ob textarea {
 width:400px;
 height:80px;

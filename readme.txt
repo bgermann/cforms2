@@ -183,6 +183,7 @@ The original author who developed cforms until 2012 also has a
 
 Some things are to be done:
 
+* replace jqmodal and jqdnr by jquery-ui-dialog
 * filter user input
 * make attachments download support directories that are not exported via HTTP
 * grunt build process similar to Wordpress core
@@ -227,6 +228,7 @@ GPL compliance!
 
 = 14.9.10 =
 * enhanced: replace some icons with Dashicons
+* other:    remove jQuery TextAreaResizer plugin as this is default browser behaviour with CSS 3
 
 = 14.9.9 =
 * bugfix:   do not depend on TLD consisting of only 2-4 characters, even on non-AJAX forms

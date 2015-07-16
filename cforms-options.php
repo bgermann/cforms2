@@ -548,7 +548,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_success"><?php _e('<strong>Success message</strong><br />when form filled out correctly', 'cforms'); ?></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_success" id="cforms_success"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_success'])); ?></textarea></td>
+						<td><textarea rows="80px" cols="200px" name="cforms_success" id="cforms_success"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_success'])); ?></textarea></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -557,7 +557,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_failure"><?php _e('<strong>Failure message</strong><br />when missing fields or wrong field<br />formats (regular expr.)', 'cforms'); ?></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_failure" id="cforms_failure" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_failure'])); ?></textarea></td>
+						<td><textarea rows="80px" cols="200px" name="cforms_failure" id="cforms_failure" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_failure'])); ?></textarea></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -704,7 +704,7 @@ if( strlen($fd)<=2 ) {
 				<?php if( $cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] <> '' || $cformsSettings['form'.$no]['cforms'.$no.'_startdate'] <> '' || $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] <> '' ) : ?>
 				<tr class="ob">
 	            	<td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms'); ?></strong></label></td>
-	                <td class="obR"><table><tr><td><textarea class="resizable" rows="80px" cols="200px" name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])); ?></textarea></td></tr></table></td>
+	                <td class="obR"><table><tr><td><textarea rows="80px" cols="200px" name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])); ?></textarea></td></tr></table></td>
 				</tr>
 				<?php endif; ?>
 
@@ -845,7 +845,7 @@ if( strlen($fd)<=2 ) {
 					</td>
 					<td class="obR" style="padding-bottom:0">
                     	<table><tr>
-						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header'])); ?></textarea></td>
+						<td><textarea rows="80px" cols="200px" name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -868,7 +868,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL" style="padding-bottom:0"><label for="cforms_header_html"><?php _e('<strong>Admin HTML message</strong><br />(Header)', 'cforms') ?></label></td>
 					<td class="obR" style="padding-bottom:0">
                     	<table><tr>
-						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_header_html" id="cforms_header_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header_html'])); ?></textarea></td>
+						<td><textarea rows="80px" cols="200px" name="cforms_header_html" id="cforms_header_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header_html'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -937,7 +937,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_cmsg"><strong><?php _e('TEXT message', 'cforms') ?></strong></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg'])); ?></textarea></td>
+						<td><textarea rows="80px" cols="200px" name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -950,7 +950,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_cmsg_html"><strong><?php _e('HTML message', 'cforms') ?></strong></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea class="resizable" rows="80px" cols="200px" name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'])); ?></textarea></td>
+						<td><textarea rows="80px" cols="200px" name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>

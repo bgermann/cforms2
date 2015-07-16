@@ -611,8 +611,6 @@ jQuery(function() {
         );
     }
 
-    /* TEXTAREAS resize */
-    jQuery('textarea.resizable:not(.processed)').TextAreaResizer();
     jQuery('#anchorfields').show();
     jQuery('.cf-content','#selectcss').show();
     jQuery('#csspicker').bind('change', function() { jQuery('#selectcss').submit(); });
