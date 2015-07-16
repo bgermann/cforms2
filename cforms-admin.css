@@ -1179,10 +1179,6 @@ box-shadow: #333 0 0px 22px;
 background-color:#000;
 }
 
-div.jqDrag {
-cursor:move;
-}
-
 * html iframe.jqm {
 position:absolute;
 top:0;left:0;
@@ -1211,7 +1207,6 @@ text-align:left;
 .jqmWindow .cf_ed_header {
 margin:0;
 text-align:center;
-background:#E7423A url(images/handle_top.gif) no-repeat top right;
 color:#FFF;
 font:bold 11px Verdana;
 letter-spacing:2px;

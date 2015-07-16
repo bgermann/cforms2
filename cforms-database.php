@@ -116,7 +116,7 @@ function cforms2_insert_modal_tracking(){
 
 ?>
 	<div class="jqmWindow" id="cf_delete_dialog">
-		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('Please Confirm','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="deleteform" method="post">
 				<div id="cf_target_del"><?php _e('Are you sure you want to delete the record(s)?','cforms'); ?></div>
@@ -125,7 +125,7 @@ function cforms2_insert_modal_tracking(){
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_dl_dialog">
-		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('Please Confirm','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="downloadform" method="post" id="downloadform">
 				<div id="cf_target_dl">

@@ -473,7 +473,7 @@ jQuery(function() {
     };
 
     /* ASSSOCIATE DIALOG */
-    jQuery('#cf_editbox').jqm({ modal: true, overlay: 30, onShow: open, onHide: close }).jqDrag('.jqDrag');
+    jQuery('#cf_editbox').jqm({ modal: true, overlay: 30, onShow: open, onHide: close }).draggable();
 
     /* INSTALL PRESET FUNCTIONS */
     jQuery('a#okInstall').click( function(){document.installpreset.submit();} );
@@ -524,9 +524,9 @@ jQuery(function() {
         overlay : 30,
         onShow  : openInstall,
         onHide  : closeInstall
-    }).jqDrag('.jqDrag');
-    jQuery('#cf_backupbox'    ).jqm({ trigger: '.jqModalBackup', modal:true, overlay:30 }).jqDrag('.jqDrag');
-    jQuery('#cf_delall_dialog').jqm({ trigger: '.jqModalDelAll', modal:true, overlay:30 }).jqDrag('.jqDrag');
+    }).draggable();
+    jQuery('#cf_backupbox'    ).jqm({ trigger: '.jqModalBackup', modal:true, overlay:30 }).draggable();
+    jQuery('#cf_delall_dialog').jqm({ trigger: '.jqModalDelAll', modal:true, overlay:30 }).draggable();
 
 
     /* DELETE RECORDS DIALOG */
@@ -537,7 +537,7 @@ jQuery(function() {
         overlay : 30,
         onShow  : open_data,
         onHide  : close_data
-    }).jqDrag('.jqDrag');
+    }).draggable();
 
     jQuery('a#okDelete').click( function() {
         var getString='';
@@ -567,7 +567,7 @@ jQuery(function() {
     } );
 
     /* DOWNLOAD RECORDS DIALOG */
-    jQuery('#cf_dl_dialog').jqm({ modal: true, overlay: 30, onShow: open_data, onHide: close_data }).jqDrag('.jqDrag');
+    jQuery('#cf_dl_dialog').jqm({ modal: true, overlay: 30, onShow: open_data, onHide: close_data }).draggable();
     jQuery('a#okDL').click( function() {
         var getString='';
         jQuery('.trSelected','#flex1').each( function (){

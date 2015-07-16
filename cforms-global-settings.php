@@ -691,7 +691,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 </div>
 
 <div class="jqmWindow" id="cf_backupbox">
-    <div class="cf_ed_header jqDrag"><?php _e('Backup &amp; Restore All Settings','cforms'); ?></div>
+    <div class="cf_ed_header"><?php _e('Backup &amp; Restore All Settings','cforms'); ?></div>
     <div class="cf_ed_main_backup">
         <form enctype="multipart/form-data" action="" name="backupform" method="post">
             <div class="controls">
@@ -710,7 +710,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
     </div>
 </div>
 <div class="jqmWindow" id="cf_delall_dialog">
-    <div class="cf_ed_header jqDrag"><?php _e('Uninstalling / Removing cforms','cforms'); ?></div>
+    <div class="cf_ed_header"><?php _e('Uninstalling / Removing cforms','cforms'); ?></div>
     <div class="cf_ed_main_backup">
         <form action="" name="deleteform" method="post">
             <div id="cf_target_del"><?php _e('Warning!','cforms'); ?></div>

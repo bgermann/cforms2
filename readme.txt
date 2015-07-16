@@ -183,7 +183,7 @@ The original author who developed cforms until 2012 also has a
 
 Some things are to be done:
 
-* replace jqmodal and jqdnr by jquery-ui-dialog
+* replace jqModal with jquery-ui-dialog
 * filter user input
 * make attachments download support directories that are not exported via HTTP
 * grunt build process similar to Wordpress core
@@ -229,6 +229,7 @@ GPL compliance!
 = 14.9.10 =
 * enhanced: replace some icons with Dashicons
 * enhanced: bump up jqModal to the newest version
+* other:    replace jqDnR with jquery-ui-draggable
 * other:    remove jQuery TextAreaResizer plugin as this is default browser behaviour with CSS 3
 * other:    remove possibility to overwrite tracking fields
 

@@ -1165,14 +1165,14 @@ function cforms2_insert_modal(){
 	global $noDISP;
 ?>
 	<div class="jqmWindow" id="cf_editbox">
-		<div class="cf_ed_header jqDrag"><?php _e('Input Field Settings','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('Input Field Settings','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<div id="cf_target"></div>
 			<div class="controls"><a href="#" id="ok" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms') ?>"></a><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms') ?>"></a></div>
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_installbox">
-		<div class="cf_ed_header jqDrag"><?php _e('cforms Out-Of-The-Box Form Repository','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('cforms Out-Of-The-Box Form Repository','cforms'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="installpreset" method="post">
 				<div id="cf_installtarget"></div>
@@ -1182,7 +1182,7 @@ function cforms2_insert_modal(){
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_backupbox">
-		<div class="cf_ed_header jqDrag"><?php _e('Backup &amp; Restore Form Settings','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('Backup &amp; Restore Form Settings','cforms'); ?></div>
 		<div class="cf_ed_main_backup">
 			<form enctype="multipart/form-data" action="" name="backupform" method="post">
 				<div class="controls">
