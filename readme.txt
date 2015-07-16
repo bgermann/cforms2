@@ -228,6 +228,7 @@ GPL compliance!
 
 = 14.9.10 =
 * enhanced: replace some icons with Dashicons
+* enhanced: bump up jqModal to the newest version
 * other:    remove jQuery TextAreaResizer plugin as this is default browser behaviour with CSS 3
 * other:    remove possibility to overwrite tracking fields
 
