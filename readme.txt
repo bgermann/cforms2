@@ -83,7 +83,7 @@ If you want to install manually, please upload the complete plugin folder
 "cforms2", contained in the zip file, to your WP plugin directory!
 
 If you want to check integrity of the download, please use the cforms2.*.zip
-downloads and the corresponding cforms2.*.zip.sig
+downloads and the corresponding .sig
 GPG signature files that are published via
 [GitHub releases](https://github.com/bgermann/cforms2/releases).
 The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53)
