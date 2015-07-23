@@ -849,17 +849,11 @@ padding:0 10px;
 /****************************************************************
   STYLING PAGE
 *****************************************************************/
-#selectcss .op-closed {
-border-radius: 3px 3px 0 0;
-}
 .cssHint{
 white-space:nowrap;
 }
 .cssStyles{
 width:100%;
-}
-#csspicker{
-cursor:pointer;
 }
 /****************************************************************
   TRACKING PAGE

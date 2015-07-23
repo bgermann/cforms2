@@ -226,6 +226,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.11 =
+* enhanced: remove the old static jQuery UI theme and get current from Google Hosted Libraries
+* added:    possibility to change the jQuery UI theme
+
 = 14.9.10 =
 * enhanced: replace some icons with Dashicons
 * enhanced: bump up jqModal to the newest version

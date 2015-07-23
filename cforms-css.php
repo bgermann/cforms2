@@ -60,7 +60,10 @@ else if(isset($_POST['no-css'])){
 ###
 ### Select new CSS?
 ###
-if ( !empty($_POST['style']) ){
+if ( isset($_POST['chg_css']) ){
+
+	$uitheme = $_POST['jqueryuitheme'];
+	$cformsSettings['global']['cforms_jqueryuitheme'] = $uitheme;
 
 	$newstyle = $_POST['style'];
 	if ( strpos($newstyle,'cforms-custom/')!==false)
@@ -79,13 +82,9 @@ if ( !empty($_POST['style']) ){
 
 	<p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms') ?></p>
 
-	<form id="selectcss" method="post" action="" name="selectcss">
+	<form id="selectcss" method="post" action="">
 			 <fieldset class="cformsoptions">
-	            <div class="cflegend op-closed" style="padding-left:10px;">
-	                <a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><?php _e('Styling options', 'cforms')?>
-	            </div>
 
-			<div class="cf-content">
 				<table>
 				<tr valign="top">
 
@@ -104,7 +103,7 @@ if ( !empty($_POST['style']) ){
 
 										else {
 											?>
-											<select id="csspicker" name="style"><?php
+											<select name="style"><?php
 
 
 												if (file_exists($dCustom)){
@@ -134,7 +133,7 @@ if ( !empty($_POST['style']) ){
 												$allCSS = array();
 												$dir = opendir($d);
 												while ( $dir && ($f = readdir($dir)) ) {
-													if( preg_match("/\.css$/i",$f) && !preg_match("/calendar\.css$/i",$f) ){
+													if ( preg_match("/\.css$/i", $f) ) {
 														array_push($allCSS, $f);
 													}
 												}
@@ -148,13 +147,19 @@ if ( !empty($_POST['style']) ){
 
 											?>
 											</select>
-											<input style="display:none;" type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms'); ?>"/>
 									<?php } ?>
 								</td>
-								<td></td>
 							</tr>
-							<tr style="height:200px;">
-								<td colspan="3">
+							<tr>
+								<td><label for="jqueryuitheme"><a href="http://jqueryui.com/themeroller/#themeGallery"><?php _e('jQuery UI theme', 'cforms'); ?> </a></label></td>
+								<td><input type="text" name="jqueryuitheme" id="jqueryuitheme" value="<?php echo $cformsSettings['global']['cforms_jqueryuitheme']; ?>" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms'); ?>" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">
 									<p><?php _e('For comprehensive customization support you may choose to turn on <strong>label &amp; list element ID\'s</strong>. This way each input field &amp; label can be specifically addressed via CSS styles.', 'cforms') ?> </p>
 
 									<input type="submit" name="label-ids" id="label-ids" class="allbuttons" value="<?php if ( $cformsSettings['global']['cforms_labelID']=='' || $cformsSettings['global']['cforms_labelID']=='0' ) _e('Activate Label IDs', 'cforms'); else  _e('Deactivate Label IDs', 'cforms'); ?>" />
@@ -170,7 +175,7 @@ if ( !empty($_POST['style']) ){
 								</td>
 							</tr>
 							<tr>
-								<td colspan="3">
+								<td colspan="2">
 										<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 								</td>
 							</tr>
@@ -190,7 +195,6 @@ if ( !empty($_POST['style']) ){
 
 				</tr>
 				</table>
-                </div>
 			</fieldset>
 	 </form>
 </div>

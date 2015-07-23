@@ -161,6 +161,7 @@ cforms2_setINI('global','cforms_avatar', '32');
 cforms2_setINI('global','cforms_crlf', array('b' => '0'));
 
 cforms2_setINI('global','cforms_css', 'cforms2012.css');
+cforms2_setINI('global','cforms_jqueryuitheme', 'smoothness');
 cforms2_setINI('global','cforms_labelID', '0');
 cforms2_setINI('global','cforms_liID', '0');
 

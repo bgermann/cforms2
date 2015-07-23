@@ -148,6 +148,9 @@ function cforms2_get_request_uri() {
 
 
 function cforms2_enqueue_script_datepicker($localversion, $dateFormat) {
+	global $wp_scripts;
+	$suffix = SCRIPT_DEBUG ? '' : '.min';
+
     $cformsSettings = get_option('cforms_settings');
 	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
@@ -170,8 +173,13 @@ function cforms2_enqueue_script_datepicker($localversion, $dateFormat) {
     ) );
     wp_enqueue_script('cforms-calendar');
     
-    wp_register_style('jquery-ui-datepicker', plugin_dir_url(__FILE__) . 'styling/calendar.css', false, $localversion );
-    wp_enqueue_style('jquery-ui-datepicker');
+	$jqui = $wp_scripts->query('jquery-ui-datepicker');
+	$theme = $cformsSettings['global']['cforms_jqueryuitheme'];
+	if (empty($theme)) {
+		$theme = 'smoothness';
+	}
+    wp_register_style('jquery-ui-theme', "https://ajax.googleapis.com/ajax/libs/jqueryui/$jqui->ver/themes/$theme/jquery-ui$suffix.css", false, $jqui->ver );
+    wp_enqueue_style('jquery-ui-theme');
 }
 
 function cforms2_enqueue_style_admin() {
