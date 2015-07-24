@@ -193,6 +193,9 @@ Some things are to be done:
 
 == Upgrade Notice ==
 
+= 14.9.12 =
+If you run a custom css and depend on a CAPTCHA reset image, you have to remove it.
+
 = 14.9 =
 If you use my-functions.php, you have to take action (see my-functions.php.txt).
 
@@ -225,6 +228,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.9.12 =
+* bugfix:   load dashicons if not in dashboard
 
 = 14.9.11 =
 * enhanced: change CAPTCHA reset button
