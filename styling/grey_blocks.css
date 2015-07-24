@@ -61,7 +61,7 @@ ol.cf-ol li.textonly {
 .cform label {
 
 	background:#E0E0E0 none repeat scroll 0%;
-	color:#000000;
+	color:black;
 	font:12px Arial;
 	margin:0 10px 0 0;
 	padding:5px 5px 5px;
@@ -126,7 +126,7 @@ label.cf-group-after span {
 .cform textarea:hover,
 .cform select:hover	{
 	border:1px solid #999999;
-	color:#000000;
+	color:black;
 	width:230px;
 }
 .cform .cf_date {
@@ -296,9 +296,9 @@ img.captcha	{
 	float:none!important;
 }
 
-img.captcha-reset {
+.captcha-reset {
 	vertical-align:text-bottom;
-	background:	url(captcha_reset_grey.gif) no-repeat;
+	color:black;
 	margin:0 0 2px 3px;
 	width:21px;
 	height:21px;

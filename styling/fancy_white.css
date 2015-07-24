@@ -329,9 +329,9 @@ img.captcha	{
 	float:none!important;
 }
 
-img.captcha-reset {
+.captcha-reset {
 	vertical-align:top;
-	background:	url(captcha_reset_silver.gif) no-repeat;
+	color:#888888;
 	margin:0 0 10px 3px;
 	width:21px;
 	height:21px;

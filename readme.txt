@@ -227,8 +227,10 @@ GPL compliance!
 == Changelog ==
 
 = 14.9.11 =
+* enhanced: change CAPTCHA reset button
 * enhanced: remove the old static jQuery UI theme and get current from Google Hosted Libraries
 * added:    possibility to change the jQuery UI theme
+* other:    remove dark-rounded theme
 
 = 14.9.10 =
 * enhanced: replace some icons with Dashicons

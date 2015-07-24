@@ -314,9 +314,9 @@ img.captcha	{
 	float:none!important;
 }
 
-img.captcha-reset {
+.captcha-reset {
 	vertical-align:text-bottom;
-	background:	url(captcha_reset_blue.gif) no-repeat;
+	color:white;
 	margin:0 0 2px 3px;
 	width:21px;
 	height:21px;
