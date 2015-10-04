@@ -202,7 +202,7 @@ class cforms2_mail {
 	    $this->err_count = 0;
 
 	    if((count($this->to) + count($this->cc) + count($this->bcc)) < 1) {
-	      $this->set_err( __('You must provide at least one recipient email address.','cforms') );
+	      $this->set_err( __('You must provide at least one recipient email address.','cforms2') );
 	      return false;
 	    }
 
@@ -221,7 +221,7 @@ class cforms2_mail {
 		remove_action('phpmailer_init', array($this, 'phpmailer_init'));
 
 	    if(!$rt) {
-	      $this->set_err(__('Could not instantiate wp_mail function.','cforms'));
+	      $this->set_err(__('Could not instantiate wp_mail function.','cforms2'));
 	      return false;
 	    }
 
@@ -235,7 +235,7 @@ class cforms2_mail {
 
 	public function add_file($path) {
 	    if(!is_file($path)) {
-	        $this->set_err(__('Could not access file: ','cforms'));
+	        $this->set_err(__('Could not access file: ','cforms2'));
 	    }
 
 	    $t = count($this->up);

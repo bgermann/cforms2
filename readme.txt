@@ -229,6 +229,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.9.13 =
+* other:    change gettext domain from cforms to cforms2
+
 = 14.9.12 =
 * bugfix:   load dashicons if not in dashboard
 

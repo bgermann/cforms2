@@ -64,47 +64,47 @@ cforms2_setINI('form','cforms_rss_count', 5 );
 
 ### fields for default form
 cforms2_setINI('form','cforms_count_fields', '5');
-cforms2_setINI('form','cforms_count_field_1', __('My Fieldset', 'cforms').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0');
-cforms2_setINI('form','cforms_count_field_2', __('Your Name|Your Name', 'cforms').'$#$textfield$#$1$#$0$#$1$#$0$#$0');
-cforms2_setINI('form','cforms_count_field_3', __('Email', 'cforms').'$#$textfield$#$1$#$1$#$0$#$0$#$0');
-cforms2_setINI('form','cforms_count_field_4', __('Website', 'cforms').'|http://$#$textfield$#$0$#$0$#$0$#$0$#$0');
-cforms2_setINI('form','cforms_count_field_5', __('Message', 'cforms').'$#$textarea$#$0$#$0$#$0$#$0$#$0');
+cforms2_setINI('form','cforms_count_field_1', __('My Fieldset', 'cforms2').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0');
+cforms2_setINI('form','cforms_count_field_2', __('Your Name|Your Name', 'cforms2').'$#$textfield$#$1$#$0$#$1$#$0$#$0');
+cforms2_setINI('form','cforms_count_field_3', __('Email', 'cforms2').'$#$textfield$#$1$#$1$#$0$#$0$#$0');
+cforms2_setINI('form','cforms_count_field_4', __('Website', 'cforms2').'|http://$#$textfield$#$0$#$0$#$0$#$0$#$0');
+cforms2_setINI('form','cforms_count_field_5', __('Message', 'cforms2').'$#$textarea$#$0$#$0$#$0$#$0$#$0');
 
-cforms2_setINI('form','cforms_required', __('(required)', 'cforms'));
-cforms2_setINI('form','cforms_emailrequired', __('(valid email required)', 'cforms'));
+cforms2_setINI('form','cforms_required', __('(required)', 'cforms2'));
+cforms2_setINI('form','cforms_emailrequired', __('(valid email required)', 'cforms2'));
 
 cforms2_setINI('form','cforms_confirm', '0');
 cforms2_setINI('form','cforms_ajax', '1');
-cforms2_setINI('form','cforms_fname', __('Your default form', 'cforms'));
-cforms2_setINI('form','cforms_csubject', __('Re: Your note', 'cforms').'$#$'.__('Re: Submitted form (copy)', 'cforms'));
+cforms2_setINI('form','cforms_fname', __('Your default form', 'cforms2'));
+cforms2_setINI('form','cforms_csubject', __('Re: Your note', 'cforms2').'$#$'.__('Re: Submitted form (copy)', 'cforms2'));
 ### below is also in cforms-options.php!
-cforms2_setINI('form','cforms_cmsg', __('Dear {Your Name},', 'cforms') . "\n" . __('Thank you for your note!', 'cforms') . "\n". __('We will get back to you as soon as possible.', 'cforms') . "\n\n");
-cforms2_setINI('form','cforms_cmsg_html', '<div '.$cformsSettings['global']['cforms_style']['autoconf'].'><p '.$cformsSettings['global']['cforms_style']['dear'] .'>'. __('Dear {Your Name},', 'cforms') . "</p>\n<p ". $cformsSettings['global']['cforms_style']['confp'].'>'. __('Thank you for your note!', 'cforms') . "</p>\n<p ".$cformsSettings['global']['cforms_style']['confp'].'>'. __('We will get back to you as soon as possible.', 'cforms') . "\n<div ".$cformsSettings['global']['cforms_style']['confirmationmsg'].'>'.__('This is an automatic confirmation message.', 'cforms')." {Date}.</div></div>\n\n" );
+cforms2_setINI('form','cforms_cmsg', __('Dear {Your Name},', 'cforms2') . "\n" . __('Thank you for your note!', 'cforms2') . "\n". __('We will get back to you as soon as possible.', 'cforms2') . "\n\n");
+cforms2_setINI('form','cforms_cmsg_html', '<div '.$cformsSettings['global']['cforms_style']['autoconf'].'><p '.$cformsSettings['global']['cforms_style']['dear'] .'>'. __('Dear {Your Name},', 'cforms2') . "</p>\n<p ". $cformsSettings['global']['cforms_style']['confp'].'>'. __('Thank you for your note!', 'cforms2') . "</p>\n<p ".$cformsSettings['global']['cforms_style']['confp'].'>'. __('We will get back to you as soon as possible.', 'cforms2') . "\n<div ".$cformsSettings['global']['cforms_style']['confirmationmsg'].'>'.__('This is an automatic confirmation message.', 'cforms2')." {Date}.</div></div>\n\n" );
 ###
 cforms2_setINI('form','cforms_email', get_bloginfo('admin_email') );
 cforms2_setINI('form','cforms_fromemail', get_bloginfo('admin_email') );
 cforms2_setINI('form','cforms_bcc', '');
 
 ### below is also in cforms-options.php!
-cforms2_setINI('form','cforms_header', __('A new submission (form: "{Form Name}")', 'cforms') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms') . "\r\n" . __('Via: {Page}', 'cforms') . "\r\n" . __('By {IP} (visitor IP)', 'cforms') . ".\r\n" . ".\r\n" );
-cforms2_setINI('form','cforms_header_html', '<p '.$cformsSettings['global']['cforms_style']['meta'].'>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms') . '</p>' );
+cforms2_setINI('form','cforms_header', __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n" );
+cforms2_setINI('form','cforms_header_html', '<p '.$cformsSettings['global']['cforms_style']['meta'].'>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms2') . '</p>' );
 ###
 cforms2_setINI('form','cforms_formdata', '1111');
 cforms2_setINI('form','cforms_space', '30');
 cforms2_setINI('form','cforms_noattachments', '0');
 
-cforms2_setINI('form','cforms_subject', __('A comment from {Your Name}', 'cforms'));
-cforms2_setINI('form','cforms_submit_text', __('Submit', 'cforms'));
-cforms2_setINI('form','cforms_success', __('Thank you for your comment!', 'cforms'));
-cforms2_setINI('form','cforms_failure', __('Please fill in all the required fields.', 'cforms'));
-cforms2_setINI('form','cforms_limittxt', '<strong>'.__('No more submissions accepted at this time.', 'cforms').'</strong>');
+cforms2_setINI('form','cforms_subject', __('A comment from {Your Name}', 'cforms2'));
+cforms2_setINI('form','cforms_submit_text', __('Submit', 'cforms2'));
+cforms2_setINI('form','cforms_success', __('Thank you for your comment!', 'cforms2'));
+cforms2_setINI('form','cforms_failure', __('Please fill in all the required fields.', 'cforms2'));
+cforms2_setINI('form','cforms_limittxt', '<strong>'.__('No more submissions accepted at this time.', 'cforms2').'</strong>');
 
-cforms2_setINI('form','cforms_working', __('One moment please...', 'cforms'));
+cforms2_setINI('form','cforms_working', __('One moment please...', 'cforms2'));
 cforms2_setINI('form','cforms_showpos', 'ynyyy');
 
 cforms2_setINI('form','cforms_hide', false);
 cforms2_setINI('form','cforms_redirect', false);
-cforms2_setINI('form','cforms_redirect_page', __('http://redirect.to.this.page', 'cforms'));
+cforms2_setINI('form','cforms_redirect_page', __('http://redirect.to.this.page', 'cforms2'));
 
 cforms2_setINI('form','cforms_action', '0');
 cforms2_setINI('form','cforms_action_page', 'http://');
@@ -118,11 +118,11 @@ cforms2_setINI('form','cforms_dashboard', '0');
 ### global file settings
 
 cforms2_setINI('global','cforms_formcount', '1');
-cforms2_setINI('global','cforms_upload_err1', __('Generic file upload error. Please try again', 'cforms'));
-cforms2_setINI('global','cforms_upload_err2', __('File is empty. Please upload something more substantial.', 'cforms'));
-cforms2_setINI('global','cforms_upload_err3', __('Sorry, file is too large. You may try to zip your file.', 'cforms'));
-cforms2_setINI('global','cforms_upload_err4', __('File upload failed. Please try again or contact the blog admin.', 'cforms'));
-cforms2_setINI('global','cforms_upload_err5', __('File not accepted, file type not allowed.', 'cforms'));
+cforms2_setINI('global','cforms_upload_err1', __('Generic file upload error. Please try again', 'cforms2'));
+cforms2_setINI('global','cforms_upload_err2', __('File is empty. Please upload something more substantial.', 'cforms2'));
+cforms2_setINI('global','cforms_upload_err3', __('Sorry, file is too large. You may try to zip your file.', 'cforms2'));
+cforms2_setINI('global','cforms_upload_err4', __('File upload failed. Please try again or contact the blog admin.', 'cforms2'));
+cforms2_setINI('global','cforms_upload_err5', __('File not accepted, file type not allowed.', 'cforms2'));
 
 cforms2_setINI('global','cforms_rsskeyall', md5(mt_rand()) );
 cforms2_setINI('global','cforms_rssall', false );
@@ -146,17 +146,17 @@ $cap['i'] = 'i';
 $cap['fo'] = '0';
 $cap['foqa'] = '0';
 cforms2_setINI('global','cforms_captcha_def', $cap );
-cforms2_setINI('global','cforms_sec_qa', __('What color is snow?=white', 'cforms'). "\r\n" . __('The color of grass is=green', 'cforms'). "\r\n" . __('Ten minus five equals=five', 'cforms'));
-cforms2_setINI('global','cforms_codeerr', __('Please double-check your verification code.', 'cforms'));
+cforms2_setINI('global','cforms_sec_qa', __('What color is snow?=white', 'cforms2'). "\r\n" . __('The color of grass is=green', 'cforms2'). "\r\n" . __('Ten minus five equals=five', 'cforms2'));
+cforms2_setINI('global','cforms_codeerr', __('Please double-check your verification code.', 'cforms2'));
 
 cforms2_setINI('global','cforms_show_quicktag', '1');
 
 ### comment feature
-cforms2_setINI('global','cforms_commentsuccess', __('Thank you for leaving a comment.', 'cforms'));
+cforms2_setINI('global','cforms_commentsuccess', __('Thank you for leaving a comment.', 'cforms2'));
 cforms2_setINI('global','cforms_commentWait', '15');
 cforms2_setINI('global','cforms_commentParent', 'mycommentlist');
 cforms2_setINI('global','cforms_commentHTML', "<li id=\"comment-{id}\">{moderation}\n<p>{usercomment}</p>\n<p>\n<cite>Comment by <a href=\"{url}\" rel=\"external nofollow\">{author}</a> &mdash; {date} @ <a href=\"#comment-{id}\">{time}</a></cite>\n</p>\n</li>");
-cforms2_setINI('global','cforms_commentInMod', '<em>'.__('Your comment is awaiting moderation.', 'cforms').'</em>');
+cforms2_setINI('global','cforms_commentInMod', '<em>'.__('Your comment is awaiting moderation.', 'cforms2').'</em>');
 cforms2_setINI('global','cforms_avatar', '32');
 cforms2_setINI('global','cforms_crlf', array('b' => '0'));
 
@@ -170,28 +170,28 @@ cforms2_setINI('global','cforms_database', '0');
 cforms2_setINI('global','cforms_datepicker', '0');
 cforms2_setINI('global','cforms_dp_start', '0');
 cforms2_setINI('global','cforms_dp_date', 'mm/dd/yy');
-cforms2_setINI('global','cforms_dp_days', __('S,M,T,W,T,F,S', 'cforms'));
+cforms2_setINI('global','cforms_dp_days', __('S,M,T,W,T,F,S', 'cforms2'));
 cforms2_setINI('global','cforms_dp_months', implode(',', array(
-    __("January", 'cforms'),
-    __("February", 'cforms'),
-    __("March", 'cforms'),
-    __("April", 'cforms'),
-    __("May", 'cforms'),
-    __("June", 'cforms'),
-    __("July", 'cforms'),
-    __("August", 'cforms'),
-    __("September", 'cforms'),
-    __("October", 'cforms'),
-    __("November", 'cforms'),
-    __("December", 'cforms')
+    __("January", 'cforms2'),
+    __("February", 'cforms2'),
+    __("March", 'cforms2'),
+    __("April", 'cforms2'),
+    __("May", 'cforms2'),
+    __("June", 'cforms2'),
+    __("July", 'cforms2'),
+    __("August", 'cforms2'),
+    __("September", 'cforms2'),
+    __("October", 'cforms2'),
+    __("November", 'cforms2'),
+    __("December", 'cforms2')
 )));
 
-$nav[0]=__('Previous Year', 'cforms');
-$nav[1]=__('Previous Month', 'cforms');
-$nav[2]=__('Next Year', 'cforms');
-$nav[3]=__('Next Month', 'cforms');
-$nav[4]=__('Close', 'cforms');
-$nav[5]=__('Choose Date', 'cforms');
+$nav[0]=__('Previous Year', 'cforms2');
+$nav[1]=__('Previous Month', 'cforms2');
+$nav[2]=__('Next Year', 'cforms2');
+$nav[3]=__('Next Month', 'cforms2');
+$nav[4]=__('Close', 'cforms2');
+$nav[5]=__('Choose Date', 'cforms2');
 $nav[6]='0';
 cforms2_setINI('global','cforms_dp_nav', $nav);
 

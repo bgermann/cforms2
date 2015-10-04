@@ -88,7 +88,7 @@ if ($sub_ids<>'') {
 	$in_list = ($sub_ids<>'all')?'AND id in ('.substr($sub_ids,0,-1).')':'';
 
     if( !is_writable($tempfile) ){
-		$err = sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms'),"\r\n\r\n --->  <code>". $tempfile ."\r\n\r\n","\r\n\r\n");
+		$err = sprintf( __('File (data.tmp) in %s not writable! %sPlease adjust its file permissions/ownership!','cforms2'),"\r\n\r\n --->  <code>". $tempfile ."\r\n\r\n","\r\n\r\n");
 
 	    header("Pragma: public");
 	    header("Expires: 0");
@@ -174,7 +174,7 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
             $buffer[last2_n]= $buffer[last_n];
             $buffer[last_n] = $last_n;
 
-			$body  = '"'.__('Form','cforms').': ' . cforms2_enc_data($fnames[$next_n], $charset). '"'. $format .'"'. cforms2_enc_data($entry->sub_date, $charset) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
+			$body  = '"'.__('Form','cforms2').': ' . cforms2_enc_data($fnames[$next_n], $charset). '"'. $format .'"'. cforms2_enc_data($entry->sub_date, $charset) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
 			$last_n = $next_n;
 

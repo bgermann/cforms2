@@ -472,7 +472,7 @@ function cforms2_submitcomment() {
 	                }
 
 	                if( $sent<>'1' ) {
-	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
+	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms2') . '<br />'. $mail->err;
 	                    $pre = $segments[0].'*$#n';
 	                    echo $pre . $err .'|!!!';
 						die();
@@ -518,7 +518,7 @@ function cforms2_submitcomment() {
 	else {  ###  no admin mail sent!
 
 		###  return error msg
-		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
+		$err = __('Error occurred while sending the message: ','cforms2') . '<br />'. $mail->err;
 	    $pre = $segments[0].'*$#n';
 	    echo $pre . $err .'|!!!';
 

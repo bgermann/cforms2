@@ -25,10 +25,10 @@ check_admin_referer( 'cforms2_installpreset' );
 ?>
 
 	<p>
-		<label for="cf_edit_label_select"><?php _e('Please select a predefined form:', 'cforms'); ?></label>
+		<label for="cf_edit_label_select"><?php _e('Please select a predefined form:', 'cforms2'); ?></label>
 		<?php echo cforms2_get_form_presets(); ?>
 	</p>
-	<p class="ex installNote"><?php _e('By accepting and choosing OK, you will <strong>replace</strong> all your existing input fields with this new preset! If you\'re unsure about this, make a backup copy of the form first.', 'cforms'); ?></p>
+	<p class="ex installNote"><?php _e('By accepting and choosing OK, you will <strong>replace</strong> all your existing input fields with this new preset! If you\'re unsure about this, make a backup copy of the form first.', 'cforms2'); ?></p>
 <?php die();
 }
 
@@ -57,13 +57,13 @@ function cforms2_get_form_presets(){
 		    if (!feof($fhandle)){
 		        preg_match( '/^[^"]+"(.*)"[^"]+$/', fgets($fhandle, 4096), $title );
 		        preg_match( '/^[^"]+"(.*)"[^"]+$/', fgets($fhandle, 4096), $desc );
-		        $alldesc .= '<span id="descInstall'.($alldesc_i++).'" style="display:'.$disp.';">'.__($desc[1],'cforms').'</span>';
+		        $alldesc .= '<span id="descInstall'.($alldesc_i++).'" style="display:'.$disp.';">'.__($desc[1],'cforms2').'</span>';
 		        $disp = 'none';
 		    }
 		    fclose($fhandle);
 		}
 
-		$newprefix = substr( __($title[1],'cforms'), 0, strpos(__($title[1],'cforms'),':') );
+		$newprefix = substr( __($title[1],'cforms2'), 0, strpos(__($title[1],'cforms2'),':') );
 
 		if ( $newprefix <> $prefix ){
 			switch( $prefix_i++ ){
@@ -75,8 +75,8 @@ function cforms2_get_form_presets(){
 			$prefix = $newprefix;
 		}
 
-		$list .= '<option value="'.$file.'" '.$optstyle.'>' .__($title[1],'cforms'). '</option>';
+		$list .= '<option value="'.$file.'" '.$optstyle.'>' .__($title[1],'cforms2'). '</option>';
 	}
 	$fullstring = '<select name="formpresets" id="formpresets">'.$list.'</select></p><p class="descPreset">'.$alldesc;
-    return ($list=='')?'<select><li>'.__('Not available','cforms').'</select></li>':$fullstring;
+    return ($list=='')?'<select><li>'.__('Not available','cforms2').'</select></li>':$fullstring;
 }

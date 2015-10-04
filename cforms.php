@@ -21,7 +21,7 @@
  * Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
  * Author: Oliver Seidel, Bastian Germann
  * Version: 14.9.12
- * Text Domain: cforms
+ * Text Domain: cforms2
  * Domain Path: ____Plugin_Localization
  */
 
@@ -65,8 +65,8 @@ if ( !is_array($cformsSettings) ){
 function cforms2_settings_corrupted() {
 	$tmp = plugin_dir_path(__FILE__).'cforms-corrupted.php';
 
-	add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $tmp, '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
-	add_submenu_page($tmp, __('Corrupted Settings', 'cforms'), __('Corrupted Settings', 'cforms'), 'manage_cforms', $tmp );
+	add_menu_page(__('cformsII', 'cforms2'), __('cformsII', 'cforms2'), 'manage_cforms', $tmp, '', plugin_dir_url(__FILE__).'images/cformsicon.png' );
+	add_submenu_page($tmp, __('Corrupted Settings', 'cforms2'), __('Corrupted Settings', 'cforms2'), 'manage_cforms', $tmp );
 
     add_action('admin_enqueue_scripts', 'cforms2_enqueue_style_admin' );
 }
@@ -698,7 +698,7 @@ function cforms2($args = '',$no = '') {
 			case "captcha":
 				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" title="'.$fieldTitle.'"/>'.
 						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="#" alt=""/><script type="text/javascript">jQuery(function() {reset_captcha('.$no.');});</script>'.
-						 '<a title="'.__('reset captcha image', 'cforms').'" href="javascript:reset_captcha(\''.$no.'\')"><span class="dashicons dashicons-update captcha-reset"></span></a>';
+						 '<a title="'.__('reset captcha image', 'cforms2').'" href="javascript:reset_captcha(\''.$no.'\')"><span class="dashicons dashicons-update captcha-reset"></span></a>';
 		    	$captcha=true;
 				break;
 
@@ -1043,7 +1043,7 @@ function cforms2($args = '',$no = '') {
     ### multi page form: reset
 	$reset='';
     if( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_reset'] )
-		$reset = '<input tabindex="999" type="submit" name="resetbutton'.$no.'" id="resetbutton'.$no.'" class="resetbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext'] . '" onclick="return confirm(\''.__('Note: This will reset all your input!', 'cforms').'\')">';
+		$reset = '<input tabindex="999" type="submit" name="resetbutton'.$no.'" id="resetbutton'.$no.'" class="resetbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_resettext'] . '" onclick="return confirm(\''.__('Note: This will reset all your input!', 'cforms2').'\')">';
 
 
     ### multi page form: back
@@ -1308,8 +1308,8 @@ function cforms2_post_box(){
 
 
 function cforms2_add_cforms_post_boxes(){
-	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms'), 'cforms2_post_box', 'post', 'normal', 'high');
-	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms'), 'cforms2_post_box', 'page', 'normal', 'high');
+	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms2'), 'cforms2_post_box', 'post', 'normal', 'high');
+	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms2'), 'cforms2_post_box', 'page', 'normal', 'high');
 }
 
 
@@ -1357,7 +1357,7 @@ function cforms2_get_submission_left($no='') {
 
 function cforms2_localization () {
 	// For compatibility reasons, use slug cforms, not cforms2.
-	load_plugin_textdomain( 'cforms',  false, plugin_dir_path( plugin_basename( __FILE__ ) ) . '____Plugin_Localization/' );
+	load_plugin_textdomain( 'cforms2',  false, plugin_dir_path( plugin_basename( __FILE__ ) ) . '____Plugin_Localization/' );
 }
 
 ### add actions
@@ -1481,7 +1481,7 @@ if ( is_admin() ) {
 
 		$tafchk = ($taf=='1' || ($edit_post=='' && substr($cformsSettings['form'.$tafform]['cforms'.$tafform.'_tellafriend'],1,1)=='1') )?'checked="checked"':'';
 
-		$tafstring = '<label for="tellafriend" class="selectit"><input type="checkbox" id="tellafriend" name="tellafriend" value="1"'. $tafchk .'/>&nbsp;'. __('T-A-F enable this post/page', 'cforms').'</label>';
+		$tafstring = '<label for="tellafriend" class="selectit"><input type="checkbox" id="tellafriend" name="tellafriend" value="1"'. $tafchk .'/>&nbsp;'. __('T-A-F enable this post/page', 'cforms2').'</label>';
 
 		### add admin boxes
 		add_action('admin_menu', 'cforms2_add_cforms_post_boxes');
@@ -1519,15 +1519,15 @@ function cforms2_add_items_global( $admin_bar ){
 
 	cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 	
-	cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms'), __('Outputs -for debug purposes- all cforms settings', 'cforms'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
-	cforms2_add_admin_bar_item($admin_bar, 'cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms'), __('Be careful here...', 'cforms'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
 
 	if ( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions ) 
-		cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms'), __('Be careful here...', 'cforms'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms').'") ) jQuery("#deletetables").trigger("click"); return false;');
+		cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'), 'if ( confirm("'.__('Do you really want to erase all collected data?', 'cforms2').'") ) jQuery("#deletetables").trigger("click"); return false;');
 
-	cforms2_add_admin_bar_item($admin_bar, 'cforms-backup', __('Backup / restore all settings', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-backup', __('Backup / restore all settings', 'cforms2'), __('Better safe than sorry ;)', 'cforms2'), 'jQuery("#backup").trigger("click"); return false;');
 	
-	cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+	cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
 
 }
 
@@ -1537,15 +1537,15 @@ function cforms2_add_items_options( $admin_bar ){
 
 	cforms2_add_admin_bar_root($admin_bar,'cforms-bar', 'cforms Admin');
 	
-	cforms2_add_admin_bar_item($admin_bar,'cforms-addbutton', __('Add new form', 'cforms'), __('Adds a new form with default values', 'cforms'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
-	cforms2_add_admin_bar_item($admin_bar,'cforms-dupbutton', __('Duplicate current form', 'cforms'), __('Clones the current form', 'cforms'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
 	if ( (int)$cfo['global']['cforms_formcount'] > 1)
-		cforms2_add_admin_bar_item($admin_bar,'cforms-delbutton', __('Delete current form (!)', 'cforms'), __('Clicking this button WILL delete this form', 'cforms'), 'if ( confirm("'.__('This will delete the current form!', 'cforms').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
+		cforms2_add_admin_bar_item($admin_bar,'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'), 'if ( confirm("'.__('This will delete the current form!', 'cforms2').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
 
-	cforms2_add_admin_bar_item($admin_bar,'cforms-preset', __('Install a form preset', 'cforms'), __('Pick a form preset from the repository', 'cforms'), 'jQuery("#preset").trigger("click"); return false;');
-	cforms2_add_admin_bar_item($admin_bar,'cforms-backup', __('Backup / restore this form only', 'cforms'), __('Better safe than sorry ;)', 'cforms'), 'jQuery("#backup").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-preset', __('Install a form preset', 'cforms2'), __('Pick a form preset from the repository', 'cforms2'), 'jQuery("#preset").trigger("click"); return false;');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-backup', __('Backup / restore this form only', 'cforms2'), __('Better safe than sorry ;)', 'cforms2'), 'jQuery("#backup").trigger("click"); return false;');
 
-	cforms2_add_admin_bar_item($admin_bar,'cforms-SubmitOptions', __('Save & update form settings', 'cforms'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+	cforms2_add_admin_bar_item($admin_bar,'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
 
 }
 

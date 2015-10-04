@@ -61,17 +61,17 @@ if ( $sub_id<>'' && $sub_id >= 0){
 	}
 
 	if ( $found==3 )
-		$del = ' '.__('(some associated attachment/s were not found!)','cforms');
+		$del = ' '.__('(some associated attachment/s were not found!)','cforms2');
 	else if ( $found==2 )
-		$del = ' '.__('(associated attachment/s were not found!)','cforms');
+		$del = ' '.__('(associated attachment/s were not found!)','cforms2');
 	else if ( $found==1 )
-		$del = ' '.__('(including all attachment/s)','cforms');
+		$del = ' '.__('(including all attachment/s)','cforms2');
 
 	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformssubmissions WHERE id = %s", $sub_id));
 	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformsdata WHERE sub_id = %s", $sub_id));
 
 	?>
-	<p><strong><?php echo $i; ?> <?php _e('Entry successfully removed', 'cforms'); echo $del; ?>.</strong></p>
+	<p><strong><?php echo $i; ?> <?php _e('Entry successfully removed', 'cforms2'); echo $del; ?>.</strong></p>
 	<?php
 }
 die();

@@ -30,43 +30,43 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] = false;
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_count_fields'] = '5';
-	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_1'] = __('My Fieldset', 'cforms').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_2'] = __('Your Name|Your Name', 'cforms').'$#$textfield$#$1$#$0$#$1$#$0$#$0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_3'] = __('Email', 'cforms').'$#$textfield$#$1$#$1$#$0$#$0$#$0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_4'] = __('Website|http://', 'cforms').'$#$textfield$#$0$#$0$#$0$#$0$#$0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_5'] = __('Message', 'cforms').'$#$textarea$#$0$#$0$#$0$#$0$#$0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_1'] = __('My Fieldset', 'cforms2').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_2'] = __('Your Name|Your Name', 'cforms2').'$#$textfield$#$1$#$0$#$1$#$0$#$0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_3'] = __('Email', 'cforms2').'$#$textfield$#$1$#$1$#$0$#$0$#$0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_4'] = __('Website|http://', 'cforms2').'$#$textfield$#$0$#$0$#$0$#$0$#$0';
+	$cformsSettings['form'.$no]['cforms'.$no.'_count_field_5'] = __('Message', 'cforms2').'$#$textarea$#$0$#$0$#$0$#$0$#$0';
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_required'] = __('(required)', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_emailrequired'] = __('(valid email required)', 'cforms');
+	$cformsSettings['form'.$no]['cforms'.$no.'_required'] = __('(required)', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_emailrequired'] = __('(valid email required)', 'cforms2');
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = '1';
 	$cformsSettings['form'.$no]['cforms'.$no.'_confirm'] = '0';
-	$cformsSettings['form'.$no]['cforms'.$no.'_fname'] = __('A new form', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_csubject'] = __('Re: Your note', 'cforms').'$#$'.__('Re: Submitted form (copy)', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] = __('Dear {Your Name},', 'cforms') . "\n". __('Thank you for your note!', 'cforms') . "\n". __('We will get back to you as soon as possible.', 'cforms') . "\n\n";
+	$cformsSettings['form'.$no]['cforms'.$no.'_fname'] = __('A new form', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_csubject'] = __('Re: Your note', 'cforms2').'$#$'.__('Re: Submitted form (copy)', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] = __('Dear {Your Name},', 'cforms2') . "\n". __('Thank you for your note!', 'cforms2') . "\n". __('We will get back to you as soon as possible.', 'cforms2') . "\n\n";
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] = '<div '.$cformsSettings['global']['cforms_style']['autoconf'].'><p '.$cformsSettings['global']['cforms_style']['dear'] .'>'. __('Dear {Your Name},', 'cforms') . "</p>\n<p ". $cformsSettings['global']['cforms_style']['confp'].'>'. __('Thank you for your note!', 'cforms') . "</p>\n<p ".$cformsSettings['global']['cforms_style']['confp'].'>'. __('We will get back to you as soon as possible.', 'cforms') . "\n<div ".$cformsSettings['global']['cforms_style']['confirmationmsg'].'>'.__('This is an automatic confirmation message.', 'cforms')." {Date}.</div></div>\n\n";
+	$cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'] = '<div '.$cformsSettings['global']['cforms_style']['autoconf'].'><p '.$cformsSettings['global']['cforms_style']['dear'] .'>'. __('Dear {Your Name},', 'cforms2') . "</p>\n<p ". $cformsSettings['global']['cforms_style']['confp'].'>'. __('Thank you for your note!', 'cforms2') . "</p>\n<p ".$cformsSettings['global']['cforms_style']['confp'].'>'. __('We will get back to you as soon as possible.', 'cforms2') . "\n<div ".$cformsSettings['global']['cforms_style']['confirmationmsg'].'>'.__('This is an automatic confirmation message.', 'cforms2')." {Date}.</div></div>\n\n";
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_email'] = get_bloginfo('admin_email') ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_fromemail'] = get_bloginfo('admin_email') ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_bcc'] = '';
-	$cformsSettings['form'.$no]['cforms'.$no.'_header'] = __('A new submission (form: "{Form Name}")', 'cforms') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms') . "\r\n" . __('Via: {Page}', 'cforms') . "\r\n" . __('By {IP} (visitor IP)', 'cforms') . ".\r\n" . ".\r\n" ;
-	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] = '<p '.$cformsSettings['global']['cforms_style']['meta'].'>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms') . '</p>' ;
+	$cformsSettings['form'.$no]['cforms'.$no.'_header'] = __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n" ;
+	$cformsSettings['form'.$no]['cforms'.$no.'_header_html'] = '<p '.$cformsSettings['global']['cforms_style']['meta'].'>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms2') . '</p>' ;
 	$cformsSettings['form'.$no]['cforms'.$no.'_formdata'] = '1111';
 	$cformsSettings['form'.$no]['cforms'.$no.'_space'] = '30';
 	$cformsSettings['form'.$no]['cforms'.$no.'_noattachments'] = '0';
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] = __('A comment from {Your Name}', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] = __('Submit', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_success'] = __('Thank you for your comment!', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] = __('Please fill in all the required fields.', 'cforms');
-	$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] = '<strong>'.__('No more submissions accepted at this time.', 'cforms').'</strong>';
-	$cformsSettings['form'.$no]['cforms'.$no.'_working'] = __('One moment please...', 'cforms');
+	$cformsSettings['form'.$no]['cforms'.$no.'_subject'] = __('A comment from {Your Name}', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_submit_text'] = __('Submit', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_success'] = __('Thank you for your comment!', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] = __('Please fill in all the required fields.', 'cforms2');
+	$cformsSettings['form'.$no]['cforms'.$no.'_limittxt'] = '<strong>'.__('No more submissions accepted at this time.', 'cforms2').'</strong>';
+	$cformsSettings['form'.$no]['cforms'.$no.'_working'] = __('One moment please...', 'cforms2');
 	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] = 'ynyyy';
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_hide'] = false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect'] = false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] = __('http://redirect.to.this.page', 'cforms');
+	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] = __('http://redirect.to.this.page', 'cforms2');
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_action'] = '0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] = 'http://';
@@ -83,4 +83,4 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] = '';
 
     update_option('cforms_settings',$cformsSettings);
-	echo '<div id="message" class="updated fade"><p>'.__('A new form with default fields has been added.', 'cforms').'</p></div>';
+	echo '<div id="message" class="updated fade"><p>'.__('A new form with default fields has been added.', 'cforms2').'</p></div>';

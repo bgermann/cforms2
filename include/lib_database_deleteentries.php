@@ -121,7 +121,7 @@ if ( $sub_ids<>'' ){
 		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE $whereS $doquery"); //TODO check SQL injection
 	endforeach;
 
-	 _e('Entries successfully removed from the tracking tables!', 'cforms');
+	 _e('Entries successfully removed from the tracking tables!', 'cforms2');
 }
 die();
 }

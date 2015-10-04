@@ -106,7 +106,7 @@ function cforms2_save_array($vArray){
 ### check user access
 function cforms2_check_access_priv($r='manage_cforms'){
 	if( !current_user_can($r) ){
-		$err = '<div class="wrap"><div id="icon-cforms-error" class="icon32"><br/></div><h2>'.__('cforms error','cforms').'</h2><div class="updated fade" id="message"><p>'.__('You do not have the proper privileges to access this page.','cforms').'</p></div></div>';
+		$err = '<div class="wrap"><div id="icon-cforms-error" class="icon32"><br/></div><h2>'.__('cforms error','cforms2').'</h2><div class="updated fade" id="message"><p>'.__('You do not have the proper privileges to access this page.','cforms2').'</p></div></div>';
 		die( $err );
     }
 }
@@ -123,14 +123,14 @@ function cforms2_menu() {
 
 	$o = $p.'cforms-options.php';
 
-	add_menu_page(__('cformsII', 'cforms'), __('cformsII', 'cforms'), 'manage_cforms', $o, '', plugin_dir_url(__FILE__).'images/cformsicon.png');
+	add_menu_page(__('cformsII', 'cforms2'), __('cformsII', 'cforms2'), 'manage_cforms', $o, '', plugin_dir_url(__FILE__).'images/cformsicon.png');
 
-	add_submenu_page($o, __('Form Settings', 'cforms'), __('Form Settings', 'cforms'), 'manage_cforms', $o);
-	add_submenu_page($o, __('Global Settings', 'cforms'), __('Global Settings', 'cforms'), 'manage_cforms', $p.'cforms-global-settings.php');
+	add_submenu_page($o, __('Form Settings', 'cforms2'), __('Form Settings', 'cforms2'), 'manage_cforms', $o);
+	add_submenu_page($o, __('Global Settings', 'cforms2'), __('Global Settings', 'cforms2'), 'manage_cforms', $p.'cforms-global-settings.php');
 	if ( ($tablesup || isset($_REQUEST['cforms_database'])) && !isset($_REQUEST['deletetables']) )
-		add_submenu_page($o, __('Tracking', 'cforms'), __('Tracking', 'cforms'), 'track_cforms', $p.'cforms-database.php');
-	add_submenu_page($o, __('Styling', 'cforms'), __('Styling', 'cforms'), 'manage_cforms', $p.'cforms-css.php');
-	add_submenu_page($o, __('Help!', 'cforms'), __('Help!', 'cforms'), 'manage_cforms', $p.'cforms-help.php');
+		add_submenu_page($o, __('Tracking', 'cforms2'), __('Tracking', 'cforms2'), 'track_cforms', $p.'cforms-database.php');
+	add_submenu_page($o, __('Styling', 'cforms2'), __('Styling', 'cforms2'), 'manage_cforms', $p.'cforms-css.php');
+	add_submenu_page($o, __('Help!', 'cforms2'), __('Help!', 'cforms2'), 'manage_cforms', $p.'cforms-help.php');
 }
 
 
@@ -229,8 +229,8 @@ function cforms2_footer() {
 	global $localversion;
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
-			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
-			<?php _e('Translation provided by Oliver Seidel.', 'cforms') ?>
+			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
+			<?php _e('Translation provided by Oliver Seidel.', 'cforms2') ?>
 		</em>
 	</p>
 	<p align="center">Version v<?php echo $localversion; ?></p>
@@ -245,9 +245,9 @@ function cforms2_check_erased() {
     if ( $cformsSettings['global']['cforms_formcount'] == '' ){
 		?>
 		<div class="wrap">
-		<div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('All cforms data has been erased!', 'cforms') ?></h2>
-	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms') ?></p>
-	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms') ?></p>
+		<div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
+	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') ?></p>
+	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms2') ?></p>
 	    </div>
 		<?php
 	    return true;
@@ -304,5 +304,5 @@ function cforms2_check_pluggable_captchas_authn_users($field_type) {
 }
 
 function cforms2_admin_date_format() {
-	return __('dd', 'cforms') .'/'. __('mm', 'cforms') .'/'. __('yyyy', 'cforms');
+	return __('dd', 'cforms2') .'/'. __('mm', 'cforms2') .'/'. __('yyyy', 'cforms2');
 }

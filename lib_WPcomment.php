@@ -59,13 +59,13 @@ if ( $isAjaxWPcomment ){
 		$status = $wpdb->get_row($wpdb->prepare("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = %s", $comment_post_ID));
 
 		if ( empty($status->comment_status) ) {
-			$WPresp = __('Comment ID not found.','cforms');
+			$WPresp = __('Comment ID not found.','cforms2');
 			do_action('comment_id_not_found', $comment_post_ID);
 		} elseif ( 'closed' ==  $status->comment_status ) {
-			$WPresp = __('Sorry, comments are closed for this item.','cforms');
+			$WPresp = __('Sorry, comments are closed for this item.','cforms2');
 			do_action('comment_closed', $comment_post_ID);
 		} elseif ( in_array($status->post_status, array('draft', 'pending') ) ) {
-			$WPresp = __('Comment is on draft.','cforms');
+			$WPresp = __('Comment is on draft.','cforms2');
 			do_action('comment_on_draft', $comment_post_ID);
 		}
 		else{
@@ -88,7 +88,7 @@ if ( $isAjaxWPcomment ){
 					}
 				}
 			} elseif ( get_option('comment_registration') ){
-					$WPresp = __('Sorry, you must be logged in to post a comment.','cforms');
+					$WPresp = __('Sorry, you must be logged in to post a comment.','cforms2');
 					return;
 			}
 
@@ -100,7 +100,7 @@ if ( $isAjaxWPcomment ){
 
 			### Simple duplicate check
 			if( $wpdb->get_var($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %s AND ( comment_author = %s " .($comment_author_email ? " OR comment_author_email = '".esc_sql($comment_author_email)."'" : ""). ") AND comment_content = %s LIMIT 1;", $comment_post_ID, $comment_author, $comment_content)) ) {
-				$WPresp = __('You\'ve said that before. No need to repeat yourself.','cforms');
+				$WPresp = __('You\'ve said that before. No need to repeat yourself.','cforms2');
 				return;
 			}
 
@@ -111,7 +111,7 @@ if ( $isAjaxWPcomment ){
 
 				if ( ($time_newcomment - $time_lastcomment) < (int)$cformsSettings['global']['cforms_commentWait'] ) {
 				  do_action('comment_flood_trigger', $time_lastcomment, $time_newcomment);
-				  $WPresp = __('You are posting comments too quickly. Slow down.','cforms');
+				  $WPresp = __('You are posting comments too quickly. Slow down.','cforms2');
 				  return;
 				}
 			}
@@ -193,7 +193,7 @@ if ( $isAjaxWPcomment ){
 			die();
 		} elseif ( 'closed' ==  $status->comment_status ) {
 			do_action('comment_closed', $comment_post_ID);
-			wp_die( __('Sorry, comments are closed for this item.','cforms') );
+			wp_die( __('Sorry, comments are closed for this item.','cforms2') );
 		} elseif ( in_array($status->post_status, array('draft', 'pending') ) ) {
 			do_action('comment_on_draft', $comment_post_ID);
 			die();
@@ -217,7 +217,7 @@ if ( $isAjaxWPcomment ){
 			}
 		} else {
 			if ( get_option('comment_registration') )
-				wp_die( __('Sorry, you must be logged in to post a comment.','cforms') );
+				wp_die( __('Sorry, you must be logged in to post a comment.','cforms2') );
 		}
 
         $comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;

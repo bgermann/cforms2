@@ -30,15 +30,15 @@
 
 	// A non-empty file will pass this test.
 	if ( !( $file['size'] > 0 ) )
-			$err = __('File is empty. Please upload something more substantial.', 'cforms');
+			$err = __('File is empty. Please upload something more substantial.', 'cforms2');
 
 	// A properly uploaded file will pass this test. There should be no reason to override this one.
 	if (! is_uploaded_file( $file['tmp_name'] ) )
-			$err = __('Specified file failed upload test.', 'cforms');
+			$err = __('Specified file failed upload test.', 'cforms2');
 
 	if ( $err <> '' ){
 
-	  echo '<div id="message" class="updated fade"><p>'.__('Error:', 'cforms').' '.$err.'</p></div>';
+	  echo '<div id="message" class="updated fade"><p>'.__('Error:', 'cforms2').' '.$err.'</p></div>';
 
 	} else if( isset($_REQUEST['uploadcformsdata']) ) {
 
@@ -46,7 +46,7 @@
 		$cformsSettings['form'.$no] = cforms2_load_array( $no , $fo );
 		update_option('cforms_settings',$cformsSettings);
 
-		echo '<div id="message" class="updated fade"><p>'.__('All form specific settings have been restored from the backup file.', 'cforms').'</p></div>';
+		echo '<div id="message" class="updated fade"><p>'.__('All form specific settings have been restored from the backup file.', 'cforms2').'</p></div>';
 
 	} else if( isset($_REQUEST['restoreallcformsdata']) ) {
 
@@ -55,7 +55,7 @@
 
         update_option('cforms_settings',$cformsSettings);
 
-		echo '<div id="message" class="updated fade"><p>'.__('All cforms settings have been restored from the backup file.', 'cforms').'</p></div>';
+		echo '<div id="message" class="updated fade"><p>'.__('All cforms settings have been restored from the backup file.', 'cforms2').'</p></div>';
 	}
 
 	function cforms2_load_array($k, $vFile){
@@ -67,7 +67,7 @@
 	            $pos  = ftell($vFile);
 				$Wert = bin2hex( fread($vFile,1) );
                 if( $pos > 10 )
-					wp_die(__('Corrupted File detected. Restore process aborted.', 'cforms'));
+					wp_die(__('Corrupted File detected. Restore process aborted.', 'cforms2'));
             }
 		    fseek($vFile, $pos+1);
 		}

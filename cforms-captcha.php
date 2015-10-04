@@ -86,7 +86,7 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 	}
 
 	public function get_name() {
-		return __('Visitor verification (Q&amp;A)', 'cforms');
+		return __('Visitor verification (Q&amp;A)', 'cforms2');
 	}
 
 	public function check_authn_users() {

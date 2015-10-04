@@ -103,9 +103,9 @@ if ($showIDs<>'') {
 	            $time = mysql2date(get_option('time_format'), $entry->sub_date);
 
 				echo '<div class="showform" id="entry'.$entry->sub_id.'">'.
-					 '<table class="dataheader"><tr><td>'.__('Form:','cforms').' </td><td class="b">'. stripslashes($cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']) . '</td><td class="e">(ID:' . $entry->sub_id . ')</td><td class="d">' . $time.' &nbsp; '.$date. '</td>' .
-					 '<td class="s">&nbsp;</td><td><a href="#" class="xdatabutton allbuttons deleteall" type="submit" id="xbutton'.$entry->sub_id.'">'.__('Delete this entry', 'cforms').'</a></td>' .
-					 '<td><a class="cdatabutton dashicons dashicons-dismiss" type="submit" id="cbutton'.$entry->sub_id.'" title="'.__('close this entry', 'cforms').'"></a></td>' .
+					 '<table class="dataheader"><tr><td>'.__('Form:','cforms2').' </td><td class="b">'. stripslashes($cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname']) . '</td><td class="e">(ID:' . $entry->sub_id . ')</td><td class="d">' . $time.' &nbsp; '.$date. '</td>' .
+					 '<td class="s">&nbsp;</td><td><a href="#" class="xdatabutton allbuttons deleteall" type="submit" id="xbutton'.$entry->sub_id.'">'.__('Delete this entry', 'cforms2').'</a></td>' .
+					 '<td><a class="cdatabutton dashicons dashicons-dismiss" type="submit" id="cbutton'.$entry->sub_id.'" title="'.__('close this entry', 'cforms2').'"></a></td>' .
                      "</tr></table>\n";
 			}
 
@@ -143,7 +143,7 @@ if ($showIDs<>'') {
 					echo '<div class="showformfield meta"><div class="L">';
 					echo substr($name, 0,strpos($name,'[*'));
 					if ( $entry->field_val == '' )
-						echo 	'</div><div class="R">' . __('-','cforms') . '</div></div>' . "\n";
+						echo 	'</div><div class="R">' . __('-','cforms2') . '</div></div>' . "\n";
 					else
 						echo 	'</div><div class="R">' . '<a href="' . $fileurl . '">' . str_replace("\n","<br />", strip_tags($val) ) . '</a>' . '</div></div>' . "\n";
 
@@ -151,12 +151,12 @@ if ($showIDs<>'') {
 			elseif ($name=='page') {  // special field: page
 
 					echo '<div class="showformfield meta"><div class="L">';
-					_e('Submitted via page', 'cforms');
+					_e('Submitted via page', 'cforms2');
 					echo 	'</div><div class="R">' . str_replace("\n","<br />", strip_tags($val) ) . '</div></div>' . "\n";
 
 					echo '<div class="showformfield meta"><div class="L">';
-					_e('IP address', 'cforms');
-					echo 	'</div><div class="R"><a href="http://geomaplookup.net/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms').'">'.$entry->ip.'</a></div></div>' . "\n";
+					_e('IP address', 'cforms2');
+					echo 	'</div><div class="R"><a href="http://geomaplookup.net/?ip='.$entry->ip.'" title="'.__('IP Lookup', 'cforms2').'">'.$entry->ip.'</a></div></div>' . "\n";
 
 
 			} elseif ( strpos($name,'Fieldset')!==false ) {
@@ -176,7 +176,7 @@ if ($showIDs<>'') {
 
 	else : ?>
 
-		<p align="center"><?php _e('Sorry, data not found. Please refresh your data table.', 'cforms') ?></p>
+		<p align="center"><?php _e('Sorry, data not found. Please refresh your data table.', 'cforms2') ?></p>
 		</div>
 
 	<?php endif;
