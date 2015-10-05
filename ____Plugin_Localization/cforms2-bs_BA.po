@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2015-07-17 22:52+0200\n"
+"POT-Creation-Date: 2015-10-05 12:22+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: www.alpenimmobilien.de <info@alpenimmobilien.de>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: cforms-captcha.php:89 cforms-global-settings.php:586 cforms-help.php:475
 msgid "Visitor verification (Q&amp;A)"
@@ -129,8 +129,8 @@ msgstr "Izaberite datoteku za temu koja najbliže odgovara onome što tražite."
 msgid "top"
 msgstr "vrh"
 
-#: cforms-css.php:85
-msgid "Styling options"
+#: cforms-css.php:154
+msgid "jQuery UI theme"
 msgstr ""
 
 #: cforms-css.php:95

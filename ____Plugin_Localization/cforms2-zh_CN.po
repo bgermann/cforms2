@@ -16,15 +16,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2015-07-18 00:08+0200\n"
-"PO-Revision-Date: 2015-07-18 00:08+0200\n"
+"POT-Creation-Date: 2015-10-05 12:22+0200\n"
+"PO-Revision-Date: 2015-10-05 13:30+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Charles Tang <tangchao.zju@gmail.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: cforms-captcha.php:89 cforms-global-settings.php:586 cforms-help.php:475
 msgid "Visitor verification (Q&amp;A)"
@@ -119,8 +119,8 @@ msgstr "请选择一个与您想要的表单样式最接近的主题文件。"
 msgid "top"
 msgstr "top"
 
-#: cforms-css.php:85
-msgid "Styling options"
+#: cforms-css.php:154
+msgid "jQuery UI theme"
 msgstr ""
 
 #: cforms-css.php:95

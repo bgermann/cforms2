@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2015-07-17 22:22+0200\n"
+"POT-Creation-Date: 2015-10-05 12:22+0200\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Oliver Seidel, Bastian Germann\n"
 "Language: en\n"
@@ -120,8 +120,8 @@ msgstr ""
 msgid "top"
 msgstr ""
 
-#: cforms-css.php:85
-msgid "Styling options"
+#: cforms-css.php:154
+msgid "jQuery UI theme"
 msgstr ""
 
 #: cforms-css.php:95
