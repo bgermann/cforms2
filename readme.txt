@@ -155,15 +155,10 @@ ____Plugin_Localization directory should be picked up immediately.
 You can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
 which also work with this fork.
 If there is a language file available for you, but it is not included in the
-standard distribution, please put the cforms-*.mo file into the
-wp-content/languages/plugins directory.
+standard distribution, please rename the cforms-*.mo file to cforms2-*.mo and
+put it in the wp-content/languages/plugins directory.
 
-If you would like to contribute a new language file, please
-[submit a GitHub pull request](https://github.com/bgermann/cforms2/pulls)
-with the translation file included.
-It has to be GPL licensed. If an available translation on the original website
-is not GPL licensed (they can, because cformsII did not start as GPL project),
-you must not redistribute it as long as it is not your translation.
+There will be a user friendly way to contribute a new language file soon.
 
 
 == Donations ==
