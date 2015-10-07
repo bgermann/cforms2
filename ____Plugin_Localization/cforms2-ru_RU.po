@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
-"POT-Creation-Date: 2015-10-05 12:22+0200\n"
-"PO-Revision-Date: 2015-10-05 13:26+0100\n"
+"POT-Creation-Date: 2015-10-07 11:53+0300\n"
+"PO-Revision-Date: 2015-10-07 18:43+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Sofia Panchenko <s.panchenko@gmail.com>, www.sonika.ru/blog/ "
 "<sonika@sonika.ru>\n"
@@ -256,7 +256,7 @@ msgstr "Дата"
 
 #: cforms-database.php:64 cforms-database.php:77
 msgid "IP"
-msgstr ""
+msgstr "IP адрес"
 
 #: cforms-database.php:67
 msgid "View records"
@@ -3415,7 +3415,7 @@ msgstr "Отметьте, если хотите чтобы эл. адрес пр
 
 #: cforms-options.php:242
 msgid "e-mail"
-msgstr ""
+msgstr "Email"
 
 #: cforms-options.php:243
 msgid "Clears the field (default value) upon focus."
@@ -3423,7 +3423,7 @@ msgstr "Очищает поле, когда в него поставлен ку�
 
 #: cforms-options.php:243
 msgid "auto-clear"
-msgstr ""
+msgstr "авто-очистка"
 
 #: cforms-options.php:244
 msgid "Grey's out a form field (field will be completely disabled)."
@@ -3911,7 +3911,7 @@ msgstr "Дата начала"
 
 #: cforms-options.php:669 cforms-options.php:690
 msgid "HH:MM"
-msgstr ""
+msgstr "ЧЧ:ММ"
 
 #: cforms-options.php:669 cforms-options.php:690
 msgid "Time entry."
@@ -4611,35 +4611,40 @@ msgstr "Бэкап / восстановление данной формы"
 
 #: formpresets/index.php:19
 msgid "Default: Reset to *default* contact form"
-msgstr ""
+msgstr "По умолчанию: восстановить форму *по умолчанию*"
 
 #: formpresets/index.php:20
 msgid "Does what it says, it'll reset all input fields to the default setup."
-msgstr ""
+msgstr "Это вернет все поля к первоначальным настройкам."
 
 #: formpresets/index.php:21
 msgid "Basic: Preset for *GREY BLOCKS* Theme"
-msgstr ""
+msgstr "ОСНОВНОЕ: предустановленно для Темы  *GREY BLOCKS* "
 
 #: formpresets/index.php:22
 msgid ""
 "This preset will switch your current cforms theme to 'Grey Blocks'. It comes "
 "with basic contact form input fields and a custom error message example."
 msgstr ""
+"Эта установка переключит текущий стиль для форм в стиль 'Grey Blocks'. Этот "
+"стиль идет с основной формой и включает пример с  индивидуальными сообщеними "
+"об ошибках."
 
 #: formpresets/index.php:23
 msgid "Basic: *Newsletter* subscription form (w/ titles)"
-msgstr ""
+msgstr "ОСНОВНОЕ: *Письмо* подписка по e-mail (без названия)"
 
 #: formpresets/index.php:24
 msgid ""
 "A small, two input field form that showcases regexp's (default value "
 "exclusion) and input field titles."
 msgstr ""
+"Небольшая форма (2 поля), которая демонстрирует как использовать регулярные "
+"выражения (исключения по умолчанию) и заголовки (title) полей."
 
 #: formpresets/index.php:25
 msgid "Basic: Tell A Friend Form"
-msgstr ""
+msgstr "ОСНОВНОЕ: форма  «Рассказать другу»"
 
 #: formpresets/index.php:26
 msgid ""
@@ -4648,20 +4653,29 @@ msgid ""
 "and sets the TAF option, switches the current theme and sets a generic tell-"
 "a-friend message."
 msgstr ""
+"Если вы хотите настроить специальную форму T-A-F («Рассказать другу»), то, "
+"пожалуйста, используйте эту предустановленную форму как базовую. Она идет с "
+"необходимыми (специальными) T-A-F полями, с проверкой и  устанавкой T-A-F "
+"параметров, переключает  текущую тему и задает общее сообщение для формы T-A-"
+"F («Рассказать другу»)."
 
 #: formpresets/index.php:27
 msgid "Basic: Form for *dark-rounded.css* Theme"
-msgstr ""
+msgstr "ОСНОВНОЕ: форма для стиля *dark-rounded.css*"
 
 #: formpresets/index.php:28
 msgid ""
 "This will switch your current cforms theme to the dark-rounded.css one and "
 "will get you going with a set of basic contact form input fields."
 msgstr ""
+"Это переключит текущий стиль для cforms на стиль dark-rounded.css и позволит "
+"начать с набором основных полей для формы."
 
 #: formpresets/index.php:29
 msgid "Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme"
 msgstr ""
+"ДОПОЛНИТЕЛЬНО: форма с несколькими группами (fieldset) для стиля *dark-"
+"rounded.css*"
 
 #: formpresets/index.php:30
 msgid ""
@@ -4669,10 +4683,14 @@ msgid ""
 "fieldset form layouts. Check out this preset to see what is required to "
 "ensure a proper look."
 msgstr ""
+"Стиль dark-rounded.css требует немного 'волшебства' для поддержки формы с "
+"несколькими группами (fieldsets). Попробуйте эту предустановленную форму "
+"чтобы посмотреть, что требуется для обеспечения надлежащиего вида."
 
 #: formpresets/index.php:31
 msgid "Advanced: Contact Form with Custom Err Messages"
 msgstr ""
+"ДОПОЛНИТЕЛЬНО: контактная форма с индивидуальными сообщениями об ошибках"
 
 #: formpresets/index.php:32
 msgid ""
@@ -4680,10 +4698,14 @@ msgid ""
 "specific custom error texts. Please check your fancy error message settings, "
 "to make sure they're actually displayed."
 msgstr ""
+"Эта предустановленная форма основана на форме по умолчанию, однако она "
+"содержит индивидуальные сообщения об ошибках в полях формы. Проверьте "
+"настройки индивидуальных сообщений об ошибках чтобы убедиться, что все "
+"работает как надо."
 
 #: formpresets/index.php:33
 msgid "Advanced: WP comment feature form"
-msgstr ""
+msgstr "ДОПОЛНИТЕЛЬНО: WP форма-комменарий"
 
 #: formpresets/index.php:34
 msgid ""
@@ -4692,10 +4714,14 @@ msgid ""
 "included and configured, including some custom, field specific error "
 "messages. <em><br />Note: It will also change your current cforms theme.</em>"
 msgstr ""
+"Если вы планируете заменить комментарии WordPress  на форму-комментарий "
+"cforms, то используйте эту форму как базовую. Все необходимые поля уже есть "
+"в данной форме, включая некоторые индивидуальные сообщения об ошибках. "
+"<em><br />На заметку: это изменит также текущий стиль для cforms</em>"
 
 #: formpresets/index.php:35
 msgid "Advanced: Online booking form"
-msgstr ""
+msgstr "ДОПОЛНИТЕЛЬНО: форма он-лайн бронирования"
 
 #: formpresets/index.php:36
 msgid ""
@@ -4705,10 +4731,16 @@ msgid ""
 "use this preset with your first form as it does some nifty things with its "
 "CSS.</em>"
 msgstr ""
+"Включает большое количество полей для формы он-лайн бронирования. Включая "
+"индивидуальные стили, обязательные «соглашения» с внешними ссылками на "
+"тексты соглашений + антиспам поле. <br /><em>На заметку: используйте эту "
+"предустановленную форму для создания своей формы, т.к. она делает некоторые "
+"интересные вещи с помощью CSS.</em>"
 
 #: formpresets/index.php:37
 msgid "Advanced: Sign up form (w/ limited seats available)"
 msgstr ""
+"ДОПОЛНИТЕЛЬНО: форма регистрации (с ограниченным количеством регистраций)"
 
 #: formpresets/index.php:38
 msgid ""
@@ -4718,6 +4750,11 @@ msgid ""
 "as country and state (US) drop down lists. It also features a must-check "
 "Disclaimer."
 msgstr ""
+"Типичная форма для регистрации, ограниченная 30-ю регистрациями (лимит "
+"отправки формы), и форма скрывается после отправки. Далее форма использует "
+"регулярные выражения для проверки полей и индивидуальные сообщения об "
+"ошибках, а также страны и государства (США) в виде выпадающих списков. Также "
+"есть обязательный чекбокс «Отказ от ответственности»."
 
 #: include/checkbox.php:24
 msgid "Field label left of the checkbox..."
@@ -4792,7 +4829,7 @@ msgstr ""
 
 #: include/html5field.php:61
 msgid "Placeholder attribute"
-msgstr ""
+msgstr "Заглушка для:"
 
 #: include/installpreset.php:28
 msgid "Please select a predefined form:"
