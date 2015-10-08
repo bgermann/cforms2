@@ -33,7 +33,7 @@ CAPTCHA will be removed in favour of that plugin.
 
 = Credits =
 
-Translations are provided by:
+The translations that were distributed up to version 14.9.13 were provided by:
 
 * www.alpenimmobilien.de
 * Michael Lederstatter / Buy-Hosting.net
@@ -47,8 +47,6 @@ Translations are provided by:
 * Sofia Panchenko
 * [Stas Mykhajlyuk](http://kosivart.if.ua)
 * Charles Tang
-
-Please see the *.po gettext files for further information.
 
 = License Information =
 
@@ -149,16 +147,13 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 == Localization ==
 
-If your language is set correctly the language file in the
-____Plugin_Localization directory should be picked up immediately.
+You can see the available languages and contribute via [GlotPress](https://translate.wordpress.org/projects/wp-plugins/cforms2).
 
-You can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
+If your language is not available, you can find a list of the
+[translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
 which also work with this fork.
-If there is a language file available for you, but it is not included in the
-standard distribution, please rename the cforms-*.mo file to cforms2-*.mo and
-put it in the wp-content/languages/plugins directory.
-
-There will be a user friendly way to contribute a new language file soon.
+To use one of those files, please rename the cforms-?.mo file to
+cforms2-?.mo and put it in the wp-content/languages/plugins directory.
 
 
 == Donations ==
@@ -223,6 +218,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.10 =
+* other:    remove translations after migration to translate.wordpress.org
 
 = 14.9.13 =
 * other:    change gettext domain from cforms to cforms2

@@ -22,7 +22,6 @@
  * Author: Oliver Seidel, Bastian Germann
  * Version: 14.9.13
  * Text Domain: cforms2
- * Domain Path: ____Plugin_Localization
  */
 
 global $localversion;
@@ -1354,17 +1353,10 @@ function cforms2_get_submission_left($no='') {
 		return 0;
 }
 
-
-function cforms2_localization () {
-	// For compatibility reasons, use slug cforms, not cforms2.
-	load_plugin_textdomain( 'cforms2',  false, plugin_dir_path( plugin_basename( __FILE__ ) ) . '____Plugin_Localization/' );
-}
-
 ### add actions
 global $tafstring;
 
 ### widget init
-add_action('plugins_loaded', 'cforms2_localization' );
 add_action('widgets_init', 'cforms2_widget_init');
 
 $admin = is_admin();
