@@ -220,7 +220,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.10 =
-* other:    remove German translation after migration to translate.wordpress.org
+* other:    remove French, German, Italian and Ukrainian translations after migration to translate.wordpress.org
 
 = 14.9.13 =
 * other:    change gettext domain from cforms to cforms2
