@@ -1353,10 +1353,16 @@ function cforms2_get_submission_left($no='') {
 		return 0;
 }
 
+
+function cforms2_localization () {
+	load_plugin_textdomain( 'cforms2' );
+}
+
 ### add actions
 global $tafstring;
 
 ### widget init
+add_action('plugins_loaded', 'cforms2_localization' );
 add_action('widgets_init', 'cforms2_widget_init');
 
 $admin = is_admin();
