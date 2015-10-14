@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cformsII\n"
 "POT-Creation-Date: 2015-10-05 12:22+0200\n"
-"PO-Revision-Date: 2015-10-13 19:36+0100\n"
+"PO-Revision-Date: 2015-10-14 19:46+0100\n"
 "Last-Translator: Bastian Germann\n"
 "Language-Team: Leadvirus <sangita@leadvirus.com>\n"
 "Language: fi\n"
@@ -5226,7 +5226,7 @@ msgstr ""
 
 #: lib_options_err.php:68
 msgid "It seems that you have recently upgraded cforms"
-msgstr ""
+msgstr "Näyttää siltä, että olet hiljattain päivittänyt cforms"
 
 #: lib_options_err.php:75
 msgid "Remove Message"
