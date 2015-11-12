@@ -219,6 +219,9 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.10.1 =
+* bugfix:   fix tracking form download url
+
 = 14.10 =
 * other:    remove French, German, Italian, Russian and Ukrainian translations after migration to translate.wordpress.org
 
