@@ -124,9 +124,9 @@ if ($showIDs<>'') {
 					$subID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid'])?'':$entry->sub_id.'-';
 
 					if ( $fileuploaddirurl=='' ) {
-	                    $fileurl = plugin_dir_url($fileuploaddir);
+						$fileurl = get_site_url() . substr( trailingslashit($fileuploaddir), strlen(get_home_path()) - 1 );
 					} else
-	                    $fileurl = trailingslashit($fileuploaddirurl);
+						$fileurl = trailingslashit($fileuploaddirurl);
 
 
 					$passID = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '':$entry->sub_id;
