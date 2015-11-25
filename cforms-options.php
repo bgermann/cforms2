@@ -852,7 +852,7 @@ if( strlen($fd)<=2 ) {
 				</tr>
 				<tr class="ob">
 					<td class="obL" style="padding-top:0"><?php _e('(Footer)','cforms')?></td>
-					<td class="obR" style="padding-top:0"><input class="allchk" type="checkbox" id="cforms_formdata_txt" name="cforms_formdata_txt" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_txt"><?php _e('<strong>Include</strong>  user input at the bottom of the admin email', 'cforms') ?></label></td>
+					<td class="obR" style="padding-top:0"><input class="allchk" type="checkbox" id="cforms_formdata_txt" name="cforms_formdata_txt" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_txt"><?php _e('<strong>Include</strong> user input at the bottom of the admin email', 'cforms') ?></label></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL" style="padding-top:0">&nbsp;</td>
