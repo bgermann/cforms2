@@ -221,6 +221,7 @@ GPL compliance!
 
 = 14.10.1 =
 * bugfix:   fix tracking form download url
+* enhanced: change gettext domain from cforms to cforms2 in cforms-options.php
 
 = 14.10 =
 * other:    remove French, German, Italian, Russian and Ukrainian translations after migration to translate.wordpress.org
