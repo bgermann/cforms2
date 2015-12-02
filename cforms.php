@@ -1380,8 +1380,8 @@ if ( $cfadmin ) {
 }
 
 ### public ajax
-require_once ('lib_ajax.php');
-require_once ('cforms-captcha.php');
+require_once (plugin_dir_path(__FILE__) . 'lib_ajax.php');
+require_once (plugin_dir_path(__FILE__) . 'cforms-captcha.php');
 
 function cforms2_field() {
 	check_admin_referer( 'cforms2_field' );
@@ -1490,13 +1490,13 @@ if ( is_admin() ) {
 	add_action( 'wp_ajax_cforms2_field', 'cforms2_field' );
 
 	### admin ajax
-	require_once ('include/installpreset.php');
+	require_once (plugin_dir_path(__FILE__) . 'include/installpreset.php');
 
-	require_once ('include/lib_database_deleteentries.php');
-	require_once ('include/lib_database_deleteentry.php');
-	require_once ('include/lib_database_dlentries.php');
-	require_once ('include/lib_database_getentries.php');
-	require_once ('include/lib_database_overview.php');
+	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentries.php');
+	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
+	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_dlentries.php');
+	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_getentries.php');
+	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_overview.php');
 
 } ### if admin
 
