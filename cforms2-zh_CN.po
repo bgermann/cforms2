@@ -1,0 +1,5123 @@
+# Copyright (c) 2008-2009 Charles Tang (http://sexywp.com/wp-plugins-cformsii-intro.htm)
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cformsII\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cforms2\n"
+"POT-Creation-Date: 2015-10-29 19:40:03+00:00\n"
+"PO-Revision-Date: 2015-10-29 21:21+0100\n"
+"Last-Translator: Bastian Germann\n"
+"Language-Team: Charles Tang <tangchao.zju@gmail.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: cforms-captcha.php:89 cforms-global-settings.php:586 cforms-help.php:475
+msgid "Visitor verification (Q&amp;A)"
+msgstr "用户验证问题（问答）"
+
+#: cforms-corrupted.php:24 lib_functions.php:109
+msgid "cforms error"
+msgstr "cforms 错误"
+
+#: cforms-corrupted.php:28 cforms-corrupted.php:51
+msgid "Please deactivate and then re-activate the cforms plugin now."
+msgstr "现在，请禁用然后再次启用cforms插件。"
+
+#: cforms-corrupted.php:62
+msgid ""
+"It appears that WP has corrupted your cforms settings, the settings array "
+"can not be read properly."
+msgstr "似乎WP破坏了您的cforms设置，存储设置数据的数组无法被正常读出。"
+
+#: cforms-corrupted.php:73
+msgid "Corrupted cforms settings detected"
+msgstr "发现了损坏的cforms设置"
+
+#: cforms-corrupted.php:75
+msgid ""
+"You can either try and fix the settings array or reset it and start from "
+"scratch."
+msgstr "您可以尝试着修复这些设置，或者从零开始重新设置。"
+
+#: cforms-corrupted.php:75
+msgid "RESET"
+msgstr "重置"
+
+#: cforms-corrupted.php:78
+msgid "Corrupted cforms settings array (raw code)"
+msgstr "损坏的cforms设置数组（原始数据）"
+
+#: cforms-corrupted.php:81
+msgid ""
+"Depending on your Wordpress/PHP skills you may want to try and fix the "
+"serialized data below, then hit the fix button or try just like that, cforms "
+"may magically fix it for you."
+msgstr ""
+"根据您的WordPress或者PHP知识，您可能想要尝试着修复下列串行的数据，然后点击修"
+"复按钮，cforms会神奇地修复它们。"
+
+#: cforms-corrupted.php:87
+msgid "FIX and save data"
+msgstr "修复并保存数据"
+
+#: cforms-css.php:34 cforms-css.php:81 cforms-help.php:54
+msgid "Styling your forms"
+msgstr "给您的表单添加样式"
+
+#: cforms-css.php:36 lib_functions.php:248
+msgid "All cforms data has been erased!"
+msgstr "所有的cforms数据已经被清除！"
+
+#: cforms-css.php:37 lib_functions.php:249
+msgid ""
+"Please go to your <strong>Plugins</strong> tab and either disable the "
+"plugin, or toggle its status (disable/enable) to revive cforms!"
+msgstr "请到您的<strong>插件</strong>页面禁用插件，或者重新启用cforms！"
+
+#: cforms-css.php:76
+msgid "New theme selected."
+msgstr "新主题已经被选定。"
+
+#: cforms-css.php:83
+msgid ""
+"Please select a theme file that comes closest to what you're looking for."
+msgstr "请选择一个与您想要的表单样式最接近的主题文件。"
+
+#: cforms-css.php:94
+msgid "Please choose a theme file to style your forms"
+msgstr "请选择一个主题文件 来指定您表单的样式"
+
+#: cforms-css.php:102
+msgid ""
+"Please make sure that the <code>/styling</code> folder exists in the cforms "
+"plugin directory!"
+msgstr "请检查并确认您的cofrms插件目录中包含<code>/styling</code>文件夹！"
+
+#: cforms-css.php:110
+msgid "custom css files"
+msgstr "自定义css文件"
+
+#: cforms-css.php:129 cforms-global-settings.php:751
+msgid "cform css files"
+msgstr "cform css 文件"
+
+#: cforms-css.php:154
+msgid "jQuery UI theme"
+msgstr ""
+
+#: cforms-css.php:159
+msgid "Select Style &raquo;"
+msgstr "选择样式&raquo;"
+
+#: cforms-css.php:163
+msgid ""
+"For comprehensive customization support you may choose to turn on "
+"<strong>label &amp; list element ID's</strong>. This way each input field "
+"&amp; label can be specifically addressed via CSS styles."
+msgstr ""
+"为了获得更全面的自定制支持，您可能需要选择开启<strong>label &amp; list 元素的"
+"ID</strong>。这样，每一个输入域和标签都可以更容易地通过CSS来指定样式了。"
+
+#: cforms-css.php:165
+msgid "Activate Label IDs"
+msgstr "给Label添加ID"
+
+#: cforms-css.php:165
+msgid "Deactivate Label IDs"
+msgstr "取消Label的ID"
+
+#: cforms-css.php:166 cforms-css.php:169
+msgid "Currently turned on "
+msgstr "当前以打开"
+
+#: cforms-css.php:168
+msgid "Activate List Element IDs"
+msgstr "给列表元素添加ID"
+
+#: cforms-css.php:168
+msgid "Deactivate List Element IDs"
+msgstr "取消列表元素的ID"
+
+#: cforms-css.php:172
+msgid "Deactivate CSS styling altogether!"
+msgstr "取消所有的CSS样式！"
+
+#: cforms-css.php:172
+msgid "Reactivate CSS styling!"
+msgstr "再次应用CSS样式！"
+
+#: cforms-css.php:173
+msgid "No styles are being used"
+msgstr ""
+
+#: cforms-css.php:179 cforms-help.php:1487
+msgid ""
+"You might also want to study the <a href=\"%s\">PDF guide on cforms CSS</a> "
+"I put together to give you a head start."
+msgstr ""
+"您可能还想要学习一下<a href=\"%s\">cforms CSS &amp; 网页截图PDF指南（英文版）"
+"</a>，我把所有的内容都放在里面了，它可以帮助您快速上手。"
+
+#: cforms-css.php:191
+msgid "PREVIEW:"
+msgstr "预览："
+
+#: cforms-css.php:191
+msgid "Theme Preview"
+msgstr "主题预览"
+
+#: cforms-database.php:36
+msgid "Tracking Form Data"
+msgstr "跟踪表单数据"
+
+#: cforms-database.php:38
+msgid ""
+"All your recorded form submissions are listed below. View individual entries "
+"or a whole bunch and download as XML, TAB or CSV formatted file. Attachments "
+"can be accessed in the details section (<strong>View records</strong>). When "
+"deleting entries, associated attachments will be removed, too! "
+msgstr ""
+"所有已经记录的表单提交罗列在下面。您可以插件单个条目或者整体查看，也可以下载"
+"XML，TAB或者CSV格式的导出文件。附件可以在细节中查看（<strong>查看记录</"
+"strong>）。删除条目时，相关联的附件也会被删除！"
+
+#: cforms-database.php:40
+msgid ""
+"If you want to select <strong>ALL</strong> entries, e.g. for download, "
+"simply don't select any particular row. When <strong>viewing records</"
+"strong>: Fields with a <em>grey background</em> can be clicked on and edited!"
+msgstr ""
+"如果您想要选择<strong>所有</strong>条目，如，为了下载的需要，不要仅仅选择某个"
+"特定的行。当<strong>查看记录</strong>时，如果一个格子<em>背景色是灰色</em>，"
+"表明这个格子可以点击并且可以编辑。"
+
+#: cforms-database.php:61 cforms-database.php:74 cforms-options.php:219
+msgid "Form Name"
+msgstr "表单名称"
+
+#: cforms-database.php:62 cforms-database.php:75
+msgid "e-mail Address"
+msgstr "电邮地址"
+
+#: cforms-database.php:63 cforms-database.php:76
+msgid "Date"
+msgstr "日期"
+
+#: cforms-database.php:64 cforms-database.php:77
+msgid "IP"
+msgstr "IP"
+
+#: cforms-database.php:67
+msgid "View records"
+msgstr "查看记录"
+
+#: cforms-database.php:68
+msgid "Delete records"
+msgstr "删除记录"
+
+#: cforms-database.php:69
+msgid "Download records"
+msgstr "下载记录"
+
+#: cforms-database.php:73
+msgid "# Number(s)"
+msgstr "# 数字"
+
+#: cforms-database.php:82
+msgid "Form Submissions"
+msgstr "表单提交"
+
+#: cforms-database.php:83
+msgid "Connection Error"
+msgstr "连接错误"
+
+#: cforms-database.php:84
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "现在显示的是{total}项中的{from}到{to}项"
+
+#: cforms-database.php:85
+msgid "Processing, please wait ..."
+msgstr "正在处理，请稍候……"
+
+#: cforms-database.php:86
+msgid "No items"
+msgstr "没有项"
+
+#: cforms-database.php:87
+msgid "of"
+msgstr ""
+
+#: cforms-database.php:88
+msgid "Find"
+msgstr ""
+
+#: cforms-database.php:119 cforms-database.php:128
+msgid "Please Confirm"
+msgstr "请确认"
+
+#: cforms-database.php:122
+msgid "Are you sure you want to delete the record(s)?"
+msgstr "你确定你要删除记录吗？"
+
+#: cforms-database.php:123 cforms-database.php:145 cforms-options.php:1171
+#: cforms-options.php:1179
+msgid "OK"
+msgstr "OK"
+
+#: cforms-database.php:123 cforms-database.php:145
+#: cforms-global-settings.php:705 cforms-global-settings.php:722
+#: cforms-options.php:1171 cforms-options.php:1179 cforms-options.php:1195
+msgid "Cancel"
+msgstr "取消"
+
+#: cforms-database.php:136
+msgid "Please pick a format!"
+msgstr "请选择一个格式！"
+
+#: cforms-database.php:138
+msgid "UTF-8"
+msgstr ""
+
+#: cforms-database.php:139
+msgid "ISO-8859-1"
+msgstr ""
+
+#: cforms-database.php:141
+msgid "Include field names / header"
+msgstr "包括表单域名称或头。"
+
+#: cforms-database.php:142
+msgid "Include IP address of submitting user"
+msgstr "包括提交用户的IP地址"
+
+#: cforms-database.php:143
+msgid "Add URL for upload fields"
+msgstr "为上传域添加URL"
+
+#: cforms-global-settings.php:49
+msgid "cforms tracking tables %s have been deleted."
+msgstr "cforms跟踪数据表 %s 已经删除。"
+
+#: cforms-global-settings.php:51
+msgid ""
+"Please backup/clean-up your upload directory, chances are that when you turn "
+"tracking back on, existing (older) attachments may be <u>overwritten</u>!"
+msgstr ""
+"请备份或者清除您的上传目录，当您打开追踪的时候，存在的旧的附件将会被<u>覆盖</"
+"u>！"
+
+#: cforms-global-settings.php:53
+msgid "(only of course, if your form includes a file upload field)"
+msgstr "（当然，仅在您的表单包含了一个文件上传域的时候）"
+
+#: cforms-global-settings.php:169
+msgid "ERROR: cforms tracking tables %s could not be created."
+msgstr "错误：cforms跟踪表 %s 不能创建。"
+
+#: cforms-global-settings.php:177
+msgid "cforms tracking tables %s have been created."
+msgstr "cforms跟踪数据表 %s 已经建立。"
+
+#: cforms-global-settings.php:187
+msgid "Found existing cforms tracking tables with %s records!"
+msgstr "发现cforms跟踪数据表已经存在，里面包含 %s 条数据！"
+
+#: cforms-global-settings.php:197 lib_functions.php:129
+msgid "Global Settings"
+msgstr "全局设置"
+
+#: cforms-global-settings.php:201
+msgid "Debug Info (all major setting groups)"
+msgstr "调试信息（所有的主要设定组）"
+
+#: cforms-global-settings.php:203
+msgid "Debug Info (all cforms settings)"
+msgstr "调试信息（所有的cforms设置）"
+
+#: cforms-global-settings.php:207
+msgid "All settings and configuration options on this page apply to all forms."
+msgstr "本页面所有的设定和配置选项会被应用到所有的表单。"
+
+#: cforms-global-settings.php:213 cforms-global-settings.php:299
+#: cforms-global-settings.php:320 cforms-global-settings.php:377
+#: cforms-global-settings.php:396 cforms-global-settings.php:452
+#: cforms-global-settings.php:468 cforms-global-settings.php:581
+#: cforms-global-settings.php:622 cforms-help.php:58 cforms-help.php:82
+#: cforms-help.php:101 cforms-help.php:881 cforms-help.php:921
+#: cforms-help.php:1023 cforms-help.php:1167 cforms-help.php:1413
+#: cforms-help.php:1480 cforms-help.php:1492 cforms-options.php:465
+#: cforms-options.php:520 cforms-options.php:598 cforms-options.php:791
+#: cforms-options.php:888 cforms-options.php:907 cforms-options.php:980
+#: cforms-options.php:1050 cforms-options.php:1099 cforms-options.php:1132
+msgid "Expand/Collapse"
+msgstr "展开/折叠"
+
+#: cforms-global-settings.php:214 cforms-global-settings.php:300
+#: cforms-global-settings.php:321 cforms-global-settings.php:378
+#: cforms-global-settings.php:397 cforms-global-settings.php:453
+#: cforms-global-settings.php:469 cforms-global-settings.php:582
+#: cforms-global-settings.php:623 cforms-help.php:59 cforms-help.php:83
+#: cforms-help.php:102 cforms-help.php:134 cforms-help.php:164
+#: cforms-help.php:187 cforms-help.php:221 cforms-help.php:266
+#: cforms-help.php:306 cforms-help.php:342 cforms-help.php:383
+#: cforms-help.php:414 cforms-help.php:445 cforms-help.php:474
+#: cforms-help.php:510 cforms-help.php:545 cforms-help.php:576
+#: cforms-help.php:697 cforms-help.php:768 cforms-help.php:812
+#: cforms-help.php:882 cforms-help.php:922 cforms-help.php:1024
+#: cforms-help.php:1168 cforms-help.php:1414 cforms-help.php:1481
+#: cforms-help.php:1493 cforms-options.php:466 cforms-options.php:521
+#: cforms-options.php:599 cforms-options.php:792 cforms-options.php:889
+#: cforms-options.php:908 cforms-options.php:981 cforms-options.php:1051
+#: cforms-options.php:1100 cforms-options.php:1133
+msgid "top"
+msgstr "top"
+
+#: cforms-global-settings.php:214
+msgid "WP Comment Feature Settings"
+msgstr "WP评论特性设定"
+
+#: cforms-global-settings.php:218
+msgid "Find below the additional settings for cforms WP comment feature."
+msgstr "下面是cofrms中WP评论特性的额外的设置。"
+
+#: cforms-global-settings.php:222
+msgid "Comment Success Message"
+msgstr "评论发表成功后显示的信息"
+
+#: cforms-global-settings.php:229
+msgid "Ajax Settings"
+msgstr "Ajax 设置"
+
+#: cforms-global-settings.php:233
+msgid "Wait time for new comments (in seconds)"
+msgstr "发表新评论需要等待的时间（秒）"
+
+#: cforms-global-settings.php:237
+msgid "Parent Comment Container"
+msgstr "父级评论容器"
+
+#: cforms-global-settings.php:238 cforms-global-settings.php:330
+#: cforms-global-settings.php:596 cforms-global-settings.php:632
+msgid "Note &raquo;"
+msgstr "注意 &raquo;"
+
+#: cforms-global-settings.php:240
+msgid ""
+"The HTML <strong>element ID</strong> of the parent element containing<br /"
+">all comments, for example:"
+msgstr "包含所有评论的父级容器的HTML<strong>元素ID</strong>，例如："
+
+#: cforms-global-settings.php:249 cforms-global-settings.php:261
+msgid "Comment in moderation"
+msgstr "评论正等待审核"
+
+#: cforms-global-settings.php:254
+msgid "New comment HTML template"
+msgstr "新评论的HTML的模板"
+
+#: cforms-global-settings.php:256
+msgid "Supported Variables &raquo;"
+msgstr "支持的变量 &raquo;"
+
+#: cforms-global-settings.php:256
+msgid "Default Template &raquo;"
+msgstr "默认模板 &raquo;"
+
+#: cforms-global-settings.php:262
+msgid "New comment ID"
+msgstr "新评论ID"
+
+#: cforms-global-settings.php:263
+msgid "Comment Text"
+msgstr "评论内容文字"
+
+#: cforms-global-settings.php:264 cforms-help.php:709 cforms-help.php:1066
+#: cforms-options.php:379
+msgid "Comment Author"
+msgstr "评论作者"
+
+#: cforms-global-settings.php:265
+msgid "The author's website"
+msgstr "作者的网站"
+
+#: cforms-global-settings.php:266
+msgid "Current date."
+msgstr "当前日期。"
+
+#: cforms-global-settings.php:267
+msgid "Current time."
+msgstr "当前时间。"
+
+#: cforms-global-settings.php:268
+msgid "User avatar."
+msgstr "用户头像。"
+
+#: cforms-global-settings.php:287
+msgid "Avatar Settings"
+msgstr "头像设置"
+
+#: cforms-global-settings.php:291
+msgid "Size (in pixel)"
+msgstr "尺寸（像素）"
+
+#: cforms-global-settings.php:300
+msgid "Include cforms header data only on specific pages"
+msgstr "仅在特定的页面包含cforms的头部数据"
+
+#: cforms-global-settings.php:304
+msgid ""
+"Specify the ID(s) of <strong>pages or posts</strong> separated by comma on "
+"which you'd like to show or not show cforms. The cforms header will only be "
+"included specifically on those pages, helping to maintain all other pages "
+"neat."
+msgstr ""
+"指定你需要显示cforms表单的<strong>页面和日志</strong>的ID。cforms表单的头文件"
+"仅会在这些页面中被引入，这将使得其他的页面保持整洁（译注：主要指源代码保持整"
+"洁，外观没有区别）。"
+
+#: cforms-global-settings.php:308
+msgid "Page / Post ID(s)"
+msgstr "页面/日志的ID"
+
+#: cforms-global-settings.php:310
+msgid "include"
+msgstr ""
+
+#: cforms-global-settings.php:310
+msgid "exclude"
+msgstr ""
+
+#: cforms-global-settings.php:312
+msgid "Leave empty to include cforms header files throughout your blog"
+msgstr ""
+
+#: cforms-global-settings.php:321
+msgid "Popup Date Picker"
+msgstr "弹出日期选择器"
+
+#: cforms-global-settings.php:325
+msgid ""
+"If you'd like to offer a Javascript based date picker for more convenient "
+"date entry, enable this feature here. This will add a <strong>new input "
+"field</strong> for you to add to your form. See <a href=\"%s\" %s>Help!</a> "
+"for more info and <strong>date formats</strong>."
+msgstr ""
+"如果您想要提供一个基于Javascript的日期选择器太提供更加方便的日期条目，在这里"
+"启用这项特性。这将提供一个<strong>新的输入域</strong>以便您可以将它加入您的表"
+"单。查看<a href=\"%s\" %s>帮助！</a> 获得更多信息和<strong>日期格式</"
+"strong>。"
+
+#: cforms-global-settings.php:330
+msgid "Enable Javascript date picker"
+msgstr "启用Javascript日期选择器"
+
+#: cforms-global-settings.php:332
+msgid ""
+"Note that turning on this feature will result in loading an additional "
+"Javascript file to support the date picker."
+msgstr ""
+"注意，开启这项特性将会在模板中插入额外的Javascript文件来支持日期选择器。"
+
+#: cforms-global-settings.php:335
+msgid "Date Format"
+msgstr "日期格式"
+
+#: cforms-global-settings.php:336
+msgid "See supported date formats &raquo;"
+msgstr ""
+
+#: cforms-global-settings.php:339
+msgid "Days (Columns)"
+msgstr "日（列）"
+
+#: cforms-global-settings.php:343
+msgid "Months"
+msgstr "月"
+
+#: cforms-global-settings.php:349
+msgid "Enable year selection drop down"
+msgstr ""
+
+#: cforms-global-settings.php:352 lib_activate.php:190
+msgid "Previous Month"
+msgstr "前一月"
+
+#: cforms-global-settings.php:356 lib_activate.php:192
+msgid "Next Month"
+msgstr "后一月"
+
+#: cforms-global-settings.php:360 lib_activate.php:193
+msgid "Close"
+msgstr "关闭"
+
+#: cforms-global-settings.php:364 lib_activate.php:194
+msgid "Choose Date"
+msgstr "选择日期"
+
+#: cforms-global-settings.php:368
+msgid "Week start day"
+msgstr "每周第一天"
+
+#: cforms-global-settings.php:369
+msgid "0=Sunday, 1=Monday, etc."
+msgstr "0=星期日，1=星期一，以此类推。"
+
+#: cforms-global-settings.php:378
+msgid "Mail Server Settings"
+msgstr "邮件服务器设置"
+
+#: cforms-global-settings.php:383
+msgid ""
+"cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) "
+"as line separators. If your mail server adds additional line breaks to the "
+"email, you may want to try and turn on the below option."
+msgstr ""
+"cforms可以生成RFC兼容的邮件，使用CRLF（回车/换行）作为行分隔符。如果您的邮件"
+"服务器向邮件添加额外的断行符号，您可能需要开启下列选项。"
+
+#: cforms-global-settings.php:387
+msgid "Separate lines in email %sbody%s with LF only (CR suppressed)"
+msgstr "在email%s正文%s中，只使用LF分割行（不使用CR）"
+
+#: cforms-global-settings.php:397
+msgid "Global File Upload Settings"
+msgstr "全局文件上传设定"
+
+#: cforms-global-settings.php:402 cforms-options.php:471
+msgid ""
+"Configure and double-check these settings in case you are adding a "
+"\"<code>File Upload Box</code>\" to your form (also see the <a href=\"%s\" "
+"%s>Help!</a> for further information)."
+msgstr ""
+"如果您在你的表单中添加了“<code>文件上传框</code>”，请您配置并再次检查这些设"
+"定。（进一步的信息，请查看 <a href=\"%s\" %s>帮助！</a>）"
+
+#: cforms-global-settings.php:403
+msgid ""
+"Form specific settings (directory path etc.) have been moved to <a href=\"%s"
+"\" %s>here</a>."
+msgstr ""
+"与某个特定表单相关的设置（目录路径等）已经被移动到了<a href=\"%s\" %s>这里</"
+"a>。"
+
+#: cforms-global-settings.php:407
+msgid ""
+"Also, note that by adding a <em>File Upload Box</em> to your form, the Ajax "
+"(if enabled) submission method will (automatically) <strong>gracefully "
+"degrade</strong> to the standard method, due to general HTML limitations."
+msgstr ""
+"此外，请注意在您的表单中添加<em>文件上传框</em>后，Ajax（如果启用了）提交表单"
+"的方法，将会（自动）<strong>平滑降级</strong>到标准提交，这是由于HTML本身的局"
+"限性造成的。"
+
+#: cforms-global-settings.php:408
+msgid "Below, error messages shown in case something goes awry:"
+msgstr "请在下面设定万一某些功能出现错误时显示的错误信息："
+
+#: cforms-global-settings.php:413
+msgid "File type not allowed"
+msgstr "不接受该文件类型"
+
+#: cforms-global-settings.php:420
+msgid "Generic (unknown) error"
+msgstr "常规（未知）错误"
+
+#: cforms-global-settings.php:427
+msgid "File is empty"
+msgstr "文件是空的"
+
+#: cforms-global-settings.php:434
+msgid "File size too big"
+msgstr "文件尺寸过大"
+
+#: cforms-global-settings.php:441
+msgid "Error during upload"
+msgstr "上传过程中发生错误"
+
+#: cforms-global-settings.php:453
+msgid "WP Editor Button support"
+msgstr "WP编辑器按钮支持"
+
+#: cforms-global-settings.php:457
+msgid ""
+"If you would like to use editor buttons to insert your cforms please enable "
+"them below."
+msgstr "如果你想要使用编辑器按钮来插入您的cforms请在下面启用它们。"
+
+#: cforms-global-settings.php:461
+msgid "Enable TinyMCE"
+msgstr "启用TinyMCE"
+
+#: cforms-global-settings.php:461
+msgid "&amp; Code editor buttons"
+msgstr "和代码编辑视图下的按钮"
+
+#: cforms-global-settings.php:469
+msgid "CAPTCHA Image Settings"
+msgstr "CAPTCHA图片验证码设置"
+
+#: cforms-global-settings.php:498
+msgid "Preview Image"
+msgstr "预览图片"
+
+#: cforms-global-settings.php:498
+msgid "Don't forget to save your changes!"
+msgstr "别忘了保存您的更改！"
+
+#: cforms-global-settings.php:500
+msgid "Reload Captcha Image"
+msgstr "重新加载验证码图片"
+
+#: cforms-global-settings.php:505 cforms-global-settings.php:590
+msgid "Force display"
+msgstr "强制显示"
+
+#: cforms-global-settings.php:506
+msgid "Force CAPTCHA display for logged in users"
+msgstr "对于已经登录的用户，强制显示CAPTCHA验证码"
+
+#: cforms-global-settings.php:510
+msgid "Width"
+msgstr "宽度"
+
+#: cforms-global-settings.php:513
+msgid "Height"
+msgstr "高度"
+
+#: cforms-global-settings.php:517
+msgid "Border Color"
+msgstr "边框颜色"
+
+#: cforms-global-settings.php:523
+msgid "Background Image"
+msgstr "背景图片"
+
+#: cforms-global-settings.php:530
+msgid "Font Type"
+msgstr "字体类型"
+
+#: cforms-global-settings.php:536
+msgid "Min Size"
+msgstr "最小尺寸"
+
+#: cforms-global-settings.php:539
+msgid "Max Size"
+msgstr "最大尺寸"
+
+#: cforms-global-settings.php:543
+msgid "Min Angle"
+msgstr "最小角度"
+
+#: cforms-global-settings.php:546
+msgid "Max Angle"
+msgstr "最大角度"
+
+#: cforms-global-settings.php:550
+msgid "Color"
+msgstr "颜色"
+
+#: cforms-global-settings.php:558
+msgid "Number of shown characters"
+msgstr "显示字符的数量"
+
+#: cforms-global-settings.php:561
+msgid "Minimum"
+msgstr "最小"
+
+#: cforms-global-settings.php:564
+msgid "Maximum"
+msgstr "最大"
+
+#: cforms-global-settings.php:568
+msgid "Allowed characters"
+msgstr "允许的字符"
+
+#: cforms-global-settings.php:573
+msgid "User response is treated case insensitive"
+msgstr "区分用户输入的大小写字母（大小写敏感）"
+
+#: cforms-global-settings.php:582
+msgid "Visitor Verification Settings (Q&amp;A)"
+msgstr "问答题验证码设置"
+
+#: cforms-global-settings.php:586
+msgid ""
+"Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
+"spam and ensure it's a human submitting the form. To use in your form, add "
+"the corresponding input field %s preferably in its own FIELDSET!"
+msgstr ""
+"有很多<strong>SPAM</strong>？使用这些问答题来阻止spam并确保表单都是由人提交的"
+"吧。要在您的表单中插入，添加对应的输入域%s即可，最好添加到一个专门的FIELDSET"
+"里！"
+
+#: cforms-global-settings.php:591
+msgid "Force Q&amp;A display for logged in users"
+msgstr "强制为已登录用户显示Q&amp;A"
+
+#: cforms-global-settings.php:599
+msgid ""
+"The below error/failure message is also used for <strong>captcha</strong> "
+"verification!"
+msgstr ""
+"下面的错误或失败信息，也会应用于<strong>captcha图片验证码</strong>的情况！"
+
+#: cforms-global-settings.php:600
+msgid ""
+"Depending on your personal preferences and level of SPAM security you intend "
+"to put in place, you can also use <a href=\"%s\" %s>cforms' CAPTCHA feature</"
+"a>!"
+msgstr ""
+"依据您的个人喜好和你希望达到的SPAM安全级别，你还可以使用<a href=\"%s\" "
+"%s>cform的 CAPTCHA 特性</a>！"
+
+#: cforms-global-settings.php:604
+msgid "<strong>Failure message</strong><br />(for a wrong answer)"
+msgstr "<strong>失败提示信息</strong><br />（回答错误）"
+
+#: cforms-global-settings.php:613
+msgid "<strong>Questions &amp; Answers</strong><br />format: Q=A"
+msgstr "<strong>问题和对应的答案</strong><br />格式：Q=A"
+
+#: cforms-global-settings.php:623
+msgid "Database Input Tracking"
+msgstr "在数据库中记录输入"
+
+#: cforms-global-settings.php:627
+msgid ""
+"If you like to track your form submissions also via the database, please "
+"enable this feature below. If required, two new tables will be created and "
+"you'll see a new sub tab \"<strong>Tracking</strong>\" under the cforms menu."
+msgstr ""
+"如果您希望通过数据库来跟踪您的表单提交，请在下面启用这项特性。如果启用了，将"
+"在数据库中建立两张表，并且，您将在cforms的菜单里看到一个新的标签页“<strong>跟"
+"踪</strong>”。"
+
+#: cforms-global-settings.php:634
+msgid ""
+"If you've enabled the <a href=\"%s\" %s>auto confirmation message</a> "
+"feature or have included a <code>CC: me</code> input field, you can "
+"optionally configure the subject line/message of the email to include the "
+"form tracking ID by using the variable <code>{ID}</code>."
+msgstr ""
+"如果您启用了<a href=\"%s\" %s>自动确认消息</a>特性，或这已经在表单里包含了"
+"<code>CC: me转发给自己</code>输入域，您可以在email的主题里使用<code>{ID}</"
+"code>变量添加追踪的ID。"
+
+#: cforms-global-settings.php:637
+msgid "Enable Database Tracking"
+msgstr "启用数据库跟踪"
+
+#: cforms-global-settings.php:638
+msgid "Will create two new tables in your WP database."
+msgstr "将在您的WP数据库内建立两张新的表"
+
+#: cforms-global-settings.php:642
+msgid "Show on dashboard"
+msgstr "在管理首页显示"
+
+#: cforms-global-settings.php:643
+msgid "Make sure to enable your forms individually as well!"
+msgstr "请确保您的表单是个人的！"
+
+#: cforms-global-settings.php:647
+msgid "Enable global RSS"
+msgstr "启用全局RSS"
+
+#: cforms-global-settings.php:648
+msgid "Enables an RSS feed to track all new submissions across all forms."
+msgstr "启用一个RSS供稿来跟踪全部的新的表单提交。"
+
+#: cforms-global-settings.php:661 cforms-options.php:752
+msgid "Number of shown RSS entries"
+msgstr "显示的RSS条目的数量"
+
+#: cforms-global-settings.php:665 cforms-options.php:774
+msgid "RSS Feed Security Key"
+msgstr "RSS供稿安全密钥"
+
+#: cforms-global-settings.php:668 cforms-options.php:777
+msgid "Reset RSS Key"
+msgstr "重置RSS密钥"
+
+#: cforms-global-settings.php:669 cforms-options.php:782
+msgid "The complete RSS URL &raquo;"
+msgstr "完整的RSS URL &raquo;"
+
+#: cforms-global-settings.php:694
+msgid "Backup &amp; Restore All Settings"
+msgstr ""
+
+#: cforms-global-settings.php:699
+msgid ""
+"Restoring all settings will overwrite all form specific &amp; global "
+"settings!"
+msgstr "注意！重新载入所有设定将会覆盖所有的表单设定和全局设定！"
+
+#: cforms-global-settings.php:701
+msgid "Backup all settings now!"
+msgstr "现在备份所有的设定！"
+
+#: cforms-global-settings.php:702
+msgid "Restore all settings now!"
+msgstr "现在恢复所有的设定！"
+
+#: cforms-global-settings.php:702
+msgid ""
+"With a broken backup file, this action may erase all your settings! Do you "
+"want to continue?"
+msgstr ""
+"如果您使用的备份文件是损坏的，这项操作将会擦除您所有的设定！您想要继续吗？"
+
+#: cforms-global-settings.php:704
+msgid ""
+"PS: Individual form configurations can be backup up on the respective form "
+"admin page."
+msgstr "个人表单配置可以在各自的表单管理页面配置。"
+
+#: cforms-global-settings.php:713
+msgid "Uninstalling / Removing cforms"
+msgstr "卸载/移除cforms"
+
+#: cforms-global-settings.php:716
+msgid "Warning!"
+msgstr ""
+
+#: cforms-global-settings.php:718
+msgid ""
+"Generally, simple deactivation of cforms does <strong>not</strong> erase any "
+"of its data. If you like to quit using cforms for good, please erase all "
+"data before deactivating the plugin."
+msgstr ""
+"通常，禁用这个插件<strong>不会</strong>擦除任何的数据，如果您想永远不再使用"
+"cforms，请在禁用这款插件之前擦除所有的数据。"
+
+#: cforms-global-settings.php:719
+msgid "This is irrevocable!"
+msgstr ""
+
+#: cforms-global-settings.php:720
+msgid "Are you sure you want to do this?!"
+msgstr "您确定您要这样做吗？"
+
+#: cforms-global-settings.php:720
+msgid "DELETE *ALL* CFORMS DATA"
+msgstr "删除！所有的！Cforms数据！！"
+
+#: cforms-global-settings.php:720
+msgid "Final Warning!"
+msgstr ""
+
+#: cforms-global-settings.php:741
+msgid "custom files"
+msgstr "自定义文件"
+
+#: cforms-global-settings.php:763 include/installpreset.php:81
+msgid "Not available"
+msgstr "不可用"
+
+#: cforms-help.php:30
+msgid "Help"
+msgstr "帮助"
+
+#: cforms-help.php:33
+msgid ""
+"Here you'll find plenty of examples and documentation that should help you "
+"configure <strong>cforms</strong>."
+msgstr "在这里，您将找到大量的例子和文档以帮助您配置<strong>cforms</strong>。"
+
+#: cforms-help.php:36
+msgid "Table of Contents"
+msgstr "目录"
+
+#: cforms-help.php:38 cforms-help.php:59
+msgid "Basic steps, a small guide"
+msgstr "基本步骤，一个概要的操作指南"
+
+#: cforms-help.php:39 cforms-help.php:83
+msgid "Inserting a form"
+msgstr "插入一个表单"
+
+#: cforms-help.php:40 cforms-help.php:102
+msgid "Configuring form input fields"
+msgstr "配置表单输入域"
+
+#: cforms-help.php:42 cforms-help.php:125
+msgid "Special <em>Tell A Friend</em> input fields"
+msgstr "特殊的<em>Tell A Friend（告诉一个朋友）</em>输入域"
+
+#: cforms-help.php:43 cforms-help.php:126
+msgid "Special <em>WP Comment Feature</em> input fields"
+msgstr "特殊的<em>WP评论特性</em>输入域"
+
+#: cforms-help.php:44
+msgid "SPAM protection: Q &amp; A"
+msgstr "防SPAM（垃圾评论）：Q &amp; A"
+
+#: cforms-help.php:45
+msgid "SPAM protection: Captcha"
+msgstr "防SPAM：Captcha（图片验证码）"
+
+#: cforms-help.php:46 cforms-help.php:769
+msgid "Fieldsets"
+msgstr "表单域集合"
+
+#: cforms-help.php:47 cforms-help.php:813
+msgid "Using regular expressions with form fields"
+msgstr "在表单域中使用正则表达式"
+
+#: cforms-help.php:49 cforms-help.php:882
+msgid "Custom error messages &amp; input field titles"
+msgstr "自定义错误消息和输入域标题"
+
+#: cforms-help.php:50 cforms-help.php:922
+msgid "Advanced: cforms APIs &amp; (Post-)Processing of submitted data"
+msgstr "高级：cforms API&amp;发布或处理提交的数据"
+
+#: cforms-help.php:51 cforms-help.php:1024
+msgid "Advanced: Real-time creation of dynamic forms"
+msgstr "高级：实时创建动态表单"
+
+#: cforms-help.php:52
+msgid "Using variables in email subjects &amp; messages"
+msgstr "在email主题和内容中使用变量"
+
+#: cforms-help.php:53 cforms-help.php:1414
+msgid "Multi page forms"
+msgstr "多页表单"
+
+#: cforms-help.php:55 cforms-help.php:1493
+msgid "Need more help?"
+msgstr "还需要更多帮助？"
+
+#: cforms-help.php:63
+msgid ""
+"Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin "
+"but it may be the most flexible. The below outline should help you get "
+"started with the default form."
+msgstr ""
+"无可否认，<strong>cforms</strong>不是最简单的表单邮件程序，但是它是最灵活的一"
+"个。下面的大纲将帮助你能够上手使用缺省表单。"
+
+#: cforms-help.php:65
+msgid "First take a look at the <a href=\"%s\">default form</a>"
+msgstr "首先，看一下 <a href=\"%s\">缺省表单</a>"
+
+#: cforms-help.php:67
+msgid ""
+"Verify that it contains all the fields you need, are they in the right order"
+msgstr "核实一下它是不是包含了所有你需要的表单域，它们的顺序是否正确"
+
+#: cforms-help.php:68
+msgid "Check the field labels (field names), if needed make your adjustments"
+msgstr "检查表单域的标签（域名称），如果需要的话，你可以进行调整"
+
+#: cforms-help.php:69
+msgid "Check the flags for each field (check boxes to the right)."
+msgstr "检查每个表单域的标志（在右侧的复选框里打钩）。"
+
+#: cforms-help.php:70
+msgid ""
+"Want to include SPAM protection? Choose between <a href=\"%s\" %s>Q&amp;A</"
+"a>, <a href=\"%s\" %s>captcha</a> add an input field accordingly and "
+"configure <a href=\"%s\" %s>here</a>."
+msgstr ""
+"想要包含SPAM防护么？在<a href=\"%s\" %s>Q&amp;A</a>和<a href=\"%s\" "
+"%s>captcha</a>两种方法中挑选一种，根据情况添加一个输入域，并且在<a href=\"%s"
+"\" %s>这里</a>进行配置。"
+
+#: cforms-help.php:73
+msgid ""
+"Check if the <a href=\"%s\" %s>email admin</a> for your form is configured "
+"correctly."
+msgstr "检查一下你的表单的<a href=\"%s\" %s>管理员邮箱</a>是否配置正确。"
+
+#: cforms-help.php:74
+msgid ""
+"Decide if you want the visitor to receive an <a href=\"%s\" %s>auto "
+"confirmation message</a> upon form submission."
+msgstr ""
+"决定你是否需要你的访客在提交了表单之后收到一封<a href=\"%s\" %s>自动确认邮件"
+"</a>。"
+
+#: cforms-help.php:75
+msgid ""
+"Would you like <a href=\"%s\" %s>to track</a> form submission via the "
+"database?"
+msgstr "你是否需要通过数据库来<a href=\"%s\" %s>跟踪记录</a>表单提交情况？"
+
+#: cforms-help.php:76
+msgid "<a href=\"%s\" %s>Add the default form</a> to a post or page."
+msgstr "将默认表单<a href=\"%s\" %s>添加到到一篇日志或者某个页面</a>。"
+
+#: cforms-help.php:77
+msgid "Give it a whirl."
+msgstr "赶快尝试一下吧。"
+
+#: cforms-help.php:87
+msgid "Editing posts and pages:"
+msgstr "编辑日志和页面："
+
+#: cforms-help.php:89
+msgid ""
+"If you like to do it the 'code' way, make sure to use %1s to include them in "
+"your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>."
+msgstr ""
+"如果您更喜欢在‘代码’视图下编辑，请确保使用%1s在<em>页面/日志</em>中插入表单。"
+"其中%2s为<u>您的表单名称</u>。"
+
+#: cforms-help.php:90
+msgid ""
+"A more elegant and safer way is to use the <strong>TinyMCE Button</strong> "
+"(double check if <a href=\"%3s\" %s>Button Support</a> is enabled!)."
+msgstr ""
+"一个更加优雅和安全的方式是使用<strong>TinyMCE编辑器工具栏按钮</strong> （请再"
+"次检查<a href=\"%3s\" %s>按钮支持</a>是否启用！）。"
+
+#: cforms-help.php:91
+msgid ""
+"For backwards compatibility, the old-fashioned way is still supported: %1s "
+"for the first form and/or %2s for your other forms."
+msgstr ""
+"为了向后兼容，老式的插入方法，还是支持的：%1s用来插入您的第一张表单，%2s用来"
+"插入您其他的表单。"
+
+#: cforms-help.php:94
+msgid "Via PHP function call:"
+msgstr "通过PHP函数调用："
+
+#: cforms-help.php:95
+msgid ""
+"Alternatively, you can specifically insert a form (into the sidebar for "
+"instance etc.) per the PHP function call %1s, or alternatively %2s for the "
+"default/first form and/or %2s for any other form."
+msgstr ""
+"除此之外，您可以通过使用如%1s这样的PHP函数调用的方式来明确地插入表单（到侧边"
+"栏或者其他地方），或者用%2s来插入您的默认/第一张表单，或用%3s来插入其他表单。"
+
+#: cforms-help.php:97 cforms-help.php:251 cforms-help.php:256
+#: cforms-help.php:631 cforms-help.php:909 cforms-help.php:1355
+#: cforms-help.php:1381 cforms-options.php:648 cforms-options.php:881
+msgid "Note:"
+msgstr "注意！"
+
+#: cforms-help.php:97
+msgid ""
+"\"%1s\" represents the number of the form, starting with %2s ..and so forth."
+msgstr "“%1s”代表表单的序号，按照%2s的顺序，一次类推。"
+
+#: cforms-help.php:106
+msgid ""
+"All supported input fields are listed below, highlighting the expected "
+"<em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. "
+"Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, "
+"see examples below."
+msgstr ""
+"这款插件支持的所有的输入域都被罗列在下面了，与%s输入域名称<sup>*)</sup>%s相关"
+"联的所需要使用的正确的<em><u>格式</u></em>都已经高亮。表单标签（<em>域名称</"
+"em>）允许使用<strong>HTML</strong>，请看下面的例子。"
+
+#: cforms-help.php:108
+msgid ""
+"While the <em>Field Names</em> are usually just the label of a field (e.g. "
+"\"Your Name\"), they can contain additional information to support special "
+"functionality (e.g. default values, regular expressions for extended field "
+"validation etc.)"
+msgstr ""
+"由于<em>域名称</em>通常只是一个域的一个标签（如“你的名字”），它们往往可以包含"
+"额外的信息来支持特殊的功能（如，默认值，为了进行表单验证使用的正则表达式等"
+"等）。"
+
+#: cforms-help.php:109
+msgid ""
+"A new <em>wizard like</em> mode allows you to configure more complex "
+"settings in case all the pipes \"|\" and pounds \"#\" are overwhelming."
+msgstr ""
+"一个新的<em>魔术向导</em>将允许您配置更为复杂的设定，以防止一大堆“|”和“#”让您"
+"头痛。"
+
+#: cforms-help.php:112
+msgid "Text only elements"
+msgstr "只读文本元素"
+
+#: cforms-help.php:113
+msgid "Javascript Date Picker input field"
+msgstr "Javascript日期选择器"
+
+#: cforms-help.php:114
+msgid "Single-, Password &amp; Multi-line fields"
+msgstr "单行、密码和多行输入框"
+
+#: cforms-help.php:115
+msgid "Select / drop down box &amp; radio buttons"
+msgstr "下拉列表框和单选按钮"
+
+#: cforms-help.php:116
+msgid "Multi-select box"
+msgstr "多项选择框"
+
+#: cforms-help.php:117 cforms-help.php:307 cforms-help.php:1066
+msgid "Check boxes"
+msgstr "复选框"
+
+#: cforms-help.php:118 cforms-help.php:343
+msgid "Check box groups"
+msgstr "复选框组"
+
+#: cforms-help.php:119
+msgid "CC:me check box"
+msgstr "CC:me（转发给自己）复选框"
+
+#: cforms-help.php:120
+msgid "Multiple recipients drop down box"
+msgstr "多收信人下拉列表框"
+
+#: cforms-help.php:121
+msgid "Hidden fields"
+msgstr "隐藏域"
+
+#: cforms-help.php:122
+msgid "SPAM protection: Q&amp;A input field"
+msgstr "防SPAM：Q&amp;A输入域（回答问题）"
+
+#: cforms-help.php:123
+msgid "SPAM protection: Captcha input field"
+msgstr "防SPAM：Captcha输入域（图形验证码）"
+
+#: cforms-help.php:124
+msgid "File attachments / upload"
+msgstr "文件或附件上传"
+
+#: cforms-help.php:133 cforms-help.php:163 cforms-help.php:186
+#: cforms-help.php:220 cforms-help.php:265 cforms-help.php:305
+#: cforms-help.php:341 cforms-help.php:382 cforms-help.php:413
+#: cforms-help.php:444 cforms-help.php:473 cforms-help.php:509
+#: cforms-help.php:544 cforms-help.php:575 cforms-help.php:696
+#: cforms-help.php:767 cforms-help.php:811
+msgid "form<br />field"
+msgstr "表单域"
+
+#: cforms-help.php:135
+msgid "Text only elements (no input)"
+msgstr "只读文本元素（不允许用户输入）"
+
+#: cforms-help.php:140 cforms-help.php:169 cforms-help.php:193
+#: cforms-help.php:227 cforms-help.php:272 cforms-help.php:312
+#: cforms-help.php:348 cforms-help.php:389 cforms-help.php:422
+#: cforms-help.php:450 cforms-help.php:480 cforms-help.php:516
+#: cforms-help.php:551 cforms-help.php:582 cforms-help.php:716
+#: cforms-help.php:727 cforms-help.php:777 cforms-help.php:821
+msgid "Entry format for Field Name"
+msgstr "表单域名称的填写格式"
+
+#: cforms-help.php:140 cforms-help.php:169 cforms-help.php:193
+#: cforms-help.php:227 cforms-help.php:272 cforms-help.php:312
+#: cforms-help.php:348 cforms-help.php:389 cforms-help.php:422
+#: cforms-help.php:450 cforms-help.php:480 cforms-help.php:516
+#: cforms-help.php:551 cforms-help.php:727 cforms-help.php:777
+#: cforms-help.php:821 cforms-help.php:892
+msgid "Format:"
+msgstr "格式："
+
+#: cforms-help.php:141
+msgid "text paragraph %1$s css class %1$s optional style"
+msgstr "文本段落%1$scss类%1$s可选样式"
+
+#: cforms-help.php:144 cforms-help.php:147 cforms-help.php:173
+#: cforms-help.php:197 cforms-help.php:201 cforms-help.php:205
+#: cforms-help.php:231 cforms-help.php:276 cforms-help.php:280
+#: cforms-help.php:316 cforms-help.php:352 cforms-help.php:393
+#: cforms-help.php:426 cforms-help.php:454 cforms-help.php:458
+#: cforms-help.php:484 cforms-help.php:520 cforms-help.php:524
+#: cforms-help.php:555 cforms-help.php:731 cforms-help.php:781
+#: cforms-help.php:1296
+msgid "Example:"
+msgstr "例子："
+
+#: cforms-help.php:144
+msgid "Please make sure..."
+msgstr "Please make sure..."
+
+#: cforms-help.php:147
+msgid "Check %s here %s for more info. %s"
+msgstr "Check %s here %s for more info. %s"
+
+#: cforms-help.php:150
+msgid ""
+"HTML: the <code>text paragraph</code> supports HTML. If you need actual "
+"&lt;, &gt; in your text please use the proper HTML entity."
+msgstr ""
+"HTML：<code>文本段落</code>支持HTML代码。如果您需要使用左右尖括号&lt;, &gt;，"
+"请使用对应的HTML实体（&lt;使用&amp;lt;代替，&gt;使用&amp;gt;代替）。"
+
+#: cforms-help.php:153
+msgid ""
+"The above expression applies the custom class \"<code>mytextclass</code>\" "
+"<strong>AND</strong> the specific styles \"<code>font-size:9x; font-weight:"
+"bold;</code>\" to the paragraph."
+msgstr ""
+"上述例子中的表达式“<code>mytextclass</code>”这个自定义类 <strong>和</strong>"
+"特定的样式“<code>font-size:9x; font-weight:bold;</code>”应用到了文本段落上。"
+
+#: cforms-help.php:156
+msgid ""
+"If you specify a <code>css class</code>, you also need to define it in your "
+"current form theme file, <a href=\"%s\">here</a>."
+msgstr ""
+"如果您指定了一个<code>css class</code>，您还需要在您指定的当前表单主题文件中"
+"定义它，在<a href=\"%s\">这里</a>。"
+
+#: cforms-help.php:165
+msgid "Javascript Date Picker"
+msgstr "Javascript日期选择器"
+
+#: cforms-help.php:170 cforms-help.php:194
+msgid ""
+"field name %1$s default value %1$s <a href=\"%2$s\">regular expression</a>"
+msgstr "域名称 %1$s 默认值 %1$s <a href=\"%2$s\">正则表达式</a>"
+
+#: cforms-help.php:174
+msgid "Arrival Date"
+msgstr "Arrival Date"
+
+#: cforms-help.php:178
+msgid ""
+"The example above will set a <em>default value</em> of \"%s\" so users know "
+"the expected format. The <strong>regexp</strong> at the end ensures that "
+"only this format is accepted. <strong>NOTE:</strong> You also need to <a "
+"href=\"%s\" %s>configure the date picker options</a> to match the date "
+"format (\"%s\")!"
+msgstr ""
+"上面的例子将<em>默认值</em>设定为“%s”，这样，访客就知道正确的格式是怎样的。末"
+"尾的<strong>正则表达式</strong>保证了只有这种格式才被接受。<strong>注意：</"
+"strong>您还需要<a href=\"%s\" %s>配置日期选择器选项</a>来满足日期格式"
+"（“%s”）！"
+
+#: cforms-help.php:188
+msgid "Single, Password &amp; Multi line input fields"
+msgstr "单行、密码和多行输入框"
+
+#: cforms-help.php:198
+msgid "Reference"
+msgstr "参考"
+
+#: cforms-help.php:202
+msgid "Your &lt;u&gt;Full&lt;/u&gt; Name"
+msgstr "你的 &lt;u&gt;全&lt;/u&gt; 名"
+
+#: cforms-help.php:206
+msgid "We need your email address for confirmation.\"%sYour EMail"
+msgstr "我们需要您的email来确认。\"%s您的Email"
+
+#: cforms-help.php:210
+msgid "You can of course omit the <em>default value</em> as in Example 2."
+msgstr "您当然可以忽略<em>默认值</em>，就像第二个例子里那样。"
+
+#: cforms-help.php:222
+msgid "Select boxes &amp; radio buttons"
+msgstr "下拉选择框和单选按钮"
+
+#: cforms-help.php:228 cforms-help.php:273
+msgid ""
+"field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3..."
+msgstr "域名称 %1$s 选项1 %2$s 值1 %1$s 选项2 %2$s 值2 %1$s 选项3……"
+
+#: cforms-help.php:232 cforms-help.php:905
+msgid "Your age#12-18|kiddo#19 to 30|young#31 to 45#45+ |older"
+msgstr "Your age#12-18|kiddo#19 to 30|young#31 to 45#45+ |older"
+
+#: cforms-help.php:236
+msgid ""
+"Omitting the <code>field name</code> will result in not showing a label to "
+"the left of the field."
+msgstr "不填写<code>域名称</code>将导致下拉列表框左侧没有说明标签。"
+
+#: cforms-help.php:241
+msgid ""
+"The <strong>option</strong> parameter determines the text displayed to the "
+"visitor, <strong>value</strong> what is being sent in the email."
+msgstr ""
+"<strong>选项</strong>参数决定了向访客展示的文本，<strong>值</strong>决定了会"
+"经过Email被实际发送的内容。"
+
+#: cforms-help.php:246
+msgid ""
+"Is no <strong>value</strong> explicitly given, then the shown option text is "
+"the value sent in the email."
+msgstr ""
+"如果没有明确指定<strong>值</strong>，那么在email中被发送的内容将会由选项文本"
+"所替代。"
+
+#: cforms-help.php:251
+msgid ""
+"<strong>Select box marked \"Required\":</strong> Using a minus symbol %1$s "
+"for the value (after %2$s), will mark an option as invalid! Example:<br /"
+"><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|"
+"young#31 to 45#45+ |older</code>. <br />\"Please pick...\" is shown but not "
+"considered a valid value."
+msgstr ""
+"<strong>标记为“必填”的下拉选择框：</strong> 使用一个减号 %1$s 作为值（在 "
+"%2$s 后面），意思为该选项“不可用”。例子：<br /><code>Your age#Please pick "
+"your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. "
+"<br />“Please pick...”将会被显示，但是不能作为一个有效的值。"
+
+#: cforms-help.php:256
+msgid ""
+"<strong>Radio buttons marked \"Required\":</strong> You can choose to not "
+"preselect a radio button upon form load, yet make a user selection mandatory "
+"for the form to validate."
+msgstr ""
+
+#: cforms-help.php:267 cforms-help.php:1069
+msgid "Multi select boxes"
+msgstr "多项选择框"
+
+#: cforms-help.php:277
+msgid "Pick#red#blue#green#yellow#orange"
+msgstr "Pick#red#blue#green#yellow#orange"
+
+#: cforms-help.php:281
+msgid ""
+"&lt;strong&gt;Select&lt;/strong&gt;#Today#Tomorrow#This Week#Next Month#Never"
+msgstr "&lt;strong&gt;选择&lt;/strong&gt;#今天#明天#本周#下周#从不"
+
+#: cforms-help.php:285
+msgid ""
+"Multi select fields can be set to <strong>Required</strong>. If so and "
+"unless at least one option is selected the form won't validate."
+msgstr ""
+"多项选择域，可以被设定为<strong>必填</strong>。如果设定了，那么至少得有一项被"
+"选中，否则的话表单不会通过验证。"
+
+#: cforms-help.php:290
+msgid ""
+"If <code>value1,2,..</code> are not specified, the values delivered in the "
+"email default to <code>option1,2,...</code>."
+msgstr ""
+"如果<code>值1，2，……</code>没有指定，在email中发送的值将默认设定为<strong>选"
+"项1，2，……</strong>。"
+
+#: cforms-help.php:295
+msgid ""
+"Examples for specific values could be the matching color codes: e.g. "
+"<code>red|#ff0000</code>"
+msgstr ""
+"有个典型的使用值的例子，是为每个颜色指定对应的颜色代码：如，<code>red|"
+"#ff0000</code>"
+
+#: cforms-help.php:313 cforms-help.php:390
+msgid "field name <u>left</u> %s field name <u>right</u>"
+msgstr "域名称 <u>左侧</u> %s 域名称 <u>右侧</u>"
+
+#: cforms-help.php:317
+msgid "#please check if you'd like more information"
+msgstr "#如果您需要更多的信息请勾选"
+
+#: cforms-help.php:321
+msgid ""
+"You can freely choose on which side of the check box the label appears (e.g. "
+"<code>#label-right-only</code>)."
+msgstr ""
+"您可以自由选取复选框的标签出现在复选框的哪一侧（如 <code>#右侧标签</code>）"
+
+#: cforms-help.php:326
+msgid ""
+"If <strong>both</strong> left and right labels are provided, only the "
+"<strong>right one</strong> will be considered."
+msgstr ""
+"如果<strong>两侧</strong>都指定了标签，则只有<strong>右侧</strong>的标签会被"
+"显示。"
+
+#: cforms-help.php:331
+msgid ""
+"Check boxes can be flagged \"<strong>Required</strong>\" to support special "
+"use cases, e.g.: when you require the visitor to confirm that he/she has "
+"read term &amp; conditions, before submitting the form."
+msgstr ""
+"复选框可以被标记为“必填”来支持特定的应用场景，如：当您需要确定访客在提交表单"
+"前已经阅读过相关术语和条件。"
+
+#: cforms-help.php:349
+msgid ""
+"field name %1$s chk box1 label%2$schk box1 value %1$s chk box2 label %3$s "
+"chk box3..."
+msgstr "域名称 %1$s 复选框1标签%2$s复选框1的值 %1$s 复选框2标签 %3$s 复选框3……"
+
+#: cforms-help.php:353
+msgid "Select Color#green|00ff00 #red|ff0000 #purple|8726ac #yellow|fff90f"
+msgstr "Select Color#green|00ff00 #red|ff0000 #purple|8726ac #yellow|fff90f"
+
+#: cforms-help.php:357
+msgid ""
+"Two # (<code>##</code>) in a row will force a new line! This helps to better "
+"structure your check box group."
+msgstr ""
+"两个#号（<code>##</code>）将会强制换行！这将使得您的复选框组看起来有更好的组"
+"织结构。"
+
+#: cforms-help.php:362
+msgid ""
+"Similar to <strong>multi-select boxes</strong> (see above), <strong>Check "
+"box groups</strong> allow you to deploy several check boxes (with their "
+"labels and corresponding values) that form one logical field. The result "
+"submitted via the form email is a single line including all checked options."
+msgstr ""
+"与<strong>多项选择框</strong>相似（看上面），<strong>复选框组</strong>允许您"
+"在一个逻辑区域内，使用多个复选框（每个复选框都有各自的标签和对应的值）。通过"
+"邮件发送的提交结果将在一行文字中包含所有的选中的选项。"
+
+#: cforms-help.php:367
+msgid ""
+"If no explicit <strong>value</strong> (text after the pipe symbol '%1$s') is "
+"specified, the provided check box label is both label &amp; submitted value."
+msgstr ""
+"如果没有明确指定的<strong>值</strong>（指管道符号‘%1$s’后面的文字），那么复选"
+"框的标签将即作为标签，又作为提交的值。"
+
+#: cforms-help.php:372
+msgid "None of the check boxes within a group can be made \"Required\"."
+msgstr "一个组内的复选框都不可以设定为“必填”。"
+
+#: cforms-help.php:384
+msgid "CC: option for visitors"
+msgstr "访客的CC：选项"
+
+#: cforms-help.php:394
+msgid "#please cc: me"
+msgstr "#please cc: me"
+
+#: cforms-help.php:398
+msgid ""
+"If the visitor chooses to be CC'ed, <strong>no</strong> additional auto "
+"confirmation email (<a href=\"%s\" %s>if configured</a>) is sent out!"
+msgstr ""
+"如果访客选中了CC，则<strong>不会</strong>发送额外的自动确认邮件（<a href=\"%s"
+"\" %s>如果配置了的话</a>）！"
+
+#: cforms-help.php:403
+msgid "Please also see <em>check boxes</em> above."
+msgstr "其余请查看上面的<em>复选框</em>的内容。"
+
+#: cforms-help.php:415
+msgid "Multiple form mail recipients"
+msgstr "表单收件人选择框"
+
+#: cforms-help.php:423
+msgid ""
+"field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s "
+"Name3..."
+msgstr "域名称%1$s 名字1 %1$s 名字2 %1$s 名字3……"
+
+#: cforms-help.php:427
+msgid "Send to#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com"
+msgstr ""
+
+#: cforms-help.php:431
+msgid ""
+"Send to#Sales|sales1@mail.com, sales2@mail.com, sales3@mail.com#Support|"
+"admin@mail.com#HR|hr1@mail.scom, hr2@mail.com"
+msgstr ""
+
+#: cforms-help.php:435
+msgid ""
+"Adding the above field to a form, disables the form's specific admin email "
+"address setting."
+msgstr ""
+
+#: cforms-help.php:446
+msgid "Hidden input fields"
+msgstr "隐藏输入域"
+
+#: cforms-help.php:451
+msgid "field name %1$s default value"
+msgstr "域名称 %1$s 默认值"
+
+#: cforms-help.php:455
+msgid "extra-data"
+msgstr "extra-data"
+
+#: cforms-help.php:459
+msgid "post-data-meta"
+msgstr "post-data-meta"
+
+#: cforms-help.php:463
+msgid ""
+"Hidden fields can contain fixed/preset values or <strong>{variables}</"
+"strong> which reference custom fields of posts or pages."
+msgstr ""
+"隐藏域可以包含固定的或者预设的值或者能够引用日志或者页面的自定义域的"
+"<strong>{variables}</strong>。"
+
+#: cforms-help.php:481 cforms-help.php:485
+msgid "--"
+msgstr "--"
+
+#: cforms-help.php:489
+msgid ""
+"No <code>field name</code> required, the field has no configurable label per "
+"se, as it is determined at run-time from the list of <strong>Question &amp; "
+"Answers</strong> provided <a href=\"%s\" %s>here</a>."
+msgstr ""
+"不需要<code>域名称</code>，该域没有需要配置的标签，因为它的值是在运行时候从"
+"<a href=\"%s\" %s>这里</a>设定好的<strong>问题与答案</strong>列表中挑选的。"
+
+#: cforms-help.php:494
+msgid ""
+"It makes sense to encapsulate this field inside a FIELDSET, to do that "
+"simply add a <code>New Fieldset</code> field before this one."
+msgstr ""
+"将这个域单独包含在一个FIELDSET中是比较合理的做法，如果要这样做的话，只需在这"
+"个域前面添加一个<code>New Fieldset</code>域即可。"
+
+#: cforms-help.php:499 cforms-help.php:534
+msgid ""
+"<strong>PLEASE NOTE</strong> that by default the captcha and visitor "
+"verification (Q&amp;A) field are <strong>not</strong> shown for logged in "
+"users! This can be changed under Global Settings."
+msgstr ""
+"<strong>请注意！</strong>默认情况下，captcha图形验证码和访客验证（问答题）"
+"<strong>不会</strong>向已登录用户显示！这个可以在全局设定中更改。"
+
+#: cforms-help.php:511
+msgid "Captcha"
+msgstr "Captcha图形验证码"
+
+#: cforms-help.php:517 cforms-help.php:1042
+msgid "field name"
+msgstr "域名称"
+
+#: cforms-help.php:521
+msgid "Enter code"
+msgstr "Enter code"
+
+#: cforms-help.php:525
+msgid ""
+"Spam Protection|title:We don't like spam bots|err:Please enter the CAPTCHA "
+"code correctly! If text is unreadable, try reloading."
+msgstr ""
+"防垃圾|title:我们不喜欢垃圾留言机器人|err:请键入正确的CAPTCHA代码！如果文字无"
+"法辨认，请重新载入。"
+
+#: cforms-help.php:529
+msgid ""
+"Alternatively or in addition to the above <strong>Visitor verification</"
+"strong> feature, you can have the visitor provide a captcha response."
+msgstr ""
+"除了上面<strong>访客验证</strong>的特性以外，您还可以让访客填写图形验证码。"
+
+#: cforms-help.php:546
+msgid "Attachments / File Upload Box"
+msgstr "附件和文件上传框"
+
+#: cforms-help.php:552
+msgid "form label"
+msgstr "表单标签"
+
+#: cforms-help.php:556
+msgid "Please select a file"
+msgstr "请选择一个文件"
+
+#: cforms-help.php:560
+msgid ""
+"Please double-check the <a href=\"%s\" %s>Global Settings</a> for proper "
+"configuration of the <code>File Upload</code> functionality (allowed "
+"extensions, file size etc.)."
+msgstr ""
+"请再次检查<a href=\"%s\" %s>全局设定</a>中，<code>文件上传</code>的功能是否配"
+"置正确（如允许的扩展名，文件大小等等）。"
+
+#: cforms-help.php:565
+msgid ""
+"Please enable <a href=\"%s\" %s>Database Input Tracking</a> on the Global "
+"Settings page to ensure a unique upload ID per attachment and to avoid "
+"accidentally overwriting an attachment."
+msgstr ""
+
+#: cforms-help.php:577
+msgid "Tell a Friend input fields"
+msgstr "Tell a Friend告诉朋友输入框"
+
+#: cforms-help.php:582
+msgid "Format:<br />of all 4 fields"
+msgstr "格式：<br />四种域相同"
+
+#: cforms-help.php:583
+msgid ""
+"field name %1$s default value %1$s <a href=\"#regexp\">regular expression</a>"
+msgstr "域名称 %1$s 默认值 %1$s <a href=\"#regexp\">正则表达式</a>"
+
+#: cforms-help.php:586
+msgid "Fields:"
+msgstr "域"
+
+#: cforms-help.php:587 cforms-help.php:1060 cforms-options.php:371
+msgid "T-A-F * Your Name"
+msgstr "T-A-F * 你的名字"
+
+#: cforms-help.php:588
+msgid "T-A-F * Your Email <em>(make sure it's checked 'Email')</em>"
+msgstr "T-A-F * 你的Email<em>（确保这是检查过的“Email”）</em>"
+
+#: cforms-help.php:589 cforms-help.php:1062 cforms-help.php:1063
+#: cforms-options.php:373
+msgid "T-A-F * Friend's Name"
+msgstr "T-A-F * 朋友的名字"
+
+#: cforms-help.php:590
+msgid "T-A-F * Friend's Email <em>(make sure it's checked 'Email')</em>"
+msgstr "T-A-F * 朋友的Email <em>（确保这是检查过的“Email”）</em>"
+
+#: cforms-help.php:595 cforms-help.php:737
+msgid "To get it working:"
+msgstr "启动这项功能："
+
+#: cforms-help.php:597
+msgid ""
+"The <a href=\"%s\" %s>Tell A Friend feature</a> needs to be <strong>enabled "
+"for the respective form</strong> (<em>check if it's the right one!</em>), "
+"otherwise you won't see the above input fields in the [<em>Field Type</em>] "
+"select box."
+msgstr ""
+"使用<a href=\"%s\" %s>告诉一个朋友特性</a>需要<strong>启用相应的表单功能</"
+"strong> （<em>检查它是不是右边那样的！</em>），否则你将不会看到上述输入域 "
+"[<em>域类型</em>] 选择框。"
+
+#: cforms-help.php:598
+msgid ""
+"The <a href=\"%s\" %s>auto confirmation</a> message will be used as a "
+"<strong>message template</strong> and needs to be defined. See example below."
+msgstr ""
+"<a href=\"%s\" %s>自动确认</a>信息会使用一个<strong>信息模板</strong>，该模板"
+"需要自己定义。请看下面的例子。"
+
+#: cforms-help.php:599
+msgid ""
+"There are <a href=\"%s\" %s>three additional</a>, <em>predefined variables</"
+"em> that can be used in the <a href=\"%s\" %s>message template</a>."
+msgstr ""
+"有 <a href=\"%s\" %s>三个额外的</a>，<em>预定义变量</em>可以在<a href=\"%s\" "
+"%s>消息模板</a>中使用。"
+
+#: cforms-help.php:600
+msgid ""
+"<strong>Add the form</strong> to your post/page php templates (see "
+"deployment options further below)."
+msgstr ""
+"<strong>添加表单</strong>到您的日志或者页面的模板（请在下面查看进一步的部署选"
+"项）。"
+
+#: cforms-help.php:601
+msgid ""
+"Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F "
+"field in the WP post (page) editor."
+msgstr ""
+"<strong>在你的页面或者日志上启用</strong>告诉一个朋友功能，只需要在WP日志（页"
+"面）编辑器页面选中T-A-F的复选框，如图。"
+
+#: cforms-help.php:611
+msgid ""
+"Here is an example of how to setup the TXT part of the <a href=\"%s\" "
+"%s>auto confirmation message</a> as a Tell-A-friend template:"
+msgstr ""
+"这里是一个怎样设定<a href=\"%s\" %s>自动确认信息</a>的TXT部分的例子，作为"
+"Tell-a-Friend的模板："
+
+#: cforms-help.php:618
+msgid "Hello {Friend's Name}"
+msgstr "Hello {Friend's Name}"
+
+#: cforms-help.php:619
+msgid "{Your Name} left you this message:"
+msgstr "{Your Name} left you this message:"
+
+#: cforms-help.php:620
+msgid "{Optional Comment}"
+msgstr "{Optional Comment}"
+
+#: cforms-help.php:621
+msgid "The message was sent in reference to"
+msgstr "The message was sent in reference to"
+
+#: cforms-help.php:625
+msgid ""
+"This email is sent, as a courtesy of website.com, located at http://website."
+"com. The person who sent this email to you, {Your Name}, gave an email "
+"address of {Your Email}. {Your Name} logged into website.com from IP {IP}, "
+"and sent the email at {Time}."
+msgstr ""
+"This email is sent, as a courtesy of website.com, located at http://website."
+"com. The person who sent this email to you, {Your Name}, gave an email "
+"address of {Your Email}. {Your Name} logged into website.com from IP {IP}, "
+"and sent the email at {Time}."
+
+#: cforms-help.php:631
+msgid ""
+"In addition to the above TXT message you can, of course, add an HTML "
+"counterpart."
+msgstr "除了上述的TXT信息，您还可以添加对应的HTML部分。"
+
+#: cforms-help.php:639
+msgid "Recommended Implementation Options:"
+msgstr "推荐的实现选项："
+
+#: cforms-help.php:644
+msgid ""
+"<em>Alternative 1:</em> The actual form will not show on the WP front page, "
+"but in the individual post/page view."
+msgstr ""
+"<em>可选方法1：</em>实际上表单不会在WP的首页显示，但是会在单独的日志或者页面"
+"显示。"
+
+#: cforms-help.php:646
+msgid ""
+"Simply add a <code>&lt;?php insert_cform(<em>#</em>); ?&gt;</code> (# = <a "
+"href=\"%s\" %s>your form id</a>) to your existing <code>single.php</code> "
+"and/or <code>page.php</code> template, e.g:"
+msgstr ""
+"添加 <code>&lt;?php insert_cform(<em>#</em>); ?&gt;</code> （# = <a href=\"%s"
+"\" %s>你表单的id</a>）到存在的模板文件<code>single.php</code> 和/或者 "
+"<code>page.php</code> 中，如："
+
+#: cforms-help.php:655
+msgid ""
+"Suggestion: For a less crowded layout, optionally add some Javascript code "
+"to show/hide the form."
+msgstr ""
+"建议：为了是布局看起来不是那么拥挤，您可以选择使用一些javascript来显示/隐藏表"
+"单。"
+
+#: cforms-help.php:661
+msgid ""
+"<em>Alternative 2:</em> A Tell-A-Friend link is shown under every eligible "
+"post/page, displayed both on the blog's front page &amp; individual post "
+"&amp; page view."
+msgstr ""
+"<em>可选方法2：</em>一个Tell-A-Friend链接将会显示在每篇日志或者页面的底部，在"
+"博客的首页和内页都会显示。"
+
+#: cforms-help.php:664
+msgid ""
+"This requires a new WP page created (make note of the page ID or permalink), "
+"with its own page template (a clone of page.php will do). Add the following "
+"code to the new <strong>page template</strong>:"
+msgstr ""
+"这需要建立一个新的WP页面（记住page ID和永久链接），这个页面要有自己的页面模板"
+"（只要复制page.php就可以了）。将下列代码添加到<strong>页面模板</strong>中："
+
+#: cforms-help.php:674
+msgid ""
+"In <em>single.php &amp; index.php</em> and/or <em>page.php</em> add beneath "
+"the \"the_content()\" call the link to the new page created above, e.g.:"
+msgstr ""
+"在<em>single.php和index.php</em>和/或<em>page.php</em>中，在“the_content()”下"
+"面添加下列代码，调用上面一个步骤创建的新页面的链接，如："
+
+#: cforms-help.php:686
+msgid ""
+"Replace <strong>[your-new-page]</strong> with <strong>the permalink</strong> "
+"of your newly created page."
+msgstr ""
+"将<strong>[your-new-page]</strong>替换成你刚才创建的页面的<strong>永久链接</"
+"strong>。"
+
+#: cforms-help.php:698
+msgid "WP Comment Feature input fields"
+msgstr "WP评论特性输入域"
+
+#: cforms-help.php:700
+msgid ""
+"The beauty is, using one form, you can now offer your readers to either "
+"leave a comment behind or simply send a note to the post editor while being "
+"able to fully utilize all security aspects of cforms."
+msgstr ""
+"最妙的事情是，通过使用表单，您现在可以允许您的读者自己选择发表一篇评论或者是"
+"直接给文章的作者发送一个便条，而且完全可以利用cforms提供的安全机制。"
+
+#: cforms-help.php:704
+msgid "Example Configuration"
+msgstr "配置范例"
+
+#: cforms-help.php:708
+msgid "Special Fields:"
+msgstr "特殊域："
+
+#: cforms-help.php:710 cforms-help.php:1067 cforms-options.php:380
+msgid "Author's Email"
+msgstr "作者的Email"
+
+#: cforms-help.php:711 cforms-help.php:1068 cforms-options.php:381
+msgid "Author's URL"
+msgstr "作者的URL"
+
+#: cforms-help.php:712 cforms-help.php:1069 cforms-options.php:382
+msgid "Author's Comment"
+msgstr "作者的评论"
+
+#: cforms-help.php:716
+msgid "Format:<br />for top 4 fields"
+msgstr "格式：<br />适用上面4个域"
+
+#: cforms-help.php:717
+msgid ""
+"field name  %1$s  default value  %1$s  <a href=\"#regexp\">regular "
+"expression</a>"
+msgstr "域名称  %1$s  默认值  %1$s  <a href=\"#regexp\">正则表达式</a>"
+
+#: cforms-help.php:722
+msgid "Special Field"
+msgstr "特殊域"
+
+#: cforms-help.php:723 cforms-help.php:1070 cforms-options.php:383
+msgid "Select: Email/Comment"
+msgstr "选择：Email/评论"
+
+#: cforms-help.php:728
+msgid ""
+"field name %1$s text <em>comment</em> %2$s 0 %1$s text <em>to author</em> "
+"%2$s 1"
+msgstr "域名称 %1$s 发表 <em>评论</em> %2$s 0 %1$s <em>给作者</em>寄信 %2$s 1"
+
+#: cforms-help.php:732
+msgid "Send as#regular comment|0#email to post author|1"
+msgstr "Send as#regular comment|0#email to post author|1"
+
+#: cforms-help.php:739
+msgid ""
+"Turn on the <a href=\"%s\" %s>WP Comment feature</a> for the given form. "
+"(<em>Make sure it's the right one!</em>), otherwise you won't see the above "
+"input fields in the [<em>Field Type</em>] select box."
+msgstr ""
+"为给定的表单开启<a href=\"%s\" %s>WP评论特性</a>。（<em>请确认是正确的那个！"
+"</em>），否则你不会在[<em>域类型</em>]选择框中看到上面的输入域。"
+
+#: cforms-help.php:740
+msgid ""
+"Modify this form to include all the necessary (new) input fields, make them "
+"required or not, add regexp, anti SPAM fields or even custom err messages. "
+"All up to you. Or better yet, start with the built-in preset: "
+"\"<strong>Advanced: WP comment...</strong>\" form."
+msgstr ""
+"编辑这个表单来包含所有必须（新的）的输入域，设定是否必填，添加正则表达式，反"
+"垃圾域或者自定义错误信息。全都由您决定。或者可以更方便，使用内置的预设的表"
+"单：“<strong>高级：WP 评论…</strong>”表单。"
+
+#: cforms-help.php:741
+msgid ""
+"Edit your WP Theme template for comments. Remove the current "
+"<strong><u>comment_form() in comments.php</u></strong> entirely. Instead "
+"replace with a PHP call to cforms: <code  style=\"color:red\">&lt;?php "
+"insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> "
+"if the form is your default form or starting at <strong>'2'</strong> (with "
+"single quotes!) for any subsequent form #."
+msgstr ""
+"编辑您的WP评论模板。完全移除当前的<strong><u>comment_form() in comments.php</"
+"u></strong>。用PHP调用替换的cforms表单：<code  style=\"color:red\">&lt;?php "
+"insert_cform(X); ?&gt;</code>如果这个表单是您的默认表单，<strong>X</strong>可"
+"以忽略，否则的话填入后续表单的序号，从<strong>'2'</strong> 开始（带单引"
+"号！）。"
+
+#: cforms-help.php:742
+msgid ""
+"Double check the extended <a href=\"%s\" %s>WP comment feature settings "
+"here</a> (especially the Ajax specific ones!). "
+msgstr ""
+"再次检查扩展的<a href=\"%s\" %s>WP评论特性设定</a>（尤其是Ajax的那些！）。"
+
+#: cforms-help.php:743 cforms-help.php:838 cforms-help.php:1323
+msgid "Important:"
+msgstr "重要："
+
+#: cforms-help.php:743
+msgid ""
+"To make Ajax work in case there are no comments yet, make sure that the "
+"comment container <strong>is always</strong> being rendered."
+msgstr ""
+"为了在万一还没有评论的时候，使Ajax奏效，请保证评论容器<strong>总是</strong>能"
+"够被生成。"
+
+#: cforms-help.php:753
+msgid "Suggestions:"
+msgstr "建议："
+
+#: cforms-help.php:755
+msgid ""
+"I recommend you choose the <strong>wide_form.css</strong> theme under the <a "
+"href=\"%s\">Styling</a> menu. And adjust to your liking."
+msgstr ""
+"我推荐您选择<strong>wide_form.css</strong>主题，在<a href=\"%s\">样式</a>菜单"
+"中可以选择此项。然后改成您需要的样式。"
+
+#: cforms-help.php:756
+msgid ""
+"If you intend to make certain fields \"required\", I further recommend you "
+"add the text \"<em>required</em>\" to the input field label and set this "
+"style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
+"to <code  style=\"color:red\">display:none;</code>"
+msgstr ""
+"如果您想要设定某些域为“必填”，我推荐您在输入域标签上要加上提示“必填”，并且把"
+"<code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> 设定成 "
+"<code  style=\"color:red\">display:none;</code>"
+
+#: cforms-help.php:772
+msgid ""
+"Fieldsets are definitely part of good form design, they are form elements "
+"that are used to create individual sections of content within a given form."
+msgstr ""
+"域集合是一个好的表单设计中所必须的，它们是一种被用来在表单中创建一个独立区域"
+"来放置某些内容的表单元素。"
+
+#: cforms-help.php:778
+msgid "fieldset name"
+msgstr "域集合名称"
+
+#: cforms-help.php:782 lib_activate.php:67 lib_options_add.php:33
+msgid "My Fieldset"
+msgstr "My Fieldset"
+
+#: cforms-help.php:786
+msgid ""
+"Fieldsets can begin anywhere, simply add a <strong>New Fieldset</strong> "
+"field between or before your form elements."
+msgstr ""
+"域集合可以在任何地方开始，只需要添加一个<strong>新的域集合</strong>在您的表单"
+"中即可。"
+
+#: cforms-help.php:791
+msgid ""
+"Fieldsets do not need to explicitly be closed, a <strong>New Fieldset</"
+"strong> element will automatically close the existing (if there is one to "
+"close) and reopen a new one."
+msgstr ""
+"表单域不需要明确的关闭，一个<strong>新的域集合</strong>元素会自动关闭上一个"
+"（如果上一个没有关闭的话），并且重新打开一个域集合。"
+
+#: cforms-help.php:796
+msgid ""
+"<strong>End Fieldset</strong> <u>can</u> be used, but it works without just "
+"as well."
+msgstr ""
+"<strong>关闭域集合</strong><u>可以</u>使用，但是就算不用，也不会有问题。"
+
+#: cforms-help.php:801
+msgid ""
+"If there is no closing <strong>End Fieldset</strong> element, the plugin "
+"assumes that it needs to close the set just before the submit button"
+msgstr ""
+"如果有没有关闭的<strong>结束域集合</strong>元素，则插件会自动在提交按钮之前来"
+"关闭它。"
+
+#: cforms-help.php:816
+msgid ""
+"A regular expression (regex or regexp for short) is a special text string "
+"for describing a search pattern, according to certain syntax rules. Many "
+"programming languages support regular expressions for string manipulation, "
+"you can use them here to validate user input. Single/Multi line input fields:"
+msgstr ""
+"正则表达式是一段符合特定语法规则的特殊的字符串，用于描述一个搜索模式。许多程"
+"序设计语言支持使用正则表达式来操作字符串，在这里，您可以使用它来验证用户输"
+"入。单行或者多行输入域："
+
+#: cforms-help.php:822
+msgid "field name %1$s default value %1$s regular expression"
+msgstr "域名称 %1$s 默认值 %1$s 正则表达式"
+
+#: cforms-help.php:825
+msgid "Example:<br />US zip code"
+msgstr "例子：<br />美国邮编"
+
+#: cforms-help.php:826
+msgid "zip code"
+msgstr "邮政编码"
+
+#: cforms-help.php:829
+msgid "Example:<br />US phone #"
+msgstr "例子：<br />美国电话 #"
+
+#: cforms-help.php:830
+msgid "phone"
+msgstr "电话"
+
+#: cforms-help.php:833
+msgid "Special Example:<br />comparing two input fields"
+msgstr "特殊例子：<br />比较两个输入域"
+
+#: cforms-help.php:834
+msgid "please repeat email"
+msgstr "请重复填写email"
+
+#: cforms-help.php:839
+msgid ""
+"<strong>If you need to compare two input fields (e.g. email verification):</"
+"strong> simply use the regexp field (see special example above, to point to "
+"the <u>HTML element ID</u> of the field you want to compare the current one "
+"to. To find the <u>HTML element ID</u> you would have to look into the html "
+"source code of the form (e.g."
+msgstr ""
+"<strong>如果您需要比较两个字符串（如，email验证）：</strong>您只需要使用正则"
+"表达式域（参见上面的特殊例子），然后指定那个您想要与当前域比较的域的<u>HTML元"
+"素ID</u>即可。要找到<u>HTML元素ID</u>（如，cf2_field_2），您可以查看表单的"
+"html源代码。"
+
+#: cforms-help.php:844
+msgid "GENERAL:"
+msgstr "通用："
+
+#: cforms-help.php:849
+msgid ""
+"Ensure that the input field in question is tagged '<strong>Required</"
+"strong>'!"
+msgstr "确保询问的输入域标上了“必填”标签！"
+
+#: cforms-help.php:854
+msgid "and"
+msgstr "和"
+
+#: cforms-help.php:854
+msgid "define the start and the end of the input"
+msgstr "表示输入的开始和结束"
+
+#: cforms-help.php:859
+msgid ""
+"...matches a string that has an \"a\" followed by zero or more \"b's\" (\"a"
+"\", \"ab\", \"abbb\", etc.);"
+msgstr ""
+"…匹配一个这样的字符串，以‘a’开始，后面跟着0个或者多"
+"个‘b’（如“a”，“ab”，“abbb”等等）；"
+
+#: cforms-help.php:864
+msgid "...same, but there's at least one b (\"ab\", \"abbb\", etc.);"
+msgstr "…同上，但是至少有一个b（如“ab”，“abbb”等等）；"
+
+#: cforms-help.php:869
+msgid "...a string that has lowercase letters \"a\" through \"d\""
+msgstr "…一个字符串，包含了“a”到“d”的小写字母"
+
+#: cforms-help.php:874
+msgid ""
+"More information can be found <a href=\"%s\">here</a>, a great regexp "
+"repository <a href=\"%s\">here</a>."
+msgstr ""
+"更多信息可以在<a href=\"%s\">这里</a>找到，<a href=\"%s\">这里</a>也有一个很"
+"全的正则表达式库可供参考。"
+
+#: cforms-help.php:886
+msgid ""
+"On top of their labels, input fields can have titles, too. Simply append a "
+"%s to a given field configuration string."
+msgstr ""
+"除了标签，输入域还可以拥有自己的标题。只要给给定的域补充一个%s配置字符串即"
+"可。"
+
+#: cforms-help.php:887
+msgid ""
+"If you like to add custom error messages (next to your generic <a href=\"%s"
+"\" %s>success</a> and <a href=\"%s\" %s>error</a> messages) for your input "
+"fields, simply append a %s to a given <em>definition string/field name</em>. "
+"HTML is supported."
+msgstr ""
+"如果您想要为您的输入域添加自定义错误消息（在您通用的<a href=\"%s\" %s>成功</"
+"a>和<a href=\"%s\" %s>错误</a> 消息旁边），仅需要在<em>定义字符串或域名称</"
+"em>后面添加一个%s即可。支持HTML。"
+
+#: cforms-help.php:888
+msgid ""
+"Please note the order of these special attributes, first %s (if applicable), "
+"then %s."
+msgstr "请注意这些特殊属性的顺序，先是%s（如果可用的话），然后是%s。"
+
+#: cforms-help.php:892
+msgid "Extended entry format for the Field Name"
+msgstr "域名称的扩展项格式"
+
+#: cforms-help.php:893
+msgid "field name %1$s your title here %3$s %2$s your error message %3$s"
+msgstr "域名称 %1$s 您的标题%3$s %2$s 您的错误信息 %3$s"
+
+#: cforms-help.php:896
+msgid "Example 1:"
+msgstr "例 1："
+
+#: cforms-help.php:897
+msgid "Your Name|title:Only alphabetic characters allowed!"
+msgstr "您的名字|title:只允许使用字符！"
+
+#: cforms-help.php:900
+msgid "Example 2:"
+msgstr "例 2："
+
+#: cforms-help.php:901
+msgid ""
+"Your Name|title:Please provide your first and last name!|err:Please enter "
+"your full name."
+msgstr "您的名字|title:请提供 您的姓和名！|err:请填写您的全名。"
+
+#: cforms-help.php:904
+msgid "Example 3:"
+msgstr "例 3："
+
+#: cforms-help.php:905
+msgid "|err: your age is &lt;strong&gt;important&lt;/strong&gt; to us."
+msgstr "|err: 您的年龄多我们来说很&lt;strong&gt;重要&lt;/strong&gt;"
+
+#: cforms-help.php:914
+msgid ""
+"<strong>Custom error messages</strong> can be applied to any input field "
+"that can be flagged \"<strong>Required</strong>\", <strong>titles</strong> "
+"to any input field."
+msgstr ""
+"<strong>自定义错误信息</strong>可以被应用到任何可以设定成“<strong>必填</"
+"strong>”的输入域，<strong>标题</strong>可以用在任何输入域。"
+
+#: cforms-help.php:929
+msgid "API Function :: get_cforms_entries()"
+msgstr "API函数 :: get_cforms_entries()"
+
+#: cforms-help.php:929 cforms-help.php:977
+msgid "API Function"
+msgstr "API 函数"
+
+#: cforms-help.php:932 cforms-help.php:980
+msgid "Description"
+msgstr "描述"
+
+#: cforms-help.php:932
+msgid ""
+"This function allows to conveniently retrieve submitted data from the cforms "
+"tracking tables."
+msgstr "这个函数允许从cforms跟踪表中非常方便的收取提交的数据。"
+
+#: cforms-help.php:935 cforms-help.php:983
+msgid "Parameters"
+msgstr "参数"
+
+#: cforms-help.php:938 cforms-help.php:946 cforms-help.php:954
+msgid "[text]"
+msgstr "[文本]"
+
+#: cforms-help.php:939
+msgid "text string (regexp pattern), e.g. the form name"
+msgstr "文本字符串（正则表达式模式），如，表单名称"
+
+#: cforms-help.php:942
+msgid "[date]"
+msgstr "[日期]"
+
+#: cforms-help.php:943
+msgid ""
+"DATETIME string (format: Y-m-d H:i:s). Date &amp; time defining the target "
+"period, e.g."
+msgstr "日期字符串（格式：Y-m-d H:i:s）。日期和时间定义了目标时间段，如，"
+
+#: cforms-help.php:947
+msgid "or"
+msgstr "或者"
+
+#: cforms-help.php:947
+msgid " or any other form input field, e.g. 'Your Name'"
+msgstr "或者任何其他的输入域，如，‘您的名字’"
+
+#: cforms-help.php:950 cforms-help.php:986
+msgid "[number]"
+msgstr "[数字]"
+
+#: cforms-help.php:951
+msgid "limiting the number of results, '' (empty or false) = no limits!"
+msgstr "限制返回结果的数量，''（空串）= 没有限制！"
+
+#: cforms-help.php:957 cforms-help.php:989
+msgid "Output"
+msgstr "输出"
+
+#: cforms-help.php:958
+msgid ""
+"This function will return a set of stored form submissions in a multi-"
+"dimensional array."
+msgstr "这个函数将返回一组存储的额表单提交的多维数组。"
+
+#: cforms-help.php:959
+msgid "Examples"
+msgstr "例子"
+
+#: cforms-help.php:964
+msgid "Example: Table Output"
+msgstr "范例：表格输出"
+
+#: cforms-help.php:977
+msgid "API Function :: cf_extra_comment_data()"
+msgstr "API 函数 :: cf_extra_comment_data()"
+
+#: cforms-help.php:980
+msgid ""
+"This function retrieves all extra data submitted (besides the default "
+"Author, Email, URL, Message fields) per a given comment context. This "
+"function should be called from within the \"comment LOOP\"."
+msgstr ""
+"这个函数获取每个评论上下文的所有提交的额外数据（除了默认的作者，邮箱，URL，消"
+"息域）。这个函数应该在“comment LOOP”中被调用。"
+
+#: cforms-help.php:987
+msgid "The comment ID is expected."
+msgstr "需要填写评论ID。"
+
+#: cforms-help.php:990
+msgid ""
+"This function will return a set of stored comment data in a multi-"
+"dimensional array."
+msgstr "这个函数将以多维数组的形式返回一组存储的评论数据。"
+
+#: cforms-help.php:995
+msgid ""
+"(Post-)Processing of submitted data is really for hard core deployments, "
+"where <em>real-time manipulation</em> of a form &amp; fields are required."
+msgstr ""
+"（发表）处理表单提交的数据是真正的核心部署，对表单和域的<em>实时操作</em>是必"
+"须的。"
+
+#: cforms-help.php:996
+msgid ""
+"If you require the submitted data to be manipulated, and or sent to a 3rd "
+"party or would like to make use of the data otherwise, here is how:"
+msgstr ""
+"如果您需要操纵提交上来的数据，或者发送给第三方，或者用作其他什么用途，您需要"
+"这样做："
+
+#: cforms-help.php:1001
+msgid "Custom functions to (post-)process user input"
+msgstr "自定义功能（发表）处理用户输入"
+
+#: cforms-help.php:1001
+msgid "Available User Functions"
+msgstr "可用的用户函数"
+
+#: cforms-help.php:1001
+msgid ""
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
+"including examples)"
+msgstr ""
+"（查看<strong>my-functions.php.txt</strong>文件（插件根目录下），包括了范例）"
+
+#: cforms-help.php:1005
+msgid ""
+"function gets triggered <strong>after</strong> user input validation, but "
+"<strong>before</strong> processing input data"
+msgstr ""
+"函数会在输入验证<strong>之后</strong>，但是在进一步处理<strong>之前</strong>"
+"被调用"
+
+#: cforms-help.php:1009
+msgid ""
+"function gets called <strong>after</strong> input validation, but "
+"<strong>before</strong> processing input data"
+msgstr ""
+"函数会在输入验证<strong>之后</strong>，但是在进一步处理<strong>之前</strong>"
+"被调用"
+
+#: cforms-help.php:1009
+msgid "(nonAjax)"
+msgstr "（非Ajax）"
+
+#: cforms-help.php:1013
+msgid "function gets called <strong>just before</strong> sending the email"
+msgstr ""
+
+#: cforms-help.php:1013
+msgid "(Ajax)"
+msgstr "（Ajax）"
+
+#: cforms-help.php:1017
+msgid ""
+"function gets called <strong>at</strong> various stages of input processing"
+msgstr "函数会在输入处理的不同阶段<strong>中</strong>被调用"
+
+#: cforms-help.php:1028
+msgid ""
+"Again, this is for the advanced user who requires ad-hoc creation of forms."
+msgstr "这又是一个为了那些需要随时动态创建表单的高级用户而准备的功能。"
+
+#: cforms-help.php:1030
+msgid "A few things to note on dynamic forms:"
+msgstr "动态表单需要注意的一些事项："
+
+#: cforms-help.php:1032
+msgid "Dynamic forms only work in <strong>non-Ajax</strong> mode."
+msgstr "动态表单只能在<strong>非Ajax</strong>模式下工作。"
+
+#: cforms-help.php:1033
+msgid ""
+"Each dynamic form references and thus requires <strong>a base form defined</"
+"strong> in the cforms form settings. All its settings will be used, except "
+"the form (&amp;field) definition."
+msgstr ""
+"每一个动态表单要引用<strong>定义好的基础表单</strong>，所以要事先在cforms表单"
+"设定中定义好。所有的设定都会用到，除了表单布局。"
+
+#: cforms-help.php:1034
+msgid ""
+"Any of the form fields described in the plugins' <strong>HELP!</strong> "
+"section can be dynamically generated."
+msgstr "所有在插件<strong>帮助！</strong>中提到的表单域都可以被动态地生成。"
+
+#: cforms-help.php:1035
+msgid "Function call to generate dynamic forms: %s with"
+msgstr "要动态生成表单，需要调用函数：%s"
+
+#: cforms-help.php:1038
+msgid ""
+"empty string for the first (default) form and <strong>2</strong>,3,4... for "
+"any subsequent form"
+msgstr "空串表示第一张（默认）表单，<strong>2</strong>，3，4，……表示后续的表单"
+
+#: cforms-help.php:1042
+msgid "<em>field name</em> format described above"
+msgstr "上面描述的<em>域名称</em>格式"
+
+#: cforms-help.php:1055
+msgid "Form input field types ('type'):"
+msgstr "表单输入域类型（‘type’）："
+
+#: cforms-help.php:1059
+msgid "Basic fields"
+msgstr "基本域"
+
+#: cforms-help.php:1059
+msgid "Special T-A-F fields"
+msgstr "特殊的T-A-F域"
+
+#: cforms-help.php:1060
+msgid "Text paragraph"
+msgstr "文本段落"
+
+#: cforms-help.php:1061
+msgid "Single input field"
+msgstr "单行输入框"
+
+#: cforms-help.php:1061 cforms-options.php:372
+msgid "T-A-F * Your Email"
+msgstr "T-A-F * 您的Email"
+
+#: cforms-help.php:1062
+msgid "Multi line field"
+msgstr "多行输入框"
+
+#: cforms-help.php:1063
+msgid "Hidden field"
+msgstr "隐藏域"
+
+#: cforms-help.php:1064
+msgid "Password field"
+msgstr "密码输入框"
+
+#: cforms-help.php:1065
+msgid "Date picker field"
+msgstr "日期选择器"
+
+#: cforms-help.php:1065 cforms-options.php:1100
+msgid "WP Comment Feature"
+msgstr "WP 评论特性"
+
+#: cforms-help.php:1067
+msgid "Check boxes groups"
+msgstr "复选框组"
+
+#: cforms-help.php:1068
+msgid "Drop down fields"
+msgstr "下拉列表框"
+
+#: cforms-help.php:1070
+msgid "Radio buttons"
+msgstr "单选按钮"
+
+#: cforms-help.php:1071
+msgid "'CC' check box"
+msgstr "‘CC’ 复选框"
+
+#: cforms-help.php:1072
+msgid "Multi-recipients field"
+msgstr "多收信人框"
+
+#: cforms-help.php:1073
+msgid "Spam/Q&amp;A verification"
+msgstr "Spam/问答验证"
+
+#: cforms-help.php:1074
+msgid "Spam/captcha verification"
+msgstr "Spam/captcha图形验证码"
+
+#: cforms-help.php:1075
+msgid "File upload fields"
+msgstr "文件上传框"
+
+#: cforms-help.php:1076
+msgid "Begin of a fieldset"
+msgstr "表单域集合开始"
+
+#: cforms-help.php:1077
+msgid "End of a fieldset"
+msgstr "表单域集合结束"
+
+#: cforms-help.php:1080
+msgid "Should only be used <strong>once</strong> per generated form!"
+msgstr "表示每个生成的表单里只能使用<strong>一次</strong>！"
+
+#: cforms-help.php:1086
+msgid "Simple example:"
+msgstr "简单的例子："
+
+#: cforms-help.php:1093 cforms-help.php:1120 lib_activate.php:68
+#: lib_options_add.php:34
+msgid "Your Name|Your Name"
+msgstr "名字|您的名字"
+
+#: cforms-help.php:1094
+msgid "Your Email"
+msgstr "您的Email"
+
+#: cforms-help.php:1095
+msgid "Your Message"
+msgstr "您的消息"
+
+#: cforms-help.php:1109
+msgid "Call default form with two defined fields"
+msgstr "调用有两个定义好的域的默认表单"
+
+#: cforms-help.php:1116
+msgid "<strong>More advanced example</strong> (file access)"
+msgstr "<strong>更加高级一些的例子</strong> （文件访问）"
+
+#: cforms-help.php:1125 lib_activate.php:69 lib_options_add.php:35
+msgid "Email"
+msgstr "Email"
+
+#: cforms-help.php:1129
+msgid "Please pick a month for delivery:"
+msgstr "请选择一个要发送的月份："
+
+#: cforms-help.php:1132
+msgid "Deliver on#Please pick a month"
+msgstr "发送于#请选择一个月份"
+
+#: cforms-help.php:1134
+msgid "Need to put this file into your themes dir!"
+msgstr "需要把这个文件放到您的主题目录！"
+
+#: cforms-help.php:1141
+msgid "Remove the last '#'"
+msgstr "移除最后的“#”"
+
+#: cforms-help.php:1146
+msgid "Call form #5 with new fields"
+msgstr "调用带有新添加域的表单5"
+
+#: cforms-help.php:1150
+msgid "With <code>month.txt</code> containing all 12 months of a year:"
+msgstr "使<code>month.txt</code>包含所有一年中12个月的名字："
+
+#: cforms-help.php:1154 lib_activate.php:175
+msgid "January"
+msgstr "一月"
+
+#: cforms-help.php:1156 lib_activate.php:176
+msgid "February"
+msgstr "二月"
+
+#: cforms-help.php:1158 lib_activate.php:177
+msgid "March"
+msgstr "三月"
+
+#: cforms-help.php:1168
+msgid "Using variables in email subject and messages"
+msgstr "在email主题和内容中使用变量"
+
+#: cforms-help.php:1173
+msgid ""
+"<strong>Subjects and messages</strong> for emails both to the <a href=\"%s\" "
+"%s>form admin</a> as well as to the <a href=\"%s\" %s>visitor</a> (auto "
+"confirmation, CC:) support insertion of pre-defined variables and/or any of "
+"the form input fields."
+msgstr ""
+"无论是发送给<a href=\"%s\" %s>表单管理员</a>还是<a href=\"%s\" %s>访客</"
+"a>（自动确认，或CC:）的邮件的<strong>主题或者内容</strong>都支持插入预定义的"
+"变量或者表单输入域内容。"
+
+#: cforms-help.php:1175
+msgid "Note that the variable names are case sensitive!"
+msgstr "注意变量的名称是大小写敏感的！"
+
+#: cforms-help.php:1179 cforms-help.php:1248 cforms-help.php:1273
+msgid "Case sensitive!"
+msgstr "大小写敏感！"
+
+#: cforms-help.php:1179
+msgid "Predefined variables:"
+msgstr "预定义变量："
+
+#: cforms-help.php:1183
+msgid "Inserts the Blog's name."
+msgstr "插入博客的名称"
+
+#: cforms-help.php:1187
+msgid "Inserts the form name (per your configuration)."
+msgstr "插入表单的名称（您预先配置好的）。"
+
+#: cforms-help.php:1191
+msgid "Inserts the ID of the post the form is shown in."
+msgstr "插入带有表单的日志的ID。"
+
+#: cforms-help.php:1195
+msgid "Inserts the HTTP referer information (if available)."
+msgstr "插入HTTP引用信息（如果可用的话）。"
+
+#: cforms-help.php:1199
+msgid "Inserts the WP page the form was submitted from."
+msgstr "插入提交表单的WP页面。"
+
+#: cforms-help.php:1203
+msgid "Inserts the date of form submission (per your general WP settings)."
+msgstr "插入表单提交的日期（您通用WP设定中的）。"
+
+#: cforms-help.php:1207
+msgid "Inserts the time of form submission (per your general WP settings)."
+msgstr "插入表单提交的时间（您通用WP设定中的）。"
+
+#: cforms-help.php:1211
+msgid "Inserts visitor IP address."
+msgstr "插入访客IP地址。"
+
+#: cforms-help.php:1215
+msgid ""
+"Inserts a unique and referenceable form ID (provided that DB Tracking is "
+"enabled!)"
+msgstr "插入一个独特的可引用表单ID（如果DB跟踪启用的话会提供这个！）"
+
+#: cforms-help.php:1219
+msgid "Inserts the ID of the currently logged-in user."
+msgstr "插入当前登录的用户的ID。"
+
+#: cforms-help.php:1223
+msgid "Inserts the Name of the currently logged-in user."
+msgstr "插入当前登录的用户的名字。"
+
+#: cforms-help.php:1227
+msgid "Inserts the Email Address of the currently logged-in user."
+msgstr "插入当前登录的用户的Email地址。"
+
+#: cforms-help.php:1231
+msgid "Inserts the First Name of the currently logged-in user."
+msgstr "插入当前登录的用户的名字。"
+
+#: cforms-help.php:1235
+msgid "Inserts the Last Name of the currently logged-in user."
+msgstr "插入当前登录的用户的名字。"
+
+#: cforms-help.php:1239
+msgid "Special:"
+msgstr "特殊："
+
+#: cforms-help.php:1240
+msgid "A single %s (period) on a line inserts a blank line."
+msgstr "单个的%s（句号）插入一个空行。"
+
+#: cforms-help.php:1248
+msgid "Predefined variables for Tell-A-Friend forms:"
+msgstr "Tell-A-Friend表单的预定义变量："
+
+#: cforms-help.php:1252
+msgid "Inserts the URL of the WP post/page."
+msgstr "插入WP日志或者页面的URL。"
+
+#: cforms-help.php:1256
+msgid "Inserts the Author's name (<em>Nickname</em>)."
+msgstr "插入作者的名字（<em>昵称</em>）。"
+
+#: cforms-help.php:1260
+msgid "Inserts the WP post or page title."
+msgstr "插入WP日志或者页面的标题。"
+
+#: cforms-help.php:1264
+msgid "Inserts the WP post or page excerpt."
+msgstr "插入WP日志或者页面的摘要。"
+
+#: cforms-help.php:1273
+msgid "Custom variables (referencing input fields):"
+msgstr "自定义变量（引用输入域）："
+
+#: cforms-help.php:1278
+msgid ""
+"Alternatively to the cforms predefined variables, you can also reference "
+"data of any of your form's input fields by one of the 3 ways described below."
+msgstr ""
+"除了cforms预定义的变量，您还可以使用以下3中方式来引用表单输入域的数据。"
+
+#: cforms-help.php:1282
+msgid "field label"
+msgstr "field label"
+
+#: cforms-help.php:1283
+msgid ""
+"With <em>field label</em> being the <u>exact</u> field label as it is being "
+"tracked and sent in the admin email!"
+msgstr "无论是跟踪还是发送邮件给管理员，<em>field label</em>就是精确的域标签！"
+
+#: cforms-help.php:1286
+msgid "XYZ"
+msgstr "XYZ"
+
+#: cforms-help.php:1287
+msgid ""
+"In case you're using the <u>custom input field NAMES &amp; ID's</u>, the "
+"reference is the <u>id:</u> of the field."
+msgstr ""
+"如果您使用<u>自定义域的NAME或者ID属性</u>，引用方式就是域的<u>id:</u>。"
+
+#: cforms-help.php:1291
+msgid ""
+"With <em>NN</em> being the position of the field on the form configuration "
+"page."
+msgstr "<em>NN</em>指的是域在表单配置页面的顺序号。"
+
+#: cforms-help.php:1297
+msgid "Suppose this is the input field definition string: %sYour Website%s"
+msgstr "假设这是一个输入域的定义变量：%sYour Website%s"
+
+#: cforms-help.php:1298
+msgid "The corresponding variables would be:"
+msgstr "对应的变量为："
+
+#: cforms-help.php:1299
+msgid ""
+"%1$s{Your Website}%2$s , %1$s{homepage}%2$s, or %1$s%3$s%2$s (assuming it is "
+"on the 4th position) respectively."
+msgstr ""
+"3中引用方式分别为%1$s{Your Website}%2$s，%1$s{homepage}%2$s，或者%1$s%3$s"
+"%2$s （假设它在第四个位置）。"
+
+#: cforms-help.php:1309
+msgid "Important!"
+msgstr "重要："
+
+#: cforms-help.php:1309
+msgid "Custom variables in MULTI-PAGE forms:"
+msgstr ""
+
+#: cforms-help.php:1314
+msgid ""
+"Referencing form values in multi-page forms require specification of the "
+"actual form the field is on, eg. {%scf_form6_%sYour Name} would reference "
+"the field labeled \"Your Name\" on form #6."
+msgstr ""
+
+#: cforms-help.php:1323
+msgid ""
+"If you are using multiple input fields with <strong>the same</strong> "
+"recorded field label (you can always check the \"Tracking\" menu tab for how "
+"the fields are stored), e.g:"
+msgstr ""
+"如果您使用的多项输入域有 <strong>相同的</strong> 域标签（您可以在“跟踪”菜单里"
+"面检查这些域是如何存储的），如："
+
+#: cforms-help.php:1331
+msgid ""
+"Results in the first field labeled %1$s to be addressed with %2$s. The "
+"second instance of %1$s can be addressed by %3$s, and so on..."
+msgstr "第一个标记%1$s的标签被标记为%2$s。第二个%1$s被标记为%3$s，以此类推……"
+
+#: cforms-help.php:1338
+msgid ""
+"Here is an example for a simple <a href=\"%s\" %s>Admin HTML message</a> "
+"<em>(you can copy and paste the below code or change to your liking)</em>:"
+msgstr ""
+"这里是一个<a href=\"%s\" %s>管理员HTML消息</a>的简单例子<em>（您可以拷贝并黏"
+"贴下列的代码或者改变成您喜欢的样子）</em>："
+
+#: cforms-help.php:1343 cforms-help.php:1367 cforms-help.php:1393
+msgid "HTML code:"
+msgstr "HTML 代码："
+
+#: cforms-help.php:1344
+msgid "a form has been submitted on %s, via: %s [IP %s]"
+msgstr "有一个表单于%s提交，来自 %s [IP %s]"
+
+#: cforms-help.php:1349 cforms-help.php:1373 cforms-help.php:1402
+msgid "Output:"
+msgstr "输出："
+
+#: cforms-help.php:1350
+msgid ""
+"a form has been submitted on June 13, 2007 @ 9:38 pm, via: / [IP "
+"184.153.91.231]"
+msgstr "有一个表单于2007年6月13日提交，来自 / [IP 184.153.91.231]"
+
+#: cforms-help.php:1355
+msgid ""
+"With this limited message you'd want to enable the option \"Include pre "
+"formatted form data table in HTML part\""
+msgstr ""
+"这里的信息非常有限，您可能想要启用选项“在HTML部分包含预格式化话的表单数据表"
+"格”"
+
+#: cforms-help.php:1362
+msgid ""
+"Here is another example for a more detailed <a href=\"%s\" %s>Admin HTML "
+"message</a>:"
+msgstr "这里另一个更详细的<a href=\"%s\" %s>管理员HTML消息</a>的例子："
+
+#: cforms-help.php:1368
+msgid ""
+"{Your Name} just submitted {Form Name}. You can get in touch with him/her "
+"via &lt;a href=\"mailto:{Email}\"&gt;{Email}&lt;/a&gt; and might want to "
+"check out his/her web page at &lt;a href=\"{Website}\"&gt;{Website}&lt;/a&gt;"
+msgstr ""
+"{Your Name} 刚刚提交了{Form Name}。您可以与他或她联系，其Email为&lt;a href="
+"\"mailto:{Email}\"&gt;{Email}&lt;/a&gt; ，或者，您可以在这里查看他或她的网页"
+"&lt;a href=\"{Website}\"&gt;{Website}&lt;/a&gt;"
+
+#: cforms-help.php:1368 cforms-help.php:1375
+msgid "The message is:"
+msgstr "消息的内容是"
+
+#: cforms-help.php:1368
+msgid "{Message}"
+msgstr "{Message}"
+
+#: cforms-help.php:1374
+msgid ""
+"John Doe just submitted MY NEW FORM. You can get in touch with him/her via "
+"<a href=\"mailto:#\">john.doe@doe.com</a> and might want to check out his/"
+"her web page at <a href=\"#\">http://website.com</a>"
+msgstr ""
+"John Doe刚刚提交了MY NEW FORM。您可以与他或她联系，其Email为<a href=\"mailto:"
+"#\">john.doe@doe.com</a> ，或者，您可以在这里查看他或她的网页<a href=\"#"
+"\">http://website.com</a>"
+
+#: cforms-help.php:1376
+msgid "Hey there! Just wanted to get in touch. Give me a ring at 555-..."
+msgstr "嘿！只是想要跟你联系一下。给我打电话吧，我的号码是555-……"
+
+#: cforms-help.php:1381
+msgid ""
+"With this more detailed message you can disable the option \"Include pre "
+"formatted form data table in HTML part\" since you already have all fields "
+"covered in the actual message/header."
+msgstr ""
+"这个消息要详细得多，您可以禁用选项“在HTML部分包含预格式化的表单数据表格”，因"
+"为您已经在消息的内容部分包含了所有应有的域。"
+
+#: cforms-help.php:1388
+msgid ""
+"And a final example for a <a href=\"%s\" %s>HTML auto confirmation message</"
+"a>:"
+msgstr "最后一个<a href=\"%s\" %s>HTML自动确认消息</a>的范例："
+
+#: cforms-help.php:1394 cforms-help.php:1403
+msgid "auto confirmation message"
+msgstr "自动确认消息"
+
+#: cforms-help.php:1395 cforms-options.php:122 cforms-options.php:123
+#: lib_activate.php:81 lib_activate.php:82 lib_options_add.php:46
+#: lib_options_add.php:48
+msgid "Dear {Your Name},"
+msgstr "亲爱的 {Your Name}，"
+
+#: cforms-help.php:1396 cforms-help.php:1405 cforms-options.php:122
+#: cforms-options.php:123 lib_activate.php:81 lib_activate.php:82
+#: lib_options_add.php:46 lib_options_add.php:48
+msgid "Thank you for your note!"
+msgstr "谢谢你寄来的便条！"
+
+#: cforms-help.php:1397 cforms-help.php:1406 cforms-options.php:122
+#: cforms-options.php:123 lib_activate.php:81 lib_activate.php:82
+#: lib_options_add.php:46 lib_options_add.php:48
+msgid "We will get back to you as soon as possible."
+msgstr "我们会尽快给您回信的。"
+
+#: cforms-help.php:1404
+msgid "Dear John Doe,"
+msgstr "亲爱的约翰·多伊（译注：英文里的John Doe，代表“某人”），"
+
+#: cforms-help.php:1418
+msgid ""
+"Multi-page-forms support chaining of several forms and gather user input "
+"across all linked forms. Inserting a multi page form is easy, simply insert "
+"the %s first form %s of the series into your post or page."
+msgstr ""
+"多页表单支持将多个表单连接起来，并且能够从所有链接起来的表单中收集用户输入。"
+"插入一个多页表单非常容易，只需要插入系列表单中的%s第一个表单%s到您的页面或者"
+"日志中即可。"
+
+#: cforms-help.php:1423
+msgid "Multi-part/-page form features:"
+msgstr "多部分/多页 表单特性："
+
+#: cforms-help.php:1426
+msgid "Defining first, next and last form via configuration"
+msgstr "通过配置定义第一个，下一个和最后一个表单"
+
+#: cforms-help.php:1429
+msgid ""
+"Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgstr "通过my-functions.php.txt在运行时（动态地）重新定义\"下张表单\" "
+
+#: cforms-help.php:1432
+msgid "Optionally send/suppress partial admin emails on a per form basis"
+msgstr "可选的 发送/禁止发送 部分的管理邮件"
+
+#: cforms-help.php:1435
+msgid "A form reset button"
+msgstr "表单重置按钮"
+
+#: cforms-help.php:1438
+msgid "A form back button"
+msgstr "表单返回按钮"
+
+#: cforms-help.php:1444
+msgid "Example (eg. using 3 forms):"
+msgstr "范例（使用3个表单）："
+
+#: cforms-help.php:1447
+msgid "form 1,2,3:"
+msgstr "表单 1，2，3："
+
+#: cforms-help.php:1448
+msgid "select main check box to enable as multi-part forms"
+msgstr "选择主要的复选框来启用多部分表单"
+
+#: cforms-help.php:1451
+msgid "form 1:"
+msgstr "表单1："
+
+#: cforms-help.php:1452 cforms-help.php:1456
+msgid "(a) check \"Suppress admin email..\""
+msgstr "(a) 勾选“禁止管理邮件……”"
+
+#: cforms-help.php:1452
+msgid "(b) check \"This is the first form..\""
+msgstr "(b) 勾选“这是第一张表单……”"
+
+#: cforms-help.php:1452
+msgid "(c) select \"form 2\" as next form"
+msgstr "(c) 选择“表单2”作为下一张表单"
+
+#: cforms-help.php:1455
+msgid "form 2:"
+msgstr "表单2："
+
+#: cforms-help.php:1456
+msgid "(b) select \"form 3\" as next form"
+msgstr "(b) 选择“表单3”作为下一张表单"
+
+#: cforms-help.php:1459
+msgid "form 3:"
+msgstr "表单3："
+
+#: cforms-help.php:1460
+msgid "(a) make sure to not! have \"Suppress admin email..\" selected"
+msgstr "(a) 请确定您<strong>没有</strong>勾选“禁止管理邮件……”"
+
+#: cforms-help.php:1460
+msgid "(b) select \"last form\" to stop further routing"
+msgstr "(b) 选择“最后的表单”来停止后续的跳转"
+
+#: cforms-help.php:1463
+msgid "Optionally add Reset &amp; Back buttons where appropriate."
+msgstr "可选地添加重置按钮&amp;返回按钮到合适的位置。"
+
+#: cforms-help.php:1466
+msgid ""
+"Further, it makes sense to change \"Submit Button\" text (to e.g. \"Continue"
+"\") &amp; the \"success message\" to rather announce the next form."
+msgstr ""
+"此外，您可以将“提交按钮”和“成功提示消息”等改成恰当的文字（比如“继续下张表"
+"单”）来提示用户还有后面一张表单。"
+
+#: cforms-help.php:1470
+msgid "Important Notes:"
+msgstr "重要提示："
+
+#: cforms-help.php:1472
+msgid ""
+"Accessing %1$s {custom variables} %2$s in the final form differs from how "
+"you would reference these in individual forms. Use the %1$s mail() %2$s "
+"example in my-functions.php.txt to examine the user data array; e.g. "
+"%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
+"the series)."
+msgstr ""
+"在最后一张表单中访问%1$s {自定义变量} %2$s与您在单独的表单中访问它们不同。使"
+"用my-functions.php.txt中的%1$s mail() %2$s 函数来做个检查用户数组的例子；"
+"如，%1$s{Email}%2$s 应该变成 %1$s{cf_form_Email}%2$s （对于此系列的第一张表单"
+"来说）。"
+
+#: cforms-help.php:1473
+msgid ""
+"%1s File attachments %2s will not be included in the admin email unless the "
+"upload fields are on the last form. However, they will be stored and tracked."
+msgstr ""
+"%1s 文件附件 %2s 将不会包含在管理邮件中被发送，除非上传域包含在最后一张表单"
+"中。但是，它们确实会被存储并且会被数据库跟踪到。"
+
+#: cforms-help.php:1474
+msgid ""
+"Once the multi page form support is enabled, %1$sAjax is being disabled%2$s "
+"for this form."
+msgstr "一旦启用了多页表单支持，这张表单上的%1$sAjax将被禁用%2$s。"
+
+#: cforms-help.php:1481
+msgid "Styling Your Forms (CSS theme files)"
+msgstr "给您的表单添加样式（CSS主题文件）"
+
+#: cforms-help.php:1485
+msgid ""
+"Please see the <a href=\"%s\">Styling page</a> for theme selection and "
+"editing options."
+msgstr "请到<a href=\"%s\">样式</a>页面选择主题并编辑选项。"
+
+#: cforms-help.php:1486
+msgid ""
+"cforms comes with a few theme examples (some of them may require adjustments "
+"to work with <strong>your</strong> forms!) but you can of course create your "
+"own theme file -based on the default <strong>cforms.css</strong> file- and "
+"put it in the %s directory."
+msgstr ""
+"cforms已经带有了一些主题范例（它们中有一些可能需要调整一下才能适用于<strong>"
+"您的</strong>表单！） ，您当然可以基于默认的<strong>cforms.css</strong>文件来"
+"创建您自己的主题文件，放在%s目录下即可。"
+
+#: cforms-help.php:1488
+msgid ""
+"Your form <strong>doesn't</strong> look like the preview image, or your "
+"individual changes don't take effect, check your global WP theme CSS! It may "
+"overwrite some or many cforms CSS declarations. If you don't know how to "
+"trouble shoot, take a look at the Firefox extension \"Firebug\" - an "
+"excellent CSS troubleshooting tool!"
+msgstr ""
+"如果您的表单看起来<strong>不像</strong>预览图片，或者您的自定义没有效果，请检"
+"查您的全局WP主题的CSS！它可能覆盖了一些cforms的CSS定义。如果您不知道怎么解决"
+"问题，请使用Firefox的“Firebug”插件（一个杰出的CSS调试工具！）。"
+
+#: cforms-help.php:1497
+msgid ""
+"For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s "
+"and comment section on the plugin homepage."
+msgstr ""
+"要得到最新的信息，请首先检查%sFAQs%s和%scforms论坛%s还有插件页面的评论部分。"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "A new submission (form: \"{Form Name}\")"
+msgstr "一个新的提交（来自：“{Form Name}”）"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "Submitted on: {Date}"
+msgstr "提交于：{Date}"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "Via: {Page}"
+msgstr "来自页面： {Page}"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "By {IP} (visitor IP)"
+msgstr "由 {IP} （访客IP）"
+
+#: cforms-options.php:118 lib_activate.php:90 lib_options_add.php:54
+msgid "A form has been submitted on {Date}, via: {Page} [IP {IP}]"
+msgstr "一个表单提交于{Date}，通过页面：{Page} [IP {IP}]"
+
+#: cforms-options.php:123 lib_activate.php:82 lib_options_add.php:48
+msgid "This is an automatic confirmation message."
+msgstr "这是一条自动确认信息。"
+
+#: cforms-options.php:189 lib_functions.php:128
+msgid "Form Settings"
+msgstr "表单设置"
+
+#: cforms-options.php:192
+msgid "Navigate to your other forms."
+msgstr "跳转到您其他的表单。"
+
+#: cforms-options.php:195
+msgid "Navigate to"
+msgstr ""
+
+#: cforms-options.php:196
+msgid "Go"
+msgstr "Go"
+
+#: cforms-options.php:212
+msgid ""
+"<strong>cforms</strong> allows you <a href=\"%s\" %s>to insert</a> one or "
+"more custom designed contact forms, which on submission (preferably via "
+"Ajax) will send the visitor info via email and optionally stores the "
+"feedback in the database."
+msgstr ""
+"<strong>cforms</strong>允许您<a href=\"%s\" %s>插入</a>一个或者多个自定义表"
+"单，在表单提交的时候（更好的是通过Ajax的方式），访客信息会通过email发送给您，"
+"是否将这样的反馈存入到数据库是可选的。"
+
+#: cforms-options.php:213
+msgid ""
+"<a href=\"%s\" %s>Here</a> is a quick step by step quide to get you up and "
+"running quickly."
+msgstr ""
+"<a href=\"%s\" %s>这里</a>有一个简明的step by step的指南，将帮助您快速上手。"
+
+#: cforms-options.php:220
+msgid ""
+"You may give each form an optional name to better identify incoming emails."
+msgstr "您可以给每个表单设定一个（可选的）名字来更好的在收到的邮件中识别它们。"
+
+#: cforms-options.php:221 cforms-options.php:222
+msgid "Enables or disables Ajax support for this form."
+msgstr "启用或禁用此表单的Ajax支持。"
+
+#: cforms-options.php:222
+msgid "Ajax enabled"
+msgstr "启用Ajax"
+
+#: cforms-options.php:230
+msgid ""
+"Please see the <strong>Help!</strong> section for information on how to "
+"deploy the various <a href=\"%s\" %s>supported fields</a>,"
+msgstr ""
+"通过查看<strong>帮助！</strong>您可以获得以下几个方面的详细信息：“怎样使用不"
+"同的<a href=\"%s\" %s>表单域</a>”，"
+
+#: cforms-options.php:231
+msgid "set up forms using <a href=\"%s\" %s>FIELDSETS</a>,"
+msgstr "“怎样使用<a href=\"%s\" %s>FIELDSETS</a>来布置表单”，"
+
+#: cforms-options.php:232
+msgid ""
+"use <a href=\"%s\" %s>default values</a> &amp; <a href=\"%s\" %s>regular "
+"expressions</a> for single &amp; multi-line fields. "
+msgstr ""
+"“怎样在单行或者多行表单域上使用<a href=\"%s\" %s>默认值</a>和<a href=\"%s\" "
+"%s>正则表达式</a>”。"
+
+#: cforms-options.php:233
+msgid ""
+"Besides the generic success &amp; failure messages below, you can add <a "
+"href=\"%s\" %s>custom error messages</a>."
+msgstr ""
+"除了下面所列的一般的成功或者失败消息，您还可以添加<a href=\"%s\" %s>自定义错"
+"误信息</a>。"
+
+#: cforms-options.php:237
+msgid "Please save the new order of fields (<em>Update Settings</em>)!"
+msgstr "请保存新的表单域排列顺序 （<em>更新设置</em>）！"
+
+#: cforms-options.php:239
+msgid "Can be a simple label or a more complex expression. See Help!"
+msgstr "可以是一个简单的标签，也可以是复杂的表达式。请看帮助！"
+
+#: cforms-options.php:239
+msgid "Field Name"
+msgstr "表单域名称"
+
+#: cforms-options.php:240
+msgid "Pick one of the supported input field types."
+msgstr "选择一个支持的输入域类型。"
+
+#: cforms-options.php:240
+msgid "Type"
+msgstr "类型"
+
+#: cforms-options.php:241
+msgid "Makes an input field required for proper form validation."
+msgstr "设定该项为必填项。"
+
+#: cforms-options.php:241
+msgid "required"
+msgstr "必填"
+
+#: cforms-options.php:242
+msgid "Makes the field required and verifies the email address."
+msgstr "设定该项为必填项，并且验证email地址格式是否有效。"
+
+#: cforms-options.php:242
+msgid "e-mail"
+msgstr "e-mail"
+
+#: cforms-options.php:243
+msgid "Clears the field (default value) upon focus."
+msgstr "当获得焦点的时候，清空该表单域（清除默认值）。"
+
+#: cforms-options.php:243
+msgid "auto-clear"
+msgstr "自动清除"
+
+#: cforms-options.php:244
+msgid "Grey's out a form field (field will be completely disabled)."
+msgstr "使一个表单域变成灰色（表单域会被完全禁用）。"
+
+#: cforms-options.php:244 cforms-options.php:424
+msgid "disabled"
+msgstr "禁用"
+
+#: cforms-options.php:245
+msgid "Form field will be readonly!"
+msgstr "表单域只读！"
+
+#: cforms-options.php:245 cforms-options.php:430
+msgid "read-only"
+msgstr "只读"
+
+#: cforms-options.php:280 cforms-options.php:298
+msgid "New Field"
+msgstr "新建域"
+
+#: cforms-options.php:325
+msgid "Drag me"
+msgstr "拖动我"
+
+#: cforms-options.php:327
+msgid "Please enter field definition"
+msgstr "请输入域定义"
+
+#: cforms-options.php:327
+msgid "Edit"
+msgstr "编辑"
+
+#: cforms-options.php:327
+msgid "Pick a field type"
+msgstr "选择一个域类型"
+
+#: cforms-options.php:329
+msgid "----- General form fields ----"
+msgstr ""
+
+#: cforms-options.php:330
+msgid "Begin Fieldset"
+msgstr "表单域集合开始"
+
+#: cforms-options.php:331
+msgid "End Fieldset"
+msgstr "关闭Fieldset"
+
+#: cforms-options.php:332
+msgid "Text only (no input)"
+msgstr "仅文本（不能输入）"
+
+#: cforms-options.php:333
+msgid "Single line of text"
+msgstr "单行文本"
+
+#: cforms-options.php:334
+msgid "Multiple lines of text"
+msgstr "多行文本"
+
+#: cforms-options.php:335
+msgid "Check Box"
+msgstr "复选框"
+
+#: cforms-options.php:336
+msgid "Check Box Group"
+msgstr "复选框组"
+
+#: cforms-options.php:337
+msgid "Radio Buttons"
+msgstr "单选按钮"
+
+#: cforms-options.php:338
+msgid "Select Box"
+msgstr "下拉列表框"
+
+#: cforms-options.php:339
+msgid "Multi Select Box"
+msgstr "多项选择下拉列表框"
+
+#: cforms-options.php:340
+msgid "File Upload Box"
+msgstr "文件上传框"
+
+#: cforms-options.php:342
+msgid "Date Entry/Dialog"
+msgstr "日期项/对话框"
+
+#: cforms-options.php:343
+msgid "Password Field"
+msgstr "密码域"
+
+#: cforms-options.php:344
+msgid "Hidden Field"
+msgstr "隐藏域"
+
+#: cforms-options.php:347
+msgid "--------- Special ------------"
+msgstr "--------- 特殊项 ------------"
+
+#: cforms-options.php:348
+msgid "CC: option for user"
+msgstr "CC：用户才有的选项"
+
+#: cforms-options.php:349
+msgid "Multiple Recipients"
+msgstr "多收信人"
+
+#: cforms-options.php:350
+msgid "Captcha verification (image)"
+msgstr "Captcha验证码（图片）"
+
+#: cforms-options.php:370
+msgid "----- T-A-F form fields ------"
+msgstr "----- T-A-F 表单域 ------"
+
+#: cforms-options.php:374
+msgid "T-A-F * Friend's Email"
+msgstr "T-A-F * 朋友的邮件"
+
+#: cforms-options.php:378
+msgid "--- WP comment form fields ---"
+msgstr "--- WP评论表单域 ---"
+
+#: cforms-options.php:386
+msgid "--- HTML5 form fields ---"
+msgstr ""
+
+#: cforms-options.php:387
+msgid "Color Field"
+msgstr ""
+
+#: cforms-options.php:388
+msgid "Date Field"
+msgstr ""
+
+#: cforms-options.php:389
+msgid "Date/Time Field"
+msgstr ""
+
+#: cforms-options.php:390
+msgid "Date/Time (local) Field"
+msgstr ""
+
+#: cforms-options.php:391
+msgid "Email Field"
+msgstr ""
+
+#: cforms-options.php:392
+msgid "Month Field"
+msgstr ""
+
+#: cforms-options.php:393
+msgid "Number Field"
+msgstr ""
+
+#: cforms-options.php:394
+msgid "Range Field"
+msgstr ""
+
+#: cforms-options.php:395
+msgid "Search Field"
+msgstr ""
+
+#: cforms-options.php:396
+msgid "Telephone Number Field"
+msgstr ""
+
+#: cforms-options.php:397
+msgid "Time Field"
+msgstr ""
+
+#: cforms-options.php:398
+msgid "URL Field"
+msgstr ""
+
+#: cforms-options.php:399
+msgid "Week Field"
+msgstr ""
+
+#: cforms-options.php:403
+msgid "Remove input field"
+msgstr "移除输入域"
+
+#: cforms-options.php:406
+msgid "input required"
+msgstr "必须输入"
+
+#: cforms-options.php:412
+msgid "email required"
+msgstr "必须填写email"
+
+#: cforms-options.php:418
+msgid "clear field"
+msgstr "清除域"
+
+#: cforms-options.php:446
+msgid "Add more input field(s)"
+msgstr "添加更多输入域"
+
+#: cforms-options.php:446
+msgid "Add"
+msgstr "添加"
+
+#: cforms-options.php:447
+msgid "new field(s) @ position"
+msgstr "新域 @ 位置"
+
+#: cforms-options.php:466
+msgid "File Upload Settings"
+msgstr "文件上传设定"
+
+#: cforms-options.php:472
+msgid ""
+"You may also want to verify the global, file upload specific  <a href=\"%s\" "
+"%s>error messages</a>."
+msgstr "您可能还想验证全局的，文件上传<a href=\"%s\" %s>错误信息</a>。"
+
+#: cforms-options.php:480
+msgid ""
+"Can't find the specified <strong>Upload Directory</strong> ! Please verify "
+"that it exists!"
+msgstr "没有找到指定的<strong>上传目录</strong>！请验证它是否存在！"
+
+#: cforms-options.php:485
+msgid "Upload directory (absolute path)"
+msgstr "直接上传（绝对路径）"
+
+#: cforms-options.php:486
+msgid "e.g. /home/user/www/wp-content/my-upload-dir"
+msgstr "例如：/home/user/www/wp-content/my-upload-dir"
+
+#: cforms-options.php:490
+msgid "Upload directory URL (relative path/URL)"
+msgstr "上传目录URL（相对路径/URL）"
+
+#: cforms-options.php:491
+msgid "e.g. /wp-content/my-upload-dir"
+msgstr "例如： /wp-content/my-upload-dir"
+
+#: cforms-options.php:495
+msgid "Disable noid- (tracking ID) prefix"
+msgstr ""
+
+#: cforms-options.php:500
+msgid "Allowed file extensions"
+msgstr "允许的文件扩展名"
+
+#: cforms-options.php:501
+msgid "[empty=no files are allowed]"
+msgstr ""
+
+#: cforms-options.php:505
+msgid "Maximum file size<br />in kilobyte"
+msgstr "最大文件尺寸<br />单位：千字节（KB）"
+
+#: cforms-options.php:510
+msgid "Do not email attachments"
+msgstr "不要使用Email发送附件"
+
+#: cforms-options.php:511
+msgid ""
+"<u>Note</u>: Attachments are stored on the server &amp; can be accessed via "
+"the <a href=\"%s\" %s>cforms tracking</a> tables."
+msgstr ""
+"<u>注意</u>：附件会被存储在服务器上，并且可以通过<a href=\"%s\" %s>cforms跟踪"
+"</a>表来访问。"
+
+#: cforms-options.php:521
+msgid "Messages, Text and Button Label"
+msgstr "消息，文本和按钮上的文字"
+
+#: cforms-options.php:525
+msgid ""
+"These are the messages displayed to the user on successful (or failed) form "
+"submission. These messages are form specific, a general message for entering "
+"a wrong <strong>visitor verification code</strong> can be found <a href=\"%s"
+"\" %s>here</a>."
+msgstr ""
+"下列消息会当用户提交表单成功（或者失败）时显示。这些消息是每一个表单所特有"
+"的，对于<strong>访客验证码</strong>填写错误的消息提示这种通用的消息，在<a "
+"href=\"%s\" %s>这里</a>设定。"
+
+#: cforms-options.php:530
+msgid "Submit button text"
+msgstr "提交按钮上显示的文字"
+
+#: cforms-options.php:535
+msgid "Waiting message"
+msgstr "用户等待时显示的消息"
+
+#: cforms-options.php:539
+msgid "\"required\" label"
+msgstr "“必填”表单域的提示语"
+
+#: cforms-options.php:543
+msgid "\"email required\" label"
+msgstr "\"email必填\" 提示语"
+
+#: cforms-options.php:548
+msgid "<strong>Success message</strong><br />when form filled out correctly"
+msgstr "<strong>成功消息</strong><br />当表单填写正确时显示的消息"
+
+#: cforms-options.php:557
+msgid ""
+"<strong>Failure message</strong><br />when missing fields or wrong field<br /"
+">formats (regular expr.)"
+msgstr "<strong>失败消息</strong><br />当缺少域或域填写错误（正则判断）"
+
+#: cforms-options.php:565
+msgid "Show messages"
+msgstr "显示消息于"
+
+#: cforms-options.php:567
+msgid "Above form"
+msgstr "表单上方"
+
+#: cforms-options.php:568
+msgid "Below form"
+msgstr "表单底下"
+
+#: cforms-options.php:575
+msgid "Jump to Error"
+msgstr "焦点跳到错误处"
+
+#: cforms-options.php:577
+msgid "(Only Javascript)"
+msgstr "（启用javascript时生效）"
+
+#: cforms-options.php:581
+msgid "Fancy Error messages"
+msgstr "精美的错误消息"
+
+#: cforms-options.php:583
+msgid "Enhanced display of errors (see also new theme CSS classes)"
+msgstr "增强的错误显示（还可以查看新主题CSS类）"
+
+#: cforms-options.php:587
+msgid "Embedded Custom Error<br />Messages"
+msgstr "嵌入自定义错误消息"
+
+#: cforms-options.php:589
+msgid "Field specific error messages will be shown above input field"
+msgstr "域特定错误消息将被显示在输入域的上方"
+
+#: cforms-options.php:599
+msgid "Core Form Admin / Email Options"
+msgstr "核心表单管理/Email选项"
+
+#: cforms-options.php:603
+msgid ""
+"These settings determine basic cforms behaviour and the form email "
+"recipient(s). Both %s and %s formats are valid, but check if your mail "
+"server does accept the format of choice!"
+msgstr ""
+"这些设置决定了基本的cforms行为模式和表单邮件的接收者。%s和%s都是有效的格式，"
+"但是请检查你的邮件服务器，以确保确实能够接收你选择的格式。"
+
+#: cforms-options.php:604
+msgid ""
+"The default FROM: address is based on your blog's name and the WP default "
+"address. It can be changed, but I highly recommend you do not, as it may "
+"render the plugin useless. If you do change the FROM: address, triple check "
+"if all admin emails are being sent/received! "
+msgstr ""
+"默认的邮件“FROM:”地址基于你的博客名称和WP默认地址。这个地址可以修改，但是我强"
+"烈建议你不要修改，那样做可能会造成插件失效。如果你确实修改了“FROM:”地址，检查"
+"三次是否所有的管理邮件已经送出或者收到！"
+
+#: cforms-options.php:609
+msgid "Core options"
+msgstr "核心选项"
+
+#: cforms-options.php:611
+msgid ""
+"Disable %s multipart/form-data enctype %s, e.g. to enable salesforce.com"
+msgstr ""
+
+#: cforms-options.php:618
+msgid "%sDo not reset%s input fields after submission"
+msgstr "在表单提交后，%s不要重置%s表单输入域"
+
+#: cforms-options.php:625
+msgid "Show new entries on %sdashboard%s"
+msgstr "在%s管理首页%s显示新的条目"
+
+#: cforms-options.php:632
+msgid "%sExclude this form%s from database tracking"
+msgstr "%s排除此表单%s的数据库跟踪"
+
+#: cforms-options.php:638
+msgid "Use %scustom input field NAMES &amp; ID's%s"
+msgstr "使用%s自定义域的名称和ID%s"
+
+#: cforms-options.php:638 cforms-options.php:645
+msgid "Read note &raquo;"
+msgstr "阅读注意事项&raquo;"
+
+#: cforms-options.php:641
+msgid ""
+"This feature replaces the default NAMEs/IDs (e.g. <strong>cf_field_12</"
+"strong>) with <em>custom ones</em>, either derived from the field label you "
+"have provided or by specifically declaring it via <strong>[id:XYZ]</strong>,"
+"e.g. <em>Your Name[id:the-name]</em>. This will for instance help to feed "
+"data to third party systems (requiring certain input field names in the "
+"$_POST variable)."
+msgstr ""
+"这项特性使用<em>自定义的Name和ID</em>来替换默认的Name和ID（如，"
+"<strong>cf_field_12</strong>），自定义Name和ID可以从域标签中派生，也可以通过"
+"<strong>[id:XYZ]</strong>来明确指定，如，<em>Your Name[id:the-name]</em>。这"
+"项功能给 向第三方系统提供数据（在$_POST变量中，要求输入域使用确定的名称）带来"
+"了便利。"
+
+#: cforms-options.php:645
+msgid "%sExtra variables%s e.g. {Title}"
+msgstr "%s外部变量%s，如{Title}"
+
+#: cforms-options.php:648
+msgid ""
+"There are <a href=\"%s\" %s>three additional</a>, <em>predefined variables</"
+"em> that belong to the Tell-A-Friend feature but can be enabled here without "
+"actually turning on T-A-F."
+msgstr ""
+"有<a href=\"%s\" %s>三个额外的</a>，<em>预定义的变量</em>本属于Tell-A-Friend"
+"插件的特性，但是在这里，不需要开启T-A-F就可以使用它们。"
+
+#: cforms-options.php:648
+msgid ""
+"This will add two more hidden fields to your form to ensure that all data is "
+"available also in AJAX mode."
+msgstr ""
+"开启这个选项，将在你的表单中添加两个额外的隐藏域，以确保所有的数据在AJAX模式"
+"下也是可用的。"
+
+#: cforms-options.php:653
+msgid "%sHide form%s after successful submission"
+msgstr "在表单成功提交后%s隐藏表单%s "
+
+#: cforms-options.php:660
+msgid "Submission Limit"
+msgstr "提交限制"
+
+#: cforms-options.php:661
+msgid ""
+"<u>total</u> # of submissions accepted [<strong>empty or 0 (zero) = off</"
+"strong>] (tracking must be enabled!)"
+msgstr ""
+"<u>总数</u> # 次提交已经接受[<strong>空或0（零）=关闭</strong>]（必须启用跟"
+"踪！）"
+
+#: cforms-options.php:665
+msgid "Start Date"
+msgstr "起始日期"
+
+#: cforms-options.php:669 cforms-options.php:690
+msgid "HH:MM"
+msgstr ""
+
+#: cforms-options.php:669 cforms-options.php:690
+msgid "Time entry."
+msgstr "时间项。"
+
+#: cforms-options.php:675
+msgid "The form will be available in "
+msgstr "表单将可用于"
+
+#: cforms-options.php:677
+msgid "The form is available now."
+msgstr "表单现在已经可用"
+
+#: cforms-options.php:686
+msgid "End Date"
+msgstr "中止日期"
+
+#: cforms-options.php:695
+msgid "The form will be available for another "
+msgstr "表单将可用，再过"
+
+#: cforms-options.php:697
+msgid "The form is not available anymore."
+msgstr "表单现在已经不可用。"
+
+#: cforms-options.php:706
+msgid "Limit text"
+msgstr "限制文本"
+
+#: cforms-options.php:714
+msgid "<strong>Redirect</strong><br />options:"
+msgstr "<strong>重定向</strong>选项："
+
+#: cforms-options.php:716
+msgid "Enable alternative success page (redirect)"
+msgstr "启用另外的成功提示页面（重定向）"
+
+#: cforms-options.php:724
+msgid "<strong>Send form data</strong><br /> to an alternative page:"
+msgstr "<strong>发送表单数据</strong><br />到另一个页面："
+
+#: cforms-options.php:726
+msgid "Enable alternative form action!"
+msgstr "启用替代表单action！"
+
+#: cforms-options.php:727 cforms-options.php:737 cforms-options.php:919
+#: cforms-options.php:1086
+msgid "Please read note &raquo;"
+msgstr "请阅读注意事项&raquo;"
+
+#: cforms-options.php:731
+msgid ""
+"If you enable an alternative <strong>form action</strong> you <u>will loose "
+"any cforms application logic</u> (spam security, field validation, DB "
+"tracking etc.) in non-ajax mode! This setting is really only for developers "
+"that require additional capabilities around forwarding of form data and will "
+"turn cforms into a front-end only, a \"form builder\" so to speak."
+msgstr ""
+"如果您启用了替代的<strong>表单action</strong>您将会<u>脱离cforms应用程序的逻"
+"辑</u>（如防垃圾，域验证，DB跟踪等等），并且也不能使用ajax模式！这项设定仅仅"
+"是为那些需要额外的功能，并且需要转发表单数据把cforms变成一个前端的开发者准备"
+"的，这项设定把cforms当成了一个“表单创建器”来使用。"
+
+#: cforms-options.php:736
+msgid "RSS feed"
+msgstr "RSS Feed"
+
+#: cforms-options.php:737
+msgid "Enable RSS feed to track new submissions"
+msgstr "启用一个RSS供稿来追踪新的表单提交"
+
+#: cforms-options.php:740
+msgid ""
+"For the RSS feed to work you must have %sDatabase Tracking%s turned on under "
+"<em>Global-Settings</em>! In order to pick &amp; include input fields in "
+"your feed your Tracking page must show at least one record for reference."
+msgstr ""
+
+#: cforms-options.php:759
+msgid "Form fields included in feed:"
+msgstr "表单域包含在feed中："
+
+#: cforms-options.php:792
+msgid "Admin Email Message Options"
+msgstr "管理邮件消息选项"
+
+#: cforms-options.php:796
+msgid ""
+"Generally, emails sent to the admin and the submitting user can be both in "
+"plain text and HTML. The TXT part <strong>is required</strong>, HTML is "
+"<strong>optional</strong>."
+msgstr ""
+"通常来说，寄给管理员和提交用户的邮件既可以是普通文本，也可以是HTML格式的。TXT"
+"部分是<strong>必须的</strong>， HTML 是 <strong>可选的</strong>。"
+
+#: cforms-options.php:797
+msgid ""
+"Below you'll find the settings for both the <strong>TXT part</strong> of the "
+"admin email as well as the <strong>optional HTML part</strong> of the "
+"message. Both areas permit the use of any of the <strong>pre-defined "
+"variables</strong> or <strong>data from input fields</strong>. <a href=\"%s"
+"\" %s>Please see the documentation on the HELP page</a> (including HTML "
+"message examples!)."
+msgstr ""
+"下面，您将看到管理员邮件的<strong>TXT文本</strong>部分和<strong>可选的HTML部"
+"分</strong>。两个部分都可以使用<strong>预定义的变量</strong>或者<strong>输入"
+"域的数据</strong>。<a href=\"%s\" %s>请查看帮助页面的文档</a> （包括HTML格式"
+"的邮件范例）。"
+
+#: cforms-options.php:802
+msgid "%sTurn off%s admin email"
+msgstr "%s关闭%s管理邮件"
+
+#: cforms-options.php:809
+msgid "%sExclude empty fields%s from admin email"
+msgstr ""
+
+#: cforms-options.php:815
+msgid "FROM: email address"
+msgstr "FROM: email 地址"
+
+#: cforms-options.php:820
+msgid "Admin email address(es)"
+msgstr "管理员邮件地址"
+
+#: cforms-options.php:821
+msgid "More than one \"<strong>form admin</strong>\"? &raquo;"
+msgstr "“<strong>表单管理员</strong>”多于一个？ &raquo;"
+
+#: cforms-options.php:824
+msgid ""
+"Simply add additional email addresses separated by a <strong style=\"color:"
+"red\">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the "
+"visitor to choose from any of these per select box, you need to add a "
+"\"<code>Multiple Recipients</code>\" input field <a href=\"#anchorfields"
+"\">above</a> (see the HELP section for <a href=\"%s\" %s>more details</a>. "
+"If <strong>no</strong> \"Multiple Recipients\" input field is defined above, "
+"the submitted form data will go out to <strong>every address listed</strong>!"
+msgstr ""
+"直接添加额外的email地址，使用<strong style=\"color:red\">半角逗号</strong>分"
+"隔。&nbsp; <em><u>注意：</u></em> &nbsp; 如果你希望访客能够从下拉列表中选择这"
+"里预设的email地址之一，你需要添加一个与这些email地址一一对应的“<code>多收信人"
+"</code>”输入域，<a href=\"#anchorfields\">上面</a>的列表中就有（查看帮助来了"
+"解有关如何正确填写<em>域名称</em>的<a href=\"%s\" %s>详细内容</a>）。如果上面"
+"表单中<strong>没有</strong>定义“多收信人”输入域，则提交的表单数据会发送给"
+"<strong>每一个罗列在上面的地址</strong>！"
+
+#: cforms-options.php:827
+msgid "BCC"
+msgstr "BCC（暗送）"
+
+#: cforms-options.php:831
+msgid "Subject admin email"
+msgstr "管理邮件主题"
+
+#: cforms-options.php:832 cforms-options.php:849 cforms-options.php:872
+#: cforms-options.php:898 cforms-options.php:928 cforms-options.php:941
+#: cforms-options.php:954
+msgid "<a href=\"%s\" %s>Variables</a> allowed."
+msgstr "允许使用的<a href=\"%s\" %s>变量</a>。"
+
+#: cforms-options.php:838
+msgid "Reset admin message to default"
+msgstr ""
+
+#: cforms-options.php:844
+msgid "<strong>Admin TEXT message</strong><br />(Header)"
+msgstr "<strong>TEXT文本格式管理员邮件</strong><br />（邮件头）"
+
+#: cforms-options.php:854 cforms-options.php:877
+msgid "(Footer)"
+msgstr "（邮件尾）"
+
+#: cforms-options.php:855
+msgid "<strong>Include</strong>  user input at the bottom of the admin email"
+msgstr "在管理员邮件的底部<strong>包含</strong>用户输入"
+
+#: cforms-options.php:859
+msgid ""
+"(# characters) : spacing between labels &amp; data, for plain txt version "
+"only"
+msgstr "（个字符）：标签和数据空开的字符数，仅对txt文本的邮件有效"
+
+#: cforms-options.php:863 cforms-options.php:946
+msgid "Enable HTML"
+msgstr "启用HTML格式"
+
+#: cforms-options.php:868
+msgid "<strong>Admin HTML message</strong><br />(Header)"
+msgstr "<strong>HTML格式管理员邮件</strong><br />（邮件头）"
+
+#: cforms-options.php:878
+msgid "<strong>Include</strong> user input at the bottom of the admin email"
+msgstr "在管理员邮件的底部<strong>包含</strong>用户输入"
+
+#: cforms-options.php:880
+msgid "'Don't like the default form data block in your admin email?  &raquo;"
+msgstr "不喜欢您管理员邮件中默认的表单数据块（蓝色的）？&raquo;"
+
+#: cforms-options.php:881
+msgid ""
+"To avoid sending ALL of the submitted user data (especially for very long "
+"forms) to the form admin simply <strong>uncheck</strong> \"<em>Include user "
+"input ...</em>\" and instead specify the fields you'd like to receive via "
+"the use of <strong>custom variables</strong>."
+msgstr ""
+"为了避免将所有的用户数据（尤其是比较长的表单）发送给表单管理员，只要<strong>"
+"去掉</strong>“<em>在管理员邮件底部包含用户输入</em>”就可以了。作为替代，您可"
+"以使用<strong>自定义域</strong>来指定你希望收到的内容。"
+
+#: cforms-options.php:889
+msgid "CC Settings"
+msgstr "CC（转发）设置"
+
+#: cforms-options.php:893
+msgid ""
+"This is the subject of the CC email that goes out the user submitting the "
+"form and as such requires the <strong>CC:</strong> field in your form "
+"definition above."
+msgstr ""
+"这是在用户提交了表单后转发邮件的主题，所以需要您的表单定义中必须包含"
+"<strong>CC:</strong>域。"
+
+#: cforms-options.php:897
+msgid "Subject CC"
+msgstr "CC（转发）邮件的主题"
+
+#: cforms-options.php:908
+msgid "Auto Confirmation"
+msgstr "自动确认"
+
+#: cforms-options.php:912
+msgid ""
+"These settings apply to an auto response/confirmation sent to the visitor. "
+"If enabled AND your form contains a \"<code>CC me</code>\" field "
+"<strong>AND</strong> the visitor selected it, no extra confirmation email is "
+"sent!"
+msgstr ""
+"这里的设定将被应用到发送给访问者的自动回复/确认信上。如果启用自动回复，并且你"
+"的表单包含了“<code>CC （转发）给我</code>”，<strong>并且</strong>你的用户选择"
+"了它，就没有额外的确认邮件会被发送了！"
+
+#: cforms-options.php:918
+msgid "Activate auto confirmation"
+msgstr "启用自动确认"
+
+#: cforms-options.php:923
+msgid ""
+"For the <em>auto confirmation</em> feature to work, make sure to mark at "
+"least one field <code>Email</code>, otherwise <strong>NO</strong> auto "
+"confirmation email will be sent out! If multiple fields are checked \"Email"
+"\", only the first in the list will receive a notification."
+msgstr ""
+"为了让<em>自动确认</em>功能工作，请确保至少标记了一个<code>Email</code>域，否"
+"则<strong>没有</strong>自动确认邮件将被发送出去！如果多个域被勾选了“Email”，"
+"只有列表中的第一个会收到提醒。"
+
+#: cforms-options.php:927
+msgid "Subject auto confirmation"
+msgstr "自动确认的主题"
+
+#: cforms-options.php:933
+msgid "Reset auto confirmation message to default"
+msgstr ""
+
+#: cforms-options.php:937
+msgid "TEXT message"
+msgstr "TEXT文本信息"
+
+#: cforms-options.php:950
+msgid "HTML message"
+msgstr "HTML信息"
+
+#: cforms-options.php:964
+msgid ""
+"Can't find the specified <strong>Attachment</strong> (%s)! Please verify the "
+"server path!"
+msgstr ""
+
+#: cforms-options.php:969
+msgid "Attachment"
+msgstr ""
+
+#: cforms-options.php:970
+msgid "File path: relative to the cforms plugin folder or an absolute path."
+msgstr ""
+
+#: cforms-options.php:981
+msgid "Multi-Part / Multi-Page Forms"
+msgstr "多部分/多页 表单"
+
+#: cforms-options.php:985
+msgid "If enabled, new options will be shown below."
+msgstr "如果启用，新选项将会在下面显示。"
+
+#: cforms-options.php:985
+msgid "Mark this form to belong to a series of forms:"
+msgstr "标记此表单为系列表单中的一元："
+
+#: cforms-options.php:991
+msgid "Email &amp; Tracking"
+msgstr "Email&amp;跟踪"
+
+#: cforms-options.php:992
+msgid "Suppress admin email and DB tracking for *this* form"
+msgstr "停止为该表单发送管理邮件和数据库跟踪。"
+
+#: cforms-options.php:996
+msgid "First Form"
+msgstr "第一个表单"
+
+#: cforms-options.php:997
+msgid "This is the *first* form of a series of forms"
+msgstr "这是系列表单中的第一张表单"
+
+#: cforms-options.php:1003
+msgid "Reset Button"
+msgstr "重置按钮"
+
+#: cforms-options.php:1004
+msgid "Add a reset button to this form (reset to the first form in a series)"
+msgstr "在该表单中添加重置按钮（重置到系列中的第一张表单）"
+
+#: cforms-options.php:1008 cforms-options.php:1020
+msgid "Text"
+msgstr "文本"
+
+#: cforms-options.php:1009
+msgid "Text for reset button"
+msgstr "重置按钮上的文本"
+
+#: cforms-options.php:1015
+msgid "Back Button"
+msgstr "返回按钮"
+
+#: cforms-options.php:1016
+msgid "Add a back button to this form (back to the previous form)"
+msgstr "给这张表单添加返回按钮（返回到前一张表单）"
+
+#: cforms-options.php:1021
+msgid "Text for back button"
+msgstr "返回按钮上的文本"
+
+#: cforms-options.php:1036
+msgid "* stop here (last form) *"
+msgstr "* 在这里结束（最后一张表单）*"
+
+#: cforms-options.php:1040
+msgid "Please choose the next form after this"
+msgstr "请选择这个表单的后续表单"
+
+#: cforms-options.php:1051
+msgid "Tell-A-Friend Form Support"
+msgstr "Tell-A-Friend（告诉一个朋友）表单支持"
+
+#: cforms-options.php:1057
+msgid "posts and pages processed and tell-a-friend <strong>enabled</strong>."
+msgstr "日志和页面已经被处理，tell-a-friend<strong>已经被启用</strong>。"
+
+#: cforms-options.php:1059
+msgid ""
+"All posts &amp; pages processed and tell-a-friend <strong>disabled</strong>."
+msgstr "所有的日志和页面已经被处理并且tell-a-friend<strong>被禁用</strong>。"
+
+#: cforms-options.php:1062
+msgid ""
+"BEFORE turning on this feature, please see the Help section for <a href=\"%s"
+"\" %s>more details.</a>"
+msgstr "在开启这项特性之前，请在帮助页面查看<a href=\"%s\" %s>详细内容</a>。"
+
+#: cforms-options.php:1063
+msgid ""
+"If enabled, new field types will be made available to cover tell-a-friend "
+"requirements."
+msgstr ""
+"如果启用，最上面选择框中将出现新的可用的表单域类型（与T-A-F功能相关的表单"
+"域）。"
+
+#: cforms-options.php:1068
+msgid "Enable Tell-A-Friend"
+msgstr "启用Tell-A-Friend"
+
+#: cforms-options.php:1074
+msgid "CC: User submitting the form"
+msgstr ""
+
+#: cforms-options.php:1078
+msgid "T-A-F enable <strong>new posts/pages</strong> by default"
+msgstr "默认在<strong>新日志/页面</strong>添加T-A-F表单"
+
+#: cforms-options.php:1082
+msgid "<strong>Batch T-A-F dis-/enable</strong><br />all your previous posts."
+msgstr "在所有你以前的日志中<strong>启用/禁用T-A-F表单</strong>。"
+
+#: cforms-options.php:1084
+msgid "This will add a T-A-F custom field per post/page."
+msgstr "这项操作将给每篇日志或者页面添加一个T-A-F自定义域。"
+
+#: cforms-options.php:1084
+msgid "Enable all"
+msgstr "启用所有"
+
+#: cforms-options.php:1084
+msgid "Do you really want to enable all previous posts and pages for T-A-F?"
+msgstr "您真的要为所有的日志和页面启用T-A-F吗？"
+
+#: cforms-options.php:1085
+msgid "This will remove the T-A-F custom field on all posts/pages."
+msgstr "这项操作将移除所有日志或者页面的T-A-F表单域。"
+
+#: cforms-options.php:1085
+msgid "Disable all"
+msgstr "禁用所有"
+
+#: cforms-options.php:1085
+msgid "Do you really want to disable all previous posts and pages for T-A-F?"
+msgstr "您真的想要禁用所有以前的日志和页面的T-A-F表单域吗？"
+
+#: cforms-options.php:1089
+msgid ""
+"You will find a <strong>cforms Tell-A-Friend</strong> checkbox on your "
+"<strong>admin/edit page</strong> (typically under \"Post/Author\")! <br /"
+"><u>Check it</u> if you want to have the form to appear on the given post or "
+"page."
+msgstr ""
+"您将会在您的<strong>管理/编辑页面</strong>（一般来说在“发表/作者”下面）找到一"
+"个<strong>cforms Tell-A-Friend</strong>复选框<br />如果您希望这篇日志或者页面"
+"带有发送给朋友表单，则<u>勾选它</u>。"
+
+#: cforms-options.php:1105
+msgid ""
+"cforms can be used to replace your <em>default Wordpress comment form</em> "
+"(on posts &amp; pages), allowing your readers to either <strong>comment on "
+"the post</strong> or <strong>alternatively send the post author a note</"
+"strong>!"
+msgstr ""
+"cforms可以被用来替换你的<em>默认的WordPress评论表单</em>（日志后面或者页面后"
+"面的），允许你的读者<strong>在日志后留下评论</strong> 或者 <strong>直接给日志"
+"作者发送便条</strong>！"
+
+#: cforms-options.php:1106
+msgid ""
+"There will be additional, comment specific <em>input field types</em> "
+"available with this feature turned on. For an easy start, use the <em>WP "
+"comment form preset</em>. <a href=\"%s\" %s>Configuration details.</a>"
+msgstr ""
+"上面的表单域类型选择框中，将会出现额外的，跟评论有关的<em>新的输入域类型</em>"
+"可供选择。作为一个简单的开始，请使用<em>预设的WP评论表单</em>。<a href=\"%s"
+"\" %s>详细配置。</a>"
+
+#: cforms-options.php:1110
+msgid "WP comment form"
+msgstr "WP评论表单"
+
+#: cforms-options.php:1111
+msgid ""
+"Enable this form to optionally (user determined) act as a WP comment form"
+msgstr "使这个表单的工作方式与WP评论表单一致"
+
+#: cforms-options.php:1114
+msgid "Comment notification"
+msgstr "评论提醒"
+
+#: cforms-options.php:1115
+msgid "Extra comment notification (check your autoresponder setting, too!)"
+msgstr "额外的评论提醒（检查你的自动回复设定！）"
+
+#: cforms-options.php:1119
+msgid "<em>Tell a friend</em> or <em>WP comment</em>? &raquo;"
+msgstr "<em>Tell-a-friend</em>还是<em>WP 评论表单</em>？ &raquo;"
+
+#: cforms-options.php:1120
+msgid ""
+"This feature and T-A-F (above) are mutually exclusive. If you need both "
+"features, please create a new form for T-A-F.<br />Again, see the <a href="
+"\"%s\" %s>help section</a> on proper use."
+msgstr ""
+"这项特性和上面提到的T-A-F是相互排斥的。如果你需要两者兼备，请为T-A-F创建一个"
+"新的表单。<br />再提醒一次，请查看<a href=\"%s\" %s>帮助</a>来合理使用。"
+
+#: cforms-options.php:1121
+msgid "Important additional configuration requirements &raquo;"
+msgstr "重要的额外配置需求 &raquo;"
+
+#: cforms-options.php:1122
+msgid ""
+"Please see the extended <a href=\"%s\" %s>WP comment options under "
+"<em>Global Settings</em></a> for additional configuration requirements. "
+"Especially concerning Ajax comment submission! Further, if you enable 'extra "
+"comment notification' make sure you disable the autoresponder, unless you "
+"want to thank the user for his/her comment ;-) !"
+msgstr ""
+"请查看扩展的<a href=\"%s\" %s><em>全局设置</em>的WP评论选项</a>来满足额外的配"
+"置需求。尤其是关注一下Ajax评论提交！更进一步，如果你希望启用“额外的评论提"
+"醒”请确保你已经禁用了自动回复，除非你想要感谢你的用户发表的评论 ;-) ！"
+
+#: cforms-options.php:1133
+msgid "3rd Party Read-Notification Support"
+msgstr "第三方阅读提醒支持"
+
+#: cforms-options.php:1137
+msgid ""
+"If you'd like to utilize 3rd party email tracking such as %s or %s, add the "
+"respective suffix (e.g.: %s) here:"
+msgstr ""
+"如果您希望利用第三方的邮件追踪类似%s和%s，在这里添加它们各自的前缀"
+"（如，%s）："
+
+#: cforms-options.php:1141
+msgid "Suffix for email tracking"
+msgstr "邮件跟踪前缀"
+
+#: cforms-options.php:1168
+msgid "Input Field Settings"
+msgstr "输入域设定"
+
+#: cforms-options.php:1175
+msgid "cforms Out-Of-The-Box Form Repository"
+msgstr "cforms 盒外表单库"
+
+#: cforms-options.php:1185
+msgid "Backup &amp; Restore Form Settings"
+msgstr ""
+
+#: cforms-options.php:1190
+msgid "Backup current form settings"
+msgstr ""
+
+#: cforms-options.php:1191
+msgid " or restore previously saved settings:"
+msgstr "或者从以前存储的表单中恢复设置："
+
+#: cforms-options.php:1193
+msgid "Restore from file"
+msgstr ""
+
+#: cforms.php:67 lib_functions.php:126 lib_widget.php:24
+msgid "cformsII"
+msgstr "cformsII"
+
+#: cforms.php:68
+msgid "Corrupted Settings"
+msgstr "损坏的设置"
+
+#: cforms.php:700
+msgid "reset captcha image"
+msgstr "重置验证码图片"
+
+#: cforms.php:1045
+msgid "Note: This will reset all your input!"
+msgstr "注意：这项操作将重置您的所有输入！"
+
+#: cforms.php:1310 cforms.php:1311
+msgid "cforms Tell-A-Friend"
+msgstr "cforms Tell-A-Friend"
+
+#: cforms.php:1476
+msgid "T-A-F enable this post/page"
+msgstr "该日志/页面启用了T-A-F"
+
+#: cforms.php:1514
+msgid "Produce debug output"
+msgstr ""
+
+#: cforms.php:1514
+msgid "Outputs -for debug purposes- all cforms settings"
+msgstr "调试信息（所有的cforms设置）"
+
+#: cforms.php:1515
+msgid "Uninstalling / removing cforms"
+msgstr "卸载/移除cforms"
+
+#: cforms.php:1515 cforms.php:1518
+msgid "Be careful here..."
+msgstr "使用这项的时候要小心！"
+
+#: cforms.php:1518
+msgid "Delete cforms tracking tables"
+msgstr "删除cforms追踪表"
+
+#: cforms.php:1518
+msgid "Do you really want to erase all collected data?"
+msgstr "您真的要清除所有收集的数据吗？"
+
+#: cforms.php:1520
+msgid "Backup / restore all settings"
+msgstr ""
+
+#: cforms.php:1520 cforms.php:1538
+msgid "Better safe than sorry ;)"
+msgstr ""
+
+#: cforms.php:1522 cforms.php:1540
+msgid "Save & update form settings"
+msgstr ""
+
+#: cforms.php:1532
+msgid "Add new form"
+msgstr ""
+
+#: cforms.php:1532
+msgid "Adds a new form with default values"
+msgstr "添加一个带有默认值的新表单"
+
+#: cforms.php:1533
+msgid "Duplicate current form"
+msgstr "复制当前表单"
+
+#: cforms.php:1533
+msgid "Clones the current form"
+msgstr "复制当前表单"
+
+#: cforms.php:1535
+msgid "Delete current form (!)"
+msgstr ""
+
+#: cforms.php:1535
+msgid "Clicking this button WILL delete this form"
+msgstr "点击这个按钮将会删除这张表单。"
+
+#: cforms.php:1535
+msgid "This will delete the current form!"
+msgstr "此项操作将删除当前表单！"
+
+#: cforms.php:1537
+msgid "Install a form preset"
+msgstr "装载一个预置表单"
+
+#: cforms.php:1537
+msgid "Pick a form preset from the repository"
+msgstr ""
+
+#: cforms.php:1538
+msgid "Backup / restore this form only"
+msgstr ""
+
+#: formpresets/index.php:19
+msgid "Default: Reset to *default* contact form"
+msgstr ""
+
+#: formpresets/index.php:20
+msgid "Does what it says, it'll reset all input fields to the default setup."
+msgstr ""
+
+#: formpresets/index.php:21
+msgid "Basic: Preset for *GREY BLOCKS* Theme"
+msgstr ""
+
+#: formpresets/index.php:22
+msgid ""
+"This preset will switch your current cforms theme to 'Grey Blocks'. It comes "
+"with basic contact form input fields and a custom error message example."
+msgstr ""
+
+#: formpresets/index.php:23
+msgid "Basic: *Newsletter* subscription form (w/ titles)"
+msgstr ""
+
+#: formpresets/index.php:24
+msgid ""
+"A small, two input field form that showcases regexp's (default value "
+"exclusion) and input field titles."
+msgstr ""
+
+#: formpresets/index.php:25
+msgid "Basic: Tell A Friend Form"
+msgstr ""
+
+#: formpresets/index.php:26
+msgid ""
+"If you would like to setup a special T-A-F form, then please use this preset "
+"as a basis. It comes with the necessary (special) TAF input fields, verifies "
+"and sets the TAF option, switches the current theme and sets a generic tell-"
+"a-friend message."
+msgstr ""
+
+#: formpresets/index.php:27
+msgid "Basic: Form for *dark-rounded.css* Theme"
+msgstr ""
+
+#: formpresets/index.php:28
+msgid ""
+"This will switch your current cforms theme to the dark-rounded.css one and "
+"will get you going with a set of basic contact form input fields."
+msgstr ""
+
+#: formpresets/index.php:29
+msgid "Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme"
+msgstr ""
+
+#: formpresets/index.php:30
+msgid ""
+"The dark-rounded.css cforms theme requires a bit of 'magic' to support multi "
+"fieldset form layouts. Check out this preset to see what is required to "
+"ensure a proper look."
+msgstr ""
+
+#: formpresets/index.php:31
+msgid "Advanced: Contact Form with Custom Err Messages"
+msgstr ""
+
+#: formpresets/index.php:32
+msgid ""
+"This form preset is based on the default preset, however, coming with field "
+"specific custom error texts. Please check your fancy error message settings, "
+"to make sure they're actually displayed."
+msgstr ""
+
+#: formpresets/index.php:33
+msgid "Advanced: WP comment feature form"
+msgstr ""
+
+#: formpresets/index.php:34
+msgid ""
+"If you plan to replace your original Wordpress comment form with a (c)form, "
+"please use this form preset as a jump-start. All necessary fields are "
+"included and configured, including some custom, field specific error "
+"messages. <em><br />Note: It will also change your current cforms theme.</em>"
+msgstr ""
+
+#: formpresets/index.php:35
+msgid "Advanced: Online booking form"
+msgstr ""
+
+#: formpresets/index.php:36
+msgid ""
+"Features a quite impressive number of fields, useful for online booking "
+"forms. Including custom inline styles, 'must-agree' disclaimers with "
+"external link to disclaimer text & anti spam field. <br /><em>Note: Please "
+"use this preset with your first form as it does some nifty things with its "
+"CSS.</em>"
+msgstr ""
+
+#: formpresets/index.php:37
+msgid "Advanced: Sign up form (w/ limited seats available)"
+msgstr ""
+
+#: formpresets/index.php:38
+msgid ""
+"A typical sign up form for a class/project etc. Limited to 30 seats (form "
+"submissions) and form is hidden after submission. The form further showcases "
+"regular expressions for field validation and custom error messages, as well "
+"as country and state (US) drop down lists. It also features a must-check "
+"Disclaimer."
+msgstr ""
+
+#: include/checkbox.php:24
+msgid "Field label left of the checkbox..."
+msgstr "域标签在复选框左边……"
+
+#: include/checkbox.php:27
+msgid "...or define a field label to the right of the checkbox"
+msgstr "……或者定义一个域标签在复选框的右边"
+
+#: include/checkbox.php:30 include/checkboxgroup.php:30
+#: include/selectbox.php:29
+msgid "Set default state"
+msgstr "设定默认状态"
+
+#: include/checkbox.php:33 include/checkboxgroup.php:38
+#: include/html5field.php:67 include/selectbox.php:36 include/textfield.php:33
+msgid "Input field title (displayed when mouse hovers over field)"
+msgstr "输入域名称（当鼠标移到该域上方时显示的内容）"
+
+#: include/checkbox.php:36 include/checkboxgroup.php:41
+#: include/html5field.php:70 include/selectbox.php:39 include/textfield.php:36
+msgid ""
+"Custom error message (make sure to enable custom, per field err messages!)"
+msgstr "自定义错误信息（请确认启用了每个域的错误信息！）"
+
+#: include/checkboxgroup.php:24 include/html5field.php:24
+#: include/selectbox.php:23 include/textfield.php:24
+msgid "Field label"
+msgstr "域标签"
+
+#: include/checkboxgroup.php:28 include/selectbox.php:27
+msgid "Check box/radio box option (displayed)"
+msgstr "复选框/单选框选项（将会被显示）"
+
+#: include/checkboxgroup.php:29 include/selectbox.php:28
+msgid "Optional value (transmitted)"
+msgstr "选项代表的值（将会传送）"
+
+#: include/checkboxgroup.php:31
+msgid "Carriage return / New Line"
+msgstr "回车/换行"
+
+#: include/fieldsetstart.php:24
+msgid "Name of Fieldset ( only required for <em>New Fieldset</em> )"
+msgstr "域集合的名称（只有<em>新的域集合</em>需要填写）"
+
+#: include/html5field.php:30
+msgid "Autocomplete flag"
+msgstr ""
+
+#: include/html5field.php:31
+msgid "Autofocus flag"
+msgstr ""
+
+#: include/html5field.php:43
+msgid "Min value"
+msgstr ""
+
+#: include/html5field.php:44
+msgid "Max value"
+msgstr ""
+
+#: include/html5field.php:45
+msgid "Step value"
+msgstr ""
+
+#: include/html5field.php:56
+msgid "Pattern attribute"
+msgstr ""
+
+#: include/html5field.php:61
+msgid "Placeholder attribute"
+msgstr ""
+
+#: include/installpreset.php:28
+msgid "Please select a predefined form:"
+msgstr "请选择一个预定义表单："
+
+#: include/installpreset.php:31
+msgid ""
+"By accepting and choosing OK, you will <strong>replace</strong> all your "
+"existing input fields with this new preset! If you're unsure about this, "
+"make a backup copy of the form first."
+msgstr ""
+"如果您选择了OK，您所有已经存在的输入域将会被这个新的预设所<strong>替换</"
+"strong>！如果您对此不确定，请先备份一次当前表单。"
+
+#: include/lib_database_deleteentries.php:124
+msgid "Entries successfully removed from the tracking tables!"
+msgstr "条目成功从跟踪表中移除！"
+
+#: include/lib_database_deleteentry.php:64
+msgid "(some associated attachment/s were not found!)"
+msgstr "（一些相关的附件没有找到！）"
+
+#: include/lib_database_deleteentry.php:66
+msgid "(associated attachment/s were not found!)"
+msgstr "（相关的附件没有找到！）"
+
+#: include/lib_database_deleteentry.php:68
+msgid "(including all attachment/s)"
+msgstr "（包括所有的附件）"
+
+#: include/lib_database_deleteentry.php:74
+msgid "Entry successfully removed"
+msgstr "条目已经成功被移除"
+
+#: include/lib_database_dlentries.php:91
+msgid ""
+"File (data.tmp) in %s not writable! %sPlease adjust its file permissions/"
+"ownership!"
+msgstr "%s中的文件（data.tmp）不能写入！%s请调整该文件的文件许可权限！"
+
+#: include/lib_database_dlentries.php:177 lib_widget.php:75
+msgid "Form"
+msgstr "表单"
+
+#: include/lib_database_getentries.php:106
+msgid "Form:"
+msgstr "表单："
+
+#: include/lib_database_getentries.php:107
+msgid "Delete this entry"
+msgstr "删除此项"
+
+#: include/lib_database_getentries.php:108
+msgid "close this entry"
+msgstr "关闭此项"
+
+#: include/lib_database_getentries.php:146
+msgid "-"
+msgstr "-"
+
+#: include/lib_database_getentries.php:154
+msgid "Submitted via page"
+msgstr "通过页面提交"
+
+#: include/lib_database_getentries.php:158
+msgid "IP address"
+msgstr "IP地址"
+
+#: include/lib_database_getentries.php:159
+msgid "IP Lookup"
+msgstr "IP 搜索"
+
+#: include/lib_database_getentries.php:179
+msgid "Sorry, data not found. Please refresh your data table."
+msgstr "抱歉，数据没有找到。请刷新您的数据表。"
+
+#: include/textfield.php:27
+msgid "Default value"
+msgstr "默认值"
+
+#: include/textfield.php:30
+msgid ""
+"Regular expression for field validation (e.g. %s). See Help! for more "
+"examples."
+msgstr "用于域验证的正则表达式（如，%s）。去 帮助！查看更多范例。"
+
+#: include/textonly.php:24
+msgid "Text (HTML is supported)"
+msgstr "文本（支持HTML）"
+
+#: include/textonly.php:27
+msgid "CSS (assigns class to this form element)"
+msgstr "CSS（给这个表单元素添加class）"
+
+#: include/textonly.php:30
+msgid "Inline style (e.g. %s)"
+msgstr "嵌入的样式（如：%s）"
+
+#: lib_WPcomment.php:62
+msgid "Comment ID not found."
+msgstr "没有找到评论ID。"
+
+#: lib_WPcomment.php:65 lib_WPcomment.php:196
+msgid "Sorry, comments are closed for this item."
+msgstr "抱歉，此项评论已经关闭。"
+
+#: lib_WPcomment.php:68
+msgid "Comment is on draft."
+msgstr "评论正在编辑。"
+
+#: lib_WPcomment.php:91 lib_WPcomment.php:220
+msgid "Sorry, you must be logged in to post a comment."
+msgstr "抱歉，您必须登录才能发表评论。"
+
+#: lib_WPcomment.php:103
+msgid "You've said that before. No need to repeat yourself."
+msgstr "您已经发表过相同内容，没有必要重复。"
+
+#: lib_WPcomment.php:114
+msgid "You are posting comments too quickly. Slow down."
+msgstr "您在连续发表评论的时间太短，请慢慢来~~"
+
+#: lib_activate.php:70
+msgid "Website"
+msgstr "网站"
+
+#: lib_activate.php:71 lib_options_add.php:37
+msgid "Message"
+msgstr "消息"
+
+#: lib_activate.php:73 lib_options_add.php:39
+msgid "(required)"
+msgstr "（必填）"
+
+#: lib_activate.php:74 lib_options_add.php:40
+msgid "(valid email required)"
+msgstr "（有效邮箱，必填）"
+
+#: lib_activate.php:78
+msgid "Your default form"
+msgstr "Your default form"
+
+#: lib_activate.php:79 lib_options_add.php:45
+msgid "Re: Your note"
+msgstr "Re: 您的便条"
+
+#: lib_activate.php:79 lib_options_add.php:45
+msgid "Re: Submitted form (copy)"
+msgstr "Re: 提交的表单（拷贝）"
+
+#: lib_activate.php:96 lib_options_add.php:59
+msgid "A comment from {Your Name}"
+msgstr "一条来自{Your Name}的评论"
+
+#: lib_activate.php:97 lib_options_add.php:60
+msgid "Submit"
+msgstr "提交"
+
+#: lib_activate.php:98 lib_options_add.php:61
+msgid "Thank you for your comment!"
+msgstr "谢谢您的评论！"
+
+#: lib_activate.php:99 lib_options_add.php:62
+msgid "Please fill in all the required fields."
+msgstr "请填写所有的必填域。"
+
+#: lib_activate.php:100 lib_options_add.php:63
+msgid "No more submissions accepted at this time."
+msgstr "现在不能提交更多的表单了。"
+
+#: lib_activate.php:102 lib_options_add.php:64
+msgid "One moment please..."
+msgstr "请稍等"
+
+#: lib_activate.php:107 lib_options_add.php:69
+msgid "http://redirect.to.this.page"
+msgstr "http://redirect.to.this.page"
+
+#: lib_activate.php:121
+msgid "Generic file upload error. Please try again"
+msgstr "通用文件上传错误提示。请再试一次"
+
+#: lib_activate.php:122 lib_options_up.php:33
+msgid "File is empty. Please upload something more substantial."
+msgstr "文件是空的。请上传有实际内容的文件。"
+
+#: lib_activate.php:123
+msgid "Sorry, file is too large. You may try to zip your file."
+msgstr "抱歉，文件过大。您可以尝试压缩您的文件。"
+
+#: lib_activate.php:124
+msgid "File upload failed. Please try again or contact the blog admin."
+msgstr "文件上传失败。请再次尝试或者联系博客管理员。"
+
+#: lib_activate.php:125
+msgid "File not accepted, file type not allowed."
+msgstr "文件无法接受，文件类型不允许。"
+
+#: lib_activate.php:149
+msgid "What color is snow?=white"
+msgstr "雪是什么颜色的？=白色"
+
+#: lib_activate.php:149
+msgid "The color of grass is=green"
+msgstr "草是什么颜色的？=绿色"
+
+#: lib_activate.php:149
+msgid "Ten minus five equals=five"
+msgstr "10减去5等于=5"
+
+#: lib_activate.php:150
+msgid "Please double-check your verification code."
+msgstr "请再次检查您的验证码。"
+
+#: lib_activate.php:155
+msgid "Thank you for leaving a comment."
+msgstr "感谢您的留言！"
+
+#: lib_activate.php:159
+msgid "Your comment is awaiting moderation."
+msgstr "您的评论正在等待审核。"
+
+#: lib_activate.php:173
+msgid "S,M,T,W,T,F,S"
+msgstr "S,M,T,W,T,F,S"
+
+#: lib_activate.php:178
+msgid "April"
+msgstr "四月"
+
+#: lib_activate.php:179
+msgid "May"
+msgstr "五月"
+
+#: lib_activate.php:180
+msgid "June"
+msgstr "六月"
+
+#: lib_activate.php:181
+msgid "July"
+msgstr "7月"
+
+#: lib_activate.php:182
+msgid "August"
+msgstr "八月"
+
+#: lib_activate.php:183
+msgid "September"
+msgstr "九月"
+
+#: lib_activate.php:184
+msgid "October"
+msgstr "十月"
+
+#: lib_activate.php:185
+msgid "November"
+msgstr "十一月"
+
+#: lib_activate.php:186
+msgid "December"
+msgstr "十二月"
+
+#: lib_activate.php:189
+msgid "Previous Year"
+msgstr "前一年"
+
+#: lib_activate.php:191
+msgid "Next Year"
+msgstr "后一年"
+
+#: lib_ajax.php:475 lib_nonajax.php:597
+msgid "Error occurred while sending the auto confirmation message: "
+msgstr "当发送自动确认信息时发生了错误："
+
+#: lib_ajax.php:521 lib_nonajax.php:618
+msgid "Error occurred while sending the message: "
+msgstr "当发送消息时发生了错误："
+
+#: lib_aux.php:44
+msgid "hour(s)"
+msgstr "小时"
+
+#: lib_aux.php:45
+msgid "minute(s)"
+msgstr "分钟"
+
+#: lib_aux.php:562
+msgid "View details"
+msgstr "查看详细"
+
+#: lib_aux.php:573 lib_dashboard.php:66
+msgid "No entries yet"
+msgstr "还没有条目"
+
+#: lib_aux.php:573
+msgid "You might want to check back in a little while..."
+msgstr "您或许可以过一小会儿再来检查……"
+
+#: lib_aux.php:583
+msgid "New submissions for >>"
+msgstr "新表单提交 >>"
+
+#: lib_aux.php:583
+msgid "All new form submissions"
+msgstr "所有的新表单提交"
+
+#: lib_aux.php:586
+msgid "This RSS feed provides you with the most recent form submissions."
+msgstr "RSS供稿可以向您提供最新的表单提交。"
+
+#: lib_dashboard.php:24
+msgid "Recent cforms entries"
+msgstr "最近的cforms条目"
+
+#: lib_dashboard.php:60
+msgid "click for details"
+msgstr "查看详细"
+
+#: lib_dashboard.php:61
+msgid "via"
+msgstr ""
+
+#: lib_dashboard.php:68
+msgid "Visit the cforms tracking page for all entries "
+msgstr ""
+
+#: lib_editor.php:33
+msgid "Insert a form"
+msgstr ""
+
+#: lib_email.php:205
+msgid "You must provide at least one recipient email address."
+msgstr "您至少提供一个收件人邮件地址。"
+
+#: lib_email.php:224
+msgid "Could not instantiate wp_mail function."
+msgstr "无法实例化邮件函数。"
+
+#: lib_email.php:238
+msgid "Could not access file: "
+msgstr "无法访问文件："
+
+#: lib_functions.php:109
+msgid "You do not have the proper privileges to access this page."
+msgstr "您没有合适的权限来访问这个页面。"
+
+#: lib_functions.php:131
+msgid "Tracking"
+msgstr "跟踪"
+
+#: lib_functions.php:132
+msgid "Styling"
+msgstr "样式"
+
+#: lib_functions.php:133
+msgid "Help!"
+msgstr "帮助！"
+
+#: lib_functions.php:232
+msgid ""
+"For more information and support, visit the <strong>cforms</strong> %s "
+"support forum %s. "
+msgstr "要获得更多的信息和支持，请访问%s的支持论坛%s。"
+
+#: lib_functions.php:233
+msgid "Translation provided by Oliver Seidel."
+msgstr "Translation provided by Charles Tang."
+
+#: lib_functions.php:250
+msgid ""
+"In case disabling/enabling doesn't seem to properly set the plugin defaults, "
+"try login out and back in and <strong>don't select the checkbox for "
+"activation</strong> on the plugin page."
+msgstr ""
+"万一禁用/启用插件无法恰当设置默认值，请尝试登出然后再登录，在插件页面<strong>"
+"不要通过选中复选框来激活插件</strong>。"
+
+#: lib_functions.php:307
+msgid "dd"
+msgstr "dd"
+
+#: lib_functions.php:307
+msgid "mm"
+msgstr "mm"
+
+#: lib_functions.php:307
+msgid "yyyy"
+msgstr "yyyy"
+
+#: lib_options_add.php:36
+msgid "Website|http://"
+msgstr "网站|http://"
+
+#: lib_options_add.php:44
+msgid "A new form"
+msgstr "一个新的表单"
+
+#: lib_options_add.php:86
+msgid "A new form with default fields has been added."
+msgstr "已经添加了一个带有默认域的新表单。"
+
+#: lib_options_del.php:50
+msgid "Form deleted"
+msgstr "表单已删除"
+
+#: lib_options_dup.php:33
+msgid "copy of form #"
+msgstr "拷贝的表单 #"
+
+#: lib_options_dup.php:38
+msgid "The form has been duplicated, you're now working on the copy."
+msgstr "表单已经复制，现在您正在编辑副本。"
+
+#: lib_options_err.php:27
+msgid ""
+"please check the <a href=\"%s\" %s>success/failure message settings</a> and "
+">>Show messages<< options below!"
+msgstr ""
+"请检查<a href=\"%s\" %s>成功/失败 消息设置</a>和下面的>>>显示消息<<<选项！"
+
+#: lib_options_err.php:33
+msgid ""
+"please check the new <a href=\"%s\" %s>file upload/attachment</a> relevant "
+"settings below! You can ignore the message if you're not using any file "
+"upload field(s)."
+msgstr ""
+"请检查下面新的<a href=\"%s\" %s>文件上传/附件</a>相关设定！如果您没有使用文件"
+"上传域，您可以忽略这条消息！"
+
+#: lib_options_err.php:40
+msgid "please check the <a href=\"%s\" %s>email header settings</a> below!"
+msgstr "请检查下面的<a href=\"%s\" %s>email 头设定</a>！"
+
+#: lib_options_err.php:46
+msgid ""
+"You have enabled the <strong>Tell a Friend</strong> feature for this form, "
+"please make sure you follow the guidelines on the HELP! page "
+"<strong>otherwise your form may not show</strong>!"
+msgstr ""
+"您已经为这个表单启用了<strong>Tell a Friend</strong>特性，请一定按照帮助！页"
+"面的指导来操作，<strong>否则您的表单不会显示</strong>！"
+
+#: lib_options_err.php:56
+msgid ""
+"Please note that the <strong>fancy error</strong> feature has been enabled. "
+"You can turn it off in the <em>Redirection, Messages...</em> section below."
+msgstr ""
+"请注意<strong>fancy error</strong>特性已经启用。您可以在<em>重定向，消息……</"
+"em>设定区将其关闭。"
+
+#: lib_options_err.php:68
+msgid "It seems that you have recently upgraded cforms"
+msgstr "您最近已经升级了cforms"
+
+#: lib_options_err.php:75
+msgid "Remove Message"
+msgstr "移除此信息"
+
+#: lib_options_presets.php:25
+msgid "Sorry, this form preset can't be loaded. I Can't find file "
+msgstr "抱歉，此表单预设无法被载入。我无法找到文件"
+
+#: lib_options_presets.php:87
+msgid "Your form has been populated with the preset input fields."
+msgstr "您的表单已经使用预设的输入域填充了。"
+
+#: lib_options_presets.php:89 lib_options_presets.php:92
+msgid ""
+"Please note, that in order to make this form work, the <strong>%s</strong> "
+"has been turned on, too!"
+msgstr "请注意，为了让这个表单生效，<strong>%s</strong>也已经被开启了！"
+
+#: lib_options_presets.php:89
+msgid "WP comment feature"
+msgstr "WP评论特性"
+
+#: lib_options_presets.php:90 lib_options_presets.php:93
+msgid ""
+"Check with the HELP page on how to <u>properly</u> use this cforms feature "
+"and check all your settings below!"
+msgstr ""
+"请检查帮助！页面来获得关于如何<u>恰当</u>使用这项cforms特性的信息，并且检查下"
+"面所有的设定！"
+
+#: lib_options_presets.php:92
+msgid "TAF feature"
+msgstr "TAF特性"
+
+#: lib_options_sub.php:50
+msgid ""
+"WP comment form fields only supported when <em>WP comment feature</em> "
+"turned on!"
+msgstr "只有当<em>WP评论特性</em>开启的时候，才能使用WP评论表单域！"
+
+#: lib_options_sub.php:55
+msgid "TAF fields only supported when <em>TAF feature</em> turned on!"
+msgstr "只有当<em>TAF特性</em>开启的时候，才能使用TAF域！"
+
+#: lib_options_sub.php:61
+msgid "Only one <em>captcha</em> field is permitted!"
+msgstr "只允许使用一个<em>captcha验证码</em>域！"
+
+#: lib_options_sub.php:66
+msgid "Only one <em>CC:</em> field is permitted!"
+msgstr "只允许使用一个<em>CC:</em>域！"
+
+#: lib_options_sub.php:71
+msgid "Only one <em>Multiple Recipients</em> field is permitted!"
+msgstr "只允许使用一个<em>多收件人</em>域！"
+
+#: lib_options_sub.php:272
+msgid "Form settings updated."
+msgstr "表单设定已经更新。"
+
+#: lib_options_up.php:37
+msgid "Specified file failed upload test."
+msgstr "指定的文件没有通过上传测试。"
+
+#: lib_options_up.php:41
+msgid "Error:"
+msgstr "错误："
+
+#: lib_options_up.php:49
+msgid "All form specific settings have been restored from the backup file."
+msgstr "所有与表单相关的设置已经从备份文件中重新载入。"
+
+#: lib_options_up.php:58
+msgid "All cforms settings have been restored from the backup file."
+msgstr "所有cforms全局设置已经从备份文件中重新载入。"
+
+#: lib_widget.php:26
+msgid "Add any cforms form to your sidebar"
+msgstr ""
+
+#: lib_widget.php:72
+msgid "Title"
+msgstr "标题"
+
+#. Plugin Name of the plugin/theme
+msgid "cforms2"
+msgstr "cforms2"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/cforms2/"
+msgstr "https://cn.wordpress.org/plugins/cforms2/"
+
+#. Description of the plugin/theme
+msgid ""
+"cformsII offers unparalleled flexibility in deploying contact forms across "
+"your blog. Features include: comprehensive SPAM protection, Ajax support, "
+"Backup & Restore, Multi-Recipients, Role Manager support, Database tracking "
+"and many more."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Oliver Seidel, Bastian Germann"
+msgstr "Oliver Seidel, Bastian Germann"
+
+#~ msgid "The stylesheet has been updated."
+#~ msgstr "样式表已经更新。"
+
+#~ msgid "Write Error! Please verify write permissions on the style file."
+#~ msgstr "写错误！请验证样式表文件的写权限。"
+
+#~ msgid ""
+#~ "This is <strong>optional</strong> of course, if you're happy with the "
+#~ "default look and feel, no need to do anything here."
+#~ msgstr ""
+#~ "当然，这<strong>不是必须的</strong>，如果您对默认的外观感到满意，就没有必"
+#~ "要做什么了。"
+
+#~ msgid "Basic CSS editor: "
+#~ msgstr "基本CSS编辑器："
+
+#~ msgid ""
+#~ "Use this simple editor to further tailor your forms' style to meet your "
+#~ "requirements. Currently you're editing: "
+#~ msgstr ""
+#~ "使用这个简单的编辑器来进一步裁剪您表单的样式以满足您的需求。当前，您正在编"
+#~ "辑："
+
+#~ msgid "Update Settings &raquo;"
+#~ msgstr "更新设置 &raquo;"
+
+#~ msgid "Sorry. The file you are looking for doesn't exist."
+#~ msgstr "抱歉。您寻找的文件不存在。"
+
+#~ msgid "Install"
+#~ msgstr "安装"
+
+#~ msgid "Separate lines in email %sheader%s with LF only (CR suppressed)"
+#~ msgstr "在email%s头%s中，只使用LF分割行（不使用CR）"
+
+#~ msgid ""
+#~ "Below you can find a few switches and options to change the default look "
+#~ "of the captcha image. Feel free to upload your own backgrounds and fonts "
+#~ "to the respective directories (<code>cforms/captchabg/</code> &amp; "
+#~ "<code>cforms/captchafonts/</code> or your custom folder: <code>/plugins/"
+#~ "cforms-custom/</code> )."
+#~ msgstr ""
+#~ "在下面，您将看到一些开关和选项来改变captcha图片验证码的默认外观。您可以上"
+#~ "传自己喜欢的背景图片和字体到相应的目录中。（<code>cforms/captchabg/</"
+#~ "code> &amp; <code>cforms/captchafonts/</code> 或者您的自定义文件夹： "
+#~ "<code>/plugins/cforms-custom/</code>）。"
+
+#~ msgid ""
+#~ "If cforms provides great services to you and/or your business, "
+#~ "<strong>please consider making a donation</strong> to support future "
+#~ "development."
+#~ msgstr ""
+#~ "如果cforms给您或您的生意提供了很大的帮助，请考虑捐赠以支持项目的后续开发。"
+
+#~ msgid "Thank you!"
+#~ msgstr "谢谢您！"
+
+#~ msgid "TinyMCE Support"
+#~ msgstr "TinyMCE支持"
+
+#~ msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
+#~ msgstr "支持的日期格式（见“插件设置”标签）"
+
+#~ msgid "Field"
+#~ msgstr "域"
+
+#~ msgid "Full Form"
+#~ msgstr "完整格式"
+
+#~ msgid "Short Form"
+#~ msgstr "简写格式"
+
+#~ msgid "Year"
+#~ msgstr "年"
+
+#~ msgid "yy (2 digits)"
+#~ msgstr "yy (2 位数字)"
+
+#~ msgid "Month"
+#~ msgstr "月"
+
+#~ msgid "mmm (name)"
+#~ msgstr "mmm (名字)"
+
+#~ msgid "Day of Month"
+#~ msgstr "日"
+
+#~ msgid ""
+#~ "%s can reside in your /plugins/cforms-custom folder to protect it from "
+#~ "future (auto) upgrades."
+#~ msgstr ""
+#~ "%s 可以被放置在您的/plugins/custom-cforms文件夹中以防止将来的（自动）升级"
+#~ "将其覆盖。"
+
+#~ msgid ""
+#~ "With v8.5+ cforms supports a separate custom user folder to store your "
+#~ "tailored CSS, font and image files! Simply create the folder: %s and move "
+#~ "your CSS (including <strong>all</strong> images!), font &amp; background "
+#~ "image files (CAPTCHA) to it."
+#~ msgstr ""
+#~ "v8.5+版本的cforms支持在一个分离的用户自定义文件夹里存储您裁剪过的CSS，字体"
+#~ "和图片文件！您只需创建这个文件夹：%s并且把您的CSS（包括<strong>所有的</"
+#~ "strong>图片！），字体文件和背景图片文件（验证码用的）放到里面。"
+
+#~ msgid "n/a"
+#~ msgstr "n/a"
+
+#~ msgid "Not available."
+#~ msgstr "不可用。"
+
+#~ msgid "[empty=all files are allowed]"
+#~ msgstr "[留空=允许所有的额文件]"
+
+#~ msgid "Opt. Popup Msg"
+#~ msgstr "可选，弹出消息"
+
+#~ msgid "edit this field"
+#~ msgstr "编辑这个域"
+
+#~ msgid "Q&A"
+#~ msgstr "Q&A"
+
+#~ msgid "File Error: Could not open file: "
+#~ msgstr "文件错误：无法打开文件："
+
+#~ msgid "Unknown encoding: "
+#~ msgstr "未知编码："
+
+#~ msgid "Only one <em>Visitor verification</em> field is permitted!"
+#~ msgstr "只允许使用一个<em>访客验证</em>域！"

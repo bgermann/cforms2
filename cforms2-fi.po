@@ -1,0 +1,5361 @@
+# Copyright (c) Leadvirus (http://www.leadvirus.com/resources/)
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, at any version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cformsII\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cforms2\n"
+"POT-Creation-Date: 2015-10-29 19:40:03+00:00\n"
+"PO-Revision-Date: 2015-10-29 21:09+0100\n"
+"Last-Translator: Bastian Germann\n"
+"Language-Team: Leadvirus <sangita@leadvirus.com>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: cforms-captcha.php:89 cforms-global-settings.php:586 cforms-help.php:475
+msgid "Visitor verification (Q&amp;A)"
+msgstr "vierailija todentaminen (Q & A)"
+
+#: cforms-corrupted.php:24 lib_functions.php:109
+msgid "cforms error"
+msgstr "cforms virhe"
+
+#: cforms-corrupted.php:28 cforms-corrupted.php:51
+msgid "Please deactivate and then re-activate the cforms plugin now."
+msgstr "Ole hyvä ja poistaa ja sitten uudelleen cforms plugin nyt."
+
+#: cforms-corrupted.php:62
+msgid ""
+"It appears that WP has corrupted your cforms settings, the settings array "
+"can not be read properly."
+msgstr ""
+"Näyttää siltä, että WP on vioittunut nimellä cforms asetuksia, asetukset "
+"array ei voida lukea oikein."
+
+#: cforms-corrupted.php:73
+msgid "Corrupted cforms settings detected"
+msgstr "Viallinen cforms asetuksista käyttöön"
+
+#: cforms-corrupted.php:75
+msgid ""
+"You can either try and fix the settings array or reset it and start from "
+"scratch."
+msgstr ""
+"Voit joko yrittää korjata asetukset array tai palauttaa sen ja aloittaa "
+"tyhjästä."
+
+#: cforms-corrupted.php:75
+msgid "RESET"
+msgstr "nollaa"
+
+#: cforms-corrupted.php:78
+msgid "Corrupted cforms settings array (raw code)"
+msgstr "Viallinen cforms asetukset array (raaka-koodi)"
+
+#: cforms-corrupted.php:81
+msgid ""
+"Depending on your Wordpress/PHP skills you may want to try and fix the "
+"serialized data below, then hit the fix button or try just like that, cforms "
+"may magically fix it for you."
+msgstr ""
+"Riippuen Wordpress / PHP taitoja voit yrittää korjata sarjoitettuja alla, "
+"kaahaa fix-painiketta tai yrittää vain, cforms voi maagisesti korjaa sen "
+"sinulle."
+
+#: cforms-corrupted.php:87
+msgid "FIX and save data"
+msgstr "FIX ja tallentaa tietoja"
+
+#: cforms-css.php:34 cforms-css.php:81 cforms-help.php:54
+msgid "Styling your forms"
+msgstr "tyyli lomakkeet"
+
+#: cforms-css.php:36 lib_functions.php:248
+msgid "All cforms data has been erased!"
+msgstr "Kaikki cforms tiedot on poistettu!"
+
+#: cforms-css.php:37 lib_functions.php:249
+msgid ""
+"Please go to your <strong>Plugins</strong> tab and either disable the "
+"plugin, or toggle its status (disable/enable) to revive cforms!"
+msgstr ""
+"Ole hyvä ja mene <strong> Plugins </ strong>-välilehti ja joko poistaa "
+"plugin, tai vaihtaa sen tilan (käytössä / ei käytössä) elvyttää cforms!"
+
+#: cforms-css.php:76
+msgid "New theme selected."
+msgstr "Uusi teema valittu."
+
+#: cforms-css.php:83
+msgid ""
+"Please select a theme file that comes closest to what you're looking for."
+msgstr "Valitse teema tiedosto, joka tulee lähinnä mitä etsit."
+
+#: cforms-css.php:94
+msgid "Please choose a theme file to style your forms"
+msgstr "Valitse teematiedosto muotoilla muotoja"
+
+#: cforms-css.php:102
+msgid ""
+"Please make sure that the <code>/styling</code> folder exists in the cforms "
+"plugin directory!"
+msgstr ""
+"Varmista, että <code>/styling</code> kansio olemassa cforms plugin "
+"hakemistoon!"
+
+#: cforms-css.php:110
+msgid "custom css files"
+msgstr "asiakassuhde CSS-tiedostot"
+
+#: cforms-css.php:129 cforms-global-settings.php:751
+msgid "cform css files"
+msgstr "cform CSS-tiedostot"
+
+#: cforms-css.php:154
+msgid "jQuery UI theme"
+msgstr ""
+
+#: cforms-css.php:159
+msgid "Select Style &raquo;"
+msgstr "Valitse Style »"
+
+#: cforms-css.php:163
+msgid ""
+"For comprehensive customization support you may choose to turn on "
+"<strong>label &amp; list element ID's</strong>. This way each input field "
+"&amp; label can be specifically addressed via CSS styles."
+msgstr ""
+"Peruskoulun räätälöinnin tukea voit halutessasi päälle <strong> etiketissä & "
+"listaelementin ID: n </ strong>. Näin jokainen kenttään ja etiketti voidaan "
+"nimenomaan käsiteltävä kautta CSS-tyylejä."
+
+#: cforms-css.php:165
+msgid "Activate Label IDs"
+msgstr "Aktivoi Label tunnukset"
+
+#: cforms-css.php:165
+msgid "Deactivate Label IDs"
+msgstr "Poista käytöstä Label tunnukset"
+
+#: cforms-css.php:166 cforms-css.php:169
+msgid "Currently turned on "
+msgstr "Tällä hetkellä käytössä"
+
+#: cforms-css.php:168
+msgid "Activate List Element IDs"
+msgstr "Aktivoi List Element tunnukset"
+
+#: cforms-css.php:168
+msgid "Deactivate List Element IDs"
+msgstr "Poista käytöstä List Element tunnukset"
+
+#: cforms-css.php:172
+msgid "Deactivate CSS styling altogether!"
+msgstr "Poista käytöstä CSS-tyyleille kokonaan!"
+
+#: cforms-css.php:172
+msgid "Reactivate CSS styling!"
+msgstr "Aktivoida CSS tyyli!"
+
+#: cforms-css.php:173
+msgid "No styles are being used"
+msgstr "Ei tyylit ovat käytössä"
+
+#: cforms-css.php:179 cforms-help.php:1487
+msgid ""
+"You might also want to study the <a href=\"%s\">PDF guide on cforms CSS</a> "
+"I put together to give you a head start."
+msgstr ""
+"Saatat myös haluta tutkia <a href=\"%s\">PDF opas cforms CSS</a> Olen "
+"koonnut antaa sinulle etumatkaa."
+
+#: cforms-css.php:191
+msgid "PREVIEW:"
+msgstr "esikatselu:"
+
+#: cforms-css.php:191
+msgid "Theme Preview"
+msgstr "teema Preview"
+
+#: cforms-database.php:36
+msgid "Tracking Form Data"
+msgstr "Seuranta Form Data"
+
+#: cforms-database.php:38
+msgid ""
+"All your recorded form submissions are listed below. View individual entries "
+"or a whole bunch and download as XML, TAB or CSV formatted file. Attachments "
+"can be accessed in the details section (<strong>View records</strong>). When "
+"deleting entries, associated attachments will be removed, too! "
+msgstr ""
+"Kaikki tallennetut lomakkeen väitteet on lueteltu alla. Näytä yksittäisiä "
+"merkintöjä tai koko joukko ja ladata XML, SARKAIN tai CSV muotoisen "
+"tiedoston. Liitteet pääsee sisään-osiossa (<strong>View records</strong>). "
+"Kun poistamalla merkintöjä, niihin liittyvät liitteet poistetaan, too!"
+
+#: cforms-database.php:40
+msgid ""
+"If you want to select <strong>ALL</strong> entries, e.g. for download, "
+"simply don't select any particular row. When <strong>viewing records</"
+"strong>: Fields with a <em>grey background</em> can be clicked on and edited!"
+msgstr ""
+"Jos haluat valita <strong>kaikki </ strong> merkintöjä, esim. ladattavissa, "
+"eivät yksinkertaisesti valita mitään erityistä peräkkäin. Kun <strong> "
+"katselu kirjaa </ strong>: Tähdellä <em> harmaa tausta </ em> voidaan "
+"napsauttaa ja muokattu!"
+
+#: cforms-database.php:61 cforms-database.php:74 cforms-options.php:219
+msgid "Form Name"
+msgstr "lomakkeen nimi"
+
+#: cforms-database.php:62 cforms-database.php:75
+msgid "e-mail Address"
+msgstr "sähköpostiosoite"
+
+#: cforms-database.php:63 cforms-database.php:76
+msgid "Date"
+msgstr "päivämäärä"
+
+#: cforms-database.php:64 cforms-database.php:77
+msgid "IP"
+msgstr "IP"
+
+#: cforms-database.php:67
+msgid "View records"
+msgstr "Katso kirjaa"
+
+#: cforms-database.php:68
+msgid "Delete records"
+msgstr "Poista kirjaa"
+
+#: cforms-database.php:69
+msgid "Download records"
+msgstr "Lataa kirjaa"
+
+#: cforms-database.php:73
+msgid "# Number(s)"
+msgstr "# Määrä (t)"
+
+#: cforms-database.php:82
+msgid "Form Submissions"
+msgstr "lomakkeen väitteet"
+
+#: cforms-database.php:83
+msgid "Connection Error"
+msgstr "Yhteysvirhe"
+
+#: cforms-database.php:84
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Tuotteet {alkaen} ja {to} ja {kokonais} tuotetta"
+
+#: cforms-database.php:85
+msgid "Processing, please wait ..."
+msgstr "käsittely, odota ..."
+
+#: cforms-database.php:86
+msgid "No items"
+msgstr "ei tuotteita"
+
+#: cforms-database.php:87
+msgid "of"
+msgstr "ja"
+
+#: cforms-database.php:88
+msgid "Find"
+msgstr "löytää"
+
+#: cforms-database.php:119 cforms-database.php:128
+msgid "Please Confirm"
+msgstr "Ole hyvä ja Vahvista"
+
+#: cforms-database.php:122
+msgid "Are you sure you want to delete the record(s)?"
+msgstr "Oletko varma, että haluat poistaa kirjaa?"
+
+#: cforms-database.php:123 cforms-database.php:145 cforms-options.php:1171
+#: cforms-options.php:1179
+msgid "OK"
+msgstr "kunnossa"
+
+#: cforms-database.php:123 cforms-database.php:145
+#: cforms-global-settings.php:705 cforms-global-settings.php:722
+#: cforms-options.php:1171 cforms-options.php:1179 cforms-options.php:1195
+msgid "Cancel"
+msgstr "peruuttaa"
+
+#: cforms-database.php:136
+msgid "Please pick a format!"
+msgstr "Ole hyvä ja valitse muodossa!"
+
+#: cforms-database.php:138
+msgid "UTF-8"
+msgstr "UTF-8"
+
+#: cforms-database.php:139
+msgid "ISO-8859-1"
+msgstr "ISO-8859-1"
+
+#: cforms-database.php:141
+msgid "Include field names / header"
+msgstr "Sisällytä kenttien nimet / ylätunniste"
+
+#: cforms-database.php:142
+msgid "Include IP address of submitting user"
+msgstr "Ovat IP-osoite esittää käyttäjälle"
+
+#: cforms-database.php:143
+msgid "Add URL for upload fields"
+msgstr "Lisää URL upload kentät"
+
+#: cforms-global-settings.php:49
+msgid "cforms tracking tables %s have been deleted."
+msgstr "cforms seuranta taulukot% s on poistettu."
+
+#: cforms-global-settings.php:51
+msgid ""
+"Please backup/clean-up your upload directory, chances are that when you turn "
+"tracking back on, existing (older) attachments may be <u>overwritten</u>!"
+msgstr ""
+"Ole hyvä backup / puhdistus tallennushakemistolle, mahdollisuudet ovat, että "
+"kun käännyt seuranta takaisin, nykyisten (vanhempi) liitteitä voidaan <u> "
+"päälle </ u>!"
+
+#: cforms-global-settings.php:53
+msgid "(only of course, if your form includes a file upload field)"
+msgstr "(vain tietenkin, jos lomake sisältää tiedoston lähetys kenttä)"
+
+#: cforms-global-settings.php:169
+msgid "ERROR: cforms tracking tables %s could not be created."
+msgstr "virhe: cforms seuranta taulukot% s ei voitu luoda."
+
+#: cforms-global-settings.php:177
+msgid "cforms tracking tables %s have been created."
+msgstr "cforms seuranta taulukot% s on luotu."
+
+#: cforms-global-settings.php:187
+msgid "Found existing cforms tracking tables with %s records!"
+msgstr "Löytyi olemassa cforms seuranta pöydät% s kirjaa!"
+
+#: cforms-global-settings.php:197 lib_functions.php:129
+msgid "Global Settings"
+msgstr "Yleiset asetukset"
+
+#: cforms-global-settings.php:201
+msgid "Debug Info (all major setting groups)"
+msgstr "debug info (kaikki suuret asetteluryhmissä)"
+
+#: cforms-global-settings.php:203
+msgid "Debug Info (all cforms settings)"
+msgstr "Debug Info (kaikki cforms asetukset)"
+
+#: cforms-global-settings.php:207
+msgid "All settings and configuration options on this page apply to all forms."
+msgstr "Kaikki asetukset ja asetuksia tällä sivulla soveltaa kaikkiin."
+
+#: cforms-global-settings.php:213 cforms-global-settings.php:299
+#: cforms-global-settings.php:320 cforms-global-settings.php:377
+#: cforms-global-settings.php:396 cforms-global-settings.php:452
+#: cforms-global-settings.php:468 cforms-global-settings.php:581
+#: cforms-global-settings.php:622 cforms-help.php:58 cforms-help.php:82
+#: cforms-help.php:101 cforms-help.php:881 cforms-help.php:921
+#: cforms-help.php:1023 cforms-help.php:1167 cforms-help.php:1413
+#: cforms-help.php:1480 cforms-help.php:1492 cforms-options.php:465
+#: cforms-options.php:520 cforms-options.php:598 cforms-options.php:791
+#: cforms-options.php:888 cforms-options.php:907 cforms-options.php:980
+#: cforms-options.php:1050 cforms-options.php:1099 cforms-options.php:1132
+msgid "Expand/Collapse"
+msgstr "Laajenna / Pienennä"
+
+#: cforms-global-settings.php:214 cforms-global-settings.php:300
+#: cforms-global-settings.php:321 cforms-global-settings.php:378
+#: cforms-global-settings.php:397 cforms-global-settings.php:453
+#: cforms-global-settings.php:469 cforms-global-settings.php:582
+#: cforms-global-settings.php:623 cforms-help.php:59 cforms-help.php:83
+#: cforms-help.php:102 cforms-help.php:134 cforms-help.php:164
+#: cforms-help.php:187 cforms-help.php:221 cforms-help.php:266
+#: cforms-help.php:306 cforms-help.php:342 cforms-help.php:383
+#: cforms-help.php:414 cforms-help.php:445 cforms-help.php:474
+#: cforms-help.php:510 cforms-help.php:545 cforms-help.php:576
+#: cforms-help.php:697 cforms-help.php:768 cforms-help.php:812
+#: cforms-help.php:882 cforms-help.php:922 cforms-help.php:1024
+#: cforms-help.php:1168 cforms-help.php:1414 cforms-help.php:1481
+#: cforms-help.php:1493 cforms-options.php:466 cforms-options.php:521
+#: cforms-options.php:599 cforms-options.php:792 cforms-options.php:889
+#: cforms-options.php:908 cforms-options.php:981 cforms-options.php:1051
+#: cforms-options.php:1100 cforms-options.php:1133
+msgid "top"
+msgstr "toppi"
+
+#: cforms-global-settings.php:214
+msgid "WP Comment Feature Settings"
+msgstr "WP Kommentti Toimintojen asetukset"
+
+#: cforms-global-settings.php:218
+msgid "Find below the additional settings for cforms WP comment feature."
+msgstr "Alla lisäasetuksia cforms WP kommenttiominaisuudessa."
+
+#: cforms-global-settings.php:222
+msgid "Comment Success Message"
+msgstr "Kommentti Menestys Viesti"
+
+#: cforms-global-settings.php:229
+msgid "Ajax Settings"
+msgstr "Ajax Asetukset"
+
+#: cforms-global-settings.php:233
+msgid "Wait time for new comments (in seconds)"
+msgstr "Odota aika uusia kommentteja (sekunneissa)"
+
+#: cforms-global-settings.php:237
+msgid "Parent Comment Container"
+msgstr "Vanhempi Kommentti Container"
+
+#: cforms-global-settings.php:238 cforms-global-settings.php:330
+#: cforms-global-settings.php:596 cforms-global-settings.php:632
+msgid "Note &raquo;"
+msgstr "Huomautus »"
+
+#: cforms-global-settings.php:240
+msgid ""
+"The HTML <strong>element ID</strong> of the parent element containing<br /"
+">all comments, for example:"
+msgstr ""
+"HTML <strong> elementti ID </ strong> emoelementin sisältää <br /> kaikki "
+"kommentit, esimerkiksi:"
+
+#: cforms-global-settings.php:249 cforms-global-settings.php:261
+msgid "Comment in moderation"
+msgstr "Kommentti maltillisesti"
+
+#: cforms-global-settings.php:254
+msgid "New comment HTML template"
+msgstr "Uusi kommentti HTML-malli"
+
+#: cforms-global-settings.php:256
+msgid "Supported Variables &raquo;"
+msgstr "Tuetut muuttujat »"
+
+#: cforms-global-settings.php:256
+msgid "Default Template &raquo;"
+msgstr "Oletusmalli »"
+
+#: cforms-global-settings.php:262
+msgid "New comment ID"
+msgstr "Uusi kommentti tunnus"
+
+#: cforms-global-settings.php:263
+msgid "Comment Text"
+msgstr "kommentti teksti"
+
+#: cforms-global-settings.php:264 cforms-help.php:709 cforms-help.php:1066
+#: cforms-options.php:379
+msgid "Comment Author"
+msgstr "kommentti Kirjoittaja"
+
+#: cforms-global-settings.php:265
+msgid "The author's website"
+msgstr "Tekijän sivuilla"
+
+#: cforms-global-settings.php:266
+msgid "Current date."
+msgstr "Nykyinen päivämäärä."
+
+#: cforms-global-settings.php:267
+msgid "Current time."
+msgstr "Nykyinen aika."
+
+#: cforms-global-settings.php:268
+msgid "User avatar."
+msgstr "käyttäjä avatar"
+
+#: cforms-global-settings.php:287
+msgid "Avatar Settings"
+msgstr "avatar Asetukset"
+
+#: cforms-global-settings.php:291
+msgid "Size (in pixel)"
+msgstr "Koko (pikseleinä)"
+
+#: cforms-global-settings.php:300
+msgid "Include cforms header data only on specific pages"
+msgstr "Ovat cforms header tiedot vain tietyillä sivuilla"
+
+#: cforms-global-settings.php:304
+msgid ""
+"Specify the ID(s) of <strong>pages or posts</strong> separated by comma on "
+"which you'd like to show or not show cforms. The cforms header will only be "
+"included specifically on those pages, helping to maintain all other pages "
+"neat."
+msgstr ""
+"Määritä ID (t) <strong> sivuja tai viestit </ strong> erotetaan pilkulla, "
+"johon haluat näyttää tai ei näytä cforms.Cforms otsikko tulee vain "
+"nimenomaan näillä sivuilla, auttaa säilyttämään kaikki muut sivut siisti."
+
+#: cforms-global-settings.php:308
+msgid "Page / Post ID(s)"
+msgstr "Sivu / lähettää ID (s)"
+
+#: cforms-global-settings.php:310
+msgid "include"
+msgstr "sisällyttää"
+
+#: cforms-global-settings.php:310
+msgid "exclude"
+msgstr "sulkea pois"
+
+#: cforms-global-settings.php:312
+msgid "Leave empty to include cforms header files throughout your blog"
+msgstr "Jätä tyhjä sisällyttää cforms header-tiedostot koko blogiisi"
+
+#: cforms-global-settings.php:321
+msgid "Popup Date Picker"
+msgstr "Popup Päivämäärävalitsin"
+
+#: cforms-global-settings.php:325
+msgid ""
+"If you'd like to offer a Javascript based date picker for more convenient "
+"date entry, enable this feature here. This will add a <strong>new input "
+"field</strong> for you to add to your form. See <a href=\"%s\" %s>Help!</a> "
+"for more info and <strong>date formats</strong>."
+msgstr ""
+"Jos haluat tarjota Javascript pohjainen päivämääränvalitsimen helpommalta "
+"päivämäärän merkintä, jotta tämä ominaisuus täällä. Tämä lisää <strong> "
+"uuden kenttään </ strong> voit lisätä lomakkeeseen. Katso <a href=\"%s\" %s> "
+"Apua! </ A> lisätietoja ja <strong> päivämäärämuodot </ strong>."
+
+#: cforms-global-settings.php:330
+msgid "Enable Javascript date picker"
+msgstr "Salli Javascriptin päivämäärävalitsimessa"
+
+#: cforms-global-settings.php:332
+msgid ""
+"Note that turning on this feature will result in loading an additional "
+"Javascript file to support the date picker."
+msgstr ""
+"Huomaa, että kääntämällä tämä ominaisuus johtaa lastaus ylimääräistä "
+"Javascript tiedosto tukemaan päivämäärävalitsin."
+
+#: cforms-global-settings.php:335
+msgid "Date Format"
+msgstr "päivämäärän muoto"
+
+#: cforms-global-settings.php:336
+msgid "See supported date formats &raquo;"
+msgstr "Katso tuettu päivämäärämuodot »"
+
+#: cforms-global-settings.php:339
+msgid "Days (Columns)"
+msgstr "päivää (sarakkeet)"
+
+#: cforms-global-settings.php:343
+msgid "Months"
+msgstr "kuukautta"
+
+#: cforms-global-settings.php:349
+msgid "Enable year selection drop down"
+msgstr ""
+
+#: cforms-global-settings.php:352 lib_activate.php:190
+msgid "Previous Month"
+msgstr "Edellinen kuukausi"
+
+#: cforms-global-settings.php:356 lib_activate.php:192
+msgid "Next Month"
+msgstr "ensi kuussa"
+
+#: cforms-global-settings.php:360 lib_activate.php:193
+msgid "Close"
+msgstr "lähellä"
+
+#: cforms-global-settings.php:364 lib_activate.php:194
+msgid "Choose Date"
+msgstr "Valitse Päivämäärä"
+
+#: cforms-global-settings.php:368
+msgid "Week start day"
+msgstr "Viikko aloituspäivä"
+
+#: cforms-global-settings.php:369
+msgid "0=Sunday, 1=Monday, etc."
+msgstr "0=sunnuntai, 1=maanantai, jne."
+
+#: cforms-global-settings.php:378
+msgid "Mail Server Settings"
+msgstr "Postin palvelimen asetukset"
+
+#: cforms-global-settings.php:383
+msgid ""
+"cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) "
+"as line separators. If your mail server adds additional line breaks to the "
+"email, you may want to try and turn on the below option."
+msgstr ""
+"cforms tuottaa RFC-yhteensopiva sähköpostit CRLF (rivinvaihto) kuin linja "
+"erottimet. Jos sähköpostipalvelin lisää rivinvaihtoja ja sähköpostin, sinun "
+"kannattaa kokeilla ja käynnistä alla vaihtoehto."
+
+#: cforms-global-settings.php:387
+msgid "Separate lines in email %sbody%s with LF only (CR suppressed)"
+msgstr "Erilliset rivit sähköpostitse% sbody% s LF vain (CR tukahdutetaan)"
+
+#: cforms-global-settings.php:397
+msgid "Global File Upload Settings"
+msgstr "Global Tiedoston lataaminen Asetukset"
+
+#: cforms-global-settings.php:402 cforms-options.php:471
+msgid ""
+"Configure and double-check these settings in case you are adding a "
+"\"<code>File Upload Box</code>\" to your form (also see the <a href=\"%s\" "
+"%s>Help!</a> for further information)."
+msgstr ""
+"Määritä ja tarkistat nämä asetukset, jos lisäät \"<code> Tiedoston "
+"lataaminen Box </ code> \" lomakkeeseen (katso myös <a href=\"%s\" %s> Apua! "
+"</ a> lisätietoja)."
+
+#: cforms-global-settings.php:403
+msgid ""
+"Form specific settings (directory path etc.) have been moved to <a href=\"%s"
+"\" %s>here</a>."
+msgstr ""
+"Erityisiä asetukset (hakemistopolku jne.) on siirretty <a href=\"%s\" %s> "
+"tästä </ a>."
+
+#: cforms-global-settings.php:407
+msgid ""
+"Also, note that by adding a <em>File Upload Box</em> to your form, the Ajax "
+"(if enabled) submission method will (automatically) <strong>gracefully "
+"degrade</strong> to the standard method, due to general HTML limitations."
+msgstr ""
+"Huomaa myös, että lisäämällä <em> Tiedoston lataaminen Box </ em> "
+"lomakkeeseen, Ajax (jos käytössä) mukaan menetelmä (automaattisesti) "
+"<strong> sulavasti hajota </ strong> standardimenetelmää, koska yleinen HTML "
+"rajoituksia."
+
+#: cforms-global-settings.php:408
+msgid "Below, error messages shown in case something goes awry:"
+msgstr "Alla virheilmoitukset näytetään, jos jotain menee pieleen:"
+
+#: cforms-global-settings.php:413
+msgid "File type not allowed"
+msgstr "Kielletty tiedostotyyppi"
+
+#: cforms-global-settings.php:420
+msgid "Generic (unknown) error"
+msgstr "Yleinen (Tuntematon) virhe"
+
+#: cforms-global-settings.php:427
+msgid "File is empty"
+msgstr "Tiedosto on tyhjä"
+
+#: cforms-global-settings.php:434
+msgid "File size too big"
+msgstr "Tiedoston koko on liian suuri"
+
+#: cforms-global-settings.php:441
+msgid "Error during upload"
+msgstr "Latauksen aikana"
+
+#: cforms-global-settings.php:453
+msgid "WP Editor Button support"
+msgstr "WP toimittaja nappi tuki"
+
+#: cforms-global-settings.php:457
+msgid ""
+"If you would like to use editor buttons to insert your cforms please enable "
+"them below."
+msgstr ""
+"Jos haluat käyttää editorin painikkeita asettamaan cforms salli niiden alla."
+
+#: cforms-global-settings.php:461
+msgid "Enable TinyMCE"
+msgstr "Ota TinyMCE"
+
+#: cforms-global-settings.php:461
+msgid "&amp; Code editor buttons"
+msgstr "& Koodi editori painikkeet"
+
+#: cforms-global-settings.php:469
+msgid "CAPTCHA Image Settings"
+msgstr "CAPTCHA kuva asetukset"
+
+#: cforms-global-settings.php:498
+msgid "Preview Image"
+msgstr "esikatselukuva"
+
+#: cforms-global-settings.php:498
+msgid "Don't forget to save your changes!"
+msgstr "Älä unohda tallentaa muutokset!"
+
+#: cforms-global-settings.php:500
+msgid "Reload Captcha Image"
+msgstr "ladata Captcha kuva"
+
+#: cforms-global-settings.php:505 cforms-global-settings.php:590
+msgid "Force display"
+msgstr "pakottaa näyttö"
+
+#: cforms-global-settings.php:506
+msgid "Force CAPTCHA display for logged in users"
+msgstr "pakota CAPTCHA näyttö kirjautuneet käyttäjät"
+
+#: cforms-global-settings.php:510
+msgid "Width"
+msgstr "leveys"
+
+#: cforms-global-settings.php:513
+msgid "Height"
+msgstr "Did you mean: heightkorkeus"
+
+#: cforms-global-settings.php:517
+msgid "Border Color"
+msgstr "raja väri"
+
+#: cforms-global-settings.php:523
+msgid "Background Image"
+msgstr "taustakuva"
+
+#: cforms-global-settings.php:530
+msgid "Font Type"
+msgstr "fontin tyyppi"
+
+#: cforms-global-settings.php:536
+msgid "Min Size"
+msgstr "min Koko"
+
+#: cforms-global-settings.php:539
+msgid "Max Size"
+msgstr "Max Koko"
+
+#: cforms-global-settings.php:543
+msgid "Min Angle"
+msgstr "min Kulma"
+
+#: cforms-global-settings.php:546
+msgid "Max Angle"
+msgstr "Max Kulma"
+
+#: cforms-global-settings.php:550
+msgid "Color"
+msgstr "väri"
+
+#: cforms-global-settings.php:558
+msgid "Number of shown characters"
+msgstr "Lukumäärä näkyy merkkejä"
+
+#: cforms-global-settings.php:561
+msgid "Minimum"
+msgstr "vähimmäismäärä"
+
+#: cforms-global-settings.php:564
+msgid "Maximum"
+msgstr "maksimi"
+
+#: cforms-global-settings.php:568
+msgid "Allowed characters"
+msgstr "sallittuja merkkejä"
+
+#: cforms-global-settings.php:573
+msgid "User response is treated case insensitive"
+msgstr "Käyttäjän vastaus käsitellään isoja ja pieniä kirjaimia"
+
+#: cforms-global-settings.php:582
+msgid "Visitor Verification Settings (Q&amp;A)"
+msgstr "Vierailija vahvistusasetuksesi (Q & A)"
+
+#: cforms-global-settings.php:586
+msgid ""
+"Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
+"spam and ensure it's a human submitting the form. To use in your form, add "
+"the corresponding input field %s preferably in its own FIELDSET!"
+msgstr ""
+"pääseminen paljon <strong> roskapostista </ strong>? Käytä näitä Q & A: n "
+"vastapainoksi roskapostia ja varmistaa se ihmisen lähettämällä lomake. "
+"Käyttää lomakkeen, lisää vastaava kenttään %s mieluiten omassa FIELDSET!"
+
+#: cforms-global-settings.php:591
+msgid "Force Q&amp;A display for logged in users"
+msgstr "pakota Q & näyttö kirjautuneet käyttäjät"
+
+#: cforms-global-settings.php:599
+msgid ""
+"The below error/failure message is also used for <strong>captcha</strong> "
+"verification!"
+msgstr ""
+"Alla virhe / epäonnistumisviesti käytetään myös <strong> captcha </ strong> "
+"tarkastusta!"
+
+#: cforms-global-settings.php:600
+msgid ""
+"Depending on your personal preferences and level of SPAM security you intend "
+"to put in place, you can also use <a href=\"%s\" %s>cforms' CAPTCHA feature</"
+"a>!"
+msgstr ""
+"Riippuen henkilökohtaiset mieltymykset ja taso roskapostista turvallisuuden "
+"aiot ottaa käyttöön, voit käyttää myös <a href=\"%s\" %s> cforms \"CAPTCHA "
+"on </ a>!"
+
+#: cforms-global-settings.php:604
+msgid "<strong>Failure message</strong><br />(for a wrong answer)"
+msgstr "<strong> virheilmoitus </ strong> <br /> (ja väärä vastaus)"
+
+#: cforms-global-settings.php:613
+msgid "<strong>Questions &amp; Answers</strong><br />format: Q=A"
+msgstr "<strong> Kysymyksiä ja vastauksia </ strong> <br /> muodossa: Q ="
+
+#: cforms-global-settings.php:623
+msgid "Database Input Tracking"
+msgstr "Tietokanta Input seuranta"
+
+#: cforms-global-settings.php:627
+msgid ""
+"If you like to track your form submissions also via the database, please "
+"enable this feature below. If required, two new tables will be created and "
+"you'll see a new sub tab \"<strong>Tracking</strong>\" under the cforms menu."
+msgstr ""
+"Jos haluat seurata lomakkeen väitteet myös tietokannan kautta, salli tämän "
+"toiminnon alla. Tarvittaessa kaksi uutta taulukot luodaan ja näet uusi "
+"alasivu\"<strong> seuranta </ strong> \" alla cforms valikosta."
+
+#: cforms-global-settings.php:634
+msgid ""
+"If you've enabled the <a href=\"%s\" %s>auto confirmation message</a> "
+"feature or have included a <code>CC: me</code> input field, you can "
+"optionally configure the subject line/message of the email to include the "
+"form tracking ID by using the variable <code>{ID}</code>."
+msgstr ""
+"Jos olet ottanut käyttöön <a href=\"%s\" %s> auto vahvistus viestin </ a> "
+"ominaisuus tai ovat mukana <code> CC: me </ code>-kenttään, voit halutessasi "
+"määrittää aihe line / viesti sähköpostilla sisällyttää muodossa seuranta ID "
+"käyttämällä muuttujan <code> {ID} </ code>."
+
+#: cforms-global-settings.php:637
+msgid "Enable Database Tracking"
+msgstr "Ota Database seuranta"
+
+#: cforms-global-settings.php:638
+msgid "Will create two new tables in your WP database."
+msgstr "Luo kaksi uutta taulukoista WP tietokantaan."
+
+#: cforms-global-settings.php:642
+msgid "Show on dashboard"
+msgstr "Näytä kojelaudassa"
+
+#: cforms-global-settings.php:643
+msgid "Make sure to enable your forms individually as well!"
+msgstr "Varmista, jotta lomakkeet myös erikseen!"
+
+#: cforms-global-settings.php:647
+msgid "Enable global RSS"
+msgstr "Ota maailmanlaajuinen RSS"
+
+#: cforms-global-settings.php:648
+msgid "Enables an RSS feed to track all new submissions across all forms."
+msgstr ""
+"Ottaa RSS-syötteen seurata kaikkia uusia näkökantoja kaikissa muodoissa."
+
+#: cforms-global-settings.php:661 cforms-options.php:752
+msgid "Number of shown RSS entries"
+msgstr "Lukumäärä näkyy RSS merkinnät"
+
+#: cforms-global-settings.php:665 cforms-options.php:774
+msgid "RSS Feed Security Key"
+msgstr "RSS-syöte Suojausavaimen"
+
+#: cforms-global-settings.php:668 cforms-options.php:777
+msgid "Reset RSS Key"
+msgstr "Palauta RSS Key"
+
+#: cforms-global-settings.php:669 cforms-options.php:782
+msgid "The complete RSS URL &raquo;"
+msgstr "Täydellinen RSS URL »"
+
+#: cforms-global-settings.php:694
+msgid "Backup &amp; Restore All Settings"
+msgstr "Varmuuskopiointi ja palauttaa kaikki asetukset"
+
+#: cforms-global-settings.php:699
+msgid ""
+"Restoring all settings will overwrite all form specific &amp; global "
+"settings!"
+msgstr ""
+"Asetusten palauttaminen korvaa kaikki lomakkeen erityisiä ja "
+"maailmanlaajuinen asetukset!"
+
+#: cforms-global-settings.php:701
+msgid "Backup all settings now!"
+msgstr "Varmuuskopioida kaikki asetukset nyt!"
+
+#: cforms-global-settings.php:702
+msgid "Restore all settings now!"
+msgstr "Palauta kaikki asetukset nyt!"
+
+#: cforms-global-settings.php:702
+msgid ""
+"With a broken backup file, this action may erase all your settings! Do you "
+"want to continue?"
+msgstr ""
+"Kanssa rikki varmuuskopio, tämä toiminta saattaa pyyhkiä kaikki asetukset! "
+"Haluatko jatkaa?"
+
+#: cforms-global-settings.php:704
+msgid ""
+"PS: Individual form configurations can be backup up on the respective form "
+"admin page."
+msgstr ""
+"PS: Yksittäiset muodossa kokoonpanoja voidaan varmuuskopioida ylös kunkin "
+"lomakkeen admin sivu."
+
+#: cforms-global-settings.php:713
+msgid "Uninstalling / Removing cforms"
+msgstr "Poistaminen / poistaminen cforms"
+
+#: cforms-global-settings.php:716
+msgid "Warning!"
+msgstr "Varoitus!"
+
+#: cforms-global-settings.php:718
+msgid ""
+"Generally, simple deactivation of cforms does <strong>not</strong> erase any "
+"of its data. If you like to quit using cforms for good, please erase all "
+"data before deactivating the plugin."
+msgstr ""
+"Yleensä yksinkertainen deaktivointi cforms <strong> ei </ strong> poista sen "
+"tiedot. Jos haluat lopettaa käyttämällä cforms hyvää, kiitos poistaa kaikki "
+"tiedot, kytkemättä plugin."
+
+#: cforms-global-settings.php:719
+msgid "This is irrevocable!"
+msgstr "Tämä on peruuttamaton!"
+
+#: cforms-global-settings.php:720
+msgid "Are you sure you want to do this?!"
+msgstr "Tämä on peruuttamaton!"
+
+#: cforms-global-settings.php:720
+msgid "DELETE *ALL* CFORMS DATA"
+msgstr "poistaa * KAIKKI * cforms tiedot"
+
+#: cforms-global-settings.php:720
+msgid "Final Warning!"
+msgstr "Lopullinen Varoitus!"
+
+#: cforms-global-settings.php:741
+msgid "custom files"
+msgstr "mukautettuja tiedostoja"
+
+#: cforms-global-settings.php:763 include/installpreset.php:81
+msgid "Not available"
+msgstr "ei saatavilla"
+
+#: cforms-help.php:30
+msgid "Help"
+msgstr "apua"
+
+#: cforms-help.php:33
+msgid ""
+"Here you'll find plenty of examples and documentation that should help you "
+"configure <strong>cforms</strong>."
+msgstr ""
+"Täältä löydät runsaasti esimerkkejä ja asiakirjat, jotka pitäisi auttaa "
+"sinua määrittää <strong> cforms </ strong>."
+
+#: cforms-help.php:36
+msgid "Table of Contents"
+msgstr "Did you mean: table of contentsSisällysluettelo"
+
+#: cforms-help.php:38 cforms-help.php:59
+msgid "Basic steps, a small guide"
+msgstr "perustiedot vaiheet, pieni opas"
+
+#: cforms-help.php:39 cforms-help.php:83
+msgid "Inserting a form"
+msgstr "Asettaminen muodossa"
+
+#: cforms-help.php:40 cforms-help.php:102
+msgid "Configuring form input fields"
+msgstr "Asetusten muodossa syötekenttiä"
+
+#: cforms-help.php:42 cforms-help.php:125
+msgid "Special <em>Tell A Friend</em> input fields"
+msgstr "erityinen <em> Kerro kaverille </ em> syötekenttiä"
+
+#: cforms-help.php:43 cforms-help.php:126
+msgid "Special <em>WP Comment Feature</em> input fields"
+msgstr " erityinen <em> WP Kommentti Feature </ em> syötekenttiä"
+
+#: cforms-help.php:44
+msgid "SPAM protection: Q &amp; A"
+msgstr "Roskapostisuodatus: Q & A"
+
+#: cforms-help.php:45
+msgid "SPAM protection: Captcha"
+msgstr "Roskapostisuodatus: Captcha"
+
+#: cforms-help.php:46 cforms-help.php:769
+msgid "Fieldsets"
+msgstr "Fieldsets"
+
+#: cforms-help.php:47 cforms-help.php:813
+msgid "Using regular expressions with form fields"
+msgstr "Käyttäen säännöllisiä lausekkeita lomakkeen kenttiin"
+
+#: cforms-help.php:49 cforms-help.php:882
+msgid "Custom error messages &amp; input field titles"
+msgstr "asiakassuhde virheilmoitukset & kenttään otsikot"
+
+#: cforms-help.php:50 cforms-help.php:922
+msgid "Advanced: cforms APIs &amp; (Post-)Processing of submitted data"
+msgstr "edistyksellinen: cforms API ja (Post-) käsittely toimittanut"
+
+#: cforms-help.php:51 cforms-help.php:1024
+msgid "Advanced: Real-time creation of dynamic forms"
+msgstr "edistyksellinen: Reaaliaikainen dynaamisten lomakkeiden"
+
+#: cforms-help.php:52
+msgid "Using variables in email subjects &amp; messages"
+msgstr "Käyttämällä muuttujia sähköpostia aiheita ja viestejä"
+
+#: cforms-help.php:53 cforms-help.php:1414
+msgid "Multi page forms"
+msgstr "Monisivuinen lomakkeita"
+
+#: cforms-help.php:55 cforms-help.php:1493
+msgid "Need more help?"
+msgstr "Tarvitsetko lisää apua?"
+
+#: cforms-help.php:63
+msgid ""
+"Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin "
+"but it may be the most flexible. The below outline should help you get "
+"started with the default form."
+msgstr ""
+"Tosin <strong> cforms </ strong> ei ole helpoin kuori plugin, mutta se voi "
+"olla joustava.Alla ääriviivat pitäisi auttaa sinua pääsemään alkuun "
+"oletuksena muodossa."
+
+#: cforms-help.php:65
+msgid "First take a look at the <a href=\"%s\">default form</a>"
+msgstr "Ensimmäinen katsomaan <a href=\"%s\"> oletuksena muodossa </ a>"
+
+#: cforms-help.php:67
+msgid ""
+"Verify that it contains all the fields you need, are they in the right order"
+msgstr ""
+"Varmista, että se sisältää kaikki kentät tarvitset, ne oikeassa "
+"järjestyksessä"
+
+#: cforms-help.php:68
+msgid "Check the field labels (field names), if needed make your adjustments"
+msgstr ""
+"Tarkista kentän merkinnät (kenttien nimet), tarvittaessa tehdä muutoksia"
+
+#: cforms-help.php:69
+msgid "Check the flags for each field (check boxes to the right)."
+msgstr "Tarkista liput kunkin kentän (valintaruutuja oikealla)."
+
+#: cforms-help.php:70
+msgid ""
+"Want to include SPAM protection? Choose between <a href=\"%s\" %s>Q&amp;A</"
+"a>, <a href=\"%s\" %s>captcha</a> add an input field accordingly and "
+"configure <a href=\"%s\" %s>here</a>."
+msgstr ""
+"Haluatko myös roskapostisuodatus? Valita <a href=\"%s\" %s> Q&amp;A</ a>, <a "
+"href=\"%s\" %s> captcha </ a> lisää kenttään vastaavasti ja määritä <href="
+"\"%s \"%s> tästä</ a>."
+
+#: cforms-help.php:73
+msgid ""
+"Check if the <a href=\"%s\" %s>email admin</a> for your form is configured "
+"correctly."
+msgstr ""
+"Tarkista, <a href=\"%s\" %s> sähköpostia admin </ a> lomake on määritetty "
+"oikein."
+
+#: cforms-help.php:74
+msgid ""
+"Decide if you want the visitor to receive an <a href=\"%s\" %s>auto "
+"confirmation message</a> upon form submission."
+msgstr ""
+"Päätä haluatko vierailija saada <a href=\"%s\" %s> auto vahvistus viestin </ "
+"a> kun lomakkeen lähettäminen."
+
+#: cforms-help.php:75
+msgid ""
+"Would you like <a href=\"%s\" %s>to track</a> form submission via the "
+"database?"
+msgstr ""
+"Haluaisitko <a href=\"%s\" %s> seurata </ a> lomakkeen lähettäminen "
+"tietokannan kautta?"
+
+#: cforms-help.php:76
+msgid "<a href=\"%s\" %s>Add the default form</a> to a post or page."
+msgstr ""
+"<a href=\"%s\" %s> Lisää oletusarvoisesti muodossa </ a> postitse tai "
+"sivulla."
+
+#: cforms-help.php:77
+msgid "Give it a whirl."
+msgstr "Antaa sille pöllytä."
+
+#: cforms-help.php:87
+msgid "Editing posts and pages:"
+msgstr "Muokkaaminen virkaa ja sivut:"
+
+#: cforms-help.php:89
+msgid ""
+"If you like to do it the 'code' way, make sure to use %1s to include them in "
+"your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>."
+msgstr ""
+"Jos haluat tehdä se \"koodi\" tavalla, varmista, että käytät% 1s sisällyttää "
+"ne <em> Pages / viestit </ em>. Kanssa% 2s on <u> lomakkeen NIMI </ u>."
+
+#: cforms-help.php:90
+msgid ""
+"A more elegant and safer way is to use the <strong>TinyMCE Button</strong> "
+"(double check if <a href=\"%3s\" %s>Button Support</a> is enabled!)."
+msgstr ""
+"Enemmän tyylikäs ja turvallisempi tapa on käyttää <strong> TinyMCE Button </ "
+"strong> (double check jos <a href=\"%3s\" %s> Button tuki </ a> on "
+"käytössä!)."
+
+#: cforms-help.php:91
+msgid ""
+"For backwards compatibility, the old-fashioned way is still supported: %1s "
+"for the first form and/or %2s for your other forms."
+msgstr ""
+"Yhteensopivuuden, vanhanaikaisella tavalla tukevat edelleen:%1s ensimmäisen "
+"muodon ja/tai %2s teidän muiden."
+
+#: cforms-help.php:94
+msgid "Via PHP function call:"
+msgstr "Via PHP funktio soita:"
+
+#: cforms-help.php:95
+msgid ""
+"Alternatively, you can specifically insert a form (into the sidebar for "
+"instance etc.) per the PHP function call %1s, or alternatively %2s for the "
+"default/first form and/or %2s for any other form."
+msgstr ""
+"Vaihtoehtoisesti voit nimenomaan lisätä muodossa (osaksi sivupalkissa "
+"esimerkiksi jne.) per PHP funktiokutsua% 1s, tai vaihtoehtoisesti% 2s "
+"oletusarvo / ensimmäinen muoto ja / tai% 2s muuta."
+
+#: cforms-help.php:97 cforms-help.php:251 cforms-help.php:256
+#: cforms-help.php:631 cforms-help.php:909 cforms-help.php:1355
+#: cforms-help.php:1381 cforms-options.php:648 cforms-options.php:881
+msgid "Note:"
+msgstr "Translate from: FrenchHuom:"
+
+#: cforms-help.php:97
+msgid ""
+"\"%1s\" represents the number of the form, starting with %2s ..and so forth."
+msgstr "\"%1s\"on määrä, joka on muotoa, joka alkaa %2s .. ja niin edelleen."
+
+#: cforms-help.php:106
+msgid ""
+"All supported input fields are listed below, highlighting the expected "
+"<em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. "
+"Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, "
+"see examples below."
+msgstr ""
+"Kaikki tuetut syöttö kentät on lueteltu alla, korostaen odotettu <em> <u> "
+"formaatteja </ u> </ em> niihin liittyvälle% sField Nimet <sup> *) </ sup>% "
+"s. Etiketti (<em> kenttien nimet </ em>) sallia <strong> HTML </ strong>, "
+"katso esimerkit alla."
+
+#: cforms-help.php:108
+msgid ""
+"While the <em>Field Names</em> are usually just the label of a field (e.g. "
+"\"Your Name\"), they can contain additional information to support special "
+"functionality (e.g. default values, regular expressions for extended field "
+"validation etc.)"
+msgstr ""
+"Vaikka <em> kenttien nimet </em> ovat yleensä vain etiketissä kentän (esim."
+"\"Nimesi \"), ne voivat sisältää lisätietoja tukemaan erityisiä toimintoja "
+"(esim. oletusarvot, säännöllisiä lausekkeita pitkäksi kenttävalidointia "
+"jne. .)"
+
+#: cforms-help.php:109
+msgid ""
+"A new <em>wizard like</em> mode allows you to configure more complex "
+"settings in case all the pipes \"|\" and pounds \"#\" are overwhelming."
+msgstr ""
+"Uusi <em> ohjattua kuten </em>-tilassa voit määrittää monimutkaisempia "
+"asetuksia, jos kaikki putket \"| \" ja naulaa \"# \" ovat ylivoimainen."
+
+#: cforms-help.php:112
+msgid "Text only elements"
+msgstr "Vain teksti elementtejä"
+
+#: cforms-help.php:113
+msgid "Javascript Date Picker input field"
+msgstr "Javascript Päivämäärävalitsin kenttään"
+
+#: cforms-help.php:114
+msgid "Single-, Password &amp; Multi-line fields"
+msgstr "Single-, salasana-ja Multi-line kentät"
+
+#: cforms-help.php:115
+msgid "Select / drop down box &amp; radio buttons"
+msgstr "Valitse / avattavasta & valintanapeista"
+
+#: cforms-help.php:116
+msgid "Multi-select box"
+msgstr "Multi-valintaikkunasta"
+
+#: cforms-help.php:117 cforms-help.php:307 cforms-help.php:1066
+msgid "Check boxes"
+msgstr "Tarkista laatikot"
+
+#: cforms-help.php:118 cforms-help.php:343
+msgid "Check box groups"
+msgstr "Valintaruutu ryhmät"
+
+#: cforms-help.php:119
+msgid "CC:me check box"
+msgstr "CC: me valintaruutu"
+
+#: cforms-help.php:120
+msgid "Multiple recipients drop down box"
+msgstr "Useita vastaanottajia avattavasta"
+
+#: cforms-help.php:121
+msgid "Hidden fields"
+msgstr "piilotettuja kenttiä"
+
+#: cforms-help.php:122
+msgid "SPAM protection: Q&amp;A input field"
+msgstr "Roskapostisuodatus: Q & kenttään"
+
+#: cforms-help.php:123
+msgid "SPAM protection: Captcha input field"
+msgstr "Roskapostisuodatus: Captcha-kenttään"
+
+#: cforms-help.php:124
+msgid "File attachments / upload"
+msgstr "Liitetiedostot /lataa"
+
+#: cforms-help.php:133 cforms-help.php:163 cforms-help.php:186
+#: cforms-help.php:220 cforms-help.php:265 cforms-help.php:305
+#: cforms-help.php:341 cforms-help.php:382 cforms-help.php:413
+#: cforms-help.php:444 cforms-help.php:473 cforms-help.php:509
+#: cforms-help.php:544 cforms-help.php:575 cforms-help.php:696
+#: cforms-help.php:767 cforms-help.php:811
+msgid "form<br />field"
+msgstr "muodostavat <br /> alalla"
+
+#: cforms-help.php:135
+msgid "Text only elements (no input)"
+msgstr "Vain teksti elementit (ei syöttö)"
+
+#: cforms-help.php:140 cforms-help.php:169 cforms-help.php:193
+#: cforms-help.php:227 cforms-help.php:272 cforms-help.php:312
+#: cforms-help.php:348 cforms-help.php:389 cforms-help.php:422
+#: cforms-help.php:450 cforms-help.php:480 cforms-help.php:516
+#: cforms-help.php:551 cforms-help.php:582 cforms-help.php:716
+#: cforms-help.php:727 cforms-help.php:777 cforms-help.php:821
+msgid "Entry format for Field Name"
+msgstr "merkintä muoto Kentän nimi"
+
+#: cforms-help.php:140 cforms-help.php:169 cforms-help.php:193
+#: cforms-help.php:227 cforms-help.php:272 cforms-help.php:312
+#: cforms-help.php:348 cforms-help.php:389 cforms-help.php:422
+#: cforms-help.php:450 cforms-help.php:480 cforms-help.php:516
+#: cforms-help.php:551 cforms-help.php:727 cforms-help.php:777
+#: cforms-help.php:821 cforms-help.php:892
+msgid "Format:"
+msgstr "Format:"
+
+#: cforms-help.php:141
+msgid "text paragraph %1$s css class %1$s optional style"
+msgstr "tekstikappale %1$s css luokka %1$s lisävaruste tyyli"
+
+#: cforms-help.php:144 cforms-help.php:147 cforms-help.php:173
+#: cforms-help.php:197 cforms-help.php:201 cforms-help.php:205
+#: cforms-help.php:231 cforms-help.php:276 cforms-help.php:280
+#: cforms-help.php:316 cforms-help.php:352 cforms-help.php:393
+#: cforms-help.php:426 cforms-help.php:454 cforms-help.php:458
+#: cforms-help.php:484 cforms-help.php:520 cforms-help.php:524
+#: cforms-help.php:555 cforms-help.php:731 cforms-help.php:781
+#: cforms-help.php:1296
+msgid "Example:"
+msgstr "Esimerkki:"
+
+#: cforms-help.php:144
+msgid "Please make sure..."
+msgstr "Varmista ..."
+
+#: cforms-help.php:147
+msgid "Check %s here %s for more info. %s"
+msgstr "Tarkista% s täällä% s lisätietoja. % s"
+
+#: cforms-help.php:150
+msgid ""
+"HTML: the <code>text paragraph</code> supports HTML. If you need actual "
+"&lt;, &gt; in your text please use the proper HTML entity."
+msgstr ""
+"HTML: <code> tekstiä kohta </ code> tukee HTML. Jos tarvitset todellinen <,> "
+"tekstisi käytä asianmukaista HTML kokonaisuus."
+
+#: cforms-help.php:153
+msgid ""
+"The above expression applies the custom class \"<code>mytextclass</code>\" "
+"<strong>AND</strong> the specific styles \"<code>font-size:9x; font-weight:"
+"bold;</code>\" to the paragraph."
+msgstr ""
+"Edellä lauseke koskee mukautetun luokan \"<code> mytextclass </code>\" "
+"<strong> JA </ strong> erityisiä tyylejä \"<code> font-size: 9x, font-"
+"weight: bold; </code>\"ja kohta."
+
+#: cforms-help.php:156
+msgid ""
+"If you specify a <code>css class</code>, you also need to define it in your "
+"current form theme file, <a href=\"%s\">here</a>."
+msgstr ""
+"Jos määrittelet <code> css luokan </ code>, sinun on myös määritellä se "
+"nykyisessä muodossa teematiedosto, <a href=\"%s\"> tästä </ a>."
+
+#: cforms-help.php:165
+msgid "Javascript Date Picker"
+msgstr "Javascript Päivämäärävalitsin"
+
+#: cforms-help.php:170 cforms-help.php:194
+msgid ""
+"field name %1$s default value %1$s <a href=\"%2$s\">regular expression</a>"
+msgstr ""
+"kentän nimi %1$s oletusarvo %1$s <a href=\"%2$s\"> säännöllinen lauseke </a>"
+
+#: cforms-help.php:174
+msgid "Arrival Date"
+msgstr "aloitus"
+
+#: cforms-help.php:178
+msgid ""
+"The example above will set a <em>default value</em> of \"%s\" so users know "
+"the expected format. The <strong>regexp</strong> at the end ensures that "
+"only this format is accepted. <strong>NOTE:</strong> You also need to <a "
+"href=\"%s\" %s>configure the date picker options</a> to match the date "
+"format (\"%s\")!"
+msgstr ""
+"Esimerkiksi yllä asettaa <em> oletusarvo </em> on \"%s\", jotta käyttäjät "
+"tietävät odotettu muodossa.<strong> Regexp </ strong> lopussa varmistaa, "
+"että vain tässä muodossa hyväksytään. <strong> HUOM: </ strong> Tarvitset "
+"myös <a href=\"%s\" %s> määrittää päivämäärävalitsinta vaihtoehtoja </a> "
+"vastaamaan päivämäärän muodossa (\"%s\")!"
+
+#: cforms-help.php:188
+msgid "Single, Password &amp; Multi line input fields"
+msgstr "Yhden, salasana ja Multi line syötekenttiä"
+
+#: cforms-help.php:198
+msgid "Reference"
+msgstr "viite"
+
+#: cforms-help.php:202
+msgid "Your &lt;u&gt;Full&lt;/u&gt; Name"
+msgstr "Sinun <u> Täysi </ u> Name"
+
+#: cforms-help.php:206
+msgid "We need your email address for confirmation.\"%sYour EMail"
+msgstr "Tarvitsemme sähköpostiosoitteesi vahvistusta.\"%ssähköpostiosoitteesi"
+
+#: cforms-help.php:210
+msgid "You can of course omit the <em>default value</em> as in Example 2."
+msgstr "Voit tietenkin jättää <em> oletusarvo </ em> kuin esimerkissä 2."
+
+#: cforms-help.php:222
+msgid "Select boxes &amp; radio buttons"
+msgstr "Valitse laatikot & valintanappien"
+
+#: cforms-help.php:228 cforms-help.php:273
+msgid ""
+"field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3..."
+msgstr ""
+"kentän nimi %1$s vaihtoehto1 %2$s arvo1 %1$s vaihtoehto2 %2$s arvo2 %1$s "
+"Valinta 3 ..."
+
+#: cforms-help.php:232 cforms-help.php:905
+msgid "Your age#12-18|kiddo#19 to 30|young#31 to 45#45+ |older"
+msgstr "Ikäsi # 12-18 | penska # 19-30 | nuoret # 31-45 # 45 + | vanhemmat"
+
+#: cforms-help.php:236
+msgid ""
+"Omitting the <code>field name</code> will result in not showing a label to "
+"the left of the field."
+msgstr ""
+"Jättämällä <code> kentän nimi </ code> johtaa ei näy etiketin vasemmalla "
+"kentän."
+
+#: cforms-help.php:241
+msgid ""
+"The <strong>option</strong> parameter determines the text displayed to the "
+"visitor, <strong>value</strong> what is being sent in the email."
+msgstr ""
+"<strong> Vaihtoehto </ strong> parametri määrittää tekstin näytetään "
+"kävijälle, <strong> arvo </ strong> mitä ollaan lähetetään sähköpostitse."
+
+#: cforms-help.php:246
+msgid ""
+"Is no <strong>value</strong> explicitly given, then the shown option text is "
+"the value sent in the email."
+msgstr ""
+"Ei <strong> arvo </ strong> nimenomaisesti antanut, niin esitetty vaihtoehto "
+"teksti on arvo, joka lähetetään sähköpostitse."
+
+#: cforms-help.php:251
+msgid ""
+"<strong>Select box marked \"Required\":</strong> Using a minus symbol %1$s "
+"for the value (after %2$s), will mark an option as invalid! Example:<br /"
+"><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|"
+"young#31 to 45#45+ |older</code>. <br />\"Please pick...\" is shown but not "
+"considered a valid value."
+msgstr ""
+"<strong> Valitse laatikosta \"Pakollinen \":</strong> miinusmerkki %1$s arvo "
+"(kun %2$s), merkitsee vaihtoehto kelpaa! Esimerkki: <br/>. <code> ikäsi # "
+"hyvä valita oman ikäryhmän | - #12-18 | penska # 19-30 | nuoret # 31-45 # 45 "
+"+ | vanhemmat </ code>. <br /> \"Ole hyvä poimia ...\" näytetään, mutta ei "
+"pidetä kelvollinen arvo."
+
+#: cforms-help.php:256
+msgid ""
+"<strong>Radio buttons marked \"Required\":</strong> You can choose to not "
+"preselect a radio button upon form load, yet make a user selection mandatory "
+"for the form to validate."
+msgstr ""
+"<strong> Valintanapit merkitty \"Pakollinen \": </ strong> Voit ei valita "
+"ennakkoon valintanappi upon muodossa kuorman, mutta tekee käyttäjän valinnan "
+"pakollinen lomake vahvista."
+
+#: cforms-help.php:267 cforms-help.php:1069
+msgid "Multi select boxes"
+msgstr "Multi valitse laatikot"
+
+#: cforms-help.php:277
+msgid "Pick#red#blue#green#yellow#orange"
+msgstr "poimia # punainen # sininen # vihreä # keltainen # oranssi"
+
+#: cforms-help.php:281
+msgid ""
+"&lt;strong&gt;Select&lt;/strong&gt;#Today#Tomorrow#This Week#Next Month#Never"
+msgstr ""
+"<strong> Valitse </ strong> # Tänään # Huomenna # Tämä viikko # Seuraava "
+"kuukausi # ei koskaan"
+
+#: cforms-help.php:285
+msgid ""
+"Multi select fields can be set to <strong>Required</strong>. If so and "
+"unless at least one option is selected the form won't validate."
+msgstr ""
+"Multi valitse kentät voidaan asettaa <strong> tarvitaan </ strong>. Jos näin "
+"on ja jos vähintään yksi vaihtoehto on valittu muoto, eivät vahvista."
+
+#: cforms-help.php:290
+msgid ""
+"If <code>value1,2,..</code> are not specified, the values delivered in the "
+"email default to <code>option1,2,...</code>."
+msgstr ""
+"Jos <code> value1, 2, .. </ code> ei ole määritetty, arvot toimitetaan "
+"sähköpostitse oletuksena <code> option1, 2, ... </ code>."
+
+#: cforms-help.php:295
+msgid ""
+"Examples for specific values could be the matching color codes: e.g. "
+"<code>red|#ff0000</code>"
+msgstr ""
+"Esimerkkejä erityisiä arvoja voisi olla matching värikoodeja: esim. <code> "
+"punainen | # FF0000 </ code>"
+
+#: cforms-help.php:313 cforms-help.php:390
+msgid "field name <u>left</u> %s field name <u>right</u>"
+msgstr "kentän nimi <u> vasemmalle </ u>% s nimi <u> oikealle </ u>"
+
+#: cforms-help.php:317
+msgid "#please check if you'd like more information"
+msgstr "# tarkista jos haluat lisätietoja"
+
+#: cforms-help.php:321
+msgid ""
+"You can freely choose on which side of the check box the label appears (e.g. "
+"<code>#label-right-only</code>)."
+msgstr ""
+"Voit vapaasti valita, kummalla puolella valintaruutu nimi tulee näkyviin "
+"(esim. <code> # label-oikeus vain </ code>)."
+
+#: cforms-help.php:326
+msgid ""
+"If <strong>both</strong> left and right labels are provided, only the "
+"<strong>right one</strong> will be considered."
+msgstr ""
+"Jos <strong> molemmat </ strong> vasemmalle ja oikealle tarrat ovat vain "
+"<strong> oikea </ strong> pidetään."
+
+#: cforms-help.php:331
+msgid ""
+"Check boxes can be flagged \"<strong>Required</strong>\" to support special "
+"use cases, e.g.: when you require the visitor to confirm that he/she has "
+"read term &amp; conditions, before submitting the form."
+msgstr ""
+"Tarkista laatikot voidaan merkitä \"<strong> tarvitaan </ strong> \" tukea "
+"erityistä käyttöä tapauksissa, esim. silloin kun halutaan kävijä vahvistaa, "
+"että hän / hän on lukenut aikavälillä ja ehdot, ennen kuin lähetät lomakkeen"
+
+#: cforms-help.php:349
+msgid ""
+"field name %1$s chk box1 label%2$schk box1 value %1$s chk box2 label %3$s "
+"chk box3..."
+msgstr ""
+"kentän nimi %1$s CHK box1 etiketti %2$schk box1 arvo %1$s CHK box2 etiketti "
+"%3$s CHK BOX3 ..."
+
+#: cforms-help.php:353
+msgid "Select Color#green|00ff00 #red|ff0000 #purple|8726ac #yellow|fff90f"
+msgstr ""
+"Valitse väri # vihreä | 00FF00 # punainen | ff0000 # violetti | 8726ac # "
+"keltainen | fff90f"
+
+#: cforms-help.php:357
+msgid ""
+"Two # (<code>##</code>) in a row will force a new line! This helps to better "
+"structure your check box group."
+msgstr ""
+"Kaksi # (<code> # # </ code>) peräkkäin pakottaa uuden linjan! Tämä auttaa "
+"paremmin jäsentää valintaruutu ryhmään."
+
+#: cforms-help.php:362
+msgid ""
+"Similar to <strong>multi-select boxes</strong> (see above), <strong>Check "
+"box groups</strong> allow you to deploy several check boxes (with their "
+"labels and corresponding values) that form one logical field. The result "
+"submitted via the form email is a single line including all checked options."
+msgstr ""
+"Samanlaisia <strong> monen valitse laatikot </ strong> (ks. edellä), "
+"<strong> Valintaruutu ryhmät </ strong> avulla voit käyttää useita "
+"valintaruudut (niiden etiketit ja vastaavat arvot), jotka muodostavat yhden "
+"loogisen alalla.Tuloksena toimitti lomakkeen kautta sähköposti on "
+"yksirivinen lukien kaikki tarkastetaan vaihtoehtoja."
+
+#: cforms-help.php:367
+msgid ""
+"If no explicit <strong>value</strong> (text after the pipe symbol '%1$s') is "
+"specified, the provided check box label is both label &amp; submitted value."
+msgstr ""
+"Jos nimenomaista <strong> arvo </ strong> (tekstin jälkeen putki symboli "
+"\"%1$s ') on määritelty, jos valintaruutu etiketti on sekä etiketti ja "
+"antanut arvoa."
+
+#: cforms-help.php:372
+msgid "None of the check boxes within a group can be made \"Required\"."
+msgstr "Mikään valintaruudut ryhmän sisällä voidaan tehdä \"Pakollinen \"."
+
+#: cforms-help.php:384
+msgid "CC: option for visitors"
+msgstr "CC: vaihtoehto kävijää"
+
+#: cforms-help.php:394
+msgid "#please cc: me"
+msgstr "# kiitos cc: me"
+
+#: cforms-help.php:398
+msgid ""
+"If the visitor chooses to be CC'ed, <strong>no</strong> additional auto "
+"confirmation email (<a href=\"%s\" %s>if configured</a>) is sent out!"
+msgstr ""
+"Jos kävijä haluaa olla CC'ed, <strong> ei </ strong> ylimääräisiä auto "
+"sähköpostitse (<a href=\"%s\" %s> jos määritetty </ a>) on lähetetty!"
+
+#: cforms-help.php:403
+msgid "Please also see <em>check boxes</em> above."
+msgstr "Katso myös <em> valintaruudut </ em> edellä."
+
+#: cforms-help.php:415
+msgid "Multiple form mail recipients"
+msgstr "Useita muodossa sähköpostin vastaanottajat"
+
+#: cforms-help.php:423
+msgid ""
+"field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s "
+"Name3..."
+msgstr ""
+"0=Sunday, 1=Monday, etc.kentän nimi %1$s Name1 | sähköpostiosoitteesi "
+"(osoitteet) %1$s Tied.nimi2 | sähköpostiosoitteesi (osoitteet) %1$s NIMI3"
+
+#: cforms-help.php:427
+msgid "Send to#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com"
+msgstr ""
+"Lähetä # Joe | joe@mail.com # Pete | pete@mail.com # Hillary | hillary@mail."
+"com"
+
+#: cforms-help.php:431
+msgid ""
+"Send to#Sales|sales1@mail.com, sales2@mail.com, sales3@mail.com#Support|"
+"admin@mail.com#HR|hr1@mail.scom, hr2@mail.com"
+msgstr ""
+"Lähetä # Joe | joe@mail.com # Pete | pete@mail.com # Hillary | hillary@mail."
+"com"
+
+#: cforms-help.php:435
+msgid ""
+"Adding the above field to a form, disables the form's specific admin email "
+"address setting."
+msgstr ""
+"Lisäämällä edellä kentän muoto, poistaa lomakkeen erityisiä admin "
+"sähköpostiosoite asetus."
+
+#: cforms-help.php:446
+msgid "Hidden input fields"
+msgstr "Piilotettu syötekenttiä"
+
+#: cforms-help.php:451
+msgid "field name %1$s default value"
+msgstr "kentän nimi %1$s oletusarvo"
+
+#: cforms-help.php:455
+msgid "extra-data"
+msgstr "ylimääräistä tietoa"
+
+#: cforms-help.php:459
+msgid "post-data-meta"
+msgstr "Julkaistu"
+
+#: cforms-help.php:463
+msgid ""
+"Hidden fields can contain fixed/preset values or <strong>{variables}</"
+"strong> which reference custom fields of posts or pages."
+msgstr ""
+"Piilotettuja kenttiä voi olla kiinteä / esiasetusarvoihin tai <strong> "
+"{muuttujat} </ strong>, joka viite mukautettuja kenttiä virkaa tai sivuja."
+
+#: cforms-help.php:481 cforms-help.php:485
+msgid "--"
+msgstr "-"
+
+#: cforms-help.php:489
+msgid ""
+"No <code>field name</code> required, the field has no configurable label per "
+"se, as it is determined at run-time from the list of <strong>Question &amp; "
+"Answers</strong> provided <a href=\"%s\" %s>here</a>."
+msgstr ""
+"Ei <code> kentän nimi </code> tarvitaan, kentällä ei ole määritettävissä "
+"etiketti sinänsä, sillä se määräytyy ajon aikana luettelosta <strong> "
+"Kysymys & vastauksia </strong> jos <href =\"% s \"% s> tästä </ a>."
+
+#: cforms-help.php:494
+msgid ""
+"It makes sense to encapsulate this field inside a FIELDSET, to do that "
+"simply add a <code>New Fieldset</code> field before this one."
+msgstr ""
+"On järkevää tiivistää alan sisällä FIELDSET, tehdä, että yksinkertaisesti "
+"lisätä <code> New fieldset </ code>-kentän ennen tätä."
+
+#: cforms-help.php:499 cforms-help.php:534
+msgid ""
+"<strong>PLEASE NOTE</strong> that by default the captcha and visitor "
+"verification (Q&amp;A) field are <strong>not</strong> shown for logged in "
+"users! This can be changed under Global Settings."
+msgstr ""
+"<strong> HUOM </ strong>, että oletuksena captcha ja vierailija todentaminen "
+"(Q & A) kenttä on <strong> ei </ strong> näytetään kirjautuneet käyttäjät! "
+"Tämä voidaan muuttaa Yleiset asetukset."
+
+#: cforms-help.php:511
+msgid "Captcha"
+msgstr "Captcha"
+
+#: cforms-help.php:517 cforms-help.php:1042
+msgid "field name"
+msgstr "kentän nimi"
+
+#: cforms-help.php:521
+msgid "Enter code"
+msgstr "Syötä koodi"
+
+#: cforms-help.php:525
+msgid ""
+"Spam Protection|title:We don't like spam bots|err:Please enter the CAPTCHA "
+"code correctly! If text is unreadable, try reloading."
+msgstr ""
+"Spam suojaus | otsikko:: Emme pidä roskapostia vastaan | Erehtyminen: Syötä "
+"CAPTCHA-koodi oikein! Jos tekstiä voi lukea, yritä uudelleen lataamista."
+
+#: cforms-help.php:529
+msgid ""
+"Alternatively or in addition to the above <strong>Visitor verification</"
+"strong> feature, you can have the visitor provide a captcha response."
+msgstr ""
+"Vaihtoehtoisesti tai lisäksi edellä <strong> Vierailija todentaminen </ "
+"strong> ominaisuus, voit olla vierailija tarjota captcha vastausta."
+
+#: cforms-help.php:546
+msgid "Attachments / File Upload Box"
+msgstr "Liitteet / Tiedoston lataaminen laatikko"
+
+#: cforms-help.php:552
+msgid "form label"
+msgstr "muodossa etiketti"
+
+#: cforms-help.php:556
+msgid "Please select a file"
+msgstr "Valitse tiedosto"
+
+#: cforms-help.php:560
+msgid ""
+"Please double-check the <a href=\"%s\" %s>Global Settings</a> for proper "
+"configuration of the <code>File Upload</code> functionality (allowed "
+"extensions, file size etc.)."
+msgstr ""
+"Ole hyvä ja tarkistat <a href=\"%s\" %s> Yleiset asetukset </ a> oikea "
+"kokoonpano <code> Tiedoston lataaminen </ code> toiminnallisuus (sallittu "
+"laajennukset, tiedostokoko jne.)."
+
+#: cforms-help.php:565
+msgid ""
+"Please enable <a href=\"%s\" %s>Database Input Tracking</a> on the Global "
+"Settings page to ensure a unique upload ID per attachment and to avoid "
+"accidentally overwriting an attachment."
+msgstr ""
+"Salli <a href=\"%s\" %s> Database Input Tracking </ a> Yleiset asetukset "
+"sivun varmistaa yksilöllinen ladata tunnus per kiinnitys ja välttää "
+"vahingossa päälle liitetiedostona."
+
+#: cforms-help.php:577
+msgid "Tell a Friend input fields"
+msgstr "Kerro kaverille syötekenttiä"
+
+#: cforms-help.php:582
+msgid "Format:<br />of all 4 fields"
+msgstr "Formaatti: <br /> kaikki 4 kentät"
+
+#: cforms-help.php:583
+msgid ""
+"field name %1$s default value %1$s <a href=\"#regexp\">regular expression</a>"
+msgstr ""
+"kentän nimi %1$s oletusarvo %1$s <a href=\"#regexp\"> säännöllinen lauseke </"
+"a>"
+
+#: cforms-help.php:586
+msgid "Fields:"
+msgstr "kentät"
+
+#: cforms-help.php:587 cforms-help.php:1060 cforms-options.php:371
+msgid "T-A-F * Your Name"
+msgstr "Did you mean: T-A-G * Your NameT-A-F * Nimesi"
+
+#: cforms-help.php:588
+msgid "T-A-F * Your Email <em>(make sure it's checked 'Email')</em>"
+msgstr ""
+"TAF * Sähköposti <em> (varmista, että se on tarkistanut 'Sähköposti') </ em>"
+
+#: cforms-help.php:589 cforms-help.php:1062 cforms-help.php:1063
+#: cforms-options.php:373
+msgid "T-A-F * Friend's Name"
+msgstr "T-A-F * Ystävän nimi"
+
+#: cforms-help.php:590
+msgid "T-A-F * Friend's Email <em>(make sure it's checked 'Email')</em>"
+msgstr ""
+"TAF * Ystäväsi sähköpostiosoite <em> (varmista, että se on tarkistanut "
+"'Sähköposti') </ em>"
+
+#: cforms-help.php:595 cforms-help.php:737
+msgid "To get it working:"
+msgstr "Saada se toimimaan:"
+
+#: cforms-help.php:597
+msgid ""
+"The <a href=\"%s\" %s>Tell A Friend feature</a> needs to be <strong>enabled "
+"for the respective form</strong> (<em>check if it's the right one!</em>), "
+"otherwise you won't see the above input fields in the [<em>Field Type</em>] "
+"select box."
+msgstr ""
+"<a Href=\"%s\" %s> Kerro kaverille ominaisuus </ a> on oltava <strong> "
+"käytössä vastaavan muodossa </ strong> (<em> tarkistaa, jos se on oikea! </ "
+"em>), muuten et näe edellä syöttökentät [<em> Kentän tyyppi </ em>]-"
+"valintaikkunasta."
+
+#: cforms-help.php:598
+msgid ""
+"The <a href=\"%s\" %s>auto confirmation</a> message will be used as a "
+"<strong>message template</strong> and needs to be defined. See example below."
+msgstr ""
+"<a Href=\"%s\" %s> auto vahvistus </ a> viesti käytetään <strong> "
+"viestimalliin </ strong> ja tarpeen määritellä. Katso alla oleva esimerkki."
+
+#: cforms-help.php:599
+msgid ""
+"There are <a href=\"%s\" %s>three additional</a>, <em>predefined variables</"
+"em> that can be used in the <a href=\"%s\" %s>message template</a>."
+msgstr ""
+"On <a href=\"%s\" %s> kolme ylimääräistä </ a>, <em> ennalta muuttujat </ "
+"em>, joita voidaan käyttää <a href=\"%s\" %s> viestimalliin </ a>."
+
+#: cforms-help.php:600
+msgid ""
+"<strong>Add the form</strong> to your post/page php templates (see "
+"deployment options further below)."
+msgstr ""
+"<strong> Lisää muodossa </ strong> viestisi / sivu php malleja (ks. "
+"asennusvaihtoehdot jäljempänä)."
+
+#: cforms-help.php:601
+msgid ""
+"Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F "
+"field in the WP post (page) editor."
+msgstr ""
+"Kerro kaverille-<strong> ota viestiä / pages </ strong> tarkistamalla TAF "
+"kentän WP post (sivu) editori."
+
+#: cforms-help.php:611
+msgid ""
+"Here is an example of how to setup the TXT part of the <a href=\"%s\" "
+"%s>auto confirmation message</a> as a Tell-A-friend template:"
+msgstr ""
+"Tässä on esimerkki siitä, miten setup TXT osa <a href=\"%s\" %s> auto "
+"vahvistus viestin </ a> koska Kerro ystävällesi malli:"
+
+#: cforms-help.php:618
+msgid "Hello {Friend's Name}"
+msgstr "Hei {Ystävän nimi}"
+
+#: cforms-help.php:619
+msgid "{Your Name} left you this message:"
+msgstr "{Nimesi} jätti tämän viestin:"
+
+#: cforms-help.php:620
+msgid "{Optional Comment}"
+msgstr "{Valinnainen kommentti}"
+
+#: cforms-help.php:621
+msgid "The message was sent in reference to"
+msgstr "Viesti on lähetetty viittaus"
+
+#: cforms-help.php:625
+msgid ""
+"This email is sent, as a courtesy of website.com, located at http://website."
+"com. The person who sent this email to you, {Your Name}, gave an email "
+"address of {Your Email}. {Your Name} logged into website.com from IP {IP}, "
+"and sent the email at {Time}."
+msgstr ""
+"Tämä sähköposti on lähetetty, niin kohteliaisuus website.com, joka sijaitsee "
+"osoitteessa http://website.com.Henkilö, joka lähetti tämän sinulle "
+"sähköpostia, {Nimesi} antoi sähköpostiosoite {Sähköposti}. {Nimesi} "
+"kirjautunut website.com IP-{IP}, ja lähetti sähköpostia osoitteeseen {aika}."
+
+#: cforms-help.php:631
+msgid ""
+"In addition to the above TXT message you can, of course, add an HTML "
+"counterpart."
+msgstr "Lisäksi edellä TXT viestin voit tietenkin lisätä HTML vastine."
+
+#: cforms-help.php:639
+msgid "Recommended Implementation Options:"
+msgstr "Suositellaan Toteutus vaihtoehdot:"
+
+#: cforms-help.php:644
+msgid ""
+"<em>Alternative 1:</em> The actual form will not show on the WP front page, "
+"but in the individual post/page view."
+msgstr ""
+"<em> Vaihtoehto 1: </ em> Konkreettinen eivät näy WP etusivulla, mutta "
+"yksittäisten post / sivu mieltä."
+
+#: cforms-help.php:646
+msgid ""
+"Simply add a <code>&lt;?php insert_cform(<em>#</em>); ?&gt;</code> (# = <a "
+"href=\"%s\" %s>your form id</a>) to your existing <code>single.php</code> "
+"and/or <code>page.php</code> template, e.g:"
+msgstr ""
+"Lisää vain <code> &lt;?php insert_cform (<em> # </ em>);?&gt; </ Code> (# = "
+"<a href=\"%s\" %s> lomakkeen id </>) olemassa olevaan <code> single.php </ "
+"code> ja / tai <code> page.php </ code> malli, esim.:"
+
+#: cforms-help.php:655
+msgid ""
+"Suggestion: For a less crowded layout, optionally add some Javascript code "
+"to show/hide the form."
+msgstr ""
+"Ehdotus: Saat vähemmän tungosta layout, mahdollisesti lisätä joitakin "
+"Javascript-koodi näyttää / piilottaa muodossa."
+
+#: cforms-help.php:661
+msgid ""
+"<em>Alternative 2:</em> A Tell-A-Friend link is shown under every eligible "
+"post/page, displayed both on the blog's front page &amp; individual post "
+"&amp; page view."
+msgstr ""
+"<em> Vaihtoehto 2: </ em> Kerro kaverille-linkin alla näytetään joka myöntää "
+"post / sivu, näytetään sekä blogin etusivulla ja yksittäisten post & sivun "
+"näkymä."
+
+#: cforms-help.php:664
+msgid ""
+"This requires a new WP page created (make note of the page ID or permalink), "
+"with its own page template (a clone of page.php will do). Add the following "
+"code to the new <strong>page template</strong>:"
+msgstr ""
+"Tämä edellyttää uuden WP-sivu (muistiin sivun tunnus tai permalink), oman "
+"sivupohjan (klooni page.php tekevät). Lisää seuraava koodi uusi <strong> "
+"sivumallin </ strong>:"
+
+#: cforms-help.php:674
+msgid ""
+"In <em>single.php &amp; index.php</em> and/or <em>page.php</em> add beneath "
+"the \"the_content()\" call the link to the new page created above, e.g.:"
+msgstr ""
+"Vuonna <em> single.php & index.php </em> ja / tai <em> page.php </em> lisää "
+"alla \"the_content () \" soittaa linkki uudelle sivulle luodaan edellä, "
+"esim. :"
+
+#: cforms-help.php:686
+msgid ""
+"Replace <strong>[your-new-page]</strong> with <strong>the permalink</strong> "
+"of your newly created page."
+msgstr ""
+"Vaihda <strong> [oma-uusi-sivu] </ strong> kanssa <strong> permalink </ "
+"strong> oman uusille sivulla."
+
+#: cforms-help.php:698
+msgid "WP Comment Feature input fields"
+msgstr "WP Kommentti Feature syötekenttiä"
+
+#: cforms-help.php:700
+msgid ""
+"The beauty is, using one form, you can now offer your readers to either "
+"leave a comment behind or simply send a note to the post editor while being "
+"able to fully utilize all security aspects of cforms."
+msgstr ""
+"Kauneus on, jollakin muodossa, voit nyt tarjota lukijat joko jättää "
+"kommentin takana tai yksinkertaisesti lähettää muistiinpanon tekstieditorin "
+"samalla kun he voivat hyödyntää kaikkia turvallisuusnäkökohtien cforms."
+
+#: cforms-help.php:704
+msgid "Example Configuration"
+msgstr "Esimerkki Configuration"
+
+#: cforms-help.php:708
+msgid "Special Fields:"
+msgstr "erityinen kentät"
+
+#: cforms-help.php:710 cforms-help.php:1067 cforms-options.php:380
+msgid "Author's Email"
+msgstr "Kirjoittaja sähköpostiosoite"
+
+#: cforms-help.php:711 cforms-help.php:1068 cforms-options.php:381
+msgid "Author's URL"
+msgstr "Tekijän URL"
+
+#: cforms-help.php:712 cforms-help.php:1069 cforms-options.php:382
+msgid "Author's Comment"
+msgstr "Kirjoittajan kommentti"
+
+#: cforms-help.php:716
+msgid "Format:<br />for top 4 fields"
+msgstr "Formaatti: <br /> huippu 4 kentät"
+
+#: cforms-help.php:717
+msgid ""
+"field name  %1$s  default value  %1$s  <a href=\"#regexp\">regular "
+"expression</a>"
+msgstr ""
+"kentän nimi %1$s oletusarvo %1$s <a href=\"#regexp\"> säännöllinen lauseke </"
+"a>"
+
+#: cforms-help.php:722
+msgid "Special Field"
+msgstr "erityinen kentät"
+
+#: cforms-help.php:723 cforms-help.php:1070 cforms-options.php:383
+msgid "Select: Email/Comment"
+msgstr "Valitse: Sähköposti / kommentoi"
+
+#: cforms-help.php:728
+msgid ""
+"field name %1$s text <em>comment</em> %2$s 0 %1$s text <em>to author</em> "
+"%2$s 1"
+msgstr ""
+"kentän nimi %1$s tekstiä <em> kommentti </em> %2$s 0 %1$s tekstin <em> "
+"kirjoittajalle </ em> %2$s 1"
+
+#: cforms-help.php:732
+msgid "Send as#regular comment|0#email to post author|1"
+msgstr ""
+"Lähetä # säännöllisesti kommentti | 0 # sähköpostia lähettää kirjoittajalle "
+"| 1"
+
+#: cforms-help.php:739
+msgid ""
+"Turn on the <a href=\"%s\" %s>WP Comment feature</a> for the given form. "
+"(<em>Make sure it's the right one!</em>), otherwise you won't see the above "
+"input fields in the [<em>Field Type</em>] select box."
+msgstr ""
+"Kytke <a href=\"%s\" %s> WP kommenttitoimintoa </ a> tietyn muodon. (<em> "
+"Varmista, että se on oikea! </ em>), muuten et näe edellä syöttökentät [<em> "
+"Kentän tyyppi </ em>]-valintaikkunasta."
+
+#: cforms-help.php:740
+msgid ""
+"Modify this form to include all the necessary (new) input fields, make them "
+"required or not, add regexp, anti SPAM fields or even custom err messages. "
+"All up to you. Or better yet, start with the built-in preset: "
+"\"<strong>Advanced: WP comment...</strong>\" form."
+msgstr ""
+"Muokkaa tätä lomaketta sisältävät kaikki tarvittavat (uusi) syöttökentissä "
+"ne tarpeen silloin, lisätä regexp, anti roskapostista kenttiä tai jopa omia "
+"err viestejä. Kaikki on sinun. Tai vielä parempaa, aloittaa sisäänrakennettu "
+"valmiiksi:\"<strong> Advanced: WP kommentti ... </strong>\" muodossa."
+
+#: cforms-help.php:741
+msgid ""
+"Edit your WP Theme template for comments. Remove the current "
+"<strong><u>comment_form() in comments.php</u></strong> entirely. Instead "
+"replace with a PHP call to cforms: <code  style=\"color:red\">&lt;?php "
+"insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> "
+"if the form is your default form or starting at <strong>'2'</strong> (with "
+"single quotes!) for any subsequent form #."
+msgstr ""
+"Muokkaa WP Theme mallin kommentteja. Poista nykyinen "
+"<strong><u>comment_form() in comments.php</u></ strong> täysin. Korvata sen "
+"PHP puhelu cforms: <code style=\"color:red\"> &lt;?php insert_cform (X);?&gt;"
+"</code> <strong>X</strong> on <u> pois </u>, jos lomake on oletus muodossa "
+"tai alkaen <strong>'2'</ strong> (jossa puolilainausmerkkejä!) myöhempään "
+"muodossa #."
+
+#: cforms-help.php:742
+msgid ""
+"Double check the extended <a href=\"%s\" %s>WP comment feature settings "
+"here</a> (especially the Ajax specific ones!). "
+msgstr ""
+"Tarkista vielä laajennettu <a href=\"%s\" %s> WP kommenttiominaisuudessa "
+"asetukset tästä </ a> (varsinkin Ajax erityisvaatimusten!)."
+
+#: cforms-help.php:743 cforms-help.php:838 cforms-help.php:1323
+msgid "Important:"
+msgstr "Translate from: Frenchtärkeää:"
+
+#: cforms-help.php:743
+msgid ""
+"To make Ajax work in case there are no comments yet, make sure that the "
+"comment container <strong>is always</strong> being rendered."
+msgstr ""
+"Jotta Ajax työtä asiassa ei ole vielä kommentteja, varmista, että kommentti "
+"kontti <strong> on aina </ strong> ei saa luovuttaa."
+
+#: cforms-help.php:753
+msgid "Suggestions:"
+msgstr "ehdotuksia:"
+
+#: cforms-help.php:755
+msgid ""
+"I recommend you choose the <strong>wide_form.css</strong> theme under the <a "
+"href=\"%s\">Styling</a> menu. And adjust to your liking."
+msgstr ""
+"Suosittelen valitset <strong> wide_form.css </ strong> teema alle <a href="
+"\"%s\"> Styling </ a>-valikosta. Ja säätää mieleisekseen."
+
+#: cforms-help.php:756
+msgid ""
+"If you intend to make certain fields \"required\", I further recommend you "
+"add the text \"<em>required</em>\" to the input field label and set this "
+"style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
+"to <code  style=\"color:red\">display:none;</code>"
+msgstr ""
+"Jos aiot tehdä tiettyjä kenttiä \"tarvitaan\", olen edelleen suosittelen "
+"lisäät tekstiä \"<em> tarvitaan </em> \" tuloon kentän otsikon ja asettaa "
+"tähän tyyliin: <koodi style = \"väri: punainen \"> span.reqtxt, span."
+"emailreqtxt {... </code> ja <code style=\"color:red\"> display: none; </code>"
+
+#: cforms-help.php:772
+msgid ""
+"Fieldsets are definitely part of good form design, they are form elements "
+"that are used to create individual sections of content within a given form."
+msgstr ""
+"Fieldsets ovat ehdottomasti osa hyvää lomakkeiden suunnittelu, ne ovat "
+"lomake-elementtejä, joita käytetään luomaan yksittäisiä osioita sisältöä "
+"tietyn muodon."
+
+#: cforms-help.php:778
+msgid "fieldset name"
+msgstr "fieldset nimet"
+
+#: cforms-help.php:782 lib_activate.php:67 lib_options_add.php:33
+msgid "My Fieldset"
+msgstr "Oma fieldset"
+
+#: cforms-help.php:786
+msgid ""
+"Fieldsets can begin anywhere, simply add a <strong>New Fieldset</strong> "
+"field between or before your form elements."
+msgstr ""
+"Fieldsets voi alkaa missä tahansa, lisää <strong> New fieldset </ strong>-"
+"kentän välillä tai ennen lomakkeen elementtejä."
+
+#: cforms-help.php:791
+msgid ""
+"Fieldsets do not need to explicitly be closed, a <strong>New Fieldset</"
+"strong> element will automatically close the existing (if there is one to "
+"close) and reopen a new one."
+msgstr ""
+"Fieldsets ei tarvitse erikseen sulkea, <strong> Uusi fieldset </ strong> "
+"elementti sulkee automaattisesti olemassa (jos on yksi sulkee) ja avaa uuden."
+
+#: cforms-help.php:796
+msgid ""
+"<strong>End Fieldset</strong> <u>can</u> be used, but it works without just "
+"as well."
+msgstr ""
+"<strong> End fieldset </ strong> <u> Voit </ u> käyttää, mutta se toimii "
+"ilman yhtä hyvin."
+
+#: cforms-help.php:801
+msgid ""
+"If there is no closing <strong>End Fieldset</strong> element, the plugin "
+"assumes that it needs to close the set just before the submit button"
+msgstr ""
+"Jos ei ole sulkeminen <strong> End fieldset </ strong> elementti, plugin "
+"olettaa, että se tarvitsee sulkea asetettu juuri ennen lähetä-painiketta"
+
+#: cforms-help.php:816
+msgid ""
+"A regular expression (regex or regexp for short) is a special text string "
+"for describing a search pattern, according to certain syntax rules. Many "
+"programming languages support regular expressions for string manipulation, "
+"you can use them here to validate user input. Single/Multi line input fields:"
+msgstr ""
+"Säännöllinen lauseke (regex tai regexp lyhyitä) on erityinen merkkijono "
+"kuvaamiseen hakukuvio mukaan tiettyjä syntaksisäännöt. Monet "
+"ohjelmointikielet tukevat säännöllisiä lausekkeita merkkijonojen käsittely, "
+"voit käyttää niitä tästä vahvistaa käyttäjä syöttää. Single / Multi line "
+"syötekenttiä:"
+
+#: cforms-help.php:822
+msgid "field name %1$s default value %1$s regular expression"
+msgstr "kentän nimi %1$s oletusarvo %1$s säännöllinen lauseke"
+
+#: cforms-help.php:825
+msgid "Example:<br />US zip code"
+msgstr "Esimerkki: <br /> US postinumero"
+
+#: cforms-help.php:826
+msgid "zip code"
+msgstr "postinumero"
+
+#: cforms-help.php:829
+msgid "Example:<br />US phone #"
+msgstr "Esimerkki: <br /> US puhelimen #"
+
+#: cforms-help.php:830
+msgid "phone"
+msgstr "puhelin"
+
+#: cforms-help.php:833
+msgid "Special Example:<br />comparing two input fields"
+msgstr "erityinen Esimerkki: <br /> vertaamalla kahta syötekenttiä"
+
+#: cforms-help.php:834
+msgid "please repeat email"
+msgstr "ota toista sähköpostia"
+
+#: cforms-help.php:839
+msgid ""
+"<strong>If you need to compare two input fields (e.g. email verification):</"
+"strong> simply use the regexp field (see special example above, to point to "
+"the <u>HTML element ID</u> of the field you want to compare the current one "
+"to. To find the <u>HTML element ID</u> you would have to look into the html "
+"source code of the form (e.g."
+msgstr ""
+"<strong> Jos haluat vertailla kahta syötekenttiä (esim. sähköpostin "
+"tarkastus): </ strong> voit käyttää regexp alalla (ks. erityinen esimerkki "
+"edellä viitata <u> HTML-elementti ID </ u> alan sinua haluat verrata "
+"nykyiseen yksi. löytää <u> HTML-elementti ID </ u> olisit tutkia html "
+"lähdekoodin muodossa (esim."
+
+#: cforms-help.php:844
+msgid "GENERAL:"
+msgstr "yleinen"
+
+#: cforms-help.php:849
+msgid ""
+"Ensure that the input field in question is tagged '<strong>Required</"
+"strong>'!"
+msgstr ""
+"Varmista, että tulo kysymyksen on merkitty \"<strong> tarvitaan </ strong> '!"
+
+#: cforms-help.php:854
+msgid "and"
+msgstr "ja"
+
+#: cforms-help.php:854
+msgid "define the start and the end of the input"
+msgstr "määritellä alussa ja lopussa tulon"
+
+#: cforms-help.php:859
+msgid ""
+"...matches a string that has an \"a\" followed by zero or more \"b's\" (\"a"
+"\", \"ab\", \"abbb\", etc.);"
+msgstr ""
+".. vastaa merkkijonon, joka on \"\", jota seuraa nolla tai useampia \"b: n "
+"\" (\"\", \"ab \", \"abbb \", jne.);"
+
+#: cforms-help.php:864
+msgid "...same, but there's at least one b (\"ab\", \"abbb\", etc.);"
+msgstr "... sama, mutta on olemassa ainakin yksi b (\"ab \", \"abbb \", jne.);"
+
+#: cforms-help.php:869
+msgid "...a string that has lowercase letters \"a\" through \"d\""
+msgstr "... merkkijono, joka on pieniä kirjaimia \"\" läpi \"d\""
+
+#: cforms-help.php:874
+msgid ""
+"More information can be found <a href=\"%s\">here</a>, a great regexp "
+"repository <a href=\"%s\">here</a>."
+msgstr ""
+"Lisätietoja löytyy <a href=\"%s\"> tästä </ a>, suuri regexp arkiston <a "
+"href=\"%s\"> tästä </ a>."
+
+#: cforms-help.php:886
+msgid ""
+"On top of their labels, input fields can have titles, too. Simply append a "
+"%s to a given field configuration string."
+msgstr ""
+"Päälle niiden merkintöjen syötekenttiä voi olla otsikoita, too. "
+"Yksinkertaisesti liittää% s tietyllä alalla kokoonpano merkkijono."
+
+#: cforms-help.php:887
+msgid ""
+"If you like to add custom error messages (next to your generic <a href=\"%s"
+"\" %s>success</a> and <a href=\"%s\" %s>error</a> messages) for your input "
+"fields, simply append a %s to a given <em>definition string/field name</em>. "
+"HTML is supported."
+msgstr ""
+"Jos haluat lisätä omia virheilmoituksia (vieressä geneerinen <a href=\"%s\" "
+"%s> menestys </ a> ja <a href=\"%s\" %s> virhe </ a> viestit) oman "
+"syöttökentissä yksinkertaisesti liittää% s <em> määritelmä string / kentän "
+"nimi </ em>. HTML on tuettu."
+
+#: cforms-help.php:888
+msgid ""
+"Please note the order of these special attributes, first %s (if applicable), "
+"then %s."
+msgstr ""
+"Huomaa järjestyksessä näitä erityisiä ominaisuuksia, ensimmäinen% s "
+"(tarvittaessa), sitten% s."
+
+#: cforms-help.php:892
+msgid "Extended entry format for the Field Name"
+msgstr "Laajennettu merkinnän muoto Kentän nimi"
+
+#: cforms-help.php:893
+msgid "field name %1$s your title here %3$s %2$s your error message %3$s"
+msgstr "kentän nimi %1$s otsikko tässä %3$s %2$s saamasi virheilmoitus %3$s"
+
+#: cforms-help.php:896
+msgid "Example 1:"
+msgstr "Esimerkki 1:"
+
+#: cforms-help.php:897
+msgid "Your Name|title:Only alphabetic characters allowed!"
+msgstr "Nimesi | otsikko: Vain kirjaimia sallittu!"
+
+#: cforms-help.php:900
+msgid "Example 2:"
+msgstr "Esimerkki 2:"
+
+#: cforms-help.php:901
+msgid ""
+"Your Name|title:Please provide your first and last name!|err:Please enter "
+"your full name."
+msgstr ""
+"Nimesi | title: Anna ensimmäinen ja viimeinen nimi! | Erehtyminen: Anna koko "
+"nimi."
+
+#: cforms-help.php:904
+msgid "Example 3:"
+msgstr "Esimerkki 3:"
+
+#: cforms-help.php:905
+msgid "|err: your age is &lt;strong&gt;important&lt;/strong&gt; to us."
+msgstr "| Erehtyminen: ikäsi on <strong> tärkeää </ strong> meille."
+
+#: cforms-help.php:914
+msgid ""
+"<strong>Custom error messages</strong> can be applied to any input field "
+"that can be flagged \"<strong>Required</strong>\", <strong>titles</strong> "
+"to any input field."
+msgstr ""
+"<strong> asiakassuhde virheilmoitukset </ strong> voidaan soveltaa mihin "
+"tahansa kenttään, joka voidaan merkitä \"<strong> tarvitaan </ strong> \", "
+"<strong> otsikot </strong> tahansa kenttään."
+
+#: cforms-help.php:929
+msgid "API Function :: get_cforms_entries()"
+msgstr "API Tehtävä :: get_cforms_merkinnät ()"
+
+#: cforms-help.php:929 cforms-help.php:977
+msgid "API Function"
+msgstr "API Toiminto"
+
+#: cforms-help.php:932 cforms-help.php:980
+msgid "Description"
+msgstr "kuvaus"
+
+#: cforms-help.php:932
+msgid ""
+"This function allows to conveniently retrieve submitted data from the cforms "
+"tracking tables."
+msgstr ""
+"Tämä toiminto mahdollistaa kätevästi hakea toimitti tietoja cforms seuranta "
+"taulukoita."
+
+#: cforms-help.php:935 cforms-help.php:983
+msgid "Parameters"
+msgstr "parametrit"
+
+#: cforms-help.php:938 cforms-help.php:946 cforms-help.php:954
+msgid "[text]"
+msgstr "[tekstin]"
+
+#: cforms-help.php:939
+msgid "text string (regexp pattern), e.g. the form name"
+msgstr "merkkijono (HAKULAUSEKE), esim.lomakkeen nimi"
+
+#: cforms-help.php:942
+msgid "[date]"
+msgstr "[päivämäärä]"
+
+#: cforms-help.php:943
+msgid ""
+"DATETIME string (format: Y-m-d H:i:s). Date &amp; time defining the target "
+"period, e.g."
+msgstr ""
+"päivämäärä ja aika string (formaatti: Y-m-d H: i: s). Päivämäärä ja aika "
+"määritellään tavoite aikana, esim."
+
+#: cforms-help.php:947
+msgid "or"
+msgstr "tai"
+
+#: cforms-help.php:947
+msgid " or any other form input field, e.g. 'Your Name'"
+msgstr "tai muuta kenttään, esim. \"nimesi\""
+
+#: cforms-help.php:950 cforms-help.php:986
+msgid "[number]"
+msgstr "[numero]"
+
+#: cforms-help.php:951
+msgid "limiting the number of results, '' (empty or false) = no limits!"
+msgstr "rajoittamalla määrän tuloksia,'' (tyhjä tai epätosi) = ei ole rajoja!"
+
+#: cforms-help.php:957 cforms-help.php:989
+msgid "Output"
+msgstr "ulostulo"
+
+#: cforms-help.php:958
+msgid ""
+"This function will return a set of stored form submissions in a multi-"
+"dimensional array."
+msgstr ""
+"Tämä funktio palauttaa joukon tallennettu muodossa huomautuksia "
+"moniulotteinen array."
+
+#: cforms-help.php:959
+msgid "Examples"
+msgstr "esimerkkejä"
+
+#: cforms-help.php:964
+msgid "Example: Table Output"
+msgstr "Esimerkki: Taulukko ulostulo"
+
+#: cforms-help.php:977
+msgid "API Function :: cf_extra_comment_data()"
+msgstr "API Tehtävä :: cf_lisää_kommentti_tiedot ()"
+
+#: cforms-help.php:980
+msgid ""
+"This function retrieves all extra data submitted (besides the default "
+"Author, Email, URL, Message fields) per a given comment context. This "
+"function should be called from within the \"comment LOOP\"."
+msgstr ""
+"Tämä toiminto hakee kaikki ylimääräiset Toimitettujen tietojen (paitsi "
+"oletus Kirjoittaja, sähköposti, URL, Viesti-kentät) per annettu kommentti "
+"yhteydessä. Tämä toiminto on nimeltään sisällä \"kommentti LOOP \"."
+
+#: cforms-help.php:987
+msgid "The comment ID is expected."
+msgstr "Kommentti ID odotetaan."
+
+#: cforms-help.php:990
+msgid ""
+"This function will return a set of stored comment data in a multi-"
+"dimensional array."
+msgstr ""
+"Tämä funktio palauttaa joukon tallennettu kommentin tietojen moniulotteinen "
+"array."
+
+#: cforms-help.php:995
+msgid ""
+"(Post-)Processing of submitted data is really for hard core deployments, "
+"where <em>real-time manipulation</em> of a form &amp; fields are required."
+msgstr ""
+"(Post-) käsittely Toimitettujen tietojen on todella kova ydin asennuksia, "
+"joissa <em> reaaliaikaisen manipulointi </ em> eräänlaisen & kentät ovat "
+"pakollisia."
+
+#: cforms-help.php:996
+msgid ""
+"If you require the submitted data to be manipulated, and or sent to a 3rd "
+"party or would like to make use of the data otherwise, here is how:"
+msgstr ""
+"Jos tarvitset toimittanut manipuloida, ja tai lähettää 3rd party tai "
+"haluaisivat käyttää tietoja muuten, tässä miten:"
+
+#: cforms-help.php:1001
+msgid "Custom functions to (post-)process user input"
+msgstr "asiakassuhde toimintoja (post-) prosessi käyttäjä syöttää"
+
+#: cforms-help.php:1001
+msgid "Available User Functions"
+msgstr "Saatavilla Käyttäjän toiminnot"
+
+#: cforms-help.php:1001
+msgid ""
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
+"including examples)"
+msgstr ""
+"(ks. <strong> my-functions.php.txt </ strong> tiedosto (plugin "
+"juurihakemistoon), mukaan lukien esimerkkejä)"
+
+#: cforms-help.php:1005
+msgid ""
+"function gets triggered <strong>after</strong> user input validation, but "
+"<strong>before</strong> processing input data"
+msgstr ""
+"toiminnon saa laukaista <strong> jälkeen </ strong> käyttäjä syöttää "
+"validointi, mutta <strong> ennen </ strong> käsittelyyn lähtötiedot"
+
+#: cforms-help.php:1009
+msgid ""
+"function gets called <strong>after</strong> input validation, but "
+"<strong>before</strong> processing input data"
+msgstr ""
+"toiminnon saa kutsutaan <strong> jälkeen </ strong> syöttö validointi, mutta "
+"<strong> ennen </ strong> käsittelyyn lähtötiedot"
+
+#: cforms-help.php:1009
+msgid "(nonAjax)"
+msgstr "(nonAjax)"
+
+#: cforms-help.php:1013
+msgid "function gets called <strong>just before</strong> sending the email"
+msgstr ""
+"toiminnon saa kutsutaan <strong> juuri ennen </ strong> lähettämällä "
+"sähköpostia"
+
+#: cforms-help.php:1013
+msgid "(Ajax)"
+msgstr "(Ajax)"
+
+#: cforms-help.php:1017
+msgid ""
+"function gets called <strong>at</strong> various stages of input processing"
+msgstr ""
+"toiminnon saa kutsutaan <strong> osoitteessa </ strong> eri vaiheissa tulo "
+"käsittelyyn"
+
+#: cforms-help.php:1028
+msgid ""
+"Again, this is for the advanced user who requires ad-hoc creation of forms."
+msgstr "Tämäkin on kokenut käyttäjä, joka vaatii ad-hoc luomisen muotoja."
+
+#: cforms-help.php:1030
+msgid "A few things to note on dynamic forms:"
+msgstr "Ota huomioon seuraavat seikat on dynaamisia lomakkeita:"
+
+#: cforms-help.php:1032
+msgid "Dynamic forms only work in <strong>non-Ajax</strong> mode."
+msgstr ""
+"Dynaamiset lomakkeet toimivat vain <strong> kuin Ajax </ strong>-tilassa."
+
+#: cforms-help.php:1033
+msgid ""
+"Each dynamic form references and thus requires <strong>a base form defined</"
+"strong> in the cforms form settings. All its settings will be used, except "
+"the form (&amp;field) definition."
+msgstr ""
+"Jokainen dynaaminen muodossa viittauksia ja siten edellyttää <strong> "
+"perusmuoto määritelty </ strong> cforms muodossa asetukset. Kaikki sen "
+"asetuksia voidaan käyttää paitsi muoto (ja kenttä) määritelmää."
+
+#: cforms-help.php:1034
+msgid ""
+"Any of the form fields described in the plugins' <strong>HELP!</strong> "
+"section can be dynamically generated."
+msgstr ""
+"Mikä tahansa muodossa kuvatut kentät plugins \"<strong> HELP! </ Strong> "
+"voidaan dynaamisesti."
+
+#: cforms-help.php:1035
+msgid "Function call to generate dynamic forms: %s with"
+msgstr "Toiminto soittaa tuottaa dynaamisia muotoja:% s"
+
+#: cforms-help.php:1038
+msgid ""
+"empty string for the first (default) form and <strong>2</strong>,3,4... for "
+"any subsequent form"
+msgstr ""
+"tyhjä merkkijono ensimmäisen (oletus) muoto ja <strong> 2 </ strong>, "
+"3,4 ... myöhempään muodossa"
+
+#: cforms-help.php:1042
+msgid "<em>field name</em> format described above"
+msgstr "<em> kentän nimi </ em>-muodossa edellä"
+
+#: cforms-help.php:1055
+msgid "Form input field types ('type'):"
+msgstr "Lomake kenttään tyypit (\"tyyppi\"):"
+
+#: cforms-help.php:1059
+msgid "Basic fields"
+msgstr "peruskentät"
+
+#: cforms-help.php:1059
+msgid "Special T-A-F fields"
+msgstr "erityinen T-A-F kentät"
+
+#: cforms-help.php:1060
+msgid "Text paragraph"
+msgstr "tekstikappale"
+
+#: cforms-help.php:1061
+msgid "Single input field"
+msgstr "Yhdenrivin"
+
+#: cforms-help.php:1061 cforms-options.php:372
+msgid "T-A-F * Your Email"
+msgstr "T-A-F * Sähköposti"
+
+#: cforms-help.php:1062
+msgid "Multi line field"
+msgstr "Multi line alalla"
+
+#: cforms-help.php:1063
+msgid "Hidden field"
+msgstr "piilokenttänä"
+
+#: cforms-help.php:1064
+msgid "Password field"
+msgstr "Salasana-kenttään"
+
+#: cforms-help.php:1065
+msgid "Date picker field"
+msgstr "Päivämäärävalitsimessa alalla"
+
+#: cforms-help.php:1065 cforms-options.php:1100
+msgid "WP Comment Feature"
+msgstr "WP Kommentti ominaisuus"
+
+#: cforms-help.php:1067
+msgid "Check boxes groups"
+msgstr "Tarkista laatikot ryhmät"
+
+#: cforms-help.php:1068
+msgid "Drop down fields"
+msgstr "Avattavasta kentät"
+
+#: cforms-help.php:1070
+msgid "Radio buttons"
+msgstr "Radio painikkeet"
+
+#: cforms-help.php:1071
+msgid "'CC' check box"
+msgstr "\"CC\"-valintaruutu"
+
+#: cforms-help.php:1072
+msgid "Multi-recipients field"
+msgstr "Multi-vastaanottajien alalla"
+
+#: cforms-help.php:1073
+msgid "Spam/Q&amp;A verification"
+msgstr "(nonAjax)Spam / Q & todentaminen"
+
+#: cforms-help.php:1074
+msgid "Spam/captcha verification"
+msgstr "Spam / captcha todentaminen"
+
+#: cforms-help.php:1075
+msgid "File upload fields"
+msgstr "Tiedoston lataaminen kentät"
+
+#: cforms-help.php:1076
+msgid "Begin of a fieldset"
+msgstr "Aloita of fieldset"
+
+#: cforms-help.php:1077
+msgid "End of a fieldset"
+msgstr "End of fieldset"
+
+#: cforms-help.php:1080
+msgid "Should only be used <strong>once</strong> per generated form!"
+msgstr "Tulisi käyttää vain <strong> kerran </ strong> per tuotettu muodossa!"
+
+#: cforms-help.php:1086
+msgid "Simple example:"
+msgstr "Yksinkertainen esimerkki:"
+
+#: cforms-help.php:1093 cforms-help.php:1120 lib_activate.php:68
+#: lib_options_add.php:34
+msgid "Your Name|Your Name"
+msgstr "Nimesi | Nimesi"
+
+#: cforms-help.php:1094
+msgid "Your Email"
+msgstr "Sähköposti"
+
+#: cforms-help.php:1095
+msgid "Your Message"
+msgstr "Viestisi"
+
+#: cforms-help.php:1109
+msgid "Call default form with two defined fields"
+msgstr "Soita oletuksena lomakkeen kaksi määrittämät kentät"
+
+#: cforms-help.php:1116
+msgid "<strong>More advanced example</strong> (file access)"
+msgstr "<strong> Kehittyneempi esimerkiksi </ strong> (tiedostojen käyttö)"
+
+#: cforms-help.php:1125 lib_activate.php:69 lib_options_add.php:35
+msgid "Email"
+msgstr "Sähköposti"
+
+#: cforms-help.php:1129
+msgid "Please pick a month for delivery:"
+msgstr "Ole hyvä ja valitse kuukaudessa toimitus:"
+
+#: cforms-help.php:1132
+msgid "Deliver on#Please pick a month"
+msgstr "Toimittava # hyvä poimia kuukaudessa"
+
+#: cforms-help.php:1134
+msgid "Need to put this file into your themes dir!"
+msgstr "Täytyy laittaa tämä tiedosto teemoja dir!"
+
+#: cforms-help.php:1141
+msgid "Remove the last '#'"
+msgstr "Poista viimeinen \"#\""
+
+#: cforms-help.php:1146
+msgid "Call form #5 with new fields"
+msgstr "Soita muodossa # 5 uusilla aloilla"
+
+#: cforms-help.php:1150
+msgid "With <code>month.txt</code> containing all 12 months of a year:"
+msgstr "<code> Month.txt </ code>, joka sisältää kaikki 12 kuukauden aikana:"
+
+#: cforms-help.php:1154 lib_activate.php:175
+msgid "January"
+msgstr "tammikuu"
+
+#: cforms-help.php:1156 lib_activate.php:176
+msgid "February"
+msgstr "helmikuu"
+
+#: cforms-help.php:1158 lib_activate.php:177
+msgid "March"
+msgstr "maaliskuu"
+
+#: cforms-help.php:1168
+msgid "Using variables in email subject and messages"
+msgstr "Käyttämällä muuttujia sähköpostin aihe ja viestien"
+
+#: cforms-help.php:1173
+msgid ""
+"<strong>Subjects and messages</strong> for emails both to the <a href=\"%s\" "
+"%s>form admin</a> as well as to the <a href=\"%s\" %s>visitor</a> (auto "
+"confirmation, CC:) support insertion of pre-defined variables and/or any of "
+"the form input fields."
+msgstr ""
+"<strong> aiheet ja viestit </strong> sähköposteja sekä <a href=\"%s\" %s> "
+"muodossa admin </ a> sekä <href = \"% s \"% s> kävijä </a> (auto "
+"vahvistuksen, CC :) tuen lisääminen ennalta määriteltyjä muuttujia ja / tai "
+"jokin lomakkeen tietokentät."
+
+#: cforms-help.php:1175
+msgid "Note that the variable names are case sensitive!"
+msgstr "Huomaa, että muuttujien nimet ovat isot!"
+
+#: cforms-help.php:1179 cforms-help.php:1248 cforms-help.php:1273
+msgid "Case sensitive!"
+msgstr "Asia herkkä!"
+
+#: cforms-help.php:1179
+msgid "Predefined variables:"
+msgstr "Ennalta määritetyt muuttujat:"
+
+#: cforms-help.php:1183
+msgid "Inserts the Blog's name."
+msgstr "Insertit Blogin nimi."
+
+#: cforms-help.php:1187
+msgid "Inserts the form name (per your configuration)."
+msgstr "Insertit lomakkeen nimi (per määritykset)."
+
+#: cforms-help.php:1191
+msgid "Inserts the ID of the post the form is shown in."
+msgstr "Insertit tunnus post lomake näkyy sisään"
+
+#: cforms-help.php:1195
+msgid "Inserts the HTTP referer information (if available)."
+msgstr "Insertit HTTP referer tiedot (jos saatavilla)."
+
+#: cforms-help.php:1199
+msgid "Inserts the WP page the form was submitted from."
+msgstr "Insertit WP sivun lomakkeen toimitti alkaen."
+
+#: cforms-help.php:1203
+msgid "Inserts the date of form submission (per your general WP settings)."
+msgstr "Lisää päivämäärän muodon mukaan (per yleistä WP asetukset)."
+
+#: cforms-help.php:1207
+msgid "Inserts the time of form submission (per your general WP settings)."
+msgstr "(nonAjax)Insertit lomakkeen lähetysaikaa (per yleistä WP asetukset)."
+
+#: cforms-help.php:1211
+msgid "Inserts visitor IP address."
+msgstr "Insertit kävijä IP-osoite."
+
+#: cforms-help.php:1215
+msgid ""
+"Inserts a unique and referenceable form ID (provided that DB Tracking is "
+"enabled!)"
+msgstr ""
+"Insertit ainutlaatuinen ja referenceable muodossa ID (edellyttäen, että DB-"
+"seuranta on käytössä!)"
+
+#: cforms-help.php:1219
+msgid "Inserts the ID of the currently logged-in user."
+msgstr "Insertit tunnus kirjautuneen käyttäjän."
+
+#: cforms-help.php:1223
+msgid "Inserts the Name of the currently logged-in user."
+msgstr "Insertit nimi kirjautuneen käyttäjän."
+
+#: cforms-help.php:1227
+msgid "Inserts the Email Address of the currently logged-in user."
+msgstr "Insertit sähköpostiosoite kirjautuneen käyttäjän."
+
+#: cforms-help.php:1231
+msgid "Inserts the First Name of the currently logged-in user."
+msgstr "Insertit etunimi kirjautuneen käyttäjän."
+
+#: cforms-help.php:1235
+msgid "Inserts the Last Name of the currently logged-in user."
+msgstr "Insertit sukunimi kirjautuneen käyttäjän."
+
+#: cforms-help.php:1239
+msgid "Special:"
+msgstr "erityinen"
+
+#: cforms-help.php:1240
+msgid "A single %s (period) on a line inserts a blank line."
+msgstr "Yksi% s (piste) on line lisää tyhjä rivi."
+
+#: cforms-help.php:1248
+msgid "Predefined variables for Tell-A-Friend forms:"
+msgstr "(nonAjax)Ennalta määritellyt muuttujat Kerro kaverille-muotoja:"
+
+#: cforms-help.php:1252
+msgid "Inserts the URL of the WP post/page."
+msgstr "Insertit URL WP post / sivu."
+
+#: cforms-help.php:1256
+msgid "Inserts the Author's name (<em>Nickname</em>)."
+msgstr "Insertit Tekijän nimi (<em> Nimimerkki </ em>)."
+
+#: cforms-help.php:1260
+msgid "Inserts the WP post or page title."
+msgstr "Insertit WP postitse tai sivun otsikko."
+
+#: cforms-help.php:1264
+msgid "Inserts the WP post or page excerpt."
+msgstr "Insertit WP postitse tai sivu ote."
+
+#: cforms-help.php:1273
+msgid "Custom variables (referencing input fields):"
+msgstr "Muokatut muuttujat (viitataan syötekenttiä):"
+
+#: cforms-help.php:1278
+msgid ""
+"Alternatively to the cforms predefined variables, you can also reference "
+"data of any of your form's input fields by one of the 3 ways described below."
+msgstr ""
+"Vaihtoehtona cforms ennalta muuttujia, voit myös vertailutiedot tahansa "
+"lomakkeen syötekenttiä yhden 3 alla kuvatuilla tavoilla."
+
+#: cforms-help.php:1282
+msgid "field label"
+msgstr "kentän otsikon"
+
+#: cforms-help.php:1283
+msgid ""
+"With <em>field label</em> being the <u>exact</u> field label as it is being "
+"tracked and sent in the admin email!"
+msgstr ""
+"Kun <em> kenttä etiketti </ em> on <u> tarkka </ u> kentän otsikon koska se "
+"on seurannassa ja lähettää admin sähköpostitse!"
+
+#: cforms-help.php:1286
+msgid "XYZ"
+msgstr "XYZ"
+
+#: cforms-help.php:1287
+msgid ""
+"In case you're using the <u>custom input field NAMES &amp; ID's</u>, the "
+"reference is the <u>id:</u> of the field."
+msgstr ""
+"Siinä tapauksessa käytät <u> custom kenttään nimeä ja ID: n </ u>, viittaus "
+"on <u> id: </ u> alan."
+
+#: cforms-help.php:1291
+msgid ""
+"With <em>NN</em> being the position of the field on the form configuration "
+"page."
+msgstr "Kun <em> NN </ em> on asema kentän muoto asetukset."
+
+#: cforms-help.php:1297
+msgid "Suppose this is the input field definition string: %sYour Website%s"
+msgstr "Oletetaan tämä on kenttään määritelmä string:% sYour sivuston% s"
+
+#: cforms-help.php:1298
+msgid "The corresponding variables would be:"
+msgstr "Vastaavat muuttujat olisi:"
+
+#: cforms-help.php:1299
+msgid ""
+"%1$s{Your Website}%2$s , %1$s{homepage}%2$s, or %1$s%3$s%2$s (assuming it is "
+"on the 4th position) respectively."
+msgstr ""
+"%1$s{sivuston}%2$s, %1$s{kotisivu}%2$s tai %1$s%3$s%2$s (olettaen, että se "
+"on 4. asema) vastaavasti."
+
+#: cforms-help.php:1309
+msgid "Important!"
+msgstr ""
+
+#: cforms-help.php:1309
+msgid "Custom variables in MULTI-PAGE forms:"
+msgstr ""
+
+#: cforms-help.php:1314
+msgid ""
+"Referencing form values in multi-page forms require specification of the "
+"actual form the field is on, eg. {%scf_form6_%sYour Name} would reference "
+"the field labeled \"Your Name\" on form #6."
+msgstr ""
+
+#: cforms-help.php:1323
+msgid ""
+"If you are using multiple input fields with <strong>the same</strong> "
+"recorded field label (you can always check the \"Tracking\" menu tab for how "
+"the fields are stored), e.g:"
+msgstr ""
+"Jos käytät useita syötekentät <strong> sama </ strong> tallennetun kentän "
+"otsikon (voit aina tarkistaa \"seuranta \"-välilehti, miten kentät on "
+"tallennettu), esim.:"
+
+#: cforms-help.php:1331
+msgid ""
+"Results in the first field labeled %1$s to be addressed with %2$s. The "
+"second instance of %1$s can be addressed by %3$s, and so on..."
+msgstr ""
+"Tulokset ensimmäisen kenttään %1$s puututtava %2$s.Toinen esiintymä %1$s "
+"voidaan ratkaista %3$s, ja niin edelleen ..."
+
+#: cforms-help.php:1338
+msgid ""
+"Here is an example for a simple <a href=\"%s\" %s>Admin HTML message</a> "
+"<em>(you can copy and paste the below code or change to your liking)</em>:"
+msgstr ""
+"Tässä on esimerkki yksinkertainen <a href=\"%s\" %s> Admin HTML viestin </ "
+"a> <em> (voit kopioida ja liittää alla koodin tai muuttaa mieleisekseen) </ "
+"em>:"
+
+#: cforms-help.php:1343 cforms-help.php:1367 cforms-help.php:1393
+msgid "HTML code:"
+msgstr "HTML-koodi:"
+
+#: cforms-help.php:1344
+msgid "a form has been submitted on %s, via: %s [IP %s]"
+msgstr "lomake on lähetetty% s kautta:% s [IP% s]"
+
+#: cforms-help.php:1349 cforms-help.php:1373 cforms-help.php:1402
+msgid "Output:"
+msgstr "lähtö:"
+
+#: cforms-help.php:1350
+msgid ""
+"a form has been submitted on June 13, 2007 @ 9:38 pm, via: / [IP "
+"184.153.91.231]"
+msgstr ""
+"lomake on toimitettu 13. kesäkuuta 2007 @ 21:38 kautta: / [IP 184.153.91.231]"
+
+#: cforms-help.php:1355
+msgid ""
+"With this limited message you'd want to enable the option \"Include pre "
+"formatted form data table in HTML part\""
+msgstr ""
+"Tämän rajoitetun viestin haluaisi ottaa käyttöön asetuksista \"Sisällytä "
+"valmiiksi alustettu muodossa tiedot taulukon HTML osittain \""
+
+#: cforms-help.php:1362
+msgid ""
+"Here is another example for a more detailed <a href=\"%s\" %s>Admin HTML "
+"message</a>:"
+msgstr ""
+"Tässä on toinen esimerkki tarkempia <a href=\"%s\" %s> Admin HTML viestin </ "
+"a>:"
+
+#: cforms-help.php:1368
+msgid ""
+"{Your Name} just submitted {Form Name}. You can get in touch with him/her "
+"via &lt;a href=\"mailto:{Email}\"&gt;{Email}&lt;/a&gt; and might want to "
+"check out his/her web page at &lt;a href=\"{Website}\"&gt;{Website}&lt;/a&gt;"
+msgstr ""
+"{Nimesi} juuri esittänyt {lomakkeen nimi}. Voit ottaa yhteyttä häneen / "
+"hänen kautta <a href=\"mailto:{sähköposti}\"> {Sähköposti} </a> ja kannattaa "
+"tarkistaa hänen / hänen verkkosivuilla osoitteessa <href = \"{sivuston} \"> "
+"{sivuston} </ a>"
+
+#: cforms-help.php:1368 cforms-help.php:1375
+msgid "The message is:"
+msgstr "Viesti on:"
+
+#: cforms-help.php:1368
+msgid "{Message}"
+msgstr "{Viesti}"
+
+#: cforms-help.php:1374
+msgid ""
+"John Doe just submitted MY NEW FORM. You can get in touch with him/her via "
+"<a href=\"mailto:#\">john.doe@doe.com</a> and might want to check out his/"
+"her web page at <a href=\"#\">http://website.com</a>"
+msgstr ""
+"John Doe juuri jättämässä uudessa muodossa. Voit ottaa yhteyttä häneen / "
+"hänen kautta <a href=\"mailto:#\"> john.doe @ doe.com </a> ja kannattaa "
+"tarkistaa hänen / hänen verkkosivuilla osoitteessa <href =\"# \"> http://"
+"website.com </a>"
+
+#: cforms-help.php:1376
+msgid "Hey there! Just wanted to get in touch. Give me a ring at 555-..."
+msgstr "Hei! Halusin vain saada yhteyttä. Anna minulle rengas 555 - ..."
+
+#: cforms-help.php:1381
+msgid ""
+"With this more detailed message you can disable the option \"Include pre "
+"formatted form data table in HTML part\" since you already have all fields "
+"covered in the actual message/header."
+msgstr ""
+"Tämän tarkempia viestin voit poistaa vaihtoehdon \"Sisällytä valmiiksi "
+"alustettu muodossa tiedot taulukon HTML osittain \" koska sinulla on jo "
+"kaikki aloista todellinen viesti / otsikko."
+
+#: cforms-help.php:1388
+msgid ""
+"And a final example for a <a href=\"%s\" %s>HTML auto confirmation message</"
+"a>:"
+msgstr ""
+"Ja lopullinen esimerkki <a href=\"%s\" %s> HTML auto vahvistus viestin </ a>:"
+
+#: cforms-help.php:1394 cforms-help.php:1403
+msgid "auto confirmation message"
+msgstr "auto vahvistus viesti"
+
+#: cforms-help.php:1395 cforms-options.php:122 cforms-options.php:123
+#: lib_activate.php:81 lib_activate.php:82 lib_options_add.php:46
+#: lib_options_add.php:48
+msgid "Dear {Your Name},"
+msgstr "Hei {Nimesi}"
+
+#: cforms-help.php:1396 cforms-help.php:1405 cforms-options.php:122
+#: cforms-options.php:123 lib_activate.php:81 lib_activate.php:82
+#: lib_options_add.php:46 lib_options_add.php:48
+msgid "Thank you for your note!"
+msgstr "Kiitos Huom!"
+
+#: cforms-help.php:1397 cforms-help.php:1406 cforms-options.php:122
+#: cforms-options.php:123 lib_activate.php:81 lib_activate.php:82
+#: lib_options_add.php:46 lib_options_add.php:48
+msgid "We will get back to you as soon as possible."
+msgstr "Saamme takaisin niin pian kuin mahdollista."
+
+#: cforms-help.php:1404
+msgid "Dear John Doe,"
+msgstr "Dear John Doe,"
+
+#: cforms-help.php:1418
+msgid ""
+"Multi-page-forms support chaining of several forms and gather user input "
+"across all linked forms. Inserting a multi page form is easy, simply insert "
+"the %s first form %s of the series into your post or page."
+msgstr ""
+"Multi-sivu-muotojen tuki ketjuttamalla useita muotoja ja kerätä käyttäjän "
+"toimia kaikissa linkitetyn muotoja. Asettaminen monisivuinen lomake on "
+"helppoa, yksinkertaisesti lisätä% s ensimmäinen muoto% s sarjan omalle "
+"postitse tai sivulla."
+
+#: cforms-help.php:1423
+msgid "Multi-part/-page form features:"
+msgstr "Multi-part/-page muodossa ominaisuudet:"
+
+#: cforms-help.php:1426
+msgid "Defining first, next and last form via configuration"
+msgstr "Määrittely ensimmäinen, seuraava ja viimeinen muoto Configuration"
+
+#: cforms-help.php:1429
+msgid ""
+"Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgstr ""
+"Ohittaminen \"ensi muodossa \" ajon aikana (dynaamisesti) kautta oma-"
+"functions.php"
+
+#: cforms-help.php:1432
+msgid "Optionally send/suppress partial admin emails on a per form basis"
+msgstr ""
+"Valinnaisesti lähettää / tukahduttaa osittainen admin sähköpostiviestejä per "
+"lomakkeen perusteella"
+
+#: cforms-help.php:1435
+msgid "A form reset button"
+msgstr "Muodossa reset-painiketta"
+
+#: cforms-help.php:1438
+msgid "A form back button"
+msgstr "Muodossa takaisin-painiketta"
+
+#: cforms-help.php:1444
+msgid "Example (eg. using 3 forms):"
+msgstr "Esimerkki (esim. käyttäen 3 muotoja):"
+
+#: cforms-help.php:1447
+msgid "form 1,2,3:"
+msgstr "muodossa 1,2,3:"
+
+#: cforms-help.php:1448
+msgid "select main check box to enable as multi-part forms"
+msgstr "valitse tärkein valintaruutu, jotta sillä moniosaisia lomakkeita"
+
+#: cforms-help.php:1451
+msgid "form 1:"
+msgstr "lomake 1:"
+
+#: cforms-help.php:1452 cforms-help.php:1456
+msgid "(a) check \"Suppress admin email..\""
+msgstr "(a) tarkistaa \"torjumisesta admin email .. \""
+
+#: cforms-help.php:1452
+msgid "(b) check \"This is the first form..\""
+msgstr "(b) tarkistaa \"Tämä on ensimmäinen muoto .. \""
+
+#: cforms-help.php:1452
+msgid "(c) select \"form 2\" as next form"
+msgstr "(c) valitse \"lomake 2 \" ensi muodossa"
+
+#: cforms-help.php:1455
+msgid "form 2:"
+msgstr "lomake 2:"
+
+#: cforms-help.php:1456
+msgid "(b) select \"form 3\" as next form"
+msgstr "(b) valitse \"muodossa 3 \" ensi muodossa"
+
+#: cforms-help.php:1459
+msgid "form 3:"
+msgstr "lomake 3:"
+
+#: cforms-help.php:1460
+msgid "(a) make sure to not! have \"Suppress admin email..\" selected"
+msgstr "(a) varmistaa, että ei! ovat \"torjumisesta admin email ..\" valittu"
+
+#: cforms-help.php:1460
+msgid "(b) select \"last form\" to stop further routing"
+msgstr "(b) valitse \"viimeinen muodossa\" lopettaa edelleen reititys"
+
+#: cforms-help.php:1463
+msgid "Optionally add Reset &amp; Back buttons where appropriate."
+msgstr "Halutessasi lisätä Reset & Back-painikkeet tarvittaessa."
+
+#: cforms-help.php:1466
+msgid ""
+"Further, it makes sense to change \"Submit Button\" text (to e.g. \"Continue"
+"\") &amp; the \"success message\" to rather announce the next form."
+msgstr ""
+"Lisäksi on järkevää muuttaa \"Lähetä-painiketta \" tekstin (esim. \"Jatka "
+"\") ja \"onnistumisviesti \"on melko ilmoittaa seuraavan lomakkeen."
+
+#: cforms-help.php:1470
+msgid "Important Notes:"
+msgstr "Tärkeitä huomautuksia:"
+
+#: cforms-help.php:1472
+msgid ""
+"Accessing %1$s {custom variables} %2$s in the final form differs from how "
+"you would reference these in individual forms. Use the %1$s mail() %2$s "
+"example in my-functions.php.txt to examine the user data array; e.g. "
+"%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
+"the series)."
+msgstr ""
+"Pääsy %1$s {custom muuttujia} %2$s lopullisessa muodossa eroaa miten "
+"viittaisi nämä yksittäisissä muodoissa. Käytä %1$s mail () %2$s Esimerkiksi "
+"minun-functions.php tarkastella käyttäjän tiedot matriisi; esim. %1$s "
+"{Sähköposti}%2$s tulisi %1$s {cf_form_Email}%2$s (ensimmäisen muodon sarja)."
+
+#: cforms-help.php:1473
+msgid ""
+"%1s File attachments %2s will not be included in the admin email unless the "
+"upload fields are on the last form. However, they will be stored and tracked."
+msgstr ""
+"% 1s Tiedostoliitteet% 2s ei sisällytetä admin email ellei upload kentät "
+"ovat viime muodossa. Kuitenkin ne tallennetaan ja seurataan."
+
+#: cforms-help.php:1474
+msgid ""
+"Once the multi page form support is enabled, %1$sAjax is being disabled%2$s "
+"for this form."
+msgstr ""
+"Kun monisivuinen muodossa tuki on käytössä, %1$sAjax on poistettu%2$s tässä "
+"muodossa."
+
+#: cforms-help.php:1481
+msgid "Styling Your Forms (CSS theme files)"
+msgstr "Muotoilu Lomakkeet (CSS teeman tiedostot)"
+
+#: cforms-help.php:1485
+msgid ""
+"Please see the <a href=\"%s\">Styling page</a> for theme selection and "
+"editing options."
+msgstr ""
+"Katso <a href=\"%s\"> Styling sivu </ a> teeman valinta ja editointi "
+"vaihtoehtoja."
+
+#: cforms-help.php:1486
+msgid ""
+"cforms comes with a few theme examples (some of them may require adjustments "
+"to work with <strong>your</strong> forms!) but you can of course create your "
+"own theme file -based on the default <strong>cforms.css</strong> file- and "
+"put it in the %s directory."
+msgstr ""
+"cforms mukana muutama teema esimerkkejä (jotkut niistä saattavat vaatia "
+"muutoksia työskennellä muodoissa!), mutta voit toki luoda oma teema "
+"tiedostojen perustuu oletus <strong>cforms.css</strong> tiedosto-ja laita se "
+"%s-hakemistossa."
+
+#: cforms-help.php:1488
+msgid ""
+"Your form <strong>doesn't</strong> look like the preview image, or your "
+"individual changes don't take effect, check your global WP theme CSS! It may "
+"overwrite some or many cforms CSS declarations. If you don't know how to "
+"trouble shoot, take a look at the Firefox extension \"Firebug\" - an "
+"excellent CSS troubleshooting tool!"
+msgstr ""
+"Lomake <strong> ei </strong> näyttää esikatselukuvan, tai yksittäiset "
+"muutokset eivät tule voimaan, tarkista maailmanlaajuinen WP teema CSS! Se "
+"voi korvata osittain tai monta cforms CSS ilmoituksia. Jos et tiedä, miten "
+"ongelmia ampua, katsomaan Firefox laajennus \"pyromaani\" -erinomainen CSS "
+"vianmääritystyönkalu!"
+
+#: cforms-help.php:1497
+msgid ""
+"For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s "
+"and comment section on the plugin homepage."
+msgstr ""
+"Saat ajan tasalla olevaa tietoa ensin tarkistaa% sFAQs% s ja% scforms foorumi"
+"% s ja kommentoida osio plugin etusivulle."
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "A new submission (form: \"{Form Name}\")"
+msgstr "Uusi esittämisen (lomake: \"{lomakkeen nimi} \")"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "Submitted on: {Date}"
+msgstr "Kirjoittanut {pvm}"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "Via: {Page}"
+msgstr "Translate from: ItalianVia: {Page}"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "By {IP} (visitor IP)"
+msgstr "By {IP} (vierailija IP)"
+
+#: cforms-options.php:118 lib_activate.php:90 lib_options_add.php:54
+msgid "A form has been submitted on {Date}, via: {Page} [IP {IP}]"
+msgstr "Lomake on lähetetty {pvm} kautta: {Page} [IP {IP}]"
+
+#: cforms-options.php:123 lib_activate.php:82 lib_options_add.php:48
+msgid "This is an automatic confirmation message."
+msgstr "Tämä on automaattinen vahvistus viesti."
+
+#: cforms-options.php:189 lib_functions.php:128
+msgid "Form Settings"
+msgstr "Form Settings"
+
+#: cforms-options.php:192
+msgid "Navigate to your other forms."
+msgstr "Navigoida muita."
+
+#: cforms-options.php:195
+msgid "Navigate to"
+msgstr "Siirry"
+
+#: cforms-options.php:196
+msgid "Go"
+msgstr "mennä"
+
+#: cforms-options.php:212
+msgid ""
+"<strong>cforms</strong> allows you <a href=\"%s\" %s>to insert</a> one or "
+"more custom designed contact forms, which on submission (preferably via "
+"Ajax) will send the visitor info via email and optionally stores the "
+"feedback in the database."
+msgstr ""
+"<strong> cforms </ strong> avulla voit <a href=\"%s\" %s> lisätä </ a> yhden "
+"tai useamman räätälöityä yhteystiedot lomakkeita, jotka esitettäessä "
+"(mieluiten Ajax) lähettää vierailija info sähköpostitse ja mahdollisesti "
+"tallentaa palautetta tietokantaan."
+
+#: cforms-options.php:213
+msgid ""
+"<a href=\"%s\" %s>Here</a> is a quick step by step quide to get you up and "
+"running quickly."
+msgstr ""
+"<a href=\"%s\" %s> tästä </ a> on nopea askel askeleelta quide pääset "
+"vauhtiin nopeasti."
+
+#: cforms-options.php:220
+msgid ""
+"You may give each form an optional name to better identify incoming emails."
+msgstr ""
+"Voit antaa kullekin muodossa valinnainen nimi tunnistaa paremmin saapuvat "
+"sähköpostit."
+
+#: cforms-options.php:221 cforms-options.php:222
+msgid "Enables or disables Ajax support for this form."
+msgstr "Ottaa käyttöön tai poistaa Ajax tukea tässä muodossa."
+
+#: cforms-options.php:222
+msgid "Ajax enabled"
+msgstr "Ajax käytössä"
+
+#: cforms-options.php:230
+msgid ""
+"Please see the <strong>Help!</strong> section for information on how to "
+"deploy the various <a href=\"%s\" %s>supported fields</a>,"
+msgstr ""
+"Katso <strong> Help! </ Strong> tietoa miten käyttää erilaisia ​​<a href=\"%s"
+"\" %s> tukee kentät </ a>,"
+
+#: cforms-options.php:231
+msgid "set up forms using <a href=\"%s\" %s>FIELDSETS</a>,"
+msgstr "perustaa lomakkeita <a href=\"%s\" %s> FIELDSETS </ a>,"
+
+#: cforms-options.php:232
+msgid ""
+"use <a href=\"%s\" %s>default values</a> &amp; <a href=\"%s\" %s>regular "
+"expressions</a> for single &amp; multi-line fields. "
+msgstr ""
+"käyttää <a href=\"%s\" %s> oletusarvot </ a> ja <a href=\"%s\" %s> "
+"säännöllisiä lausekkeita </ a> yhden ja multi-line kentät."
+
+#: cforms-options.php:233
+msgid ""
+"Besides the generic success &amp; failure messages below, you can add <a "
+"href=\"%s\" %s>custom error messages</a>."
+msgstr ""
+"Lisäksi yleinen onnistuminen ja epäonnistuminen viestit alla, voit lisätä <a "
+"href=\"%s\" %s> custom virheilmoitukset </ a>."
+
+#: cforms-options.php:237
+msgid "Please save the new order of fields (<em>Update Settings</em>)!"
+msgstr ""
+"Ole hyvä ja tallentaa uudet kenttien järjestystä (<em> Päivitä asetukset </ "
+"em>)!"
+
+#: cforms-options.php:239
+msgid "Can be a simple label or a more complex expression. See Help!"
+msgstr ""
+"Voi olla yksinkertainen etiketti tai monimutkaisempi lauseke. Katso Apua!"
+
+#: cforms-options.php:239
+msgid "Field Name"
+msgstr "(nonAjax)kentän nimi"
+
+#: cforms-options.php:240
+msgid "Pick one of the supported input field types."
+msgstr "Valitse yksi tuettu kenttään tyyppejä."
+
+#: cforms-options.php:240
+msgid "Type"
+msgstr "tyyppi"
+
+#: cforms-options.php:241
+msgid "Makes an input field required for proper form validation."
+msgstr "Tekee kenttään tarvitaan oikeassa muodossa validointi."
+
+#: cforms-options.php:241
+msgid "required"
+msgstr "tarvitaan"
+
+#: cforms-options.php:242
+msgid "Makes the field required and verifies the email address."
+msgstr "Tekee alalla tarvitaan ja varmistaa sähköpostiosoitteesi."
+
+#: cforms-options.php:242
+msgid "e-mail"
+msgstr "sähköposti"
+
+#: cforms-options.php:243
+msgid "Clears the field (default value) upon focus."
+msgstr "Tyhjentää kentän (oletusarvo), kun painopiste."
+
+#: cforms-options.php:243
+msgid "auto-clear"
+msgstr "Auto-selkeä"
+
+#: cforms-options.php:244
+msgid "Grey's out a form field (field will be completely disabled)."
+msgstr "Greyn lomake (kenttä poistetaan kokonaan)."
+
+#: cforms-options.php:244 cforms-options.php:424
+msgid "disabled"
+msgstr "vammaiset"
+
+#: cforms-options.php:245
+msgid "Form field will be readonly!"
+msgstr "Lomake alalla on vain luku!"
+
+#: cforms-options.php:245 cforms-options.php:430
+msgid "read-only"
+msgstr "vain luku"
+
+#: cforms-options.php:280 cforms-options.php:298
+msgid "New Field"
+msgstr "uusi kenttä"
+
+#: cforms-options.php:325
+msgid "Drag me"
+msgstr "Drag Me"
+
+#: cforms-options.php:327
+msgid "Please enter field definition"
+msgstr "Kirjoita kenttään määritelmä"
+
+#: cforms-options.php:327
+msgid "Edit"
+msgstr "Did you mean: editmuokata"
+
+#: cforms-options.php:327
+msgid "Pick a field type"
+msgstr "Valitse kenttätyyppi"
+
+#: cforms-options.php:329
+msgid "----- General form fields ----"
+msgstr ""
+
+#: cforms-options.php:330
+msgid "Begin Fieldset"
+msgstr ""
+
+#: cforms-options.php:331
+msgid "End Fieldset"
+msgstr "end fieldset"
+
+#: cforms-options.php:332
+msgid "Text only (no input)"
+msgstr "Vain teksti (ei tulo)"
+
+#: cforms-options.php:333
+msgid "Single line of text"
+msgstr "Yksirivinen teksti"
+
+#: cforms-options.php:334
+msgid "Multiple lines of text"
+msgstr "Useita rivejä tekstiä"
+
+#: cforms-options.php:335
+msgid "Check Box"
+msgstr "Tarkista Box"
+
+#: cforms-options.php:336
+msgid "Check Box Group"
+msgstr "valintaruutu Group"
+
+#: cforms-options.php:337
+msgid "Radio Buttons"
+msgstr "Radio painikkeet"
+
+#: cforms-options.php:338
+msgid "Select Box"
+msgstr "Valitse Box"
+
+#: cforms-options.php:339
+msgid "Multi Select Box"
+msgstr "Multi Valitse Box"
+
+#: cforms-options.php:340
+msgid "File Upload Box"
+msgstr "Tiedoston lataaminen Box"
+
+#: cforms-options.php:342
+msgid "Date Entry/Dialog"
+msgstr "Saapumispäivämäärä / Dialog"
+
+#: cforms-options.php:343
+msgid "Password Field"
+msgstr "Salasana Field"
+
+#: cforms-options.php:344
+msgid "Hidden Field"
+msgstr "Piilokentän"
+
+#: cforms-options.php:347
+msgid "--------- Special ------------"
+msgstr "------------erityinen ------------"
+
+#: cforms-options.php:348
+msgid "CC: option for user"
+msgstr "CC: vaihtoehto käyttäjälle"
+
+#: cforms-options.php:349
+msgid "Multiple Recipients"
+msgstr "usealle vastaanottajalle"
+
+#: cforms-options.php:350
+msgid "Captcha verification (image)"
+msgstr "Captcha tarkastus (kuva)"
+
+#: cforms-options.php:370
+msgid "----- T-A-F form fields ------"
+msgstr "----- T-A-F lomakkeen kentät ------"
+
+#: cforms-options.php:374
+msgid "T-A-F * Friend's Email"
+msgstr "T-A-F * Ystäväsi sähköpostiosoite"
+
+#: cforms-options.php:378
+msgid "--- WP comment form fields ---"
+msgstr "--- WP kommentin muodossa kentät ---"
+
+#: cforms-options.php:386
+msgid "--- HTML5 form fields ---"
+msgstr ""
+
+#: cforms-options.php:387
+msgid "Color Field"
+msgstr ""
+
+#: cforms-options.php:388
+msgid "Date Field"
+msgstr ""
+
+#: cforms-options.php:389
+msgid "Date/Time Field"
+msgstr ""
+
+#: cforms-options.php:390
+msgid "Date/Time (local) Field"
+msgstr ""
+
+#: cforms-options.php:391
+msgid "Email Field"
+msgstr ""
+
+#: cforms-options.php:392
+msgid "Month Field"
+msgstr ""
+
+#: cforms-options.php:393
+msgid "Number Field"
+msgstr ""
+
+#: cforms-options.php:394
+msgid "Range Field"
+msgstr ""
+
+#: cforms-options.php:395
+msgid "Search Field"
+msgstr ""
+
+#: cforms-options.php:396
+msgid "Telephone Number Field"
+msgstr ""
+
+#: cforms-options.php:397
+msgid "Time Field"
+msgstr ""
+
+#: cforms-options.php:398
+msgid "URL Field"
+msgstr ""
+
+#: cforms-options.php:399
+msgid "Week Field"
+msgstr ""
+
+#: cforms-options.php:403
+msgid "Remove input field"
+msgstr "Poista kenttään"
+
+#: cforms-options.php:406
+msgid "input required"
+msgstr "syöttö tarvitaan"
+
+#: cforms-options.php:412
+msgid "email required"
+msgstr "sähköposti vaaditaan"
+
+#: cforms-options.php:418
+msgid "clear field"
+msgstr "selkeän näkökentän"
+
+#: cforms-options.php:446
+msgid "Add more input field(s)"
+msgstr "Lisää kenttään (s)"
+
+#: cforms-options.php:446
+msgid "Add"
+msgstr "lisätä"
+
+#: cforms-options.php:447
+msgid "new field(s) @ position"
+msgstr "uusi kenttä (s) @ asemaa"
+
+#: cforms-options.php:466
+msgid "File Upload Settings"
+msgstr "Tiedoston lataaminen Asetukset"
+
+#: cforms-options.php:472
+msgid ""
+"You may also want to verify the global, file upload specific  <a href=\"%s\" "
+"%s>error messages</a>."
+msgstr ""
+"Voit myös tarkistaa maailmanlaajuinen, latauskiintiö erityisiä <a href=\"%s"
+"\" %s> virheilmoituksia </ a>."
+
+#: cforms-options.php:480
+msgid ""
+"Can't find the specified <strong>Upload Directory</strong> ! Please verify "
+"that it exists!"
+msgstr ""
+"(nonAjax)Ei löydä määritettyä <strong> tallennushakemisto </ strong>! Ole "
+"hyvä ja tarkista, että se on olemassa!"
+
+#: cforms-options.php:485
+msgid "Upload directory (absolute path)"
+msgstr "Kopiointihakemisto (absoluuttinen polku)"
+
+#: cforms-options.php:486
+msgid "e.g. /home/user/www/wp-content/my-upload-dir"
+msgstr ""
+"esim. / kotiin / käyttäjä / www / wp-content / Sisältöön minun upload dir"
+
+#: cforms-options.php:490
+msgid "Upload directory URL (relative path/URL)"
+msgstr "Kopiointihakemisto URL (suhteellinen polku / URL)"
+
+#: cforms-options.php:491
+msgid "e.g. /wp-content/my-upload-dir"
+msgstr "esim. / wp-pitoisuus /Sisältöön minun upload dir"
+
+#: cforms-options.php:495
+msgid "Disable noid- (tracking ID) prefix"
+msgstr "Poista noid-(tracking ID) etuliite"
+
+#: cforms-options.php:500
+msgid "Allowed file extensions"
+msgstr "Sallittuja tiedostopääte"
+
+#: cforms-options.php:501
+msgid "[empty=no files are allowed]"
+msgstr "[tyhjä=tiedostoja ei ole sallittua]"
+
+#: cforms-options.php:505
+msgid "Maximum file size<br />in kilobyte"
+msgstr "Tiedoston maksimikoko <br /> vuonna kilotavun"
+
+#: cforms-options.php:510
+msgid "Do not email attachments"
+msgstr "Älä lähetä liitetiedostoja"
+
+#: cforms-options.php:511
+msgid ""
+"<u>Note</u>: Attachments are stored on the server &amp; can be accessed via "
+"the <a href=\"%s\" %s>cforms tracking</a> tables."
+msgstr ""
+"<u> Huomaa </ u>: Liitteet tallennetaan palvelimelle ja pääsee <a href=\"%s"
+"\" %s> cforms seuranta </ a> taulukoita."
+
+#: cforms-options.php:521
+msgid "Messages, Text and Button Label"
+msgstr "Viestit, Tekstiviestit ja Button Label"
+
+#: cforms-options.php:525
+msgid ""
+"These are the messages displayed to the user on successful (or failed) form "
+"submission. These messages are form specific, a general message for entering "
+"a wrong <strong>visitor verification code</strong> can be found <a href=\"%s"
+"\" %s>here</a>."
+msgstr ""
+"Nämä ovat viestit näytetään käyttäjälle onnistuneista (tai puutteellista) "
+"lomakkeen lähettäminen. Nämä viestit ovat muodossa erityisiä, yleinen viesti "
+"syöttämällä väärän <strong> kävijä todentaminen koodi </ strong> löytyy <a "
+"href=\"%s\" %s> tästä </ a>."
+
+#: cforms-options.php:530
+msgid "Submit button text"
+msgstr "Lähetä-painiketta teksti"
+
+#: cforms-options.php:535
+msgid "Waiting message"
+msgstr "odottavan viestin"
+
+#: cforms-options.php:539
+msgid "\"required\" label"
+msgstr "\"tarvitaan \" label"
+
+#: cforms-options.php:543
+msgid "\"email required\" label"
+msgstr "\"sähköposti vaaditaan \" label"
+
+#: cforms-options.php:548
+msgid "<strong>Success message</strong><br />when form filled out correctly"
+msgstr "<strong> menestys viesti </ strong> <br /> jos lomake täytetty oikein"
+
+#: cforms-options.php:557
+msgid ""
+"<strong>Failure message</strong><br />when missing fields or wrong field<br /"
+">formats (regular expr.)"
+msgstr ""
+"<strong> virheilmoitus </ strong> <br /> kun puuttuu kenttiä tai väärin "
+"alalla <br /> formaatteja (säännöllinen lauseke.)"
+
+#: cforms-options.php:565
+msgid "Show messages"
+msgstr "Näytä viestit"
+
+#: cforms-options.php:567
+msgid "Above form"
+msgstr "Ylläoleva lomake"
+
+#: cforms-options.php:568
+msgid "Below form"
+msgstr "alla lomake"
+
+#: cforms-options.php:575
+msgid "Jump to Error"
+msgstr "Siirry virhe"
+
+#: cforms-options.php:577
+msgid "(Only Javascript)"
+msgstr "(Vain Javascript)"
+
+#: cforms-options.php:581
+msgid "Fancy Error messages"
+msgstr "Fancy Virheilmoitukset"
+
+#: cforms-options.php:583
+msgid "Enhanced display of errors (see also new theme CSS classes)"
+msgstr "Parannettu näyttö virheitä (ks. myös uuden teeman CSS luokat)"
+
+#: cforms-options.php:587
+msgid "Embedded Custom Error<br />Messages"
+msgstr "Embedded Custom Error <br /> viestit"
+
+#: cforms-options.php:589
+msgid "Field specific error messages will be shown above input field"
+msgstr "Kenttä tarkat virheilmoitukset näytetään edellä kenttään"
+
+#: cforms-options.php:599
+msgid "Core Form Admin / Email Options"
+msgstr "Core Form Admin / sähköpostivalintoja"
+
+#: cforms-options.php:603
+msgid ""
+"These settings determine basic cforms behaviour and the form email "
+"recipient(s). Both %s and %s formats are valid, but check if your mail "
+"server does accept the format of choice!"
+msgstr ""
+"Nämä asetukset määrittävät perus cforms käyttäytymistä ja lomake sähköpostin "
+"vastaanottaja (t). Sekä% s ja% s muodot ovat voimassa, mutta tarkistaa, jos "
+"sähköpostipalvelin ei hyväksy muodon valinta!"
+
+#: cforms-options.php:604
+msgid ""
+"The default FROM: address is based on your blog's name and the WP default "
+"address. It can be changed, but I highly recommend you do not, as it may "
+"render the plugin useless. If you do change the FROM: address, triple check "
+"if all admin emails are being sent/received! "
+msgstr ""
+"Oletus: osoite perustuu blogisi nimi ja WP oletus osoite. Sen voi vaihtaa, "
+"mutta olen erittäin suositeltavaa vai ei, sillä se voi tehdä plugin "
+"hyödytön. Jos et muuta FROM: osoite, kolminkertainen tarkista jos kaikki "
+"admin sähköposteja lähetetään / vastaanotetaan!"
+
+#: cforms-options.php:609
+msgid "Core options"
+msgstr "Core vaihtoehtoja"
+
+#: cforms-options.php:611
+msgid ""
+"Disable %s multipart/form-data enctype %s, e.g. to enable salesforce.com"
+msgstr "Poista% s multipart / form-data enctype% s, esim. jotta salesforce.com"
+
+#: cforms-options.php:618
+msgid "%sDo not reset%s input fields after submission"
+msgstr "% sDO ei palauta%s syötekenttiä jättämisen jälkeen"
+
+#: cforms-options.php:625
+msgid "Show new entries on %sdashboard%s"
+msgstr "Näytä uudet merkinnät% sdashboard% s"
+
+#: cforms-options.php:632
+msgid "%sExclude this form%s from database tracking"
+msgstr "% ssulkea pois tämän lomakkeen% s tietokannasta seuranta"
+
+#: cforms-options.php:638
+msgid "Use %scustom input field NAMES &amp; ID's%s"
+msgstr "Käytä% scustom kenttään nimeä ja ID: n% s"
+
+#: cforms-options.php:638 cforms-options.php:645
+msgid "Read note &raquo;"
+msgstr "Lue note »"
+
+#: cforms-options.php:641
+msgid ""
+"This feature replaces the default NAMEs/IDs (e.g. <strong>cf_field_12</"
+"strong>) with <em>custom ones</em>, either derived from the field label you "
+"have provided or by specifically declaring it via <strong>[id:XYZ]</strong>,"
+"e.g. <em>Your Name[id:the-name]</em>. This will for instance help to feed "
+"data to third party systems (requiring certain input field names in the "
+"$_POST variable)."
+msgstr ""
+"Tämä ominaisuus korvaa oletusnimet / tunnukset (esim. <strong> cf_field_12 "
+"</ strong>) kanssa <em> mukautettuja niistä </ em>, joko johdettu kentän "
+"otsikon olet antanut tai erikseen julistaa kautta <strong> [id : XYZ] </ "
+"strong>, esim. <em> Nimi [id:-nimi] </ em>. Tämä ansiosta esimerkiksi "
+"syöttää tietoja kolmannen osapuolen järjestelmiä (vaaditaan tiettyjä tulo "
+"kenttien nimet $ _POST muuttuja)."
+
+#: cforms-options.php:645
+msgid "%sExtra variables%s e.g. {Title}"
+msgstr "% slisää muuttujia%s esim. {otsikko}"
+
+#: cforms-options.php:648
+msgid ""
+"There are <a href=\"%s\" %s>three additional</a>, <em>predefined variables</"
+"em> that belong to the Tell-A-Friend feature but can be enabled here without "
+"actually turning on T-A-F."
+msgstr ""
+"On <a href=\"%s\" %s> kolme ylimääräistä </ a>, <em> ennalta muuttujat </ "
+"em>, jotka kuuluvat Tell-A-Friend ominaisuus, mutta voidaan ottaa käyttöön "
+"täällä ilman että virta on TAF."
+
+#: cforms-options.php:648
+msgid ""
+"This will add two more hidden fields to your form to ensure that all data is "
+"available also in AJAX mode."
+msgstr ""
+"Tämä lisää kaksi piilotettuja kenttiä lomakkeeseen varmistaa, että kaikki "
+"tiedot on saatavissa myös AJAX-tilassa."
+
+#: cforms-options.php:653
+msgid "%sHide form%s after successful submission"
+msgstr "% spiilottaa muodossa%s onnistuneen lähetyksen jälkeen"
+
+#: cforms-options.php:660
+msgid "Submission Limit"
+msgstr "Jätetty rajoittaa"
+
+#: cforms-options.php:661
+msgid ""
+"<u>total</u> # of submissions accepted [<strong>empty or 0 (zero) = off</"
+"strong>] (tracking must be enabled!)"
+msgstr ""
+"<u> yhteensä </ u> # huomautuksia hyväksytty [<strong> tyhjä tai 0 (nolla) = "
+"off </ strong>] (seuranta pitää olla päällä!)"
+
+#: cforms-options.php:665
+msgid "Start Date"
+msgstr "Aloituspäivä"
+
+#: cforms-options.php:669 cforms-options.php:690
+msgid "HH:MM"
+msgstr ""
+
+#: cforms-options.php:669 cforms-options.php:690
+msgid "Time entry."
+msgstr "Aika."
+
+#: cforms-options.php:675
+msgid "The form will be available in "
+msgstr "Lomake on saatavilla"
+
+#: cforms-options.php:677
+msgid "The form is available now."
+msgstr "Lomake on saatavilla nyt."
+
+#: cforms-options.php:686
+msgid "End Date"
+msgstr "Päättymispäivä"
+
+#: cforms-options.php:695
+msgid "The form will be available for another "
+msgstr "Lomake on saatavilla vielä"
+
+#: cforms-options.php:697
+msgid "The form is not available anymore."
+msgstr "Muoto ei ole enää saatavilla."
+
+#: cforms-options.php:706
+msgid "Limit text"
+msgstr "Rajaa tekstiä"
+
+#: cforms-options.php:714
+msgid "<strong>Redirect</strong><br />options:"
+msgstr "<strong> uudelleenohjaus </ strong> <br /> vaihtoehtoja:"
+
+#: cforms-options.php:716
+msgid "Enable alternative success page (redirect)"
+msgstr "Ota vaihtoehto menestys sivu (uudelleenohjaus)"
+
+#: cforms-options.php:724
+msgid "<strong>Send form data</strong><br /> to an alternative page:"
+msgstr ""
+"<strong> Lähetä lomakkeen tiedot </ strong> <br /> vaihtoehtoiseen sivu:"
+
+#: cforms-options.php:726
+msgid "Enable alternative form action!"
+msgstr "Ota vaihtoehtoinen toimintaa!"
+
+#: cforms-options.php:727 cforms-options.php:737 cforms-options.php:919
+#: cforms-options.php:1086
+msgid "Please read note &raquo;"
+msgstr "Lue note »"
+
+#: cforms-options.php:731
+msgid ""
+"If you enable an alternative <strong>form action</strong> you <u>will loose "
+"any cforms application logic</u> (spam security, field validation, DB "
+"tracking etc.) in non-ajax mode! This setting is really only for developers "
+"that require additional capabilities around forwarding of form data and will "
+"turn cforms into a front-end only, a \"form builder\" so to speak."
+msgstr ""
+"Jos otat vaihtoehto <strong> muodossa toiminta </ strong> voit <u> löysä "
+"cforms sovelluslogiikka </u> (spam turvallisuus, kenttävalidointia, DB "
+"seuranta jne.) ei-ajax-tilassa! Tämä asetus on oikeastaan vain kehittäjille, "
+"jotka vaativat lisäominaisuuksia noin huolinta lomakkeen tiedot ja muuttuu "
+"cforms osaksi etupään vain \"muodossa rakentaja \" niin sanotusti."
+
+#: cforms-options.php:736
+msgid "RSS feed"
+msgstr "RSS-syöte"
+
+#: cforms-options.php:737
+msgid "Enable RSS feed to track new submissions"
+msgstr "Ota RSS-syötteen seurata uusia näkökantoja"
+
+#: cforms-options.php:740
+msgid ""
+"For the RSS feed to work you must have %sDatabase Tracking%s turned on under "
+"<em>Global-Settings</em>! In order to pick &amp; include input fields in "
+"your feed your Tracking page must show at least one record for reference."
+msgstr ""
+"RSS-syötteen työskennellä sinun täytyy olla% sDatabase Tracking% s käytössä "
+"alle <em> Global-asetukset </ em>! Jotta voit noutaa ja johon osallistuvat "
+"kentät ruoki seurantasivua on oltava vähintään yksi ennätys viitteellisiä."
+
+#: cforms-options.php:759
+msgid "Form fields included in feed:"
+msgstr "Lomakkeen kentät sisältyvät rehu:"
+
+#: cforms-options.php:792
+msgid "Admin Email Message Options"
+msgstr "Admin Sähköpostiviesti Valinnat"
+
+#: cforms-options.php:796
+msgid ""
+"Generally, emails sent to the admin and the submitting user can be both in "
+"plain text and HTML. The TXT part <strong>is required</strong>, HTML is "
+"<strong>optional</strong>."
+msgstr ""
+"Yleensä sähköpostit lähetetään admin ja esittää käyttäjä voi olla sekä vain "
+"teksti-ja HTML.TXT osa <strong> tarvitaan </ strong>, HTML on <strong> "
+"valinnainen </ strong>."
+
+#: cforms-options.php:797
+msgid ""
+"Below you'll find the settings for both the <strong>TXT part</strong> of the "
+"admin email as well as the <strong>optional HTML part</strong> of the "
+"message. Both areas permit the use of any of the <strong>pre-defined "
+"variables</strong> or <strong>data from input fields</strong>. <a href=\"%s"
+"\" %s>Please see the documentation on the HELP page</a> (including HTML "
+"message examples!)."
+msgstr ""
+"Alta löydät asetukset sekä <strong> TXT osa </ strong> Ylläpidon "
+"sähköpostiosoite sekä <strong> valinnainen HTML osa </ strong> viestin. "
+"Molemmat alueet sallia mitään <strong> ennalta määriteltyjä muuttujia </ "
+"strong> tai <strong> tietoja syötekenttiä </ strong>. <a href=\"%s\" %s> "
+"Katso asiakirjat HELP sivulla </ a> (kuten HTML viestin esimerkkejä!)."
+
+#: cforms-options.php:802
+msgid "%sTurn off%s admin email"
+msgstr "%sammuta%s admin sähköposti"
+
+#: cforms-options.php:809
+msgid "%sExclude empty fields%s from admin email"
+msgstr ""
+
+#: cforms-options.php:815
+msgid "FROM: email address"
+msgstr "Lähettäjä: sähköpostiosoite"
+
+#: cforms-options.php:820
+msgid "Admin email address(es)"
+msgstr "Admin sähköpostiosoite (es)"
+
+#: cforms-options.php:821
+msgid "More than one \"<strong>form admin</strong>\"? &raquo;"
+msgstr "(nonAjax)Enemmän kuin yksi \"<strong> muodossa admin </strong> \"? »"
+
+#: cforms-options.php:824
+msgid ""
+"Simply add additional email addresses separated by a <strong style=\"color:"
+"red\">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the "
+"visitor to choose from any of these per select box, you need to add a "
+"\"<code>Multiple Recipients</code>\" input field <a href=\"#anchorfields"
+"\">above</a> (see the HELP section for <a href=\"%s\" %s>more details</a>. "
+"If <strong>no</strong> \"Multiple Recipients\" input field is defined above, "
+"the submitted form data will go out to <strong>every address listed</strong>!"
+msgstr ""
+"Yksinkertaisesti lisätä sähköpostiosoitteita erotettu <strong style=\"color:"
+"red\"> pilkulla </strong>. <em> <u> Huom: </u> </em> Jos haluat vierailija "
+"valita minkä tahansa näistä kohti valitse laatikko, sinun täytyy lisätä "
+"\"<code> useille vastaanottajille </code> \"-kenttään <a href=\"#anchorfields"
+"\"> yli </a> (ks. ohjeosiota <a href=\"%s\" %s> lisätietoja </a>. Jos "
+"<strong > ei </strong> \"useille vastaanottajille \"-kenttään on määritelty "
+"edellä, toimitti lomakkeen tiedot sammuvat <strong> välein osoitteeseen </"
+"strong>!"
+
+#: cforms-options.php:827
+msgid "BCC"
+msgstr "BCC"
+
+#: cforms-options.php:831
+msgid "Subject admin email"
+msgstr "Aihe admin email"
+
+#: cforms-options.php:832 cforms-options.php:849 cforms-options.php:872
+#: cforms-options.php:898 cforms-options.php:928 cforms-options.php:941
+#: cforms-options.php:954
+msgid "<a href=\"%s\" %s>Variables</a> allowed."
+msgstr "<a href=\"%s\" %s> muuttujat </ a> sallittu."
+
+#: cforms-options.php:838
+msgid "Reset admin message to default"
+msgstr ""
+
+#: cforms-options.php:844
+msgid "<strong>Admin TEXT message</strong><br />(Header)"
+msgstr "<strong> Admin Tekstiviesti </ strong> <br /> (Header)"
+
+#: cforms-options.php:854 cforms-options.php:877
+msgid "(Footer)"
+msgstr "(Footer)"
+
+#: cforms-options.php:855
+msgid "<strong>Include</strong>  user input at the bottom of the admin email"
+msgstr "<strong> </ strong> käyttäjä syöttää alareunassa admin email"
+
+#: cforms-options.php:859
+msgid ""
+"(# characters) : spacing between labels &amp; data, for plain txt version "
+"only"
+msgstr "(#-Merkit): väli tarrat ja tiedot, tavalliselle txt versiossa"
+
+#: cforms-options.php:863 cforms-options.php:946
+msgid "Enable HTML"
+msgstr "Ota HTML"
+
+#: cforms-options.php:868
+msgid "<strong>Admin HTML message</strong><br />(Header)"
+msgstr "<strong> Admin HTML-viestin </ strong> <br /> (Header)"
+
+#: cforms-options.php:878
+msgid "<strong>Include</strong> user input at the bottom of the admin email"
+msgstr "<strong> </ strong> käyttäjä syöttää alareunassa admin email"
+
+#: cforms-options.php:880
+msgid "'Don't like the default form data block in your admin email?  &raquo;"
+msgstr "\"Älä pidä oletuksena lomakkeen tiedot lohko admin sähköpostitse? »"
+
+#: cforms-options.php:881
+msgid ""
+"To avoid sending ALL of the submitted user data (especially for very long "
+"forms) to the form admin simply <strong>uncheck</strong> \"<em>Include user "
+"input ...</em>\" and instead specify the fields you'd like to receive via "
+"the use of <strong>custom variables</strong>."
+msgstr ""
+"Lähettämisen välttämiseksi KAIKKI toimitti tiedot (erityisesti hyvin pitkä "
+"lomakkeet) muodossa admin yksinkertaisesti <strong> poista </ strong> \"<em> "
+"Sisällytä käyttäjä syöttää ... </em> \" ja sen sijaan määrittää kenttiä "
+"haluat saada kautta käyttämällä <strong> custom muuttujia </strong>."
+
+#: cforms-options.php:889
+msgid "CC Settings"
+msgstr "CC Asetukset"
+
+#: cforms-options.php:893
+msgid ""
+"This is the subject of the CC email that goes out the user submitting the "
+"form and as such requires the <strong>CC:</strong> field in your form "
+"definition above."
+msgstr ""
+"Tämä on aihe CC sähköpostin, joka sammuu käyttäjän lähettämällä lomake ja "
+"siten edellyttää <strong> CC: </ strong>-kenttään lomakkeen määritelmä "
+"edellä."
+
+#: cforms-options.php:897
+msgid "Subject CC"
+msgstr "Aihe CC"
+
+#: cforms-options.php:908
+msgid "Auto Confirmation"
+msgstr "Auto Vahvistus"
+
+#: cforms-options.php:912
+msgid ""
+"These settings apply to an auto response/confirmation sent to the visitor. "
+"If enabled AND your form contains a \"<code>CC me</code>\" field "
+"<strong>AND</strong> the visitor selected it, no extra confirmation email is "
+"sent!"
+msgstr ""
+"Nämä asetukset automaattisesti vastaus/vahvistus lähetetään vierailija. Jos "
+"käytössä ja lomake sisältää \"<code> CC minua </code> \"-kenttään <strong> "
+"JA </strong> vierailija valitaan se, mitään ylimääräistä tilausvahvistus "
+"lähetetty!"
+
+#: cforms-options.php:918
+msgid "Activate auto confirmation"
+msgstr "Aktivoi automaattinen vahvistus"
+
+#: cforms-options.php:923
+msgid ""
+"For the <em>auto confirmation</em> feature to work, make sure to mark at "
+"least one field <code>Email</code>, otherwise <strong>NO</strong> auto "
+"confirmation email will be sent out! If multiple fields are checked \"Email"
+"\", only the first in the list will receive a notification."
+msgstr ""
+"Sillä <em> auto vahvistus </ em> toiminto toimii, varmista merkitä vähintään "
+"yksi kenttä <code> sähköposti </ code>, muuten <strong> EI </strong> auto "
+"sähköpostitse lähetetään ulos! Jos useita kenttiä tarkastetaan \"sähköposti"
+"\", vain ensimmäisen luettelon saavat ilmoituksen."
+
+#: cforms-options.php:927
+msgid "Subject auto confirmation"
+msgstr "Aihe auto vahvistus"
+
+#: cforms-options.php:933
+msgid "Reset auto confirmation message to default"
+msgstr ""
+
+#: cforms-options.php:937
+msgid "TEXT message"
+msgstr "tekstiviesti"
+
+#: cforms-options.php:950
+msgid "HTML message"
+msgstr "HTML-viestin"
+
+#: cforms-options.php:964
+msgid ""
+"Can't find the specified <strong>Attachment</strong> (%s)! Please verify the "
+"server path!"
+msgstr ""
+"Ei löydä määritettyä <strong> Kiinnitys </ strong> (% s)! Varmista "
+"palvelimen polun!"
+
+#: cforms-options.php:969
+msgid "Attachment"
+msgstr "liite"
+
+#: cforms-options.php:970
+msgid "File path: relative to the cforms plugin folder or an absolute path."
+msgstr "Tiedoston polku: suhteessa cforms plugin kansio tai absoluuttinen Pat"
+
+#: cforms-options.php:981
+msgid "Multi-Part / Multi-Page Forms"
+msgstr "Multi-osa / Multi-Page Lomakkeet"
+
+#: cforms-options.php:985
+msgid "If enabled, new options will be shown below."
+msgstr "Jos käytössä, uusia vaihtoehtoja näytetään alla."
+
+#: cforms-options.php:985
+msgid "Mark this form to belong to a series of forms:"
+msgstr "Merkitse tämä lomake kuulua useita muotoja:"
+
+#: cforms-options.php:991
+msgid "Email &amp; Tracking"
+msgstr "Sähköposti ja seuranta"
+
+#: cforms-options.php:992
+msgid "Suppress admin email and DB tracking for *this* form"
+msgstr "Tukahduttaa admin sähköposti ja TE seuranta ja * tämän * lomakkeen"
+
+#: cforms-options.php:996
+msgid "First Form"
+msgstr "ensimmäinen Form"
+
+#: cforms-options.php:997
+msgid "This is the *first* form of a series of forms"
+msgstr "Tämä on * ensimmäinen * sarjan muodossa muotojen"
+
+#: cforms-options.php:1003
+msgid "Reset Button"
+msgstr "Reset-painike"
+
+#: cforms-options.php:1004
+msgid "Add a reset button to this form (reset to the first form in a series)"
+msgstr "Lisää reset-painiketta lomakkeen (palaa ensimmäiseen muodossa sarja)"
+
+#: cforms-options.php:1008 cforms-options.php:1020
+msgid "Text"
+msgstr "teksti"
+
+#: cforms-options.php:1009
+msgid "Text for reset button"
+msgstr "Teksti reset-painiketta"
+
+#: cforms-options.php:1015
+msgid "Back Button"
+msgstr "Takaisin-painike"
+
+#: cforms-options.php:1016
+msgid "Add a back button to this form (back to the previous form)"
+msgstr "Lisää back-painiketta lomakkeen (edelliseen lomake)"
+
+#: cforms-options.php:1021
+msgid "Text for back button"
+msgstr "Teksti takaisin-painike"
+
+#: cforms-options.php:1036
+msgid "* stop here (last form) *"
+msgstr "* Lopettaa tähän (viimeinen muoto) *"
+
+#: cforms-options.php:1040
+msgid "Please choose the next form after this"
+msgstr "Valitse seuraava lomake jälkeen"
+
+#: cforms-options.php:1051
+msgid "Tell-A-Friend Form Support"
+msgstr "Kerro kaverille-Form Support"
+
+#: cforms-options.php:1057
+msgid "posts and pages processed and tell-a-friend <strong>enabled</strong>."
+msgstr ""
+"(nonAjax)virkaa ja sivut käsitellään ja kertoa ystävällesi <strong> käytössä "
+"</ strong>."
+
+#: cforms-options.php:1059
+msgid ""
+"All posts &amp; pages processed and tell-a-friend <strong>disabled</strong>."
+msgstr ""
+"Kaikki viestit ja sivut käsitellään ja kertoa ystävällesi <strong> käytöstä "
+"</ strong>."
+
+#: cforms-options.php:1062
+msgid ""
+"BEFORE turning on this feature, please see the Help section for <a href=\"%s"
+"\" %s>more details.</a>"
+msgstr ""
+"Ennen kuin käynnistät tämän ominaisuuden, katso ohje kohdasta <a href=\"%s\" "
+"%s> lisätietoja. </ A>"
+
+#: cforms-options.php:1063
+msgid ""
+"If enabled, new field types will be made available to cover tell-a-friend "
+"requirements."
+msgstr ""
+"Jos käytössä, uusi kenttä tyypit annetaan kattamaan kertoa ystävällesi "
+"vaatimukset."
+
+#: cforms-options.php:1068
+msgid "Enable Tell-A-Friend"
+msgstr "Ota Tell-A-Friend"
+
+#: cforms-options.php:1074
+msgid "CC: User submitting the form"
+msgstr "CC: Käyttäjän lähettämällä lomake"
+
+#: cforms-options.php:1078
+msgid "T-A-F enable <strong>new posts/pages</strong> by default"
+msgstr "TAF enable <strong> uusia viestejä / pages </ strong> oletuksena"
+
+#: cforms-options.php:1082
+msgid "<strong>Batch T-A-F dis-/enable</strong><br />all your previous posts."
+msgstr "<strong> Erä TAF dis-/enable </ strong> <br /> kaikki aiemmat viestit."
+
+#: cforms-options.php:1084
+msgid "This will add a T-A-F custom field per post/page."
+msgstr "Tämä lisää T--F mukautetun kentän per post / sivu."
+
+#: cforms-options.php:1084
+msgid "Enable all"
+msgstr "Ota kaikki"
+
+#: cforms-options.php:1084
+msgid "Do you really want to enable all previous posts and pages for T-A-F?"
+msgstr "Haluatko todella, jotta kaikki aiemmat viestit ja sivut TAF?"
+
+#: cforms-options.php:1085
+msgid "This will remove the T-A-F custom field on all posts/pages."
+msgstr "Tämä poistaa TAF lisäkentällä kaikki viestit / sivut."
+
+#: cforms-options.php:1085
+msgid "Disable all"
+msgstr "Poista kaikki"
+
+#: cforms-options.php:1085
+msgid "Do you really want to disable all previous posts and pages for T-A-F?"
+msgstr "Haluatko todella poistaa kaikki aiemmat viestit ja sivut TAF?"
+
+#: cforms-options.php:1089
+msgid ""
+"You will find a <strong>cforms Tell-A-Friend</strong> checkbox on your "
+"<strong>admin/edit page</strong> (typically under \"Post/Author\")! <br /"
+"><u>Check it</u> if you want to have the form to appear on the given post or "
+"page."
+msgstr ""
+"(nonAjax)Löydät <strong> cforms Kerro kaverille-</strong>-valintaruutu "
+"<strong> admin / muokkaus </strong> (tyypillisesti alle \"Post / Kirjoittaja "
+"\")! <br/>. <u> Check it </u>, jos haluat olla muodossa näkyvän tiettyyn "
+"virkaan tai sivun."
+
+#: cforms-options.php:1105
+msgid ""
+"cforms can be used to replace your <em>default Wordpress comment form</em> "
+"(on posts &amp; pages), allowing your readers to either <strong>comment on "
+"the post</strong> or <strong>alternatively send the post author a note</"
+"strong>!"
+msgstr ""
+"cforms voidaan korvata <em> oletuksena Wordpress kommentin muodossa </ em> "
+"(virkojen ja sivut), jonka avulla lukijat joko <strong> kommentoida post </ "
+"strong> tai <strong> vaihtoehtoisesti lähetä viesti kirjoittaja huomautus </ "
+"strong>!"
+
+#: cforms-options.php:1106
+msgid ""
+"There will be additional, comment specific <em>input field types</em> "
+"available with this feature turned on. For an easy start, use the <em>WP "
+"comment form preset</em>. <a href=\"%s\" %s>Configuration details.</a>"
+msgstr ""
+"Tulee lisää, kommentoida erityisiä <em> kenttään tyypit </ em> käytettävissä "
+"tämän ominaisuuden päälle. Saat helppo aloittaa, käytä <em> WP kommentin "
+"muodossa valmiiksi </ em>. <a href=\"%s\" %s> Konfigurointitiedot. </ a>"
+
+#: cforms-options.php:1110
+msgid "WP comment form"
+msgstr "WP kommentin muodossa"
+
+#: cforms-options.php:1111
+msgid ""
+"Enable this form to optionally (user determined) act as a WP comment form"
+msgstr ""
+"Ota tämä lomake mahdollisesti (käyttäjä määrittää) toimia WP kommentin "
+"muodossa"
+
+#: cforms-options.php:1114
+msgid "Comment notification"
+msgstr "kommentti ilmoitus"
+
+#: cforms-options.php:1115
+msgid "Extra comment notification (check your autoresponder setting, too!)"
+msgstr "Extra kommentti ilmoituksen (tarkista automaattivastaaja asetus, too!)"
+
+#: cforms-options.php:1119
+msgid "<em>Tell a friend</em> or <em>WP comment</em>? &raquo;"
+msgstr "<em> Kerro kaverille </ em> tai <em> WP kommentti </ em>? »"
+
+#: cforms-options.php:1120
+msgid ""
+"This feature and T-A-F (above) are mutually exclusive. If you need both "
+"features, please create a new form for T-A-F.<br />Again, see the <a href="
+"\"%s\" %s>help section</a> on proper use."
+msgstr ""
+"Tämä ominaisuus ja TAF (yllä) ovat toisensa poissulkevia. Jos tarvitset sekä "
+"ominaisuuksia, luo uusi lomake TAF. <br /> Taas, <a href=\"%s\" %s> ohje </ "
+"a> asianmukaista käyttöä."
+
+#: cforms-options.php:1121
+msgid "Important additional configuration requirements &raquo;"
+msgstr "Tärkeää lisäase vaatimukset »"
+
+#: cforms-options.php:1122
+msgid ""
+"Please see the extended <a href=\"%s\" %s>WP comment options under "
+"<em>Global Settings</em></a> for additional configuration requirements. "
+"Especially concerning Ajax comment submission! Further, if you enable 'extra "
+"comment notification' make sure you disable the autoresponder, unless you "
+"want to thank the user for his/her comment ;-) !"
+msgstr ""
+"Katso laajennettu <a href=\"%s\" %s> WP kommentti vaihtoehdot <em> Yleiset "
+"asetukset </ em> </ a> lisäasetuksia vaatimukset. Jotka koskevat erityisesti "
+"Ajax kommentti jättämistä! Edelleen, jos sallit \"ylimääräistä kommentti "
+"ilmoitus\" varmista poistat automaattivastaaja, ellet halua kiittää "
+"käyttäjälle hänen / hänen kommentti;-)!"
+
+#: cforms-options.php:1133
+msgid "3rd Party Read-Notification Support"
+msgstr "(nonAjax)3. osapuoli luku-ilmoituksille"
+
+#: cforms-options.php:1137
+msgid ""
+"If you'd like to utilize 3rd party email tracking such as %s or %s, add the "
+"respective suffix (e.g.: %s) here:"
+msgstr ""
+"Jos haluat käyttää 3rd party email seuranta kuten% s tai% s, lisää kunkin "
+"pääte (esim.% s) tässä:"
+
+#: cforms-options.php:1141
+msgid "Suffix for email tracking"
+msgstr "Pääte sähköpostin seuranta"
+
+#: cforms-options.php:1168
+msgid "Input Field Settings"
+msgstr "Input Kentän asetukset"
+
+#: cforms-options.php:1175
+msgid "cforms Out-Of-The-Box Form Repository"
+msgstr "cforms Out-Of-The-Box Form arkisto"
+
+#: cforms-options.php:1185
+msgid "Backup &amp; Restore Form Settings"
+msgstr "Varmuuskopio ja palautus Asetukset-"
+
+#: cforms-options.php:1190
+msgid "Backup current form settings"
+msgstr "Backup nykymuodossaan asetukset"
+
+#: cforms-options.php:1191
+msgid " or restore previously saved settings:"
+msgstr "tai palauttaa aiemmin tallennetut asetukset:"
+
+#: cforms-options.php:1193
+msgid "Restore from file"
+msgstr "Palauta tiedosto"
+
+#: cforms.php:67 lib_functions.php:126 lib_widget.php:24
+msgid "cformsII"
+msgstr "cformsII"
+
+#: cforms.php:68
+msgid "Corrupted Settings"
+msgstr "vioittunut Asetukset"
+
+#: cforms.php:700
+msgid "reset captcha image"
+msgstr "nollata captcha kuva"
+
+#: cforms.php:1045
+msgid "Note: This will reset all your input!"
+msgstr "Huom: Tämä palauttaa kaikki tulo!"
+
+#: cforms.php:1310 cforms.php:1311
+msgid "cforms Tell-A-Friend"
+msgstr "cforms Kerro kaverille-"
+
+#: cforms.php:1476
+msgid "T-A-F enable this post/page"
+msgstr "T-A-F mahdollistaa tämän post / sivu"
+
+#: cforms.php:1514
+msgid "Produce debug output"
+msgstr "Tuota debug"
+
+#: cforms.php:1514
+msgid "Outputs -for debug purposes- all cforms settings"
+msgstr "Lähdöt-debug-tarkoituksiin kaikki cforms asetukset"
+
+#: cforms.php:1515
+msgid "Uninstalling / removing cforms"
+msgstr "Poistaminen / poistaminen cforms"
+
+#: cforms.php:1515 cforms.php:1518
+msgid "Be careful here..."
+msgstr "Ole varovainen täällä ..."
+
+#: cforms.php:1518
+msgid "Delete cforms tracking tables"
+msgstr "Poista cforms seuranta taulukot"
+
+#: cforms.php:1518
+msgid "Do you really want to erase all collected data?"
+msgstr "Haluatko todella poistaa kaikki kerätyt tiedot?"
+
+#: cforms.php:1520
+msgid "Backup / restore all settings"
+msgstr "varmuuskopiointi / palauttaa kaikki asetukset"
+
+#: cforms.php:1520 cforms.php:1538
+msgid "Better safe than sorry ;)"
+msgstr "Parempi katsoa kuin katua;)"
+
+#: cforms.php:1522 cforms.php:1540
+msgid "Save & update form settings"
+msgstr ""
+
+#: cforms.php:1532
+msgid "Add new form"
+msgstr "Lisää uusi muoto"
+
+#: cforms.php:1532
+msgid "Adds a new form with default values"
+msgstr "Lisää uuden muodon oletusarvot"
+
+#: cforms.php:1533
+msgid "Duplicate current form"
+msgstr "Monista nykymuodossaan"
+
+#: cforms.php:1533
+msgid "Clones the current form"
+msgstr "Klooneja nykymuodossaan"
+
+#: cforms.php:1535
+msgid "Delete current form (!)"
+msgstr "Poista nykymuodossaan (!)"
+
+#: cforms.php:1535
+msgid "Clicking this button WILL delete this form"
+msgstr "Tämän napin klikkaaminen poistaa tämän lomakkeen"
+
+#: cforms.php:1535
+msgid "This will delete the current form!"
+msgstr "Tämä poistaa nykyisessä muodossa!"
+
+#: cforms.php:1537
+msgid "Install a form preset"
+msgstr "Asenna muodossa valmiiksi"
+
+#: cforms.php:1537
+msgid "Pick a form preset from the repository"
+msgstr "Valitse lomake valmiiksi arkistosta"
+
+#: cforms.php:1538
+msgid "Backup / restore this form only"
+msgstr "(nonAjax)Varmuuskopiointi / palauttaminen tässä muodossa"
+
+#: formpresets/index.php:19
+msgid "Default: Reset to *default* contact form"
+msgstr ""
+
+#: formpresets/index.php:20
+msgid "Does what it says, it'll reset all input fields to the default setup."
+msgstr ""
+
+#: formpresets/index.php:21
+msgid "Basic: Preset for *GREY BLOCKS* Theme"
+msgstr ""
+
+#: formpresets/index.php:22
+msgid ""
+"This preset will switch your current cforms theme to 'Grey Blocks'. It comes "
+"with basic contact form input fields and a custom error message example."
+msgstr ""
+
+#: formpresets/index.php:23
+msgid "Basic: *Newsletter* subscription form (w/ titles)"
+msgstr ""
+
+#: formpresets/index.php:24
+msgid ""
+"A small, two input field form that showcases regexp's (default value "
+"exclusion) and input field titles."
+msgstr ""
+
+#: formpresets/index.php:25
+msgid "Basic: Tell A Friend Form"
+msgstr ""
+
+#: formpresets/index.php:26
+msgid ""
+"If you would like to setup a special T-A-F form, then please use this preset "
+"as a basis. It comes with the necessary (special) TAF input fields, verifies "
+"and sets the TAF option, switches the current theme and sets a generic tell-"
+"a-friend message."
+msgstr ""
+
+#: formpresets/index.php:27
+msgid "Basic: Form for *dark-rounded.css* Theme"
+msgstr ""
+
+#: formpresets/index.php:28
+msgid ""
+"This will switch your current cforms theme to the dark-rounded.css one and "
+"will get you going with a set of basic contact form input fields."
+msgstr ""
+
+#: formpresets/index.php:29
+msgid "Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme"
+msgstr ""
+
+#: formpresets/index.php:30
+msgid ""
+"The dark-rounded.css cforms theme requires a bit of 'magic' to support multi "
+"fieldset form layouts. Check out this preset to see what is required to "
+"ensure a proper look."
+msgstr ""
+
+#: formpresets/index.php:31
+msgid "Advanced: Contact Form with Custom Err Messages"
+msgstr ""
+
+#: formpresets/index.php:32
+msgid ""
+"This form preset is based on the default preset, however, coming with field "
+"specific custom error texts. Please check your fancy error message settings, "
+"to make sure they're actually displayed."
+msgstr ""
+
+#: formpresets/index.php:33
+msgid "Advanced: WP comment feature form"
+msgstr ""
+
+#: formpresets/index.php:34
+msgid ""
+"If you plan to replace your original Wordpress comment form with a (c)form, "
+"please use this form preset as a jump-start. All necessary fields are "
+"included and configured, including some custom, field specific error "
+"messages. <em><br />Note: It will also change your current cforms theme.</em>"
+msgstr ""
+
+#: formpresets/index.php:35
+msgid "Advanced: Online booking form"
+msgstr ""
+
+#: formpresets/index.php:36
+msgid ""
+"Features a quite impressive number of fields, useful for online booking "
+"forms. Including custom inline styles, 'must-agree' disclaimers with "
+"external link to disclaimer text & anti spam field. <br /><em>Note: Please "
+"use this preset with your first form as it does some nifty things with its "
+"CSS.</em>"
+msgstr ""
+
+#: formpresets/index.php:37
+msgid "Advanced: Sign up form (w/ limited seats available)"
+msgstr ""
+
+#: formpresets/index.php:38
+msgid ""
+"A typical sign up form for a class/project etc. Limited to 30 seats (form "
+"submissions) and form is hidden after submission. The form further showcases "
+"regular expressions for field validation and custom error messages, as well "
+"as country and state (US) drop down lists. It also features a must-check "
+"Disclaimer."
+msgstr ""
+
+#: include/checkbox.php:24
+msgid "Field label left of the checkbox..."
+msgstr "Kentän otsikon vasemmalla valintaruutu ..."
+
+#: include/checkbox.php:27
+msgid "...or define a field label to the right of the checkbox"
+msgstr "... tai määrittää kentän otsikon oikealla valintaruutu"
+
+#: include/checkbox.php:30 include/checkboxgroup.php:30
+#: include/selectbox.php:29
+msgid "Set default state"
+msgstr "Aseta oletus valtion"
+
+#: include/checkbox.php:33 include/checkboxgroup.php:38
+#: include/html5field.php:67 include/selectbox.php:36 include/textfield.php:33
+msgid "Input field title (displayed when mouse hovers over field)"
+msgstr "Input kentän otsikko (näkyy, kun hiiren leijuu kenttä)"
+
+#: include/checkbox.php:36 include/checkboxgroup.php:41
+#: include/html5field.php:70 include/selectbox.php:39 include/textfield.php:36
+msgid ""
+"Custom error message (make sure to enable custom, per field err messages!)"
+msgstr ""
+"Custom virheilmoitus (varmista, jotta custom, per kenttä Erehtyminen "
+"viestejä!)"
+
+#: include/checkboxgroup.php:24 include/html5field.php:24
+#: include/selectbox.php:23 include/textfield.php:24
+msgid "Field label"
+msgstr "kentän otsikon"
+
+#: include/checkboxgroup.php:28 include/selectbox.php:27
+msgid "Check box/radio box option (displayed)"
+msgstr "Tarkista laatikko / radio-vaihtoehto (näkyy)"
+
+#: include/checkboxgroup.php:29 include/selectbox.php:28
+msgid "Optional value (transmitted)"
+msgstr "Valinnainen arvo (lähetetään)"
+
+#: include/checkboxgroup.php:31
+msgid "Carriage return / New Line"
+msgstr "Rivinpalautus / New Line"
+
+#: include/fieldsetstart.php:24
+msgid "Name of Fieldset ( only required for <em>New Fieldset</em> )"
+msgstr "Nimi fieldset (tarvitaan vain <em> New fieldset </ em>)"
+
+#: include/html5field.php:30
+msgid "Autocomplete flag"
+msgstr ""
+
+#: include/html5field.php:31
+msgid "Autofocus flag"
+msgstr ""
+
+#: include/html5field.php:43
+msgid "Min value"
+msgstr ""
+
+#: include/html5field.php:44
+msgid "Max value"
+msgstr ""
+
+#: include/html5field.php:45
+msgid "Step value"
+msgstr ""
+
+#: include/html5field.php:56
+msgid "Pattern attribute"
+msgstr ""
+
+#: include/html5field.php:61
+msgid "Placeholder attribute"
+msgstr ""
+
+#: include/installpreset.php:28
+msgid "Please select a predefined form:"
+msgstr "Valitse ennalta muodossa:"
+
+#: include/installpreset.php:31
+msgid ""
+"By accepting and choosing OK, you will <strong>replace</strong> all your "
+"existing input fields with this new preset! If you're unsure about this, "
+"make a backup copy of the form first."
+msgstr ""
+"Hyväksymällä ja valitsemalla OK, voit <strong> korvaa </ strong> kaikki "
+"olemassa syötekentät tämän uuden valmiiksi! Jos olet epävarma asiasta, tehdä "
+"varmuuskopio muodossa ensin."
+
+#: include/lib_database_deleteentries.php:124
+msgid "Entries successfully removed from the tracking tables!"
+msgstr "Merkinnät onnistuneesti poistettu seuranta peleihin!"
+
+#: include/lib_database_deleteentry.php:64
+msgid "(some associated attachment/s were not found!)"
+msgstr "(jotkut liittyy kiinnitys / s ei löydetty!)"
+
+#: include/lib_database_deleteentry.php:66
+msgid "(associated attachment/s were not found!)"
+msgstr "(niihin kiinnitys / s ei löydetty!)"
+
+#: include/lib_database_deleteentry.php:68
+msgid "(including all attachment/s)"
+msgstr "(mukaan lukien kaikki kiinnitys / s)"
+
+#: include/lib_database_deleteentry.php:74
+msgid "Entry successfully removed"
+msgstr "Entry onnistuneesti poistettu"
+
+#: include/lib_database_dlentries.php:91
+msgid ""
+"File (data.tmp) in %s not writable! %sPlease adjust its file permissions/"
+"ownership!"
+msgstr ""
+"Tiedosto (data.tmp) vuonna% s ei voi kirjoittaa! % s Säädä sen tiedoston "
+"käyttöoikeuksia / omistus!"
+
+#: include/lib_database_dlentries.php:177 lib_widget.php:75
+msgid "Form"
+msgstr "lomake"
+
+#: include/lib_database_getentries.php:106
+msgid "Form:"
+msgstr "muodossa:"
+
+#: include/lib_database_getentries.php:107
+msgid "Delete this entry"
+msgstr "Poista tämä"
+
+#: include/lib_database_getentries.php:108
+msgid "close this entry"
+msgstr "sulje tämä merkintä"
+
+#: include/lib_database_getentries.php:146
+msgid "-"
+msgstr "-"
+
+#: include/lib_database_getentries.php:154
+msgid "Submitted via page"
+msgstr "Jätettävä sivu"
+
+#: include/lib_database_getentries.php:158
+msgid "IP address"
+msgstr "IP-osoite"
+
+#: include/lib_database_getentries.php:159
+msgid "IP Lookup"
+msgstr "IP Lookup"
+
+#: include/lib_database_getentries.php:179
+msgid "Sorry, data not found. Please refresh your data table."
+msgstr "Sorry, dataa ei löydy. Päivitä tietosi taulukossa."
+
+#: include/textfield.php:27
+msgid "Default value"
+msgstr "oletusarvo"
+
+#: include/textfield.php:30
+msgid ""
+"Regular expression for field validation (e.g. %s). See Help! for more "
+"examples."
+msgstr ""
+"Säännöllinen lauseke kenttävalidointia (esim.% s). Katso Apua! lisää "
+"esimerkkejä."
+
+#: include/textonly.php:24
+msgid "Text (HTML is supported)"
+msgstr "Teksti (HTML on tuettu)"
+
+#: include/textonly.php:27
+msgid "CSS (assigns class to this form element)"
+msgstr "CSS (määrittää luokan tämän lomakkeen elementti)"
+
+#: include/textonly.php:30
+msgid "Inline style (e.g. %s)"
+msgstr "Inline tyyli (esim.% s)"
+
+#: lib_WPcomment.php:62
+msgid "Comment ID not found."
+msgstr "Kommentti ID ei löytynyt."
+
+#: lib_WPcomment.php:65 lib_WPcomment.php:196
+msgid "Sorry, comments are closed for this item."
+msgstr "Anteeksi, kommentit ovat suljettuina tämän kohteen."
+
+#: lib_WPcomment.php:68
+msgid "Comment is on draft."
+msgstr "Kommentti on luonnoksesta."
+
+#: lib_WPcomment.php:91 lib_WPcomment.php:220
+msgid "Sorry, you must be logged in to post a comment."
+msgstr "Anteeksi, sinun täytyy olla kirjautuneena kommentoidaksesi."
+
+#: lib_WPcomment.php:103
+msgid "You've said that before. No need to repeat yourself."
+msgstr "Olet sanonut, että ennen. Ei tarvitse toista itseäsi."
+
+#: lib_WPcomment.php:114
+msgid "You are posting comments too quickly. Slow down."
+msgstr "Olet kommenttien liian nopeasti. Hidastakaa."
+
+#: lib_activate.php:70
+msgid "Website"
+msgstr "verkkosivusto"
+
+#: lib_activate.php:71 lib_options_add.php:37
+msgid "Message"
+msgstr "viesti"
+
+#: lib_activate.php:73 lib_options_add.php:39
+msgid "(required)"
+msgstr "(pakollinen)"
+
+#: lib_activate.php:74 lib_options_add.php:40
+msgid "(valid email required)"
+msgstr "(voimassa sähköposti vaaditaan)"
+
+#: lib_activate.php:78
+msgid "Your default form"
+msgstr "Oletustarjoustasi muodossa"
+
+#: lib_activate.php:79 lib_options_add.php:45
+msgid "Re: Your note"
+msgstr "Re: note"
+
+#: lib_activate.php:79 lib_options_add.php:45
+msgid "Re: Submitted form (copy)"
+msgstr "Re: Kirjoittanut lomake (kopio)"
+
+#: lib_activate.php:96 lib_options_add.php:59
+msgid "A comment from {Your Name}"
+msgstr "Kommentti {Nimesi}"
+
+#: lib_activate.php:97 lib_options_add.php:60
+msgid "Submit"
+msgstr "esittää"
+
+#: lib_activate.php:98 lib_options_add.php:61
+msgid "Thank you for your comment!"
+msgstr "Kiitos kommentti!"
+
+#: lib_activate.php:99 lib_options_add.php:62
+msgid "Please fill in all the required fields."
+msgstr "Täytä kaikki pakolliset kentät."
+
+#: lib_activate.php:100 lib_options_add.php:63
+msgid "No more submissions accepted at this time."
+msgstr "Ei enää huomautuksia hyväksytty tällä hetkellä."
+
+#: lib_activate.php:102 lib_options_add.php:64
+msgid "One moment please..."
+msgstr "Odota hetki ..."
+
+#: lib_activate.php:107 lib_options_add.php:69
+msgid "http://redirect.to.this.page"
+msgstr "http://redirect.to.this.page"
+
+#: lib_activate.php:121
+msgid "Generic file upload error. Please try again"
+msgstr "Generic latauskiintiö virhe. Ole hyvä ja yritä uudelleen"
+
+#: lib_activate.php:122 lib_options_up.php:33
+msgid "File is empty. Please upload something more substantial."
+msgstr "Tiedosto on tyhjä. Lataa jotain merkittävää."
+
+#: lib_activate.php:123
+msgid "Sorry, file is too large. You may try to zip your file."
+msgstr "Sorry, tiedosto on liian suuri. Voit yrittää zip tiedosto."
+
+#: lib_activate.php:124
+msgid "File upload failed. Please try again or contact the blog admin."
+msgstr ""
+"Tiedoston lataaminen epäonnistui. Yritä uudelleen tai ota yhteyttä blogin "
+"admin."
+
+#: lib_activate.php:125
+msgid "File not accepted, file type not allowed."
+msgstr "Tiedostoa ei hyväksytty, tiedoston tyyppi ei sallita."
+
+#: lib_activate.php:149
+msgid "What color is snow?=white"
+msgstr "Mikä väri on lunta? = Valkoinen"
+
+#: lib_activate.php:149
+msgid "The color of grass is=green"
+msgstr "Väri ruoho on = vihreä"
+
+#: lib_activate.php:149
+msgid "Ten minus five equals=five"
+msgstr "Kymmenen miinus viisi vastaa = viisi"
+
+#: lib_activate.php:150
+msgid "Please double-check your verification code."
+msgstr "Ole hyvä ja tarkista vielä todentaminen koodi."
+
+#: lib_activate.php:155
+msgid "Thank you for leaving a comment."
+msgstr "Ole hyvä ja tarkista vielä todentaminen koodi."
+
+#: lib_activate.php:159
+msgid "Your comment is awaiting moderation."
+msgstr "Kommenttisi odottaa maltillisesti."
+
+#: lib_activate.php:173
+msgid "S,M,T,W,T,F,S"
+msgstr "S,M,T,W,T,F,S"
+
+#: lib_activate.php:178
+msgid "April"
+msgstr "huhtikuu"
+
+#: lib_activate.php:179
+msgid "May"
+msgstr "toukokuu"
+
+#: lib_activate.php:180
+msgid "June"
+msgstr "kesäkuu"
+
+#: lib_activate.php:181
+msgid "July"
+msgstr "heinäkuu"
+
+#: lib_activate.php:182
+msgid "August"
+msgstr "elokuu"
+
+#: lib_activate.php:183
+msgid "September"
+msgstr "syyskuu"
+
+#: lib_activate.php:184
+msgid "October"
+msgstr "lokakuu"
+
+#: lib_activate.php:185
+msgid "November"
+msgstr "marraskuu"
+
+#: lib_activate.php:186
+msgid "December"
+msgstr "joulukuu"
+
+#: lib_activate.php:189
+msgid "Previous Year"
+msgstr "Edellinen vuosi"
+
+#: lib_activate.php:191
+msgid "Next Year"
+msgstr "Seuraava vuosi"
+
+#: lib_ajax.php:475 lib_nonajax.php:597
+msgid "Error occurred while sending the auto confirmation message: "
+msgstr "Lähetettäessä tapahtui virhe auto vahvistus viestin:"
+
+#: lib_ajax.php:521 lib_nonajax.php:618
+msgid "Error occurred while sending the message: "
+msgstr "Virhe viestin lähettämistä:"
+
+#: lib_aux.php:44
+msgid "hour(s)"
+msgstr "tunti (a)"
+
+#: lib_aux.php:45
+msgid "minute(s)"
+msgstr "minuutti (a)"
+
+#: lib_aux.php:562
+msgid "View details"
+msgstr "Katso tiedot"
+
+#: lib_aux.php:573 lib_dashboard.php:66
+msgid "No entries yet"
+msgstr "Ei merkintöjä vielä"
+
+#: lib_aux.php:573
+msgid "You might want to check back in a little while..."
+msgstr "Sinun kannattaa tarkistaa takaisin vähän aikaa ..."
+
+#: lib_aux.php:583
+msgid "New submissions for >>"
+msgstr "Uusi näkökannoista >>"
+
+#: lib_aux.php:583
+msgid "All new form submissions"
+msgstr "Kaikki uudet lomakkeen väitteet"
+
+#: lib_aux.php:586
+msgid "This RSS feed provides you with the most recent form submissions."
+msgstr "RSS-syöte tarjoaa sinulle uusimmat lomakkeen väitteet."
+
+#: lib_dashboard.php:24
+msgid "Recent cforms entries"
+msgstr "Cforms viime merkinnät"
+
+#: lib_dashboard.php:60
+msgid "click for details"
+msgstr "lisätietoja napsauttamalla"
+
+#: lib_dashboard.php:61
+msgid "via"
+msgstr "kautta"
+
+#: lib_dashboard.php:68
+msgid "Visit the cforms tracking page for all entries "
+msgstr "Käy cforms seuranta sivun kaikki merkinnät"
+
+#: lib_editor.php:33
+msgid "Insert a form"
+msgstr ""
+
+#: lib_email.php:205
+msgid "You must provide at least one recipient email address."
+msgstr "Sinun on oltava ainakin yksi vastaanottajan sähköpostiosoite."
+
+#: lib_email.php:224
+msgid "Could not instantiate wp_mail function."
+msgstr ""
+
+#: lib_email.php:238
+msgid "Could not access file: "
+msgstr "Voinut käyttää tiedostoa:"
+
+#: lib_functions.php:109
+msgid "You do not have the proper privileges to access this page."
+msgstr "Sinulla ei ole asianmukaista oikeuksia käyttää tätä sivua."
+
+#: lib_functions.php:131
+msgid "Tracking"
+msgstr "seuranta"
+
+#: lib_functions.php:132
+msgid "Styling"
+msgstr "Muotoilu"
+
+#: lib_functions.php:133
+msgid "Help!"
+msgstr "Apua!"
+
+#: lib_functions.php:232
+msgid ""
+"For more information and support, visit the <strong>cforms</strong> %s "
+"support forum %s. "
+msgstr ""
+"Lisätietoja ja tukea, käy <strong> cforms </ strong>% s tukifoorumilta% s."
+
+#: lib_functions.php:233
+msgid "Translation provided by Oliver Seidel."
+msgstr "Käännös, jonka Leadvirus."
+
+#: lib_functions.php:250
+msgid ""
+"In case disabling/enabling doesn't seem to properly set the plugin defaults, "
+"try login out and back in and <strong>don't select the checkbox for "
+"activation</strong> on the plugin page."
+msgstr ""
+"Tapauksessa kytkeminen päälle / pois ei näytä oikein plugin oletusarvot, "
+"yritä kirjautua ulos ja takaisin sisään ja <strong> eivät valitse "
+"valintaruutu aktivointi </ strong> plugin sivulla."
+
+#: lib_functions.php:307
+msgid "dd"
+msgstr "dd"
+
+#: lib_functions.php:307
+msgid "mm"
+msgstr "mm"
+
+#: lib_functions.php:307
+msgid "yyyy"
+msgstr "yyyy"
+
+#: lib_options_add.php:36
+msgid "Website|http://"
+msgstr "Kotisivut | http://"
+
+#: lib_options_add.php:44
+msgid "A new form"
+msgstr "Uusi muoto"
+
+#: lib_options_add.php:86
+msgid "A new form with default fields has been added."
+msgstr "Uusi lomake, jossa oletuksena kentät on lisätty."
+
+#: lib_options_del.php:50
+msgid "Form deleted"
+msgstr "Lomake poistettu"
+
+#: lib_options_dup.php:33
+msgid "copy of form #"
+msgstr "kopio muodossa #"
+
+#: lib_options_dup.php:38
+msgid "The form has been duplicated, you're now working on the copy."
+msgstr "Lomake on kahdennettu, olet nyt työskennellyt kopio."
+
+#: lib_options_err.php:27
+msgid ""
+"please check the <a href=\"%s\" %s>success/failure message settings</a> and "
+">>Show messages<< options below!"
+msgstr ""
+"tarkista <a href=\"%s\" %s> onnistumista / epäonnistumista viestin asetukset "
+"</ a> ja >> Näytä viestit << alla olevista vaihtoehdoista!"
+
+#: lib_options_err.php:33
+msgid ""
+"please check the new <a href=\"%s\" %s>file upload/attachment</a> relevant "
+"settings below! You can ignore the message if you're not using any file "
+"upload field(s)."
+msgstr ""
+"tarkista uusi <a href=\"%s\" %s> file upload / kiinnitys </ a> asiaa "
+"asetukset alla! Voit jättää viestin, jos et käytä mitään latauskiintiö "
+"alalla (s)."
+
+#: lib_options_err.php:40
+msgid "please check the <a href=\"%s\" %s>email header settings</a> below!"
+msgstr ""
+"tarkista <a href=\"%s\" %s> sähköpostioperaattorien asetukset </ a> alla!"
+
+#: lib_options_err.php:46
+msgid ""
+"You have enabled the <strong>Tell a Friend</strong> feature for this form, "
+"please make sure you follow the guidelines on the HELP! page "
+"<strong>otherwise your form may not show</strong>!"
+msgstr ""
+"Olet ottanut <strong> Kerro kaverille </ strong> ominaisuus tämän lomakkeen, "
+"varmista, että noudatat ohjeita HELP! sivu <strong> muuten lomaketta ei "
+"näytä </ strong>!"
+
+#: lib_options_err.php:56
+msgid ""
+"Please note that the <strong>fancy error</strong> feature has been enabled. "
+"You can turn it off in the <em>Redirection, Messages...</em> section below."
+msgstr ""
+"Huomaa, että <strong> fancy virhe </ strong>-ominaisuus on käytössä. Voit "
+"kytkeä sen pois <em> uudelleenohjaus, viestit ... </ em> osiosta."
+
+#: lib_options_err.php:68
+msgid "It seems that you have recently upgraded cforms"
+msgstr "Näyttää siltä, että olet hiljattain päivittänyt cforms"
+
+#: lib_options_err.php:75
+msgid "Remove Message"
+msgstr "Poista viesti"
+
+#: lib_options_presets.php:25
+msgid "Sorry, this form preset can't be loaded. I Can't find file "
+msgstr "Anteeksi, tämä lomake valmiiksi ei voi ladata. En löydä tiedostoa"
+
+#: lib_options_presets.php:87
+msgid "Your form has been populated with the preset input fields."
+msgstr "Lomake on asuttuja valmiiksi tietokentät."
+
+#: lib_options_presets.php:89 lib_options_presets.php:92
+msgid ""
+"Please note, that in order to make this form work, the <strong>%s</strong> "
+"has been turned on, too!"
+msgstr ""
+"Huomaa, että jotta tämä lomake työtä, <strong>% s </ strong> on päällä, too!"
+
+#: lib_options_presets.php:89
+msgid "WP comment feature"
+msgstr "WP kommenttiominaisuudessa"
+
+#: lib_options_presets.php:90 lib_options_presets.php:93
+msgid ""
+"Check with the HELP page on how to <u>properly</u> use this cforms feature "
+"and check all your settings below!"
+msgstr ""
+"Tarkista OHJESIVU miten <u> oikein </ u> käyttää tätä cforms ominaisuus ja "
+"tarkistaa kaikki asetukset alla!"
+
+#: lib_options_presets.php:92
+msgid "TAF feature"
+msgstr "TAF ominaisuus"
+
+#: lib_options_sub.php:50
+msgid ""
+"WP comment form fields only supported when <em>WP comment feature</em> "
+"turned on!"
+msgstr ""
+"WP kommentin muodossa kentät tuetaan vain <em> WP kommenttiominaisuudessa </ "
+"em> päällä!"
+
+#: lib_options_sub.php:55
+msgid "TAF fields only supported when <em>TAF feature</em> turned on!"
+msgstr "TAF kentät tuetaan vain <em> TAF on </ em> päällä!"
+
+#: lib_options_sub.php:61
+msgid "Only one <em>captcha</em> field is permitted!"
+msgstr "Vain yksi <em> captcha </ em>-kenttään on sallittua!"
+
+#: lib_options_sub.php:66
+msgid "Only one <em>CC:</em> field is permitted!"
+msgstr "Vain yksi <em> CC: </ em>-kenttään on sallittua!"
+
+#: lib_options_sub.php:71
+msgid "Only one <em>Multiple Recipients</em> field is permitted!"
+msgstr "Vain yksi <em> useille vastaanottajille </ em>-kenttä on sallittua!"
+
+#: lib_options_sub.php:272
+msgid "Form settings updated."
+msgstr "Lomake asetukset päivitetty."
+
+#: lib_options_up.php:37
+msgid "Specified file failed upload test."
+msgstr "Määritetty tiedosto ei ladata testi."
+
+#: lib_options_up.php:41
+msgid "Error:"
+msgstr "virhe"
+
+#: lib_options_up.php:49
+msgid "All form specific settings have been restored from the backup file."
+msgstr "Kaikki lomakkeen asetukset on palautettu varmuuskopion."
+
+#: lib_options_up.php:58
+msgid "All cforms settings have been restored from the backup file."
+msgstr "Kaikki cforms asetukset on palautettu varmuuskopion."
+
+#: lib_widget.php:26
+msgid "Add any cforms form to your sidebar"
+msgstr "Lisätä cforms muodossa sivupalkkiin"
+
+#: lib_widget.php:72
+msgid "Title"
+msgstr "otsikko"
+
+#. Plugin Name of the plugin/theme
+msgid "cforms2"
+msgstr "cforms2"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/cforms2/"
+msgstr "https://fi.wordpress.org/plugins/cforms2/"
+
+#. Description of the plugin/theme
+msgid ""
+"cformsII offers unparalleled flexibility in deploying contact forms across "
+"your blog. Features include: comprehensive SPAM protection, Ajax support, "
+"Backup & Restore, Multi-Recipients, Role Manager support, Database tracking "
+"and many more."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Oliver Seidel, Bastian Germann"
+msgstr "Oliver Seidel, Bastian Germann"
+
+#~ msgid "Styling options"
+#~ msgstr "tyyli vaihtoehtoja"
+
+#~ msgid "The stylesheet has been updated."
+#~ msgstr "Tyylitaulukko on päivitetty."
+
+#~ msgid "Write Error! Please verify write permissions on the style file."
+#~ msgstr "Kirjoita Virhe! Varmista kirjoitusoikeudet tyyliin tiedosto."
+
+#~ msgid ""
+#~ "This is <strong>optional</strong> of course, if you're happy with the "
+#~ "default look and feel, no need to do anything here."
+#~ msgstr ""
+#~ "Tämä on <strong> valinnainen </ strong> tietenkin jos olet tyytyväinen "
+#~ "oletuksena ulkoasua, ei tarvitse tehdä mitään."
+
+#~ msgid "Basic CSS editor: "
+#~ msgstr "Perus CSS-editori"
+
+#~ msgid ""
+#~ "Use this simple editor to further tailor your forms' style to meet your "
+#~ "requirements. Currently you're editing: "
+#~ msgstr ""
+#~ "Käytä tätä yksinkertaista toimittaja edelleen räätälöidä lomakkeet "
+#~ "\"tyyli vastaamaan asiakkaan tarpeita. Tällä hetkellä olet editointi:"
+
+#~ msgid "Update Settings &raquo;"
+#~ msgstr "Päivitä asetukset »"
+
+#~ msgid "Sorry. The file you are looking for doesn't exist."
+#~ msgstr "Anteeksi.Tiedosto etsit ei ole olemassa."
+
+#~ msgid "Install"
+#~ msgstr "asentaa"
+
+#~ msgid "Separate lines in email %sheader%s with LF only (CR suppressed)"
+#~ msgstr ""
+#~ "Erilliset rivit sähköpostitse% sheader% s LF vain (CR tukahdutetaan)"
+
+#~ msgid ""
+#~ "Below you can find a few switches and options to change the default look "
+#~ "of the captcha image. Feel free to upload your own backgrounds and fonts "
+#~ "to the respective directories (<code>cforms/captchabg/</code> &amp; "
+#~ "<code>cforms/captchafonts/</code> or your custom folder: <code>/plugins/"
+#~ "cforms-custom/</code> )."
+#~ msgstr ""
+#~ "Alla muutamia kytkimiä ja vaihtoehtoja muuttaa oletuksena ulkoasua "
+#~ "captcha kuvan. Voit vapaasti ladata omia taustoja ja fontit vastaaviin "
+#~ "hakemistoihin (<code> cforms / captchabg / </ code> ja <code> cforms / "
+#~ "captchafonts / </ code> tai muokatun kansio: <code> / plugins / cforms -"
+#~ "custom / </ code>)."
+
+#~ msgid ""
+#~ "If cforms provides great services to you and/or your business, "
+#~ "<strong>please consider making a donation</strong> to support future "
+#~ "development."
+#~ msgstr ""
+#~ "Jos cforms tarjoaa erinomaiset palvelut sinulle ja / tai yrityksesi, "
+#~ "<strong> hyvä ja harkitse lahjoituksen </ strong> tukemaan tulevaa "
+#~ "kehitystä."
+
+#~ msgid "Thank you!"
+#~ msgstr "Kiitos!"
+
+#~ msgid "TinyMCE Support"
+#~ msgstr "TinyMCE tuki"
+
+#~ msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
+#~ msgstr "Tuetut päivämäärän muodot (katso \"Plugin istunnot \"välilehti)"
+
+#~ msgid "Field"
+#~ msgstr "kenttä"
+
+#~ msgid "Full Form"
+#~ msgstr "Täysi Form"
+
+#~ msgid "Short Form"
+#~ msgstr "lyhyt lomake"
+
+#~ msgid "Year"
+#~ msgstr "vuosi"
+
+#~ msgid "yyyy (4 digits)"
+#~ msgstr "yyyy (4 numeroa)"
+
+#~ msgid "yy (2 digits)"
+#~ msgstr "yy (2 numeroa)"
+
+#~ msgid "Month"
+#~ msgstr "kuukausi"
+
+#~ msgid "mmm (name)"
+#~ msgstr "mmm (nimi)"
+
+#~ msgid "mm (2 digits)"
+#~ msgstr "mm (2 numeroa)"
+
+#~ msgid "Day of Month"
+#~ msgstr "Päivä Kuukausi"
+
+#~ msgid "dd (2 digits)"
+#~ msgstr "dd (2 numeroa)"
+
+#~ msgid ""
+#~ "%s can reside in your /plugins/cforms-custom folder to protect it from "
+#~ "future (auto) upgrades."
+#~ msgstr ""
+#~ "% s voi asua omassa / plugins / cforms-custom kansio suojella sitä "
+#~ "tulevaisuudessa (auto) päivityksiä."
+
+#~ msgid "n/a"
+#~ msgstr "n / a"
+
+#~ msgid "Not available."
+#~ msgstr "Ei saatavilla."
+
+#~ msgid "Opt. Popup Msg"
+#~ msgstr "(nonAjax)Valitsevat. popup Msg"
+
+#~ msgid "Email %spriority%s (1 = High, 3 = Normal, 5 = Low)"
+#~ msgstr "Sähköposti% spriority% s (1 = High, 3 = normaali, 5 = Low)"
+
+#~ msgid "edit this field"
+#~ msgstr "muuttaa kentän"
+
+#~ msgid "Q&A"
+#~ msgstr "Q&A"
+
+#~ msgid "File Error: Could not open file: "
+#~ msgstr "Tiedosto Virhe: ei voitu avata tiedostoa:"
+
+#~ msgid "Unknown encoding: "
+#~ msgstr "Tuntematon koodaus:"
+
+#~ msgid "Only one <em>Visitor verification</em> field is permitted!"
+#~ msgstr ""
+#~ "Vain yksi <em> Vierailija todentaminen </ em>-kenttään on sallittua!"

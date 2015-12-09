@@ -33,16 +33,16 @@ if ( cforms2_check_erased() )
 	return;
 ?>
 <div class="wrap" id="top">
-	<div id="icon-cforms-tracking" class="icon32"><br/></div><h2><?php _e('Tracking Form Data','cforms')?></h2>
+	<div id="icon-cforms-tracking" class="icon32"><br/></div><h2><?php _e('Tracking Form Data','cforms2')?></h2>
 
-	<p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch and download as XML, TAB or CSV formatted file. Attachments can be accessed in the details section (<strong>View records</strong>). When deleting entries, associated attachments will be removed, too! ', 'cforms') ?></p>
+	<p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch and download as XML, TAB or CSV formatted file. Attachments can be accessed in the details section (<strong>View records</strong>). When deleting entries, associated attachments will be removed, too! ', 'cforms2') ?></p>
 
-	<p class="ex" style="margin-bottom:30px;"><?php _e('If you want to select <strong>ALL</strong> entries, e.g. for download, simply don\'t select any particular row. When <strong>viewing records</strong>: Fields with a <em>grey background</em> can be clicked on and edited!', 'cforms') ?></p>
+	<p class="ex" style="margin-bottom:30px;"><?php _e('If you want to select <strong>ALL</strong> entries, e.g. for download, simply don\'t select any particular row. When <strong>viewing records</strong>: Fields with a <em>grey background</em> can be clicked on and edited!', 'cforms2') ?></p>
 
 	<div id="ctrlmessage"></div>
 	<div class="bborderx"><table id="flex1" style="display:none"><tr><td></td></tr></table></div>
 	<div id="entries"></div>
-	<div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>js/include/"></div>
+	<div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>include/"></div>
 
 	<?php
 	### if called from dashboard
@@ -58,34 +58,34 @@ jQuery("#flex1").flexigrid ( {
 	dataType: 'xml',
 	colModel : [
 		{display: '#', name : 'id', width : 40, sortable : true, align: 'center'},
-		{display: '<?php _e('Form Name','cforms'); ?>', name : 'form_id', width : 240, sortable : true, align: 'center'},
-		{display: '<?php _e('e-mail Address','cforms'); ?>', name : 'email', width : 200, sortable : true, align: 'center'},
-		{display: '<?php _e('Date','cforms'); ?>', name : 'sub_date', width : 160, sortable : true, align: 'center'},
-		{display: '<?php _e('IP','cforms'); ?>', name : 'ip', width : 100, sortable : true, align: 'center'}
+		{display: '<?php _e('Form Name','cforms2'); ?>', name : 'form_id', width : 240, sortable : true, align: 'center'},
+		{display: '<?php _e('e-mail Address','cforms2'); ?>', name : 'email', width : 200, sortable : true, align: 'center'},
+		{display: '<?php _e('Date','cforms2'); ?>', name : 'sub_date', width : 160, sortable : true, align: 'center'},
+		{display: '<?php _e('IP','cforms2'); ?>', name : 'ip', width : 100, sortable : true, align: 'center'}
 		],
 	buttons : [
-		{name: '<?php _e('View records','cforms'); ?>', bclass: 'add', onpress : cf_tracking_view},
-		{name: '<?php _e('Delete records','cforms'); ?>', bclass: 'delete', onpress : function (){jQuery('#cf_delete_dialog').jqmShow();} },
-		{name: '<?php _e('Download records','cforms'); ?>', bclass: 'dl', onpress : function (){jQuery('#cf_dl_dialog').jqmShow();}},
+		{name: '<?php _e('View records','cforms2'); ?>', bclass: 'dashicons-before dashicons-media-text', onpress : cf_tracking_view},
+		{name: '<?php _e('Delete records','cforms2'); ?>', bclass: 'dashicons-before dashicons-trash', onpress : function (){jQuery('#cf_delete_dialog').jqmShow();} },
+		{name: '<?php _e('Download records','cforms2'); ?>', bclass: 'dashicons-before dashicons-download', onpress : function (){jQuery('#cf_dl_dialog').jqmShow();}},
 		{separator: true}
 		],
 	searchitems : [
-		{display: '<?php _e('# Number(s)','cforms'); ?>', name : 'id'},
-		{display: '<?php _e('Form Name','cforms'); ?>', name : 'form_id'},
-		{display: '<?php _e('e-mail Address','cforms'); ?>', name : 'email', isdefault: true},
-		{display: '<?php _e('Date','cforms'); ?>', name : 'sub_date'},
-		{display: '<?php _e('IP','cforms'); ?>', name : 'ip'}
+		{display: '<?php _e('# Number(s)','cforms2'); ?>', name : 'id'},
+		{display: '<?php _e('Form Name','cforms2'); ?>', name : 'form_id'},
+		{display: '<?php _e('e-mail Address','cforms2'); ?>', name : 'email', isdefault: true},
+		{display: '<?php _e('Date','cforms2'); ?>', name : 'sub_date'},
+		{display: '<?php _e('IP','cforms2'); ?>', name : 'ip'}
 		],<?php echo $dashboard; ?>
 	sortname: "id",
 	sortorder: "desc",
 	usepager: true,
-	title: '<?php _e('Form Submissions','cforms'); ?>',
-	errormsg: '<?php _e('Connection Error','cforms'); ?>',
-	pagestat: '<?php _e('Displaying {from} to {to} of {total} items','cforms'); ?>',
-	procmsg: '<?php _e('Processing, please wait ...','cforms'); ?>',
-	nomsg: '<?php _e('No items','cforms'); ?>',
-	outof: '<?php _e('of','cforms'); ?>',
-	findtext: '<?php _e('Find','cforms'); ?>',
+	title: '<?php _e('Form Submissions','cforms2'); ?>',
+	errormsg: '<?php _e('Connection Error','cforms2'); ?>',
+	pagestat: '<?php _e('Displaying {from} to {to} of {total} items','cforms2'); ?>',
+	procmsg: '<?php _e('Processing, please wait ...','cforms2'); ?>',
+	nomsg: '<?php _e('No items','cforms2'); ?>',
+	outof: '<?php _e('of','cforms2'); ?>',
+	findtext: '<?php _e('Find','cforms2'); ?>',
 	useRp: true,
 	blockOpacity: 0.9,
 	rp: 30,
@@ -116,16 +116,16 @@ function cforms2_insert_modal_tracking(){
 
 ?>
 	<div class="jqmWindow" id="cf_delete_dialog">
-		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('Please Confirm','cforms2'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="deleteform" method="post">
-				<div id="cf_target_del"><?php _e('Are you sure you want to delete the record(s)?','cforms'); ?></div>
-				<div class="controls"><a href="#" id="okDelete" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__) ?>images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__) ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+				<div id="cf_target_del"><?php _e('Are you sure you want to delete the record(s)?','cforms2'); ?></div>
+				<div class="controls"><a href="#" id="okDelete" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
 			</form>
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_dl_dialog">
-		<div class="cf_ed_header jqDrag"><?php _e('Please Confirm','cforms'); ?></div>
+		<div class="cf_ed_header"><?php _e('Please Confirm','cforms2'); ?></div>
 		<div class="cf_ed_main">
 			<form action="" name="downloadform" method="post" id="downloadform">
 				<div id="cf_target_dl">
@@ -133,16 +133,16 @@ function cforms2_insert_modal_tracking(){
                         <option value="xml">&nbsp;&nbsp;&nbsp;XML&nbsp;&nbsp;&nbsp;</option>
                         <option value="csv">&nbsp;&nbsp;&nbsp;CSV&nbsp;&nbsp;&nbsp;</option>
                         <option value="tab">&nbsp;&nbsp;&nbsp;TAB&nbsp;&nbsp;&nbsp;</option>
-                    </select><label for="pickDLformat"><?php echo sprintf(__('Please pick a format!','cforms')); ?></label>
+                    </select><label for="pickDLformat"><?php echo sprintf(__('Please pick a format!','cforms2')); ?></label>
                     <br />
-                    <input type="radio" class="chkBoxW" id="enc-utf8" name="enc" value="utf-8"/><label for="enc-utf8"><?php echo sprintf(__('UTF-8','cforms')); ?></label>
-                    <input type="radio" class="chkBoxW" id="enc-iso" name="enc" value="iso" checked="checked"/><label for="enc-iso"><?php echo sprintf(__('ISO-8859-1','cforms')); ?></label>
+                    <input type="radio" class="chkBoxW" id="enc-utf8" name="enc" value="utf-8"/><label for="enc-utf8"><?php echo sprintf(__('UTF-8','cforms2')); ?></label>
+                    <input type="radio" class="chkBoxW" id="enc-iso" name="enc" value="iso" checked="checked"/><label for="enc-iso"><?php echo sprintf(__('ISO-8859-1','cforms2')); ?></label>
                     <br />
-                    <input type="checkbox" class="chkBoxW" id="header" name="header" value="true"/><label for="header"><?php echo sprintf(__('Include field names / header','cforms')); ?></label><br />
-                    <input type="checkbox" class="chkBoxW" id="addip" name="addip" value="true"/><label for="addip"><?php echo sprintf(__('Include IP address of submitting user','cforms')); ?></label><br />
-                    <input type="checkbox" class="chkBoxW" id="addurl" name="addurl" value="true"/><label for="addurl"><?php echo sprintf(__('Add URL for upload fields','cforms')); ?></label>
+                    <input type="checkbox" class="chkBoxW" id="header" name="header" value="true"/><label for="header"><?php echo sprintf(__('Include field names / header','cforms2')); ?></label><br />
+                    <input type="checkbox" class="chkBoxW" id="addip" name="addip" value="true"/><label for="addip"><?php echo sprintf(__('Include IP address of submitting user','cforms2')); ?></label><br />
+                    <input type="checkbox" class="chkBoxW" id="addurl" name="addurl" value="true"/><label for="addurl"><?php echo sprintf(__('Add URL for upload fields','cforms2')); ?></label>
 				</div>
-				<div class="controls"><a href="#" id="okDL" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_ok.gif" alt="<?php _e('Install', 'cforms') ?>" title="<?php _e('OK', 'cforms') ?>"/></a><a href="#" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></div>
+				<div class="controls"><a href="#" id="okDL" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
 			</form>
 		</div>
 	</div>

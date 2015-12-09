@@ -1,0 +1,5394 @@
+# Copyright (c) 2014 Michael Lederstatter (http://www.buy-hosting.net/blog-articles/cforms-serbian-cyrillic-localization.html)
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, at any version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cformsII\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cforms2\n"
+"POT-Creation-Date: 2015-10-29 19:40:03+00:00\n"
+"PO-Revision-Date: 2015-10-29 21:19+0100\n"
+"Last-Translator: Bastian Germann\n"
+"Language-Team: Michael Lederstatter <info@webdesigner-flensburg.de>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: cforms-captcha.php:89 cforms-global-settings.php:586 cforms-help.php:475
+msgid "Visitor verification (Q&amp;A)"
+msgstr "Потврда посетиоца(Питања&Одговори)"
+
+#: cforms-corrupted.php:24 lib_functions.php:109
+msgid "cforms error"
+msgstr "cforms грешке"
+
+#: cforms-corrupted.php:28 cforms-corrupted.php:51
+msgid "Please deactivate and then re-activate the cforms plugin now."
+msgstr "Молимо Вас да сада деактивирате и поново активирате cforms додатак."
+
+#: cforms-corrupted.php:62
+msgid ""
+"It appears that WP has corrupted your cforms settings, the settings array "
+"can not be read properly."
+msgstr ""
+"Изгледа да је WP оштетио Ваша cforms подешавања, низ параметра не може "
+"исправно да се очита."
+
+#: cforms-corrupted.php:73
+msgid "Corrupted cforms settings detected"
+msgstr "Оштећење у подешавању csform додатка откривен"
+
+#: cforms-corrupted.php:75
+msgid ""
+"You can either try and fix the settings array or reset it and start from "
+"scratch."
+msgstr ""
+"Можете да покушате или да подесите низ параметра или га поново поставите  и "
+"подесите  испочетка."
+
+#: cforms-corrupted.php:75
+msgid "RESET"
+msgstr "ПОСТАВИТИ ПОНОВО"
+
+#: cforms-corrupted.php:78
+msgid "Corrupted cforms settings array (raw code)"
+msgstr ""
+"Оштећење у подешавању cforms низа параметара (необрађени програмски код)"
+
+#: cforms-corrupted.php:81
+msgid ""
+"Depending on your Wordpress/PHP skills you may want to try and fix the "
+"serialized data below, then hit the fix button or try just like that, cforms "
+"may magically fix it for you."
+msgstr ""
+"У зависности од  Вашег Wordpress / PHP умећа можда ћете желети  да "
+"испробате  и подесите  серијалне  податке испод, притисните дугме за "
+"исправке и покушајте тако да их подесите, cforms могу попут магије то "
+"поправити за Вас."
+
+#: cforms-corrupted.php:87
+msgid "FIX and save data"
+msgstr "ИСПРАВКА и чување података"
+
+#: cforms-css.php:34 cforms-css.php:81 cforms-help.php:54
+msgid "Styling your forms"
+msgstr "Стилски облик Ваших образаца"
+
+#: cforms-css.php:36 lib_functions.php:248
+msgid "All cforms data has been erased!"
+msgstr "сви cforms подаци су избрисани!"
+
+#: cforms-css.php:37 lib_functions.php:249
+msgid ""
+"Please go to your <strong>Plugins</strong> tab and either disable the "
+"plugin, or toggle its status (disable/enable) to revive cforms!"
+msgstr ""
+"Молимо идите на <strong>Додаци </ strong>табулатор и, или онемогућите "
+"додатак, или наизменично његов статус (деактивирај/активирај ) да се обнове "
+"cforsms!"
+
+#: cforms-css.php:76
+msgid "New theme selected."
+msgstr "Нова тема је изабрана."
+
+#: cforms-css.php:83
+msgid ""
+"Please select a theme file that comes closest to what you're looking for."
+msgstr "Изаберите датотеку за тему која најближе одговара ономе што  тражите."
+
+#: cforms-css.php:94
+msgid "Please choose a theme file to style your forms"
+msgstr ""
+"Молимо Вас да одаберете датотеку и изаберете тему за стил Ваших образаца"
+
+#: cforms-css.php:102
+msgid ""
+"Please make sure that the <code>/styling</code> folder exists in the cforms "
+"plugin directory!"
+msgstr ""
+"Проверите да ли <code>/ styling</ code> датотека постоји у директоријуму "
+"cforms dodaтка!"
+
+#: cforms-css.php:110
+msgid "custom css files"
+msgstr "Подешавање CSS датотека"
+
+#: cforms-css.php:129 cforms-global-settings.php:751
+msgid "cform css files"
+msgstr "cform css датотеке"
+
+#: cforms-css.php:154
+msgid "jQuery UI theme"
+msgstr ""
+
+#: cforms-css.php:159
+msgid "Select Style &raquo;"
+msgstr "Изаберите стил »"
+
+#: cforms-css.php:163
+msgid ""
+"For comprehensive customization support you may choose to turn on "
+"<strong>label &amp; list element ID's</strong>. This way each input field "
+"&amp; label can be specifically addressed via CSS styles."
+msgstr ""
+"За свеобухватну подршку за прилагођавање можете да изаберете да укључите "
+"<strong> ознаку и списак елемената ID-jeва</strong>. На овај начин свако "
+"поље за унос и ознаке могу бити посебно подешене преко CSS стилoва."
+
+#: cforms-css.php:165
+msgid "Activate Label IDs"
+msgstr "Активирајте ID ознаке"
+
+#: cforms-css.php:165
+msgid "Deactivate Label IDs"
+msgstr "Деактивирајте ID ознаке"
+
+#: cforms-css.php:166 cforms-css.php:169
+msgid "Currently turned on "
+msgstr "Тренутно је укључено"
+
+#: cforms-css.php:168
+msgid "Activate List Element IDs"
+msgstr "Активирајте списак ID елемената"
+
+#: cforms-css.php:168
+msgid "Deactivate List Element IDs"
+msgstr "Deaktivirajte spisak ID elemenata"
+
+#: cforms-css.php:172
+msgid "Deactivate CSS styling altogether!"
+msgstr "Deaktivirajte u potpunosti sve CSS stilove!"
+
+#: cforms-css.php:172
+msgid "Reactivate CSS styling!"
+msgstr "Поново активирајте CSS styling!"
+
+#: cforms-css.php:173
+msgid "No styles are being used"
+msgstr ""
+
+#: cforms-css.php:179 cforms-help.php:1487
+msgid ""
+"You might also want to study the <a href=\"%s\">PDF guide on cforms CSS</a> "
+"I put together to give you a head start."
+msgstr ""
+"Можда ће те пожелети да проучите <a href=\"%s\"> PDF-uputstva за cforms CSS˛ "
+"i веб пробну презентацију</ a> коју сам саставо за почетни увод."
+
+#: cforms-css.php:191
+msgid "PREVIEW:"
+msgstr "ПРЕГЛЕД:"
+
+#: cforms-css.php:191
+msgid "Theme Preview"
+msgstr "Преглед тема"
+
+#: cforms-database.php:36
+msgid "Tracking Form Data"
+msgstr "Праћење образаца података"
+
+#: cforms-database.php:38
+msgid ""
+"All your recorded form submissions are listed below. View individual entries "
+"or a whole bunch and download as XML, TAB or CSV formatted file. Attachments "
+"can be accessed in the details section (<strong>View records</strong>). When "
+"deleting entries, associated attachments will be removed, too! "
+msgstr ""
+"Сви забележени обрасци потврда су наведени испод у листи.  Погледајте "
+"појединачних уносе или целе групе и пренесите их у XML, TAB ili CSV "
+"форматиране датотеке. Приложеним документима се може приступити  у одељку о "
+"детаљима (<strong> Погледај забелешке </ strong>). Приликом брисања уноса, "
+"повезани приложени документи биће такође уклоњени!"
+
+#: cforms-database.php:40
+msgid ""
+"If you want to select <strong>ALL</strong> entries, e.g. for download, "
+"simply don't select any particular row. When <strong>viewing records</"
+"strong>: Fields with a <em>grey background</em> can be clicked on and edited!"
+msgstr ""
+"Уколико желите да изаберете опцију <strong>СВЕ</strong> за преузимање, "
+"једноставно немојте да изаберете ниједан посебан ред. Када "
+"<strong>прегледате податке</strong>: На поља са<em>сивом позадином</em>може "
+"да се кликне и тако едитује!"
+
+#: cforms-database.php:61 cforms-database.php:74 cforms-options.php:219
+msgid "Form Name"
+msgstr "Име обрасца"
+
+#: cforms-database.php:62 cforms-database.php:75
+msgid "e-mail Address"
+msgstr "e-mail адреса"
+
+#: cforms-database.php:63 cforms-database.php:76
+msgid "Date"
+msgstr "Датум"
+
+#: cforms-database.php:64 cforms-database.php:77
+msgid "IP"
+msgstr "IP адреса"
+
+#: cforms-database.php:67
+msgid "View records"
+msgstr "Преглед података"
+
+#: cforms-database.php:68
+msgid "Delete records"
+msgstr "Брисање података"
+
+#: cforms-database.php:69
+msgid "Download records"
+msgstr "Преузимање података"
+
+#: cforms-database.php:73
+msgid "# Number(s)"
+msgstr "#број (еви)"
+
+#: cforms-database.php:82
+msgid "Form Submissions"
+msgstr "Образац за потврду"
+
+#: cforms-database.php:83
+msgid "Connection Error"
+msgstr "Грешка у повезивању"
+
+#: cforms-database.php:84
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Приказ {од} {до} {укупних} елемената"
+
+#: cforms-database.php:85
+msgid "Processing, please wait ..."
+msgstr "Обрада је у току, сачекајте ..."
+
+#: cforms-database.php:86
+msgid "No items"
+msgstr "Нема елемената"
+
+#: cforms-database.php:87
+msgid "of"
+msgstr ""
+
+#: cforms-database.php:88
+msgid "Find"
+msgstr ""
+
+#: cforms-database.php:119 cforms-database.php:128
+msgid "Please Confirm"
+msgstr "Молимо Вас, потврдите"
+
+#: cforms-database.php:122
+msgid "Are you sure you want to delete the record(s)?"
+msgstr "Да ли сте сигурни да желите да избришете под"
+
+#: cforms-database.php:123 cforms-database.php:145 cforms-options.php:1171
+#: cforms-options.php:1179
+msgid "OK"
+msgstr "У реду"
+
+#: cforms-database.php:123 cforms-database.php:145
+#: cforms-global-settings.php:705 cforms-global-settings.php:722
+#: cforms-options.php:1171 cforms-options.php:1179 cforms-options.php:1195
+msgid "Cancel"
+msgstr "Поништи"
+
+#: cforms-database.php:136
+msgid "Please pick a format!"
+msgstr "Молимо Вас изаберите образац!"
+
+#: cforms-database.php:138
+msgid "UTF-8"
+msgstr "UTF-8"
+
+#: cforms-database.php:139
+msgid "ISO-8859-1"
+msgstr "ISO-8859-1"
+
+#: cforms-database.php:141
+msgid "Include field names / header"
+msgstr "Унесите назив поља / заглавља"
+
+#: cforms-database.php:142
+msgid "Include IP address of submitting user"
+msgstr "Унесите IP адресу пријављеног корисника"
+
+#: cforms-database.php:143
+msgid "Add URL for upload fields"
+msgstr "Dodajte URL адресу странице за пријенос поља"
+
+#: cforms-global-settings.php:49
+msgid "cforms tracking tables %s have been deleted."
+msgstr "cforms табела за праћење %s је избрисана."
+
+#: cforms-global-settings.php:51
+msgid ""
+"Please backup/clean-up your upload directory, chances are that when you turn "
+"tracking back on, existing (older) attachments may be <u>overwritten</u>!"
+msgstr ""
+"Молимо Вас направите сигурносну копију/избришите Ваш пренесени директоријум, "
+"јер постоји могућност да када поново укључите опцију за праћење постојећи "
+"(старији) приложени документи могли би бити <u>преписани преко </ u>!"
+
+#: cforms-global-settings.php:53
+msgid "(only of course, if your form includes a file upload field)"
+msgstr "(наравно само ако Ваш образац садржи датотеку за пренос поља)"
+
+#: cforms-global-settings.php:169
+msgid "ERROR: cforms tracking tables %s could not be created."
+msgstr "ГРЕШКА: cforms tracking tables%s се не може направити."
+
+#: cforms-global-settings.php:177
+msgid "cforms tracking tables %s have been created."
+msgstr "ГРЕШКА: cforms tracking tables%s је направљена."
+
+#: cforms-global-settings.php:187
+msgid "Found existing cforms tracking tables with %s records!"
+msgstr "Пронађите постојеће cforms tracking tables % s са евиденцијом!"
+
+#: cforms-global-settings.php:197 lib_functions.php:129
+msgid "Global Settings"
+msgstr "Опште поставке"
+
+#: cforms-global-settings.php:201
+msgid "Debug Info (all major setting groups)"
+msgstr "Информације о отклањању грешки (све главне групе за подешавање)"
+
+#: cforms-global-settings.php:203
+msgid "Debug Info (all cforms settings)"
+msgstr "Информације о отклањању грешки (сва csform подешавања)"
+
+#: cforms-global-settings.php:207
+msgid "All settings and configuration options on this page apply to all forms."
+msgstr ""
+"Сва подешавања и опције за конфигурације на овој страници примењују се на "
+"све обрасце."
+
+#: cforms-global-settings.php:213 cforms-global-settings.php:299
+#: cforms-global-settings.php:320 cforms-global-settings.php:377
+#: cforms-global-settings.php:396 cforms-global-settings.php:452
+#: cforms-global-settings.php:468 cforms-global-settings.php:581
+#: cforms-global-settings.php:622 cforms-help.php:58 cforms-help.php:82
+#: cforms-help.php:101 cforms-help.php:881 cforms-help.php:921
+#: cforms-help.php:1023 cforms-help.php:1167 cforms-help.php:1413
+#: cforms-help.php:1480 cforms-help.php:1492 cforms-options.php:465
+#: cforms-options.php:520 cforms-options.php:598 cforms-options.php:791
+#: cforms-options.php:888 cforms-options.php:907 cforms-options.php:980
+#: cforms-options.php:1050 cforms-options.php:1099 cforms-options.php:1132
+msgid "Expand/Collapse"
+msgstr "Проширење / Сажимање"
+
+#: cforms-global-settings.php:214 cforms-global-settings.php:300
+#: cforms-global-settings.php:321 cforms-global-settings.php:378
+#: cforms-global-settings.php:397 cforms-global-settings.php:453
+#: cforms-global-settings.php:469 cforms-global-settings.php:582
+#: cforms-global-settings.php:623 cforms-help.php:59 cforms-help.php:83
+#: cforms-help.php:102 cforms-help.php:134 cforms-help.php:164
+#: cforms-help.php:187 cforms-help.php:221 cforms-help.php:266
+#: cforms-help.php:306 cforms-help.php:342 cforms-help.php:383
+#: cforms-help.php:414 cforms-help.php:445 cforms-help.php:474
+#: cforms-help.php:510 cforms-help.php:545 cforms-help.php:576
+#: cforms-help.php:697 cforms-help.php:768 cforms-help.php:812
+#: cforms-help.php:882 cforms-help.php:922 cforms-help.php:1024
+#: cforms-help.php:1168 cforms-help.php:1414 cforms-help.php:1481
+#: cforms-help.php:1493 cforms-options.php:466 cforms-options.php:521
+#: cforms-options.php:599 cforms-options.php:792 cforms-options.php:889
+#: cforms-options.php:908 cforms-options.php:981 cforms-options.php:1051
+#: cforms-options.php:1100 cforms-options.php:1133
+msgid "top"
+msgstr "врх"
+
+#: cforms-global-settings.php:214
+msgid "WP Comment Feature Settings"
+msgstr "WP подешавање за коментаре"
+
+#: cforms-global-settings.php:218
+msgid "Find below the additional settings for cforms WP comment feature."
+msgstr "Пронађите испод додатна подешавања за cforms WP komentar функцију."
+
+#: cforms-global-settings.php:222
+msgid "Comment Success Message"
+msgstr "Порука за успешно примљен коментар"
+
+#: cforms-global-settings.php:229
+msgid "Ajax Settings"
+msgstr "Подешавање за Ajax"
+
+#: cforms-global-settings.php:233
+msgid "Wait time for new comments (in seconds)"
+msgstr "Интервал чекања за нове коментаре (у секундама)"
+
+#: cforms-global-settings.php:237
+msgid "Parent Comment Container"
+msgstr "Изворни коментар контејнер"
+
+#: cforms-global-settings.php:238 cforms-global-settings.php:330
+#: cforms-global-settings.php:596 cforms-global-settings.php:632
+msgid "Note &raquo;"
+msgstr "Напомена »"
+
+#: cforms-global-settings.php:240
+msgid ""
+"The HTML <strong>element ID</strong> of the parent element containing<br /"
+">all comments, for example:"
+msgstr ""
+"HTML <strong> елемент ID </ strong> надређени елемент који садржи<br  />све "
+"коментаре, на пример:"
+
+#: cforms-global-settings.php:249 cforms-global-settings.php:261
+msgid "Comment in moderation"
+msgstr "Коментар при модерацијама"
+
+#: cforms-global-settings.php:254
+msgid "New comment HTML template"
+msgstr "Нови коментар HTML шаблон"
+
+#: cforms-global-settings.php:256
+msgid "Supported Variables &raquo;"
+msgstr "Подржане променљиве &raquo;"
+
+#: cforms-global-settings.php:256
+msgid "Default Template &raquo;"
+msgstr "Унапред задати шаблон &raquo;"
+
+#: cforms-global-settings.php:262
+msgid "New comment ID"
+msgstr "Нови коментар ID"
+
+#: cforms-global-settings.php:263
+msgid "Comment Text"
+msgstr "Коментар за текст"
+
+#: cforms-global-settings.php:264 cforms-help.php:709 cforms-help.php:1066
+#: cforms-options.php:379
+msgid "Comment Author"
+msgstr "Коментар за аутора"
+
+#: cforms-global-settings.php:265
+msgid "The author's website"
+msgstr "Ауторова веб страна"
+
+#: cforms-global-settings.php:266
+msgid "Current date."
+msgstr "Тренутни датум."
+
+#: cforms-global-settings.php:267
+msgid "Current time."
+msgstr "Тренутно времe."
+
+#: cforms-global-settings.php:268
+msgid "User avatar."
+msgstr "Корисников аватар."
+
+#: cforms-global-settings.php:287
+msgid "Avatar Settings"
+msgstr "Podešavanja za avatar"
+
+#: cforms-global-settings.php:291
+msgid "Size (in pixel)"
+msgstr "Величина у (пикселима)"
+
+#: cforms-global-settings.php:300
+msgid "Include cforms header data only on specific pages"
+msgstr "Укључите cforms податке из заглавља само на одређеним страницама"
+
+#: cforms-global-settings.php:304
+msgid ""
+"Specify the ID(s) of <strong>pages or posts</strong> separated by comma on "
+"which you'd like to show or not show cforms. The cforms header will only be "
+"included specifically on those pages, helping to maintain all other pages "
+"neat."
+msgstr ""
+"Наведите ID (e) <strong> страница или чланака </ strong>, одвојене зарезима "
+"на којима желите или не желите да прикажете cforms. cforms заглавље ће бити  "
+"укључено посебно на тим страницама, и помоћи ће нормалном очувању осталих "
+"страница."
+
+#: cforms-global-settings.php:308
+msgid "Page / Post ID(s)"
+msgstr "ID странице / чланка "
+
+#: cforms-global-settings.php:310
+msgid "include"
+msgstr "укључити"
+
+#: cforms-global-settings.php:310
+msgid "exclude"
+msgstr "искључити"
+
+#: cforms-global-settings.php:312
+msgid "Leave empty to include cforms header files throughout your blog"
+msgstr ""
+"Оставите празно да би се укључила cforms датотека за заглавље за цео Ваш блог"
+
+#: cforms-global-settings.php:321
+msgid "Popup Date Picker"
+msgstr "Посебан прозор за бирање података"
+
+#: cforms-global-settings.php:325
+msgid ""
+"If you'd like to offer a Javascript based date picker for more convenient "
+"date entry, enable this feature here. This will add a <strong>new input "
+"field</strong> for you to add to your form. See <a href=\"%s\" %s>Help!</a> "
+"for more info and <strong>date formats</strong>."
+msgstr ""
+"Уколико желите да понудите бирач података написаних у Java за више "
+"одговарајући унос података, искључите ову опцију. Додаће се <strong> ново "
+"поље за унос</strong> за Вас да га приложите Вашем обрасцу. Погледати <а "
+"хреф=\"%s\" %s> Помоћ! </ а> за више информација и <strong>форматирање "
+"података</  strong>."
+
+#: cforms-global-settings.php:330
+msgid "Enable Javascript date picker"
+msgstr "Укључите Java за бирање података"
+
+#: cforms-global-settings.php:332
+msgid ""
+"Note that turning on this feature will result in loading an additional "
+"Javascript file to support the date picker."
+msgstr ""
+"Узмите у обзир да ће ова опција довести до стварања додатног Java документа "
+"као подршке за бирање података."
+
+#: cforms-global-settings.php:335
+msgid "Date Format"
+msgstr "Формат датума"
+
+#: cforms-global-settings.php:336
+msgid "See supported date formats &raquo;"
+msgstr ""
+
+#: cforms-global-settings.php:339
+msgid "Days (Columns)"
+msgstr "Дани (колоне)"
+
+#: cforms-global-settings.php:343
+msgid "Months"
+msgstr "Месеци"
+
+#: cforms-global-settings.php:349
+msgid "Enable year selection drop down"
+msgstr ""
+
+#: cforms-global-settings.php:352 lib_activate.php:190
+msgid "Previous Month"
+msgstr "Претходни месец"
+
+#: cforms-global-settings.php:356 lib_activate.php:192
+msgid "Next Month"
+msgstr "Следећи месец"
+
+#: cforms-global-settings.php:360 lib_activate.php:193
+msgid "Close"
+msgstr "Затвори"
+
+#: cforms-global-settings.php:364 lib_activate.php:194
+msgid "Choose Date"
+msgstr "Изаберите датум"
+
+#: cforms-global-settings.php:368
+msgid "Week start day"
+msgstr "Први дан у недељи"
+
+#: cforms-global-settings.php:369
+msgid "0=Sunday, 1=Monday, etc."
+msgstr "0 = недеља, 1 = понедељак,итд."
+
+#: cforms-global-settings.php:378
+msgid "Mail Server Settings"
+msgstr "Подешавање маил сервера"
+
+#: cforms-global-settings.php:383
+msgid ""
+"cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) "
+"as line separators. If your mail server adds additional line breaks to the "
+"email, you may want to try and turn on the below option."
+msgstr ""
+"cforms ствара RFC е-mail поруке које су компатибилне са CRLF (carriage-"
+"return/line-feed) као линије раздвајања. Уколико Ваш маил сервер додаје "
+"линије раздвајања у е-mail-у, можда ће те желети да испробате и укључите "
+"опцију испод. "
+
+#: cforms-global-settings.php:387
+msgid "Separate lines in email %sbody%s with LF only (CR suppressed)"
+msgstr "Odvojene linije u e-mail %sтелу%s само са LF  (CR обустављен)"
+
+#: cforms-global-settings.php:397
+msgid "Global File Upload Settings"
+msgstr "Опште подешавање за пријенос датотека"
+
+#: cforms-global-settings.php:402 cforms-options.php:471
+msgid ""
+"Configure and double-check these settings in case you are adding a "
+"\"<code>File Upload Box</code>\" to your form (also see the <a href=\"%s\" "
+"%s>Help!</a> for further information)."
+msgstr ""
+"Конфигурирарјте и двоструко проверите ова подешавања у случају да додајете а "
+"\"<code>Поље за приенос датотека</code>\" у Ваш образац (такође погледати <a "
+"href=\"%s\" %s>Помоћ!</a>за даље информације)."
+
+#: cforms-global-settings.php:403
+msgid ""
+"Form specific settings (directory path etc.) have been moved to <a href=\"%s"
+"\" %s>here</a>."
+msgstr ""
+"Форма за специјална подешавања (путања директоријума итд.) је премештена у "
+"<a href=\"%s\" %s>овде</a>."
+
+#: cforms-global-settings.php:407
+msgid ""
+"Also, note that by adding a <em>File Upload Box</em> to your form, the Ajax "
+"(if enabled) submission method will (automatically) <strong>gracefully "
+"degrade</strong> to the standard method, due to general HTML limitations."
+msgstr ""
+"Такође узмите у обзир да додавањем <em>Поље за пренос датотеке</em> у Ваш "
+"образац, Ajax (уколико је активиран) метода за потврду биће (аутоматски) "
+"<strong>срећно враћена </strong> на стандардни метод због општих HTML "
+"ограничења."
+
+#: cforms-global-settings.php:408
+msgid "Below, error messages shown in case something goes awry:"
+msgstr "У наставку, пријављивање грешке у случају да нешто није у реду:"
+
+#: cforms-global-settings.php:413
+msgid "File type not allowed"
+msgstr "Тип документа није дозвољен"
+
+#: cforms-global-settings.php:420
+msgid "Generic (unknown) error"
+msgstr "Генеричка (непозната) грешка"
+
+#: cforms-global-settings.php:427
+msgid "File is empty"
+msgstr "Датотека је празна"
+
+#: cforms-global-settings.php:434
+msgid "File size too big"
+msgstr "Величина датотеке је превелика"
+
+#: cforms-global-settings.php:441
+msgid "Error during upload"
+msgstr "Грешка током преноса"
+
+#: cforms-global-settings.php:453
+msgid "WP Editor Button support"
+msgstr "WP едитор дугме подршка"
+
+#: cforms-global-settings.php:457
+msgid ""
+"If you would like to use editor buttons to insert your cforms please enable "
+"them below."
+msgstr ""
+"Уколико желите да користите дугмад за едитовање да бисте их убацили Ваше "
+"cforms, укључите их испод."
+
+#: cforms-global-settings.php:461
+msgid "Enable TinyMCE"
+msgstr "Активиријате TinyMCE"
+
+#: cforms-global-settings.php:461
+msgid "&amp; Code editor buttons"
+msgstr "и Code едитор дугмад"
+
+#: cforms-global-settings.php:469
+msgid "CAPTCHA Image Settings"
+msgstr "CAPTCHA подешавање слике"
+
+#: cforms-global-settings.php:498
+msgid "Preview Image"
+msgstr "Приказ слика"
+
+#: cforms-global-settings.php:498
+msgid "Don't forget to save your changes!"
+msgstr "Не заборавите да сачувате промене!"
+
+#: cforms-global-settings.php:500
+msgid "Reload Captcha Image"
+msgstr "Поновно учитавање Captcha слике"
+
+#: cforms-global-settings.php:505 cforms-global-settings.php:590
+msgid "Force display"
+msgstr "Призови нови приказ"
+
+#: cforms-global-settings.php:506
+msgid "Force CAPTCHA display for logged in users"
+msgstr "Призови CAPTCHA приказ за пријављивање корисника"
+
+#: cforms-global-settings.php:510
+msgid "Width"
+msgstr "Ширина"
+
+#: cforms-global-settings.php:513
+msgid "Height"
+msgstr "Висина"
+
+#: cforms-global-settings.php:517
+msgid "Border Color"
+msgstr "Боја оквира"
+
+#: cforms-global-settings.php:523
+msgid "Background Image"
+msgstr "Слика за позадину"
+
+#: cforms-global-settings.php:530
+msgid "Font Type"
+msgstr "Тип знакова"
+
+#: cforms-global-settings.php:536
+msgid "Min Size"
+msgstr "Минимална величина"
+
+#: cforms-global-settings.php:539
+msgid "Max Size"
+msgstr "Максимална величина"
+
+#: cforms-global-settings.php:543
+msgid "Min Angle"
+msgstr "Минимални угао"
+
+#: cforms-global-settings.php:546
+msgid "Max Angle"
+msgstr "Максимални угао"
+
+#: cforms-global-settings.php:550
+msgid "Color"
+msgstr "Боја"
+
+#: cforms-global-settings.php:558
+msgid "Number of shown characters"
+msgstr "Број приказаних знакова"
+
+#: cforms-global-settings.php:561
+msgid "Minimum"
+msgstr "Минимум"
+
+#: cforms-global-settings.php:564
+msgid "Maximum"
+msgstr "Максимум"
+
+#: cforms-global-settings.php:568
+msgid "Allowed characters"
+msgstr "Дозвољени знакови"
+
+#: cforms-global-settings.php:573
+msgid "User response is treated case insensitive"
+msgstr "Корисников одговор уколико је случај неодговарајући"
+
+#: cforms-global-settings.php:582
+msgid "Visitor Verification Settings (Q&amp;A)"
+msgstr "Подешавање за верификацију посетиоца (Питања&Одговори)"
+
+#: cforms-global-settings.php:586
+msgid ""
+"Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A's to counteract "
+"spam and ensure it's a human submitting the form. To use in your form, add "
+"the corresponding input field %s preferably in its own FIELDSET!"
+msgstr ""
+"Добијате велике количине <strong> SPAM-a-</ strong>? Користите Питања & "
+"Одовори; да бисте сузбили spam и осигурали потврде аутентичних корисника. Да "
+"бисте их користили у свом обрасцу, додајте одговарајуће поље за унос %s по "
+"могућству у сопственим ГРУПАМА ПОЉА !"
+
+#: cforms-global-settings.php:591
+msgid "Force Q&amp;A display for logged in users"
+msgstr "Прикажи Питања&Одговори за пријављивање корисника"
+
+#: cforms-global-settings.php:599
+msgid ""
+"The below error/failure message is also used for <strong>captcha</strong> "
+"verification!"
+msgstr ""
+"Доња погрешна/неуспјела порука такодје се користи за <strong>captcha</"
+"strong> проверу!"
+
+#: cforms-global-settings.php:600
+msgid ""
+"Depending on your personal preferences and level of SPAM security you intend "
+"to put in place, you can also use <a href=\"%s\" %s>cforms' CAPTCHA feature</"
+"a>!"
+msgstr ""
+"У зависности  од Ваших личних потреба и нивоа осигурања од spamа који сте "
+"подесили, можете да користите и<a href=\"%s\" %s>cforms' \"cforms \"CAPTCHA "
+"функцију </ a>"
+
+#: cforms-global-settings.php:604
+msgid "<strong>Failure message</strong><br />(for a wrong answer)"
+msgstr "<strong>Порука о грешци</strong><br/>(за погрешан одговор)"
+
+#: cforms-global-settings.php:613
+msgid "<strong>Questions &amp; Answers</strong><br />format: Q=A"
+msgstr "<strong>Питања&Одговори</ strong><br />образац: Q =A"
+
+#: cforms-global-settings.php:623
+msgid "Database Input Tracking"
+msgstr "Праћење базе података улаза"
+
+#: cforms-global-settings.php:627
+msgid ""
+"If you like to track your form submissions also via the database, please "
+"enable this feature below. If required, two new tables will be created and "
+"you'll see a new sub tab \"<strong>Tracking</strong>\" under the cforms menu."
+msgstr ""
+"Уколико желите да пратите своје поднеске преко база података, молимо Вас да "
+"активирате ову функцију испод. Ако је потребно, две нове табеле ће бити "
+"направљене и видећете нову картицу под \"<strong> праћење </ strong> \" у "
+"менију cforms."
+
+#: cforms-global-settings.php:634
+msgid ""
+"If you've enabled the <a href=\"%s\" %s>auto confirmation message</a> "
+"feature or have included a <code>CC: me</code> input field, you can "
+"optionally configure the subject line/message of the email to include the "
+"form tracking ID by using the variable <code>{ID}</code>."
+msgstr ""
+"Ако сте активирали <а href=\"%s\" %s>аутоматску потврду порука </ а> или сте "
+"укључили <code>  CC: ja </ code> поље за унос, можете да конфигуришете  по "
+"жељи  тему линија / порука е-поште које укључују образац за праћење ID "
+"помоћу променљиве <code>{ID}</ code>."
+
+#: cforms-global-settings.php:637
+msgid "Enable Database Tracking"
+msgstr "Активирајте праћење базе података"
+
+#: cforms-global-settings.php:638
+msgid "Will create two new tables in your WP database."
+msgstr "Направиће се две нове табеле у WP бази података."
+
+#: cforms-global-settings.php:642
+msgid "Show on dashboard"
+msgstr "Приказ на контролној табли"
+
+#: cforms-global-settings.php:643
+msgid "Make sure to enable your forms individually as well!"
+msgstr "Провјерите да ли сте такодје појединачно активирали своје обрасце! "
+
+#: cforms-global-settings.php:647
+msgid "Enable global RSS"
+msgstr "Активирајте општи RSS"
+
+#: cforms-global-settings.php:648
+msgid "Enables an RSS feed to track all new submissions across all forms."
+msgstr ""
+"Активирајте RSS документ за праћење свих нових потврда у свим обрасцима."
+
+#: cforms-global-settings.php:661 cforms-options.php:752
+msgid "Number of shown RSS entries"
+msgstr "Број приказаних RSS улаза"
+
+#: cforms-global-settings.php:665 cforms-options.php:774
+msgid "RSS Feed Security Key"
+msgstr "RSS документ сигурносна лозинка"
+
+#: cforms-global-settings.php:668 cforms-options.php:777
+msgid "Reset RSS Key"
+msgstr "Поново поставити RSS шифру"
+
+#: cforms-global-settings.php:669 cforms-options.php:782
+msgid "The complete RSS URL &raquo;"
+msgstr "Потпуни RSS URL &raquo; "
+
+#: cforms-global-settings.php:694
+msgid "Backup &amp; Restore All Settings"
+msgstr "Сигурносна копија & враћање свих подешавања"
+
+#: cforms-global-settings.php:699
+msgid ""
+"Restoring all settings will overwrite all form specific &amp; global "
+"settings!"
+msgstr ""
+"Враћање свих подешавања ће преписати преко све обрасце посебних & општих "
+"подешавања"
+
+#: cforms-global-settings.php:701
+msgid "Backup all settings now!"
+msgstr "Направити одмах све сигурносне копије подешавања!"
+
+#: cforms-global-settings.php:702
+msgid "Restore all settings now!"
+msgstr "Вратити одмах сва подешавања!"
+
+#: cforms-global-settings.php:702
+msgid ""
+"With a broken backup file, this action may erase all your settings! Do you "
+"want to continue?"
+msgstr ""
+"Неуспела сигурносна копија датотеке могла би да проузрокује брисање свих "
+"подешавања! Да ли желите да наставите?"
+
+#: cforms-global-settings.php:704
+msgid ""
+"PS: Individual form configurations can be backup up on the respective form "
+"admin page."
+msgstr ""
+"ПС: Индивидуални облик конфигурације може да се осигура  на одговарајућем "
+"обрасцу стране за администрирање."
+
+#: cforms-global-settings.php:713
+msgid "Uninstalling / Removing cforms"
+msgstr "Деинсталација/Уклањање cforms"
+
+#: cforms-global-settings.php:716
+msgid "Warning!"
+msgstr "Упозорење!"
+
+#: cforms-global-settings.php:718
+msgid ""
+"Generally, simple deactivation of cforms does <strong>not</strong> erase any "
+"of its data. If you like to quit using cforms for good, please erase all "
+"data before deactivating the plugin."
+msgstr ""
+"У принципу, једноставно деактивирање cforms <strong>не брише<<strong>ниједну "
+"своју датотеку. Уколико желите да дефинитвно да одустанете од употребе "
+"cforms, молимо Вас да избришете датотеку пре деактивирања додатка програмул."
+
+#: cforms-global-settings.php:719
+msgid "This is irrevocable!"
+msgstr "Ово је неопозиво!"
+
+#: cforms-global-settings.php:720
+msgid "Are you sure you want to do this?!"
+msgstr "Да ли сте сигурни да желите то да урадите?"
+
+#: cforms-global-settings.php:720
+msgid "DELETE *ALL* CFORMS DATA"
+msgstr "Избришите * све * ЦФОРМС ДАТОТЕКЕ"
+
+#: cforms-global-settings.php:720
+msgid "Final Warning!"
+msgstr "Последње упозорење!"
+
+#: cforms-global-settings.php:741
+msgid "custom files"
+msgstr "подешене датотеке"
+
+#: cforms-global-settings.php:763 include/installpreset.php:81
+msgid "Not available"
+msgstr "Није доступно"
+
+#: cforms-help.php:30
+msgid "Help"
+msgstr "Помоћ"
+
+#: cforms-help.php:33
+msgid ""
+"Here you'll find plenty of examples and documentation that should help you "
+"configure <strong>cforms</strong>."
+msgstr ""
+"Овде ћете наћи доста примера и документације која би требало да  помогне  да "
+"конфигуришете <strong>cforms</strong>."
+
+#: cforms-help.php:36
+msgid "Table of Contents"
+msgstr "Садржај"
+
+#: cforms-help.php:38 cforms-help.php:59
+msgid "Basic steps, a small guide"
+msgstr "Основни кораци, мали водич"
+
+#: cforms-help.php:39 cforms-help.php:83
+msgid "Inserting a form"
+msgstr "Убацивање обрасца"
+
+#: cforms-help.php:40 cforms-help.php:102
+msgid "Configuring form input fields"
+msgstr "Конфигурација форме поља за унос"
+
+#: cforms-help.php:42 cforms-help.php:125
+msgid "Special <em>Tell A Friend</em> input fields"
+msgstr "Специјална <em>Реци-пријатељу</еm> поља за унос"
+
+#: cforms-help.php:43 cforms-help.php:126
+msgid "Special <em>WP Comment Feature</em> input fields"
+msgstr "Специјална<em>WP функције за коментаре</em> поља за унос"
+
+#: cforms-help.php:44
+msgid "SPAM protection: Q &amp; A"
+msgstr "Заштита од СПАМ-а: Питања&Одговори"
+
+#: cforms-help.php:45
+msgid "SPAM protection: Captcha"
+msgstr "Заштита од SPAM-a: Captcha"
+
+#: cforms-help.php:46 cforms-help.php:769
+msgid "Fieldsets"
+msgstr "Групе поља"
+
+#: cforms-help.php:47 cforms-help.php:813
+msgid "Using regular expressions with form fields"
+msgstr "Употреба уобичајерних израза за поља обрасца"
+
+#: cforms-help.php:49 cforms-help.php:882
+msgid "Custom error messages &amp; input field titles"
+msgstr "Изабрана пријава грешке приликом уноса наслова у поље"
+
+#: cforms-help.php:50 cforms-help.php:922
+msgid "Advanced: cforms APIs &amp; (Post-)Processing of submitted data"
+msgstr "Даљи развој: cforms APIs & (накнадна-) обрада примљених података"
+
+#: cforms-help.php:51 cforms-help.php:1024
+msgid "Advanced: Real-time creation of dynamic forms"
+msgstr "Даљи развој: стварање динамичних форми у реалном времену"
+
+#: cforms-help.php:52
+msgid "Using variables in email subjects &amp; messages"
+msgstr "Коришћење варијабли за теме и поруке е-поште"
+
+#: cforms-help.php:53 cforms-help.php:1414
+msgid "Multi page forms"
+msgstr "Вишестранични обрасци"
+
+#: cforms-help.php:55 cforms-help.php:1493
+msgid "Need more help?"
+msgstr "Да ли Вам је потребна помоћ?"
+
+#: cforms-help.php:63
+msgid ""
+"Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin "
+"but it may be the most flexible. The below outline should help you get "
+"started with the default form."
+msgstr ""
+"Додуше, <strong> cforms </ strong> нису најједноставнији обрасци додатка "
+"програма за маил , али зато могу бити најфлексибилнији. Испод наведени "
+"преглед би требало да вам помогне да почнете  са већ понудјеним обрасцима."
+
+#: cforms-help.php:65
+msgid "First take a look at the <a href=\"%s\">default form</a>"
+msgstr "Прво погледајте <a href=\"%s\"> понуђени образац </ a>"
+
+#: cforms-help.php:67
+msgid ""
+"Verify that it contains all the fields you need, are they in the right order"
+msgstr ""
+"Проверите да ли он садржи сва поља која су Вам потребна и да ли имају "
+"одговарајући след"
+
+#: cforms-help.php:68
+msgid "Check the field labels (field names), if needed make your adjustments"
+msgstr "Проверите ознаке поља (називе поља), ако су Вам потребно подесите их"
+
+#: cforms-help.php:69
+msgid "Check the flags for each field (check boxes to the right)."
+msgstr "Проверите ознаке за свако поље (провјерите мјеста у десно)"
+
+#: cforms-help.php:70
+msgid ""
+"Want to include SPAM protection? Choose between <a href=\"%s\" %s>Q&amp;A</"
+"a>, <a href=\"%s\" %s>captcha</a> add an input field accordingly and "
+"configure <a href=\"%s\" %s>here</a>."
+msgstr ""
+"Желите ли да укључите заштиту од SPAM-а? Изаберите између <a href=\"%s\" %s> "
+"Питања & Одговори </ a>, <a href=\"%s\" %s> captcha </ a> додајте поље за "
+"унос у складу са тим и подесите <a href=\"%s\" %s>овде</a>."
+
+#: cforms-help.php:73
+msgid ""
+"Check if the <a href=\"%s\" %s>email admin</a> for your form is configured "
+"correctly."
+msgstr ""
+"Проверите да ли је <a href=\"%s\" %s> e-пошта за администрирање </ а> за Ваш "
+"образац исправно конфигурасан."
+
+#: cforms-help.php:74
+msgid ""
+"Decide if you want the visitor to receive an <a href=\"%s\" %s>auto "
+"confirmation message</a> upon form submission."
+msgstr ""
+"Одлучите се да ли желите да посетилац прими <a href=\"%s\" %s>аутоматизовану "
+"поруку о потврди </а>након потврде."
+
+#: cforms-help.php:75
+msgid ""
+"Would you like <a href=\"%s\" %s>to track</a> form submission via the "
+"database?"
+msgstr ""
+"Желите ли <a href=\"%s\" %s>да пратите</а> образац пријаве преко базе "
+"података?"
+
+#: cforms-help.php:76
+msgid "<a href=\"%s\" %s>Add the default form</a> to a post or page."
+msgstr ""
+"<a href=\"%s\" %s>Додајте понуђени образац </ а> на чланак или страницу."
+
+#: cforms-help.php:77
+msgid "Give it a whirl."
+msgstr "Окрените је."
+
+#: cforms-help.php:87
+msgid "Editing posts and pages:"
+msgstr "Уређивање објављених чланака и страна"
+
+#: cforms-help.php:89
+msgid ""
+"If you like to do it the 'code' way, make sure to use %1s to include them in "
+"your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>."
+msgstr ""
+"Уколико желите да то урадите 'кодирањем', поведите рачуна да користите %1s i "
+"укључите их у своје <em> стране/ чланке </ em>. Sa %2s <u> Вашим образцем за "
+"ИМЕ </ u>."
+
+#: cforms-help.php:90
+msgid ""
+"A more elegant and safer way is to use the <strong>TinyMCE Button</strong> "
+"(double check if <a href=\"%3s\" %s>Button Support</a> is enabled!)."
+msgstr ""
+"Елегантнији и безбеднији начин је да се  користи <strong>TinyMCE dugme</"
+"strong>(двострука провера да ли је <a href=\"%3s\" %s>Дугме за подршку </ а> "
+"активирано!)."
+
+#: cforms-help.php:91
+msgid ""
+"For backwards compatibility, the old-fashioned way is still supported: %1s "
+"for the first form and/or %2s for your other forms."
+msgstr ""
+"За компатибилност уназад, старије верзије су подржане:%1s za prvi obrazac i/"
+"ili %2s za Vase druge obrasce."
+
+#: cforms-help.php:94
+msgid "Via PHP function call:"
+msgstr "Позив преко PHP функције:"
+
+#: cforms-help.php:95
+msgid ""
+"Alternatively, you can specifically insert a form (into the sidebar for "
+"instance etc.) per the PHP function call %1s, or alternatively %2s for the "
+"default/first form and/or %2s for any other form."
+msgstr ""
+"У другом случају, можете да убаците посебан образац (у издвојеном одјељку на "
+"пример, итд) преко PHP функције позив %1s , или алтернативно%2s за понуђени/ "
+"први образац и / или %2s за било који други образац."
+
+#: cforms-help.php:97 cforms-help.php:251 cforms-help.php:256
+#: cforms-help.php:631 cforms-help.php:909 cforms-help.php:1355
+#: cforms-help.php:1381 cforms-options.php:648 cforms-options.php:881
+msgid "Note:"
+msgstr "Напомена:"
+
+#: cforms-help.php:97
+msgid ""
+"\"%1s\" represents the number of the form, starting with %2s ..and so forth."
+msgstr "\"%1s\" представља број образаца, почев од %2s  .. и тако даље."
+
+#: cforms-help.php:106
+msgid ""
+"All supported input fields are listed below, highlighting the expected "
+"<em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. "
+"Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, "
+"see examples below."
+msgstr ""
+"Сва подржана поља за унос су наведена у листи испод, с истакнутим "
+"очекиваним<em><u>обрасцима</u></em>и њиховим повезаним %s Називима поља "
+"<sup>*)</sup>%s. Означени обрасци (<em>Називи поља</em>) дозвољавају "
+"коришћење <strong>HTML</strong>, погледати доле наведене примере."
+
+#: cforms-help.php:108
+msgid ""
+"While the <em>Field Names</em> are usually just the label of a field (e.g. "
+"\"Your Name\"), they can contain additional information to support special "
+"functionality (e.g. default values, regular expressions for extended field "
+"validation etc.)"
+msgstr ""
+"Зато што су <em> Називи поља </ еm> обично само ознаке поља (нпр. \"Ваше име "
+"\"), они могу да садрже додатне информације за подршку посебним "
+"функционалностима (нпр. подразумеване вредности, регуларни изрази за "
+"проширену проверу ваљаности поља итд .)"
+
+#: cforms-help.php:109
+msgid ""
+"A new <em>wizard like</em> mode allows you to configure more complex "
+"settings in case all the pipes \"|\" and pounds \"#\" are overwhelming."
+msgstr ""
+"Нови <em> чаробњак </еm> модус Вам омогућава да конфигуришете много "
+"сложенија подешавања у случају да су вертикална црта \"| \" и знак за "
+"тарабу  \"# претежни."
+
+#: cforms-help.php:112
+msgid "Text only elements"
+msgstr "Само текстуални елементи"
+
+#: cforms-help.php:113
+msgid "Javascript Date Picker input field"
+msgstr "Javascript бирач података за унос у поље"
+
+#: cforms-help.php:114
+msgid "Single-, Password &amp; Multi-line fields"
+msgstr "Једноделна-, лозинка и вишеделна поља"
+
+#: cforms-help.php:115
+msgid "Select / drop down box &amp; radio buttons"
+msgstr "Изаберите/ падајући оквир и радио дугмад"
+
+#: cforms-help.php:116
+msgid "Multi-select box"
+msgstr "Мулти-селективан оквир"
+
+#: cforms-help.php:117 cforms-help.php:307 cforms-help.php:1066
+msgid "Check boxes"
+msgstr "Поља за проверу"
+
+#: cforms-help.php:118 cforms-help.php:343
+msgid "Check box groups"
+msgstr "Групе поља за проверу"
+
+#: cforms-help.php:119
+msgid "CC:me check box"
+msgstr "CC:me поље за проверу"
+
+#: cforms-help.php:120
+msgid "Multiple recipients drop down box"
+msgstr "Падајући оквир за више прималаца"
+
+#: cforms-help.php:121
+msgid "Hidden fields"
+msgstr "Скривена поља"
+
+#: cforms-help.php:122
+msgid "SPAM protection: Q&amp;A input field"
+msgstr "Заштита од SPAM-a: Питања&Одговори поља за унос "
+
+#: cforms-help.php:123
+msgid "SPAM protection: Captcha input field"
+msgstr "Заштита од SPAM-a: Captcha поље за унос "
+
+#: cforms-help.php:124
+msgid "File attachments / upload"
+msgstr "Приложена докумената/ пријенос "
+
+#: cforms-help.php:133 cforms-help.php:163 cforms-help.php:186
+#: cforms-help.php:220 cforms-help.php:265 cforms-help.php:305
+#: cforms-help.php:341 cforms-help.php:382 cforms-help.php:413
+#: cforms-help.php:444 cforms-help.php:473 cforms-help.php:509
+#: cforms-help.php:544 cforms-help.php:575 cforms-help.php:696
+#: cforms-help.php:767 cforms-help.php:811
+msgid "form<br />field"
+msgstr "Образац<br/>поље"
+
+#: cforms-help.php:135
+msgid "Text only elements (no input)"
+msgstr "Само текстуални елементи (без уноса)"
+
+#: cforms-help.php:140 cforms-help.php:169 cforms-help.php:193
+#: cforms-help.php:227 cforms-help.php:272 cforms-help.php:312
+#: cforms-help.php:348 cforms-help.php:389 cforms-help.php:422
+#: cforms-help.php:450 cforms-help.php:480 cforms-help.php:516
+#: cforms-help.php:551 cforms-help.php:582 cforms-help.php:716
+#: cforms-help.php:727 cforms-help.php:777 cforms-help.php:821
+msgid "Entry format for Field Name"
+msgstr "Унос формата за назив поља"
+
+#: cforms-help.php:140 cforms-help.php:169 cforms-help.php:193
+#: cforms-help.php:227 cforms-help.php:272 cforms-help.php:312
+#: cforms-help.php:348 cforms-help.php:389 cforms-help.php:422
+#: cforms-help.php:450 cforms-help.php:480 cforms-help.php:516
+#: cforms-help.php:551 cforms-help.php:727 cforms-help.php:777
+#: cforms-help.php:821 cforms-help.php:892
+msgid "Format:"
+msgstr "Формат:"
+
+#: cforms-help.php:141
+msgid "text paragraph %1$s css class %1$s optional style"
+msgstr "текст пасус %1$s css class %1$s стил по избору"
+
+#: cforms-help.php:144 cforms-help.php:147 cforms-help.php:173
+#: cforms-help.php:197 cforms-help.php:201 cforms-help.php:205
+#: cforms-help.php:231 cforms-help.php:276 cforms-help.php:280
+#: cforms-help.php:316 cforms-help.php:352 cforms-help.php:393
+#: cforms-help.php:426 cforms-help.php:454 cforms-help.php:458
+#: cforms-help.php:484 cforms-help.php:520 cforms-help.php:524
+#: cforms-help.php:555 cforms-help.php:731 cforms-help.php:781
+#: cforms-help.php:1296
+msgid "Example:"
+msgstr "Пример:"
+
+#: cforms-help.php:144
+msgid "Please make sure..."
+msgstr "Молимо проверите да ли.."
+
+#: cforms-help.php:147
+msgid "Check %s here %s for more info. %s"
+msgstr "Проверите% s% s овдје за додатне информације.. %s"
+
+#: cforms-help.php:150
+msgid ""
+"HTML: the <code>text paragraph</code> supports HTML. If you need actual "
+"&lt;, &gt; in your text please use the proper HTML entity."
+msgstr ""
+"HTML: <code>текст пасус</ code> подржава HTML. Ако су Вам потребне праве <,> "
+"молимо Вас да у Вашем тексту користите одговарајуће HTML објекте."
+
+#: cforms-help.php:153
+msgid ""
+"The above expression applies the custom class \"<code>mytextclass</code>\" "
+"<strong>AND</strong> the specific styles \"<code>font-size:9x; font-weight:"
+"bold;</code>\" to the paragraph."
+msgstr ""
+"Горе наведени израз примењује подешену  класу \"<code> mytextclass  </ code> "
+"\" <strong>  I </  strong>,  посебне стилове \"<code> font-size: 9k; font-"
+"veight: bold; </ code   >  \"у пасусу."
+
+#: cforms-help.php:156
+msgid ""
+"If you specify a <code>css class</code>, you also need to define it in your "
+"current form theme file, <a href=\"%s\">here</a>."
+msgstr ""
+"Ако наведете <code>css class </ code>, такође морате да га дефинишете у "
+"тренутном обрасцу теме документа <a href=\"%s\"> ovdje </ a>."
+
+#: cforms-help.php:165
+msgid "Javascript Date Picker"
+msgstr "Javascript бирач података"
+
+#: cforms-help.php:170 cforms-help.php:194
+msgid ""
+"field name %1$s default value %1$s <a href=\"%2$s\">regular expression</a>"
+msgstr ""
+"Назив поља %1$s понудјена вриједност%1$s <a href=\"%2$s\">регуларан израз </ "
+"а>"
+
+#: cforms-help.php:174
+msgid "Arrival Date"
+msgstr "Датум доласка"
+
+#: cforms-help.php:178
+msgid ""
+"The example above will set a <em>default value</em> of \"%s\" so users know "
+"the expected format. The <strong>regexp</strong> at the end ensures that "
+"only this format is accepted. <strong>NOTE:</strong> You also need to <a "
+"href=\"%s\" %s>configure the date picker options</a> to match the date "
+"format (\"%s\")!"
+msgstr ""
+"Горе наведени примјер ће поставити <em>понуђену вриједност</em>\"%s\" тако "
+"корисници знају који је формат очекиван. <strong> regxp </ strong> на крају "
+"осигурава да ће само овај формат бити прихваћен. <strong>  Напомена: </ "
+"strong> Takođe je potrebno da<a href=\"%s\" %s>подесите опције за бирање "
+"датума </ а> да одговара формату датума ( \"%s\")!"
+
+#: cforms-help.php:188
+msgid "Single, Password &amp; Multi line input fields"
+msgstr "Једнократно пријављивање, лозинка и поља са више редова за унос"
+
+#: cforms-help.php:198
+msgid "Reference"
+msgstr "Референца"
+
+#: cforms-help.php:202
+msgid "Your &lt;u&gt;Full&lt;/u&gt; Name"
+msgstr "Ваше<;>;<пуно;/>;  име"
+
+#: cforms-help.php:206
+msgid "We need your email address for confirmation.\"%sYour EMail"
+msgstr "Потребна нам је Ваша адреса е-поште за потврду.\"% sВаш e-mail"
+
+#: cforms-help.php:210
+msgid "You can of course omit the <em>default value</em> as in Example 2."
+msgstr ""
+"Наравно можете изоставити <em> понудјене вриједности</еm> као у примеру 2."
+
+#: cforms-help.php:222
+msgid "Select boxes &amp; radio buttons"
+msgstr "Изаберите поље и радио дугмад"
+
+#: cforms-help.php:228 cforms-help.php:273
+msgid ""
+"field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3..."
+msgstr ""
+"назив поља%1$s опција1 %2$s вредност1 %1$s опција2 %2$s вредност2 %1$s "
+"oпција3...."
+
+#: cforms-help.php:232 cforms-help.php:905
+msgid "Your age#12-18|kiddo#19 to 30|young#31 to 45#45+ |older"
+msgstr "Ваша старосна доб#12-18|дете#19 до 30|млађи#31 до 45#45+ |старији"
+
+#: cforms-help.php:236
+msgid ""
+"Omitting the <code>field name</code> will result in not showing a label to "
+"the left of the field."
+msgstr ""
+"Изостављање <code>назива поља</ code> će rezultirati da se ne prikaže oznaka "
+"levo od polja."
+
+#: cforms-help.php:241
+msgid ""
+"The <strong>option</strong> parameter determines the text displayed to the "
+"visitor, <strong>value</strong> what is being sent in the email."
+msgstr ""
+"<strong>Опција </ strong>параметар одређује приказ текста посетиоцу, "
+"<strong>вриједности  </ strong>, које су послате е-поштом"
+
+#: cforms-help.php:246
+msgid ""
+"Is no <strong>value</strong> explicitly given, then the shown option text is "
+"the value sent in the email."
+msgstr ""
+"Уколико <strong>вредност </ strong> није експлицитно дата, приказани одабран "
+"текст је вредност послата е-поштом."
+
+#: cforms-help.php:251
+msgid ""
+"<strong>Select box marked \"Required\":</strong> Using a minus symbol %1$s "
+"for the value (after %2$s), will mark an option as invalid! Example:<br /"
+"><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|"
+"young#31 to 45#45+ |older</code>. <br />\"Please pick...\" is shown but not "
+"considered a valid value."
+msgstr ""
+"<strong> Изаберите оквир означен\"Обавезно  \": </ strong> Коришћење минус "
+"симбола %1$s за вредност (после%2$s) означиће опцију неважећом! Пример: <br /"
+"> <code> Ваша старосна доб # Молимо Вас, изаберите старосну групу  | - # 12 "
+"до 18 година  | дете до # 19 до 30 | млађи # 31 до # 45 + 45 | старији</ "
+"code>. <br /> \"Молимо изаберите ... \" је приказан, али није узет за важећу "
+"вредност."
+
+#: cforms-help.php:256
+msgid ""
+"<strong>Radio buttons marked \"Required\":</strong> You can choose to not "
+"preselect a radio button upon form load, yet make a user selection mandatory "
+"for the form to validate."
+msgstr ""
+"<strong> радио дугмад обележена \"Обавезно \": </ strong> Можете изабрати да "
+"не изабирете унапред радио дугме изнад поља за унос, ипак обавежите "
+"корисника да изабере образац за проверу."
+
+#: cforms-help.php:267 cforms-help.php:1069
+msgid "Multi select boxes"
+msgstr "Оквири за више избора"
+
+#: cforms-help.php:277
+msgid "Pick#red#blue#green#yellow#orange"
+msgstr "Одаберите#црвено#плаво#зелено#жуто#наранџасто"
+
+#: cforms-help.php:281
+msgid ""
+"&lt;strong&gt;Select&lt;/strong&gt;#Today#Tomorrow#This Week#Next Month#Never"
+msgstr ""
+"<strong>Изаберите</strong>#Данас#Сутра#Следеће недеље#Следећи мјесец#Никада"
+
+#: cforms-help.php:285
+msgid ""
+"Multi select fields can be set to <strong>Required</strong>. If so and "
+"unless at least one option is selected the form won't validate."
+msgstr ""
+"Више изабраних поља могу се дефинисати као <strong>Обавезна </ strong>. У "
+"том случају уколико најмање један образац није одабран, неће се важити за "
+"потврду."
+
+#: cforms-help.php:290
+msgid ""
+"If <code>value1,2,..</code> are not specified, the values delivered in the "
+"email default to <code>option1,2,...</code>."
+msgstr ""
+"Ако <code>вредности1, 2.. </code> нису посебно наведене, вредности послате е-"
+"поштом подразумеваће се као<code> опција1, 2,...</ code>."
+
+#: cforms-help.php:295
+msgid ""
+"Examples for specific values could be the matching color codes: e.g. "
+"<code>red|#ff0000</code>"
+msgstr ""
+"Примери за одређене вредности како ускладити кодове за боје: нпр <code> "
+"црвена | # FF0000 </ code>l"
+
+#: cforms-help.php:313 cforms-help.php:390
+msgid "field name <u>left</u> %s field name <u>right</u>"
+msgstr "назив поља <u> лево </ u> %sназив поља <u> десно </ u>"
+
+#: cforms-help.php:317
+msgid "#please check if you'd like more information"
+msgstr "#Молимо, проверите да ли бисте желели више информација"
+
+#: cforms-help.php:321
+msgid ""
+"You can freely choose on which side of the check box the label appears (e.g. "
+"<code>#label-right-only</code>)."
+msgstr ""
+"Можете слободно да одаберете на којој страни поља за проверу се појављује "
+"ознака (нпр. <code>  # label-right-only</ code>)."
+
+#: cforms-help.php:326
+msgid ""
+"If <strong>both</strong> left and right labels are provided, only the "
+"<strong>right one</strong> will be considered."
+msgstr ""
+"Ако су <strong>обје</ strong> ознаке лево и десно одређене, само ће се десна "
+"узети у обзир."
+
+#: cforms-help.php:331
+msgid ""
+"Check boxes can be flagged \"<strong>Required</strong>\" to support special "
+"use cases, e.g.: when you require the visitor to confirm that he/she has "
+"read term &amp; conditions, before submitting the form."
+msgstr ""
+"Поља за потврду могу бити обележена \"<strong> Обавезно </ strong>, \" за "
+"подршку посебних примера употребе, на пример: када захтевате од корисника  "
+"да потврди  да ли је  прочитао/ла услове коришћења пре него пошаље образац "
+"за пријаву."
+
+#: cforms-help.php:349
+msgid ""
+"field name %1$s chk box1 label%2$schk box1 value %1$s chk box2 label %3$s "
+"chk box3..."
+msgstr ""
+"field name %1$s chk box1 label%2$schk box1 value %1$s chk box2 label %3$s "
+"chk box3..."
+
+#: cforms-help.php:353
+msgid "Select Color#green|00ff00 #red|ff0000 #purple|8726ac #yellow|fff90f"
+msgstr "Одаберите боју#green|00ff00 #red|ff0000 #purple|8726ac #yellow|fff90f"
+
+#: cforms-help.php:357
+msgid ""
+"Two # (<code>##</code>) in a row will force a new line! This helps to better "
+"structure your check box group."
+msgstr ""
+"Два # (<code> # # </ code>) реда у низу производе нови ред! Ово помаже да "
+"боље организујете поља за проверу."
+
+#: cforms-help.php:362
+msgid ""
+"Similar to <strong>multi-select boxes</strong> (see above), <strong>Check "
+"box groups</strong> allow you to deploy several check boxes (with their "
+"labels and corresponding values) that form one logical field. The result "
+"submitted via the form email is a single line including all checked options."
+msgstr ""
+"Слично <strong> оквирима за вишеструки избор </ strong> (види горе), "
+"<strong>групе оквира за проверу </ strong>, дозвољавају вам да примените "
+"неколико оквира за потврду (са својим ознакама и одговарајућим вредностима), "
+"које чине једно логичко поље. Резултат се доставља путем е-поште у једном "
+"низу, у ком су укључене све опције провере."
+
+#: cforms-help.php:367
+msgid ""
+"If no explicit <strong>value</strong> (text after the pipe symbol '%1$s') is "
+"specified, the provided check box label is both label &amp; submitted value."
+msgstr ""
+"Ако нема експлицитно наведених <strong> вредности </ strong> (текст иза "
+"симбола за усправну црту %1$s'), предвиђена ознака поља за проверу уједно је "
+"и ознака достављене вредности."
+
+#: cforms-help.php:372
+msgid "None of the check boxes within a group can be made \"Required\"."
+msgstr ""
+"Ниједно од поља за потврду у оквиру групе не може да се направи \"Обавезно "
+"\"."
+
+#: cforms-help.php:384
+msgid "CC: option for visitors"
+msgstr "CC: опција за посетиоце"
+
+#: cforms-help.php:394
+msgid "#please cc: me"
+msgstr "#молимо cc: ја"
+
+#: cforms-help.php:398
+msgid ""
+"If the visitor chooses to be CC'ed, <strong>no</strong> additional auto "
+"confirmation email (<a href=\"%s\" %s>if configured</a>) is sent out!"
+msgstr ""
+"Ако посетилац изабере за CC'ed, <strong>neće </ strong>dodatni automatski e-"
+"mail za potvrdu (<a  href=\"%s\" %s> ако је конфигуриран </ а>) бити послат!"
+
+#: cforms-help.php:403
+msgid "Please also see <em>check boxes</em> above."
+msgstr "Молимо Вас исто да погледате  <em> поља за потврду</  еm> изнад."
+
+#: cforms-help.php:415
+msgid "Multiple form mail recipients"
+msgstr "Вишеструки образац поште прималаца"
+
+#: cforms-help.php:423
+msgid ""
+"field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s "
+"Name3..."
+msgstr ""
+"field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s "
+"Name3..."
+
+#: cforms-help.php:427
+msgid "Send to#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com"
+msgstr "Пошаљите#Joe|joe@mail.com#Pete|pete@mail.com#Hillary|hillary@mail.com"
+
+#: cforms-help.php:431
+msgid ""
+"Send to#Sales|sales1@mail.com, sales2@mail.com, sales3@mail.com#Support|"
+"admin@mail.com#HR|hr1@mail.scom, hr2@mail.com"
+msgstr ""
+"Пошаљите#Sales|sales1@mail.com,sales2@mail.com, sales3@mail.com#Support|"
+"admin@mail.com#HR|hr1@mail.scom, hr2@mail.com"
+
+#: cforms-help.php:435
+msgid ""
+"Adding the above field to a form, disables the form's specific admin email "
+"address setting."
+msgstr ""
+"Додавање горњег поља за образац, онемогућава подешавање специфичних форми "
+"админ е-пошта адреса."
+
+#: cforms-help.php:446
+msgid "Hidden input fields"
+msgstr "Скривена поља за унос"
+
+#: cforms-help.php:451
+msgid "field name %1$s default value"
+msgstr "field name %1$s подразумевана вредност"
+
+#: cforms-help.php:455
+msgid "extra-data"
+msgstr "посебан податак"
+
+#: cforms-help.php:459
+msgid "post-data-meta"
+msgstr "пост-мета податак"
+
+#: cforms-help.php:463
+msgid ""
+"Hidden fields can contain fixed/preset values or <strong>{variables}</"
+"strong> which reference custom fields of posts or pages."
+msgstr ""
+"Скривена поља могу да садрже фиксне/ унпред задате вриједности или <strong> "
+"{променљиве} </ strong>, које означавају подешена поља прилога или страна."
+
+#: cforms-help.php:481 cforms-help.php:485
+msgid "--"
+msgstr "--"
+
+#: cforms-help.php:489
+msgid ""
+"No <code>field name</code> required, the field has no configurable label per "
+"se, as it is determined at run-time from the list of <strong>Question &amp; "
+"Answers</strong> provided <a href=\"%s\" %s>here</a>."
+msgstr ""
+"Није<code>назив поља </ code> затражен, поље нема саме по себи подешене "
+"ознаке, као што је утврђено у време извршења са листе <strong> "
+"Питања&Одговори </ strong>, предвиђеним <a href=\"%s\" %s>овде</a>."
+
+#: cforms-help.php:494
+msgid ""
+"It makes sense to encapsulate this field inside a FIELDSET, to do that "
+"simply add a <code>New Fieldset</code> field before this one."
+msgstr ""
+"Има смисла убацити у кућиште ово поље унутар ГРУПНОГ ПОЉА , за то "
+"једноставно додајте <code>New Fieldset </ code> поље пре овог."
+
+#: cforms-help.php:499 cforms-help.php:534
+msgid ""
+"<strong>PLEASE NOTE</strong> that by default the captcha and visitor "
+"verification (Q&amp;A) field are <strong>not</strong> shown for logged in "
+"users! This can be changed under Global Settings."
+msgstr ""
+"<strong>OBRATITE PAŽNJU</ strong>, da pri zadavanju captcha i provere "
+"posetioca (Pitanja & Odgovori) polje <strong>nije </ strong> prikazano za "
+"prijavljene korisnike! Ovo može da se izmeni u opštem podešavanju."
+
+#: cforms-help.php:511
+msgid "Captcha"
+msgstr "Captcha"
+
+#: cforms-help.php:517 cforms-help.php:1042
+msgid "field name"
+msgstr "назив поља"
+
+#: cforms-help.php:521
+msgid "Enter code"
+msgstr "Унесите шифру"
+
+#: cforms-help.php:525
+msgid ""
+"Spam Protection|title:We don't like spam bots|err:Please enter the CAPTCHA "
+"code correctly! If text is unreadable, try reloading."
+msgstr ""
+"Спам заштита | наслов: Не волимо SPAM роботе | Грешка: Молимо Вас да унесете "
+"исправан CAPTCHA код! Ако је текст нечитљив, учитајте га изнова."
+
+#: cforms-help.php:529
+msgid ""
+"Alternatively or in addition to the above <strong>Visitor verification</"
+"strong> feature, you can have the visitor provide a captcha response."
+msgstr ""
+"Алтернативно или додатно с горе наведеним <strong> провера посјетиоца </ "
+"strong> опцијом, можете имати посетиоца који ће одговорити на captcha."
+
+#: cforms-help.php:546
+msgid "Attachments / File Upload Box"
+msgstr "Приложени документи / Оквир за отпремање датотеке"
+
+#: cforms-help.php:552
+msgid "form label"
+msgstr "ознаке за обрасце"
+
+#: cforms-help.php:556
+msgid "Please select a file"
+msgstr "Молимо Вас, изаберите датотеку"
+
+#: cforms-help.php:560
+msgid ""
+"Please double-check the <a href=\"%s\" %s>Global Settings</a> for proper "
+"configuration of the <code>File Upload</code> functionality (allowed "
+"extensions, file size etc.)."
+msgstr ""
+"Молимо двоструко проверите <a href=\"%s\" %s> Општа подешавања </ а> за "
+"правилну конфигурацију <code> File Upload </ code> funkcionalnosti "
+"(dozvoljene ekstenzije, veličina datoteke itd.)"
+
+#: cforms-help.php:565
+msgid ""
+"Please enable <a href=\"%s\" %s>Database Input Tracking</a> on the Global "
+"Settings page to ensure a unique upload ID per attachment and to avoid "
+"accidentally overwriting an attachment."
+msgstr ""
+"Молимо Вас активирајте <a href=\"%s\" %s> Праћење датотеке за унос</а> у "
+"општем подешавању да бисте осигурали јединствени пренос ID преко приложеног "
+"документа и избегли случајно исписивање преко приложеног документа."
+
+#: cforms-help.php:577
+msgid "Tell a Friend input fields"
+msgstr "Поље за унос Реци пријатељу"
+
+#: cforms-help.php:582
+msgid "Format:<br />of all 4 fields"
+msgstr "Формат: <br/> за сва 4 поља"
+
+#: cforms-help.php:583
+msgid ""
+"field name %1$s default value %1$s <a href=\"#regexp\">regular expression</a>"
+msgstr ""
+"Назив поља%1$sје задата вредност%1$s<a href=\"#regexp\">регуларни израз </ а>"
+
+#: cforms-help.php:586
+msgid "Fields:"
+msgstr "Поља:"
+
+#: cforms-help.php:587 cforms-help.php:1060 cforms-options.php:371
+msgid "T-A-F * Your Name"
+msgstr "Т-A-F * Ваше име"
+
+#: cforms-help.php:588
+msgid "T-A-F * Your Email <em>(make sure it's checked 'Email')</em>"
+msgstr "Т-A-F * Ваш Email<еm> (побрините се да буде проверен 'E-mail') </ еm>"
+
+#: cforms-help.php:589 cforms-help.php:1062 cforms-help.php:1063
+#: cforms-options.php:373
+msgid "T-A-F * Friend's Name"
+msgstr "Т-A-F * Име пријатеља"
+
+#: cforms-help.php:590
+msgid "T-A-F * Friend's Email <em>(make sure it's checked 'Email')</em>"
+msgstr ""
+"T-A-F * E-mail пријатеља <em>(побрините се да буде проверени'Email') </ em>"
+
+#: cforms-help.php:595 cforms-help.php:737
+msgid "To get it working:"
+msgstr "Да би то функционисало:"
+
+#: cforms-help.php:597
+msgid ""
+"The <a href=\"%s\" %s>Tell A Friend feature</a> needs to be <strong>enabled "
+"for the respective form</strong> (<em>check if it's the right one!</em>), "
+"otherwise you won't see the above input fields in the [<em>Field Type</em>] "
+"select box."
+msgstr ""
+"Елемент<a href=\"%s\" %s> Реци пријатељу </ а> треба да се активира "
+"<strong>одговарајућим образацем </ strong> (<em> проверите да ли је "
+"одговарајући </ еm>), у супротном нећете видјети изнад поља за унос у [<em> "
+"Тип поља </ еm>] пољу за избор."
+
+#: cforms-help.php:598
+msgid ""
+"The <a href=\"%s\" %s>auto confirmation</a> message will be used as a "
+"<strong>message template</strong> and needs to be defined. See example below."
+msgstr ""
+"V <a href=\"%s\" %s> Аутоматска потврда </ а> поруке ће се користити као "
+"<strong> шаблон поруке </ strong> која треба да се дефинише. Погледајте "
+"пример испод."
+
+#: cforms-help.php:599
+msgid ""
+"There are <a href=\"%s\" %s>three additional</a>, <em>predefined variables</"
+"em> that can be used in the <a href=\"%s\" %s>message template</a>."
+msgstr ""
+"Постоје<a href=\"%s\" %s> три додатно </ а> <em> унапред дефинисане "
+"променљиве </еm> које се могу користити у <а href=\"%s\" %s> шаблону поруке "
+"</ а>."
+
+#: cforms-help.php:600
+msgid ""
+"<strong>Add the form</strong> to your post/page php templates (see "
+"deployment options further below)."
+msgstr ""
+"<strong>Додајте образац </ strong> за Ваш пост/страницу PHP шаблон "
+"(погледајте опције наведене даље тексту)."
+
+#: cforms-help.php:601
+msgid ""
+"Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F "
+"field in the WP post (page) editor."
+msgstr ""
+"Реци-пријатељу <strong>активирајте Ваше чланке / стране </ strong> tако што "
+"ћете потврдити поље у T-A-F WP пост (страна) едитору."
+
+#: cforms-help.php:611
+msgid ""
+"Here is an example of how to setup the TXT part of the <a href=\"%s\" "
+"%s>auto confirmation message</a> as a Tell-A-friend template:"
+msgstr ""
+"Овде је пример како да подеситеTXT део <a href=\"%s\" %s> auto poruke za "
+"potvrdu </ a> Reci-prijatelju šablona:"
+
+#: cforms-help.php:618
+msgid "Hello {Friend's Name}"
+msgstr "Здраво {Име пријатеља}"
+
+#: cforms-help.php:619
+msgid "{Your Name} left you this message:"
+msgstr "{Ваше име} је проследио/ла ову поруку:"
+
+#: cforms-help.php:620
+msgid "{Optional Comment}"
+msgstr "{Коментар по избору}"
+
+#: cforms-help.php:621
+msgid "The message was sent in reference to"
+msgstr "Ова порука је послата са препоруком"
+
+#: cforms-help.php:625
+msgid ""
+"This email is sent, as a courtesy of website.com, located at http://website."
+"com. The person who sent this email to you, {Your Name}, gave an email "
+"address of {Your Email}. {Your Name} logged into website.com from IP {IP}, "
+"and sent the email at {Time}."
+msgstr ""
+"Овај е-порука је послат љубазношћу http://website.com. Особа која Вам је "
+"послала ову поруку, {Ваше име}, дала је адресу е-поште {Ваш адреса е-поште}. "
+"{Ваше име} пријављена је на website.com sa IP {IP}, и послала је е-поруку "
+"{Време}."
+
+#: cforms-help.php:631
+msgid ""
+"In addition to the above TXT message you can, of course, add an HTML "
+"counterpart."
+msgstr "Као додатак горе ТXТ поруци можете, наравно, додати HTML копију."
+
+#: cforms-help.php:639
+msgid "Recommended Implementation Options:"
+msgstr "Препоручене опције за примену:"
+
+#: cforms-help.php:644
+msgid ""
+"<em>Alternative 1:</em> The actual form will not show on the WP front page, "
+"but in the individual post/page view."
+msgstr ""
+"<em> Алтернатива 1: </ еm> Садашњи формат се неће приказати на WП насловној "
+"страни, већ на појединачним приказима постова/страна."
+
+#: cforms-help.php:646
+msgid ""
+"Simply add a <code>&lt;?php insert_cform(<em>#</em>); ?&gt;</code> (# = <a "
+"href=\"%s\" %s>your form id</a>) to your existing <code>single.php</code> "
+"and/or <code>page.php</code> template, e.g:"
+msgstr ""
+"Једноставно додајте <code> php insert_cform (<em> # </ em>);> </ code> (# = "
+"<a href=\"%s\" %s>Ваш образац ID </ а>) на свој постојећи <code> single.php "
+"</ code> и / или <code> page.php  </ code> шаблон, на пример:"
+
+#: cforms-help.php:655
+msgid ""
+"Suggestion: For a less crowded layout, optionally add some Javascript code "
+"to show/hide the form."
+msgstr ""
+"Сугестија: За мање згужван формат, додајте по избору извесне Јаvаscript "
+"програмске кодове за приказивање /сакривање обрасца."
+
+#: cforms-help.php:661
+msgid ""
+"<em>Alternative 2:</em> A Tell-A-Friend link is shown under every eligible "
+"post/page, displayed both on the blog's front page &amp; individual post "
+"&amp; page view."
+msgstr ""
+"<em>Алтернатива 2:</ еm>-Реци -пријатељу линк је приказан испод сваке "
+"изабране пост / стране, приказује се подједнако и на насловној страни блога "
+"и на појединачним приказима страница чланака."
+
+#: cforms-help.php:664
+msgid ""
+"This requires a new WP page created (make note of the page ID or permalink), "
+"with its own page template (a clone of page.php will do). Add the following "
+"code to the new <strong>page template</strong>:"
+msgstr ""
+"Потребно је израдити нову WP страну ( забeлежите ID или пермалинк стране), "
+"са својим сопственим шаблоном стране (клон page.php će to uraditi). Додајте "
+"следећи код у нови <strong> шаблон стране </ strong>:"
+
+#: cforms-help.php:674
+msgid ""
+"In <em>single.php &amp; index.php</em> and/or <em>page.php</em> add beneath "
+"the \"the_content()\" call the link to the new page created above, e.g.:"
+msgstr ""
+"У<em> single.php i index.php </ em> и / или <em> page.php </ em> додај испод "
+"\"the_content () \" повежите линк са новом израђеном страницом изнад, нпр :"
+
+#: cforms-help.php:686
+msgid ""
+"Replace <strong>[your-new-page]</strong> with <strong>the permalink</strong> "
+"of your newly created page."
+msgstr ""
+"Замените <strong>[ваша-нова-страна] </ strong> са  <strong> пермалинк </ "
+"strong> новонаправљене  стране."
+
+#: cforms-help.php:698
+msgid "WP Comment Feature input fields"
+msgstr "WP ознаке за коментар поља за унос"
+
+#: cforms-help.php:700
+msgid ""
+"The beauty is, using one form, you can now offer your readers to either "
+"leave a comment behind or simply send a note to the post editor while being "
+"able to fully utilize all security aspects of cforms."
+msgstr ""
+"Лепо је што, користећи један образац, сада можете да понудите својим "
+"читаоцима да оставе коментар или једноставно пошаљу поруку пост едитору са "
+"свим могућностима сигурносних аспеката cforms-a. "
+
+#: cforms-help.php:704
+msgid "Example Configuration"
+msgstr "Пример конфигурацијe"
+
+#: cforms-help.php:708
+msgid "Special Fields:"
+msgstr "Посебна поља:"
+
+#: cforms-help.php:710 cforms-help.php:1067 cforms-options.php:380
+msgid "Author's Email"
+msgstr "Ауторова адреса е-поште"
+
+#: cforms-help.php:711 cforms-help.php:1068 cforms-options.php:381
+msgid "Author's URL"
+msgstr "Ауторова URL адреса"
+
+#: cforms-help.php:712 cforms-help.php:1069 cforms-options.php:382
+msgid "Author's Comment"
+msgstr "Ауторов коментар"
+
+#: cforms-help.php:716
+msgid "Format:<br />for top 4 fields"
+msgstr "Формат: <br /> за 4 поља на врху"
+
+#: cforms-help.php:717
+msgid ""
+"field name  %1$s  default value  %1$s  <a href=\"#regexp\">regular "
+"expression</a>"
+msgstr ""
+"field name %1$s  подразумевана вредност %1$s <a href=\"#regexp\">regularan "
+"izraz</a>"
+
+#: cforms-help.php:722
+msgid "Special Field"
+msgstr "Посебна поља"
+
+#: cforms-help.php:723 cforms-help.php:1070 cforms-options.php:383
+msgid "Select: Email/Comment"
+msgstr "Изаберите: Е-маил / Коментар"
+
+#: cforms-help.php:728
+msgid ""
+"field name %1$s text <em>comment</em> %2$s 0 %1$s text <em>to author</em> "
+"%2$s 1"
+msgstr ""
+"field name %1$stekst <em> коментар</ em>%2$s 0 %1$s<еm> аутору тексту </ еm> "
+"%2$s 1"
+
+#: cforms-help.php:732
+msgid "Send as#regular comment|0#email to post author|1"
+msgstr "Пошаљи као # обичан коментар | 0 # е-порука се шаље аутору | 1"
+
+#: cforms-help.php:739
+msgid ""
+"Turn on the <a href=\"%s\" %s>WP Comment feature</a> for the given form. "
+"(<em>Make sure it's the right one!</em>), otherwise you won't see the above "
+"input fields in the [<em>Field Type</em>] select box."
+msgstr ""
+"Укључите <a href=\"%s\" %s> WP функцију за коментар </ а> у задатом облику. "
+"(<em> Проверите да ли је одговарајући! </еm>), у супротном нећете видети "
+"изнад поља за унос у [<em> Тип поља </еm>] изаберите поље."
+
+#: cforms-help.php:740
+msgid ""
+"Modify this form to include all the necessary (new) input fields, make them "
+"required or not, add regexp, anti SPAM fields or even custom err messages. "
+"All up to you. Or better yet, start with the built-in preset: "
+"\"<strong>Advanced: WP comment...</strong>\" form."
+msgstr ""
+"Измените овај образац да би се убацила сва неопходна (нова) поља за унос, "
+"било обавезна или не, додајте регxкп, анти SPAM поља или чак и подешене ерр "
+"поруке. Све зависи од вас. Или још боље, почните са прављењем унапред "
+"заданог модела: \"<strong> Напредни: WP коментар ...</ strong>, \" образац."
+
+#: cforms-help.php:741
+msgid ""
+"Edit your WP Theme template for comments. Remove the current "
+"<strong><u>comment_form() in comments.php</u></strong> entirely. Instead "
+"replace with a PHP call to cforms: <code  style=\"color:red\">&lt;?php "
+"insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> "
+"if the form is your default form or starting at <strong>'2'</strong> (with "
+"single quotes!) for any subsequent form #."
+msgstr ""
+"Измените своју WP тему шаблон за коментаре. Уклоните тренутно "
+"<strong><u>comment_form() in comments.php</u></strong> у потпуности. Уместо "
+"тога, замените PHP позив за cforms: <code style=\"color:red\">&lt;? php "
+"insert_cform (X); ?&gt;</code> са <strong> X </strong> se <u>изостављен</u> "
+"ако је образац Ваш задати образац  или почиње од <strong>'2'</strong> (са "
+"једноструким наводницима!) за сваки наредни облик #."
+
+#: cforms-help.php:742
+msgid ""
+"Double check the extended <a href=\"%s\" %s>WP comment feature settings "
+"here</a> (especially the Ajax specific ones!). "
+msgstr ""
+"Dvostruko proverite proširena <a href=\"%s\" %s> WP podešavanja za funkciju "
+"komentar ovde</ a> (posebno one specifične za Ajax!)."
+
+#: cforms-help.php:743 cforms-help.php:838 cforms-help.php:1323
+msgid "Important:"
+msgstr "Важно:"
+
+#: cforms-help.php:743
+msgid ""
+"To make Ajax work in case there are no comments yet, make sure that the "
+"comment container <strong>is always</strong> being rendered."
+msgstr ""
+"Да би Ајакс функционисао у случају кад још нема коментара, побрините се да "
+"контејнер за коментар <strong> буде увек </ strong> видљив."
+
+#: cforms-help.php:753
+msgid "Suggestions:"
+msgstr "Предлози:"
+
+#: cforms-help.php:755
+msgid ""
+"I recommend you choose the <strong>wide_form.css</strong> theme under the <a "
+"href=\"%s\">Styling</a> menu. And adjust to your liking."
+msgstr ""
+"Препоручујем да изаберете <strong> wide_form.css  </ strong>, тему у <a href="
+"\"%s\"> Styling </ a> менију. И подесите по свом укусу."
+
+#: cforms-help.php:756
+msgid ""
+"If you intend to make certain fields \"required\", I further recommend you "
+"add the text \"<em>required</em>\" to the input field label and set this "
+"style: <code  style=\"color:red\">span.reqtxt, span.emailreqtxt {...</code> "
+"to <code  style=\"color:red\">display:none;</code>"
+msgstr ""
+"Уколико намеравате да одређена поља дефинишете као \"обавезно \", "
+"препоручујем Вам да додате текст \"<em> обавезно </еm> \" у ознаку поља за "
+"унос и  подесите овај стил: <code style = \"color:red \"> span.reqtxt, span."
+"emailreqtxt {...</code> za <code style=\"color:red\"> display: none; </code>"
+
+#: cforms-help.php:772
+msgid ""
+"Fieldsets are definitely part of good form design, they are form elements "
+"that are used to create individual sections of content within a given form."
+msgstr ""
+"Скупови поља су дефинитивно део добро обликованог дизајна, они су елементи "
+"обрасца који се користи за креирање појединачних делова садржаја у датом "
+"обрасцу."
+
+#: cforms-help.php:778
+msgid "fieldset name"
+msgstr "Назив СКУПА ПОЉА"
+
+#: cforms-help.php:782 lib_activate.php:67 lib_options_add.php:33
+msgid "My Fieldset"
+msgstr "Мој СКУП ПОЉА"
+
+#: cforms-help.php:786
+msgid ""
+"Fieldsets can begin anywhere, simply add a <strong>New Fieldset</strong> "
+"field between or before your form elements."
+msgstr ""
+"Скуп поља може да почне са било ког места, само додајте ново <strong> СКУП "
+"ПОЉА </ strong> поље између или пре обрасца елемената."
+
+#: cforms-help.php:791
+msgid ""
+"Fieldsets do not need to explicitly be closed, a <strong>New Fieldset</"
+"strong> element will automatically close the existing (if there is one to "
+"close) and reopen a new one."
+msgstr ""
+"Скуп поља не треба да је експлицитно затворен, <strong> Нови СКУП ПОЉА </ "
+"strong>, елемент ће аутоматски затворити постојећи (уколико он постоји да се "
+"затвори) и поново отворити нови."
+
+#: cforms-help.php:796
+msgid ""
+"<strong>End Fieldset</strong> <u>can</u> be used, but it works without just "
+"as well."
+msgstr ""
+"<strong> Завршетак скупа поља </ strong> <u> је употријебљен </ у>, али ради "
+"и без тога подједнако добро."
+
+#: cforms-help.php:801
+msgid ""
+"If there is no closing <strong>End Fieldset</strong> element, the plugin "
+"assumes that it needs to close the set just before the submit button"
+msgstr ""
+"Ако нема завршног <strong> Завршетка Скупа поља </ strong> елемента, додатак "
+"предвидја да мора да се затвори  пре него што поставите  дугме за потврду"
+
+#: cforms-help.php:816
+msgid ""
+"A regular expression (regex or regexp for short) is a special text string "
+"for describing a search pattern, according to certain syntax rules. Many "
+"programming languages support regular expressions for string manipulation, "
+"you can use them here to validate user input. Single/Multi line input fields:"
+msgstr ""
+"Регуларни израз (regex ili regexp скраћено) је специјалан текстуални низ за "
+"опис модела претраге, у складу са одређеним правилима синтаксе. Многи "
+"програмски језици подржавају регуларне изразе за управљање низом, можете их "
+"користити овдје за вредновање корисникових уноса података. Једно / вишередно "
+"поље за унос:"
+
+#: cforms-help.php:822
+msgid "field name %1$s default value %1$s regular expression"
+msgstr "field name %1$s подразумевана вредност %1$s регуларни изрази"
+
+#: cforms-help.php:825
+msgid "Example:<br />US zip code"
+msgstr "Primjer: <br /> US поштански број"
+
+#: cforms-help.php:826
+msgid "zip code"
+msgstr "Поштански број"
+
+#: cforms-help.php:829
+msgid "Example:<br />US phone #"
+msgstr "Пример: <br /> US #"
+
+#: cforms-help.php:830
+msgid "phone"
+msgstr "телефон"
+
+#: cforms-help.php:833
+msgid "Special Example:<br />comparing two input fields"
+msgstr "Специјални пример: <br /> поређење два поља за унос"
+
+#: cforms-help.php:834
+msgid "please repeat email"
+msgstr "Molimo ponovite e-mail"
+
+#: cforms-help.php:839
+msgid ""
+"<strong>If you need to compare two input fields (e.g. email verification):</"
+"strong> simply use the regexp field (see special example above, to point to "
+"the <u>HTML element ID</u> of the field you want to compare the current one "
+"to. To find the <u>HTML element ID</u> you would have to look into the html "
+"source code of the form (e.g."
+msgstr ""
+"<strong> Ако је потребно да упоредите два поља за унос (нпр. е-порука за "
+"верификацију): </ strong>, једноставно користите поља са regexp (види "
+"посебан пример горе, који указује на <u> HTML element ID </ span>поља којег "
+"желите да упоредите са тренутним. Да бисте нашли<u> HTMLelementID. </ "
+"span>морате да погледате у HTML изворни код за образац (нпр."
+
+#: cforms-help.php:844
+msgid "GENERAL:"
+msgstr "ОПШТЕ:"
+
+#: cforms-help.php:849
+msgid ""
+"Ensure that the input field in question is tagged '<strong>Required</"
+"strong>'!"
+msgstr ""
+"Побрините се да поље за унос за питање буде означено '<strong> Обавезно </ "
+"strong>!"
+
+#: cforms-help.php:854
+msgid "and"
+msgstr "и"
+
+#: cforms-help.php:854
+msgid "define the start and the end of the input"
+msgstr "подесите почетак и завршетак уноса"
+
+#: cforms-help.php:859
+msgid ""
+"...matches a string that has an \"a\" followed by zero or more \"b's\" (\"a"
+"\", \"ab\", \"abbb\", etc.);"
+msgstr ""
+"... одговара низ који има \"a\"нула или више \"b's\" (\"a\", \"ab\", \"abbb"
+"\", etc.);"
+
+#: cforms-help.php:864
+msgid "...same, but there's at least one b (\"ab\", \"abbb\", etc.);"
+msgstr "... исто, само ако постоји бар једно b (\"ab\", \"abbb\", etc.);"
+
+#: cforms-help.php:869
+msgid "...a string that has lowercase letters \"a\" through \"d\""
+msgstr "... низ са малим словима \"a\"кроз \"d \""
+
+#: cforms-help.php:874
+msgid ""
+"More information can be found <a href=\"%s\">here</a>, a great regexp "
+"repository <a href=\"%s\">here</a>."
+msgstr ""
+"Више информација се може наћи<a href=\"%s\">овде</a>, велико regexp "
+"спремиште<a href=\"%s\">овде</a>."
+
+#: cforms-help.php:886
+msgid ""
+"On top of their labels, input fields can have titles, too. Simply append a "
+"%s to a given field configuration string."
+msgstr ""
+"Сасвим горе изнад ознаке, поља за унос такодје могу имати називе. "
+"Једноставно се додаје%s конфигурацијски низ за дато поље."
+
+#: cforms-help.php:887
+msgid ""
+"If you like to add custom error messages (next to your generic <a href=\"%s"
+"\" %s>success</a> and <a href=\"%s\" %s>error</a> messages) for your input "
+"fields, simply append a %s to a given <em>definition string/field name</em>. "
+"HTML is supported."
+msgstr ""
+"Ако желите да додате подешене поруке о грешци (поред своје генеричке<a href="
+"\"%s\" %s>успеле</a> i <a href=\"%s\" %s>са грешком</a> поруке)за Ваше поље "
+"за унос, једноставно додате%s задату <em> дефиницију низа / назив поља </"
+"еm>. HTML је подржан."
+
+#: cforms-help.php:888
+msgid ""
+"Please note the order of these special attributes, first %s (if applicable), "
+"then %s."
+msgstr ""
+"Молимо да обратите пажњу на ове посебне атрибуте, први%s (ако је применљив), "
+"затим%s."
+
+#: cforms-help.php:892
+msgid "Extended entry format for the Field Name"
+msgstr "Продужени образац за унос за назив поља"
+
+#: cforms-help.php:893
+msgid "field name %1$s your title here %3$s %2$s your error message %3$s"
+msgstr "field name %1$s Ваш наслов овде%3$s %2$s Ваша порука о грешци%3$s"
+
+#: cforms-help.php:896
+msgid "Example 1:"
+msgstr "Пример 1:"
+
+#: cforms-help.php:897
+msgid "Your Name|title:Only alphabetic characters allowed!"
+msgstr "Ваше име| наслов: Дозвољена су само слова алфабета!"
+
+#: cforms-help.php:900
+msgid "Example 2:"
+msgstr "Пример 2:"
+
+#: cforms-help.php:901
+msgid ""
+"Your Name|title:Please provide your first and last name!|err:Please enter "
+"your full name."
+msgstr ""
+"Ваше име | наслов: Молимо наведите своје име и презиме | Грешка: Молимо Вас "
+"да унесете своје пуно име."
+
+#: cforms-help.php:904
+msgid "Example 3:"
+msgstr "Пример 3:"
+
+#: cforms-help.php:905
+msgid "|err: your age is &lt;strong&gt;important&lt;/strong&gt; to us."
+msgstr "| грешка: Vaša starosna dob <strong>важна</strong> нам је"
+
+#: cforms-help.php:914
+msgid ""
+"<strong>Custom error messages</strong> can be applied to any input field "
+"that can be flagged \"<strong>Required</strong>\", <strong>titles</strong> "
+"to any input field."
+msgstr ""
+"<strong>Подешене поруке о грешкама</ strong> се могу применити на било које "
+"поље за унос обележено \"<strong> Обавезно </ strong> \", <strong> наслови "
+"</ strong> за било које поље за унос."
+
+#: cforms-help.php:929
+msgid "API Function :: get_cforms_entries()"
+msgstr "API Function :: get_cforms_entries()"
+
+#: cforms-help.php:929 cforms-help.php:977
+msgid "API Function"
+msgstr "API функција"
+
+#: cforms-help.php:932 cforms-help.php:980
+msgid "Description"
+msgstr "Опис"
+
+#: cforms-help.php:932
+msgid ""
+"This function allows to conveniently retrieve submitted data from the cforms "
+"tracking tables."
+msgstr ""
+"Ова функција омогућава да лако преузимате достављене податке из cforms "
+"табела праћење."
+
+#: cforms-help.php:935 cforms-help.php:983
+msgid "Parameters"
+msgstr "Параметри"
+
+#: cforms-help.php:938 cforms-help.php:946 cforms-help.php:954
+msgid "[text]"
+msgstr "[текст]"
+
+#: cforms-help.php:939
+msgid "text string (regexp pattern), e.g. the form name"
+msgstr "текстуални низ (regexp pattern),нпр. формат за име"
+
+#: cforms-help.php:942
+msgid "[date]"
+msgstr "[Датум]"
+
+#: cforms-help.php:943
+msgid ""
+"DATETIME string (format: Y-m-d H:i:s). Date &amp; time defining the target "
+"period, e.g."
+msgstr ""
+"DATETIME string ((format: Y-m-d H:i:s). Датум и вријеме дефинисања циљног "
+"периода, нпр"
+
+#: cforms-help.php:947
+msgid "or"
+msgstr "или"
+
+#: cforms-help.php:947
+msgid " or any other form input field, e.g. 'Your Name'"
+msgstr "или било који други образац поља за унос, нпр. 'Ваше име'"
+
+#: cforms-help.php:950 cforms-help.php:986
+msgid "[number]"
+msgstr "[број]"
+
+#: cforms-help.php:951
+msgid "limiting the number of results, '' (empty or false) = no limits!"
+msgstr "ограничава број резултата,''(empty or false) = нема ограничења!"
+
+#: cforms-help.php:957 cforms-help.php:989
+msgid "Output"
+msgstr "Излаз"
+
+#: cforms-help.php:958
+msgid ""
+"This function will return a set of stored form submissions in a multi-"
+"dimensional array."
+msgstr ""
+"Ова функција ће вратити скуп спаковних образаца пријава у мулти-"
+"димензионалном низу."
+
+#: cforms-help.php:959
+msgid "Examples"
+msgstr "Примери"
+
+#: cforms-help.php:964
+msgid "Example: Table Output"
+msgstr "Пример: Табела излаз"
+
+#: cforms-help.php:977
+msgid "API Function :: cf_extra_comment_data()"
+msgstr "API функција :: cf_еxтrа_comment_data ()"
+
+#: cforms-help.php:980
+msgid ""
+"This function retrieves all extra data submitted (besides the default "
+"Author, Email, URL, Message fields) per a given comment context. This "
+"function should be called from within the \"comment LOOP\"."
+msgstr ""
+"Ова функција преузима све додатне пријављене податке (поред постојећих поља "
+"Аутор, адреса е-поште, URL, Порука) према датом контексту коментара. Ова "
+"функција би требало да се назове \"comment LOOP \"."
+
+#: cforms-help.php:987
+msgid "The comment ID is expected."
+msgstr "Коментар ID очекиван."
+
+#: cforms-help.php:990
+msgid ""
+"This function will return a set of stored comment data in a multi-"
+"dimensional array."
+msgstr ""
+"Ова функција ће вратити скуп спаковних образаца пријава у мулти-"
+"димензионалном низу."
+
+#: cforms-help.php:995
+msgid ""
+"(Post-)Processing of submitted data is really for hard core deployments, "
+"where <em>real-time manipulation</em> of a form &amp; fields are required."
+msgstr ""
+"(Накнадна-) обрада достављених података је заиста тврдокорна имплементација, "
+"где је потребна <em> манипулација у реалном времену  </еm> са обрасцима и "
+"пољима ."
+
+#: cforms-help.php:996
+msgid ""
+"If you require the submitted data to be manipulated, and or sent to a 3rd "
+"party or would like to make use of the data otherwise, here is how:"
+msgstr ""
+"Ако су вам потребни достављени подаци за обраду, и / или послат на 3-ћи део "
+"или би жељели да на други начин користите  податке, ево како:"
+
+#: cforms-help.php:1001
+msgid "Custom functions to (post-)process user input"
+msgstr ""
+"Подешавање функција за  (накнадно)поступање са унешеним подацима корисника"
+
+#: cforms-help.php:1001
+msgid "Available User Functions"
+msgstr "Доступне корисничке функције"
+
+#: cforms-help.php:1001
+msgid ""
+"(see <strong>my-functions.php.txt</strong> file (plugin root directory), "
+"including examples)"
+msgstr ""
+"погледати <strong>my-functions.php.txt </ strong> file (plugin root "
+"directory), including examples)"
+
+#: cforms-help.php:1005
+msgid ""
+"function gets triggered <strong>after</strong> user input validation, but "
+"<strong>before</strong> processing input data"
+msgstr ""
+"Функција се укључује <strong> након </ strong>, провере ваљаности "
+"корисничког уноса, али <strong>пре него што </ strong> се улазни подаци "
+"обраде"
+
+#: cforms-help.php:1009
+msgid ""
+"function gets called <strong>after</strong> input validation, but "
+"<strong>before</strong> processing input data"
+msgstr ""
+"Функција ће бити призвана <strong>након </ strong> провере уноса, али "
+"<strong>прије  </ strong>обраде улазних података"
+
+#: cforms-help.php:1009
+msgid "(nonAjax)"
+msgstr "(неAjax)"
+
+#: cforms-help.php:1013
+msgid "function gets called <strong>just before</strong> sending the email"
+msgstr ""
+"Функција се призива <strong> непосредно прије </ strong>слања е-порука-а"
+
+#: cforms-help.php:1013
+msgid "(Ajax)"
+msgstr "(Ajax)"
+
+#: cforms-help.php:1017
+msgid ""
+"function gets called <strong>at</strong> various stages of input processing"
+msgstr ""
+"функција ће бити призвана<strong>на</strong> различитим ступњевима обраде "
+"уноса"
+
+#: cforms-help.php:1028
+msgid ""
+"Again, this is for the advanced user who requires ad-hoc creation of forms."
+msgstr ""
+"Опет, ово је за упућеније кориснике којима треба ad-hoc прављење образаца."
+
+#: cforms-help.php:1030
+msgid "A few things to note on dynamic forms:"
+msgstr "Неколико напомена о динамачним обрасцима:"
+
+#: cforms-help.php:1032
+msgid "Dynamic forms only work in <strong>non-Ajax</strong> mode."
+msgstr ""
+"Динамички обрасци функционишу само  <strong> non-Ajax </ strong> модусу"
+
+#: cforms-help.php:1033
+msgid ""
+"Each dynamic form references and thus requires <strong>a base form defined</"
+"strong> in the cforms form settings. All its settings will be used, except "
+"the form (&amp;field) definition."
+msgstr ""
+"Сваки динамичан облик је означен и због тога је потребно <strong>да се "
+"дефинише основни облик </ strong> у cforms за подешавање образаца. Сва "
+"његова подешавања ће се користити, сем облика (и поља) дефиниције."
+
+#: cforms-help.php:1034
+msgid ""
+"Any of the form fields described in the plugins' <strong>HELP!</strong> "
+"section can be dynamically generated."
+msgstr ""
+"Било које поље обрасца описано у плугинс' \"<strong> ПОМОЋ! </ strong> "
+"одељку може да се динамички генерише."
+
+#: cforms-help.php:1035
+msgid "Function call to generate dynamic forms: %s with"
+msgstr "Позив функције за генерисање динамичких форми: %s with"
+
+#: cforms-help.php:1038
+msgid ""
+"empty string for the first (default) form and <strong>2</strong>,3,4... for "
+"any subsequent form"
+msgstr ""
+"празан низ за први (задати) образац и <strong>2</ strong> 3,4 ... за свако "
+"накнадни образац"
+
+#: cforms-help.php:1042
+msgid "<em>field name</em> format described above"
+msgstr "<em> назив поља </ еm> горе описан образац"
+
+#: cforms-help.php:1055
+msgid "Form input field types ('type'):"
+msgstr "Типови образаца поља за унос ('тип'):"
+
+#: cforms-help.php:1059
+msgid "Basic fields"
+msgstr "Основна поља"
+
+#: cforms-help.php:1059
+msgid "Special T-A-F fields"
+msgstr "Специјална T-A-F поља"
+
+#: cforms-help.php:1060
+msgid "Text paragraph"
+msgstr "Текст пасуса"
+
+#: cforms-help.php:1061
+msgid "Single input field"
+msgstr "Једно поље за унос"
+
+#: cforms-help.php:1061 cforms-options.php:372
+msgid "T-A-F * Your Email"
+msgstr "T-A-F* Ваша адреса е-поште"
+
+#: cforms-help.php:1062
+msgid "Multi line field"
+msgstr "Поље са више редова"
+
+#: cforms-help.php:1063
+msgid "Hidden field"
+msgstr "Скривено поље"
+
+#: cforms-help.php:1064
+msgid "Password field"
+msgstr "Поље за лозинку"
+
+#: cforms-help.php:1065
+msgid "Date picker field"
+msgstr "Поље бирач података"
+
+#: cforms-help.php:1065 cforms-options.php:1100
+msgid "WP Comment Feature"
+msgstr "WP коментар ознаке"
+
+#: cforms-help.php:1067
+msgid "Check boxes groups"
+msgstr "Групе поља за потврду"
+
+#: cforms-help.php:1068
+msgid "Drop down fields"
+msgstr "Падајућа поља"
+
+#: cforms-help.php:1070
+msgid "Radio buttons"
+msgstr "Радио дугмад"
+
+#: cforms-help.php:1071
+msgid "'CC' check box"
+msgstr "'CC' поље за потврду"
+
+#: cforms-help.php:1072
+msgid "Multi-recipients field"
+msgstr "Поље за више прималаца"
+
+#: cforms-help.php:1073
+msgid "Spam/Q&amp;A verification"
+msgstr "Спам/Питања&Одговори провера"
+
+#: cforms-help.php:1074
+msgid "Spam/captcha verification"
+msgstr "Spam/captcha провера"
+
+#: cforms-help.php:1075
+msgid "File upload fields"
+msgstr "Поље за пренос датотеке"
+
+#: cforms-help.php:1076
+msgid "Begin of a fieldset"
+msgstr "Почетак скупа поља"
+
+#: cforms-help.php:1077
+msgid "End of a fieldset"
+msgstr "Завршетак скупа поља"
+
+#: cforms-help.php:1080
+msgid "Should only be used <strong>once</strong> per generated form!"
+msgstr ""
+"Требало би да се користи само <strong>једном </ strong> по произведеном "
+"обрасцу!"
+
+#: cforms-help.php:1086
+msgid "Simple example:"
+msgstr "Једноставан пример:"
+
+#: cforms-help.php:1093 cforms-help.php:1120 lib_activate.php:68
+#: lib_options_add.php:34
+msgid "Your Name|Your Name"
+msgstr "Ваше име | Ваше Име"
+
+#: cforms-help.php:1094
+msgid "Your Email"
+msgstr "Ваша адреса е-поште"
+
+#: cforms-help.php:1095
+msgid "Your Message"
+msgstr "Ваша порука"
+
+#: cforms-help.php:1109
+msgid "Call default form with two defined fields"
+msgstr "Призивање задатог обрасца са два подешена поља"
+
+#: cforms-help.php:1116
+msgid "<strong>More advanced example</strong> (file access)"
+msgstr "<strong>Сложенији пример</ strong> (приступ документу)"
+
+#: cforms-help.php:1125 lib_activate.php:69 lib_options_add.php:35
+msgid "Email"
+msgstr "Е-пошта"
+
+#: cforms-help.php:1129
+msgid "Please pick a month for delivery:"
+msgstr "Молимо Вас да изаберете месец испоруке:"
+
+#: cforms-help.php:1132
+msgid "Deliver on#Please pick a month"
+msgstr "Доставити # Молимо Вас изаберите месец"
+
+#: cforms-help.php:1134
+msgid "Need to put this file into your themes dir!"
+msgstr "Треба да се стави у датотеку Вашег директоријума за теме!"
+
+#: cforms-help.php:1141
+msgid "Remove the last '#'"
+msgstr "Уклањање последњег '#'"
+
+#: cforms-help.php:1146
+msgid "Call form #5 with new fields"
+msgstr "Призивање обрасца #5 са новим пољима"
+
+#: cforms-help.php:1150
+msgid "With <code>month.txt</code> containing all 12 months of a year:"
+msgstr "Са <code>month.txt</ code> која садржи свих 12 месеци  у години:"
+
+#: cforms-help.php:1154 lib_activate.php:175
+msgid "January"
+msgstr "Јануар"
+
+#: cforms-help.php:1156 lib_activate.php:176
+msgid "February"
+msgstr "Фебруар"
+
+#: cforms-help.php:1158 lib_activate.php:177
+msgid "March"
+msgstr "Март"
+
+#: cforms-help.php:1168
+msgid "Using variables in email subject and messages"
+msgstr "Коришћење променљивих у темама и порукама е-поште"
+
+#: cforms-help.php:1173
+msgid ""
+"<strong>Subjects and messages</strong> for emails both to the <a href=\"%s\" "
+"%s>form admin</a> as well as to the <a href=\"%s\" %s>visitor</a> (auto "
+"confirmation, CC:) support insertion of pre-defined variables and/or any of "
+"the form input fields."
+msgstr ""
+"<strong> Теме и поруке </ strong> за е-порука-ове како за <a href=\"%s\"  % "
+"s> администратора </ a> tako i <a href=\"%s\" %s>visitor</a> posjetioca </ "
+"a> (ауто-потврда, CC:) убацивање подршке за унапред дефинисане променљиве "
+"и / или за било који образац поља за унос."
+
+#: cforms-help.php:1175
+msgid "Note that the variable names are case sensitive!"
+msgstr ""
+"Узмите у обзир да су имена променљивих осетљива на мала и велика слова!"
+
+#: cforms-help.php:1179 cforms-help.php:1248 cforms-help.php:1273
+msgid "Case sensitive!"
+msgstr "Осетљивост на мала и велика слова!"
+
+#: cforms-help.php:1179
+msgid "Predefined variables:"
+msgstr "Унапред дефинисане променљиве:"
+
+#: cforms-help.php:1183
+msgid "Inserts the Blog's name."
+msgstr "Уноси за назив блога."
+
+#: cforms-help.php:1187
+msgid "Inserts the form name (per your configuration)."
+msgstr "Уноси за назив обрасца (према Вашој конфигурацији)."
+
+#: cforms-help.php:1191
+msgid "Inserts the ID of the post the form is shown in."
+msgstr "Уноси ID прилога приказаног у обрасцу "
+
+#: cforms-help.php:1195
+msgid "Inserts the HTTP referer information (if available)."
+msgstr "Уноси за HTTP означене информације (ако су доступне)."
+
+#: cforms-help.php:1199
+msgid "Inserts the WP page the form was submitted from."
+msgstr "Унос WP страница чији је образац потврђен и из њега достављен."
+
+#: cforms-help.php:1203
+msgid "Inserts the date of form submission (per your general WP settings)."
+msgstr "Уноси датума пријаве обрасца (преко општих WP подешавања)."
+
+#: cforms-help.php:1207
+msgid "Inserts the time of form submission (per your general WP settings)."
+msgstr "Уноси времена пријаве обрасца (преко општих WP подешавања)."
+
+#: cforms-help.php:1211
+msgid "Inserts visitor IP address."
+msgstr "Уноси IP адресе посетиоца."
+
+#: cforms-help.php:1215
+msgid ""
+"Inserts a unique and referenceable form ID (provided that DB Tracking is "
+"enabled!)"
+msgstr ""
+"Уноси јединствених и референтних образаца  ID (под условом да је активирано "
+"DB Tracking !)"
+
+#: cforms-help.php:1219
+msgid "Inserts the ID of the currently logged-in user."
+msgstr "Уноси ID тренутно пријављеног корисника."
+
+#: cforms-help.php:1223
+msgid "Inserts the Name of the currently logged-in user."
+msgstr "Уноси имена тренутно пријављеног корисника."
+
+#: cforms-help.php:1227
+msgid "Inserts the Email Address of the currently logged-in user."
+msgstr "Уноси е-порука-а тренутно пријављеног корисника."
+
+#: cforms-help.php:1231
+msgid "Inserts the First Name of the currently logged-in user."
+msgstr "Уноси првог имена тренутно пријављеног корисника."
+
+#: cforms-help.php:1235
+msgid "Inserts the Last Name of the currently logged-in user."
+msgstr "Уноси презимена тренутно пријављеног корисника."
+
+#: cforms-help.php:1239
+msgid "Special:"
+msgstr "Посебно:"
+
+#: cforms-help.php:1240
+msgid "A single %s (period) on a line inserts a blank line."
+msgstr "За појединачни%s (период) унос реда на празној линији."
+
+#: cforms-help.php:1248
+msgid "Predefined variables for Tell-A-Friend forms:"
+msgstr "Унапред дефинисане варијабле за Реци пријатељу образац:"
+
+#: cforms-help.php:1252
+msgid "Inserts the URL of the WP post/page."
+msgstr "Уноси URL WP чланка/странице."
+
+#: cforms-help.php:1256
+msgid "Inserts the Author's name (<em>Nickname</em>)."
+msgstr "Уноси имена аутора (<em>надимак</еm>)."
+
+#: cforms-help.php:1260
+msgid "Inserts the WP post or page title."
+msgstr "Уноси WP наслова за чланак или страницу."
+
+#: cforms-help.php:1264
+msgid "Inserts the WP post or page excerpt."
+msgstr "Уноси делова из WP чланака или страница. "
+
+#: cforms-help.php:1273
+msgid "Custom variables (referencing input fields):"
+msgstr "Корисничке променљиве (означавање поља за унос):"
+
+#: cforms-help.php:1278
+msgid ""
+"Alternatively to the cforms predefined variables, you can also reference "
+"data of any of your form's input fields by one of the 3 ways described below."
+msgstr ""
+"Другачије од cforms подразумеваних променљивих, можете означити податке из "
+"било којег Вашег обрасца поља за унос на 3 доле описана начина. "
+
+#: cforms-help.php:1282
+msgid "field label"
+msgstr "ознаке поља"
+
+#: cforms-help.php:1283
+msgid ""
+"With <em>field label</em> being the <u>exact</u> field label as it is being "
+"tracked and sent in the admin email!"
+msgstr ""
+"Са <em>ознакама поља </еm> која <u> тачно </u> означавају поље које се прати "
+"и шаље у е-пошту за админи!"
+
+#: cforms-help.php:1286
+msgid "XYZ"
+msgstr "XYZ"
+
+#: cforms-help.php:1287
+msgid ""
+"In case you're using the <u>custom input field NAMES &amp; ID's</u>, the "
+"reference is the <u>id:</u> of the field."
+msgstr ""
+"У случају да користите <u>подешена поља за унос имена и ID</ у>, ознака је "
+"<u> id: </ у>поља."
+
+#: cforms-help.php:1291
+msgid ""
+"With <em>NN</em> being the position of the field on the form configuration "
+"page."
+msgstr "Sa <em>NN</ em> položaj polja u obrascu konfiguracione stranice."
+
+#: cforms-help.php:1297
+msgid "Suppose this is the input field definition string: %sYour Website%s"
+msgstr ""
+"Претпоставимо да је ово дефиниција низа поља за унос:%sВаша веб страница%s"
+
+#: cforms-help.php:1298
+msgid "The corresponding variables would be:"
+msgstr "одговарајуће променљиве требале би бити:"
+
+#: cforms-help.php:1299
+msgid ""
+"%1$s{Your Website}%2$s , %1$s{homepage}%2$s, or %1$s%3$s%2$s (assuming it is "
+"on the 4th position) respectively."
+msgstr ""
+"%1$s{Ваша веб страница}%2$s , %1$s{страница}%2$s, or %1$s%3$s%2$s (pod "
+"pretpostavkom da je na 4-toj poziciji) takoreći."
+
+#: cforms-help.php:1309
+msgid "Important!"
+msgstr "Важно:"
+
+#: cforms-help.php:1309
+msgid "Custom variables in MULTI-PAGE forms:"
+msgstr ""
+
+#: cforms-help.php:1314
+msgid ""
+"Referencing form values in multi-page forms require specification of the "
+"actual form the field is on, eg. {%scf_form6_%sYour Name} would reference "
+"the field labeled \"Your Name\" on form #6."
+msgstr ""
+
+#: cforms-help.php:1323
+msgid ""
+"If you are using multiple input fields with <strong>the same</strong> "
+"recorded field label (you can always check the \"Tracking\" menu tab for how "
+"the fields are stored), e.g:"
+msgstr ""
+"Ако користите више поља за унос <strong>са истим </ strong> забележеним "
+"пољем ознаке (увијек можете да проверите \"Праћење \" у мени картици како се "
+"чувају поља), нпр:"
+
+#: cforms-help.php:1331
+msgid ""
+"Results in the first field labeled %1$s to be addressed with %2$s. The "
+"second instance of %1$s can be addressed by %3$s, and so on..."
+msgstr ""
+"Резултати у првом пољу означени да %1$s буду адресовани са %2$s. Drugа "
+"инстанца od%1$s може да се адресује %3$s, i tako dalje ..."
+
+#: cforms-help.php:1338
+msgid ""
+"Here is an example for a simple <a href=\"%s\" %s>Admin HTML message</a> "
+"<em>(you can copy and paste the below code or change to your liking)</em>:"
+msgstr ""
+"Овдје је пример једноставне <a href=\"%s\" %s> Админ HTML поруке </ а> "
+"<em>(можете да је копирате  и додате код испод или га промените по жељи)</"
+"еm>:"
+
+#: cforms-help.php:1343 cforms-help.php:1367 cforms-help.php:1393
+msgid "HTML code:"
+msgstr "XTML програмски код:"
+
+#: cforms-help.php:1344
+msgid "a form has been submitted on %s, via: %s [IP %s]"
+msgstr "образац је достављен %s,преко::%s [IP% s]"
+
+#: cforms-help.php:1349 cforms-help.php:1373 cforms-help.php:1402
+msgid "Output:"
+msgstr "Излаз:"
+
+#: cforms-help.php:1350
+msgid ""
+"a form has been submitted on June 13, 2007 @ 9:38 pm, via: / [IP "
+"184.153.91.231]"
+msgstr ""
+"образац је достављенon June 13, 2007 @ 9:38 pm, via: / [IP 184.153.91.231]"
+
+#: cforms-help.php:1355
+msgid ""
+"With this limited message you'd want to enable the option \"Include pre "
+"formatted form data table in HTML part\""
+msgstr ""
+"Са овом лимитираном поруком бисте желели да активирате опцију \"Укључи "
+"унапред обликоване обрасце табеле података у ХТМЛ-у делу \""
+
+#: cforms-help.php:1362
+msgid ""
+"Here is another example for a more detailed <a href=\"%s\" %s>Admin HTML "
+"message</a>:"
+msgstr ""
+"Ево још једног примера за детаљнију <a href=\"%s\" %s> Admin HTML поруку</ "
+"a>:"
+
+#: cforms-help.php:1368
+msgid ""
+"{Your Name} just submitted {Form Name}. You can get in touch with him/her "
+"via &lt;a href=\"mailto:{Email}\"&gt;{Email}&lt;/a&gt; and might want to "
+"check out his/her web page at &lt;a href=\"{Website}\"&gt;{Website}&lt;/a&gt;"
+msgstr ""
+"{Ваше име} управо достављен {образац Име}. Можете ступити у контакт са њим / "
+"њом преко <a href=\"mailto:{Email}\">{Email}</a> и можда желите да проверите "
+"његову / њену веб страницу на <a href=\"{Website}\">{Website}</a>"
+
+#: cforms-help.php:1368 cforms-help.php:1375
+msgid "The message is:"
+msgstr "Poruka jе:"
+
+#: cforms-help.php:1368
+msgid "{Message}"
+msgstr "{Порука}"
+
+#: cforms-help.php:1374
+msgid ""
+"John Doe just submitted MY NEW FORM. You can get in touch with him/her via "
+"<a href=\"mailto:#\">john.doe@doe.com</a> and might want to check out his/"
+"her web page at <a href=\"#\">http://website.com</a>"
+msgstr ""
+"Јohn Doe је управо доставио МОЈ НОВИ ОБРАЗАЦ. Можете ступити у контакт са "
+"њим / њом преко <a href=\"mailto:#\"> john.doe  @ doe.com </ a> и можда "
+"желите да проверите његову /њену wеб страницу  на <a  href = \"# \"> http://"
+"website.com </ a>"
+
+#: cforms-help.php:1376
+msgid "Hey there! Just wanted to get in touch. Give me a ring at 555-..."
+msgstr "Здраво! Само желим да ступимо у контакт. Позовите ме на 555 -..."
+
+#: cforms-help.php:1381
+msgid ""
+"With this more detailed message you can disable the option \"Include pre "
+"formatted form data table in HTML part\" since you already have all fields "
+"covered in the actual message/header."
+msgstr ""
+"Са овом детаљнијом поруком можете искључити опцију \"Укључи унапред "
+"обликоване обрасце табела података у HTML делу \", већ кад имате сва "
+"попуњена поља у тренутној поруци / заглављу."
+
+#: cforms-help.php:1388
+msgid ""
+"And a final example for a <a href=\"%s\" %s>HTML auto confirmation message</"
+"a>:"
+msgstr "И коначни пример <a href=\"%s\" %s> XTML ауто порука о потврди </ а>:"
+
+#: cforms-help.php:1394 cforms-help.php:1403
+msgid "auto confirmation message"
+msgstr "Аутоматска порука о потврди"
+
+#: cforms-help.php:1395 cforms-options.php:122 cforms-options.php:123
+#: lib_activate.php:81 lib_activate.php:82 lib_options_add.php:46
+#: lib_options_add.php:48
+msgid "Dear {Your Name},"
+msgstr "Драги {Ваше име},"
+
+#: cforms-help.php:1396 cforms-help.php:1405 cforms-options.php:122
+#: cforms-options.php:123 lib_activate.php:81 lib_activate.php:82
+#: lib_options_add.php:46 lib_options_add.php:48
+msgid "Thank you for your note!"
+msgstr "Хвала Вам за Вашу поруку!"
+
+#: cforms-help.php:1397 cforms-help.php:1406 cforms-options.php:122
+#: cforms-options.php:123 lib_activate.php:81 lib_activate.php:82
+#: lib_options_add.php:46 lib_options_add.php:48
+msgid "We will get back to you as soon as possible."
+msgstr "Одговорићемо Вам у најкраћем могућем року."
+
+#: cforms-help.php:1404
+msgid "Dear John Doe,"
+msgstr "Поштовани Јохн Дое,"
+
+#: cforms-help.php:1418
+msgid ""
+"Multi-page-forms support chaining of several forms and gather user input "
+"across all linked forms. Inserting a multi page form is easy, simply insert "
+"the %s first form %s of the series into your post or page."
+msgstr ""
+"Више-странични-формати подржавају уланчавањење више образаца и сакупљају "
+"уносе корисника у све повезане обрасце. Убацивање више страничних формата је "
+"лако, једноставно убаците%s први образац%s у серији у чланак или страницу."
+
+#: cforms-help.php:1423
+msgid "Multi-part/-page form features:"
+msgstr "Карактеристике више-делних/-страничних образаца"
+
+#: cforms-help.php:1426
+msgid "Defining first, next and last form via configuration"
+msgstr "Дефинисање првог, сљедећег и последњег обрасца путем конфигурације"
+
+#: cforms-help.php:1429
+msgid ""
+"Overriding \"next form\" at run-time (dynamically) via my-functions.php.txt"
+msgstr ""
+"Прескакање \"следећи образац \" у време извршавања (динамички), путем my-"
+"functions.php"
+
+#: cforms-help.php:1432
+msgid "Optionally send/suppress partial admin emails on a per form basis"
+msgstr ""
+"Слање по избору / деломично потискивање админ е-порука-ова по сваком "
+"основном обрасцу"
+
+#: cforms-help.php:1435
+msgid "A form reset button"
+msgstr "Образац дугме за ресетовање"
+
+#: cforms-help.php:1438
+msgid "A form back button"
+msgstr "Образац дугме за враћање"
+
+#: cforms-help.php:1444
+msgid "Example (eg. using 3 forms):"
+msgstr "Пример (нпр. коришћењем 3 обрасца):"
+
+#: cforms-help.php:1447
+msgid "form 1,2,3:"
+msgstr "образац 1,2,3:"
+
+#: cforms-help.php:1448
+msgid "select main check box to enable as multi-part forms"
+msgstr ""
+"Изаберите главно поље за потврду да би се активирала као вишеделни образац"
+
+#: cforms-help.php:1451
+msgid "form 1:"
+msgstr "Образац 1:"
+
+#: cforms-help.php:1452 cforms-help.php:1456
+msgid "(a) check \"Suppress admin email..\""
+msgstr "(а)Провера \"потиснута е-пошта за админ  ..\""
+
+#: cforms-help.php:1452
+msgid "(b) check \"This is the first form..\""
+msgstr "(б) Провера \"Ово је први образац  ..\""
+
+#: cforms-help.php:1452
+msgid "(c) select \"form 2\" as next form"
+msgstr "(ц) изабрати \"образац 2 \" као следећи образац"
+
+#: cforms-help.php:1455
+msgid "form 2:"
+msgstr "Форма 2:"
+
+#: cforms-help.php:1456
+msgid "(b) select \"form 3\" as next form"
+msgstr "(б) изаберите \"образац 3 \" као следећи образац"
+
+#: cforms-help.php:1459
+msgid "form 3:"
+msgstr "Образац 3:"
+
+#: cforms-help.php:1460
+msgid "(a) make sure to not! have \"Suppress admin email..\" selected"
+msgstr ""
+"(а) Побрините се да немате! \"потиснута е-порука за администрирање .. \" "
+"изабрану опцију"
+
+#: cforms-help.php:1460
+msgid "(b) select \"last form\" to stop further routing"
+msgstr "(б) Изаберите \"последњи образац \" да се заустави даље усмеравање"
+
+#: cforms-help.php:1463
+msgid "Optionally add Reset &amp; Back buttons where appropriate."
+msgstr ""
+"По избору додајте дугме за ресетовање и дугме за враћање уназад где је то "
+"потребно."
+
+#: cforms-help.php:1466
+msgid ""
+"Further, it makes sense to change \"Submit Button\" text (to e.g. \"Continue"
+"\") &amp; the \"success message\" to rather announce the next form."
+msgstr ""
+"Даље, има смисла да се промени \"дугме Потврди \" текста (на пример  "
+"\"Настави \") &  \"успјешно примљена порука \", да се најави сљедећи образац."
+
+#: cforms-help.php:1470
+msgid "Important Notes:"
+msgstr "Важне напомене:"
+
+#: cforms-help.php:1472
+msgid ""
+"Accessing %1$s {custom variables} %2$s in the final form differs from how "
+"you would reference these in individual forms. Use the %1$s mail() %2$s "
+"example in my-functions.php.txt to examine the user data array; e.g. "
+"%1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of "
+"the series)."
+msgstr ""
+"Приступ%1$s {подешеним вредностима}%2$s у коначном обрасцу се разликује  од "
+"тога како желите  га означите у појединачном обрасцу. Користите%1$ "
+"smail()%2$s пример у my-functions.php.txt да би се испитао низ корисникових "
+"података; нпр %1$s{Email}%2$s би био %1$s{cf_form_Email}%2$s (za prvi "
+"obrazac iz serije)."
+
+#: cforms-help.php:1473
+msgid ""
+"%1s File attachments %2s will not be included in the admin email unless the "
+"upload fields are on the last form. However, they will be stored and tracked."
+msgstr ""
+"%1sПриложена датотека%2s neće biti uključeni u admin e-mail sem ako su polja "
+"za prenos podataka u posljednjem obrascu. Međutim, oni će biti spakovani  i "
+"praćeni."
+
+#: cforms-help.php:1474
+msgid ""
+"Once the multi page form support is enabled, %1$sAjax is being disabled%2$s "
+"for this form."
+msgstr ""
+"Када је подршка за више странични образац активирана, %1$sAjax је деактивиран"
+"%2$sza ovaj obrazac."
+
+#: cforms-help.php:1481
+msgid "Styling Your Forms (CSS theme files)"
+msgstr "Стил за Ваше обрасце (CSS тема датотеке)"
+
+#: cforms-help.php:1485
+msgid ""
+"Please see the <a href=\"%s\">Styling page</a> for theme selection and "
+"editing options."
+msgstr ""
+"Молимо погледајте <a href=\"%s\"> Стилизовање страница </ а> за избор теме и "
+"опција за уређивање."
+
+#: cforms-help.php:1486
+msgid ""
+"cforms comes with a few theme examples (some of them may require adjustments "
+"to work with <strong>your</strong> forms!) but you can of course create your "
+"own theme file -based on the default <strong>cforms.css</strong> file- and "
+"put it in the %s directory."
+msgstr ""
+"cforms се појављује са пар тема примјера (нека ће тражити пријаву да би "
+"могло да се ради на њима)<strong> Ваших</strong> образаца!), али ви наравно "
+"можете направити своју датотеку теме која је у основи додељена у "
+"<strong>cforms.css</strong> датотеци и ставити је у %s директоријум."
+
+#: cforms-help.php:1488
+msgid ""
+"Your form <strong>doesn't</strong> look like the preview image, or your "
+"individual changes don't take effect, check your global WP theme CSS! It may "
+"overwrite some or many cforms CSS declarations. If you don't know how to "
+"trouble shoot, take a look at the Firefox extension \"Firebug\" - an "
+"excellent CSS troubleshooting tool!"
+msgstr ""
+"Ваш образац<strong> не </ strong> изгледа као у  приказу слике, или посебне "
+"промене немају ефекта, проверите Ваше основно подешавање WП теме ЦСС! Ово "
+"може проузроковати преписивање преко многих  cforms  ЦСС декларација. Ако не "
+"знате како да ријешите проблем, погледајте Firefox додатак програму "
+"\"Firebug \" - то је одличан алат за решавање проблема CSS!"
+
+#: cforms-help.php:1497
+msgid ""
+"For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s "
+"and comment section on the plugin homepage."
+msgstr ""
+"За све актуелне информације прво проверите %sFAQs%s &amp; %scforms форум%s и "
+"одељак за коментаре у програмском додатку"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "A new submission (form: \"{Form Name}\")"
+msgstr "Нова потврда (образац: \"{Назив обрасца} \")"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "Submitted on: {Date}"
+msgstr "Потврђено: {Датум}"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "Via: {Page}"
+msgstr "Преко: {Страна}"
+
+#: cforms-options.php:117 lib_activate.php:89 lib_options_add.php:53
+msgid "By {IP} (visitor IP)"
+msgstr "Од {IP} (IP адреса посетиоца)"
+
+#: cforms-options.php:118 lib_activate.php:90 lib_options_add.php:54
+msgid "A form has been submitted on {Date}, via: {Page} [IP {IP}]"
+msgstr "Образац је потврђен {Датум}, виа: {Страна}[IP {IP}]"
+
+#: cforms-options.php:123 lib_activate.php:82 lib_options_add.php:48
+msgid "This is an automatic confirmation message."
+msgstr "Ово је аутоматизована порука о потврди."
+
+#: cforms-options.php:189 lib_functions.php:128
+msgid "Form Settings"
+msgstr "Подешавање образаца"
+
+#: cforms-options.php:192
+msgid "Navigate to your other forms."
+msgstr "Крените на друге облике."
+
+#: cforms-options.php:195
+msgid "Navigate to"
+msgstr "Крените ка"
+
+#: cforms-options.php:196
+msgid "Go"
+msgstr "Kreni"
+
+#: cforms-options.php:212
+msgid ""
+"<strong>cforms</strong> allows you <a href=\"%s\" %s>to insert</a> one or "
+"more custom designed contact forms, which on submission (preferably via "
+"Ajax) will send the visitor info via email and optionally stores the "
+"feedback in the database."
+msgstr ""
+"<strong>cforms</strong> Вам дозвољавају <a href=\"%s\" %s>да уметнете </ а> "
+"један или више стилизованих образац за контакт, који ће након потврде "
+"(углавном преко Ајаx-а) послати посетиоцу обавест преко е-поште и по избору "
+"сачувати повратну информацију у базу података."
+
+#: cforms-options.php:213
+msgid ""
+"<a href=\"%s\" %s>Here</a> is a quick step by step quide to get you up and "
+"running quickly."
+msgstr ""
+"<a href=\"%s\" %s>Овде</a> је брзи корак по корак водич да Вас одржи на "
+"ногама и начини хитрим."
+
+#: cforms-options.php:220
+msgid ""
+"You may give each form an optional name to better identify incoming emails."
+msgstr ""
+"Можете сваком обрасцу дати назив по избору да бисте боље идентификовали "
+"примљене е-порука-ове."
+
+#: cforms-options.php:221 cforms-options.php:222
+msgid "Enables or disables Ajax support for this form."
+msgstr "Активира или деактивира подршку Ајаx за овај образац."
+
+#: cforms-options.php:222
+msgid "Ajax enabled"
+msgstr "Ajax активиран"
+
+#: cforms-options.php:230
+msgid ""
+"Please see the <strong>Help!</strong> section for information on how to "
+"deploy the various <a href=\"%s\" %s>supported fields</a>,"
+msgstr ""
+"Погледајте<strong>Помоћ!</ strong> за информације о томе како да се "
+"распореде различита< href=\"%s\" <a %s> подржавана поља</ a>"
+
+#: cforms-options.php:231
+msgid "set up forms using <a href=\"%s\" %s>FIELDSETS</a>,"
+msgstr "Подесите обрасце коришћењем<a href=\"%s\" %s>СКУПОВИ ПОЉА</ a>"
+
+#: cforms-options.php:232
+msgid ""
+"use <a href=\"%s\" %s>default values</a> &amp; <a href=\"%s\" %s>regular "
+"expressions</a> for single &amp; multi-line fields. "
+msgstr ""
+"употребите<a href=\"%s\" %s>подразумевану вредност</a> &amp; <a href=\"%s\" "
+"%s>регуларни изрази</a> за једно и вишередна поља."
+
+#: cforms-options.php:233
+msgid ""
+"Besides the generic success &amp; failure messages below, you can add <a "
+"href=\"%s\" %s>custom error messages</a>."
+msgstr ""
+"Поред генерички произведених порука да је пријава успела или не, доле испод, "
+"можете додати <a  href=\"%s\" %s>подешене поруке о грешци </ а>."
+
+#: cforms-options.php:237
+msgid "Please save the new order of fields (<em>Update Settings</em>)!"
+msgstr ""
+"Молимо Вас, направите нову датотеку за поља (<em> подешавање ажурирања </"
+"еm>)!"
+
+#: cforms-options.php:239
+msgid "Can be a simple label or a more complex expression. See Help!"
+msgstr "Може бити једноставна ознака или сложенији израз. Погледати Помоћ!"
+
+#: cforms-options.php:239
+msgid "Field Name"
+msgstr "Назив поља"
+
+#: cforms-options.php:240
+msgid "Pick one of the supported input field types."
+msgstr "Изаберите један подржавани тип поља за унос."
+
+#: cforms-options.php:240
+msgid "Type"
+msgstr "Тип"
+
+#: cforms-options.php:241
+msgid "Makes an input field required for proper form validation."
+msgstr "Направите поље за унос са траженом одговарајућом формом провере "
+
+#: cforms-options.php:241
+msgid "required"
+msgstr "Тражен"
+
+#: cforms-options.php:242
+msgid "Makes the field required and verifies the email address."
+msgstr "Чини да су поља обавезна и проверава адресе е-поште."
+
+#: cforms-options.php:242
+msgid "e-mail"
+msgstr "Е-mail"
+
+#: cforms-options.php:243
+msgid "Clears the field (default value) upon focus."
+msgstr "Обриши поље (подразумевана вредност) након фокуса"
+
+#: cforms-options.php:243
+msgid "auto-clear"
+msgstr "Аутоматско брисање"
+
+#: cforms-options.php:244
+msgid "Grey's out a form field (field will be completely disabled)."
+msgstr "Затамњује поље обрасца (поље ће бити недоступно)."
+
+#: cforms-options.php:244 cforms-options.php:424
+msgid "disabled"
+msgstr "недоступно"
+
+#: cforms-options.php:245
+msgid "Form field will be readonly!"
+msgstr "Образац поља може само да се чита!"
+
+#: cforms-options.php:245 cforms-options.php:430
+msgid "read-only"
+msgstr "само за читање"
+
+#: cforms-options.php:280 cforms-options.php:298
+msgid "New Field"
+msgstr "Нова поља"
+
+#: cforms-options.php:325
+msgid "Drag me"
+msgstr "Повлачи"
+
+#: cforms-options.php:327
+msgid "Please enter field definition"
+msgstr "Молимо унесите дефиницију поља"
+
+#: cforms-options.php:327
+msgid "Edit"
+msgstr "Уреди"
+
+#: cforms-options.php:327
+msgid "Pick a field type"
+msgstr "Изаберите тип поља"
+
+#: cforms-options.php:329
+msgid "----- General form fields ----"
+msgstr ""
+
+#: cforms-options.php:330
+msgid "Begin Fieldset"
+msgstr "Почетак скупа поља"
+
+#: cforms-options.php:331
+msgid "End Fieldset"
+msgstr "Завршетак скупова поља"
+
+#: cforms-options.php:332
+msgid "Text only (no input)"
+msgstr "Само текст (без уноса)"
+
+#: cforms-options.php:333
+msgid "Single line of text"
+msgstr "Један ред текста"
+
+#: cforms-options.php:334
+msgid "Multiple lines of text"
+msgstr "Више редова текста"
+
+#: cforms-options.php:335
+msgid "Check Box"
+msgstr "Поље за потврду"
+
+#: cforms-options.php:336
+msgid "Check Box Group"
+msgstr "Скупови поља за проверу"
+
+#: cforms-options.php:337
+msgid "Radio Buttons"
+msgstr "Радио дугмад"
+
+#: cforms-options.php:338
+msgid "Select Box"
+msgstr "Поље за бирање"
+
+#: cforms-options.php:339
+msgid "Multi Select Box"
+msgstr "Поље за више бирања"
+
+#: cforms-options.php:340
+msgid "File Upload Box"
+msgstr "Поље за отпремање датотека"
+
+#: cforms-options.php:342
+msgid "Date Entry/Dialog"
+msgstr "Датум уноса / Дијалог"
+
+#: cforms-options.php:343
+msgid "Password Field"
+msgstr "Поље за лозинку"
+
+#: cforms-options.php:344
+msgid "Hidden Field"
+msgstr "Скривено поље"
+
+#: cforms-options.php:347
+msgid "--------- Special ------------"
+msgstr "--------- Специјална ------------"
+
+#: cforms-options.php:348
+msgid "CC: option for user"
+msgstr "CC: Опција за корисника"
+
+#: cforms-options.php:349
+msgid "Multiple Recipients"
+msgstr "Више прималаца"
+
+#: cforms-options.php:350
+msgid "Captcha verification (image)"
+msgstr "Captcha провера (слика)"
+
+#: cforms-options.php:370
+msgid "----- T-A-F form fields ------"
+msgstr "----- T-A-F образац поља ------"
+
+#: cforms-options.php:374
+msgid "T-A-F * Friend's Email"
+msgstr "T-A-F *адреса е-поште пријатеља"
+
+#: cforms-options.php:378
+msgid "--- WP comment form fields ---"
+msgstr "--- WP образац поља за коментар---"
+
+#: cforms-options.php:386
+msgid "--- HTML5 form fields ---"
+msgstr ""
+
+#: cforms-options.php:387
+msgid "Color Field"
+msgstr ""
+
+#: cforms-options.php:388
+msgid "Date Field"
+msgstr ""
+
+#: cforms-options.php:389
+msgid "Date/Time Field"
+msgstr ""
+
+#: cforms-options.php:390
+msgid "Date/Time (local) Field"
+msgstr ""
+
+#: cforms-options.php:391
+msgid "Email Field"
+msgstr ""
+
+#: cforms-options.php:392
+msgid "Month Field"
+msgstr ""
+
+#: cforms-options.php:393
+msgid "Number Field"
+msgstr ""
+
+#: cforms-options.php:394
+msgid "Range Field"
+msgstr ""
+
+#: cforms-options.php:395
+msgid "Search Field"
+msgstr ""
+
+#: cforms-options.php:396
+msgid "Telephone Number Field"
+msgstr ""
+
+#: cforms-options.php:397
+msgid "Time Field"
+msgstr ""
+
+#: cforms-options.php:398
+msgid "URL Field"
+msgstr ""
+
+#: cforms-options.php:399
+msgid "Week Field"
+msgstr ""
+
+#: cforms-options.php:403
+msgid "Remove input field"
+msgstr "Уклони поље за унос"
+
+#: cforms-options.php:406
+msgid "input required"
+msgstr "унос обавезан"
+
+#: cforms-options.php:412
+msgid "email required"
+msgstr "адреса е-поште обавезна"
+
+#: cforms-options.php:418
+msgid "clear field"
+msgstr "Испразни поље"
+
+#: cforms-options.php:446
+msgid "Add more input field(s)"
+msgstr "Додати још једно поље/више поља за унос"
+
+#: cforms-options.php:446
+msgid "Add"
+msgstr "Додај"
+
+#: cforms-options.php:447
+msgid "new field(s) @ position"
+msgstr "ново(а) поље(а) @ положај"
+
+#: cforms-options.php:466
+msgid "File Upload Settings"
+msgstr "Подешавање за пријенос датотеке"
+
+#: cforms-options.php:472
+msgid ""
+"You may also want to verify the global, file upload specific  <a href=\"%s\" "
+"%s>error messages</a>."
+msgstr ""
+"Можда ћете такође жељети да проверите опште, за пријенос датотека посебне<a "
+"href=\"%s\" %s> поруке о грешци </ а>."
+
+#: cforms-options.php:480
+msgid ""
+"Can't find the specified <strong>Upload Directory</strong> ! Please verify "
+"that it exists!"
+msgstr ""
+"Не могу пронаћи наведени<strong>Директоријум за пренос података</strong> ! "
+"Молим проверити да ли постоји!"
+
+#: cforms-options.php:485
+msgid "Upload directory (absolute path)"
+msgstr "Директоријум за пренос (апсолутна путања)"
+
+#: cforms-options.php:486
+msgid "e.g. /home/user/www/wp-content/my-upload-dir"
+msgstr "нпр. /home/user/www/wp-content/my-upload-dir"
+
+#: cforms-options.php:490
+msgid "Upload directory URL (relative path/URL)"
+msgstr "Директорију за пренос URL (релативна путања / URL)"
+
+#: cforms-options.php:491
+msgid "e.g. /wp-content/my-upload-dir"
+msgstr "npr. /wp-content/my-upload-dir"
+
+#: cforms-options.php:495
+msgid "Disable noid- (tracking ID) prefix"
+msgstr "Isključi noid-(praćenje ID) prefiks"
+
+#: cforms-options.php:500
+msgid "Allowed file extensions"
+msgstr "Dozvoljene datoteke dodataka programa"
+
+#: cforms-options.php:501
+msgid "[empty=no files are allowed]"
+msgstr "[prazan=nema datoteke su dozvoljene]"
+
+#: cforms-options.php:505
+msgid "Maximum file size<br />in kilobyte"
+msgstr "Maksimalna veličina datoteke<br />u kilobajtima"
+
+#: cforms-options.php:510
+msgid "Do not email attachments"
+msgstr "Bez uz e-mail priloženog dokumenta  "
+
+#: cforms-options.php:511
+msgid ""
+"<u>Note</u>: Attachments are stored on the server &amp; can be accessed via "
+"the <a href=\"%s\" %s>cforms tracking</a> tables."
+msgstr ""
+"<u>Napomena</ u>: Prilozi su sačuvani na serveru i može im se pristupiti "
+"preko <a href=\"%s\" %s> cforms tracking </ a> tabela."
+
+#: cforms-options.php:521
+msgid "Messages, Text and Button Label"
+msgstr "Poruke, tekst, oznaka za dugme"
+
+#: cforms-options.php:525
+msgid ""
+"These are the messages displayed to the user on successful (or failed) form "
+"submission. These messages are form specific, a general message for entering "
+"a wrong <strong>visitor verification code</strong> can be found <a href=\"%s"
+"\" %s>here</a>."
+msgstr ""
+"Tu su poruke koje se prikazuju korisniku o uspešno (ili bezuspešnoj) potvrdi "
+"obrasca. Ove poruke su posebnog oblika, opšta poruka za unos pogrešnog "
+"<strong>koda za potvrdu</ strong>može se naći <a href=\"%s\" %s>ovde</a>."
+
+#: cforms-options.php:530
+msgid "Submit button text"
+msgstr "Tekst dugme za potvrdu"
+
+#: cforms-options.php:535
+msgid "Waiting message"
+msgstr "Poruka na čekanju"
+
+#: cforms-options.php:539
+msgid "\"required\" label"
+msgstr "\"obavezno\" oznaka"
+
+#: cforms-options.php:543
+msgid "\"email required\" label"
+msgstr "\"Е-mail obavezan \" оznaka"
+
+#: cforms-options.php:548
+msgid "<strong>Success message</strong><br />when form filled out correctly"
+msgstr ""
+"<strong>Uspjela poruka  </ strong> <br/>kada je obrazac ispravno popunjen"
+
+#: cforms-options.php:557
+msgid ""
+"<strong>Failure message</strong><br />when missing fields or wrong field<br /"
+">formats (regular expr.)"
+msgstr ""
+"<strong>Neuspela poruka </ strong><br />kada se omaše polja ili ispune "
+"pogrešno polje<br />obrasca  (regularan izraz.)"
+
+#: cforms-options.php:565
+msgid "Show messages"
+msgstr "Прикажи поруке"
+
+#: cforms-options.php:567
+msgid "Above form"
+msgstr "Горњи образац"
+
+#: cforms-options.php:568
+msgid "Below form"
+msgstr "Доњи образац"
+
+#: cforms-options.php:575
+msgid "Jump to Error"
+msgstr "Пређи на грешку"
+
+#: cforms-options.php:577
+msgid "(Only Javascript)"
+msgstr "(Само Javascript)"
+
+#: cforms-options.php:581
+msgid "Fancy Error messages"
+msgstr "Украшене поруке о грешци"
+
+#: cforms-options.php:583
+msgid "Enhanced display of errors (see also new theme CSS classes)"
+msgstr "Побољшани приказ грешака (видети такође нову тему CSS класа)"
+
+#: cforms-options.php:587
+msgid "Embedded Custom Error<br />Messages"
+msgstr "Уграђене подешене грешке <br /> Поруке"
+
+#: cforms-options.php:589
+msgid "Field specific error messages will be shown above input field"
+msgstr "Поље одређених порука о грешци биће приказане изнад поља за унос"
+
+#: cforms-options.php:599
+msgid "Core Form Admin / Email Options"
+msgstr "Језгро админ обрасца / Е-маил опције"
+
+#: cforms-options.php:603
+msgid ""
+"These settings determine basic cforms behaviour and the form email "
+"recipient(s). Both %s and %s formats are valid, but check if your mail "
+"server does accept the format of choice!"
+msgstr ""
+"Ова подешавања одређују основно cforms понашање и обрасце е-порука "
+"примаоц(лаца). I%s и %s обрасци су важећи, али провјерите да ли Ваш  маил "
+"сервер прихвата образац по избору!"
+
+#: cforms-options.php:604
+msgid ""
+"The default FROM: address is based on your blog's name and the WP default "
+"address. It can be changed, but I highly recommend you do not, as it may "
+"render the plugin useless. If you do change the FROM: address, triple check "
+"if all admin emails are being sent/received! "
+msgstr ""
+"Задато ОД: адреса је заснована на називу Вашег блога и WP задатој адреси. "
+"Може се променити, али препоручујем да то не урадите, јер може додатак "
+"начинити бескорисним. Ако не промените ОД: адреса, троструко проверите да ли "
+"су све админ е-поруке послате /примљене!"
+
+#: cforms-options.php:609
+msgid "Core options"
+msgstr "Основне опције"
+
+#: cforms-options.php:611
+msgid ""
+"Disable %s multipart/form-data enctype %s, e.g. to enable salesforce.com"
+msgstr ""
+"Деактивирати%s вишеделно/очитавање података из обрасца %s, нпр. да се "
+"активира salesforce.com"
+
+#: cforms-options.php:618
+msgid "%sDo not reset%s input fields after submission"
+msgstr "%sНе ажурирајте%s поља за унос након потврде"
+
+#: cforms-options.php:625
+msgid "Show new entries on %sdashboard%s"
+msgstr "Прикажи нове уносе на%sконтролној табли% s"
+
+#: cforms-options.php:632
+msgid "%sExclude this form%s from database tracking"
+msgstr "%sИскључите овај образац%s за праћење база података"
+
+#: cforms-options.php:638
+msgid "Use %scustom input field NAMES &amp; ID's%s"
+msgstr "Користите%s подешена поља за унос ИМЕНА и ID-јева%s"
+
+#: cforms-options.php:638 cforms-options.php:645
+msgid "Read note &raquo;"
+msgstr "Прочитајте напомену &raquo;"
+
+#: cforms-options.php:641
+msgid ""
+"This feature replaces the default NAMEs/IDs (e.g. <strong>cf_field_12</"
+"strong>) with <em>custom ones</em>, either derived from the field label you "
+"have provided or by specifically declaring it via <strong>[id:XYZ]</strong>,"
+"e.g. <em>Your Name[id:the-name]</em>. This will for instance help to feed "
+"data to third party systems (requiring certain input field names in the "
+"$_POST variable)."
+msgstr ""
+"Ова опција замењује задате НАЗИВЕ / ИД-јеве (нпр. <strong> cf_field_12 </ "
+"strong>) sa<em> подешеним</ em>, било изведених из поља са ознаком коју сте "
+"ви задали или посебно декларисаних преко<strong> [ID : XYZ] </ strong>, na "
+"primjer, <em> Ваше име [id:the-name] </ em>. То ће помоћи,на пример да се "
+"уметну подаци у троделне ситеме (који захтевају одређена за поља за унос "
+"имена у $ _POST променљиве)."
+
+#: cforms-options.php:645
+msgid "%sExtra variables%s e.g. {Title}"
+msgstr "%sПосебне променљиве%s нпр. {Наслов}"
+
+#: cforms-options.php:648
+msgid ""
+"There are <a href=\"%s\" %s>three additional</a>, <em>predefined variables</"
+"em> that belong to the Tell-A-Friend feature but can be enabled here without "
+"actually turning on T-A-F."
+msgstr ""
+"Постоје<a href=\"%s\" %s> три додатне</ a>, <em> унапред дефинисане "
+"променљиве </еm> које припадају Реци-пријатељу елементу али може да буде "
+"овде активирана без враћања на T-A-F."
+
+#: cforms-options.php:648
+msgid ""
+"This will add two more hidden fields to your form to ensure that all data is "
+"available also in AJAX mode."
+msgstr ""
+"Ово ће додати још два скривена поља Вашем обрасцу и осигурати да сви подаци "
+"буду доступни такође и у AJAX модусу."
+
+#: cforms-options.php:653
+msgid "%sHide form%s after successful submission"
+msgstr "%sСакрити образац%s након успешне потврде"
+
+#: cforms-options.php:660
+msgid "Submission Limit"
+msgstr "Граница за број потврда"
+
+#: cforms-options.php:661
+msgid ""
+"<u>total</u> # of submissions accepted [<strong>empty or 0 (zero) = off</"
+"strong>] (tracking must be enabled!)"
+msgstr ""
+"<u>укупно</u> # примљених потврда [<strong>празно или 0 (нула) = искључено </"
+"strong> (праћење мора да се активира!)"
+
+#: cforms-options.php:665
+msgid "Start Date"
+msgstr "Датум почетка"
+
+#: cforms-options.php:669 cforms-options.php:690
+msgid "HH:MM"
+msgstr ""
+
+#: cforms-options.php:669 cforms-options.php:690
+msgid "Time entry."
+msgstr "Време уноса."
+
+#: cforms-options.php:675
+msgid "The form will be available in "
+msgstr "Образац ће бити доступан у"
+
+#: cforms-options.php:677
+msgid "The form is available now."
+msgstr "Образац је сада доступан."
+
+#: cforms-options.php:686
+msgid "End Date"
+msgstr "Датум завршетка"
+
+#: cforms-options.php:695
+msgid "The form will be available for another "
+msgstr "Образац ће бити доступан за други"
+
+#: cforms-options.php:697
+msgid "The form is not available anymore."
+msgstr "Obrazac više nije dostupan."
+
+#: cforms-options.php:706
+msgid "Limit text"
+msgstr "Ограничење за текст"
+
+#: cforms-options.php:714
+msgid "<strong>Redirect</strong><br />options:"
+msgstr "<strong>Преусмеравање</ strong> <br /> опцијa:"
+
+#: cforms-options.php:716
+msgid "Enable alternative success page (redirect)"
+msgstr "Укључите алтернативне успеле странице (преусмјеравање)"
+
+#: cforms-options.php:724
+msgid "<strong>Send form data</strong><br /> to an alternative page:"
+msgstr ""
+"<strong>Пошаљи податке обрасца </ strong><бр /> на алтернативну страницу:"
+
+#: cforms-options.php:726
+msgid "Enable alternative form action!"
+msgstr "Укључите другу радњу за образац!"
+
+#: cforms-options.php:727 cforms-options.php:737 cforms-options.php:919
+#: cforms-options.php:1086
+msgid "Please read note &raquo;"
+msgstr "Молимо прочитајте напомену &raquo;"
+
+#: cforms-options.php:731
+msgid ""
+"If you enable an alternative <strong>form action</strong> you <u>will loose "
+"any cforms application logic</u> (spam security, field validation, DB "
+"tracking etc.) in non-ajax mode! This setting is really only for developers "
+"that require additional capabilities around forwarding of form data and will "
+"turn cforms into a front-end only, a \"form builder\" so to speak."
+msgstr ""
+"Ако активирате други <strong>образац</ strong>iзгубићете <u> сву css логику "
+"за апликације</ u> (zaštita od spam-a, polje za proveru, DB праћење итд.) у "
+"не-Ajax модусу! Ovo podešavanje je zapravo samo za programere od kojih se "
+"traži dodatna sposobnost  prosleđivanja podataka obrazaca i pretvaranja "
+"cforms u prednji plan,  za \"konstruktora obrazaca \" da se tako izrazim."
+
+#: cforms-options.php:736
+msgid "RSS feed"
+msgstr "RSS извор вести"
+
+#: cforms-options.php:737
+msgid "Enable RSS feed to track new submissions"
+msgstr "Активирајте RSS извор вести за праћење нових потврда"
+
+#: cforms-options.php:740
+msgid ""
+"For the RSS feed to work you must have %sDatabase Tracking%s turned on under "
+"<em>Global-Settings</em>! In order to pick &amp; include input fields in "
+"your feed your Tracking page must show at least one record for reference."
+msgstr ""
+"Да би RSS извор вијести функционисао морате да имате%sДатотеку за праћење%s "
+"укључену у <em> Општем подешавању </еm>! Да би се изабрало и укључило поље "
+"за унос у Ваш извор за вести Ваша страница за праћење мора да покаже најмање "
+"један запис вести. "
+
+#: cforms-options.php:759
+msgid "Form fields included in feed:"
+msgstr "Поља обрасца укључена у извор за вести:"
+
+#: cforms-options.php:792
+msgid "Admin Email Message Options"
+msgstr "Админ е-порука поруке Опције"
+
+#: cforms-options.php:796
+msgid ""
+"Generally, emails sent to the admin and the submitting user can be both in "
+"plain text and HTML. The TXT part <strong>is required</strong>, HTML is "
+"<strong>optional</strong>."
+msgstr ""
+"Углавном, е-поруке послате администратору и потврде корисника могу бити "
+"уједно и у облику чистог текста и у HTML-у. TXT део <strong>је обавезан</ "
+"strong> HTML je <strong>по избору </ strong>."
+
+#: cforms-options.php:797
+msgid ""
+"Below you'll find the settings for both the <strong>TXT part</strong> of the "
+"admin email as well as the <strong>optional HTML part</strong> of the "
+"message. Both areas permit the use of any of the <strong>pre-defined "
+"variables</strong> or <strong>data from input fields</strong>. <a href=\"%s"
+"\" %s>Please see the documentation on the HELP page</a> (including HTML "
+"message examples!)."
+msgstr ""
+"У наставку ћете пронаћи подешавања за оба <strong>TXT део </ strong> е-поште "
+"за администрирање, као и <strong>део HTML дела</ strong> поруке. Оба дела "
+"дозвољавају коришћење било којих <strong>унапред  дефинисаних  променљивих "
+"</ strong> или <strong> податке из поља за унос  </ strong>. <a href=\"%s\"  "
+"%s>  Молимо погледајте  документацију на страници за ПОМОЋ  </ а> "
+"(укључујући и примере HTML порука!)."
+
+#: cforms-options.php:802
+msgid "%sTurn off%s admin email"
+msgstr "%sTurn off% s е-пошту за администрирање"
+
+#: cforms-options.php:809
+msgid "%sExclude empty fields%s from admin email"
+msgstr ""
+
+#: cforms-options.php:815
+msgid "FROM: email address"
+msgstr "Од: адреса е-поште"
+
+#: cforms-options.php:820
+msgid "Admin email address(es)"
+msgstr "Адреса(е) е-поште за администрирање"
+
+#: cforms-options.php:821
+msgid "More than one \"<strong>form admin</strong>\"? &raquo;"
+msgstr "Више од једног \"<strong> обрасца за администрирање </ strong> \"?» "
+
+#: cforms-options.php:824
+msgid ""
+"Simply add additional email addresses separated by a <strong style=\"color:"
+"red\">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the "
+"visitor to choose from any of these per select box, you need to add a "
+"\"<code>Multiple Recipients</code>\" input field <a href=\"#anchorfields"
+"\">above</a> (see the HELP section for <a href=\"%s\" %s>more details</a>. "
+"If <strong>no</strong> \"Multiple Recipients\" input field is defined above, "
+"the submitted form data will go out to <strong>every address listed</strong>!"
+msgstr ""
+"Једноставно додајте додатну емаил адресу  одвојену зарезом <strong  stile="
+"\"color:red\"> </ strong>. <em> <u> Напомена: </ у> </еm> Ако желите да "
+"изаберете посетилац изабере неки од оквира за бирање, потребно је да додате "
+"\"<code> више прималаца</ code > \" поље за унос <a href=\"#anchorfields"
+"\">изнад </ а> (погледајте одељак за помоћ<a href=\"%s\" %s> више детаља</ "
+"а>. Ако <strong >није</ strong>, \"више прималаца \" поље за унос је "
+"дефинисано изнад, податак из обрасца за потрврду иде на <strong> сваку "
+"наведену адресу </ strong>!"
+
+#: cforms-options.php:827
+msgid "BCC"
+msgstr "BCC"
+
+#: cforms-options.php:831
+msgid "Subject admin email"
+msgstr "Тема админ е-порука-а"
+
+#: cforms-options.php:832 cforms-options.php:849 cforms-options.php:872
+#: cforms-options.php:898 cforms-options.php:928 cforms-options.php:941
+#: cforms-options.php:954
+msgid "<a href=\"%s\" %s>Variables</a> allowed."
+msgstr "<a href=\"%s\"  %s>Променљиве </ а> дозвољене."
+
+#: cforms-options.php:838
+msgid "Reset admin message to default"
+msgstr ""
+
+#: cforms-options.php:844
+msgid "<strong>Admin TEXT message</strong><br />(Header)"
+msgstr "<strong>Админ ТЕКСТ порука </ strong><бр  />(заглавље)"
+
+#: cforms-options.php:854 cforms-options.php:877
+msgid "(Footer)"
+msgstr "(подножје странице)"
+
+#: cforms-options.php:855
+msgid "<strong>Include</strong>  user input at the bottom of the admin email"
+msgstr "<strong>Укључи</ strong>, унос корисника у доњи дио админ е-поште."
+
+#: cforms-options.php:859
+msgid ""
+"(# characters) : spacing between labels &amp; data, for plain txt version "
+"only"
+msgstr ""
+"(# знакови): размак између ознака и података, само за обичну txt верзију"
+
+#: cforms-options.php:863 cforms-options.php:946
+msgid "Enable HTML"
+msgstr "Активирање HTML-a"
+
+#: cforms-options.php:868
+msgid "<strong>Admin HTML message</strong><br />(Header)"
+msgstr "<strong>HTML порука за администрирање</ strong><br />(заглавље)"
+
+#: cforms-options.php:878
+msgid "<strong>Include</strong> user input at the bottom of the admin email"
+msgstr "<strong>Укључи</ strong>, унос корисника у доњи дио админ е-поште"
+
+#: cforms-options.php:880
+msgid "'Don't like the default form data block in your admin email?  &raquo;"
+msgstr ""
+"'Не допада Вам се задата (плава) боја обрасца за блок података у Вашој админ "
+"е-пошти? &raquo;"
+
+#: cforms-options.php:881
+msgid ""
+"To avoid sending ALL of the submitted user data (especially for very long "
+"forms) to the form admin simply <strong>uncheck</strong> \"<em>Include user "
+"input ...</em>\" and instead specify the fields you'd like to receive via "
+"the use of <strong>custom variables</strong>."
+msgstr ""
+"Да бисте избегли слање СВИХ достављених корисничких података (поготово из "
+"веома дугачких образаца) у образац за администрирање једноставно <strong>  "
+"поништите потврду </  strong>,  \"<em> Укључи унос корисника  ...</  span>  "
+"\" и умјесто тога одредите поља која желите да примате путем коришћења "
+"<strong>подешених променљивих </ strong>."
+
+#: cforms-options.php:889
+msgid "CC Settings"
+msgstr "CC подешавање"
+
+#: cforms-options.php:893
+msgid ""
+"This is the subject of the CC email that goes out the user submitting the "
+"form and as such requires the <strong>CC:</strong> field in your form "
+"definition above."
+msgstr ""
+"Ово је темаCC е-поште која излази након потврде корисниковог обрасца и као "
+"таквој јој је потре <strong>  CC: </ strong> поље  у Вашем обрасцу "
+"дефинисаном изнад."
+
+#: cforms-options.php:897
+msgid "Subject CC"
+msgstr "Тема CC"
+
+#: cforms-options.php:908
+msgid "Auto Confirmation"
+msgstr "Аутоматска потврда"
+
+#: cforms-options.php:912
+msgid ""
+"These settings apply to an auto response/confirmation sent to the visitor. "
+"If enabled AND your form contains a \"<code>CC me</code>\" field "
+"<strong>AND</strong> the visitor selected it, no extra confirmation email is "
+"sent!"
+msgstr ""
+"Ова подешавања се примењују за атоматске одговоре/потврде које се шаљу "
+"кориснику. Ако је активиран AND Ваш образац садржи \"<code>CC me</ code> \" "
+"поље<strong>AND</  strong>,  које је посетилац изабрао, посебна е-пошта за "
+"потврду није послата!"
+
+#: cforms-options.php:918
+msgid "Activate auto confirmation"
+msgstr "Активирајте аутоматску потврду"
+
+#: cforms-options.php:923
+msgid ""
+"For the <em>auto confirmation</em> feature to work, make sure to mark at "
+"least one field <code>Email</code>, otherwise <strong>NO</strong> auto "
+"confirmation email will be sent out! If multiple fields are checked \"Email"
+"\", only the first in the list will receive a notification."
+msgstr ""
+"Да би опција за <em> аутоматску потврду </еm> функционисала, постарајте се "
+"да обележите најмање  једно поље <code>E-mail </ code>, иначе <strong>  НЕ "
+"</ strong> е-порука о аутоматској потврди неће бити одаслата! Уколико су "
+"вишередна поља провјерена \"Е-маил \", само први на листи добиће обавест."
+
+#: cforms-options.php:927
+msgid "Subject auto confirmation"
+msgstr "Тема аутоматска потврда"
+
+#: cforms-options.php:933
+msgid "Reset auto confirmation message to default"
+msgstr ""
+
+#: cforms-options.php:937
+msgid "TEXT message"
+msgstr "ТЕКСТ порука"
+
+#: cforms-options.php:950
+msgid "HTML message"
+msgstr "HTML порука"
+
+#: cforms-options.php:964
+msgid ""
+"Can't find the specified <strong>Attachment</strong> (%s)! Please verify the "
+"server path!"
+msgstr ""
+"Не можете да нађете посебну<strong>приложену датотеку у е-пошти (%s)! Молимо "
+"Вас проверите путању сервера!"
+
+#: cforms-options.php:969
+msgid "Attachment"
+msgstr "Приложена датотека у е-пошти"
+
+#: cforms-options.php:970
+msgid "File path: relative to the cforms plugin folder or an absolute path."
+msgstr ""
+"Путања датотеке: релативна, до датотеке cforms додатка, или апсолутна путања."
+
+#: cforms-options.php:981
+msgid "Multi-Part / Multi-Page Forms"
+msgstr "Вишеделни/Вишестранични обрасци"
+
+#: cforms-options.php:985
+msgid "If enabled, new options will be shown below."
+msgstr "Ако је активирана, нова опција ће бити приказана испод."
+
+#: cforms-options.php:985
+msgid "Mark this form to belong to a series of forms:"
+msgstr "Означи овај образац да се сврста у серијални образац:"
+
+#: cforms-options.php:991
+msgid "Email &amp; Tracking"
+msgstr "Е-пошта &amp; Праћење"
+
+#: cforms-options.php:992
+msgid "Suppress admin email and DB tracking for *this* form"
+msgstr "Обустављање е-поште за администрирање и DB праћење \"овог\" обрасца"
+
+#: cforms-options.php:996
+msgid "First Form"
+msgstr "Први образац"
+
+#: cforms-options.php:997
+msgid "This is the *first* form of a series of forms"
+msgstr "Ово је *први * образац у серији образаца"
+
+#: cforms-options.php:1003
+msgid "Reset Button"
+msgstr "Ресет дугме"
+
+#: cforms-options.php:1004
+msgid "Add a reset button to this form (reset to the first form in a series)"
+msgstr "Додај ресет дугме за овај образац (ресетуј у први образац у серији)"
+
+#: cforms-options.php:1008 cforms-options.php:1020
+msgid "Text"
+msgstr "Текст"
+
+#: cforms-options.php:1009
+msgid "Text for reset button"
+msgstr "Текст за ресет дугме"
+
+#: cforms-options.php:1015
+msgid "Back Button"
+msgstr "Дугме за враћање"
+
+#: cforms-options.php:1016
+msgid "Add a back button to this form (back to the previous form)"
+msgstr "Додајте дугме за враћање у овај образац (враћање на претходни образац)"
+
+#: cforms-options.php:1021
+msgid "Text for back button"
+msgstr "Текст за дугме за враћање"
+
+#: cforms-options.php:1036
+msgid "* stop here (last form) *"
+msgstr "* Стоп овдје (последњи образац) *"
+
+#: cforms-options.php:1040
+msgid "Please choose the next form after this"
+msgstr "Молимо Вас изаберите следећи образац после овога"
+
+#: cforms-options.php:1051
+msgid "Tell-A-Friend Form Support"
+msgstr "Реци-пријатељу образац Подршка"
+
+#: cforms-options.php:1057
+msgid "posts and pages processed and tell-a-friend <strong>enabled</strong>."
+msgstr ""
+"чланци и странице прерађени и реци-пријатељу <strong>активирани</strong>."
+
+#: cforms-options.php:1059
+msgid ""
+"All posts &amp; pages processed and tell-a-friend <strong>disabled</strong>."
+msgstr ""
+"Сви чланци и странице прерађени и реци-пријатељу <strong>деактивирани</"
+"strong>."
+
+#: cforms-options.php:1062
+msgid ""
+"BEFORE turning on this feature, please see the Help section for <a href=\"%s"
+"\" %s>more details.</a>"
+msgstr ""
+"ПРЕ него укључите ову функцију, молимо Вас погледајте одјељак Помоћ за <а "
+"href=\"%s\" %s> више детаља </ а>."
+
+#: cforms-options.php:1063
+msgid ""
+"If enabled, new field types will be made available to cover tell-a-friend "
+"requirements."
+msgstr ""
+"Ако су активирани, нови типови поља биће доступни да покрију реци-пријатељу "
+"захтеве."
+
+#: cforms-options.php:1068
+msgid "Enable Tell-A-Friend"
+msgstr "Активирајте Реци-пријатељу"
+
+#: cforms-options.php:1074
+msgid "CC: User submitting the form"
+msgstr "CC: Корисник потврдио образац"
+
+#: cforms-options.php:1078
+msgid "T-A-F enable <strong>new posts/pages</strong> by default"
+msgstr ""
+"T-A-F активира<strong>нове прилоге/странице </ strong>унапред подешене "
+
+#: cforms-options.php:1082
+msgid "<strong>Batch T-A-F dis-/enable</strong><br />all your previous posts."
+msgstr ""
+"<strong>Пакет T-A-F а/деактивира</ strong> <бр />све Ваше претходне постове."
+
+#: cforms-options.php:1084
+msgid "This will add a T-A-F custom field per post/page."
+msgstr "Ово ће додати T-A-F подешено поље по чланку/страници."
+
+#: cforms-options.php:1084
+msgid "Enable all"
+msgstr "Активирај све"
+
+#: cforms-options.php:1084
+msgid "Do you really want to enable all previous posts and pages for T-A-F?"
+msgstr ""
+"Да ли заиста желите да активирате све претходне чланке и странице за T-A-F?"
+
+#: cforms-options.php:1085
+msgid "This will remove the T-A-F custom field on all posts/pages."
+msgstr "Ово ће уклонити T-A-F подешено поље за све чланке/странице."
+
+#: cforms-options.php:1085
+msgid "Disable all"
+msgstr "Deaktiviraj sve"
+
+#: cforms-options.php:1085
+msgid "Do you really want to disable all previous posts and pages for T-A-F?"
+msgstr ""
+"Да ли стварно желите да деактивирате све претходне чланке и странице за T-A-"
+"F?"
+
+#: cforms-options.php:1089
+msgid ""
+"You will find a <strong>cforms Tell-A-Friend</strong> checkbox on your "
+"<strong>admin/edit page</strong> (typically under \"Post/Author\")! <br /"
+"><u>Check it</u> if you want to have the form to appear on the given post or "
+"page."
+msgstr ""
+"Наћи ћете <strong>cforms Реци-пријатељу</ strong>поље за проверу на Вашој "
+"<strong>страници за адиминистрирање/едитовање </ strong> (обично под "
+"\"Чланка/ Аутор \")! <br /> <u> Проверите</ span> да ли желите да се образац "
+"појави на датом чланку или страници."
+
+#: cforms-options.php:1105
+msgid ""
+"cforms can be used to replace your <em>default Wordpress comment form</em> "
+"(on posts &amp; pages), allowing your readers to either <strong>comment on "
+"the post</strong> or <strong>alternatively send the post author a note</"
+"strong>!"
+msgstr ""
+"cforms се може користити да замените <em>унапред задати Wордпресс образац за "
+"коментар </еm> (на чланцима и страницама), да омогућите  ашим читатељима да "
+"или <strong>коментаришу чланак </ strong> или  <strong> по избору пошаљи  "
+"поруку аутору чланка </ strong>!"
+
+#: cforms-options.php:1106
+msgid ""
+"There will be additional, comment specific <em>input field types</em> "
+"available with this feature turned on. For an easy start, use the <em>WP "
+"comment form preset</em>. <a href=\"%s\" %s>Configuration details.</a>"
+msgstr ""
+"Ту ће бити и додатни, за коментар специфични <em>типви поља за унос </еm> на "
+"располагању са том укљученом функцијом. За лак почетак, користите <em> WП "
+"образац за коментар унапред подешен </ em>. <a href=\"%s\" %s> детаљи "
+"конфигурисања. </ а>"
+
+#: cforms-options.php:1110
+msgid "WP comment form"
+msgstr "WP образац за коментар"
+
+#: cforms-options.php:1111
+msgid ""
+"Enable this form to optionally (user determined) act as a WP comment form"
+msgstr ""
+"Активирајте овај образац по избору (одредјен од стране корисника) за WP "
+"образац за коментар"
+
+#: cforms-options.php:1114
+msgid "Comment notification"
+msgstr "Забелешке коментара"
+
+#: cforms-options.php:1115
+msgid "Extra comment notification (check your autoresponder setting, too!)"
+msgstr ""
+"Посебна забелешка коментара (такодје, проверите Ваше подешавање за "
+"аутоматизоване одговоре!)"
+
+#: cforms-options.php:1119
+msgid "<em>Tell a friend</em> or <em>WP comment</em>? &raquo;"
+msgstr "<em>Реци пријатељу</em> или <em>WP коментар</em>? &raquo;"
+
+#: cforms-options.php:1120
+msgid ""
+"This feature and T-A-F (above) are mutually exclusive. If you need both "
+"features, please create a new form for T-A-F.<br />Again, see the <a href="
+"\"%s\" %s>help section</a> on proper use."
+msgstr ""
+"Ова функција и T-A-F (изнад) се међусобно искључују. Ако су вам потребне обе "
+"функције, молимо вас да направите нову форму za T-A-F <br>Поново, погледајте "
+"<a href=\"%s\" %s>одељак за помоћ </  а> за правилну употребу."
+
+#: cforms-options.php:1121
+msgid "Important additional configuration requirements &raquo;"
+msgstr "Важни додатни конфигурациони захтеви  &raquo;"
+
+#: cforms-options.php:1122
+msgid ""
+"Please see the extended <a href=\"%s\" %s>WP comment options under "
+"<em>Global Settings</em></a> for additional configuration requirements. "
+"Especially concerning Ajax comment submission! Further, if you enable 'extra "
+"comment notification' make sure you disable the autoresponder, unless you "
+"want to thank the user for his/her comment ;-) !"
+msgstr ""
+"Молим, погледајте проширене<a href=\"%s\" %s> WP опције за коментар у <em> "
+"Општа подешавања </еm> </ а> за додатне конфигурационе захтјеве. Посебно у "
+"вези Ајакс потврда за коментаре! Даље, активирајте \"додатна забелешка за "
+"коментар\" побрините се да деактивирате аутоматизован одговор, осим ако не "
+"желите да се захвалите кориснику за његов/њен коментар;-)!"
+
+#: cforms-options.php:1133
+msgid "3rd Party Read-Notification Support"
+msgstr "Трећа група Подршка Читање-Бележење"
+
+#: cforms-options.php:1137
+msgid ""
+"If you'd like to utilize 3rd party email tracking such as %s or %s, add the "
+"respective suffix (e.g.: %s) here:"
+msgstr ""
+"Ako želite da koristite treću grupu e-mail praćenja, kao što je%s ili%ss "
+"dodavanje odgovarajućih  sufiksa (npr.:%s) Ovde:"
+
+#: cforms-options.php:1141
+msgid "Suffix for email tracking"
+msgstr "Суфикс за праћење е-поште"
+
+#: cforms-options.php:1168
+msgid "Input Field Settings"
+msgstr "Подешавање за унос поља"
+
+#: cforms-options.php:1175
+msgid "cforms Out-Of-The-Box Form Repository"
+msgstr "cforms спремиште за  изван- поља обрасце"
+
+#: cforms-options.php:1185
+msgid "Backup &amp; Restore Form Settings"
+msgstr "Подешавање за сигурносну копију и враћање старе верзије обрасца"
+
+#: cforms-options.php:1190
+msgid "Backup current form settings"
+msgstr "Подешавање сигурносне копије за тренутне обрасце"
+
+#: cforms-options.php:1191
+msgid " or restore previously saved settings:"
+msgstr "или враћање за претходно сачувана подешавања:"
+
+#: cforms-options.php:1193
+msgid "Restore from file"
+msgstr "Враћање из датотеке"
+
+#: cforms.php:67 lib_functions.php:126 lib_widget.php:24
+msgid "cformsII"
+msgstr "cformsII"
+
+#: cforms.php:68
+msgid "Corrupted Settings"
+msgstr "Оштећена подешавања"
+
+#: cforms.php:700
+msgid "reset captcha image"
+msgstr "Поново постављање captcha слике"
+
+#: cforms.php:1045
+msgid "Note: This will reset all your input!"
+msgstr "Напомена: Ово ће поновити све Ваше уносе!"
+
+#: cforms.php:1310 cforms.php:1311
+msgid "cforms Tell-A-Friend"
+msgstr "cforms Реци-пријатељу"
+
+#: cforms.php:1476
+msgid "T-A-F enable this post/page"
+msgstr "Т-A-F активира овај чланак/ страницу"
+
+#: cforms.php:1514
+msgid "Produce debug output"
+msgstr "Направити излаз за отклањање грешки"
+
+#: cforms.php:1514
+msgid "Outputs -for debug purposes- all cforms settings"
+msgstr "излаз - за отклањање грешки - сва cformsс подешавања"
+
+#: cforms.php:1515
+msgid "Uninstalling / removing cforms"
+msgstr "Деинсталација/Уклањање cforms"
+
+#: cforms.php:1515 cforms.php:1518
+msgid "Be careful here..."
+msgstr "Пажљиво поступајте са овим!"
+
+#: cforms.php:1518
+msgid "Delete cforms tracking tables"
+msgstr "Брисање cforms табли за праћење"
+
+#: cforms.php:1518
+msgid "Do you really want to erase all collected data?"
+msgstr "Да ли заиста желите да обришете све прикупљене податке?"
+
+#: cforms.php:1520
+msgid "Backup / restore all settings"
+msgstr "Сигурносна копија & враћање свих подешавања"
+
+#: cforms.php:1520 cforms.php:1538
+msgid "Better safe than sorry ;)"
+msgstr ""
+
+#: cforms.php:1522 cforms.php:1540
+msgid "Save & update form settings"
+msgstr ""
+
+#: cforms.php:1532
+msgid "Add new form"
+msgstr "Додај нови образац"
+
+#: cforms.php:1532
+msgid "Adds a new form with default values"
+msgstr "додајте нови образац са унапред задатим вредностима"
+
+#: cforms.php:1533
+msgid "Duplicate current form"
+msgstr "Дупликат тренутног обрасца"
+
+#: cforms.php:1533
+msgid "Clones the current form"
+msgstr "клонови тренутног обрасца"
+
+#: cforms.php:1535
+msgid "Delete current form (!)"
+msgstr "Брисање тренутног обрасца (!)"
+
+#: cforms.php:1535
+msgid "Clicking this button WILL delete this form"
+msgstr "Притиском на дугме УКЛОНИЋЕ се овај образац."
+
+#: cforms.php:1535
+msgid "This will delete the current form!"
+msgstr "Ово ће уклонити садашњи образац!"
+
+#: cforms.php:1537
+msgid "Install a form preset"
+msgstr "Инсталирајте унапред образац"
+
+#: cforms.php:1537
+msgid "Pick a form preset from the repository"
+msgstr ""
+
+#: cforms.php:1538
+msgid "Backup / restore this form only"
+msgstr ""
+
+#: formpresets/index.php:19
+msgid "Default: Reset to *default* contact form"
+msgstr ""
+
+#: formpresets/index.php:20
+msgid "Does what it says, it'll reset all input fields to the default setup."
+msgstr ""
+
+#: formpresets/index.php:21
+msgid "Basic: Preset for *GREY BLOCKS* Theme"
+msgstr ""
+
+#: formpresets/index.php:22
+msgid ""
+"This preset will switch your current cforms theme to 'Grey Blocks'. It comes "
+"with basic contact form input fields and a custom error message example."
+msgstr ""
+
+#: formpresets/index.php:23
+msgid "Basic: *Newsletter* subscription form (w/ titles)"
+msgstr ""
+
+#: formpresets/index.php:24
+msgid ""
+"A small, two input field form that showcases regexp's (default value "
+"exclusion) and input field titles."
+msgstr ""
+
+#: formpresets/index.php:25
+msgid "Basic: Tell A Friend Form"
+msgstr ""
+
+#: formpresets/index.php:26
+msgid ""
+"If you would like to setup a special T-A-F form, then please use this preset "
+"as a basis. It comes with the necessary (special) TAF input fields, verifies "
+"and sets the TAF option, switches the current theme and sets a generic tell-"
+"a-friend message."
+msgstr ""
+
+#: formpresets/index.php:27
+msgid "Basic: Form for *dark-rounded.css* Theme"
+msgstr ""
+
+#: formpresets/index.php:28
+msgid ""
+"This will switch your current cforms theme to the dark-rounded.css one and "
+"will get you going with a set of basic contact form input fields."
+msgstr ""
+
+#: formpresets/index.php:29
+msgid "Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme"
+msgstr ""
+
+#: formpresets/index.php:30
+msgid ""
+"The dark-rounded.css cforms theme requires a bit of 'magic' to support multi "
+"fieldset form layouts. Check out this preset to see what is required to "
+"ensure a proper look."
+msgstr ""
+
+#: formpresets/index.php:31
+msgid "Advanced: Contact Form with Custom Err Messages"
+msgstr ""
+
+#: formpresets/index.php:32
+msgid ""
+"This form preset is based on the default preset, however, coming with field "
+"specific custom error texts. Please check your fancy error message settings, "
+"to make sure they're actually displayed."
+msgstr ""
+
+#: formpresets/index.php:33
+msgid "Advanced: WP comment feature form"
+msgstr ""
+
+#: formpresets/index.php:34
+msgid ""
+"If you plan to replace your original Wordpress comment form with a (c)form, "
+"please use this form preset as a jump-start. All necessary fields are "
+"included and configured, including some custom, field specific error "
+"messages. <em><br />Note: It will also change your current cforms theme.</em>"
+msgstr ""
+
+#: formpresets/index.php:35
+msgid "Advanced: Online booking form"
+msgstr ""
+
+#: formpresets/index.php:36
+msgid ""
+"Features a quite impressive number of fields, useful for online booking "
+"forms. Including custom inline styles, 'must-agree' disclaimers with "
+"external link to disclaimer text & anti spam field. <br /><em>Note: Please "
+"use this preset with your first form as it does some nifty things with its "
+"CSS.</em>"
+msgstr ""
+
+#: formpresets/index.php:37
+msgid "Advanced: Sign up form (w/ limited seats available)"
+msgstr ""
+
+#: formpresets/index.php:38
+msgid ""
+"A typical sign up form for a class/project etc. Limited to 30 seats (form "
+"submissions) and form is hidden after submission. The form further showcases "
+"regular expressions for field validation and custom error messages, as well "
+"as country and state (US) drop down lists. It also features a must-check "
+"Disclaimer."
+msgstr ""
+
+#: include/checkbox.php:24
+msgid "Field label left of the checkbox..."
+msgstr "Ознака поља лево од поља за проверу ..."
+
+#: include/checkbox.php:27
+msgid "...or define a field label to the right of the checkbox"
+msgstr "... или дефинишите ознаку поља десно од поља за проверу"
+
+#: include/checkbox.php:30 include/checkboxgroup.php:30
+#: include/selectbox.php:29
+msgid "Set default state"
+msgstr "Постави унапред задати статус"
+
+#: include/checkbox.php:33 include/checkboxgroup.php:38
+#: include/html5field.php:67 include/selectbox.php:36 include/textfield.php:33
+msgid "Input field title (displayed when mouse hovers over field)"
+msgstr "Наслов поља за унос (приказује се када се мишем предје преко поља)"
+
+#: include/checkbox.php:36 include/checkboxgroup.php:41
+#: include/html5field.php:70 include/selectbox.php:39 include/textfield.php:36
+msgid ""
+"Custom error message (make sure to enable custom, per field err messages!)"
+msgstr ""
+"Подешене поруке о грешци  (проверите да ли сте активирали подешавање,  за "
+"поље поруке о грешци!)"
+
+#: include/checkboxgroup.php:24 include/html5field.php:24
+#: include/selectbox.php:23 include/textfield.php:24
+msgid "Field label"
+msgstr "Ознака поља"
+
+#: include/checkboxgroup.php:28 include/selectbox.php:27
+msgid "Check box/radio box option (displayed)"
+msgstr "Поље за потврду/опције за радио дугме (приказано)"
+
+#: include/checkboxgroup.php:29 include/selectbox.php:28
+msgid "Optional value (transmitted)"
+msgstr "Опциона вриједност (пребачена)"
+
+#: include/checkboxgroup.php:31
+msgid "Carriage return / New Line"
+msgstr "Знак за почетак реда / Нови ред"
+
+#: include/fieldsetstart.php:24
+msgid "Name of Fieldset ( only required for <em>New Fieldset</em> )"
+msgstr "Назив групе поља (обавезно за <em> нову Групу поља </еm>)"
+
+#: include/html5field.php:30
+msgid "Autocomplete flag"
+msgstr ""
+
+#: include/html5field.php:31
+msgid "Autofocus flag"
+msgstr ""
+
+#: include/html5field.php:43
+msgid "Min value"
+msgstr ""
+
+#: include/html5field.php:44
+msgid "Max value"
+msgstr ""
+
+#: include/html5field.php:45
+msgid "Step value"
+msgstr ""
+
+#: include/html5field.php:56
+msgid "Pattern attribute"
+msgstr ""
+
+#: include/html5field.php:61
+msgid "Placeholder attribute"
+msgstr ""
+
+#: include/installpreset.php:28
+msgid "Please select a predefined form:"
+msgstr "Молимо Вас да изаберете унапред дефинисан образац:"
+
+#: include/installpreset.php:31
+msgid ""
+"By accepting and choosing OK, you will <strong>replace</strong> all your "
+"existing input fields with this new preset! If you're unsure about this, "
+"make a backup copy of the form first."
+msgstr ""
+"Прихватањем и избором У реду, <strong> заменићете  </ strong>, сва своја "
+"постојећа поља за унос са овом новом поставком! Ако сте несигурни у томе, "
+"прво направите сигурносну копију обрасца."
+
+#: include/lib_database_deleteentries.php:124
+msgid "Entries successfully removed from the tracking tables!"
+msgstr "Текстови успјешно уклоњени из табела за праћење!"
+
+#: include/lib_database_deleteentry.php:64
+msgid "(some associated attachment/s were not found!)"
+msgstr "(нека приложена документ/а  нису пронађена/и!)"
+
+#: include/lib_database_deleteentry.php:66
+msgid "(associated attachment/s were not found!)"
+msgstr "(придружење приложеном документу/ има нису пронађена!)"
+
+#: include/lib_database_deleteentry.php:68
+msgid "(including all attachment/s)"
+msgstr "укључујући све приложене документ/е)"
+
+#: include/lib_database_deleteentry.php:74
+msgid "Entry successfully removed"
+msgstr "Унос успешно уклоњен"
+
+#: include/lib_database_dlentries.php:91
+msgid ""
+"File (data.tmp) in %s not writable! %sPlease adjust its file permissions/"
+"ownership!"
+msgstr ""
+"Datoteka (data.tmp) %s није уписива %s ! Молимо Вас подесите овлашћење/"
+"корисничко право за датотеку!"
+
+#: include/lib_database_dlentries.php:177 lib_widget.php:75
+msgid "Form"
+msgstr "Образац"
+
+#: include/lib_database_getentries.php:106
+msgid "Form:"
+msgstr "Образац:"
+
+#: include/lib_database_getentries.php:107
+msgid "Delete this entry"
+msgstr "Избриши овај унос"
+
+#: include/lib_database_getentries.php:108
+msgid "close this entry"
+msgstr "Затвори овај унос"
+
+#: include/lib_database_getentries.php:146
+msgid "-"
+msgstr "-"
+
+#: include/lib_database_getentries.php:154
+msgid "Submitted via page"
+msgstr "Потврда преко стране"
+
+#: include/lib_database_getentries.php:158
+msgid "IP address"
+msgstr "IP адреса"
+
+#: include/lib_database_getentries.php:159
+msgid "IP Lookup"
+msgstr "IP претраживања"
+
+#: include/lib_database_getentries.php:179
+msgid "Sorry, data not found. Please refresh your data table."
+msgstr "Жао нам је, податак није пронађен. Молимо освежите Вашу табелу."
+
+#: include/textfield.php:27
+msgid "Default value"
+msgstr "Подразумевана вредност"
+
+#: include/textfield.php:30
+msgid ""
+"Regular expression for field validation (e.g. %s). See Help! for more "
+"examples."
+msgstr ""
+"Регуларни израз за проверу ваљаности поља (нпр.%s). Погледајте Помоћ! за "
+"више примера."
+
+#: include/textonly.php:24
+msgid "Text (HTML is supported)"
+msgstr "Текст (HTMLје подржан)."
+
+#: include/textonly.php:27
+msgid "CSS (assigns class to this form element)"
+msgstr "CSS (додељује класу овим елементима обрасца)"
+
+#: include/textonly.php:30
+msgid "Inline style (e.g. %s)"
+msgstr "Уграђени стил (нпр.%s)"
+
+#: lib_WPcomment.php:62
+msgid "Comment ID not found."
+msgstr "Коментар ID није пронађен."
+
+#: lib_WPcomment.php:65 lib_WPcomment.php:196
+msgid "Sorry, comments are closed for this item."
+msgstr "Жао нам је, коментари су затворени за овај чланак."
+
+#: lib_WPcomment.php:68
+msgid "Comment is on draft."
+msgstr "Коментар је на провери."
+
+#: lib_WPcomment.php:91 lib_WPcomment.php:220
+msgid "Sorry, you must be logged in to post a comment."
+msgstr "Жао нам је, морате се пријавити да би сте могли да пошаљете коментар. "
+
+#: lib_WPcomment.php:103
+msgid "You've said that before. No need to repeat yourself."
+msgstr "Рекли сте то већ. Нема потребе да се понављате."
+
+#: lib_WPcomment.php:114
+msgid "You are posting comments too quickly. Slow down."
+msgstr "Постављате коментаре сувише брзо. Успорите мало."
+
+#: lib_activate.php:70
+msgid "Website"
+msgstr "Веб страница"
+
+#: lib_activate.php:71 lib_options_add.php:37
+msgid "Message"
+msgstr "Порука"
+
+#: lib_activate.php:73 lib_options_add.php:39
+msgid "(required)"
+msgstr "(обавезно)"
+
+#: lib_activate.php:74 lib_options_add.php:40
+msgid "(valid email required)"
+msgstr "(обавезна важећа адреса е-поште)"
+
+#: lib_activate.php:78
+msgid "Your default form"
+msgstr "Ваш задати образац"
+
+#: lib_activate.php:79 lib_options_add.php:45
+msgid "Re: Your note"
+msgstr "Одг: Ваша порука"
+
+#: lib_activate.php:79 lib_options_add.php:45
+msgid "Re: Submitted form (copy)"
+msgstr "Одг: потврда обрасца (копија)"
+
+#: lib_activate.php:96 lib_options_add.php:59
+msgid "A comment from {Your Name}"
+msgstr "Коментар од {Ваше име}"
+
+#: lib_activate.php:97 lib_options_add.php:60
+msgid "Submit"
+msgstr "Potvrda"
+
+#: lib_activate.php:98 lib_options_add.php:61
+msgid "Thank you for your comment!"
+msgstr "Хвала Вам за Ваш коментар!"
+
+#: lib_activate.php:99 lib_options_add.php:62
+msgid "Please fill in all the required fields."
+msgstr "Молимо Вас да попуните сва обавезна поља."
+
+#: lib_activate.php:100 lib_options_add.php:63
+msgid "No more submissions accepted at this time."
+msgstr "Тренутно нема више потврда."
+
+#: lib_activate.php:102 lib_options_add.php:64
+msgid "One moment please..."
+msgstr "Молимо за тренутак ..."
+
+#: lib_activate.php:107 lib_options_add.php:69
+msgid "http://redirect.to.this.page"
+msgstr "http://redirect.to.this.page"
+
+#: lib_activate.php:121
+msgid "Generic file upload error. Please try again"
+msgstr "Генеричка грешка при преношењу датотеке. Молимо, покушајте понов"
+
+#: lib_activate.php:122 lib_options_up.php:33
+msgid "File is empty. Please upload something more substantial."
+msgstr "Датотека је празна. Молимо Вас пренесите нешто више солидно."
+
+#: lib_activate.php:123
+msgid "Sorry, file is too large. You may try to zip your file."
+msgstr ""
+"Жао нам је, датотека је превелика. Можете пробати да је запакујете у zip "
+"датотеку."
+
+#: lib_activate.php:124
+msgid "File upload failed. Please try again or contact the blog admin."
+msgstr ""
+"Пренос датотеке није успео. Молимо покушајте поново или контактирајте "
+"администратора блога."
+
+#: lib_activate.php:125
+msgid "File not accepted, file type not allowed."
+msgstr "Датотека није примљена, тип датотеке није дозвољен."
+
+#: lib_activate.php:149
+msgid "What color is snow?=white"
+msgstr "Које је боје снијег? = беле"
+
+#: lib_activate.php:149
+msgid "The color of grass is=green"
+msgstr "Боја траве је =зелена"
+
+#: lib_activate.php:149
+msgid "Ten minus five equals=five"
+msgstr "Десет минус пет једнако је = пет"
+
+#: lib_activate.php:150
+msgid "Please double-check your verification code."
+msgstr "Молимо Вас двоструко проверите Ваш код за проверу."
+
+#: lib_activate.php:155
+msgid "Thank you for leaving a comment."
+msgstr "Хвала Вам за коментар."
+
+#: lib_activate.php:159
+msgid "Your comment is awaiting moderation."
+msgstr "Vaš komentar je na čekanju za moderaciju."
+
+#: lib_activate.php:173
+msgid "S,M,T,W,T,F,S"
+msgstr "С,М,Т,W,Т,Ф,С"
+
+#: lib_activate.php:178
+msgid "April"
+msgstr "април"
+
+#: lib_activate.php:179
+msgid "May"
+msgstr "мај"
+
+#: lib_activate.php:180
+msgid "June"
+msgstr "јун"
+
+#: lib_activate.php:181
+msgid "July"
+msgstr "јул"
+
+#: lib_activate.php:182
+msgid "August"
+msgstr "август"
+
+#: lib_activate.php:183
+msgid "September"
+msgstr "септембар"
+
+#: lib_activate.php:184
+msgid "October"
+msgstr "октобар"
+
+#: lib_activate.php:185
+msgid "November"
+msgstr "новембар"
+
+#: lib_activate.php:186
+msgid "December"
+msgstr "децембар"
+
+#: lib_activate.php:189
+msgid "Previous Year"
+msgstr "Претходна година"
+
+#: lib_activate.php:191
+msgid "Next Year"
+msgstr "Следећа година"
+
+#: lib_ajax.php:475 lib_nonajax.php:597
+msgid "Error occurred while sending the auto confirmation message: "
+msgstr "Дошло је до грешке при слању аутоматизоване поруке о потрвди:"
+
+#: lib_ajax.php:521 lib_nonajax.php:618
+msgid "Error occurred while sending the message: "
+msgstr "Дошло је до грешке приликом слања поруке:"
+
+#: lib_aux.php:44
+msgid "hour(s)"
+msgstr "сати(и)"
+
+#: lib_aux.php:45
+msgid "minute(s)"
+msgstr "minut(i)"
+
+#: lib_aux.php:562
+msgid "View details"
+msgstr "Погледајте детаље"
+
+#: lib_aux.php:573 lib_dashboard.php:66
+msgid "No entries yet"
+msgstr "Још увијек нема уноса"
+
+#: lib_aux.php:573
+msgid "You might want to check back in a little while..."
+msgstr "Можда ће те жељети ускоро поново да се пријавите  ..."
+
+#: lib_aux.php:583
+msgid "New submissions for >>"
+msgstr "Нове потврде>>"
+
+#: lib_aux.php:583
+msgid "All new form submissions"
+msgstr "Сви нови обрасци за потврду,"
+
+#: lib_aux.php:586
+msgid "This RSS feed provides you with the most recent form submissions."
+msgstr ""
+"Овај RSS извор за вијести доставља Вам све најновије обрасце о потврди."
+
+#: lib_dashboard.php:24
+msgid "Recent cforms entries"
+msgstr "Најновији cforms уноси"
+
+#: lib_dashboard.php:60
+msgid "click for details"
+msgstr "Погледајте детаље"
+
+#: lib_dashboard.php:61
+msgid "via"
+msgstr ""
+
+#: lib_dashboard.php:68
+msgid "Visit the cforms tracking page for all entries "
+msgstr ""
+
+#: lib_editor.php:33
+msgid "Insert a form"
+msgstr ""
+
+#: lib_email.php:205
+msgid "You must provide at least one recipient email address."
+msgstr "Морате доставити најмање једну адресу е-поште примаоца."
+
+#: lib_email.php:224
+msgid "Could not instantiate wp_mail function."
+msgstr "Не могу да добијем примјер маил функције."
+
+#: lib_email.php:238
+msgid "Could not access file: "
+msgstr "Немам приступ датотеци:"
+
+#: lib_functions.php:109
+msgid "You do not have the proper privileges to access this page."
+msgstr "Немате одговарајућа овлашћења за приступ овој страници."
+
+#: lib_functions.php:131
+msgid "Tracking"
+msgstr "Праћење"
+
+#: lib_functions.php:132
+msgid "Styling"
+msgstr "Стилско обликовање"
+
+#: lib_functions.php:133
+msgid "Help!"
+msgstr "Помоћ!"
+
+#: lib_functions.php:232
+msgid ""
+"For more information and support, visit the <strong>cforms</strong> %s "
+"support forum %s. "
+msgstr ""
+"За више информација и подршке, посјетите<strong>cforms </ strong>% s Форум "
+"за подршку%s. "
+
+#: lib_functions.php:233
+msgid "Translation provided by Oliver Seidel."
+msgstr "Translation provided by Michael Lederstatter."
+
+#: lib_functions.php:250
+msgid ""
+"In case disabling/enabling doesn't seem to properly set the plugin defaults, "
+"try login out and back in and <strong>don't select the checkbox for "
+"activation</strong> on the plugin page."
+msgstr ""
+"У случају да деактивирање / активирање није правилно унапред постављено за "
+"додатак,  покушајте да  се одјавите и <strong> и немојте да изаберете поље "
+"за потврду за активирање </ strong> на додатак страници."
+
+#: lib_functions.php:307
+msgid "dd"
+msgstr "dd"
+
+#: lib_functions.php:307
+msgid "mm"
+msgstr "mm"
+
+#: lib_functions.php:307
+msgid "yyyy"
+msgstr "YYYY"
+
+#: lib_options_add.php:36
+msgid "Website|http://"
+msgstr "Веб страница|http://"
+
+#: lib_options_add.php:44
+msgid "A new form"
+msgstr "Нови образац"
+
+#: lib_options_add.php:86
+msgid "A new form with default fields has been added."
+msgstr "Нови образац са подразумеваним пољима је додат."
+
+#: lib_options_del.php:50
+msgid "Form deleted"
+msgstr "Образац избрисан"
+
+#: lib_options_dup.php:33
+msgid "copy of form #"
+msgstr "копија обрасца #"
+
+#: lib_options_dup.php:38
+msgid "The form has been duplicated, you're now working on the copy."
+msgstr "Образац је дуплиран, сада радите са копијом."
+
+#: lib_options_err.php:27
+msgid ""
+"please check the <a href=\"%s\" %s>success/failure message settings</a> and "
+">>Show messages<< options below!"
+msgstr ""
+"Молимо да проверите <а href=\"%s\" <a %s> подешавање за успеле / неуспеле "
+"поруке </ а> и >> Прикажи поруке <<опцију испод!"
+
+#: lib_options_err.php:33
+msgid ""
+"please check the new <a href=\"%s\" %s>file upload/attachment</a> relevant "
+"settings below! You can ignore the message if you're not using any file "
+"upload field(s)."
+msgstr ""
+"Молимо проверите нови <а href=\"%s\"  <a  %s>  пренос датотека/приложених "
+"датотека </ а> одговарајућа подешавања испод! Не обазирите се на поруку ако "
+"не користите било које поље за пренос датотека."
+
+#: lib_options_err.php:40
+msgid "please check the <a href=\"%s\" %s>email header settings</a> below!"
+msgstr ""
+"Молимо проверите <a href=\"%s\"  %s>подешавање заглавља е-поште </а> испод!"
+
+#: lib_options_err.php:46
+msgid ""
+"You have enabled the <strong>Tell a Friend</strong> feature for this form, "
+"please make sure you follow the guidelines on the HELP! page "
+"<strong>otherwise your form may not show</strong>!"
+msgstr ""
+"Активирали сте <strong> Реци пријатељу </ strong> опцију за овај образац, "
+"молимо проверите да ли сте пратили упутства на страни  ПОМОЋ! <strong>у "
+"супротном, Ваш образац се можда неће приказати </ strong>!"
+
+#: lib_options_err.php:56
+msgid ""
+"Please note that the <strong>fancy error</strong> feature has been enabled. "
+"You can turn it off in the <em>Redirection, Messages...</em> section below."
+msgstr ""
+"Узмите у обзир да је <strong>украшена грешка </ strong> функција активирана. "
+"Можете је искључити у <em> Преусмеравање, Поруке  ...</  ем> у одељку испод."
+
+#: lib_options_err.php:68
+msgid "It seems that you have recently upgraded cforms"
+msgstr "Изгледа да сте скоро надоградили cforms"
+
+#: lib_options_err.php:75
+msgid "Remove Message"
+msgstr "Уклони поруку"
+
+#: lib_options_presets.php:25
+msgid "Sorry, this form preset can't be loaded. I Can't find file "
+msgstr ""
+"Жао нам је, овај унапред постављени образац не може да се учита. Не могу да "
+"пронађем датотеку"
+
+#: lib_options_presets.php:87
+msgid "Your form has been populated with the preset input fields."
+msgstr "Ваш образац је насељен са унапред постављеним пољима за унос."
+
+#: lib_options_presets.php:89 lib_options_presets.php:92
+msgid ""
+"Please note, that in order to make this form work, the <strong>%s</strong> "
+"has been turned on, too!"
+msgstr ""
+"Пажња, да би овај образац функционисао, <strong>%s</ strong> треба и да се "
+"укључи!"
+
+#: lib_options_presets.php:89
+msgid "WP comment feature"
+msgstr "WP коментар функција"
+
+#: lib_options_presets.php:90 lib_options_presets.php:93
+msgid ""
+"Check with the HELP page on how to <u>properly</u> use this cforms feature "
+"and check all your settings below!"
+msgstr ""
+"Проверите на страни за ПОМОЋ  како да <u>правилно </ у> користиите ову "
+"cforms функцију и проверите све своје поставке испод!"
+
+#: lib_options_presets.php:92
+msgid "TAF feature"
+msgstr "TAF елемент"
+
+#: lib_options_sub.php:50
+msgid ""
+"WP comment form fields only supported when <em>WP comment feature</em> "
+"turned on!"
+msgstr ""
+"WП поља обрасца за коментар подржан је само када је <em> WP коментар "
+"функција </еm> укључена!"
+
+#: lib_options_sub.php:55
+msgid "TAF fields only supported when <em>TAF feature</em> turned on!"
+msgstr "TAF поља подржана су само када је <em>TAF функција</ em> укључена"
+
+#: lib_options_sub.php:61
+msgid "Only one <em>captcha</em> field is permitted!"
+msgstr "Само једно <em>captcha</ em> поље је дозвољено!"
+
+#: lib_options_sub.php:66
+msgid "Only one <em>CC:</em> field is permitted!"
+msgstr "Само једно <em> CC: </ em>  поље је дозвољено!"
+
+#: lib_options_sub.php:71
+msgid "Only one <em>Multiple Recipients</em> field is permitted!"
+msgstr "Само једно <em>Више прималаца </еm> поље дозвољено је!"
+
+#: lib_options_sub.php:272
+msgid "Form settings updated."
+msgstr "Подешавање обрасца ажурирано."
+
+#: lib_options_up.php:37
+msgid "Specified file failed upload test."
+msgstr "Посебан документ за тест неуспелог ажурирања."
+
+#: lib_options_up.php:41
+msgid "Error:"
+msgstr "Грешка:"
+
+#: lib_options_up.php:49
+msgid "All form specific settings have been restored from the backup file."
+msgstr ""
+"Сви обрасци с посебним подешавањем су обновљени из сигурносне датотеке."
+
+#: lib_options_up.php:58
+msgid "All cforms settings have been restored from the backup file."
+msgstr "Сва cforms подешавања су обновљена из сигурносне датотеке."
+
+#: lib_widget.php:26
+msgid "Add any cforms form to your sidebar"
+msgstr "Додајте било који cforms образац у Вашу бочну траку"
+
+#: lib_widget.php:72
+msgid "Title"
+msgstr "Наслов"
+
+#. Plugin Name of the plugin/theme
+msgid "cforms2"
+msgstr "cforms2"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/cforms2/"
+msgstr "https://sr.wordpress.org/plugins/cforms2/"
+
+#. Description of the plugin/theme
+msgid ""
+"cformsII offers unparalleled flexibility in deploying contact forms across "
+"your blog. Features include: comprehensive SPAM protection, Ajax support, "
+"Backup & Restore, Multi-Recipients, Role Manager support, Database tracking "
+"and many more."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Oliver Seidel, Bastian Germann"
+msgstr "Oliver Seidel, Bastian Germann"
+
+#~ msgid "The stylesheet has been updated."
+#~ msgstr "Опис стилова је ажуриран."
+
+#~ msgid "Write Error! Please verify write permissions on the style file."
+#~ msgstr "Напишите Грешка! Молимо Вас да напишете дозволу за стил документа."
+
+#~ msgid ""
+#~ "This is <strong>optional</strong> of course, if you're happy with the "
+#~ "default look and feel, no need to do anything here."
+#~ msgstr ""
+#~ "Ово је<strong>по избору</ strong> наравно, ако сте задовољни са задатим "
+#~ "изгледом, не морате ништа више овде да мењате."
+
+#~ msgid "Basic CSS editor: "
+#~ msgstr "Основе CSS едитора"
+
+#~ msgid ""
+#~ "Use this simple editor to further tailor your forms' style to meet your "
+#~ "requirements. Currently you're editing: "
+#~ msgstr ""
+#~ "Користите овај једноставни едитор за даље подешавање форми за стилове  у "
+#~ "складу са Вашим захтевима. Тренутно сте изменили:"
+
+#~ msgid "Update Settings &raquo;"
+#~ msgstr "Ажурирање подешавања˛»"
+
+#~ msgid "Sorry. The file you are looking for doesn't exist."
+#~ msgstr "Извините, датотека коју тражите не постоји."
+
+#~ msgid "Install"
+#~ msgstr "Инсталирајте"
+
+#~ msgid "Separate lines in email %sheader%s with LF only (CR suppressed)"
+#~ msgstr "Odvojene linije u e-mail %sзаглављу%s само са LF (CR обустављен)"
+
+#~ msgid ""
+#~ "Below you can find a few switches and options to change the default look "
+#~ "of the captcha image. Feel free to upload your own backgrounds and fonts "
+#~ "to the respective directories (<code>cforms/captchabg/</code> &amp; "
+#~ "<code>cforms/captchafonts/</code> or your custom folder: <code>/plugins/"
+#~ "cforms-custom/</code> )."
+#~ msgstr ""
+#~ "Испод можете пронаћи неколико прекидача и опције да бисте променили "
+#~ "постојећи изглед captcha slike. Слободно пребаците своју позадине и "
+#~ "фонтове у одговарајуће директоријуме (<code> cforms / captchabg / </code> "
+#~ "i <code> cforms /captchafonts /</code> или у Вашу подешену датотеку: "
+#~ "<code>/plugins/ cforms -Custom/</code>)."
+
+#~ msgid ""
+#~ "If cforms provides great services to you and/or your business, "
+#~ "<strong>please consider making a donation</strong> to support future "
+#~ "development."
+#~ msgstr ""
+#~ "Ако је cforms од велике услуге за Вас и / или за Ваше предузеће, молимо "
+#~ "Вас да размислите о томе да нам пружите донације за подршку у будућем "
+#~ "развоју."
+
+#~ msgid "Thank you!"
+#~ msgstr "Хвала Вам!"
+
+#~ msgid "TinyMCE Support"
+#~ msgstr "TinyMCE подршка"
+
+#~ msgid "Supported Date Formats (see \"Plugin Settings\" tab)"
+#~ msgstr ""
+#~ "Подржани формати за датум(погледати  \"подешавања додатка \" табулатор)"
+
+#~ msgid "Field"
+#~ msgstr "Поље"
+
+#~ msgid "Full Form"
+#~ msgstr "Пун формат"
+
+#~ msgid "Short Form"
+#~ msgstr "Skraćeni format"
+
+#~ msgid "Year"
+#~ msgstr "Година"
+
+#~ msgid "yy (2 digits)"
+#~ msgstr "yy (2 цифре)"
+
+#~ msgid "Month"
+#~ msgstr "Месец"
+
+#~ msgid "mmm (name)"
+#~ msgstr "mmm (назив)"
+
+#~ msgid "Day of Month"
+#~ msgstr "Дан у месецу"
+
+#~ msgid ""
+#~ "%s can reside in your /plugins/cforms-custom folder to protect it from "
+#~ "future (auto) upgrades."
+#~ msgstr ""
+#~ "%sмогу се сместити у Вашу / plugins / cforms-подешену датотеку да бисте "
+#~ "их заштитили од будућих (аутоматизованих) надоградњи."
+
+#~ msgid "n/a"
+#~ msgstr "n/ a"
+
+#~ msgid "Not available."
+#~ msgstr "Није доступно."
+
+#~ msgid "Opt. Popup Msg"
+#~ msgstr "Opt. Iskačući prozor Msg"
+
+#~ msgid "Email %spriority%s (1 = High, 3 = Normal, 5 = Low)"
+#~ msgstr "Email% sприоритет%s (1 = висок, 3 = нормалан, 5 = низак)"
+
+#~ msgid "edit this field"
+#~ msgstr "Едитуј ово поље"
+
+#~ msgid "Q&A"
+#~ msgstr "Питања&одговори"
+
+#~ msgid "File Error: Could not open file: "
+#~ msgstr "Greška u datoteci: Datoteka ne može da se otvori:"
+
+#~ msgid "Unknown encoding: "
+#~ msgstr "Непознато кодирање: "
+
+#~ msgid "Only one <em>Visitor verification</em> field is permitted!"
+#~ msgstr "Само једно <em>за проверу посетиоца</еm> поље је дозвољено!"

@@ -30,7 +30,7 @@ function cforms2_mce($plugins) {
 }
 
 function cforms2_mce_translation($mce_translation) {
-	$mce_translation['Insert a form'] = __('Insert a form', 'cforms');
+	$mce_translation['Insert a form'] = __('Insert a form', 'cforms2');
     return $mce_translation;
 }
 

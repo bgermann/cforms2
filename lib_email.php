@@ -71,7 +71,7 @@ class cforms2_mail {
 
 	    $fe=array();
 	    $f=array();
-	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',$from,$fe) )
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,63})/',$from,$fe) )
 	        $this->from = $fe[0];
 
 	    if( preg_match('/(.*)\s+(([\w-\.]+@|<)).*/',$from,$f) )
@@ -82,7 +82,7 @@ class cforms2_mail {
 	    ### reply-to
 	    $te=array();
 	    $t=array();
-	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,4})/',$replyto,$te) ) {
+	    if( preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,63})/',$replyto,$te) ) {
 	        if ( preg_match('/(.*)\s+(([\w-\+\.]+@|<)).*/',$replyto,$t) )
 	            $this->add_reply($te[0] ,str_replace('"','',$t[1]) );
 	        else
@@ -99,7 +99,7 @@ class cforms2_mail {
 
 	    $addresses = explode(',',stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_bcc']) );
 	    foreach( $addresses as $a ){
-	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) && $adminEmail) {
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,63})/',$a,$te) && $adminEmail) {
 	            if ( preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/',$a,$t) )
 	                $this->add_bcc($te[0] ,str_replace('"','',$t[1]) );
 	            else
@@ -114,7 +114,7 @@ class cforms2_mail {
 	    $addresses = explode(',',$to);
 
 	    foreach( $addresses as $a ){
-	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,4})/',$a,$te) ) {
+	        if( preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,63})/',$a,$te) ) {
 	            if ( preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/',$a,$t) )
 	                $this->add_addr($te[0] ,str_replace('"','',$t[1]) );
 	            else
@@ -202,7 +202,7 @@ class cforms2_mail {
 	    $this->err_count = 0;
 
 	    if((count($this->to) + count($this->cc) + count($this->bcc)) < 1) {
-	      $this->set_err( __('You must provide at least one recipient email address.','cforms') );
+	      $this->set_err( __('You must provide at least one recipient email address.','cforms2') );
 	      return false;
 	    }
 
@@ -221,7 +221,7 @@ class cforms2_mail {
 		remove_action('phpmailer_init', array($this, 'phpmailer_init'));
 
 	    if(!$rt) {
-	      $this->set_err(__('Could not instantiate wp_mail function.','cforms'));
+	      $this->set_err(__('Could not instantiate wp_mail function.','cforms2'));
 	      return false;
 	    }
 
@@ -235,7 +235,7 @@ class cforms2_mail {
 
 	public function add_file($path) {
 	    if(!is_file($path)) {
-	        $this->set_err(__('Could not access file: ','cforms'));
+	        $this->set_err(__('Could not access file: ','cforms2'));
 	    }
 
 	    $t = count($this->up);

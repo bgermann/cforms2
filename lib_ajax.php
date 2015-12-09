@@ -475,7 +475,7 @@ function cforms2_dead_code() {
 	                }
 
 	                if( $sent<>'1' ) {
-	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
+	                    $err = __('Error occurred while sending the auto confirmation message: ','cforms2') . '<br />'. $mail->err;
 	                    cforms2_json_die($no, ' mailerr', $err);
 	                }
 	    } ###  cc
@@ -513,7 +513,7 @@ function cforms2_dead_code() {
 	else {  ###  no admin mail sent!
 
 		###  return error msg
-		$err = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
+		$err = __('Error occurred while sending the message: ','cforms2') . '<br />'. $mail->err;
 		cforms2_json_die( $no, ' mailerr', $err);
 	}
 }

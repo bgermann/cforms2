@@ -46,7 +46,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 	?>
 	<div id="message" class="updated fade">
 		<p>
-		<strong><?php echo sprintf (__('cforms tracking tables %s have been deleted.', 'cforms'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong>
+		<strong><?php echo sprintf (__('cforms tracking tables %s have been deleted.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong>
 			<br />
 			<?php _e('Please backup/clean-up your upload directory, chances are that when you turn tracking back on, existing (older) attachments may be <u>overwritten</u>!') ?>
 			<br />
@@ -166,7 +166,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	        if( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") <> $wpdb->cformssubmissions ) {
 	            ?>
 	            <div id="message" class="updated fade">
-	                <p><strong><?php echo sprintf(__('ERROR: cforms tracking tables %s could not be created.', 'cforms'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
+	                <p><strong><?php echo sprintf(__('ERROR: cforms tracking tables %s could not be created.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
 	            </div>
 	            <?php
 			    $cformsSettings['global']['cforms_database'] = '0';
@@ -174,7 +174,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
             }else{
 	            ?>
 	            <div id="message" class="updated fade">
-	                <p><strong><?php echo sprintf(__('cforms tracking tables %s have been created.', 'cforms'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
+	                <p><strong><?php echo sprintf(__('cforms tracking tables %s have been created.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
 	            </div>
 	            <?php
             }
@@ -184,7 +184,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 			$sets = $wpdb->get_var("SELECT count(id) FROM $wpdb->cformssubmissions");
 			?>
 			<div id="message" class="updated fade">
-				<p><strong><?php echo sprintf(__('Found existing cforms tracking tables with %s records!', 'cforms'),$sets) ?></strong></p>
+				<p><strong><?php echo sprintf(__('Found existing cforms tracking tables with %s records!', 'cforms2'),$sets) ?></strong></p>
 			</div>
 			<?php
 		}
@@ -194,50 +194,50 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 ?>
 
 <div class="wrap" id="top">
-    <div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('Global Settings','cforms')?></h2>
+    <div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('Global Settings','cforms2')?></h2>
 
     <?php if ( WP_DEBUG && isset($_POST['showinfo']) ) : ###debug "easter egg" 
 
-        echo '<h2>'.__('Debug Info (all major setting groups)', 'cforms').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">';
+        echo '<h2>'.__('Debug Info (all major setting groups)', 'cforms2').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">';
         echo print_r(array_keys($cformsSettings),1)."</pre>";
-        echo '<h2>'.__('Debug Info (all cforms settings)', 'cforms').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">'.print_r($cformsSettings,1)."</pre>";
+        echo '<h2>'.__('Debug Info (all cforms settings)', 'cforms2').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">'.print_r($cformsSettings,1)."</pre>";
     
 	else : ?>
 	
-    <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms') ?></p>
+    <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms2') ?></p>
 
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="">
 		<input type="hidden" name="cforms_database_new" value="<?php if($cformsSettings['global']['cforms_database']=="0") echo 'true'; ?>"/>
 		
 		<fieldset id="wpcomment" class="cformsoptions">
-			<div class="cflegend op-closed" id="p28" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p28" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature Settings', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o28">
-				<p><?php _e('Find below the additional settings for cforms WP comment feature.', 'cforms') ?></p>
+				<p><?php _e('Find below the additional settings for cforms WP comment feature.', 'cforms2') ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obL"><label for="cforms_commentsuccess"><strong><?php _e('Comment Success Message', 'cforms'); ?></strong></label></td>
-					<td class="obR"><table><tr><td><textarea class="resizable" rows="80px" cols="200px" name="cforms_commentsuccess" id="cforms_commentsuccess"><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_commentsuccess'])); ?></textarea></td></tr></table></td>
+					<td class="obL"><label for="cforms_commentsuccess"><strong><?php _e('Comment Success Message', 'cforms2'); ?></strong></label></td>
+					<td class="obR"><table><tr><td><textarea rows="80px" cols="200px" name="cforms_commentsuccess" id="cforms_commentsuccess"><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_commentsuccess'])); ?></textarea></td></tr></table></td>
 				</tr>
 
 				<tr class="obSEP"><td colspan="2"></td></tr>
 
 				<tr class="ob space15">
-					<td class="obL"></td><td class="obR"><strong><?php _e('Ajax Settings', 'cforms'); ?></strong></td>
+					<td class="obL"></td><td class="obR"><strong><?php _e('Ajax Settings', 'cforms2'); ?></strong></td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_commentWait"><strong><?php _e('Wait time for new comments (in seconds)', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_commentWait"><strong><?php _e('Wait time for new comments (in seconds)', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_commentWait" name="cforms_commentWait" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentWait'] )); ?>"/></td>
 				</tr>
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_commentParent"><strong><?php _e('Parent Comment Container', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_commentParent" name="cforms_commentParent" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentParent'] )); ?>"/> <a class="infobutton" href="#" name="it8"><?php _e('Note &raquo;', 'cforms'); ?></a></td>
+					<td class="obL"><label for="cforms_commentParent"><strong><?php _e('Parent Comment Container', 'cforms2'); ?></strong></label></td>
+					<td class="obR"><input type="text" id="cforms_commentParent" name="cforms_commentParent" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentParent'] )); ?>"/> <a class="infobutton" href="#" name="it8"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
-				<tr id="it8" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('The HTML <strong>element ID</strong> of the parent element containing<br />all comments, for example:', 'cforms'); ?><br />
+				<tr id="it8" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('The HTML <strong>element ID</strong> of the parent element containing<br />all comments, for example:', 'cforms2'); ?><br />
 						<code>
 						[...]&lt;/h2&gt;<br />
 						&lt;ol id="<u style="color:#f37891">mycommentlist</u>"&gt;<br />
@@ -246,26 +246,26 @@ if( isset($_REQUEST['SubmitOptions']) ) {
                 </tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_commentInMod"><strong><?php _e('Comment in moderation', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_commentInMod"><strong><?php _e('Comment in moderation', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_commentInMod" name="cforms_commentInMod" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentInMod'] )); ?>"/></td>
 				</tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_commentHTML"><strong><?php _e('New comment HTML template', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_commentHTML"><strong><?php _e('New comment HTML template', 'cforms2'); ?></strong></label></td>
 					<td class="obR" style="padding-bottom:10px;">
-						<table><tr><td><textarea class="resizable" rows="80px" cols="200px" name="cforms_commentHTML" id="cforms_commentHTML"><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_commentHTML'])); ?></textarea><a class="infobutton" href="#" name="it9"><?php _e('Supported Variables &raquo;', 'cforms'); ?></a>&nbsp;&nbsp;&nbsp;<a class="infobutton" href="#" name="it9b"><?php _e('Default Template &raquo;', 'cforms'); ?></a></td></tr></table>
+						<table><tr><td><textarea rows="80px" cols="200px" name="cforms_commentHTML" id="cforms_commentHTML"><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_commentHTML'])); ?></textarea><a class="infobutton" href="#" name="it9"><?php _e('Supported Variables &raquo;', 'cforms2'); ?></a>&nbsp;&nbsp;&nbsp;<a class="infobutton" href="#" name="it9b"><?php _e('Default Template &raquo;', 'cforms2'); ?></a></td></tr></table>
 					</td>
                 </tr>
 				<tr id="it9" class="infotxt"><td>&nbsp;</td><td class="ex">
 						<table class="hf">
-							<tr><td class="bleft">{moderation}</td><td class="bright"><em><?php _e('Comment in moderation', 'cforms'); ?></em></td></tr>
-							<tr><td class="bleft">{id}</td><td class="bright"><?php _e('New comment ID', 'cforms'); ?></td></tr>
-							<tr><td class="bleft">{usercomment}</td><td class="bright"><?php _e('Comment Text', 'cforms'); ?></td></tr>
-							<tr><td class="bleft">{author}</td><td class="bright"><?php _e('Comment Author', 'cforms'); ?></td></tr>
-							<tr><td class="bleft">{url}</td><td class="bright"><?php _e('The author\'s website', 'cforms'); ?></td></tr>
-							<tr><td class="bleft">{date}</td><td class="bright"><?php _e('Current date.', 'cforms'); ?></td></tr>
-							<tr><td class="bleft">{time}</td><td class="bright"><?php _e('Current time.', 'cforms'); ?></td></tr>
-							<tr><td class="bleft">{avatar}</td><td class="bright"><?php _e('User avatar.', 'cforms'); ?></td></tr>
+							<tr><td class="bleft">{moderation}</td><td class="bright"><em><?php _e('Comment in moderation', 'cforms2'); ?></em></td></tr>
+							<tr><td class="bleft">{id}</td><td class="bright"><?php _e('New comment ID', 'cforms2'); ?></td></tr>
+							<tr><td class="bleft">{usercomment}</td><td class="bright"><?php _e('Comment Text', 'cforms2'); ?></td></tr>
+							<tr><td class="bleft">{author}</td><td class="bright"><?php _e('Comment Author', 'cforms2'); ?></td></tr>
+							<tr><td class="bleft">{url}</td><td class="bright"><?php _e('The author\'s website', 'cforms2'); ?></td></tr>
+							<tr><td class="bleft">{date}</td><td class="bright"><?php _e('Current date.', 'cforms2'); ?></td></tr>
+							<tr><td class="bleft">{time}</td><td class="bright"><?php _e('Current time.', 'cforms2'); ?></td></tr>
+							<tr><td class="bleft">{avatar}</td><td class="bright"><?php _e('User avatar.', 'cforms2'); ?></td></tr>
 						</table>
                 </td></tr>
 				<tr id="it9b" class="infotxt"><td>&nbsp;</td><td class="ex">
@@ -284,11 +284,11 @@ if( isset($_REQUEST['SubmitOptions']) ) {
                 </td></tr>
 
 				<tr class="ob space15">
-					<td class="obL">&nbsp;</td><td class="obR"><strong><?php _e('Avatar Settings', 'cforms'); ?></strong></td>
+					<td class="obL">&nbsp;</td><td class="obR"><strong><?php _e('Avatar Settings', 'cforms2'); ?></strong></td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_avatar"><strong><?php _e('Size (in pixel)', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_avatar"><strong><?php _e('Size (in pixel)', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_avatar" name="cforms_avatar" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_avatar'] )); ?>"/></td>
 				</tr>
 				</table>
@@ -296,20 +296,20 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 		</fieldset>
 
 		<fieldset id="inandexclude" class="cformsoptions">
-			<div class="cflegend op-closed" id="p27" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Include cforms header data only on specific pages', 'cforms')?>
+			<div class="cflegend op-closed" id="p27" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Include cforms header data only on specific pages', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o27">
-				<p><?php _e('Specify the ID(s) of <strong>pages or posts</strong> separated by comma on which you\'d like to show or not show cforms. The cforms header will only be included specifically on those pages, helping to maintain all other pages neat.', 'cforms') ?></p>
+				<p><?php _e('Specify the ID(s) of <strong>pages or posts</strong> separated by comma on which you\'d like to show or not show cforms. The cforms header will only be included specifically on those pages, helping to maintain all other pages neat.', 'cforms2') ?></p>
 
 				<table class="form-table">
 				<tr class="ob inexclude">
-					<td class="obL"><label for="cforms_include"><strong><?php _e('Page / Post ID(s)', 'cforms'); $ex = ($cformsSettings['global']['cforms_inexclude']['ex']=='1'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_include"><strong><?php _e('Page / Post ID(s)', 'cforms2'); $ex = ($cformsSettings['global']['cforms_inexclude']['ex']=='1'); ?></strong></label></td>
 					<td class="obR">
-              <input class="allchk"<?php echo !$ex?' checked="checked"':''; ?> type="radio" id="include" value="include" name="cforms_inc-or-ex"/><label for="include"><?php _e('include', 'cforms') ?></label>  <input class="allchk"<?php echo $ex?' checked="checked"':''; ?> type="radio" id="exclude" value="exclude" name="cforms_inc-or-ex"/><label for="exclude"><?php _e('exclude', 'cforms') ?></label><br />
+              <input class="allchk"<?php echo !$ex?' checked="checked"':''; ?> type="radio" id="include" value="include" name="cforms_inc-or-ex"/><label for="include"><?php _e('include', 'cforms2') ?></label>  <input class="allchk"<?php echo $ex?' checked="checked"':''; ?> type="radio" id="exclude" value="exclude" name="cforms_inc-or-ex"/><label for="exclude"><?php _e('exclude', 'cforms2') ?></label><br />
               <input type="text" id="cforms_include" name="cforms_include" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_inexclude']['ids'] )); ?>"/><br />
-              <?php _e('Leave empty to include cforms header files throughout your blog', 'cforms') ?>
+              <?php _e('Leave empty to include cforms header files throughout your blog', 'cforms2') ?>
           </td>
 				</tr>
 				</table>
@@ -317,56 +317,56 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 		</fieldset>
 
 		<fieldset id="popupdate" class="cformsoptions">
-			<div class="cflegend op-closed" id="p9" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Popup Date Picker', 'cforms')?>
+			<div class="cflegend op-closed" id="p9" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Popup Date Picker', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o9">
-				<p><?php echo sprintf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms'),'?page='.$plugindir.'/cforms-help.php#datepicker','onclick="setshow(19)"') ?></p>
+				<p><?php echo sprintf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#datepicker','onclick="setshow(19)"') ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_datepicker" name="cforms_datepicker" <?php if($cformsSettings['global']['cforms_datepicker']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_datepicker"><strong><?php _e('Enable Javascript date picker', 'cforms') ?></strong></label> ** <a class="infobutton" href="#" name="it10"><?php _e('Note &raquo;', 'cforms'); ?></a></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_datepicker" name="cforms_datepicker" <?php if($cformsSettings['global']['cforms_datepicker']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_datepicker"><strong><?php _e('Enable Javascript date picker', 'cforms2') ?></strong></label> ** <a class="infobutton" href="#" name="it10"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
-				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('Note that turning on this feature will result in loading an additional Javascript file to support the date picker.', 'cforms') ?></td></tr>
+				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('Note that turning on this feature will result in loading an additional Javascript file to support the date picker.', 'cforms2') ?></td></tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_dp_date"><strong><?php _e('Date Format', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_date'] )); ?>"/><a href="http://api.jqueryui.com/datepicker/#utility-formatDate"><?php _e('See supported date formats &raquo;', 'cforms'); ?></a></td>
+					<td class="obL"><label for="cforms_dp_date"><strong><?php _e('Date Format', 'cforms2'); ?></strong></label></td>
+					<td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_date'] )); ?>"/><a href="http://api.jqueryui.com/datepicker/#utility-formatDate"><?php _e('See supported date formats &raquo;', 'cforms2'); ?></a></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_days"><strong><?php _e('Days (Columns)', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_dp_days"><strong><?php _e('Days (Columns)', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_days" name="cforms_dp_days" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_days'] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_months"><strong><?php _e('Months', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_dp_months"><strong><?php _e('Months', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_months" name="cforms_dp_months" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_months'] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
 					<?php $nav = $cformsSettings['global']['cforms_dp_nav']; ?>
 					<td class="obL"></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_dp_Ybuttons" name="cforms_dp_Ybuttons" <?php if($nav[6]=="1") echo "checked=\"checked\""; ?>/><label for="cforms_dp_Ybuttons"><strong><?php _e('Enable year selection drop down', 'cforms') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_dp_Ybuttons" name="cforms_dp_Ybuttons" <?php if($nav[6]=="1") echo "checked=\"checked\""; ?>/><label for="cforms_dp_Ybuttons"><strong><?php _e('Enable year selection drop down', 'cforms2') ?></strong></label></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_prevM"><strong><?php _e('Previous Month', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_dp_prevM"><strong><?php _e('Previous Month', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_prevM" name="cforms_dp_prevM" value="<?php echo stripslashes(htmlspecialchars( $nav[1] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_nextM"><strong><?php _e('Next Month', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_dp_nextM"><strong><?php _e('Next Month', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_nextM" name="cforms_dp_nextM" value="<?php echo stripslashes(htmlspecialchars( $nav[3] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_close"><strong><?php _e('Close', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_dp_close"><strong><?php _e('Close', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_close" name="cforms_dp_close" value="<?php echo stripslashes(htmlspecialchars( $nav[4] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_choose"><strong><?php _e('Choose Date', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_dp_choose"><strong><?php _e('Choose Date', 'cforms2'); ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_dp_choose" name="cforms_dp_choose" value="<?php echo stripslashes(htmlspecialchars( $nav[5] )); ?>"/></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_dp_start"><strong><?php _e('Week start day', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_dp_start" name="cforms_dp_start" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_start'] )); ?>"/> <?php _e('0=Sunday, 1=Monday, etc.', 'cforms'); ?></td>
+					<td class="obL"><label for="cforms_dp_start"><strong><?php _e('Week start day', 'cforms2'); ?></strong></label></td>
+					<td class="obR"><input type="text" id="cforms_dp_start" name="cforms_dp_start" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_dp_start'] )); ?>"/> <?php _e('0=Sunday, 1=Monday, etc.', 'cforms2'); ?></td>
 				</tr>
 				</table>
 			</div>
@@ -374,19 +374,18 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 
 		<fieldset id="smtp" class="cformsoptions">
-			<div class="cflegend op-closed" id="p10" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Mail Server Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p10" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Mail Server Settings', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o10">
 
-				<p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you may want to try and turn on the below option.', 'cforms') ?>
+				<p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you may want to try and turn on the below option.', 'cforms2') ?>
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php echo sprintf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms'),'<strong>','</strong>') ?></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php echo sprintf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms2'),'<strong>','</strong>') ?></label></td>
 				</tr>
-				<tr class="obSEP"><td colspan="2"></td></tr>
 				</table>
 
 			</div>
@@ -394,54 +393,54 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 
 		<fieldset id="upload" class="cformsoptions">
-			<div class="cflegend op-closed" id="p11" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Global File Upload Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p11" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Global File Upload Settings', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o11">
 				<p>
-					<?php echo sprintf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms'),'?page='.$plugindir.'/cforms-help.php#upload','onclick="setshow(19)"'); ?>
-					<?php echo sprintf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms'),'?page='.$plugindir.'/cforms-options.php#fileupload','onclick="setshow(0)"'); ?>
+					<?php echo sprintf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#upload','onclick="setshow(19)"'); ?>
+					<?php echo sprintf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#fileupload','onclick="setshow(0)"'); ?>
 				</p>
 
 				<p class="ex">
-					<?php _e('Also, note that by adding a <em>File Upload Box</em> to your form, the Ajax (if enabled) submission method will (automatically) <strong>gracefully degrade</strong> to the standard method, due to general HTML limitations.', 'cforms') ?>
-					<?php _e('Below, error messages shown in case something goes awry:', 'cforms') ?>
+					<?php _e('Also, note that by adding a <em>File Upload Box</em> to your form, the Ajax (if enabled) submission method will (automatically) <strong>gracefully degrade</strong> to the standard method, due to general HTML limitations.', 'cforms2') ?>
+					<?php _e('Below, error messages shown in case something goes awry:', 'cforms2') ?>
 				</p>
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obL"><label for="cforms_upload_err5"><strong><?php _e('File type not allowed', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_upload_err5"><strong><?php _e('File type not allowed', 'cforms2'); ?></strong></label></td>
 					<td class="obR">
-						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox resizable" name="cforms_upload_err5" id="cforms_upload_err5" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err5'])); ?></textarea></td></tr></table>
+						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox" name="cforms_upload_err5" id="cforms_upload_err5" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err5'])); ?></textarea></td></tr></table>
 					</td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_upload_err1"><strong><?php _e('Generic (unknown) error', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_upload_err1"><strong><?php _e('Generic (unknown) error', 'cforms2'); ?></strong></label></td>
 					<td class="obR">
-						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox resizable" name="cforms_upload_err1" id="cforms_upload_err1" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err1'])); ?></textarea></td></tr></table>
+						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox" name="cforms_upload_err1" id="cforms_upload_err1" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err1'])); ?></textarea></td></tr></table>
 					</td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_upload_err2"><strong><?php _e('File is empty', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_upload_err2"><strong><?php _e('File is empty', 'cforms2'); ?></strong></label></td>
 					<td class="obR">
-						<table><tr><td><textarea  rows="80px" cols="280px" class="errmsgbox resizable" name="cforms_upload_err2" id="cforms_upload_err2" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err2'])); ?></textarea></td></tr></table>
+						<table><tr><td><textarea  rows="80px" cols="280px" class="errmsgbox" name="cforms_upload_err2" id="cforms_upload_err2" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err2'])); ?></textarea></td></tr></table>
 					</td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_upload_err3"><strong><?php _e('File size too big', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_upload_err3"><strong><?php _e('File size too big', 'cforms2'); ?></strong></label></td>
 					<td class="obR">
-						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox resizable" name="cforms_upload_err3" id="cforms_upload_err3" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err3'])); ?></textarea></td></tr></table>
+						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox" name="cforms_upload_err3" id="cforms_upload_err3" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err3'])); ?></textarea></td></tr></table>
 					</td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_upload_err4"><strong><?php _e('Error during upload', 'cforms'); ?></strong></label></td>
+					<td class="obL"><label for="cforms_upload_err4"><strong><?php _e('Error during upload', 'cforms2'); ?></strong></label></td>
 					<td class="obR">
-						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox resizable" name="cforms_upload_err4" id="cforms_upload_err4" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err4'])); ?></textarea></td></tr></table>
+						<table><tr><td><textarea rows="80px" cols="280px" class="errmsgbox" name="cforms_upload_err4" id="cforms_upload_err4" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err4'])); ?></textarea></td></tr></table>
 					</td>
 				</tr>
 				</table>
@@ -450,24 +449,24 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 
 		<fieldset id="wpeditor" class="cformsoptions">
-			<div class="cflegend op-closed" id="p12" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('WP Editor Button support', 'cforms')?>
+			<div class="cflegend op-closed" id="p12" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('WP Editor Button support', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o12">
-				<p><?php _e('If you would like to use editor buttons to insert your cforms please enable them below.', 'cforms') ?></p>
+				<p><?php _e('If you would like to use editor buttons to insert your cforms please enable them below.', 'cforms2') ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_show_quicktag" name="cforms_show_quicktag" <?php if($cformsSettings['global']['cforms_show_quicktag']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_show_quicktag"><strong><?php _e('Enable TinyMCE', 'cforms') ?></strong> <?php _e('&amp; Code editor buttons', 'cforms') ?></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_show_quicktag" name="cforms_show_quicktag" <?php if($cformsSettings['global']['cforms_show_quicktag']=="1") echo "checked=\"checked\""; ?>/> <label for="cforms_show_quicktag"><strong><?php _e('Enable TinyMCE', 'cforms2') ?></strong> <?php _e('&amp; Code editor buttons', 'cforms2') ?></label></td>
 				</tr>
 				</table>
 			</div>
 		</fieldset>
 
 		<fieldset id="captcha" class="cformsoptions">
-			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms')?>
+			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o26">
@@ -496,59 +495,59 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obL"><strong><?php _e('Preview Image', 'cforms') ?></strong><br /><span id="pnote" style="display:none; color:red;"><?php _e('Don\'t forget to save your changes!', 'cforms'); ?></span></td>
+					<td class="obL"><strong><?php _e('Preview Image', 'cforms2') ?></strong><br /><span id="pnote" style="display:none; color:red;"><?php _e('Don\'t forget to save your changes!', 'cforms2'); ?></span></td>
 					<td class="obR" id="adminCaptcha">
-                        <a title="<?php _e('Reload Captcha Image', 'cforms'); ?>" href="javascript:resetAdminCaptcha();"><?php _e('Reload Captcha Image', 'cforms'); ?> &raquo;</a>
+                        <a title="<?php _e('Reload Captcha Image', 'cforms2'); ?>" href="javascript:resetAdminCaptcha();"><?php _e('Reload Captcha Image', 'cforms2'); ?> &raquo;</a>
 					</td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_fo"><strong><?php _e('Force display', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_fo" name="cforms_cap_fo" value="1" <?php if($cap['fo']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_fo"><?php _e('Force CAPTCHA display for logged in users', 'cforms') ?></label></td>
+					<td class="obL"><label for="cforms_cap_fo"><strong><?php _e('Force display', 'cforms2') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_fo" name="cforms_cap_fo" value="1" <?php if($cap['fo']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_fo"><?php _e('Force CAPTCHA display for logged in users', 'cforms2') ?></label></td>
 				</tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_cap_w"><strong><?php _e('Width', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_w"><strong><?php _e('Width', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap" type="text" id="cforms_cap_w" name="cforms_cap_w" value="<?php echo $w; ?>"/>
-						<label for="cforms_cap_h" class="second-l"><strong><?php _e('Height', 'cforms') ?></strong></label><input class="cap" type="text" id="cforms_cap_h" name="cforms_cap_h" value="<?php echo $h; ?>"/>
+						<label for="cforms_cap_h" class="second-l"><strong><?php _e('Height', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_h" name="cforms_cap_h" value="<?php echo $h; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="inputID1"><strong><?php _e('Border Color', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="inputID1"><strong><?php _e('Border Color', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap colorpicker" type="text" id="inputID1" name="cforms_cap_l" value="<?php echo $l; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_b"><strong><?php _e('Background Image', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_b"><strong><?php _e('Background Image', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<?php echo $backgrounds; ?>
 					</td>
 				</tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_cap_f"><strong><?php _e('Font Type', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_f"><strong><?php _e('Font Type', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<?php echo $fonts; ?>
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_f1"><strong><?php _e('Min Size', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_f1"><strong><?php _e('Min Size', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap" type="text" id="cforms_cap_f1" name="cforms_cap_f1" value="<?php echo $f1; ?>"/>
-						<label for="cforms_cap_f2" class="second-l"><strong><?php _e('Max Size', 'cforms') ?></strong></label><input class="cap" type="text" id="cforms_cap_f2" name="cforms_cap_f2" value="<?php echo $f2; ?>"/>
+						<label for="cforms_cap_f2" class="second-l"><strong><?php _e('Max Size', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_f2" name="cforms_cap_f2" value="<?php echo $f2; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_a1"><strong><?php _e('Min Angle', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_a1"><strong><?php _e('Min Angle', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap" type="text" id="cforms_cap_a1" name="cforms_cap_a1" value="<?php echo $a1; ?>"/>
-						<label for="cforms_cap_a2" class="second-l"><strong><?php _e('Max Angle', 'cforms') ?></strong></label><input class="cap" type="text" id="cforms_cap_a2" name="cforms_cap_a2" value="<?php echo $a2; ?>"/>
+						<label for="cforms_cap_a2" class="second-l"><strong><?php _e('Max Angle', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_a2" name="cforms_cap_a2" value="<?php echo $a2; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="inputID2"><strong><?php _e('Color', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="inputID2"><strong><?php _e('Color', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap colorpicker" type="text" id="inputID2" name="cforms_cap_c" value="<?php echo $c; ?>"/>
 					</td>
@@ -556,22 +555,22 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 				<tr class="ob space15">
 					<td class="obL">&nbsp;</td>
-                    <td class="obR"><strong><?php _e('Number of shown characters', 'cforms') ?></strong></td>
+                    <td class="obR"><strong><?php _e('Number of shown characters', 'cforms2') ?></strong></td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_c1"><strong><?php _e('Minimum', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_c1"><strong><?php _e('Minimum', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap" type="text" id="cforms_cap_c1" name="cforms_cap_c1" value="<?php echo $c1; ?>"/>
-						<label for="cforms_cap_c2" class="second-l"><strong><?php _e('Maximum', 'cforms') ?></strong></label><input class="cap" type="text" id="cforms_cap_c2" name="cforms_cap_c2" value="<?php echo $c2; ?>"/>
+						<label for="cforms_cap_c2" class="second-l"><strong><?php _e('Maximum', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_c2" name="cforms_cap_c2" value="<?php echo $c2; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_ac"><strong><?php _e('Allowed characters', 'cforms') ?></strong></label></td>
+					<td class="obL"><label for="cforms_cap_ac"><strong><?php _e('Allowed characters', 'cforms2') ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_cap_ac" name="cforms_cap_ac" value="<?php echo $ac; ?>"/></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_i" name="cforms_cap_i" value="i" <?php if($cap['i']=='i') echo "checked=\"checked\""; ?>/><label for="cforms_cap_i"><?php _e('User response is treated case insensitive', 'cforms') ?></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_i" name="cforms_cap_i" value="i" <?php if($cap['i']=='i') echo "checked=\"checked\""; ?>/><label for="cforms_cap_i"><?php _e('User response is treated case insensitive', 'cforms2') ?></label></td>
 				</tr>
 				</table>
 			</div>
@@ -579,40 +578,40 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 
 		<fieldset id="visitorv" class="cformsoptions">
-			<div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms')?>
+			<div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o13">
-				<p><?php echo sprintf(__('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field %s preferably in its own FIELDSET!', 'cforms'), '<code>' . __('Visitor verification (Q&amp;A)', 'cforms') . '</code>'); ?></p>
+				<p><?php echo sprintf(__('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field %s preferably in its own FIELDSET!', 'cforms2'), '<code>' . __('Visitor verification (Q&amp;A)', 'cforms2') . '</code>'); ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_foqa"><strong><?php _e('Force display', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_foqa" name="cforms_cap_foqa" value="1" <?php if($cap['foqa']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_foqa"><?php _e('Force Q&amp;A display for logged in users', 'cforms') ?></label></td>
+					<td class="obL"><label for="cforms_cap_foqa"><strong><?php _e('Force display', 'cforms2') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_foqa" name="cforms_cap_foqa" value="1" <?php if($cap['foqa']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_foqa"><?php _e('Force Q&amp;A display for logged in users', 'cforms2') ?></label></td>
 				</tr>
 
 				<tr class="ob space15">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><a class="infobutton" href="#" name="it12"><?php _e('Note &raquo;', 'cforms'); ?></a></td>
+					<td class="obR"><a class="infobutton" href="#" name="it12"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
 				<tr id="it12" class="infotxt"><td>&nbsp;</td><td class="ex">
-							<?php _e('The below error/failure message is also used for <strong>captcha</strong> verification!', 'cforms') ?><br />
-							<?php echo sprintf(__('Depending on your personal preferences and level of SPAM security you intend to put in place, you can also use <a href="%s" %s>cforms\' CAPTCHA feature</a>!', 'cforms'),'?page='.$plugindir.'/cforms-help.php#captcha','onclick="setshow(19)"'); ?>
+							<?php _e('The below error/failure message is also used for <strong>captcha</strong> verification!', 'cforms2') ?><br />
+							<?php echo sprintf(__('Depending on your personal preferences and level of SPAM security you intend to put in place, you can also use <a href="%s" %s>cforms\' CAPTCHA feature</a>!', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#captcha','onclick="setshow(19)"'); ?>
 				</td></tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_codeerr"><?php _e('<strong>Failure message</strong><br />(for a wrong answer)', 'cforms'); ?></label></td>
+					<td class="obL"><label for="cforms_codeerr"><?php _e('<strong>Failure message</strong><br />(for a wrong answer)', 'cforms2'); ?></label></td>
 					<td class="obR">
-						<table><tr><td><textarea class="resizable" rows="80px" cols="280px" name="cforms_codeerr" id="cforms_codeerr" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_codeerr'])); ?></textarea></td></tr></table>
+						<table><tr><td><textarea rows="80px" cols="280px" name="cforms_codeerr" id="cforms_codeerr" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_codeerr'])); ?></textarea></td></tr></table>
 					</td>
 				</tr>
 
 				<?php $qa = stripslashes(htmlspecialchars($cformsSettings['global']['cforms_sec_qa'])); ?>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_sec_qa"><?php _e('<strong>Questions &amp; Answers</strong><br />format: Q=A', 'cforms') ?></label></td>
-					<td class="obR"><table><tr><td><textarea class="resizable" rows="80px" cols="280px" name="cforms_sec_qa" id="cforms_sec_qa" ><?php echo $qa; ?></textarea></td></tr></table></td>
+					<td class="obL"><label for="cforms_sec_qa"><?php _e('<strong>Questions &amp; Answers</strong><br />format: Q=A', 'cforms2') ?></label></td>
+					<td class="obR"><table><tr><td><textarea rows="80px" cols="280px" name="cforms_sec_qa" id="cforms_sec_qa" ><?php echo $qa; ?></textarea></td></tr></table></td>
 				</tr>
 				</table>
 			</div>
@@ -620,33 +619,33 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 
 		<fieldset id="tracking" class="cformsoptions">
-			<div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms')?>
+			<div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms2')?>
             </div>
 
 			<div class="cf-content" id="o14">
-				<p><?php _e('If you like to track your form submissions also via the database, please enable this feature below. If required, two new tables will be created and you\'ll see a new sub tab "<strong>Tracking</strong>" under the cforms menu.', 'cforms') ?></p>
+				<p><?php _e('If you like to track your form submissions also via the database, please enable this feature below. If required, two new tables will be created and you\'ll see a new sub tab "<strong>Tracking</strong>" under the cforms menu.', 'cforms2') ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms'); ?></a></td>
+					<td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
-				<tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?></td></tr>
+				<tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?></td></tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if($cformsSettings['global']['cforms_database']=="1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms') ?></td>
+					<td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if($cformsSettings['global']['cforms_database']=="1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms2') ?></td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_showdashboard"><strong><?php _e('Show on dashboard', 'cforms') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_showdashboard" name="cforms_showdashboard" <?php if($cformsSettings['global']['cforms_showdashboard']=="1") echo "checked=\"checked\""; ?>/> <?php _e('Make sure to enable your forms individually as well!', 'cforms') ?></td>
+					<td class="obL"><label for="cforms_showdashboard"><strong><?php _e('Show on dashboard', 'cforms2') ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_showdashboard" name="cforms_showdashboard" <?php if($cformsSettings['global']['cforms_showdashboard']=="1") echo "checked=\"checked\""; ?>/> <?php _e('Make sure to enable your forms individually as well!', 'cforms2') ?></td>
 				</tr>
 
 				<tr class="ob">
-					<td class="obL"><label for="cforms_rss"><strong><?php _e('Enable global RSS', 'cforms'); ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['global']['cforms_rssall'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enables an RSS feed to track all new submissions across all forms.', 'cforms'); ?></td>
+					<td class="obL"><label for="cforms_rss"><strong><?php _e('Enable global RSS', 'cforms2'); ?></strong></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['global']['cforms_rssall'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enables an RSS feed to track all new submissions across all forms.', 'cforms2'); ?></td>
 				</tr>
 
 				<?php if( current_user_can('track_cforms') && $cformsSettings['global']['cforms_rssall'] ) : ?>
@@ -659,15 +658,15 @@ if( isset($_REQUEST['SubmitOptions']) ) {
                                 echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>';
                             }
                         ?></select>
-                    	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms'); ?></label>
+                    	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms2'); ?></label>
                     </td>
 				</tr>
 				<tr class="ob">
-					<td class="obL" style="padding-top:8px; vertical-align:top;"><label for="cforms_rsskey"><strong><?php _e('RSS Feed Security Key', 'cforms'); ?><br /><br /></strong></label></td>
+					<td class="obL" style="padding-top:8px; vertical-align:top;"><label for="cforms_rsskey"><strong><?php _e('RSS Feed Security Key', 'cforms2'); ?><br /><br /></strong></label></td>
 					<td class="obR">
 						<input name="cforms_rsskeyall" id="cforms_rsskey" value="<?php echo $cformsSettings['global']['cforms_rsskeyall'];  ?>" />
-						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#tracking';"/>
-						<br /><?php _e('The complete RSS URL &raquo;', 'cforms'); echo '<br />'.network_site_url().'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
+						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms2');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#tracking';"/>
+						<br /><?php _e('The complete RSS URL &raquo;', 'cforms2'); echo '<br />'.network_site_url().'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
 					</td>
 				</tr>
 				<?php endif; ?>
@@ -692,18 +691,18 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 </div>
 
 <div class="jqmWindow" id="cf_backupbox">
-    <div class="cf_ed_header jqDrag"><?php _e('Backup &amp; Restore All Settings','cforms'); ?></div>
+    <div class="cf_ed_header"><?php _e('Backup &amp; Restore All Settings','cforms2'); ?></div>
     <div class="cf_ed_main_backup">
         <form enctype="multipart/form-data" action="" name="backupform" method="post">
             <div class="controls">
 
-				<p class="ex"><?php _e('Restoring all settings will overwrite all form specific &amp; global settings!', 'cforms') ?></p>
+				<p class="ex"><?php _e('Restoring all settings will overwrite all form specific &amp; global settings!', 'cforms2') ?></p>
 				<p>
-                	<input type="submit" name="saveallcformsdata" title="<?php _e('Backup all settings now!', 'cforms') ?>" class="allbuttons" value="<?php _e('Backup all settings now!', 'cforms') ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();"/>&nbsp;&nbsp;&nbsp;
-                	<input type="file" id="importall" name="importall" size="25" /><input type="submit" name="restoreallcformsdata" title="<?php _e('Restore all settings now!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('Restore all settings now!', 'cforms') ?>" onclick="return confirm('<?php _e('With a broken backup file, this action may erase all your settings! Do you want to continue?', 'cforms') ?>');"/>
+                	<input type="submit" name="saveallcformsdata" title="<?php _e('Backup all settings now!', 'cforms2') ?>" class="allbuttons" value="<?php _e('Backup all settings now!', 'cforms2') ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();"/>&nbsp;&nbsp;&nbsp;
+                	<input type="file" id="importall" name="importall" size="25" /><input type="submit" name="restoreallcformsdata" title="<?php _e('Restore all settings now!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('Restore all settings now!', 'cforms2') ?>" onclick="return confirm('<?php _e('With a broken backup file, this action may erase all your settings! Do you want to continue?', 'cforms2') ?>');"/>
 				</p>
-				<em><?php _e('PS: Individual form configurations can be backup up on the respective form admin page.', 'cforms') ?></em>
-                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+				<em><?php _e('PS: Individual form configurations can be backup up on the respective form admin page.', 'cforms2') ?></em>
+                <p class="cancel"><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
 
             </div>
             <input type="hidden" name="noSub" value="<?php if (!empty($noDISP)) echo $noDISP; ?>"/>
@@ -711,16 +710,16 @@ if( isset($_REQUEST['SubmitOptions']) ) {
     </div>
 </div>
 <div class="jqmWindow" id="cf_delall_dialog">
-    <div class="cf_ed_header jqDrag"><?php _e('Uninstalling / Removing cforms','cforms'); ?></div>
+    <div class="cf_ed_header"><?php _e('Uninstalling / Removing cforms','cforms2'); ?></div>
     <div class="cf_ed_main_backup">
         <form action="" name="deleteform" method="post">
-            <div id="cf_target_del"><?php _e('Warning!','cforms'); ?></div>
+            <div id="cf_target_del"><?php _e('Warning!','cforms2'); ?></div>
             <div class="controls">
-				<p><?php _e('Generally, simple deactivation of cforms does <strong>not</strong> erase any of its data. If you like to quit using cforms for good, please erase all data before deactivating the plugin.', 'cforms') ?></p>
-				<p><strong><?php _e('This is irrevocable!', 'cforms') ?></strong>&nbsp;&nbsp;&nbsp;<br />
-					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms') ?>');"/></p>
+				<p><?php _e('Generally, simple deactivation of cforms does <strong>not</strong> erase any of its data. If you like to quit using cforms for good, please erase all data before deactivating the plugin.', 'cforms2') ?></p>
+				<p><strong><?php _e('This is irrevocable!', 'cforms2') ?></strong>&nbsp;&nbsp;&nbsp;<br />
+					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms2') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms2') ?>');"/></p>
 
-                <p class="cancel"><a href="#" id="cancel" class="jqmClose"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/dialog_cancel.gif" alt="<?php _e('Cancel', 'cforms') ?>" title="<?php _e('Cancel', 'cforms') ?>"/></a></p>
+                <p class="cancel"><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
             </div>
         </form>
     </div>
@@ -739,7 +738,7 @@ function cforms2_get_files($dir,$currentfile,$ext){
 
 	if ( file_exists($presetsdir) ){
 
-		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('custom files','cforms'). ' ***&nbsp;&nbsp;</option>';
+		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('custom files','cforms2'). ' ***&nbsp;&nbsp;</option>';
 
 		if ($handle = opendir($presetsdir)) {
 		    while (false !== ($file = readdir($handle))) {
@@ -749,7 +748,7 @@ function cforms2_get_files($dir,$currentfile,$ext){
 		    closedir($handle);
 		}
 
-		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('cform css files','cforms'). ' ***&nbsp;&nbsp;</option>';
+		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('cform css files','cforms2'). ' ***&nbsp;&nbsp;</option>';
 	}
 
 	$presetsdir		= plugin_dir_path(__FILE__). $dir .$s;
@@ -761,7 +760,7 @@ function cforms2_get_files($dir,$currentfile,$ext){
 	    closedir($handle);
 	}
 
-    return ($list=='')?'<li>'.__('Not available','cforms').'</li>':$list;
+    return ($list=='')?'<li>'.__('Not available','cforms2').'</li>':$list;
 }
 
 

@@ -41,8 +41,8 @@ function cforms2_sec2hms($s) {
 	$t='';
     $h = intval(intval($s) / 3600);
     $m = intval(($s / 60) % 60);
-     if ($h>0)	$t .= " $h ".__('hour(s)', 'cforms').' &';
-     if ($m>0)	$t .= " $m ".__('minute(s)', 'cforms');
+     if ($h>0)	$t .= " $h ".__('hour(s)', 'cforms2').' &';
+     if ($m>0)	$t .= " $m ".__('minute(s)', 'cforms2');
      return $t;
 }
 
@@ -50,7 +50,7 @@ function cforms2_sec2hms($s) {
 
 ### make time
 function cforms2_make_time($t) {
-	$time = str_replace('/', '.', $t) . ' ' . get_option('timezone_string');
+	$time = str_replace('/', '.', $t) . sprintf(' %+d', get_option('gmt_offset'));
 	$time = strtotime($time);
 	if ($time === false)
 		return 0;
@@ -559,7 +559,7 @@ class cforms2_rss {
 							}
 
 			                $entrylink = network_site_url().'/wp-admin/admin.php?page='.plugin_dir_path(plugin_basename(__FILE__)).'cforms-database.php&amp;d-id='.$entry->id.'#entry'.$entry->id;
-							$description .= '<div style="margin:8px 0;"><a href="'.$entrylink.'">'.__('View details','cforms').'</a></div> ]]>';
+							$description .= '<div style="margin:8px 0;"><a href="'.$entrylink.'">'.__('View details','cforms2').'</a></div> ]]>';
 							$content.= "\t".'<item>'."\n".
 										"\t\t".'<title>'.$title.'</title>'."\n".
 										"\t\t".'<description>'.$description.'</description>'."\n".
@@ -570,7 +570,7 @@ class cforms2_rss {
 					}
 				}
 				else
-					$content = '<item><title>'.__('No entries yet','cforms').'</title><description>'.__('You might want to check back in a little while...','cforms').'</description>'.
+					$content = '<item><title>'.__('No entries yet','cforms2').'</title><description>'.__('You might want to check back in a little while...','cforms2').'</description>'.
 								'<link></link><guid isPermaLink="false"></guid><pubDate>'.gmdate('D, d M Y H:i:s +0000', current_time('timestamp')).'</pubDate></item>';
 
 	header( 'Content-Type: text/xml; charset='.get_option('blog_charset') );
@@ -580,10 +580,10 @@ class cforms2_rss {
 
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-	<title><?php if ($single) echo __('New submissions for >>', 'cforms').' '.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']); else _e('All new form submissions', 'cforms'); ?></title>
+	<title><?php if ($single) echo __('New submissions for >>', 'cforms2').' '.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']); else _e('All new form submissions', 'cforms2'); ?></title>
 	<atom:link href="<?php echo network_site_url().'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?>" rel="self" type="application/rss+xml" />
 	<link><?php echo network_site_url(); ?></link>
-	<description><?php _e('This RSS feed provides you with the most recent form submissions.', 'cforms') ?></description>
+	<description><?php _e('This RSS feed provides you with the most recent form submissions.', 'cforms2') ?></description>
 	<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></pubDate>
 	<language><?php echo get_option('rss_language'); ?></language>
 <?php echo $content; ?>

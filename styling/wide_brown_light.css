@@ -390,9 +390,9 @@ img.captcha	{
 	float:none!important;
 }
 
-img.captcha-reset {
+.captcha-reset {
 	vertical-align:text-bottom;
-	background:	url(captcha_reset_brown.gif) no-repeat;
+	color:#630;
 	margin:0 0 2px 3px;
 	width:21px;
 	height:23px;

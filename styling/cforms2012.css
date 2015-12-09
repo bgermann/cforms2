@@ -361,7 +361,6 @@ input.secinput {
 #cforms_captcha3,
 #cforms_captcha2,
 #cforms_captcha {
-	height:15px;
 	width:50px;
 	padding: 4px 4px;
 	margin: 0;
@@ -375,9 +374,9 @@ img.captcha	{
 	float:none!important;
 }
 
-img.captcha-reset {
+.captcha-reset {
 	vertical-align:text-bottom;
-	background:	url(captcha_reset_grey.gif) no-repeat;
+	color:#777777;
 	margin:0 0 2px 3px;
 	width:21px;
 	height:21px;
@@ -425,7 +424,7 @@ div.success {
 }
 div.failure {
 	display:block;
-    background: url("li-err-bg.png") repeat scroll 0 0 #FFDFDF !important;
+    background: url(li-err-bg.png) repeat scroll 0 0 #FFDFDF !important;
     border: 1px solid #EDC4C4;
     border-radius: 3px;
 	-moz-border-radius:3px;

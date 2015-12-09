@@ -47,28 +47,28 @@
 
 				if( in_array($type, array('cauthor','email','url','comment','send2author')) && !($isTAF==2) ){
 					$allgood = $WPc?false:true;
-					$usermsg .= '<span class="exMsg">'.__('WP comment form fields only supported when <em>WP comment feature</em> turned on!', 'cforms').'</span>';
+					$usermsg .= '<span class="exMsg">'.__('WP comment form fields only supported when <em>WP comment feature</em> turned on!', 'cforms2').'</span>';
 					$WPc=true;
 				}
 				if( in_array($type, array('yourname','youremail','friendsname','friendsemail')) && !($isTAF==1) ){
 					$allgood = $taf?false:true;
-					$usermsg .= '<span class="exMsg">'.__('TAF fields only supported when <em>TAF feature</em> turned on!', 'cforms').'</span>';
+					$usermsg .= '<span class="exMsg">'.__('TAF fields only supported when <em>TAF feature</em> turned on!', 'cforms2').'</span>';
 					$taf=true;
 				}
 
 				if( $type=='captcha' ){
 					$allgood = $captcha?false:true;
-					$usermsg .= $captcha?'<span class="exMsg">'.__('Only one <em>captcha</em> field is permitted!', 'cforms').'</span>':'';
+					$usermsg .= $captcha?'<span class="exMsg">'.__('Only one <em>captcha</em> field is permitted!', 'cforms2').'</span>':'';
 					$captcha=true;
 				}
 				if( $type=='ccbox' ){
 					$allgood = $ccbox?false:true;
-					$usermsg .= $ccbox?'<span class="exMsg">'.__('Only one <em>CC:</em> field is permitted!', 'cforms').'</span>':'';
+					$usermsg .= $ccbox?'<span class="exMsg">'.__('Only one <em>CC:</em> field is permitted!', 'cforms2').'</span>':'';
 					$ccbox=true;
 				}
 				if( $type=='emailtobox' ){
 					$allgood = $emailtobox?false:true;
-					$usermsg .= $emailtobox?'<span class="exMsg">'.__('Only one <em>Multiple Recipients</em> field is permitted!', 'cforms').'</span>':'';
+					$usermsg .= $emailtobox?'<span class="exMsg">'.__('Only one <em>Multiple Recipients</em> field is permitted!', 'cforms2').'</span>':'';
 					$emailtobox=true;
 				}
 
@@ -269,4 +269,4 @@
 
 	}
     update_option('cforms_settings',$cformsSettings);
-	echo '<div id="message" class="updated fade"><p>'.__('Form settings updated.', 'cforms').'</p>'.$usermsg.'</div>';
+	echo '<div id="message" class="updated fade"><p>'.__('Form settings updated.', 'cforms2').'</p>'.$usermsg.'</div>';

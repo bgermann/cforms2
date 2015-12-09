@@ -596,7 +596,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                }
 
 	                if( $sent<>'1' )
-				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms') . '<br />'. $mail->err;
+				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms2') . '<br />'. $mail->err;
 						$usermessage_class = ' mailerr';
 	            }
 
@@ -618,7 +618,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	    } ###  if $sentadmin
 	    else
-	        $usermessage_text = __('Error occurred while sending the message: ','cforms') . '<br />'. $mail->err;
+	        $usermessage_text = __('Error occurred while sending the message: ','cforms2') . '<br />'. $mail->err;
 			$usermessage_class = ' mailerr';
 	} ### if $MPok
 

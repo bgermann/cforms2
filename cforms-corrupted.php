@@ -21,11 +21,11 @@
 cforms2_check_access_priv();
 ?>
 <div class="wrap">
-	<div id="icon-cforms-corrupted" class="icon32"><br/></div><h2><?php _e('cforms error','cforms')?></h2>
+	<div id="icon-cforms-corrupted" class="icon32"><br/></div><h2><?php _e('cforms error','cforms2')?></h2>
 
 <?php if( $_POST['fixsettings'] ) :?>
 
-<div class="error"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms'); ?></p></div>
+<div class="error"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms2'); ?></p></div>
 <?php
 	$c = stripslashes($_POST['currentsettings']);
 
@@ -48,7 +48,7 @@ cforms2_check_access_priv();
 
 <?php elseif( $_POST['resetsettings'] ) : ?>
 
-<div class="updated fade"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms'); ?></p></div>
+<div class="updated fade"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms2'); ?></p></div>
 <?php
     delete_option('cforms_settings');
 	global $cformsSettings;
@@ -59,7 +59,7 @@ cforms2_check_access_priv();
 
 <?php else :?>
 
-<div class="error"><p><?php _e('It appears that WP has corrupted your cforms settings, the settings array can not be read properly.','cforms'); ?></p></div>
+<div class="error"><p><?php _e('It appears that WP has corrupted your cforms settings, the settings array can not be read properly.','cforms2'); ?></p></div>
 
 <?php endif;
 
@@ -70,21 +70,21 @@ $c = str_replace('&','&amp;',$wpdb->get_var("SELECT option_value FROM `$wpdb->op
 
 	<form name="corruptedsettings" class="corruptedsettings" method="POST">
 
-	    <h3><?php _e('Corrupted cforms settings detected','cforms'); ?></h2>
+	    <h3><?php _e('Corrupted cforms settings detected','cforms2'); ?></h2>
 	    <table class="form-table">
-	        <tr><td><?php _e('You can either try and fix the settings array or reset it and start from scratch.','cforms'); ?> &nbsp;<input class="allbuttons deleteall" type="submit" name="resetsettings" id="resetsettings" value="<?php _e('RESET','cforms'); ?>"/></td></tr>
+	        <tr><td><?php _e('You can either try and fix the settings array or reset it and start from scratch.','cforms2'); ?> &nbsp;<input class="allbuttons deleteall" type="submit" name="resetsettings" id="resetsettings" value="<?php _e('RESET','cforms2'); ?>"/></td></tr>
 	    </table>
 
-	    <h3><?php _e('Corrupted cforms settings array (raw code)','cforms'); ?></h2>
+	    <h3><?php _e('Corrupted cforms settings array (raw code)','cforms2'); ?></h2>
 	    <table class="form-table">
         	<tr><td>
-            	<?php _e('Depending on your Wordpress/PHP skills you may want to try and fix the serialized data below, then hit the fix button or try just like that, cforms may magically fix it for you.','cforms'); ?>
+            	<?php _e('Depending on your Wordpress/PHP skills you may want to try and fix the serialized data below, then hit the fix button or try just like that, cforms may magically fix it for you.','cforms2'); ?>
 			</td></tr>
         	<tr><td>
 		        <textarea rows="16" cols="10" name="currentsettings" id="currentsettings"><?php echo $c; ?></textarea>
             </td></tr>
         	<tr><td>
-		        <input class="allbuttons" type="submit" name="fixsettings" id="fixsettings" value="<?php _e('FIX and save data','cforms'); ?>"/>
+		        <input class="allbuttons" type="submit" name="fixsettings" id="fixsettings" value="<?php _e('FIX and save data','cforms2'); ?>"/>
             </td></tr>
 		</table>
 

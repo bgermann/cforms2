@@ -21,9 +21,9 @@ class cforms2_widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'cforms',
-			__('cformsII', 'cforms'),
+			__('cformsII', 'cforms2'),
 			array(
-				'description' => __('Add any cforms form to your sidebar', 'cforms')
+				'description' => __('Add any cforms form to your sidebar', 'cforms2')
 			),
 			array('width' => 200, 'height' => 200)
 		);
@@ -69,10 +69,10 @@ class cforms2_widget extends WP_Widget {
 			$opt .= '<option value="'.$i.'"'. $selected .'>'.$name.'</option>';
 		}
 
-	echo '<label for="'.$this->get_field_id( 'title' ).'">' . __('Title', 'cforms') . ':</label>'.
+	echo '<label for="'.$this->get_field_id( 'title' ).'">' . __('Title', 'cforms2') . ':</label>'.
 		 '<input type="text" id="' .$this->get_field_id( 'title' ). '" name="' .$this->get_field_name( 'title' ). '" value="' .esc_attr($title). '" /><br />';
 
-	echo '<label for="'.$this->get_field_id( 'form' ).'">' . __('Form', 'cforms') . ':</label>'.
+	echo '<label for="'.$this->get_field_id( 'form' ).'">' . __('Form', 'cforms2') . ':</label>'.
 		 '<select id="' .$this->get_field_id( 'form' ). '" name="' .$this->get_field_name( 'form' ). '" style="width:220px; font-size:10px; font-family:Arial;">'. $opt .'</select>';
 	}
 

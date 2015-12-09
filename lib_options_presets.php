@@ -22,7 +22,7 @@
     if( is_file($file) && filesize($file) > 0)
         $fields = file($file);
     else {
-        echo '<div id="message" class="updated fade"><p><strong>'.__('Sorry, this form preset can\'t be loaded. I Can\'t find file ', 'cforms').'<br />'.$file.'</strong></p></div>';
+        echo '<div id="message" class="updated fade"><p><strong>'.__('Sorry, this form preset can\'t be loaded. I Can\'t find file ', 'cforms2').'<br />'.$file.'</strong></p></div>';
         return;
     }
 
@@ -84,13 +84,13 @@
 	?>
 	<div id="message" class="updated fade"><p><strong>
 		<?php
-		_e('Your form has been populated with the preset input fields.', 'cforms');
+		_e('Your form has been populated with the preset input fields.', 'cforms2');
 		if( $taf==2 ){
-			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms'),__('WP comment feature','cforms'));
-			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms');
+			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms2'),__('WP comment feature','cforms2'));
+			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms2');
 		} else if( $taf==11 ){
-			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms'),__('TAF feature','cforms'));
-			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms');
+			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms2'),__('TAF feature','cforms2'));
+			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms2');
 		}
 		?>
 	</strong></p></div>

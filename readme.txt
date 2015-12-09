@@ -3,7 +3,7 @@ Contributors: bgermann, olivers, cbacchini, codifex
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, comments, post, sidebar, spam, admin
 Requires at least: 3.9
-Tested up to: 4.2
+Tested up to: 4.4
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
@@ -19,22 +19,21 @@ multi form management, you can even have multiple forms on the same page!
 Oliver, the original author, does not further develop the plugin.
 This fork is an effort to keep it up to date.
 If you want to use plugin versions older than 14.6.3, you should rename the
-directory containing the plugin from "cforms2" to "cforms".
+directory containing the plugin from "cforms2" to "cforms". But bear in mind
+that old versions should not be used in public systems, because they contain
+known serious vulnerabilities that are exploited in the wild. The current
+security baseline version is 14.8.
 
 = Related Plugins =
 
-cformsII has pluggable CAPTCHA support.
+cformsII has pluggable CAPTCHA support. The experimental
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
 provides an image CAPTCHA. With future cformsII version 14.11 the now built-in
 CAPTCHA will be removed in favour of that plugin.
 
 = Credits =
 
-Some icons are based on the wonderful [Glyphicons](http://glyphicons.com)
-Halflings set of Jan Kovařík, taken from Twitter Bootstrap
-(MIT license, see images/LICENSE file).
-
-Translations are provided by:
+The translations that are or were distributed were provided by:
 
 * www.alpenimmobilien.de
 * Michael Lederstatter / Buy-Hosting.net
@@ -48,8 +47,6 @@ Translations are provided by:
 * Sofia Panchenko
 * [Stas Mykhajlyuk](http://kosivart.if.ua)
 * Charles Tang
-
-Please see the *.po gettext files for further information.
 
 = License Information =
 
@@ -83,7 +80,8 @@ to upload a zip file, which is available on the
 If you want to install manually, please upload the complete plugin folder
 "cforms2", contained in the zip file, to your WP plugin directory!
 
-If you want to check integrity of the download, please use the cforms2.*.zip.sig
+If you want to check integrity of the download, please use the cforms2.*.zip
+downloads and the corresponding .sig
 GPG signature files that are published via
 [GitHub releases](https://github.com/bgermann/cforms2/releases).
 The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53)
@@ -93,12 +91,14 @@ The git tags themselves are also signed beginning with version 14.8.
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please
-upgrade to the original version 14.6 first, make sure you upgraded your settings
-and backup your database. Then deactivate the original plugin and install this
-fork.
+upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip)
+first, make sure you upgraded your settings (resave your global settings and every form)
+and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database).
+Then deactivate the original plugin and install the current version of this fork.
 
-If you want to delete the original version, make sure you do not delete your
-upload directory.
+If you want to delete the 14.6.0.5 version by deleting directory "cforms" and
+you have any cforms-uploaded files, make sure you do not delete your attachments
+directory, which is contained in the cforms directory by default.
 
 = Did you modify any cforms theme (CSS) files? =
 
@@ -115,7 +115,7 @@ on layout customization.
 
 = I do not get any emails from my form. Why? =
 
-Most pobably this is not cformsII's fault. Please check your Wordpress mail
+Most probably this is not cformsII's fault. Please check your Wordpress mail
 configuration with a plugin like
 [Check Email](https://wordpress.org/plugins/check-email/).
 
@@ -126,8 +126,9 @@ You can find old versions in the
 
 = Where are the external SMTP settings? =
 
-That function was removed. The Wordpress function wp_mail is now used for mails,
-which makes use of built-in PHPMailer.
+That function was removed. The Wordpress function
+[wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for
+mails now, which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate
 plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/)
 or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
@@ -146,21 +147,13 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 == Localization ==
 
-If your language is set correctly the language file in the
-____Plugin_Localization directory should be picked up immediately.
+You can see the available languages and contribute via [GlotPress](https://translate.wordpress.org/projects/wp-plugins/cforms2).
 
-You can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
+If your language is not available, you can find a list of the
+[translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
 which also work with this fork.
-If there is a language file available for you, but it is not included in the
-standard distribution, please put the cforms-*.mo file into the
-wp-content/languages/plugins directory.
-
-If you would like to contribute a new language file, please
-[submit a GitHub pull request](https://github.com/bgermann/cforms2/pulls)
-with the translation file included.
-It has to be GPL licensed. If an available translation on the original website
-is not GPL licensed (they can, because cformsII did not start as GPL project),
-you must not redistribute it as long as it is not your translation.
+To use one of those files, please rename the cforms-?.mo file to
+cforms2-?.mo and put it in the wp-content/languages/plugins directory.
 
 
 == Donations ==
@@ -180,6 +173,7 @@ The original author who developed cforms until 2012 also has a
 
 Some things are to be done:
 
+* replace jqModal with jquery-ui-dialog
 * filter user input
 * make attachments download support directories that are not exported via HTTP
 * grunt build process similar to Wordpress core
@@ -188,6 +182,9 @@ Some things are to be done:
 
 
 == Upgrade Notice ==
+
+= 14.9.12 =
+If you run a custom css and depend on a CAPTCHA reset image, you have to remove it.
 
 = 14.9 =
 If you use my-functions.php, you have to take action (see my-functions.php.txt).
@@ -222,7 +219,44 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.10.1 =
+* bugfix:   fix tracking form download url
+* enhanced: change gettext domain from cforms to cforms2 in cforms-options.php
+
+= 14.10 =
+* other:    remove French, German, Italian, Russian and Ukrainian translations after migration to translate.wordpress.org
+
+= 14.9.13 =
+* other:    change gettext domain from cforms to cforms2
+
+= 14.9.12 =
+* bugfix:   load dashicons if not in dashboard
+
+= 14.9.11 =
+* enhanced: change CAPTCHA reset button
+* enhanced: remove the old static jQuery UI theme and get current from Google Hosted Libraries
+* added:    possibility to change the jQuery UI theme
+* other:    remove dark-rounded theme
+
+= 14.9.10 =
+* enhanced: replace some icons with Dashicons
+* enhanced: bump up jqModal to the newest version
+* other:    replace jqDnR with jquery-ui-draggable
+* other:    remove jQuery TextAreaResizer plugin as this is default browser behaviour with CSS 3
+* other:    remove possibility to overwrite tracking fields
+
+= 14.9.9 =
+* bugfix:   do not depend on TLD consisting of only 2-4 characters, even on non-AJAX forms
+* bugfix:   do not reset multipage form on back button
+* enhanced: remove old picture in help section
+
+= 14.9.8 =
+* bugfix:   no duplicate form rendering
+
 = 14.9.7 =
+* bugfix:   cforms2_make_time: do not depend on timezone being a region
+* bugfix:   do not depend on TLD consisting of only 2-4 characters
+* bugfix:   undo problematic change from 14.9.6
 * other:    remove possibility to show JavaScript alert messages
 
 = 14.9.6 =

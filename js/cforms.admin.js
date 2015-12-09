@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2015 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -256,7 +256,7 @@ jQuery(function() {
             jQuery('a#add_group_button').click(function() {
                 groupcount++; totalcount++;
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'        + groupcount
                         + '" name="cf_edit_group_o'    + groupcount + '" value=""/>'+
                     '<input type="text" id="cf_edit_group_v'        + groupcount
@@ -265,8 +265,8 @@ jQuery(function() {
                         + '" name="cf_edit_group_chked'+ groupcount + '" class="allchk cf_chked"/>'+
                     '<input type="checkbox" id="cf_edit_group_br'   + groupcount
                         + '" name="cf_edit_group_br'   + groupcount + '" value="lbr" class="allchk cf_br"/>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a></div>'
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a></div>'
                 ).appendTo("#cf_edit_groups");
 
                 jQuery('a.cf_edit_move_up','#edit_group'+groupcount).bind("click", cfmoveup);
@@ -314,13 +314,13 @@ jQuery(function() {
                 groupcount++; totalcount++;
 
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'" value="'+defval[0].replace(/"/g,'&quot;')+'"/>'+
                     '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'" value="'+defval[1].replace(/"/g,'&quot;')+'" class="inpOpt"/>'+
                     '<input class="allchk cf_chked" type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'" '+chk+'/>'+
                     '<input class="allchk cf_br" type="checkbox" id="cf_edit_group_br'+groupcount+'" name="cf_edit_group_br'+groupcount+'" value="lbr" '+lbr+'/>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a>'+
                 '</div>').appendTo("#cf_edit_groups");
 
             }
@@ -346,12 +346,12 @@ jQuery(function() {
             jQuery('a#add_group_button').click(function() {
                 groupcount++; totalcount++;
                 jQuery('<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'" value=""/>'+
                     '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'" value="" class="inpOpt"/>'+
                     '<input class="allchk cf_chked" type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'"/>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a>'+
                 '</div>').appendTo("#cf_edit_groups");
 
                 jQuery('a.cf_edit_move_up','#edit_group'+groupcount).bind("click", cfmoveup);
@@ -402,7 +402,7 @@ jQuery(function() {
 
                 jQuery(
                     '<div class="cf_edit_group_new" id="edit_group'+groupcount+'">'+
-                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus"></a>'+
+                    '<a href="#" id="rgi_'+groupcount+'" class="cf_edit_minus dashicons dashicons-dismiss"></a>'+
                     '<input type="text" id="cf_edit_group_o'+groupcount+'" name="cf_edit_group_o'+groupcount+'"'
                         + ' value="'+defval[0].replace(/"/g,'&quot;')+'"/>'+
                     '<input type="text" id="cf_edit_group_v'+groupcount+'" name="cf_edit_group_v'+groupcount+'"'
@@ -411,8 +411,8 @@ jQuery(function() {
                     '<input type="checkbox" id="cf_edit_group_chked'+groupcount+'" name="cf_edit_group_chked'+groupcount+'"'
                         + ' ' + chk + ' class="allchk cf_chked"/>'+
 
-                    '<a href="javascript:void(0);" class="cf_edit_move_up"></a>'+
-                    '<a href="javascript:void(0);" class="cf_edit_move_down"></a></div>'
+                    '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>'+
+                    '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a></div>'
                 ).appendTo("#cf_edit_groups");
 
             }
@@ -473,7 +473,7 @@ jQuery(function() {
     };
 
     /* ASSSOCIATE DIALOG */
-    jQuery('#cf_editbox').jqm({ modal: true, overlay: 30, onShow: open, onHide: close }).jqDrag('.jqDrag');
+    jQuery('#cf_editbox').jqm({ modal: true, overlay: 30, onShow: open, onHide: close }).draggable();
 
     /* INSTALL PRESET FUNCTIONS */
     jQuery('a#okInstall').click( function(){document.installpreset.submit();} );
@@ -524,9 +524,9 @@ jQuery(function() {
         overlay : 30,
         onShow  : openInstall,
         onHide  : closeInstall
-    }).jqDrag('.jqDrag');
-    jQuery('#cf_backupbox'    ).jqm({ trigger: '.jqModalBackup', modal:true, overlay:30 }).jqDrag('.jqDrag');
-    jQuery('#cf_delall_dialog').jqm({ trigger: '.jqModalDelAll', modal:true, overlay:30 }).jqDrag('.jqDrag');
+    }).draggable();
+    jQuery('#cf_backupbox'    ).jqm({ trigger: '.jqModalBackup', modal:true, overlay:30 }).draggable();
+    jQuery('#cf_delall_dialog').jqm({ trigger: '.jqModalDelAll', modal:true, overlay:30 }).draggable();
 
 
     /* DELETE RECORDS DIALOG */
@@ -537,7 +537,7 @@ jQuery(function() {
         overlay : 30,
         onShow  : open_data,
         onHide  : close_data
-    }).jqDrag('.jqDrag');
+    }).draggable();
 
     jQuery('a#okDelete').click( function() {
         var getString='';
@@ -567,7 +567,7 @@ jQuery(function() {
     } );
 
     /* DOWNLOAD RECORDS DIALOG */
-    jQuery('#cf_dl_dialog').jqm({ modal: true, overlay: 30, onShow: open_data, onHide: close_data }).jqDrag('.jqDrag');
+    jQuery('#cf_dl_dialog').jqm({ modal: true, overlay: 30, onShow: open_data, onHide: close_data }).draggable();
     jQuery('a#okDL').click( function() {
         var getString='';
         jQuery('.trSelected','#flex1').each( function (){
@@ -611,11 +611,7 @@ jQuery(function() {
         );
     }
 
-    /* TEXTAREAS resize */
-    jQuery('textarea.resizable:not(.processed)').TextAreaResizer();
     jQuery('#anchorfields').show();
-    jQuery('.cf-content','#selectcss').show();
-    jQuery('#csspicker').bind('change', function() { jQuery('#selectcss').submit(); });
 
     /* MANAGE COOKIES & BLINDS */
     val=readcookie();
@@ -750,30 +746,6 @@ function cf_tracking_view(com,grid){
                     function () { jQuery('.pReload').trigger('click'); }
                 );
                 return false;
-            } );
-
-            var trackingEditTempVal = '';
-            jQuery('.editable').editInPlace( {
-                bg_out : '#dddddd',
-                bg_over : '#f7f7f7',
-                use_html : true,
-                field_type : 'textarea',
-                url : ajaxurl,
-                params : 'action=database_savedata&_wpnonce=' + cforms2_nonces.savedata,
-                saving_image : jQuery('#geturl').attr('title')+'../css/images/load.gif',
-                textarea_cols : '30',
-                textarea_rows : '4',
-                delegate : {
-                    shouldOpenEditInPlace : function (el) {
-                        trackingEditTempVal = jQuery(el).html();
-                        return true;
-                    },
-                    didOpenEditInPlace : function (el) {
-                        if(console) console.log( jQuery(el).find('.inplace_field').length );
-                        jQuery(el).find('.inplace_field').val(trackingEditTempVal.replace(/<br[^>]*>/ig,"\n"));
-                        return true;
-                    }
-                }
             } );
 
             location.href = '#entries';
