@@ -132,7 +132,7 @@ cforms2_setINI('global','cforms_rssall_count', 5 );
 $cap['h'] = 25;
 $cap['w'] = 115;
 $cap['c'] = '#000066';
-$cap['l'] = '#000066';
+$cap['l'] = '#ffffff';
 $cap['f1'] = 17;
 $cap['f2'] = 19;
 $cap['c1'] = 4;
