@@ -1148,7 +1148,7 @@ function cforms2_insert( $content ) {
 			}else{
 			  if ( cforms2_check_for_taf( $Fid,cforms2_cfget_pid() ) )
     			$newcontent .= cforms2('',$Fid);
-      }
+            }
 
 			$p_open_after  = strpos($content,'<p>',$b);
 			$p_close_after = strpos($content,'</p>',$b);

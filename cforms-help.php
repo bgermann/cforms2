@@ -964,15 +964,15 @@ echo '&lt;/table&gt;';</pre></td></tr>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_filter()</code></strong></td>
-					<td class="bright"><?php _e('function gets triggered <strong>after</strong> user input validation, but <strong>before</strong> processing input data', 'cforms2'); ?></td>
+					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> processing input data', 'cforms2'); echo ' '; _e('(nonAjax)', 'cforms2'); ?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_ajax_filter()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> processing input data', 'cforms2'); ?> <?php _e('(nonAjax)', 'cforms2'); ?></td>
+					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> processing input data', 'cforms2'); ?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><strong><code class="codehighlight">my_cforms_action()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>just before</strong> sending the email', 'cforms2'); ?> <?php _e('(Ajax)', 'cforms2'); ?></td>
+					<td class="bright"><?php _e('function gets called <strong>just before</strong> sending the email', 'cforms2'); ?></td>
 				</tr>
                 <tr>
                     <td class="bleft"><strong><code class="codehighlight">my_cforms_logic()</code></strong></td>
