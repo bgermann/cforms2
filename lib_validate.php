@@ -20,7 +20,7 @@
 ### Validating non Ajax form submission
 
 $inpFieldArr = array(); // for var[] type input fields
-
+$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 $cflimit = '';
 $filefield = 0;
 
