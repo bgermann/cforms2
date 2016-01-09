@@ -28,7 +28,10 @@ security baseline version is 14.8.
 
 cformsII has pluggable CAPTCHA support.
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
-provides an image CAPTCHA.
+provides an image CAPTCHA. To convert the old CAPTCHA fields to Really
+Simple CAPTCHA, please install and activate the plugin first. Then go to Form
+Settings and check, if your CAPTCHA fields are of type Really Simple CAPTCHA.
+If you can confirm this, resave each form that contains a CAPTCHA field.
 
 = Credits =
 
@@ -181,6 +184,9 @@ Some things are to be done:
 
 
 == Upgrade Notice ==
+
+= 14.11 =
+CAPTCHA support is handled by the new plugin Really Simple CAPTCHA for cformsII. If you depend on CAPTCHAs, please lookup cformsII's plugin description (readme.txt) to check how to upgrade.
 
 = 14.9.12 =
 If you run a custom css and depend on a CAPTCHA reset image, you have to remove it.
