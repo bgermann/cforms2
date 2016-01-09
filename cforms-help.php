@@ -85,9 +85,8 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<div class="cf-content" id="o18">
 			<h3><strong><?php _e('Editing posts and pages:', 'cforms2'); ?></strong></h3>
 
-			<p><?php echo sprintf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'),'<code>&lt;!--cforms name="XYZ"--&gt;</code>','<code>XYZ</code>'); ?></p>
+			<p><?php echo sprintf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'),'shortcode <code>[cforms name="XYZ"]</code>','<code>XYZ</code>'); ?></p>
 			<p><?php echo sprintf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#wpeditor','onclick="setshow(12)"'); ?></p>
-			<p><?php echo sprintf(__('For backwards compatibility, the old-fashioned way is still supported: %1s for the first form and/or %2s for your other forms.', 'cforms2'),'<code>&lt;!--cforms--&gt;</code>','<code>&lt;!--cforms<span style="color:red; font-weight:bold;">X</span>--&gt;</code>'); ?></p>
 
 
 			<h3><strong><?php _e('Via PHP function call:', 'cforms2'); ?></strong></h3>
