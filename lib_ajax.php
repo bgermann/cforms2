@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,13 +42,15 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###  submit comment
 ###
 function cforms2_submitcomment() {
-	global $all_valid, $no, $usermessage_class, $usermessage_text;
+	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $redirect;
 	check_admin_referer( 'submitcomment' );
+	$cformsSettings = get_option('cforms_settings');
 	$all_valid = true;
 	$no = $_POST['cforms_id'];
 	$_POST['sendbutton'.$no] = true;
 	require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
-	cforms2_json_die($no, $usermessage_class, $usermessage_text);
+	// TODO hide
+	cforms2_json_die($no, $usermessage_class, $usermessage_text, false, $redirect);
 }
 function cforms2_dead_code() {
 	
@@ -99,16 +101,12 @@ function cforms2_dead_code() {
 		cforms2_json_die($no, 'success', $html);
 	}
 
-	$captchaopt = $cformsSettings['global']['cforms_captcha_def'];
-
 	for($i = 1; $i <= sizeof($params)-2; $i++) {
 
 			$field_stat = explode('$#$', $cformsSettings['form'.$no]['cforms'.$no.'_count_field_' . ((int)$i+(int)$off)] );
 
-			while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','captcha','verification')) ) {
+			while ( in_array($field_stat[1],array('fieldsetstart','fieldsetend','textonly','verification')) ) {
 
-				if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && $captchaopt['fo']!='1') )
-					break;
 				if ( cforms2_check_pluggable_captchas_authn_users($field_stat[1]) )
 					break;
 

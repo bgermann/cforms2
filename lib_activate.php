@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,16 +133,11 @@ $cap['h'] = 25;
 $cap['w'] = 115;
 $cap['c'] = '#000066';
 $cap['l'] = '#000066';
-$cap['f'] = 'font4.ttf';
-$cap['a1'] = -12;
-$cap['a2'] = 12;
 $cap['f1'] = 17;
 $cap['f2'] = 19;
-$cap['bg'] = '1.gif';
 $cap['c1'] = 4;
 $cap['c2'] = 5;
 $cap['ac'] = 'abcdefghijkmnpqrstuvwxyz23456789';
-$cap['i'] = 'i';
 $cap['fo'] = '0';
 $cap['foqa'] = '0';
 cforms2_setINI('global','cforms_captcha_def', $cap );

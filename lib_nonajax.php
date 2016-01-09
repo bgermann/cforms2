@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,10 +66,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$field_stat[] = "";
 
 		###  filter non input fields
-		while ( in_array($field_stat[1], array_merge(array_keys($captchas), array('fieldsetstart','fieldsetend','textonly','captcha'))) ) {
+		while ( in_array($field_stat[1], array_merge(array_keys($captchas), array('fieldsetstart','fieldsetend','textonly'))) ) {
 
-			if ( $field_stat[1] == 'captcha' && !(is_user_logged_in() && !$captchaopt['fo']=='1') )
-				break;
 			if ( cforms2_check_pluggable_captchas_authn_users($field_stat[1]) )
 				break;
 
@@ -219,9 +217,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
                 $value = '';
 
         }
-		else if ( $field_stat[1] == 'captcha' )
-			$value = $_POST['cforms_captcha'.$no];
-
 		else if ( array_key_exists($field_stat[1], $captchas) )
 			$value = $_POST[ $field_stat[1] ];
 
@@ -570,7 +565,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
                     }
 
                     ### CC or auto conf?
-	                if ( $ccme&&$trackf[data][$ccme]<>'' ) {
+	                if ( $ccme&&$trackf['data'][$ccme]<>'' ) {
 							$mail->subj = $s[1];
 	                        if ( $mail->html_show ) {  // 3.2.2012 changed from html_show_ac > admin email setting dictates this!
 	                            $mail->is_html(true);
@@ -595,31 +590,25 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                        $sent = $mail->send();
 	                }
 
-	                if( $sent<>'1' )
+	                if( $sent<>'1' ) {
 				        $usermessage_text = __('Error occurred while sending the auto confirmation message: ','cforms2') . '<br />'. $mail->err;
 						$usermessage_class = ' mailerr';
+					}
 	            }
 
 	        ###  redirect to a different page on suceess?
 	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] && !$isWPcommentForm ) {
 	            if ( function_exists('my_cforms_logic') )
-	                $rp = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
+	                $redirect = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
 	            else
-	                $rp = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
-
-	            if ( $rp <> '' ){ // TODO rework to do this via HTTP?
-	                ?>
-	                <script type="text/javascript">
-	                    location.href = '<?php echo $rp; ?>';
-	                </script>
-	                <?php
-				}
+	                $redirect = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 	        }
 
 	    } ###  if $sentadmin
-	    else
+	    else {
 	        $usermessage_text = __('Error occurred while sending the message: ','cforms2') . '<br />'. $mail->err;
 			$usermessage_class = ' mailerr';
+		}
 	} ### if $MPok
 
 } ### if isset & valid sendbutton

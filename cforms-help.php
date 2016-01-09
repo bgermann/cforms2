@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 				<li><a href="#taf" onclick="setshow(19)"><?php _e('Special <em>Tell A Friend</em> input fields', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?> &raquo;</a></li>
 				<li><a href="#qa" onclick="setshow(19)"><?php _e('SPAM protection: Q &amp; A', 'cforms2'); ?></a> &raquo;</li>
-				<li><a href="#captcha" onclick="setshow(19)"><?php _e('SPAM protection: Captcha', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#hfieldsets" onclick="setshow(19)"><?php _e('Fieldsets', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#regexp" onclick="setshow(19)"><?php _e('Using regular expressions with form fields', 'cforms2'); ?></a> &raquo;</li>
 			</ul></li>
@@ -67,7 +66,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 						<li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms2'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.png" alt="" title=""/>?</li>
 						<li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms2'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench">&#xF111;</button> </li>
 						<li><?php _e('Check the flags for each field (check boxes to the right).', 'cforms2'); ?></li>
-						<li><?php echo sprintf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'),'#qa','onclick="setshow(19)"','#captcha','onclick="setshow(19)"','?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></li>
+						<li><?php echo sprintf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'),'#qa','onclick="setshow(19)"','https://wordpress.org/plugins/cforms2-really-simple-captcha/','','?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></li>
 					</ul>
 				</li>
 				<li><?php echo sprintf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"'); ?></li>
@@ -120,7 +119,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 				<li><a href="#multirecipients" onclick="setshow(19)"><?php _e('Multiple recipients drop down box', 'cforms2'); ?></a></li>
 				<li><a href="#hidden" onclick="setshow(19)"><?php 	_e('Hidden fields', 'cforms2'); ?></a></li>
 				<li><a href="#qa" onclick="setshow(19)"><?php 		_e('SPAM protection: Q&amp;A input field', 'cforms2'); ?></a></li>
-				<li><a href="#captcha" onclick="setshow(19)"><?php 	_e('SPAM protection: Captcha input field', 'cforms2'); ?></a></li>
 				<li><a href="#upload" onclick="setshow(19)"><?php 	_e('File attachments / upload', 'cforms2'); ?></a></li>
 				<li><a href="#taf" onclick="setshow(19)"><?php 		_e('Special <em>Tell A Friend</em> input fields', 'cforms2'); ?></a></li>
 				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?></a></li>
@@ -492,41 +490,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<tr>
 				<td class="ball" colspan="2">
 					<?php _e('It makes sense to encapsulate this field inside a FIELDSET, to do that simply add a <code>New Fieldset</code> field before this one.', 'cforms2'); ?>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<?php _e('<strong>PLEASE NOTE</strong> that by default the captcha and visitor verification (Q&amp;A) field are <strong>not</strong> shown for logged in users! This can be changed under Global Settings.', 'cforms2'); ?>
-				</td>
-			</tr>
-		</table>
-
-
-		<br style="clear:both;"/>
-
-
-		<p class="fieldtitle" id="captcha">
-			<span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-			<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
-			<?php _e('Captcha', 'cforms2'); ?>
-		</p>
-		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-cap.png"  alt=""/>
-		<table class="hf" cellspacing="2" border="4">
-			<tr>
-				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php _e('field name', 'cforms2'); ?></td>
-			</tr>
-			<tr>
-				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
-					<code><?php _e('Enter code', 'cforms2'); ?></code></td>
-			</tr>
-			<tr>
-				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
-					<code><?php _e('Spam Protection|title:We don\'t like spam bots|err:Please enter the CAPTCHA code correctly! If text is unreadable, try reloading.', 'cforms2'); ?></code></td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<?php _e('Alternatively or in addition to the above <strong>Visitor verification</strong> feature, you can have the visitor provide a captcha response.', 'cforms2'); ?>
 				</td>
 			</tr>
 			<tr>
@@ -1071,7 +1034,6 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('\'CC\' check box', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>cforms2_question_and_answer</code></td></tr>
-	                <tr><td><?php _e('Spam/captcha verification', 'cforms2'); ?>:</td><td> <code>captcha</code></td></tr>
 	                <tr><td><?php _e('File upload fields', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>upload</code></td></tr>
 	                <tr><td><?php _e('Begin of a fieldset', 'cforms2'); ?>:</td><td> <code>fieldsetstart</code></td></tr>
 	                <tr><td><?php _e('End of a fieldset', 'cforms2'); ?>:</td><td> <code>fieldsetend</code></td></tr>

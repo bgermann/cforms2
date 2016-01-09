@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -208,8 +208,6 @@ function cforms2_admin_enqueue_scripts() {
     ), $localversion);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
-        'reset_captcha' => wp_create_nonce('cforms2_reset_captcha'),
-
 		'cforms2_field' => wp_create_nonce('cforms2_field'),
 
         'deleteentries' => wp_create_nonce('database_deleteentries'),

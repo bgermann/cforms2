@@ -26,10 +26,9 @@ security baseline version is 14.8.
 
 = Related Plugins =
 
-cformsII has pluggable CAPTCHA support. The experimental
+cformsII has pluggable CAPTCHA support.
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
-provides an image CAPTCHA. With future cformsII version 14.11 the now built-in
-CAPTCHA will be removed in favour of that plugin.
+provides an image CAPTCHA.
 
 = Credits =
 
@@ -52,7 +51,7 @@ The translations that are or were distributed were provided by:
 
 Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
 
-Copyright (c) 2014-2015 Bastian Germann
+Copyright (c) 2014-2016 Bastian Germann
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -218,6 +217,11 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.11 =
+* enhanced: unify AJAX and non-AJAX processing
+* bugfix:   make Q&A check work again in AJAX mode
+* other:    remove CAPTCHA feature in favour of Really Simple CAPTCHA for cformsII
 
 = 14.10.1 =
 * bugfix:   fix tracking form download url

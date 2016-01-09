@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 	### set to nothing
 	$usermsg='';
 
-	$captcha=false;
 	$ccbox=false;
 	$emailtobox=false;
 	$WPc=false;
@@ -56,11 +55,6 @@
 					$taf=true;
 				}
 
-				if( $type=='captcha' ){
-					$allgood = $captcha?false:true;
-					$usermsg .= $captcha?'<span class="exMsg">'.__('Only one <em>captcha</em> field is permitted!', 'cforms2').'</span>':'';
-					$captcha=true;
-				}
 				if( $type=='ccbox' ){
 					$allgood = $ccbox?false:true;
 					$usermsg .= $ccbox?'<span class="exMsg">'.__('Only one <em>CC:</em> field is permitted!', 'cforms2').'</span>':'';

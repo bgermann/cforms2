@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2015 Bastian Germann
+ * Copyright (c) 2015-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,6 @@ __("Basic: *Newsletter* subscription form (w/ titles)", "cforms2");
 __("A small, two input field form that showcases regexp's (default value exclusion) and input field titles.", "cforms2");
 __("Basic: Tell A Friend Form", "cforms2");
 __("If you would like to setup a special T-A-F form, then please use this preset as a basis. It comes with the necessary (special) TAF input fields, verifies and sets the TAF option, switches the current theme and sets a generic tell-a-friend message.", "cforms2");
-__("Basic: Form for *dark-rounded.css* Theme", "cforms2");
-__("This will switch your current cforms theme to the dark-rounded.css one and will get you going with a set of basic contact form input fields.", "cforms2");
-__("Advanced: Multi-Fieldset Form for *dark-rounded.css* Theme", "cforms2");
-__("The dark-rounded.css cforms theme requires a bit of 'magic' to support multi fieldset form layouts. Check out this preset to see what is required to ensure a proper look.", "cforms2");
 __("Advanced: Contact Form with Custom Err Messages", "cforms2");
 __("This form preset is based on the default preset, however, coming with field specific custom error texts. Please check your fancy error message settings, to make sure they're actually displayed.", "cforms2");
 __("Advanced: WP comment feature form", "cforms2");

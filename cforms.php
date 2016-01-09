@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -204,8 +204,13 @@ function cforms2($args = '',$no = '') {
 
     ### non Ajax method
     if( isset($_REQUEST['sendbutton'.$no]) || $server_upload_size_error ) {
+		global $redirect;
 		require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
 		$usermessage_class = $all_valid?' success':' failure';
+		if ( $redirect <> '' ) { // TODO rework to do this via HTTP?
+	        echo '<script type="text/javascript">'
+                . 'location.href = "' .$redirect. '"</script>';
+		}
 	}
 
     ### called from lib_WPcomments ?
@@ -363,7 +368,6 @@ function cforms2($args = '',$no = '') {
 	### start with no fieldset
 	$fieldsetopen = false;
 
-	$captcha = false;
 	$upload = false;
 	$fscount = 1;
 	$ol = false;
@@ -411,10 +415,6 @@ function cforms2($args = '',$no = '') {
 		    switch ( $field_type ) {
 			    case 'upload':
 					$custom_error .= 'cf_uploadfile' . $no . '-'. $i . '$#$'.$fielderr.'|';
-	    			break;
-
-			    case 'captcha':
-					$custom_error .= 'cforms_captcha' . $no . '$#$'.$fielderr.'|';
 	    			break;
 
 				case "cauthor":
@@ -544,11 +544,6 @@ function cforms2($args = '',$no = '') {
 			continue;
 
 		switch ($field_type){
-			case 'captcha':
-				if( is_user_logged_in() && $cformsSettings['global']['cforms_captcha_def']['fo']<>'1' )
-					continue(2);
-				$input_id = $input_name = 'cforms_captcha'.$no;
-				break;
 			case 'upload':
 				$input_id = $input_name = 'cf_uploadfile'.$no.'-'.$i;
 				$field_class = 'upload';
@@ -692,13 +687,6 @@ function cforms2($args = '',$no = '') {
 						$fieldsetopen = false;
 						$ol = false;
 				} else $field='';
-				break;
-
-			case "captcha":
-				$field = '<input type="text" name="'.$input_name.'" id="cforms_captcha'.$no.'" class="secinput' . $field_class . '" title="'.$fieldTitle.'"/>'.
-						 '<img id="cf_captcha_img'.$no.'" class="captcha" src="#" alt=""/><script type="text/javascript">jQuery(function() {reset_captcha('.$no.');});</script>'.
-						 '<a title="'.__('reset captcha image', 'cforms2').'" href="javascript:reset_captcha(\''.$no.'\')"><span class="dashicons dashicons-update captcha-reset"></span></a>';
-		    	$captcha=true;
 				break;
 
 			case "cauthor":
@@ -1095,12 +1083,10 @@ function cforms2_enqueue_scripts() {
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
 			cforms2_enqueue_script_datepicker($localversion, stripslashes($cformsSettings['global']['cforms_dp_date']));
 		}
-        wp_register_script( 'jquery-md5', plugin_dir_url(__FILE__) . "js/jquery.md5.js", array('jquery'), '1.2.1');
-		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery', 'jquery-md5'), $localversion);
+		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), $localversion);
 		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
 			'url'    => admin_url('admin-ajax.php'),
 			'nonces' => array(
-				'reset_captcha' => wp_create_nonce('cforms2_reset_captcha'),
 				'submitcomment' => wp_create_nonce('submitcomment')
 			)
 		) );
@@ -1421,7 +1407,6 @@ function cforms2_field() {
 		'textarea',
 		'pwfield',
 		'hidden',
-		'captcha',
 		'yourname',
 		'youremail',
 		'friendsname',

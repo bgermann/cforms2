@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,6 @@ $inpFieldArr = array(); // for var[] type input fields
 
 $cflimit = '';
 $filefield = 0;
-
-$captchaopt = $cformsSettings['global']['cforms_captcha_def'];
 
 ###debug
 cforms2_dbg("lib_validate.php: validating fields for form no. $no");
@@ -94,10 +92,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 	$captchas = cforms2_get_pluggable_captchas();
 
 	### captcha not for logged in users
-	$jump = ($field_stat[1] == 'captcha') && is_user_logged_in() && $captchaopt['fo']<>'1';
-	$jump = $jump || cforms2_check_pluggable_captchas_authn_users($field_stat[1]);
-
-	if ( $jump )
+	if ( cforms2_check_pluggable_captchas_authn_users($field_stat[1]) )
 		continue;
 
 	### input field names & label
@@ -181,21 +176,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		if ( !$captchas[$field_type]->check_response($_REQUEST[$field_type . '/hint'], $_REQUEST[$field_type]) ) {
 			$validations[$i+$off] = 0;
 			$err = $err ? $err : 2;
-		}
-
-	}
-	else if( $field_type == 'captcha' ){  ### captcha verification
-
-		$validations[$i+$off] = 1;
-
-		$a = explode('+',$_COOKIE['turing_string_'.$no]);
-
-		$a = $a[1];
-		$b = md5( ($captchaopt['i'] == 'i')?strtolower($_REQUEST['cforms_captcha'.$no]):$_REQUEST['cforms_captcha'.$no]);
-
-		if ( $a <> $b ) {
-			$validations[$i+$off] = 0;
-			$err = !($err)?2:$err;
 		}
 
 	}

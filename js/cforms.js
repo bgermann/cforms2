@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2007-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,13 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-function reset_captcha(no){
-    no = no || '';
-    document.getElementById('cf_captcha_img' + no).src = cforms2_ajax.url
-        + '?action=cforms2_reset_captcha&_wpnonce='+cforms2_ajax.nonces['reset_captcha']
-        + '&ts=' + no + '&rnd=' + Math.round( Math.random() * 999999 );
-}
 
 function clearField(thefield) {
     if ( thefield.defaultValue == thefield.value )
@@ -185,10 +178,11 @@ function cforms_validate(no, upload) {
             }
         }
 
+        // Overwrite params with generic form
+        params = jQuery('#cforms'+no+'form').serialize();
         var post_data = 'action=submitcomment&_wpnonce='
             + cforms2_ajax.nonces['submitcomment']
             + '&cforms_id=' + no + '&' + params;
-            + encodeURIComponent(params);
         jQuery.post(
             cforms2_ajax.url,
             post_data,
@@ -513,46 +507,6 @@ function cforms_validate(no, upload) {
         }
 
 
-    }
-
-    //captcha verification turned on?
-    if ( document.getElementById('cforms_captcha'+no) ) {
-
-        var readcookie = function (no) {
-            var nameEQ = "turing_string_"+no+"=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ')
-                    c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0)
-                    return decodeURIComponent(c.substring(nameEQ.length,c.length));
-            }
-            return '';
-        };
-
-        // for captcha!
-        var read_cookie = readcookie    (no);
-        var cookie_part = read_cookie.split('+');
-
-        var a = cookie_part[1];
-        var b = document.getElementById('cforms_captcha'+no).value;
-
-        if ( cookie_part[0]=='i' ) // case insensitive?
-            b = b.toLowerCase();
-        b = jQuery.md5(b);
-
-        if ( a != b ) {
-
-            document.getElementById('cforms_captcha'+no).className = "secinput cf_error";
-            if ( all_valid ) {
-                all_valid = false;
-                code_err = true;
-                if (!last_one) last_one='cforms_captcha'+no;
-            }
-            custom_error = check_for_customerr('cforms_captcha'+no);
-
-        }
     }
 
     //write out all custom errors

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -672,38 +672,6 @@ function getFieldset (t) {
             return t.id;
     }
     return '';
-}
-
-/* global settings captcha reset */
-function resetAdminCaptcha (){
-
-    var i = jQuery('#cforms_cap_i' ).val();
-    var w = jQuery('#cforms_cap_w' ).val();
-    var h = jQuery('#cforms_cap_h' ).val();
-    var c = jQuery('#inputID2'     ).val().replace(/#/, '.');
-    var l = jQuery('#inputID1'     ).val().replace(/#/, '.');
-    var bg= jQuery('#cforms_cap_b' ).val();
-    var f = jQuery('#cforms_cap_f' ).val();
-    var f1= jQuery('#cforms_cap_f1').val();
-    var f2= jQuery('#cforms_cap_f2').val();
-    var a1= jQuery('#cforms_cap_a1').val();
-    var a2= jQuery('#cforms_cap_a2').val();
-    var c1= jQuery('#cforms_cap_c1').val();
-    var c2= jQuery('#cforms_cap_c2').val();
-    var ac= jQuery('#cforms_cap_ac').val();
-
-    var data = ajaxurl
-        +"?action=cforms2_reset_captcha&_wpnonce=" + cforms2_nonces.reset_captcha
-        +"&ts=0&c1=" + c1 + "&c2=" + c2 + "&ac=" + ac + "&i="  + i  + "&w="  + w  + "&h="  + h  + "&c=" + c
-        +"&l="       + l  + "&f="  + f  + "&a1=" + a1 + "&a2=" + a2 + "&f1=" + f1 + "&f2=" + f2 + "&b=" + bg
-        +"&rnd="     + Math.round(Math.random()*999999);
-
-    if ( jQuery('#cf_captcha_img').length>0 )
-        jQuery('#cf_captcha_img').attr('src',data);
-    else
-        jQuery('#adminCaptcha').prepend('<img id="cf_captcha_img" class="captcha" src="'+data+'" alt=""/>');
-
-    jQuery('#pnote').show();
 }
 
 /* TRACKING RECORDS ROUTINES */

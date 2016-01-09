@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -113,19 +113,14 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$cformsSettings['global']['cforms_upload_err5'] = cforms2_get_from_request('cforms_upload_err5');
 
 	$cap = array();
-	$cap['i'] = cforms2_get_from_request('cforms_cap_i');
 	$cap['w'] = cforms2_get_from_request('cforms_cap_w');
 	$cap['h'] = cforms2_get_from_request('cforms_cap_h');
 	$cap['c'] = cforms2_get_from_request('cforms_cap_c');
 	$cap['l'] = cforms2_get_from_request('cforms_cap_l');
-	$cap['bg']= cforms2_get_from_request('cforms_cap_b');
-	$cap['f'] = cforms2_get_from_request('cforms_cap_f');
 	$cap['fo']= cforms2_get_from_request('cforms_cap_fo');
 	$cap['foqa']= cforms2_get_from_request('cforms_cap_foqa');
 	$cap['f1']= cforms2_get_from_request('cforms_cap_f1');
 	$cap['f2']= cforms2_get_from_request('cforms_cap_f2');
-	$cap['a1']= cforms2_get_from_request('cforms_cap_a1');
-	$cap['a2']= cforms2_get_from_request('cforms_cap_a2');
 	$cap['c1']= cforms2_get_from_request('cforms_cap_c1');
 	$cap['c2']= cforms2_get_from_request('cforms_cap_c2');
 	$cap['ac']= cforms2_get_from_request('cforms_cap_ac');
@@ -463,7 +458,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				</table>
 			</div>
 		</fieldset>
-
+		<?php if (class_exists('cforms2_really_simple_captcha', FALSE)) : ?>
 		<fieldset id="captcha" class="cformsoptions">
 			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
             	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms2')?>
@@ -477,29 +472,15 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					$w = cforms2_prep( $cap['w'],115 );
 					$c = cforms2_prep( $cap['c'],'#000066' );
 					$l = cforms2_prep( $cap['l'],'#000066' );
-					$f = cforms2_prep( $cap['f'],'font4.ttf' );
-					$a1 = cforms2_prep( $cap['a1'],-12 );
-					$a2 = cforms2_prep( $cap['a2'],12 );
 					$f1 = cforms2_prep( $cap['f1'],17 );
 					$f2 = cforms2_prep( $cap['f2'],19 );
-					$bg = cforms2_prep( $cap['bg'],'1.gif' );
 					$c1 = cforms2_prep( $cap['c1'],4 );
 					$c2 = cforms2_prep( $cap['c2'],5 );
-					$i  = cforms2_prep( $cap['i'],'i' );
 					$ac = cforms2_prep( $cap['ac'],'abcdefghijkmnpqrstuvwxyz23456789' );
-
-					$fonts = '<select name="cforms_cap_f" id="cforms_cap_f">'.cforms2_get_files('captchafonts',$f,'ttf').'</select>';
-					$backgrounds = '<select name="cforms_cap_b" id="cforms_cap_b">'.cforms2_get_files('captchabg',$bg,'gif').'</select>';
 
 				?>
 
 				<table class="form-table">
-				<tr class="ob">
-					<td class="obL"><strong><?php _e('Preview Image', 'cforms2') ?></strong><br /><span id="pnote" style="display:none; color:red;"><?php _e('Don\'t forget to save your changes!', 'cforms2'); ?></span></td>
-					<td class="obR" id="adminCaptcha">
-                        <a title="<?php _e('Reload Captcha Image', 'cforms2'); ?>" href="javascript:resetAdminCaptcha();"><?php _e('Reload Captcha Image', 'cforms2'); ?> &raquo;</a>
-					</td>
-				</tr>
 
 				<tr class="ob">
 					<td class="obL"><label for="cforms_cap_fo"><strong><?php _e('Force display', 'cforms2') ?></strong></label></td>
@@ -514,36 +495,21 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					</td>
 				</tr>
 				<tr class="ob">
-					<td class="obL"><label for="inputID1"><strong><?php _e('Border Color', 'cforms2') ?></strong></label></td>
+					<td class="obL"><label for="inputID1"><strong><?php _e('Background Color', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap colorpicker" type="text" id="inputID1" name="cforms_cap_l" value="<?php echo $l; ?>"/>
 					</td>
 				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_b"><strong><?php _e('Background Image', 'cforms2') ?></strong></label></td>
-					<td class="obR">
-						<?php echo $backgrounds; ?>
-					</td>
-				</tr>
 
 				<tr class="ob space15">
-					<td class="obL"><label for="cforms_cap_f"><strong><?php _e('Font Type', 'cforms2') ?></strong></label></td>
-					<td class="obR">
-						<?php echo $fonts; ?>
-					</td>
+					<td class="obL">&nbsp;</td>
+                    <td class="obR"><strong><?php _e('Font Type', 'cforms2') ?></strong></td>
 				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_cap_f1"><strong><?php _e('Min Size', 'cforms2') ?></strong></label></td>
 					<td class="obR">
 						<input class="cap" type="text" id="cforms_cap_f1" name="cforms_cap_f1" value="<?php echo $f1; ?>"/>
 						<label for="cforms_cap_f2" class="second-l"><strong><?php _e('Max Size', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_f2" name="cforms_cap_f2" value="<?php echo $f2; ?>"/>
-					</td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_cap_a1"><strong><?php _e('Min Angle', 'cforms2') ?></strong></label></td>
-					<td class="obR">
-						<input class="cap" type="text" id="cforms_cap_a1" name="cforms_cap_a1" value="<?php echo $a1; ?>"/>
-						<label for="cforms_cap_a2" class="second-l"><strong><?php _e('Max Angle', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_a2" name="cforms_cap_a2" value="<?php echo $a2; ?>"/>
 					</td>
 				</tr>
 				<tr class="ob">
@@ -568,14 +534,10 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					<td class="obL"><label for="cforms_cap_ac"><strong><?php _e('Allowed characters', 'cforms2') ?></strong></label></td>
 					<td class="obR"><input type="text" id="cforms_cap_ac" name="cforms_cap_ac" value="<?php echo $ac; ?>"/></td>
 				</tr>
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_i" name="cforms_cap_i" value="i" <?php if($cap['i']=='i') echo "checked=\"checked\""; ?>/><label for="cforms_cap_i"><?php _e('User response is treated case insensitive', 'cforms2') ?></label></td>
-				</tr>
 				</table>
 			</div>
 		</fieldset>
-
+		<?php endif; ?>
 
 		<fieldset id="visitorv" class="cformsoptions">
 			<div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
@@ -597,7 +559,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				</tr>
 				<tr id="it12" class="infotxt"><td>&nbsp;</td><td class="ex">
 							<?php _e('The below error/failure message is also used for <strong>captcha</strong> verification!', 'cforms2') ?><br />
-							<?php echo sprintf(__('Depending on your personal preferences and level of SPAM security you intend to put in place, you can also use <a href="%s" %s>cforms\' CAPTCHA feature</a>!', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#captcha','onclick="setshow(19)"'); ?>
 				</td></tr>
 
 				<tr class="ob space15">
@@ -726,43 +687,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 </div>
 
 <?php
-
-/**
- * @deprecated since version 14.9.5
- */
-function cforms2_get_files($dir,$currentfile,$ext){
-
-	$s = DIRECTORY_SEPARATOR;
-	$presetsdir		= plugin_dir_path(__FILE__) .'..'.$s .'cforms-custom';
-	$list 			= '';
-
-	if ( file_exists($presetsdir) ){
-
-		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('custom files','cforms2'). ' ***&nbsp;&nbsp;</option>';
-
-		if ($handle = opendir($presetsdir)) {
-		    while (false !== ($file = readdir($handle))) {
-		        if (preg_match('/\.'.$ext.'$/i',$file) && $file != "." && $file != ".." && filesize($presetsdir.'/'.$file) > 0)
-					$list .= '<option value="../../cforms-custom/'.$file.'"'.(('../../cforms-custom/'.$file==$currentfile)?' style="background:#fbd0d3" selected="selected"':'').'>' .$file. '</option>';
-		    }
-		    closedir($handle);
-		}
-
-		$list .= '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' .__('cform css files','cforms2'). ' ***&nbsp;&nbsp;</option>';
-	}
-
-	$presetsdir		= plugin_dir_path(__FILE__). $dir .$s;
-	if ($handle = opendir($presetsdir)) {
-	    while (false !== ($file = readdir($handle))) {
-	        if (preg_match('/\.'.$ext.'$/i',$file) && $file != "." && $file != ".." && filesize($presetsdir.$file) > 0)
-				$list .= '<option value="'.$file.'"'.(($file==$currentfile)?' style="background:#fbd0d3" selected="selected"':'').'>' .$file. '</option>';
-	    }
-	    closedir($handle);
-	}
-
-    return ($list=='')?'<li>'.__('Not available','cforms2').'</li>':$list;
-}
-
 
 ### strip stuff
 function cforms2_prep($v,$d) {
