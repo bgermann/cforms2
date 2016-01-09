@@ -22,7 +22,7 @@ If you want to use plugin versions older than 14.6.3, you should rename the
 directory containing the plugin from "cforms2" to "cforms". But bear in mind
 that old versions should not be used in public systems, because they contain
 known serious vulnerabilities that are exploited in the wild. The current
-security baseline version is 14.8.
+security baseline version is 14.11.
 
 = Related Plugins =
 
@@ -227,6 +227,7 @@ GPL compliance!
 = 14.11 =
 * enhanced: unify AJAX and non-AJAX processing
 * bugfix:   make Q&A check work again in AJAX mode
+* bugfix:   prevent using fake CAPTCHAs and Q&As and do not depend on MD5
 * other:    remove CAPTCHA feature in favour of Really Simple CAPTCHA for cformsII
 
 = 14.10.1 =
