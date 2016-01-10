@@ -1352,7 +1352,9 @@ add_action('plugins_loaded', 'cforms2_localization' );
 add_action('widgets_init', 'cforms2_widget_init');
 
 $admin = is_admin();
-$cfadmin = strpos($_SERVER['QUERY_STRING'], 'cforms') !== false;
+$cfadmin = array_key_exists('QUERY_STRING', $_SERVER);
+if ($cfadmin)
+	$cfadmin = strpos($_SERVER['QUERY_STRING'], 'cforms') !== false;
 
 ### dashboard
 if ( $cformsSettings['global']['cforms_showdashboard']=='1' && $cformsSettings['global']['cforms_database']=='1' ) {
