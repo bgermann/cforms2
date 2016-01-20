@@ -49,8 +49,8 @@ function cforms2_submitcomment() {
 	$no = $_POST['cforms_id'];
 	$_POST['sendbutton'.$no] = true;
 	require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
-	// TODO hide
-	cforms2_json_die($no, $usermessage_class, $usermessage_text, false, $redirect);
+	$hide = $all_valid && ($cformsSettings['form'.$no]['cforms'.$no.'_hide'] || cforms2_get_submission_left($no)==0);
+	cforms2_json_die($no, $usermessage_class, $usermessage_text, $hide, $redirect);
 }
 function cforms2_dead_code() {
 	
