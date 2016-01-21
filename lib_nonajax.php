@@ -369,6 +369,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
     }
 
 
+	$trackf['id'] = $no;
+	$trackf['data'] = $track;
+	$trackf['title'] = $cformsSettings['form'.$no]['cforms'.$no.'_fname'];
 
 	###
 	###  ready to send email
@@ -480,15 +483,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 		### end adding attachments
 
-		
-		###
-		###  allow the user to use form data for other apps
-		###
-		$trackf['id'] = $no;
-		$trackf['data'] = $track;
-		$trackf['title'] = $cformsSettings['form'.$no]['cforms'.$no.'_fname'];
-		$trackf['uploaded_files'] = $fdata;
 
+
+		$trackf['uploaded_files'] = $fdata;
 		try {
 			// This action is meant to enable you to implement additional features
 			// after validating and most other processing are done
