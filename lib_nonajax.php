@@ -327,24 +327,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 
 	###
-	###  allow the user to use form data for other apps
-	###
-	$trackf['id'] = $no;
-	$trackf['data'] = $track;
-	$trackf['title'] = $cformsSettings['form'.$no]['cforms'.$no.'_fname'];
-	try {
-		// This action is meant to enable you to implement additional features
-		// after validating and most other processing are done
-		do_action('cforms2_after_processing_action', $trackf);
-	} catch ( Exception $exc ) {
-		$usermessage_text = $exc->getMessage();
-		$usermessage_class = ' failure';
-		$sentadmin = 1;
-	}
-
-
-
-	###
 	### set reply-to & watch out for T-A-F
 	###
 	$replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
@@ -489,14 +471,34 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		}
 		### parse through all files (both single and mp forms)
 		foreach ( $fdata as $file ) {
-			if ( $file[doAttach] && $file['name'] <> '' ){
+			if ( $file['doAttach'] && $file['name'] <> '' ){
 				$mail->add_file($file['name']); ### optional name
 				### debug
 				cforms2_dbg( 'Attaching file ('.$file['name'].') to email' );
 			}
 		}
 
-	    ### end adding attachments
+		### end adding attachments
+
+		
+		###
+		###  allow the user to use form data for other apps
+		###
+		$trackf['id'] = $no;
+		$trackf['data'] = $track;
+		$trackf['title'] = $cformsSettings['form'.$no]['cforms'.$no.'_fname'];
+		$trackf['uploaded_files'] = $fdata;
+
+		try {
+			// This action is meant to enable you to implement additional features
+			// after validating and most other processing are done
+			do_action('cforms2_after_processing_action', $trackf);
+		} catch ( Exception $exc ) {
+			$usermessage_text = $exc->getMessage();
+			$usermessage_class = ' failure';
+			$sentadmin = 1;
+		}
+
 
 		### debug
 		cforms2_dbg('TRACKF');
