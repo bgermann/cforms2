@@ -173,7 +173,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 	else if( array_key_exists($field_type, $captchas) ){  ### pluggable captcha
 
 		$validations[$i+$off] = 1;
-		if ( !$captchas[$field_type]->check_response($_REQUEST[$field_type . '/hint'], $_REQUEST[$field_type]) ) {
+		if ( !$captchas[$field_type]->check_response($_REQUEST) ) {
 			$validations[$i+$off] = 0;
 			$err = $err ? $err : 2;
 		}

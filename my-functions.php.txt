@@ -1,21 +1,25 @@
 <?php
 /* 
- * Plugin Name: cforms2-my-functions
+ * Plugin Name: cforms2-my-functions (deprecated)
  * Description: Find below examples for your custom routines. Do not change the function names.
+ * This way of extending cformsII is deprecated.
+ * The preferred way of doing it is via WordPress actions and filters.
+ * You find their 'cforms2_' prefixed names at the apply_filters and do_action calls.
  */
 
 ###
-### my_cforms_logic() : gets triggered throughout cforms, supporting real-time configuration
+### my_cforms_logic()  : gets triggered throughout cforms, supporting real-time configuration
 ###
 ### my_cforms_action() : gets triggered just before sending the admin email
 ###
-### my_cforms_filter() : after validation, before processing/saving input data (nonAJAX)
-###                      or in case you'd like to manipulate / check user input before further processing
+### my_cforms_filter() : in case you'd like to manipulate / check user input after standard validation,
+###                      but before special validations, like captchas.
 ###
-### my_cforms_ajax_filter() : after validation, before processing/saving input data (AJAX)
+### my_cforms_ajax_filter() and
+### my_cforms_filter() : after validation, before processing/saving input data
 ###
 
-### TO USE THE FUNCTIOS:
+### TO USE THE FUNCTIONS:
 ###  1) copy this file to your plugin directory
 ###  2) rename it ending with extension *.php
 ###  3) remove the functions you do not need and customize the needed ones
@@ -287,12 +291,10 @@ function my_cforms_ajax_filter(&$params) {
 	### triggers on your third form
 	if ( $params['id']=='3' ) {
 
-			### do something with field #1
-			### (! for ajax, all form fields are counted sequentially! !)
-			$params['field_1'] = 'Mr./Mrs. '.$params['field_1'];
+		$data = $params['data'];
 
-			### perhaps send an email or do somethign different
-			wp_mail('your@email.com', 'cforms my_filter_Ajax test', 'Form data array (Ajax):'.print_r($params,1), 'From: your@blog.com');
+		### perhaps send an email or do somethign different
+		wp_mail('your@email.com', 'cforms my_cforms_ajax_filter test', 'Form data array:'.print_r($data, 1), 'From: your@blog.com');
 
 	}
 

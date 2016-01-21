@@ -291,7 +291,11 @@ function cforms2_get_pluggable_captchas() {
 	static $captchas = array();
 	if (empty($captchas))
 		// This filter is meant to add one element to the associative array per cforms2_captcha
-		// implementation consisting of the classname as key and object as value
+		// implementation consisting of a unique identifier as key and object as value.
+		// known identifiers are:
+		//   cforms2_question_and_answer
+		//   verification
+		//   captcha
 		$captchas = apply_filters('cforms2_add_captcha', $captchas);
 	return $captchas;
 }

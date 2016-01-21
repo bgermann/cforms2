@@ -301,8 +301,6 @@ if( strlen($fd)<=2 ) {
 						// convert old CAPTCHAs
 						if ($field_type == 'verification')
 							$field_type = 'cforms2_question_and_answer';
-						else if ($field_type == 'captcha' && class_exists('cforms2_really_simple_captcha'))
-							$field_type = 'cforms2_really_simple_captcha';
 
                     	switch ( $field_type ) {
 	                       case 'emailtobox':   $specialclass = 'style="background:#CBDDFE"'; break;

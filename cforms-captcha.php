@@ -25,6 +25,11 @@
 abstract class cforms2_captcha {
 
 	/**
+	 * @return string A unique identifier for this CAPTCHA type.
+	 */
+	abstract public function get_id();
+
+	/**
 	 * @return string The human readable name for this CAPTCHA type that appears in the GUI.
 	 */
 	abstract public function get_name();
@@ -36,18 +41,17 @@ abstract class cforms2_captcha {
 	 * 
 	 * @param string $input_classes The class names for the input field
 	 * @param string $input_title The title for the input field
-	 * @return array array("html"=>... , "hint"=>...)
+	 * @return string HTML representing the captcha
 	 */
 	abstract public function get_request($input_classes, $input_title);
 
 	/**
 	 * Checks the answer given by the user for correctness.
 	 * 
-	 * @param string $hint The hint that leads to the correct answer.
-	 * @param string $answer The answer given by the user.
-	 * @return bool true, if $answer was correct.
+	 * @param string $post The possibly filtered HTTP POST data from submitting a form.
+	 * @return bool true, if the answer was correct.
 	 */
-	abstract public function check_response($hint, $answer);
+	abstract public function check_response($post);
 
 	/**
 	 * Renders the HTML required for the settings modal dialog.
@@ -61,7 +65,7 @@ abstract class cforms2_captcha {
 	 * @return array The original array with a pair added.
 	 */
 	public final function add_instance(array $captchas) {
-		$captchas[get_class($this)] = $this;
+		$captchas[$this->get_id()] = $this;
 		return $captchas;
 	}
 
@@ -85,6 +89,10 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 		$this->cforms_settings = get_option('cforms_settings');
 	}
 
+	public function get_id() {
+		return get_class($this);
+	}
+
 	public function get_name() {
 		return __('Visitor verification (Q&amp;A)', 'cforms2');
 	}
@@ -93,20 +101,22 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 		return $this->cforms_settings['global']['cforms_captcha_def']['foqa'] == '1';
 	}
 
-	public function check_response($hint, $answer) {
+	public function check_response($post) {
+		$hint = $post[$this->get_id() . '/hint'];
+		$answer = $post[$this->get_id()];
 		$q = $this->question_and_answer(intval($hint));
 		return strcasecmp($answer, $q[2]) === 0;
 	}
 
 	public function get_request($input_classes, $input_title) {
-		$id = get_class($this);
+		$id = $this->get_id() . mt_rand();
         $q = $this->question_and_answer();
 		$label = stripslashes(htmlspecialchars($q[1]));
-		$req['hint'] = $q[0];
 
-		$req['html'] = '<label for="'.$id.'" class="secq"><span>' . stripslashes(($label)) . '</span></label>'
-				     . '<input type="text" name="'.$id.'" id="'.$id.'" '
-		             . 'class="'.$input_classes.'" title="'.$input_title.'"/>';
+		$req = '<label for="'.$id.'" class="secq"><span>' . stripslashes(($label)) . '</span></label>'
+			 . '<input type="text" name="'.$this->get_id().'" id="'.$id.'" '
+		     . 'class="'.$input_classes.'" title="'.$input_title.'"/>'
+		     . '<input type="hidden" name="'.$this->get_id().'/hint" value="' . $q[0] . '"/>';
 		return $req;
 	}
 	

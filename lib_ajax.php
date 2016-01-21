@@ -77,11 +77,6 @@ function cforms2_dead_code() {
     $isTAF = substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
 
 
-	###  user filter ?
-	if( function_exists('my_cforms_ajax_filter') )
-		my_cforms_ajax_filter($params);
-
-
 	###  init variables
 	$track = array();
 	$trackinstance = array();

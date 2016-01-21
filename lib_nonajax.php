@@ -277,6 +277,8 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###  prefilter user input
 	if( function_exists('my_cforms_filter') )
         my_cforms_filter($no);
+	if( function_exists('my_cforms_ajax_filter') )
+		my_cforms_ajax_filter(array('id' => $no, 'data' => $data));
 
 
     ### multi-form session
@@ -329,14 +331,15 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	$trackf['id'] = $no;
 	$trackf['data'] = $track;
-	if( function_exists('my_cforms_action') ) {
-		try {
-			my_cforms_action($trackf);
-		} catch ( Exception $exc ) {
-			$usermessage_text = $exc->getMessage();
-			$usermessage_class = ' failure';
-			$sentadmin = 1;
-		}
+	$trackf['title'] = $cformsSettings['form'.$no]['cforms'.$no.'_fname'];
+	try {
+		// This action is meant to enable you to implement additional features
+		// after validating and most other processing are done
+		do_action('cforms2_after_processing_action', $trackf);
+	} catch ( Exception $exc ) {
+		$usermessage_text = $exc->getMessage();
+		$usermessage_class = ' failure';
+		$sentadmin = 1;
 	}
 
 

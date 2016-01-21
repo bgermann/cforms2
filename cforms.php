@@ -649,8 +649,8 @@ function cforms2($args = '',$no = '') {
 		$force_checked = false;
 		$cookieset = '';
 		if (array_key_exists($field_type, $captchas)){
-			$req = $captchas[$field_type]->get_request('secinput '.$field_class, $fieldTitle);
-			$field = $req['html'].'<input type="hidden" name="'.$field_type.'/hint" value="' . rawurlencode($req['hint']) . '"/>';
+			$html = $captchas[$field_type]->get_request('secinput '.$field_class, $fieldTitle);
+			$field = $html;
 		}
 		else switch($field_type) {
 
@@ -1367,7 +1367,7 @@ if ( $cfadmin ) {
 	add_action('admin_enqueue_scripts', 'cforms2_admin_enqueue_scripts' );
 }
 
-### public ajax
+require_once (plugin_dir_path(__FILE__) . 'my-functions-deprecated.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_ajax.php');
 require_once (plugin_dir_path(__FILE__) . 'cforms-captcha.php');
 

@@ -29,9 +29,7 @@ security baseline version is 14.11.
 cformsII has pluggable CAPTCHA support.
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
 provides an image CAPTCHA. To convert the old CAPTCHA fields to Really
-Simple CAPTCHA, please install and activate the plugin first. Then go to Form
-Settings and check, if your CAPTCHA fields are of type Really Simple CAPTCHA.
-If you can confirm this, resave each form that contains a CAPTCHA field.
+Simple CAPTCHA, please install the current version and activate the plugin.
 
 = Credits =
 
@@ -186,7 +184,7 @@ Some things are to be done:
 == Upgrade Notice ==
 
 = 14.11 =
-CAPTCHA support is handled by the new plugin Really Simple CAPTCHA for cformsII. If you depend on CAPTCHAs, please lookup cformsII's plugin description (readme.txt) to check how to upgrade.
+CAPTCHA support is handled by the new plugin Really Simple CAPTCHA for cformsII. If you depend on CAPTCHAs, please install this plugin. Additionally, if you use my_cforms_ajax_filter(), you get a new data structure there.
 
 = 14.9.12 =
 If you run a custom css and depend on a CAPTCHA reset image, you have to remove it.
@@ -226,8 +224,11 @@ GPL compliance!
 
 = 14.11 =
 * enhanced: unify AJAX and non-AJAX processing
+* enhanced: pluggable captcha API change
+* enhanced: it is possible now to show more than one form with Q&A on one site
 * bugfix:   make Q&A check work again in AJAX mode
 * bugfix:   prevent using fake CAPTCHAs and Q&As and do not depend on MD5
+* other:    my_cforms_ajax_filter() API function's data structure changed
 * other:    remove CAPTCHA feature in favour of Really Simple CAPTCHA for cformsII
 
 = 14.10.1 =
