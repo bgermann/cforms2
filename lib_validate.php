@@ -359,15 +359,19 @@ switch($err){
 	case 0: break;
 	case 1:
 		$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$cformsSettings['form'.$no]['cforms'.$no.'_failure'].'</span>' );
+		$usermessage_class = ' failure';
 		break;
 	case 2:
 		$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$cformsSettings['global']['cforms_codeerr'].'</span>' );
+		$usermessage_class = ' failure';
 		break;
 	case 3:
 		$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$fileerr.'</span>');
+		$usermessage_class = ' failure';
 		break;
 	case 4:
 		$usermessage_text = preg_replace ( array("|\\\'|",'/\\\"/','|\r\n|'),array('&#039;','&quot;','<br />'), '<span>'.$cformsSettings['form'.$no]['cforms'.$no.'_failure'].'</span>' );
+		$usermessage_class = ' failure';
 		break;
 
 }

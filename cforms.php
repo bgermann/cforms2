@@ -649,7 +649,7 @@ function cforms2($args = '',$no = '') {
 		$force_checked = false;
 		$cookieset = '';
 		if (array_key_exists($field_type, $captchas)){
-			$html = $captchas[$field_type]->get_request('secinput '.$field_class, $fieldTitle);
+			$html = $captchas[$field_type]->get_request($input_id, 'secinput fldrequired '.$field_class, $fieldTitle);
 			$field = $html;
 		}
 		else switch($field_type) {
@@ -1021,7 +1021,6 @@ function cforms2($args = '',$no = '') {
 
 	$content .= '<input type="hidden" name="cf_working'.$no.'" id="cf_working'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_working']).'</span>"/>'.
 				'<input type="hidden" name="cf_failure'.$no.'" id="cf_failure'.$no.'" value="<span>'.rawurlencode($cformsSettings['form'.$no]['cforms'.$no.'_failure']).'</span>"/>'.
-				'<input type="hidden" name="cf_codeerr'.$no.'" id="cf_codeerr'.$no.'" value="<span>'.rawurlencode($cformsSettings['global']['cforms_codeerr']).'</span>"/>'.
 				'<input type="hidden" name="cf_customerr'.$no.'" id="cf_customerr'.$no.'" value="'.rawurlencode($custom_error).'"/>';
 
 	$content .= '</fieldset>';

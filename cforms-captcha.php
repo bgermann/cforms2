@@ -43,7 +43,7 @@ abstract class cforms2_captcha {
 	 * @param string $input_title The title for the input field
 	 * @return string HTML representing the captcha
 	 */
-	abstract public function get_request($input_classes, $input_title);
+	abstract public function get_request($input_id, $input_classes, $input_title);
 
 	/**
 	 * Checks the answer given by the user for correctness.
@@ -108,13 +108,12 @@ final class cforms2_question_and_answer extends cforms2_captcha {
 		return strcasecmp($answer, $q[2]) === 0;
 	}
 
-	public function get_request($input_classes, $input_title) {
-		$id = $this->get_id() . mt_rand();
+	public function get_request($input_id, $input_classes, $input_title) {
         $q = $this->question_and_answer();
 		$label = stripslashes(htmlspecialchars($q[1]));
 
-		$req = '<label for="'.$id.'" class="secq"><span>' . stripslashes(($label)) . '</span></label>'
-			 . '<input type="text" name="'.$this->get_id().'" id="'.$id.'" '
+		$req = '<label for="'.$input_id.'" class="secq"><span>' . stripslashes(($label)) . '</span></label>'
+			 . '<input type="text" name="'.$this->get_id().'" id="'.$input_id.'" '
 		     . 'class="'.$input_classes.'" title="'.$input_title.'"/>'
 		     . '<input type="hidden" name="'.$this->get_id().'/hint" value="' . $q[0] . '"/>';
 		return $req;

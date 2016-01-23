@@ -56,7 +56,7 @@ function cforms_validate(no, upload) {
         var gotone = all_custom_error[id];
         if ( all_custom_error[id] && gotone !='' ){
 
-            if( show_err_ins=='y' ){
+            if( show_err_ins==='y' ){
                 insert_err_p[insert_err_count] = parent_el.id;
 
                 var ul = document.createElement('UL');
@@ -83,7 +83,7 @@ function cforms_validate(no, upload) {
     var check_for_customerr = function (id) {
 
         var parent_el = document.getElementById(id).parentNode;
-        if( show_err_li=='y' ) {
+        if( show_err_li==='y' ) {
             parent_el.className = "cf_li_err";
         }
 
@@ -92,7 +92,7 @@ function cforms_validate(no, upload) {
 
     var check_for_customerr_radio = function (id, cerr) {
         var parent_el = document.getElementById( id.substr(0, id.length - 5) );
-        if ( show_err_li == 'y' ) {
+        if ( show_err_li === 'y' ) {
             parent_el.className = "cf-box-title cf_li_err";
         }
 
@@ -101,7 +101,7 @@ function cforms_validate(no, upload) {
 
     var isParentChkBoxGroup = function (el){
         while( el.parentNode ){
-            if ( el.parentNode.className=='cf-box-group' )
+            if ( el.parentNode.className==='cf-box-group' )
                 return true;
             else
                 el = el.parentNode;
@@ -194,6 +194,10 @@ function cforms_validate(no, upload) {
 
         var no = message.no;
 
+        if (!message.result.match(/success/)) {
+	        call_err(no, message.html, '');
+			return;
+		}
         if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
             document.getElementById('cforms'+no+'form').reset();
 
@@ -296,13 +300,12 @@ function cforms_validate(no, upload) {
 
     var all_custom_error = new Array();
 
-    var rest = document.getElementById('cf_customerr' + no).value.substr(3);
-    var show_err_li  = document.getElementById('cf_customerr' + no).value.substr(0,1);
-    var show_err_ins = document.getElementById('cf_customerr' + no).value.substr(1,1);
-    var jump_to_err = document.getElementById('cf_customerr' + no).value.substr(2,1);
+    var customerr_concatenated = document.getElementById('cf_customerr' + no).value;
+    var show_err_li  = customerr_concatenated.substr(0,1);
+    var show_err_ins = customerr_concatenated.substr(1,1);
+    var jump_to_err = customerr_concatenated.substr(2,1);
 
-    var error_container = decodeURIComponent( rest );
-    error_container = error_container.split('|');
+    var error_container = decodeURIComponent( customerr_concatenated.substr(3) ).split('|');
 
     for (var i=0; i<error_container.length; i++ ) {
         var keyvalue = error_container[i].split('$#$');
@@ -317,7 +320,6 @@ function cforms_validate(no, upload) {
     }
 
     var all_valid = true;
-    var code_err  = false;
 
     var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,63})$','i');  // email regexp
 
@@ -378,7 +380,7 @@ function cforms_validate(no, upload) {
 
                 if ( temp.match(/cf-box-./) ) {
 
-                    if ( objColl[i].checked==false ) {
+                    if ( !objColl[i].checked ) {
 
                         custom_error = check_for_customerr(objColl[i].id);
 
@@ -480,9 +482,8 @@ function cforms_validate(no, upload) {
         if ( objColl[i] && document.getElementById(objColl[i].id+'_regexp') ) {
 
             var obj_regexp = document.getElementById( objColl[i].id+'_regexp' );
-            var INPval;
-            if (typ=='textarea') INPval = objColl[i].value.replace( /\n\r?/g, ' ' );
-            else INPval = objColl[i].value;
+            var INPval = objColl[i].value;
+            if (typ=='textarea') INPval = INPval.replace( /\n\r?/g, ' ' );
 
             if ( obj_regexp && obj_regexp.value != '' ) {
 
@@ -510,10 +511,10 @@ function cforms_validate(no, upload) {
     }
 
     //write out all custom errors
-    if( show_err_ins=='y' ) write_customerr();
+    if( show_err_ins==='y' ) write_customerr();
 
     //set focus to last erroneous input field
-    if ( last_one!='' && jump_to_err=='y' ){
+    if ( last_one!='' && jump_to_err==='y' ){
         location.hash='#'+last_one;
         document.getElementById(last_one).focus();
     }
@@ -544,7 +545,7 @@ function cforms_validate(no, upload) {
 
         if ( custom_error!='' ) custom_error = '<ol>'+custom_error+'</ol>';
 
-        err = decodeURI( err.value ) + custom_error;
+        err = decodeURI( err ) + custom_error;
 
         var stringXHTML = err.replace(/(\r\n)/g, '<br />');
 
@@ -559,14 +560,8 @@ function cforms_validate(no, upload) {
         doInnerXHTML(msgbox, stringXHTML.replace(/\\/g,""));
     };
 
-    if ( !all_valid && !code_err ){
-        call_err(no,document.getElementById('cf_failure'+no),custom_error);
-        return false;
-    }
-
     if ( !all_valid ){
-        call_err(no,document.getElementById('cf_codeerr'+no),custom_error);
-        return false;
+        call_err(no, document.getElementById('cf_failure'+no).value, custom_error);
     }
 
     return false;
