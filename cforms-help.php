@@ -953,32 +953,6 @@ echo '&lt;/table&gt;';</pre></td></tr>
 				<tr><td class="ball" colspan="2"><code>$xtra_comment_data = cf_extra_comment_data( get_comment_ID() );   /* all data, no filters */</code></td></tr>
 			</table>
 
-			<p>
-            	<?php _e('(Post-)Processing of submitted data is really for hard core deployments, where <em>real-time manipulation</em> of a form &amp; fields are required.', 'cforms2'); ?>
-				<?php _e('If you require the submitted data to be manipulated, and or sent to a 3rd party or would like to make use of the data otherwise, here is how:', 'cforms2'); ?>
-            </p>
-
-			<table class="hf" cellspacing="2" border="4" width="95%">
-				<tr>
-					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('Custom functions to (post-)process user input', 'cforms2'); ?>"><?php _e('Available User Functions', 'cforms2'); ?></span>&nbsp;&nbsp;<?php _e('(see <strong>my-functions.php.txt</strong> file (plugin root directory), including examples)', 'cforms2');?></td>
-				</tr>
-				<tr>
-					<td class="bleft"><strong><code class="codehighlight">my_cforms_filter()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> processing input data', 'cforms2'); echo ' '; _e('(nonAjax)', 'cforms2'); ?></td>
-				</tr>
-				<tr>
-					<td class="bleft"><strong><code class="codehighlight">my_cforms_ajax_filter()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>after</strong> input validation, but <strong>before</strong> processing input data', 'cforms2'); ?></td>
-				</tr>
-				<tr>
-					<td class="bleft"><strong><code class="codehighlight">my_cforms_action()</code></strong></td>
-					<td class="bright"><?php _e('function gets called <strong>just before</strong> sending the email', 'cforms2'); ?></td>
-				</tr>
-                <tr>
-                    <td class="bleft"><strong><code class="codehighlight">my_cforms_logic()</code></strong></td>
-                    <td class="bright"><?php _e('function gets called <strong>at</strong> various stages of input processing', 'cforms2'); ?></td>
-                </tr>
-			</table>
 		</div>
 
 

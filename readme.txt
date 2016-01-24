@@ -228,9 +228,10 @@ GPL compliance!
 * enhanced: it is possible now to show more than one form with Q&A on one site
 * bugfix:   make Q&A check work again in AJAX mode
 * bugfix:   prevent using fake CAPTCHAs and Q&As and do not depend on MD5
-* other:    my_cforms_ajax_filter() API function's data structure changed
+* other:    my_cforms_ajax_filter() API function's data structure changed to the same as my_cforms_filter
 * other:    remove CAPTCHA feature in favour of Really Simple CAPTCHA for cformsII
 * other:    remove Portuguese (Brazil) translation after migration to translate.wordpress.org
+* other:    deprecate my-functions API
 
 = 14.10.1 =
 * bugfix:   fix tracking form download url

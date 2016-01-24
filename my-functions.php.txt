@@ -10,8 +10,6 @@
 ###
 ### my_cforms_logic()  : gets triggered throughout cforms, supporting real-time configuration
 ###
-### my_cforms_action() : gets triggered just before sending the admin email
-###
 ### my_cforms_filter() : in case you'd like to manipulate / check user input after standard validation,
 ###                      but before special validations, like captchas.
 ###
@@ -47,7 +45,7 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
 
 	### If you're unsure how to reference $cformsdata use the below mail call to send you the data array
-	### wp_mail('your@email.com', 'cforms my_action test', print_r($cformsdata,1), 'From: your@email.com');
+	### wp_mail('you@example.com', 'my_cforms_logic test', print_r($cformsdata,1), 'From: you@example.com');
 
 
 
@@ -144,7 +142,7 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
     if ( $setting == "adminTO" ){
 
 		if ( $oldvalue=='placeholder' )
-			return 'test123 <my@different-email.com>';
+			return 'test123 <my@different-email.example>';
 
     }
 
@@ -201,10 +199,10 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 		$userfield = $cformsdata['data'][$cformsdata['data']['$$$mypick']];
 
 		if ( $userfield == 'abc' )
-	        return 'http://my.new.url.com';
+	        return 'http://my.new.url.example';
 
 		if ( $userfield == 'def' )
-	        return 'http://my.other.url.com';
+	        return 'http://my.other.url.example';
 	}
 
 
@@ -219,7 +217,7 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 ### Your custom user data input filter
 ###
 ###
-function my_cforms_filter(&$formIDOrPostData) {
+function my_cforms_filter($formIDOrPostData) {
 
 	global $track;
 
@@ -233,7 +231,7 @@ function my_cforms_filter(&$formIDOrPostData) {
 		$track['Your Name'] = 'Mr./Mrs. '.$track['Your Name'];
 
 		### Send to 3d party or do something else
-		wp_mail('your@email.com', 'cforms my_filter test', print_r($track,1), 'From: your@blog.com');
+		wp_mail('you@example.com', 'cforms my_filter test', print_r($track,1), 'From: you@example.com');
 	}
 
 	### triggers on your third form before any cforms processing
@@ -244,7 +242,7 @@ function my_cforms_filter(&$formIDOrPostData) {
 			$formIDOrPostData['cf3_field_3'] = 'Mr./Mrs. '.$formIDOrPostData['cf3_field_3'];
 
 			### perhaps send an email or do something different
-			wp_mail('your@email.com', 'cforms my_filter_nonAjax test', 'Form data array (nonAjax):'.print_r($formIDOrPostData, 1), 'From: your@blog.com');
+			wp_mail('you@example.com', 'cforms my_filter_nonAjax test', 'Form data array (nonAjax):'.print_r($formIDOrPostData, 1), 'From: you@example.com');
 	}
 
 }
@@ -253,49 +251,11 @@ function my_cforms_filter(&$formIDOrPostData) {
 
 ###
 ###
-### Your custom user data action routine
+### Your custom user data input filter
 ###
 ###
-function my_cforms_action($cformsdata) {
+function my_cforms_ajax_filter($formID) {
 
-	### Extract Data
-	### Note: $formID = '' (empty) for the first form!
-
-	$formID = $cformsdata['id'];
-	$form   = $cformsdata['data'];
-
-	### triggers on your third form
-	if ( $formID == '3' ) {
-
-		### Do something with the data or not, up to you
-		$form['Your Name'] = 'Mr./Mrs. '.$form['Your Name'];
-
-	}
-
-	### Send to 3d party or do something else.
-	### You can throw an Exception. Its message is printed on the screen.
-	if (!wp_mail('your@email.com', 'cforms my_action test', print_r($form,1), 'From: your@blog.com'))
-		throw new Exception('Mail could not be sent');
-
-}
-
-
-
-###
-###
-### Your custom user data input filter (ajax)
-###
-###
-function my_cforms_ajax_filter(&$params) {
-
-	### triggers on your third form
-	if ( $params['id']=='3' ) {
-
-		$data = $params['data'];
-
-		### perhaps send an email or do somethign different
-		wp_mail('your@email.com', 'cforms my_cforms_ajax_filter test', 'Form data array:'.print_r($data, 1), 'From: your@blog.com');
-
-	}
+	### See my_cforms_filter
 
 }
