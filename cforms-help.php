@@ -1361,9 +1361,6 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 					<td class="ball" colspan="2"><?php _e('Defining first, next and last form via configuration', 'cforms2'); ?></td>
 				</tr>
 				<tr>
-					<td class="ball" colspan="2"><?php _e('Overriding "next form" at run-time (dynamically) via my-functions.php.txt', 'cforms2'); ?></td>
-				</tr>
-				<tr>
 					<td class="ball" colspan="2"><?php _e('Optionally send/suppress partial admin emails on a per form basis', 'cforms2'); ?></td>
 				</tr>
 				<tr>
@@ -1405,7 +1402,6 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
         <p class="ex"><strong><?php _e('Important Notes:', 'cforms2'); ?></strong></p>
         <ul style="margin-top:10px;">
             <li><?php echo sprintf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to examine the user data array; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms2'),'<strong>','</strong>'); ?></li>
-            <li><?php echo sprintf(__('%1s File attachments %2s will not be included in the admin email unless the upload fields are on the last form. However, they will be stored and tracked.', 'cforms2'),'<strong>','</strong>'); ?></li>
             <li><?php echo sprintf(__('Once the multi page form support is enabled, %1$sAjax is being disabled%2$s for this form.', 'cforms2'),'<strong>','</strong>'); ?></li>
         </ul>
 
