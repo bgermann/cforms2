@@ -230,6 +230,7 @@ GPL compliance!
 * bugfix:   prevent using fake CAPTCHAs and Q&As and do not depend on MD5
 * other:    my_cforms_ajax_filter() API function's data structure changed
 * other:    remove CAPTCHA feature in favour of Really Simple CAPTCHA for cformsII
+* other:    remove Portuguese (Brazil) translation after migration to translate.wordpress.org
 
 = 14.10.1 =
 * bugfix:   fix tracking form download url
