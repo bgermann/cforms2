@@ -1,12 +1,14 @@
 <?php
 /* 
- * Plugin Name: cforms2-my-functions (deprecated)
+ * Plugin Name: cforms2-my-functions
  * Description: Find below examples for your custom routines. Do not change the function names.
- * This way of extending cformsII is deprecated.
+ * The old way of extending cformsII is deprecated.
  * The preferred way of doing it is via WordPress actions and filters.
  * You find their 'cforms2_' prefixed names at the apply_filters and do_action calls.
+ * For some of these new actions and filters examples are given below.
  */
 
+### DEPRECATED
 ###
 ### my_cforms_logic()  : gets triggered throughout cforms, supporting real-time configuration
 ###
@@ -15,6 +17,8 @@
 ###
 ### my_cforms_ajax_filter() and
 ### my_cforms_filter() : after validation, before processing/saving input data
+###
+### my_cforms_action() : compatible to new cforms2_after_processing_action
 ###
 
 ### TO USE THE FUNCTIONS:
@@ -40,6 +44,7 @@
 ### "autoConfHTML" 					$cformsdata = cforms datablock
 ### "adminEmailSUBJ"				$cformsdata = cforms datablock
 ### "autoConfSUBJ"					$cformsdata = cforms datablock
+### @deprecated
 ###
 function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
@@ -215,7 +220,7 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 ###
 ###
 ### Your custom user data input filter
-###
+### @deprecated
 ###
 function my_cforms_filter($formIDOrPostData) {
 
@@ -252,10 +257,37 @@ function my_cforms_filter($formIDOrPostData) {
 ###
 ###
 ### Your custom user data input filter
-###
+### @deprecated
 ###
 function my_cforms_ajax_filter($formID) {
 
 	### See my_cforms_filter
 
 }
+
+/**
+ * Your custom user data action routine
+ * gets triggered just before sending the admin email
+ */
+add_action('cforms2_after_processing_action', function ($cformsdata) {
+
+	### Extract Data
+	### Note: $cformsdata['id'] = '' (empty) for the first form!
+
+	$formID = $cformsdata['id'];
+	$form   = $cformsdata['data'];
+
+	### triggers on your third form
+	if ( $formID == '3' ) {
+
+		### Do something with the data or not, up to you
+		$form['Your Name'] = 'Mr./Mrs. '.$form['Your Name'];
+
+	}
+
+	### Send to 3d party or do something else.
+	### You can throw an Exception. Its message is printed on the screen.
+	if (!wp_mail('you@example.com', 'cforms my_action test', print_r($form,1), 'From: you@example.com'))
+		throw new Exception('Mail could not be sent');
+
+});
