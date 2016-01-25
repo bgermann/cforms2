@@ -31,6 +31,12 @@ cformsII has pluggable CAPTCHA support.
 provides an image CAPTCHA. To convert the old CAPTCHA fields to Really
 Simple CAPTCHA, please install the current version and activate the plugin.
 
+[Contact Form DB](https://wordpress.org/plugins/contact-form-7-to-database-extension)
+has support for storing cformsII's submission data and exporting in more
+formats than cformsII does. Therefore cformsII's database tracking will be
+removed in the long run. RSS support, which depends on database tracking,
+will be removed in version 14.12.
+
 = Credits =
 
 The translations that are or were distributed were provided by:
@@ -173,9 +179,9 @@ The original author who developed cforms until 2012 also has a
 
 Some things are to be done:
 
+* remove RSS support
 * replace jqModal with jquery-ui-dialog
 * filter user input
-* make attachments download support directories that are not exported via HTTP
 * grunt build process similar to Wordpress core
 * long term: refactoring with object oriented approach
 * long term: unit tests and continuous integration
@@ -221,6 +227,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.11.1 =
+* bugfix:   make the cforms2_after_processing_action parameter contain file information not dependent on form configuration
 
 = 14.11 =
 * enhanced: unify AJAX and non-AJAX processing

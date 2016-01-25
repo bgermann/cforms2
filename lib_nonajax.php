@@ -17,6 +17,66 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function cforms2_add_file($fn, $attachFlag=false, &$fdata, &$fpointer){
+	if( file_exists($fn) ){
+	    $fdata[$fpointer]['name'] = $fn;
+	    $fdata[$fpointer]['doAttach'] = $attachFlag;
+        $fpointer++;
+	}
+	return;
+}
+
+### move uploaded files to local dir
+function cforms2_move_files($trackf, $no, $subID, &$file){
+	global $cformsSettings;
+	
+    $temp = explode( '$#$',stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_upload_dir'])) );
+    $fileuploaddir = $temp[0];
+	
+	$inSession = (strpos($subID,'xx') !== false);
+	$subID_ = ($cformsSettings['form'.$no]['cforms'.$no.'_noid']) ? '' : $subID.'-';
+
+    $file2 = $file;
+  	$i=0;
+	
+	$_SESSION['cforms']['upload'][$no]['doAttach'] = !($cformsSettings['form'.$no]['cforms'.$no.'_noattachments']);
+
+	cforms2_dbg("... in session=$inSession, moving files on form $no, tracking ID=$subID_");
+	
+  	if ( is_array($file2) && isset($file2['tmp_name']) ) {
+  		foreach( $file2['tmp_name'] as $tmpfile ) {
+		
+            ### copy attachment to local server dir
+            if ( is_uploaded_file($tmpfile) ){
+
+				$fileInfoArr = array('name'=>str_replace(' ','_',$file2['name'][$i]),'path'=>$fileuploaddir, 'subID'=>$subID);
+				
+				if ( function_exists('my_cforms_logic') ){
+					$fileInfoArr = my_cforms_logic( $trackf, $fileInfoArr, 'fileDestination');
+				}
+				
+				if( ! array_key_exists('modified', $fileInfoArr) )
+					$fileInfoArr['name'] = $subID_ . $fileInfoArr['name'];				
+					
+				$destfile = $fileInfoArr['path'].'/'.$fileInfoArr['name'];
+				
+            	move_uploaded_file($tmpfile,$destfile );
+
+				### debug
+				cforms2_dbg("   $tmpfile -> $destfile");
+      			
+				$file['tmp_name'][$i] = $destfile;
+
+				if( $inSession )
+					$_SESSION['cforms']['upload'][$no]['files'][] = $destfile;
+
+            }
+        	$i++;
+		}
+	}
+}
+
+
 ###
 ###  Validate all fields
 ###
@@ -268,7 +328,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
         $track['$$$'.$i] = $trackname.$inc;
         $track[$trackname.$inc] = $value;
-        if( $customTrackingID<>'' )
+        if( !empty($customTrackingID) )
             $track['$$$'.$customTrackingID] = $trackname.$inc;
 
 	} ### for all fields
@@ -352,9 +412,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	if(is_array($file)){
 	    if( $subID<>-1 && $ongoingSession!='0' )
-	        cforms2_move_files($track, $no, $subID);
+	        cforms2_move_files($track, $no, $subID, $file);
 	    else
-	        cforms2_move_files($track, $no, 'xx');
+	        cforms2_move_files($track, $no, 'xx', $file);
 	}
 	### end of session:
     if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
@@ -454,9 +514,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$doAttach = !($cformsSettings['form'.$no]['cforms'.$no.'_noattachments']);
 		
 		### form w/ files, within session or single form 
-		if ( $doAttach && $ongoingSession!='0' && is_array($file)  && !empty($file) ){
+		if ( $ongoingSession!='0' && is_array($file)  && !empty($file) ){
 			foreach( $file['tmp_name'] as $fn ){
-				cforms2_base64($fn, $doAttach);
+				cforms2_add_file($fn, $doAttach, $fdata, $fpointer);
 				### debug
 				cforms2_dbg( "File = $fn, attach = $doAttach" );
 			}
@@ -466,7 +526,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
 			foreach ( array_keys($_SESSION['cforms']['upload']) as $n ) {
 				if ($_SESSION['cforms']['upload'][$n]['files']) foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ){
-					cforms2_base64(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'] );
+					cforms2_add_file(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'], $fdata, $fpointer );
 					### debug
 					cforms2_dbg( "(end of session) File = ".$_SESSION['cforms']['upload'][$n]['files'][$m].", attach = ".$_SESSION['cforms']['upload'][$n]['doAttach'] );
                 }
