@@ -230,6 +230,7 @@ GPL compliance!
 
 = 14.11.1 =
 * bugfix:   make the cforms2_after_processing_action parameter contain file information not dependent on form configuration
+* bugfix:   only show tinymce button when in admin
 
 = 14.11 =
 * enhanced: unify AJAX and non-AJAX processing

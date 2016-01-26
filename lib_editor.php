@@ -46,7 +46,7 @@ function cforms2_mce_script() {
 }
 
 ### only insert buttons if enabled!
-if($cformsSettings['global']['cforms_show_quicktag'] == true) {
+if($cformsSettings['global']['cforms_show_quicktag'] && is_admin()) {
 
 	add_filter('mce_external_plugins', 'cforms2_mce');
 	add_filter('wp_mce_translation'  , 'cforms2_mce_translation');
