@@ -41,7 +41,7 @@ add_action( 'wp_ajax_nopriv_submitcomment', 'cforms2_submitcomment' );
 ###  submit comment
 ###
 function cforms2_submitcomment() {
-	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $redirect;
+	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $cf_redirect;
 	check_admin_referer( 'submitcomment' );
 	$cformsSettings = get_option('cforms_settings');
 	$all_valid = true;
@@ -49,5 +49,5 @@ function cforms2_submitcomment() {
 	$_POST['sendbutton'.$no] = true;
 	require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
 	$hide = $all_valid && ($cformsSettings['form'.$no]['cforms'.$no.'_hide'] || cforms2_get_submission_left($no)==0);
-	cforms2_json_die($no, $usermessage_class, $usermessage_text, $hide, $redirect);
+	cforms2_json_die($no, $usermessage_class, $usermessage_text, $hide, $cf_redirect);
 }

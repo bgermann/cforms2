@@ -661,9 +661,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	        ###  redirect to a different page on suceess?
 	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] && !$isWPcommentForm ) {
 	            if ( function_exists('my_cforms_logic') )
-	                $redirect = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
+	                $cf_redirect = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
 	            else
-	                $redirect = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
+	                $cf_redirect = $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'];
 	        }
 
 	    } ###  if $sentadmin
