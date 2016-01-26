@@ -40,7 +40,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<li><a href="#fields" onclick="setshow(19)"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;
 			<ul style="margin-top:7px	">
 				<li><a href="#taf" onclick="setshow(19)"><?php _e('Special <em>Tell A Friend</em> input fields', 'cforms2'); ?></a> &raquo;</li>
-				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?> &raquo;</a></li>
+				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#qa" onclick="setshow(19)"><?php _e('SPAM protection: Q &amp; A', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#hfieldsets" onclick="setshow(19)"><?php _e('Fieldsets', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#regexp" onclick="setshow(19)"><?php _e('Using regular expressions with form fields', 'cforms2'); ?></a> &raquo;</li>
