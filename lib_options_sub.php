@@ -173,7 +173,7 @@
     ## quickly get old vals
     $t=explode('$#$',$cformsSettings['form'.$no]['cforms'.$no.'_csubject']);
 	
-    if( $_REQUEST['cforms_confirm'] && $cformsSettings['form'.$no]['cforms'.$no.'_confirm']==1 ){
+    if( isset($_REQUEST['cforms_confirm']) && $_REQUEST['cforms_confirm'] && $cformsSettings['form'.$no]['cforms'.$no.'_confirm']==1 ){
         $t[0] = 													  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_csubject'));
 	    $cformsSettings['form'.$no]['cforms'.$no.'_cattachment'][0] = cforms2_get_from_request('cforms_cattachment');
 	    $cformsSettings['form'.$no]['cforms'.$no.'_cmsg'] =     	  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_cmsg'));
