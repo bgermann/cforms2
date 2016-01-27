@@ -1458,7 +1458,7 @@ if ( is_admin() ) {
 	}
 	$tafform = ($i==1)?'':$i;
 
-	if ( $tafenabled ){
+	if ( $tafenabled && isset($_GET['post']) ){
 		$edit_post = intval($_GET['post']);
 		$tmp = get_post_custom($edit_post);
 		$taf = $tmp["tell-a-friend"][0];
