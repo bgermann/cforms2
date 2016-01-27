@@ -126,7 +126,7 @@ if ( $isAjaxWPcomment ){
 			}
 
 	        ### keep track of custom comment fields
-	        cforms2_write_tracking_record($no,$comment_author_email,$comment_id);
+	        cforms2_write_tracking_record($no,$comment_author_email,$track,$comment_id);
 
 			$template = stripslashes($cformsSettings['global']['cforms_commentHTML']);
 
@@ -239,7 +239,7 @@ if ( $isAjaxWPcomment ){
 			cforms( '',$no );
 
 		### keep track of custom comment fields
-        cforms2_write_tracking_record($no,$comment_author_email,$comment_id);
+        cforms2_write_tracking_record($no,$comment_author_email,$track,$comment_id);
 
 		$location = ( empty($_POST['redirect_to'] ) ? get_permalink($_POST['comment_post_ID']).$cfpre.'cfemail=posted'.'#cforms'.$no.'form' : $_POST['redirect_to'] );
 		$location = apply_filters('comment_post_redirect', $location, $comment);

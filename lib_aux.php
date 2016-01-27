@@ -207,8 +207,8 @@ function cforms2_format_email($track,$no){
 
 
 ### write DB record
-function cforms2_write_tracking_record($no,$field_email,$c=''){
-		global $wpdb, $track, $cformsSettings;
+function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
+		global $wpdb, $cformsSettings;
 
 		cforms2_dbg('WRITING TRACKING RECORD');
 		$noTracking = $cformsSettings['form'.$no]['cforms'.$no.'_notracking'];

@@ -383,7 +383,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###  FIRST into the database is required!
 	###
 	global $subID, $wpdb;
-	$subID = ( $isTAF =='2' && !$send2author )?'noid':cforms2_write_tracking_record($no,$field_email);
+	$subID = ( $isTAF =='2' && !$send2author )?'noid':cforms2_write_tracking_record($no,$field_email,$track);
 
 
 	###

@@ -44,6 +44,7 @@ function cforms2_submitcomment() {
 	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $cf_redirect;
 	check_admin_referer( 'submitcomment' );
 	$cformsSettings = get_option('cforms_settings');
+	$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 	$all_valid = true;
 	$no = $_POST['cforms_id'];
 	$_POST['sendbutton'.$no] = true;

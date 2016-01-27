@@ -228,6 +228,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.11.2 =
+
+* bugfix:   AJAX forms are saved in tracking database again
+
 = 14.11.1 =
 * bugfix:   make the cforms2_after_processing_action parameter contain file information not dependent on form configuration
 * bugfix:   only show tinymce button when in admin
