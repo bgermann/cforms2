@@ -888,7 +888,7 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 			<br/>
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: get_cforms_entries()', 'cforms2'); ?>"><?php _e('API Function', 'cforms2'); ?></span> &nbsp;&nbsp;&nbsp; <strong>get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;,$sortdir&nbsp;)</strong></td>
+					<td class="apiH" colspan="2"><span class="abbr"><?php _e('API Function', 'cforms2'); ?></span> &nbsp;&nbsp;&nbsp; <strong>get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;,$sortdir&nbsp;)</strong></td>
 				</tr>
 				<tr>
 					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms2'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function allows to conveniently retrieve submitted data from the cforms tracking tables.', 'cforms2'); ?></td>
@@ -936,7 +936,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 			<br />
 			<table class="hf" cellspacing="2" border="4" width="95%">
 				<tr>
-					<td class="apiH" colspan="2"><span class="abbr" title="<?php _e('API Function :: cf_extra_comment_data()', 'cforms2'); ?>"><?php _e('API Function', 'cforms2'); ?></span> &nbsp;&nbsp;&nbsp; <strong>cf_extra_comment_data(&nbsp;$commentID&nbsp;)</strong></td>
+					<td class="apiH" colspan="2"><span class="abbr"><?php _e('API Function', 'cforms2'); ?></span> &nbsp;&nbsp;&nbsp; <strong>cf_extra_comment_data(&nbsp;$commentID&nbsp;)</strong></td>
 				</tr>
 				<tr>
 					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms2'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function retrieves all extra data submitted (besides the default Author, Email, URL, Message fields) per a given comment context. This function should be called from within the "comment LOOP".', 'cforms2'); ?></td>
