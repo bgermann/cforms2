@@ -376,7 +376,6 @@ if( strlen($fd)<=2 ) {
 									<option<?php echo $dis; ?> value="email" <?php echo($field_type == 'email'?' selected="selected"':''); ?>><?php _e('Author\'s Email', 'cforms2'); ?></option>
 									<option<?php echo $dis; ?> value="url" <?php echo($field_type == 'url'?' selected="selected"':''); ?>><?php _e('Author\'s URL', 'cforms2'); ?></option>
 									<option<?php echo $dis; ?> value="comment" <?php echo($field_type == 'comment'?' selected="selected"':''); ?>><?php _e('Author\'s Comment', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="send2author" <?php echo($field_type == 'send2author'?' selected="selected"':''); ?>><?php _e('Select: Email/Comment', 'cforms2'); ?></option>
 								</optgroup>
 
 								<optgroup label="<?php _e('--- HTML5 form fields ---', 'cforms2'); ?>">

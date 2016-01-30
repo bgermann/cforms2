@@ -95,7 +95,7 @@ function cforms2_start_session() {
 ###
 function cforms2($args = '',$no = '') {
 
-	global $subID, $track, $cformsSettings, $trackf, $send2author;
+	global $subID, $track, $cformsSettings, $trackf;
 
     $oldno = ($no=='1')?'':$no;  ### remeber old val, to reset session when in new MP form
 
@@ -213,7 +213,7 @@ function cforms2($args = '',$no = '') {
 	}
 
     ### called from lib_WPcomments ?
-	if ( $isWPcommentForm && $send2author )
+	if ( $isWPcommentForm )
 		return $all_valid;
 
 
@@ -444,7 +444,7 @@ function cforms2($args = '',$no = '') {
 		
 
 		### special treatment for selectboxes
-		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','send2author','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
+		if (  in_array($field_type,array('multiselectbox','selectbox','radiobuttons','checkbox','checkboxgroup','ccbox','emailtobox'))  ){
 
 			$chkboxClicked = array();
 			if (  in_array($field_type,array('checkbox','ccbox')) && strpos($obj[0],'|set:')>1 ){
@@ -478,7 +478,7 @@ function cforms2($args = '',$no = '') {
 
 		$defaultvalue = '';
 		### setting the default val & regexp if it exists
-		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','send2author','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox')) ) {
+		if ( ! in_array($field_type,array('fieldsetstart','fieldsetend','radiobuttons','checkbox','checkboxgroup','ccbox','emailtobox','multiselectbox','selectbox')) ) {
 
 		    ### check if default val & regexp are set
 		    $obj = explode('|', $obj[0],3);
@@ -547,7 +547,6 @@ function cforms2($args = '',$no = '') {
 				$input_id = $input_name = 'cf_uploadfile'.$no.'-'.$i;
 				$field_class = 'upload';
 				break;
-			case "send2author":
 			case "email":
 			case "cauthor":
 			case "url":
@@ -624,7 +623,7 @@ function cforms2($args = '',$no = '') {
 
 
 		### print label only for non "textonly" fields! Skip some others too, and handle them below indiv.
-		$standard_field = !in_array($field_type, array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','checkbox','checkboxgroup','send2author','radiobuttons'));
+		$standard_field = !in_array($field_type, array('hidden','textonly','fieldsetstart','fieldsetend','ccbox','checkbox','checkboxgroup','radiobuttons'));
 		if($standard_field) {
 			$content .= '<li'.$liID.' class="'.$liERR.'">'.$insertErr;
 			if (!in_array($field_type, array_keys($captchas)))
@@ -645,7 +644,6 @@ function cforms2($args = '',$no = '') {
 		$dp = '';
 		$field  = '';
 		$val = '';
-		$force_checked = false;
 		$cookieset = '';
 		if (array_key_exists($field_type, $captchas)){
 			$html = $captchas[$field_type]->get_request($input_id, 'secinput fldrequired '.$field_class, $fieldTitle);
@@ -919,8 +917,6 @@ function cforms2($args = '',$no = '') {
 				$field.= '</select>';
 				break;
 
-			case "send2author":
-				$force_checked = ( strpos($field_stat[0],'|set:')===false )? true:false;
 			case "radiobuttons":
 				$liID_b = ($liID <>'')?substr($liID,0,-1) . 'items"':'';	### only if label ID's active
 
@@ -940,7 +936,7 @@ function cforms2($args = '',$no = '') {
 
 						if( $field_value == '' ) {
 
-								if ( strpos($radioPreset[1],'true')!==false || ($force_checked && $id==1))
+								if ( strpos($radioPreset[1],'true')!==false)
 								    $checked = ' checked="checked"';
 
 						}	else
@@ -1418,8 +1414,7 @@ function cforms2_field() {
 	);
 	static $checkboxgroup = array(
         'checkboxgroup',
-        'radiobuttons',
-        'send2author'
+        'radiobuttons'
     );
 
 	$type = $_REQUEST['type'];

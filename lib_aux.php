@@ -140,7 +140,7 @@ function cforms2_format_email($track,$no){
 			continue;
 
         ### fix labels
-	 	if ( in_array($k,array('cauthor','email','url','comment','send2author')) ) continue;
+	 	if ( in_array($k,array('cauthor','email','url','comment')) ) continue;
 
 		if ( preg_match('/\$\$\$/',$k) ) continue;
 

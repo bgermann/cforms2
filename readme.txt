@@ -153,6 +153,11 @@ Just search for widgets with your browser's search.
 
 Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
+= Where is the field type "Select: Email/Comment"? =
+
+That field type was removed in 14.11.3 as it contained a bug since version
+14.6.3 that noone mentioned. Most probably noone uses it anymore.
+
 
 == Localization ==
 
@@ -230,6 +235,10 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.11.3 =
+
+* bugfix:   remove the "Select: Email/Comment" field type, also known as send2author, which contained a bug since 14.6.3
 
 = 14.11.2 =
 

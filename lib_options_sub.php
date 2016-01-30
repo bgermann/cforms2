@@ -44,7 +44,7 @@
         if( !$uploadfield )
           $uploadfield = ($type == 'upload');
 
-				if( in_array($type, array('cauthor','email','url','comment','send2author')) && !($isTAF==2) ){
+				if( in_array($type, array('cauthor','email','url','comment')) && !($isTAF==2) ){
 					$allgood = $WPc?false:true;
 					$usermsg .= '<span class="exMsg">'.__('WP comment form fields only supported when <em>WP comment feature</em> turned on!', 'cforms2').'</span>';
 					$WPc=true;

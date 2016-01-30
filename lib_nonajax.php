@@ -109,7 +109,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	$filefield=0;
 	$taf_youremail = false;
 	$taf_friendsemail = false;
-	$send2author = false;
 
 	$inpFieldArr = array(); // for var[] type input fields
 
@@ -214,12 +213,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		if ( $field_type=='email' )
 				$field_email = (isset($_POST['email']))?$_POST['email']:$user->user_email;
 
-
-		###  special radio button WP Comments
-		if( $field_type=='send2author' && $_POST['send2author']=='1') {
-			$send2author=true;
-			continue; ###  don't record it.
-		}
 
 		###  find email address
 		if ( $field_email == '' && $field_stat[3]=='1')
@@ -383,7 +376,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###  FIRST into the database is required!
 	###
 	global $subID, $wpdb;
-	$subID = ( $isTAF =='2' && !$send2author )?'noid':cforms2_write_tracking_record($no,$field_email,$track);
+	$subID = ( $isTAF =='2' )?'noid':cforms2_write_tracking_record($no,$field_email,$track);
 
 
 	###
@@ -391,12 +384,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###
 	$replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
 
-	###  WP comment form > email to author
-	if ( $isTAF=='2' && $track['send2author']=='1'){
-			$to = $wpdb->get_results($wpdb->prepare("SELECT U.user_email FROM $wpdb->users as U, $wpdb->posts as P WHERE P.ID = %d AND U.ID=P.post_author", $_POST['comment_post_ID'.$no]));
-			$to = $replyto =  ($to[0]->user_email<>'')?$to[0]->user_email:$replyto;
-	}
-	else if ( !($to_one<>-1 && $to<>'') ){
+	if ( !($to_one<>-1 && $to<>'') ){
 		$to = $replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
 	}
 

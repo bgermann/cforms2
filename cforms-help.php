@@ -679,21 +679,6 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 				<td class="bright"><?php echo sprintf(__('field name  %1$s  default value  %1$s  <a href="#regexp">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
 			</tr>
 
-			<tr><td class="bleft" colspan="2">&nbsp;</td></tr>
-			<tr>
-				<td class="bleft"><?php _e('Special Field', 'cforms2'); ?>:</td><td class="bright">
-					<code><strong><?php _e('Select: Email/Comment', 'cforms2'); ?></strong></code>
-				</td>
-			</tr>
-			<tr>
-				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s text <em>comment</em> %2$s 0 %1$s text <em>to author</em> %2$s 1', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>'); ?></td>
-			</tr>
-			<tr>
-				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
-					<code><?php _e('Send as#regular comment|0#email to post author|1', 'cforms2'); ?></code></td>
-			</tr>
-			<tr><td class="bleft" colspan="2">&nbsp;</td></tr>
 			<tr>
 				<td class="ball" colspan="2">
 					<strong><?php _e('To get it working:', 'cforms2'); ?></strong>
@@ -1003,7 +988,6 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('Check boxes groups', 'cforms2'); ?>:</td><td> <code>checkboxgroup</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s Email', 'cforms2'); ?>:</td><td> <code>email</code></td></tr>
 	                <tr><td><?php _e('Drop down fields', 'cforms2'); ?>:</td><td> <code>selectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s URL', 'cforms2'); ?>:</td><td> <code>url</code></td></tr>
 	                <tr><td><?php _e('Multi select boxes', 'cforms2'); ?>:</td><td> <code>multiselectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s Comment', 'cforms2'); ?>:</td><td> <code>comment</code></td></tr>
-	                <tr><td><?php _e('Radio buttons', 'cforms2'); ?>:</td><td> <code>radiobuttons</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Select: Email/Comment', 'cforms2'); ?>:</td><td> <code>send2author</code></td></tr>
 	                <tr><td><?php _e('\'CC\' check box', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>cforms2_question_and_answer</code></td></tr>

@@ -170,12 +170,6 @@ if ( $isAjaxWPcomment ){
 
 	if ( $all_valid ) {
 
-		if ( isset($_POST['send2author']) && $_POST['send2author']=='1' ){
-			cforms2( '',$no );
-			header("HTTP/1.0 301 Temporary redirect");
-			header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=sent#cforms'.$no.'form' );
-			die();
-		}
 
 		###
 		### Filter first?
