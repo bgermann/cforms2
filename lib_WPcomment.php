@@ -228,10 +228,6 @@ if ( $isAjaxWPcomment ){
 			setcookie('comment_author_url_' . COOKIEHASH, esc_url($comment->comment_author_url), time() + 30000000, COOKIEPATH, COOKIE_DOMAIN);
 		}
 
-		### send a notification if required
-		if ( $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21' )
-			cforms2( '',$no );
-
 		### keep track of custom comment fields
         cforms2_write_tracking_record($no,$comment_author_email,$track,$comment_id);
 

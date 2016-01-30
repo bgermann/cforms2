@@ -159,6 +159,12 @@ That field type was removed in 14.11.3 as it contained a bug since version
 14.6.3 that noone mentioned. Most probably noone uses it anymore.
 
 
+= Where is the field type "Extra comment notification"? =
+
+That field type was removed in 14.11.3 as it contained a bug since version
+14.6.3 that noone mentioned. Most probably noone uses it anymore.
+
+
 == Localization ==
 
 You can see the available languages and contribute via [GlotPress](https://translate.wordpress.org/projects/wp-plugins/cforms2).
@@ -239,6 +245,7 @@ GPL compliance!
 = 14.11.3 =
 
 * bugfix:   remove the "Select: Email/Comment" field type, also known as send2author, which contained a bug since 14.6.3
+* bugfix:   remove the "Extra comment notification" field type, also known as commentXnote, which contained a bug since 14.6.3
 
 = 14.11.2 =
 

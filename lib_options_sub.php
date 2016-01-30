@@ -30,16 +30,15 @@
 
 		if ($_REQUEST['field_' . $i . '_name']<>''){ ### safety
 
-	        $allgood=true;
-	        $name = str_replace('$#$', '$', $_REQUEST['field_' . $i . '_name']);
-	        $type = $_REQUEST['field_' . $i . '_type'];
-	        $required = 0;
-	        $emailcheck = 0;
-	        $clear = 0;
-	        $disabled = 0;
-	        $readonly = 0;
-
-			     $isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
+			$allgood = true;
+			$name = str_replace('$#$', '$', $_REQUEST['field_' . $i . '_name']);
+			$type = $_REQUEST['field_' . $i . '_type'];
+			$required = 0;
+			$emailcheck = 0;
+			$clear = 0;
+			$disabled = 0;
+			$readonly = 0;
+			$isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
 
         if( !$uploadfield )
           $uploadfield = ($type == 'upload');
@@ -207,7 +206,7 @@
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = 			cforms2_get_boolean_from_request('cforms_ajax');
 
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 		'01'; ### default
+	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 		'00'; ### default
 	$cformsSettings['form'.$no]['cforms'.$no.'_tafCC'] = 	   		cforms2_get_boolean_from_request('cforms_tafCC');
 
 	if ( isset($_REQUEST['cforms_taftrick']) )
@@ -218,7 +217,7 @@
 
 
 	if ( isset($_REQUEST['cforms_commentrep']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'2'.cforms2_get_boolean_from_request('cforms_commentXnote');
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'20';
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] =      preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_tracking'));

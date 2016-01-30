@@ -1105,10 +1105,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_commentrep"><strong><?php _e('WP comment form', 'cforms2') ?></strong></label></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentrep" name="cforms_commentrep" <?php if( $isTAF==2 ) echo "checked=\"checked\""; ?>/><label for="cforms_commentrep"><?php _e('Enable this form to optionally (user determined) act as a WP comment form', 'cforms2') ?></label></td>
 				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_commentXnote"><strong><?php _e('Comment notification', 'cforms2') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentXnote" name="cforms_commentXnote" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],1,1)=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_commentXnote"><?php _e('Extra comment notification (check your autoresponder setting, too!)', 'cforms2') ?></label></td>
-				</tr>
 
 	            <?php if( $isTAF==2 ) : ?>
 	                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it6"><?php _e('<em>Tell a friend</em> or <em>WP comment</em>? &raquo;', 'cforms2'); ?></a></td></tr>
