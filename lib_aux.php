@@ -21,8 +21,6 @@
 ### other global init stuff
 ###
 $track = array();
-$Ajaxpid = '';
-$AjaxURL = '';
 
 
 
@@ -307,21 +305,17 @@ function cforms2_check_post_vars($fv){
 
 ### look for default/system variables
 function cforms2_check_default_vars($m,$no) {
-		global $subID, $Ajaxpid, $AjaxURL, $cformsSettings;
+		global $subID, $cformsSettings;
 
 	    $eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
 		if ( isset($_POST['comment_post_ID'.$no] ) && $_POST['comment_post_ID'.$no] )
 			$pid = $_POST['comment_post_ID'.$no];
-		else if ( $Ajaxpid<>'' )
-			$pid = $Ajaxpid;
 		else
 			$pid = get_the_ID();
 
 		if ( isset($_POST['cforms_pl'.$no] ) && $_POST['cforms_pl'.$no] )
 			$permalink = $_POST['cforms_pl'.$no];
-		else if ( $Ajaxpid<>'' )
-			$permalink = $AjaxURL;
 		else
 			$permalink = get_permalink($pid);
 

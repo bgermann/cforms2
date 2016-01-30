@@ -244,6 +244,7 @@ GPL compliance!
 
 = 14.11.3 =
 
+* bugfix:   make the AJAX WordPress comment work again (bug was introduced with 14.11)
 * bugfix:   remove the "Select: Email/Comment" field type, also known as send2author, which contained a bug since 14.6.3
 * bugfix:   remove the "Extra comment notification" field type, also known as commentXnote, which contained a bug since 14.6.3
 

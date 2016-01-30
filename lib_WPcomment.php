@@ -21,7 +21,7 @@
 ### WP comment feature
 ###
 
-global $WPsuccess, $subID, $wpdb, $track, $comment_author_IP;
+global $subID, $wpdb, $track, $comment_author_IP;
 
 ### new global settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
@@ -51,7 +51,7 @@ if ( $isAjaxWPcomment ){
 	###
 	### comment submission via Ajax WP
 	###
-	$comment_post_ID = $Ajaxpid;
+	$comment_post_ID = (int) $_POST['comment_post_ID'];
 
 		###
 		### Write Comment
@@ -59,13 +59,13 @@ if ( $isAjaxWPcomment ){
 		$status = $wpdb->get_row($wpdb->prepare("SELECT post_status, comment_status FROM $wpdb->posts WHERE ID = %s", $comment_post_ID));
 
 		if ( empty($status->comment_status) ) {
-			$WPresp = __('Comment ID not found.','cforms2');
+			$usermessage_text = __('Comment ID not found.','cforms2');
 			do_action('comment_id_not_found', $comment_post_ID);
 		} elseif ( 'closed' ==  $status->comment_status ) {
-			$WPresp = __('Sorry, comments are closed for this item.','cforms2');
+			$usermessage_text = __('Sorry, comments are closed for this item.','cforms2');
 			do_action('comment_closed', $comment_post_ID);
 		} elseif ( in_array($status->post_status, array('draft', 'pending') ) ) {
-			$WPresp = __('Comment is on draft.','cforms2');
+			$usermessage_text = __('Comment is on draft.','cforms2');
 			do_action('comment_on_draft', $comment_post_ID);
 		}
 		else{
@@ -88,19 +88,19 @@ if ( $isAjaxWPcomment ){
 					}
 				}
 			} elseif ( get_option('comment_registration') ){
-					$WPresp = __('Sorry, you must be logged in to post a comment.','cforms2');
+					$usermessage_text = __('Sorry, you must be logged in to post a comment.','cforms2');
 					return;
 			}
 
 
-			$comment_parent = ($commentparent<>'')?absint($commentparent):0;
+			$comment_parent = isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
 
 			$comment_type = '';
 			$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 
 			### Simple duplicate check
 			if( $wpdb->get_var($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %s AND ( comment_author = %s " .($comment_author_email ? " OR comment_author_email = '".esc_sql($comment_author_email)."'" : ""). ") AND comment_content = %s LIMIT 1;", $comment_post_ID, $comment_author, $comment_content)) ) {
-				$WPresp = __('You\'ve said that before. No need to repeat yourself.','cforms2');
+				$usermessage_text = __('You\'ve said that before. No need to repeat yourself.','cforms2');
 				return;
 			}
 
@@ -111,7 +111,7 @@ if ( $isAjaxWPcomment ){
 
 				if ( ($time_newcomment - $time_lastcomment) < (int)$cformsSettings['global']['cforms_commentWait'] ) {
 				  do_action('comment_flood_trigger', $time_lastcomment, $time_newcomment);
-				  $WPresp = __('You are posting comments too quickly. Slow down.','cforms2');
+				  $usermessage_text = __('You are posting comments too quickly. Slow down.','cforms2');
 				  return;
 				}
 			}
@@ -143,8 +143,8 @@ if ( $isAjaxWPcomment ){
 			$template = str_replace('{time}',       gmdate(get_option('time_format'), current_time('timestamp')),$template);
 			$template = str_replace('{avatar}',     get_avatar( $comment->comment_author_email, stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_avatar'] )) ), $template);
 
-			$WPresp = stripslashes( $cformsSettings['global']['cforms_commentParent'] ).'$#$'. $template .'$#$'. preg_replace ( '|\r?\n|', '<br />', stripslashes($cformsSettings['global']['cforms_commentsuccess']));
-			$WPsuccess = true;
+			$usermessage_text = stripslashes( $cformsSettings['global']['cforms_commentParent'] ).'$#$'. $template .'$#$'. preg_replace ( '|\r?\n|', '<br />', stripslashes($cformsSettings['global']['cforms_commentsuccess']));
+			$usermessage_class = ' success';
 			return;
 		}
 

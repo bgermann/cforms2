@@ -48,7 +48,12 @@ function cforms2_submitcomment() {
 	$all_valid = true;
 	$no = $_POST['cforms_id'];
 	$_POST['sendbutton'.$no] = true;
-	require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
+	if (substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'], 0, 1) === '2') {
+		$isAjaxWPcomment = true;
+		require_once (plugin_dir_path(__FILE__) . 'lib_WPcomment.php');
+	} else {
+		require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
+	}
 	$hide = $all_valid && ($cformsSettings['form'.$no]['cforms'.$no.'_hide'] || cforms2_get_submission_left($no)==0);
 	cforms2_json_die($no, $usermessage_class, $usermessage_text, $hide, $cf_redirect);
 }
