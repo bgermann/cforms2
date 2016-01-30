@@ -1097,7 +1097,7 @@ function cforms2_enqueue_scripts() {
 
 
 ### custom routine to find last item
-function cforms2_findlast( $haystack,$needle,$offset=NULL ){
+function cforms2_findlast( $haystack,$needle,$offset=null ){
 	if( ($pos = strpos( strrev($haystack) , strrev($needle) , $offset)) === false ) return false;
     return strlen($haystack) - $pos - strlen($needle);
 }

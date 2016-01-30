@@ -458,7 +458,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				</table>
 			</div>
 		</fieldset>
-		<?php if (class_exists('cforms2_really_simple_captcha', FALSE)) : ?>
+		<?php if (class_exists('cforms2_really_simple_captcha', false)) : ?>
 		<fieldset id="captcha" class="cformsoptions">
 			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
             	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms2')?>

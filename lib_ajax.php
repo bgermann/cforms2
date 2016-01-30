@@ -23,7 +23,7 @@
 require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
 
-function cforms2_json_die($no, $result, $html, $hide = false, $redirection = NULL) {
+function cforms2_json_die($no, $result, $html, $hide = false, $redirection = null) {
 	header ('Content-Type: application/json');
 	echo json_encode(array(
 		'no' => $no,

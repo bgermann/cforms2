@@ -163,16 +163,16 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 
 		if( $sub_id<>$entry->id ){   ### new record starts
 
-			if ( $buffer[body]<>'' ){
-                if( $_GET['header']=='true' && $buffer[last_n]<>$buffer[last2_n])
-					fwrite($handle, $buffer[head] . $br . $buffer[body] . $br);
+			if ( $buffer['body']<>'' ){
+                if( $_GET['header']=='true' && $buffer['last_n']<>$buffer['last2_n'])
+					fwrite($handle, $buffer['head'] . $br . $buffer['body'] . $br);
 				else
-					fwrite($handle, $buffer[body] . $br);
+					fwrite($handle, $buffer['body'] . $br);
             }
-            $buffer[body]   = $body;  ### save 1 line
-            $buffer[head]   = $head;  ### save 1 line
-            $buffer[last2_n]= $buffer[last_n];
-            $buffer[last_n] = $last_n;
+            $buffer['body']   = $body;
+            $buffer['head']   = $head;
+            $buffer['last2_n']= $buffer['last_n'];
+            $buffer['last_n'] = $last_n;
 
 			$body  = '"'.__('Form','cforms2').': ' . cforms2_enc_data($fnames[$next_n], $charset). '"'. $format .'"'. cforms2_enc_data($entry->sub_date, $charset) .'"' . $format . ($_GET['addip']=='true'?$entry->ip.$format:'');
 			$head  = ($_GET['header']=='true')?$format . $format . $ipTab:'';
@@ -223,15 +223,15 @@ function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortO
 
 
    	### clean up buffer
-    if ( $buffer[body]<>'' ){
-        if( $_GET['header']=='true' && $buffer[last_n]<>$buffer[last2_n])
-            fwrite($handle, $buffer[head] . $br . $buffer[body] . $br);
+    if ( $buffer['body']<>'' ){
+        if( $_GET['header']=='true' && $buffer['last_n']<>$buffer['last2_n'])
+            fwrite($handle, $buffer['head'] . $br . $buffer['body'] . $br);
         else
-            fwrite($handle, $buffer[body] . $br);
+            fwrite($handle, $buffer['body'] . $br);
     }
 
     ### clean up last body
-	if( $_GET['header']=='true' && $buffer[last_n]<>$next_n)
+	if( $_GET['header']=='true' && $buffer['last_n']<>$next_n)
 	    fwrite($handle, $head . $br . $body . $br);
 	else
 	    fwrite($handle, $body . $br);

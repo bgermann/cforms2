@@ -578,7 +578,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	            ###  send copy or notification?
                 ###  not if no email & already CC'ed				
-	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf[data][$ccme]<>'') ){
+	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf['data'][$ccme]<>'') ){
 
 	                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track);
 
