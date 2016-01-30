@@ -94,6 +94,9 @@ The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=
 has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`.
 The git tags themselves are also signed beginning with version 14.8.
 
+Please note that cformsII depends on [PHP Session Extensions](http://php.net/manual/book.session.php),
+which are enabled by default.
+
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please
