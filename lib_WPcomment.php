@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -171,7 +171,7 @@ if ( $isAjaxWPcomment ){
 	if ( $all_valid ) {
 
 		if ( isset($_POST['send2author']) && $_POST['send2author']=='1' ){
-			cforms( '',$no );
+			cforms2( '',$no );
 			header("HTTP/1.0 301 Temporary redirect");
 			header("Location: ".get_permalink($comment_post_ID).$cfpre.'cfemail=sent#cforms'.$no.'form' );
 			die();
@@ -236,7 +236,7 @@ if ( $isAjaxWPcomment ){
 
 		### send a notification if required
 		if ( $cformsSettings['form'.$no]['cforms'.$no.'_tellafriend']=='21' )
-			cforms( '',$no );
+			cforms2( '',$no );
 
 		### keep track of custom comment fields
         cforms2_write_tracking_record($no,$comment_author_email,$track,$comment_id);
