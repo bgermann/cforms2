@@ -80,9 +80,8 @@ require_once (plugin_dir_path(__FILE__) . 'lib_editor.php');
 add_action('template_redirect', 'cforms2_start_session');
 
 function cforms2_start_session() {
-	session_cache_limiter('private, must-revalidate');
-	session_cache_expire(0);
-	if ( !session_id() ){
+	session_cache_limiter('nocache');
+	if ( empty(session_id()) ){
 		session_start();
 		### debug
 		cforms2_dbg( "After session (".session_id().")start: ".print_r($_SESSION,1) );
