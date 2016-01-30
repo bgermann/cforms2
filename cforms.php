@@ -212,13 +212,6 @@ function cforms2($args = '',$no = '') {
 		}
 	}
 
-    ### called from lib_WPcomments ?
-	if ( $isWPcommentForm )
-		return $all_valid;
-
-
-
-
 	###
 	###
 	### paint form
