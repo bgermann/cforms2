@@ -78,9 +78,9 @@ else
 	$where = '';
 
 
-if ( !$sortBy || $sortBy=='undefined' )
+if ( empty($sortBy) )
 	$sortBy = 'id';
-if ( !$sortOrder || $sortOrder=='undefined' )
+if ( empty($sortOrder) )
 	$sortOrder = 'desc';
 
 if ($sub_ids<>'') {

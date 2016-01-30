@@ -58,7 +58,7 @@ if ( $qtype == 'form_id' && $query <> '' ){
 
 if ( $form_ids )
 	$doquery = "AND $querystr";
-elseif ( $query<>'' && $query<>'undefined' && $sub_ids=='all' )
+elseif ( !empty($query) && $sub_ids=='all' )
 	$doquery = "AND $qtype LIKE '$querystr'";
 else
 	$doquery = '';
@@ -112,7 +112,7 @@ if ( $sub_ids<>'' ){
 			$whereS = '1';
 		}
 
-		if ( $query<>'' && $query<>'undefined' && $sub_ids=='all' )
+		if ( !empty($query) && $sub_ids=='all' )
 			$dospecialquery = "AND sub_id IN ( SELECT id FROM {$wpdb->cformssubmissions} WHERE $qtype LIKE '%$query%') ";
 		else
 			$dospecialquery = '';
