@@ -1210,7 +1210,7 @@ function insert_cform($no='',$custom='',$c='') {
 }
 }
 
-function cform2_shortcode($atts, $content) {
+function cforms2_shortcode($atts, $content) {
 	if (empty($atts))
 		$callform = $content;
 	else
@@ -1545,4 +1545,4 @@ add_action('wp_ajax_submitcomment_direct', 'cforms2_submitcomment_direct');
 add_action('wp_ajax_nopriv_submitcomment_direct', 'cforms2_submitcomment_direct');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_filter('the_content', 'cforms2_insert', 101);
-add_shortcode('cforms' , 'cform2_shortcode' );
+add_shortcode('cforms' , 'cforms2_shortcode' );
