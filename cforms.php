@@ -81,7 +81,8 @@ add_action('template_redirect', 'cforms2_start_session');
 
 function cforms2_start_session() {
 	session_cache_limiter('nocache');
-	if ( empty(session_id()) ){
+	$session_id = session_id();
+	if ( empty($session_id) ){
 		session_start();
 		### debug
 		cforms2_dbg( "After session (".session_id().")start: ".print_r($_SESSION,1) );
