@@ -228,10 +228,9 @@ function cforms2_footer() {
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
 			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
-			<?php _e('Translation provided by Oliver Seidel.', 'cforms2') ?>
 		</em>
 	</p>
-	<p align="center">Version v<?php echo $localversion; ?></p>
+	<p align="center">Version <?php echo $localversion; ?></p>
 <?php
 }
 

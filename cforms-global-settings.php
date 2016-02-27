@@ -96,13 +96,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 	$cformsSettings['global']['cforms_inexclude']['ids'] = cforms2_get_from_request('cforms_include');
 
-	$cformsSettings['global']['cforms_commentsuccess'] =cforms2_get_from_request('cforms_commentsuccess');
-	$cformsSettings['global']['cforms_commentWait'] =  	cforms2_get_from_request('cforms_commentWait');
-	$cformsSettings['global']['cforms_commentParent'] =	cforms2_get_from_request('cforms_commentParent');
-	$cformsSettings['global']['cforms_commentHTML'] =	cforms2_get_from_request('cforms_commentHTML');
-	$cformsSettings['global']['cforms_commentInMod'] =	cforms2_get_from_request('cforms_commentInMod');
-	$cformsSettings['global']['cforms_avatar'] =	   	cforms2_get_from_request('cforms_avatar');
-
 	$cformsSettings['global']['cforms_crlf']['b'] =	   	cforms2_get_boolean_from_request('cforms_crlf')?'1':'0';
 	$cformsSettings['global']['cforms_smtp'] = null ;
 
@@ -203,92 +196,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="">
 		<input type="hidden" name="cforms_database_new" value="<?php if($cformsSettings['global']['cforms_database']=="0") echo 'true'; ?>"/>
-		
-		<fieldset id="wpcomment" class="cformsoptions">
-			<div class="cflegend op-closed" id="p28" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature Settings', 'cforms2')?>
-            </div>
-
-			<div class="cf-content" id="o28">
-				<p><?php _e('Find below the additional settings for cforms WP comment feature.', 'cforms2') ?></p>
-
-				<table class="form-table">
-				<tr class="ob">
-					<td class="obL"><label for="cforms_commentsuccess"><strong><?php _e('Comment Success Message', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><table><tr><td><textarea rows="80px" cols="200px" name="cforms_commentsuccess" id="cforms_commentsuccess"><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_commentsuccess'])); ?></textarea></td></tr></table></td>
-				</tr>
-
-				<tr class="obSEP"><td colspan="2"></td></tr>
-
-				<tr class="ob space15">
-					<td class="obL"></td><td class="obR"><strong><?php _e('Ajax Settings', 'cforms2'); ?></strong></td>
-				</tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_commentWait"><strong><?php _e('Wait time for new comments (in seconds)', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_commentWait" name="cforms_commentWait" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentWait'] )); ?>"/></td>
-				</tr>
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_commentParent"><strong><?php _e('Parent Comment Container', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_commentParent" name="cforms_commentParent" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentParent'] )); ?>"/> <a class="infobutton" href="#" name="it8"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
-				</tr>
-				<tr id="it8" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('The HTML <strong>element ID</strong> of the parent element containing<br />all comments, for example:', 'cforms2'); ?><br />
-						<code>
-						[...]&lt;/h2&gt;<br />
-						&lt;ol id="<u style="color:#f37891">mycommentlist</u>"&gt;<br />
-						&nbsp;&nbspwp_list_comments()[...]<br />
-						</code></td>
-                </tr>
-
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_commentInMod"><strong><?php _e('Comment in moderation', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_commentInMod" name="cforms_commentInMod" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_commentInMod'] )); ?>"/></td>
-				</tr>
-
-				<tr class="ob space15">
-					<td class="obL"><label for="cforms_commentHTML"><strong><?php _e('New comment HTML template', 'cforms2'); ?></strong></label></td>
-					<td class="obR" style="padding-bottom:10px;">
-						<table><tr><td><textarea rows="80px" cols="200px" name="cforms_commentHTML" id="cforms_commentHTML"><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_commentHTML'])); ?></textarea><a class="infobutton" href="#" name="it9"><?php _e('Supported Variables &raquo;', 'cforms2'); ?></a>&nbsp;&nbsp;&nbsp;<a class="infobutton" href="#" name="it9b"><?php _e('Default Template &raquo;', 'cforms2'); ?></a></td></tr></table>
-					</td>
-                </tr>
-				<tr id="it9" class="infotxt"><td>&nbsp;</td><td class="ex">
-						<table class="hf">
-							<tr><td class="bleft">{moderation}</td><td class="bright"><em><?php _e('Comment in moderation', 'cforms2'); ?></em></td></tr>
-							<tr><td class="bleft">{id}</td><td class="bright"><?php _e('New comment ID', 'cforms2'); ?></td></tr>
-							<tr><td class="bleft">{usercomment}</td><td class="bright"><?php _e('Comment Text', 'cforms2'); ?></td></tr>
-							<tr><td class="bleft">{author}</td><td class="bright"><?php _e('Comment Author', 'cforms2'); ?></td></tr>
-							<tr><td class="bleft">{url}</td><td class="bright"><?php _e('The author\'s website', 'cforms2'); ?></td></tr>
-							<tr><td class="bleft">{date}</td><td class="bright"><?php _e('Current date.', 'cforms2'); ?></td></tr>
-							<tr><td class="bleft">{time}</td><td class="bright"><?php _e('Current time.', 'cforms2'); ?></td></tr>
-							<tr><td class="bleft">{avatar}</td><td class="bright"><?php _e('User avatar.', 'cforms2'); ?></td></tr>
-						</table>
-                </td></tr>
-				<tr id="it9b" class="infotxt"><td>&nbsp;</td><td class="ex">
-<code>
-&lt;li class="alt" id="comment-{id}"&gt;<br />
-{avatar}<br />
-&lt;cite&gt;&lt;a href="{url}" rel="external nofollow"&gt;{author}&lt;/a&gt;&lt;/cite&gt; Says:<br />
-{moderation}<br />
-&lt;br/&gt;<br />
-&lt;small class="commentmetadata"&gt;<br />
-&lt;a href="#comment-{id}"&gt;{date}, {time}&lt;/a&gt;<br />
-&lt;/small&gt;<br />
-&lt;p&gt;{usercomment}&lt;/p&gt;<br />
-&lt;/li&gt;
-</code>
-                </td></tr>
-
-				<tr class="ob space15">
-					<td class="obL">&nbsp;</td><td class="obR"><strong><?php _e('Avatar Settings', 'cforms2'); ?></strong></td>
-				</tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_avatar"><strong><?php _e('Size (in pixel)', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><input type="text" id="cforms_avatar" name="cforms_avatar" value="<?php echo stripslashes(htmlspecialchars( $cformsSettings['global']['cforms_avatar'] )); ?>"/></td>
-				</tr>
-				</table>
-			</div>
-		</fieldset>
 
 		<fieldset id="inandexclude" class="cformsoptions">
 			<div class="cflegend op-closed" id="p27" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
@@ -322,7 +229,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_datepicker" name="cforms_datepicker" <?php if($cformsSettings['global']['cforms_datepicker']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_datepicker"><strong><?php _e('Enable Javascript date picker', 'cforms2') ?></strong></label> ** <a class="infobutton" href="#" name="it10"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_datepicker" name="cforms_datepicker" <?php if($cformsSettings['global']['cforms_datepicker']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_datepicker"><strong><?php _e('Enable Javascript date picker', 'cforms2') ?></strong></label> <a class="infobutton" href="#" name="it10"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
 				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('Note that turning on this feature will result in loading an additional Javascript file to support the date picker.', 'cforms2') ?></td></tr>
 

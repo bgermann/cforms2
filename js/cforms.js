@@ -109,7 +109,7 @@ function cforms_validate(no, upload) {
         return false;
     };
 
-    var cforms_submitcomment = function (no) {
+    var cforms_submitform = function (no) {
         var regexp = new RegExp('[$][#][$]', ['g']);
         var prefix = '\n';
 
@@ -180,8 +180,8 @@ function cforms_validate(no, upload) {
 
         // Overwrite params with generic form
         params = jQuery('#cforms'+no+'form').serialize();
-        var post_data = 'action=submitcomment&_wpnonce='
-            + cforms2_ajax.nonces['submitcomment']
+        var post_data = 'action=submitcform&_wpnonce='
+            + cforms2_ajax.nonces['submitcform']
             + '&cforms_id=' + no + '&' + params;
         jQuery.post(
             cforms2_ajax.url,
@@ -206,40 +206,6 @@ function cforms_validate(no, upload) {
 
 
         var stringXHTML = message.html;
-
-
-        // Is it a WP comment?
-        if ( stringXHTML.match(/\$#\$/) ) {
-            var newcomment = stringXHTML.split('$#$');
-            var commentParent  = newcomment[0];
-            var newcommentText = newcomment[1];
-            stringXHTML    = newcomment[2];
-
-            if ( document.getElementById(commentParent) ){
-                var alt = '';
-                var allLi = document.getElementById(commentParent).childNodes.length - 1;
-                for (i=allLi; i>=0; i--){
-                    var elLi = document.getElementById(commentParent).childNodes[i];
-                    if ( elLi.nodeType!='3' && elLi.tagName.toLowerCase() == 'li' ) {
-                        if ( elLi.className.match(/alt/) )
-                            alt='alt';
-                        i=-1;
-                    }
-                }
-
-                if( alt=='alt' )
-                    newcommentText = newcommentText.replace('class="alt"', '');
-
-                document.getElementById(commentParent).innerHTML = document.getElementById(commentParent).innerHTML + newcommentText;
-
-                //wp ajax edit support
-                if( window.AjaxEditComments )
-                    AjaxEditComments.init();
-            }
-
-        }
-
-
 
         // for both message boxes
         var isA = false;
@@ -529,7 +495,7 @@ function cforms_validate(no, upload) {
     else if ( all_valid ) {
         document.getElementById('sendbutton'+no).style.cursor = "progress";
         document.getElementById('sendbutton'+no).disabled = true;
-        cforms_submitcomment(no);
+        cforms_submitform(no);
     }
 
     var call_err = function (no,err,custom_error){

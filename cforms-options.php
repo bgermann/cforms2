@@ -438,7 +438,7 @@ if( strlen($fd)<=2 ) {
 		</div> <!--groupWrapper-->
 
 		<p class="addfieldbox">
-            <input tabindex="<?php echo $ti++;?>" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms2'); ?>" value="** <?php _e('Add', 'cforms2'); ?> **" onfocus="this.blur()" onclick="javascript:document.mainform.action='#anchorfields';" />
+            <input tabindex="<?php echo $ti++;?>" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms2'); ?>" value="<?php _e('Add', 'cforms2'); ?>" onfocus="this.blur()" onclick="javascript:document.mainform.action='#anchorfields';" />
         	<input tabindex="<?php echo $ti++;?>" type="text" name="AddFieldNo" value="1" class="addfieldno"/><?php _e('new field(s) @ position', 'cforms2'); ?>
 			<select tabindex="<?php echo $ti++;?>" name="AddFieldPos" class="addfieldno">
 			<?php
@@ -1109,8 +1109,6 @@ if( strlen($fd)<=2 ) {
 	            <?php if( $isTAF==2 ) : ?>
 	                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it6"><?php _e('<em>Tell a friend</em> or <em>WP comment</em>? &raquo;', 'cforms2'); ?></a></td></tr>
 					<tr id="it6" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('This feature and T-A-F (above) are mutually exclusive. If you need both features, please create a new form for T-A-F.<br />Again, see the <a href="%s" %s>help section</a> on proper use.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#commentrep','onclick="setshow(19)"'); ?></td></tr>
-	                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it7"><?php _e('Important additional configuration requirements &raquo;', 'cforms2'); ?></a></td></tr>
-					<tr id="it7" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('Please see the extended <a href="%s" %s>WP comment options under <em>Global Settings</em></a> for additional configuration requirements. Especially concerning Ajax comment submission! Further, if you enable \'extra comment notification\' make sure you disable the autoresponder, unless you want to thank the user for his/her comment ;-) !', 'cforms2'),'?page='. $plugindir.'/cforms-global-settings.php#wpcomment','onclick="setshow(19)"'); ?></td></tr>
 	            <?php endif; ?>
 
 				</table>

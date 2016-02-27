@@ -659,7 +659,6 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 			<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
 			<?php _e('WP Comment Feature input fields', 'cforms2'); ?>
 		</p>
-		<p style="margin:5px 30px"><?php _e('The beauty is, using one form, you can now offer your readers to either leave a comment behind or simply send a note to the post editor while being able to fully utilize all security aspects of cforms.', 'cforms2'); ?></p>
 		<div style="float:right" align="center">
 			<img class="helpimg" style="float:none" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-crep1.png"   alt=""/><br /><br />
 			<img class="helpimg" style="float:none" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-crep2sm.png" alt=""/><br />
@@ -686,8 +685,6 @@ if ( is_tellafriend( $post-&gt;ID ) ) <br />
 						<li><?php echo sprintf(__('Turn on the <a href="%s" %s>WP Comment feature</a> for the given form. (<em>Make sure it\'s the right one!</em>), otherwise you won\'t see the above input fields in the [<em>Field Type</em>] select box.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#commentrep','onclick="setshow(7)"'); ?></li>
 						<li><?php _e('Modify this form to include all the necessary (new) input fields, make them required or not, add regexp, anti SPAM fields or even custom err messages. All up to you. Or better yet, start with the built-in preset: "<strong>Advanced: WP comment...</strong>" form.', 'cforms2'); ?></li>
 						<li><?php _e('Edit your WP Theme template for comments. Remove the current <strong><u>comment_form() in comments.php</u></strong> entirely. Instead replace with a PHP call to cforms: <code  style="color:red">&lt;?php insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> if the form is your default form or starting at <strong>\'2\'</strong> (with single quotes!) for any subsequent form #.', 'cforms2'); ?></li>
-						<li><?php echo sprintf(__('Double check the extended <a href="%s" %s>WP comment feature settings here</a> (especially the Ajax specific ones!). ', 'cforms2'),'?page='.$plugindir.'/cforms-global-settings.php#wpcomment','onclick="setshow(28)"'); ?></li>
-						<li><?php echo '<strong>'.__('Important:','cforms2').'</strong> '; _e('To make Ajax work in case there are no comments yet, make sure that the comment container <strong>is always</strong> being rendered.', 'cforms2'); ?></li>
 					</ol>
 				</td>
 			</tr>

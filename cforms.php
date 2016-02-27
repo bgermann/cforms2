@@ -223,10 +223,8 @@ function cforms2($args = '',$no = '') {
 	if ( isset($_GET['cfemail']) && $isWPcommentForm ){
 		$usermessage_class = ' success';
 		$success=true;
-		if ( $_GET['cfemail']=='sent' ){
+		if ( $_GET['cfemail']=='sent' || $_GET['cfemail']=='posted' ){
 			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
-		} elseif ( $_GET['cfemail']=='posted' ){
-			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['global']['cforms_commentsuccess']) );
 		} else {
 			$usermessage_class = ' failure';
 			$success=false;		
@@ -977,13 +975,15 @@ function cforms2($args = '',$no = '') {
 
 
 	### rest of the form
-	if ( $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' && !$upload && !$custom && !$alt_action )
+	$comment = substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'], 0, 1) === '2';
+	if ( $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' && !$upload && !$custom && !$alt_action && !$comment)
 		$ajaxenabled = ' onclick="return cforms_validate(\''.$no.'\', false)"';
 	else if ( ($upload || $custom || $alt_action) && $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' )
 		$ajaxenabled = ' onclick="return cforms_validate(\''.$no.'\', true)"';
 	else
-		$ajaxenabled = '/>'
-			. '<input type="hidden" name="action" value="submitcomment_direct"/>'
+		$ajaxenabled = ' />'
+			. '<input type="hidden" name="cforms_id" value="' . $no
+			. '" /><input type="hidden" name="action" value="submitcomment_direct" />'
 			. '<input type="hidden" name="_wpnonce" value="' . wp_create_nonce('submitcomment_direct') . '"';
 
 
@@ -1000,7 +1000,7 @@ function cforms2($args = '',$no = '') {
 		$nono = $isWPcommentForm?'':$no;
 
 		if ( $isWPcommentForm )
-			$content .= '<input type="hidden" name="comment_parent" id="comment_parent" value="'.( ($_REQUEST['replytocom']<>'')?$_REQUEST['replytocom']:'0' ).'"/>';
+			$content .= '<input type="hidden" name="comment_parent" id="comment_parent" value="'.( empty($_REQUEST['replytocom']) ? '0' : $_REQUEST['replytocom'] ).'"/>';
 
 		$content .= '<input type="hidden" name="comment_post_ID'.$nono.'" id="comment_post_ID'.$nono.'" value="' . ( isset($_GET['pid'])? $_GET['pid'] : get_the_ID() ) . '"/>' .
 					'<input type="hidden" name="cforms_pl'.$no.'" id="cforms_pl'.$no.'" value="' . ( isset($_GET['pid'])? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
@@ -1523,6 +1523,7 @@ function cforms2_add_items_options( $admin_bar ){
 function cforms2_submitcomment_direct() {
 	check_admin_referer( 'submitcomment_direct' );
 	require_once (plugin_dir_path(__FILE__) . 'lib_WPcomment.php');
+	cforms2_new_comment($_POST['cforms_id']);
 	die();
 }
 

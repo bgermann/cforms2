@@ -76,6 +76,75 @@ function cforms2_move_files($trackf, $no, $subID, &$file){
 	}
 }
 
+/**
+ * write DB record
+ */
+function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
+		global $wpdb, $cformsSettings;
+
+		cforms2_dbg('WRITING TRACKING RECORD');
+		$noTracking = $cformsSettings['form'.$no]['cforms'.$no.'_notracking'];
+		$mpSession = ($cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_form'] && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_email']);
+		
+        if ( $noTracking || $mpSession ){
+			cforms2_dbg("....bailing out: noTracking=$noTracking, mpSession=$mpSession\n");
+			return -1; ### bail out
+		}
+		
+		if ( $cformsSettings['global']['cforms_database'] == '1' ) {
+
+        	### first process fields, perhaps need to bail out
+			$sql='';
+			$dosave=false;
+            foreach ( $track as $k => $v ){
+				if( $c <> '' ){
+				  	if( !preg_match('/\$\$\$custom/',$k) )
+    	            	continue;
+                    else{
+						$k = $v;
+                        $v = $track[$k];
+                    }
+                }
+
+                ### clean up keys
+                if ( preg_match('/\$\$\$/',$k) ) continue;
+
+	            if ( strpos($k, 'cf_form') !== false && preg_match('/^cf_form\d*_(.+)/',$k, $r) )
+	                $k = $r[1];
+
+	            if ( strpos($k, '___') !== false && preg_match('/^(.+)___\d+/',$k, $r) )
+	                $k = $r[1];
+
+
+                $sql .= $wpdb->prepare("('-XXX-',%s,%s),", $k, $v);
+               	$dosave=true;
+            }
+            if( !$dosave ) return;
+
+			### good to go:
+			$page = (substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2')?$_POST['cforms_pl'.$no]:cforms2_get_current_page(); // WP comment fix
+
+			$wpdb->query($wpdb->prepare(
+				"INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES (%s, %s, %s, %s);",
+				$no, $field_email, cforms2_get_ip(), gmdate('Y-m-d H:i:s', current_time('timestamp'))
+			));
+
+    		$subID = $wpdb->get_row("select LAST_INSERT_ID() as number from $wpdb->cformssubmissions;");
+    		$subID = ($subID->number=='')?'1':$subID->number;
+
+			if( $c <> '' )
+				$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'commentID',%s),(%s,'email',%s),", $subID, $c, $subID, $field_email).$sql;
+            else
+				$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s),", $subID, $page).$sql;
+
+			$wpdb->query( substr(str_replace('-XXX-',esc_sql($subID),$sql) ,0,-1));
+		}
+		else
+			$subID = 'noid';
+
+	return $subID;
+}
+
 
 ###
 ###  Validate all fields
