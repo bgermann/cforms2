@@ -237,11 +237,6 @@ function cforms_validate(no, upload) {
                     AjaxEditComments.init();
             }
 
-            // ajax comment plugin?
-            var dEl = newcommentText.match(/edit-comment-(user|admin)-link(s|-)[^" ]+/);
-            if ( dEl!=null && dEl[0]!='' && document.getElementById( dEl[0] ) ){
-                document.getElementById( dEl[0] ).style.display = 'block';
-            }
         }
 
 
