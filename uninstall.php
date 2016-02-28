@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+ * Copyright (c) 2012      Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
  * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
