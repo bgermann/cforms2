@@ -25,5 +25,6 @@ WP_Roles::remove_cap('administrator', 'manage_cforms');
 WP_Roles::remove_cap('administrator', 'track_cforms');
 
 global $wpdb;
+$wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key = 'tell-a-friend'");
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformssubmissions');
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformsdata');
