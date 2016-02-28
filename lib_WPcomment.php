@@ -106,7 +106,7 @@ function cforms2_new_comment($no) {
 		$comment = get_comment( $comment_id );
 
 		if ( !$user->ID ) {
-			$time = time() + 30000000;
+			$time = current_time('timestamp') + 30000000;
 			setcookie('comment_author_' . COOKIEHASH, $comment->comment_author, $time, COOKIEPATH, COOKIE_DOMAIN);
 			setcookie('comment_author_email_' . COOKIEHASH, $comment->comment_author_email, $time, COOKIEPATH, COOKIE_DOMAIN);
 			setcookie('comment_author_url_' . COOKIEHASH, esc_url($comment->comment_author_url), $time, COOKIEPATH, COOKIE_DOMAIN);

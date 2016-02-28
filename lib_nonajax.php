@@ -126,7 +126,7 @@ function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
 
 			$wpdb->query($wpdb->prepare(
 				"INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES (%s, %s, %s, %s);",
-				$no, $field_email, cforms2_get_ip(), gmdate('Y-m-d H:i:s', current_time('timestamp'))
+				$no, $field_email, cforms2_get_ip(), current_time('Y-m-d H:i:s')
 			));
 
     		$subID = $wpdb->get_row("select LAST_INSERT_ID() as number from $wpdb->cformssubmissions;");

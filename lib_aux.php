@@ -73,7 +73,7 @@ function cforms2_check_time($no) {
 	 else
      	$t2f=true;
 
-	return ($t1f || $t1 <= time()) && ($t2f || $t2 >= time());
+	return ($t1f || $t1 <= current_time('timestamp')) && ($t2f || $t2 >= current_time('timestamp'));
 }
 
 
@@ -250,9 +250,9 @@ function cforms2_check_default_vars($m,$no) {
 		else
 			$permalink = get_permalink($pid);
 
-		$date = mysql2date(get_option('date_format'), current_time('mysql'));
+		$date = current_time(get_option('date_format'));
 
-		$time = gmdate(get_option('time_format'), current_time('timestamp'));
+		$time = current_time(get_option('time_format'));
 		$page = cforms2_get_current_page();
 
 		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
