@@ -73,7 +73,7 @@ function cforms2_check_time($no) {
 	 else
      	$t2f=true;
 
-	return ( ($t1f || $t1 <= time()) && ($t2f || $t2 >= time()) )?true:false;
+	return ($t1f || $t1 <= time()) && ($t2f || $t2 >= time());
 }
 
 

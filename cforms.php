@@ -1258,7 +1258,7 @@ function cforms2_check_for_taf($no,$pid) {
 
   if( is_single() || in_the_loop() ){
   	$tmp = get_post_custom($pid);
-  	return ( $tmp["tell-a-friend"][0] == '1' )?true:false;
+  	return $tmp["tell-a-friend"][0] == '1';
   }else
     return true;
 }
@@ -1268,7 +1268,7 @@ function cforms2_check_for_taf($no,$pid) {
 if (!function_exists('is_tellafriend')) {
 	function is_tellafriend($pid) {
 		$tmp = get_post_custom($pid);
-		return ($tmp["tell-a-friend"][0]=='1')?true:false;
+		return $tmp["tell-a-friend"][0]=='1';
 	}
 }
 
@@ -1441,7 +1441,7 @@ if ( is_admin() ) {
 
 	### Check all forms for TAF and set variables
 	for ( $i=1;$i<=$cformsSettings['global']['cforms_formcount'];$i++ ) {
-		$tafenabled = ( substr($cformsSettings['form'.(($i=='1')?'':$i)]['cforms'.(($i=='1')?'':$i).'_tellafriend'],0,1)=='1') ? true : false;
+		$tafenabled = substr($cformsSettings['form'.(($i=='1')?'':$i)]['cforms'.(($i=='1')?'':$i).'_tellafriend'],0,1)=='1';
 		if ( $tafenabled ) break;
 	}
 	$tafform = ($i==1)?'':$i;

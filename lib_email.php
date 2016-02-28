@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,11 +53,11 @@ class cforms2_mail {
 
 		$this->eol = $cformsSettings['global']['cforms_crlf']['b'] != 1 ? "\r\n" : "\n";
 
-		$this->html_show    = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1' )?true:false;
-		$this->html_show_ac = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1' )?true:false;
+		$this->html_show    = substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],2,1)=='1';
+		$this->html_show_ac = substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],3,1)=='1';
 
-	    $this->f_txt  = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1' )?true:false;
-	    $this->f_html = ( substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1' )?true:false;
+	    $this->f_txt  = substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],0,1)=='1';
+	    $this->f_html = substr($cformsSettings['form'.$no]['cforms'.$no.'_formdata'],1,1)=='1';
 
 	    $this->to = array();
 	    $this->cc = array();

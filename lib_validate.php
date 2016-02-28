@@ -96,7 +96,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		continue;
 
 	### input field names & label
-	$custom_names = ($cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1')?true:false;
+	$custom_names = $cformsSettings['form'.$no]['cforms'.$no.'_customnames']=='1';
 	$isFieldArray = false;
 
 	if ( $custom_names ) {
@@ -187,11 +187,11 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		if( in_array($field_type,array( 'html5color','html5date','html5datetime','html5datetime-local','html5email','html5month','html5number','html5range','html5search','html5tel','html5time','html5url','html5week',
 										'cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
 
-			$validations[$i+$off] = ($current_field=='')?false:true;
+			$validations[$i+$off] = $current_field!='';
 
 		} else if( $field_type=="checkbox" ) {
 
-			$validations[$i+$off] = ($current_field=='')?false:true;
+			$validations[$i+$off] = $current_field!='';
 
 		} else if( $field_type=="selectbox" || $field_type=="emailtobox" ) {
 
@@ -215,11 +215,11 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 			}
 		} else if( in_array($field_type,array('cauthor','url','email','comment')) ) {
 
-			$validations[$i+$off] = ($_REQUEST[$field_type]=='')?false:true;
+			$validations[$i+$off] = $_REQUEST[$field_type]!='';
 
 		} else if( $field_type=="radiobuttons" ) {
 
-			$validations[$i+$off] = ($current_field=='')?false:true;
+			$validations[$i+$off] = $current_field!='';
 
 		}
 
