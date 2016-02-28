@@ -242,6 +242,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.12 =
+
+* enhanced: remove role capabilities on uninstall
+
 = 14.11.4 =
 
 * bugfix:   correct AJAX nonce for submitcform action
