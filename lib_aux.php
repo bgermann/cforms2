@@ -354,6 +354,39 @@ function cforms2_get_ip() {
 }
 
 
+function cforms2_compare( $a,$b ){
+	global $cfdataTMP, $cfsort, $cfsortdir;
+
+	if (!is_array($a) && !is_array($b)){
+		
+		$na = ($cfdataTMP[$a]['data'][$cfsort]<>'') ? $cfdataTMP[$a]['data'][$cfsort]:false;
+		$nb = ($cfdataTMP[$b]['data'][$cfsort]<>'') ? $cfdataTMP[$b]['data'][$cfsort]:false;
+	
+		if ( !($na && $nb) ) {
+			if ( !$na ) return 1;
+			if ( !$nb ) return -1;
+			return 0;
+		}
+	}
+
+    $tmpA=(int)trim($na);
+    $tmpB=(int)trim($nb);
+    if ( is_numeric($na) && is_numeric($nb) ){
+	    if ( stristr($cfsortdir,'asc')===false ){
+	        return ($tmpB > $tmpA)?-1:1;
+	    } else {
+	        return ($tmpA < $tmpB)?-1:1;
+		}
+    } else {
+	    if ( stristr($cfsortdir,'asc')===false ){
+	        return strcasecmp($nb, $na);
+	    }else{
+	        return strcasecmp($na, $nb);
+    	}
+	}
+}
+
+
 ###
 ###
 ### API functions
@@ -449,41 +482,6 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 	return $cfdata;
 }
 }
-
-
-
-function cforms2_compare( $a,$b ){
-	global $cfdataTMP, $cfsort, $cfsortdir;
-
-	if (!is_array($a) && !is_array($b)){
-		
-		$na = ($cfdataTMP[$a]['data'][$cfsort]<>'') ? $cfdataTMP[$a]['data'][$cfsort]:false;
-		$nb = ($cfdataTMP[$b]['data'][$cfsort]<>'') ? $cfdataTMP[$b]['data'][$cfsort]:false;
-	
-		if ( !($na && $nb) ) {
-			if ( !$na ) return 1;
-			if ( !$nb ) return -1;
-			return 0;
-		}
-	}
-
-    $tmpA=(int)trim($na);
-    $tmpB=(int)trim($nb);
-    if ( is_numeric($na) && is_numeric($nb) ){
-	    if ( stristr($cfsortdir,'asc')===false ){
-	        return ($tmpB > $tmpA)?-1:1;
-	    } else {
-	        return ($tmpA < $tmpB)?-1:1;
-		}
-    } else {
-	    if ( stristr($cfsortdir,'asc')===false ){
-	        return strcasecmp($nb, $na);
-	    }else{
-	        return strcasecmp($na, $nb);
-    	}
-	}
-}
-
 
 
 ### API functions #2 : get tracked entries
