@@ -30,18 +30,6 @@ if (!defined('WP_DEBUG_CFORMS2')) {
 }
 function cforms2_dbg($m){
     if ( WP_DEBUG_CFORMS2 ) trigger_error('DEBUG cforms2: ' . $m);
-} 
-
-
-
-### make time
-function cforms2_sec2hms($s) {
-	$t='';
-    $h = intval(intval($s) / 3600);
-    $m = intval(($s / 60) % 60);
-     if ($h>0)	$t .= " $h ".__('hour(s)', 'cforms2').' &';
-     if ($m>0)	$t .= " $m ".__('minute(s)', 'cforms2');
-     return $t;
 }
 
 

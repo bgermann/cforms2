@@ -659,9 +659,9 @@ if( strlen($fd)<=2 ) {
 						<label for="cforms_startdate"><?php
 						$dt='x';
                         if( strlen($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])>1 ):
-                            $dt = cforms2_make_time(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])) - current_time('timestamp');
+                            $dt = human_time_diff(cforms2_make_time(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_startdate'])));
 							if( $dt>0 ):
-	                                echo __('The form will be available in ', 'cforms2').cforms2_sec2hms($dt);
+	                                echo __('The form will be available in ', 'cforms2').$dt;
 	                            else:
 	                                echo __('The form is available now.', 'cforms2');
 							endif;
@@ -679,9 +679,9 @@ if( strlen($fd)<=2 ) {
                         <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
 						<label for="cforms_startdate"><?php
                         if( $dt=='x' && strlen($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])>1 ):
-                            $dt = cforms2_make_time(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])) - current_time('timestamp');
+                            $dt = human_time_diff(cforms2_make_time(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_enddate'])));
 							if( $dt>0 ):
-	                                echo __('The form will be available for another ', 'cforms2').cforms2_sec2hms($dt);
+	                                echo __('The form will be available for another ', 'cforms2').$dt;
 	                            else:
 	                                echo __('The form is not available anymore.', 'cforms2');
 							endif;

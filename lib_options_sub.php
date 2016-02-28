@@ -132,11 +132,11 @@
 	if ($startdate<>'' && $starttime=='')
 		$_REQUEST['cforms_starttime'] = '00:00';
 	if ($starttime<>'' && $startdate=='')
-		$_REQUEST['cforms_startdate'] = date('d/m/Y');
+		$_REQUEST['cforms_startdate'] = current_time('d/m/Y');
 	if ($enddate<>'' && $endtime=='')
 		$_REQUEST['cforms_endtime'] = '00:00';
 	if ($endtime<>'' && $enddate=='')
-		$_REQUEST['cforms_enddate'] = date('d/m/Y');
+		$_REQUEST['cforms_enddate'] = current_time('d/m/Y');
 	$cformsSettings['form'.$no]['cforms'.$no.'_startdate'] = 	preg_replace("/\\\+/", "\\",$startdate).' '.
     															preg_replace("/\\\+/", "\\",$starttime);
     $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] =  	preg_replace("/\\\+/", "\\",$enddate).' '.
