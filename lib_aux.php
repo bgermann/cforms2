@@ -224,72 +224,72 @@ function cforms2_check_post_vars($fv){
 
 ### look for default/system variables
 function cforms2_check_default_vars($m,$no) {
-		global $subID, $cformsSettings;
+	global $subID, $cformsSettings;
 
-	    $eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
+	$eol = ($cformsSettings['global']['cforms_crlf']['b']!=1)?"\r\n":"\n";
 
-		if ( isset($_POST['comment_post_ID'.$no] ) && $_POST['comment_post_ID'.$no] )
-			$pid = $_POST['comment_post_ID'.$no];
-		else
-			$pid = get_the_ID();
+	if ( isset($_POST['comment_post_ID'.$no] ) && $_POST['comment_post_ID'.$no] )
+		$pid = $_POST['comment_post_ID'.$no];
+	else
+		$pid = get_the_ID();
 
-		if ( isset($_POST['cforms_pl'.$no] ) && $_POST['cforms_pl'.$no] )
-			$permalink = $_POST['cforms_pl'.$no];
-		else
-			$permalink = get_permalink($pid);
+	if ( isset($_POST['cforms_pl'.$no] ) && $_POST['cforms_pl'.$no] )
+		$permalink = $_POST['cforms_pl'.$no];
+	else
+		$permalink = get_permalink($pid);
 
-		$date = current_time(get_option('date_format'));
+	$date = current_time(get_option('date_format'));
 
-		$time = current_time(get_option('time_format'));
-		$page = cforms2_get_current_page();
+	$time = current_time(get_option('time_format'));
+	$page = cforms2_get_current_page();
 
-		if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
-			$page = $permalink;
+	if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
+		$page = $permalink;
 
-		$find = get_post($pid);
-		if (!empty($find)) {
-			$user = get_user_by('id', $find->post_author);
-			$user_name = $user->display_name;
-			$post_title = $find->post_title;
-			$post_excerpt = $find->post_excerpt;
-		} else {
-			$user_name = $post_title = $post_excerpt = '';
-		}
+	$find = get_post($pid);
+	if (!empty($find)) {
+		$user = get_user_by('id', $find->post_author);
+		$user_name = $user->display_name;
+		$post_title = $find->post_title;
+		$post_excerpt = $find->post_excerpt;
+	} else {
+		$user_name = $post_title = $post_excerpt = '';
+	}
 
-		$CurrUser = wp_get_current_user();
+	$CurrUser = wp_get_current_user();
 
-		if (isset($_SERVER['HTTP_REFERER'])) 
-			$m  = str_replace( '{Referer}',	$_SERVER['HTTP_REFERER'], $m );
-		$m  = str_replace( '{PostID}',		$pid, $m );
-		$m 	= str_replace( '{Form Name}',	$cformsSettings['form'.$no]['cforms'.$no.'_fname'], $m );
-		$m 	= str_replace( '{Page}',		$page, $m );
-		$m 	= str_replace( '{Date}',		$date, $m );
-		$m 	= str_replace( '{Author}',		$user_name, $m );
-		$m 	= str_replace( '{Time}',		$time, $m );
-		$m 	= str_replace( '{IP}',			cforms2_get_ip(), $m );
-		$m 	= str_replace( '{BLOGNAME}',	get_option('blogname'), $m );
+	if (isset($_SERVER['HTTP_REFERER'])) 
+		$m  = str_replace( '{Referer}',	$_SERVER['HTTP_REFERER'], $m );
+	$m  = str_replace( '{PostID}',		$pid, $m );
+	$m 	= str_replace( '{Form Name}',	$cformsSettings['form'.$no]['cforms'.$no.'_fname'], $m );
+	$m 	= str_replace( '{Page}',		$page, $m );
+	$m 	= str_replace( '{Date}',		$date, $m );
+	$m 	= str_replace( '{Author}',		$user_name, $m );
+	$m 	= str_replace( '{Time}',		$time, $m );
+	$m 	= str_replace( '{IP}',			cforms2_get_ip(), $m );
+	$m 	= str_replace( '{BLOGNAME}',	get_option('blogname'), $m );
 
-		$m 	= str_replace( '{CurUserID}',	$CurrUser->ID, $m );
-		$m 	= str_replace( '{CurUserName}',	$CurrUser->display_name, $m );
-		$m 	= str_replace( '{CurUserEmail}',$CurrUser->user_email, $m );
-		$m 	= str_replace( '{CurUserFirstName}', $CurrUser->user_firstname, $m );
-		$m 	= str_replace( '{CurUserLastName}',	$CurrUser->user_lastname, $m );
+	$m 	= str_replace( '{CurUserID}',	$CurrUser->ID, $m );
+	$m 	= str_replace( '{CurUserName}',	$CurrUser->display_name, $m );
+	$m 	= str_replace( '{CurUserEmail}',$CurrUser->user_email, $m );
+	$m 	= str_replace( '{CurUserFirstName}', $CurrUser->user_firstname, $m );
+	$m 	= str_replace( '{CurUserLastName}',	$CurrUser->user_lastname, $m );
 
-		$m 	= str_replace( '{Permalink}',	$permalink, $m );
-		$m 	= str_replace( '{Title}',		$post_title, $m );
-		$m 	= str_replace( '{Excerpt}',		$post_excerpt, $m );
+	$m 	= str_replace( '{Permalink}',	$permalink, $m );
+	$m 	= str_replace( '{Title}',		$post_title, $m );
+	$m 	= str_replace( '{Excerpt}',		$post_excerpt, $m );
 
-		$m 	= preg_replace( "/\r\n\./", "\n", $m );
+	$m 	= preg_replace( "/\r\n\./", "\n", $m );
 
-		### normalize
-		$m 	= str_replace( "\r\n", "\n", $m );
-		$m 	= str_replace( "\r", "\n", $m );
-		$m 	= str_replace( "\n", $eol, $m );
+	### normalize
+	$m 	= str_replace( "\r\n", "\n", $m );
+	$m 	= str_replace( "\r", "\n", $m );
+	$m 	= str_replace( "\n", $eol, $m );
 
-		if  ( $cformsSettings['global']['cforms_database'] && $subID<>'' )
-			$m 	= str_replace( '{ID}', $subID, $m );
+	if  ( $cformsSettings['global']['cforms_database'] && $subID<>'' )
+		$m 	= str_replace( '{ID}', $subID, $m );
 
-		return $m;
+	return $m;
 }
 
 
