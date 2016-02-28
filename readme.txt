@@ -242,6 +242,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.11.4 =
+
+* bugfix:   correct AJAX nonce for submitcform action
+
 = 14.11.3 =
 
 * bugfix:   make the AJAX WordPress comment work again (bug was introduced with 14.11)

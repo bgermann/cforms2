@@ -42,7 +42,7 @@ add_action( 'wp_ajax_nopriv_submitcform', 'cforms2_submitcform' );
 ###
 function cforms2_submitcform() {
 	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $cf_redirect;
-	check_admin_referer( 'submitcomment' );
+	check_admin_referer( 'submitcform' );
 	$cformsSettings = get_option('cforms_settings');
 	$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 	$all_valid = true;

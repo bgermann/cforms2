@@ -1075,7 +1075,7 @@ function cforms2_enqueue_scripts() {
 		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
 			'url'    => admin_url('admin-ajax.php'),
 			'nonces' => array(
-				'submitcomment' => wp_create_nonce('submitcomment')
+				'submitcform' => wp_create_nonce('submitcform')
 			)
 		) );
 	    wp_enqueue_script('cforms2');
