@@ -147,15 +147,6 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'] =  preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_redirect_page'));
 	$cformsSettings['form'.$no]['cforms'.$no.'_action'] =         cforms2_get_boolean_from_request('cforms_action');
 	$cformsSettings['form'.$no]['cforms'.$no.'_action_page'] =    preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_action_page'));
-	$cformsSettings['form'.$no]['cforms'.$no.'_rss'] =            cforms2_get_from_request('cforms_rss')?true:false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] =      cforms2_get_from_request('cforms_rsscount');
-	
-	if( isset($_REQUEST['cforms_rssfields']) ){
-		$i=1;
-		foreach($_REQUEST['cforms_rssfields'] as $e) {
-        	$cformsSettings['form'.$no]['cforms'.$no.'_rss_fields'][$i++] = $e;
-        }
-	}
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_emailoff'] =		 cforms2_get_boolean_from_request('cforms_emailoff');
 	$cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'] =		 cforms2_get_boolean_from_request('cforms_emptyoff');

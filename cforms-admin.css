@@ -731,12 +731,6 @@ width:6em;
 margin-right:10px;
 }
 
-.ob input#cforms_rsskeysnew {
-width:auto;
-padding-left:1em;
-padding-right:1em;
-}
-
 .ob input#cforms_resetAutoCMsg,
 .ob input#cforms_resetAdminMsg{
 font-weight:bold;
@@ -802,7 +796,6 @@ width:4em;
 text-align:center;
 }
 
-input#cforms_rssfields,
 input#cforms_mp_backtext,input#cforms_mp_resettext {
 width:15em;
 }
@@ -820,17 +813,9 @@ vertical-align:top;
 }
 
 
-select#emailprio,
-select#cforms_rsscount{
+select#emailprio{
 width:5em;
 text-align:center;
-}
-
-select#cforms_rssfields{
-width:330px;
-height:8em;
-overflow:auto;
-display:block;
 }
 
 .sub{

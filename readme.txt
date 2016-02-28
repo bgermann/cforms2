@@ -34,8 +34,7 @@ Simple CAPTCHA, please install the current version and activate the plugin.
 [Contact Form DB](https://wordpress.org/plugins/contact-form-7-to-database-extension)
 has support for storing cformsII's submission data and exporting in more
 formats than cformsII does. Therefore cformsII's database tracking will be
-removed in the long run. RSS support, which depends on database tracking,
-will be removed in version 14.12.
+removed in the long run.
 
 = Credits =
 
@@ -193,7 +192,6 @@ The original author who developed cforms until 2012 also has a
 
 Some things are to be done:
 
-* remove RSS support
 * replace jqModal with jquery-ui-dialog
 * filter user input
 * grunt build process similar to Wordpress core
@@ -202,6 +200,9 @@ Some things are to be done:
 
 
 == Upgrade Notice ==
+
+= 14.12 =
+RSS support is removed. If you depend on it, please try Contact Form DB's RSS support.
 
 = 14.11 =
 CAPTCHA support is handled by the new plugin Really Simple CAPTCHA for cformsII. If you depend on CAPTCHAs, please install this plugin. Additionally, if you use my_cforms_ajax_filter(), you get a new data structure there.
@@ -245,6 +246,7 @@ GPL compliance!
 = 14.12 =
 
 * enhanced: remove role capabilities on uninstall
+* other:    remove RSS support
 
 = 14.11.4 =
 

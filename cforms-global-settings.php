@@ -55,12 +55,6 @@ if ( isset($_REQUEST['deletetables']) ) {
 	</div>
 	<?php
 
-} else if( isset($_REQUEST['cforms_rsskeysnew']) ) {
-
-	### new RSS key computed
-	$cformsSettings['global']['cforms_rsskeyall'] = md5(mt_rand());
-	update_option('cforms_settings',$cformsSettings);
-
 } else if( isset($_REQUEST['restoreallcformsdata']) )
 	require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
 
@@ -119,8 +113,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$cap['ac']= cforms2_get_from_request('cforms_cap_ac');
 	
     ###	update new settings container
-	$cformsSettings['global']['cforms_rssall'] = cforms2_get_from_request('cforms_rss')?true:false;
-	$cformsSettings['global']['cforms_rssall_count'] = cforms2_get_from_request('cforms_rsscount');
 	$cformsSettings['global']['cforms_captcha_def'] = $cap;
 
 	update_option('cforms_settings',$cformsSettings);
@@ -510,35 +502,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					<td class="obL"><label for="cforms_showdashboard"><strong><?php _e('Show on dashboard', 'cforms2') ?></strong></label></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_showdashboard" name="cforms_showdashboard" <?php if($cformsSettings['global']['cforms_showdashboard']=="1") echo "checked=\"checked\""; ?>/> <?php _e('Make sure to enable your forms individually as well!', 'cforms2') ?></td>
 				</tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_rss"><strong><?php _e('Enable global RSS', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['global']['cforms_rssall'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enables an RSS feed to track all new submissions across all forms.', 'cforms2'); ?></td>
-				</tr>
-
-				<?php if( current_user_can('track_cforms') && $cformsSettings['global']['cforms_rssall'] ) : ?>
-				<tr class="ob">
-					<td class="obL"></td>
-					<td class="obR">
-						<?php $j = $cformsSettings['global']['cforms_rssall_count']; $j = (int)abs($j)>20 ? 20:(int)abs($j); ?>
-						<select name="cforms_rsscount" id="cforms_rsscount"><?php
-                            for ($i=1;$i<=20;$i++) {
-                                echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>';
-                            }
-                        ?></select>
-                    	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms2'); ?></label>
-                    </td>
-				</tr>
-				<tr class="ob">
-					<td class="obL" style="padding-top:8px; vertical-align:top;"><label for="cforms_rsskey"><strong><?php _e('RSS Feed Security Key', 'cforms2'); ?><br /><br /></strong></label></td>
-					<td class="obR">
-						<input name="cforms_rsskeyall" id="cforms_rsskey" value="<?php echo $cformsSettings['global']['cforms_rsskeyall'];  ?>" />
-						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms2');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#tracking';"/>
-						<br /><?php _e('The complete RSS URL &raquo;', 'cforms2'); echo '<br />'.network_site_url().'?cformsRSS='.urlencode('-1$#$').$cformsSettings['global']['cforms_rsskeyall']; ?>
-					</td>
-				</tr>
-				<?php endif; ?>
-
 				</table>
 			</div>
 		</fieldset>

@@ -57,11 +57,6 @@ cforms2_setINI('form','cforms_upload_ext', 'txt,zip,doc,rtf,xls');
 cforms2_setINI('form','cforms_upload_size', '1024');
 cforms2_setINI('form','cforms_dontclear', false);
 
-### tracking settings
-cforms2_setINI('form','cforms_rsskey', md5(mt_rand()) );
-cforms2_setINI('form','cforms_rss', false );
-cforms2_setINI('form','cforms_rss_count', 5 );
-
 ### fields for default form
 cforms2_setINI('form','cforms_count_fields', '5');
 cforms2_setINI('form','cforms_count_field_1', __('My Fieldset', 'cforms2').'$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0');
@@ -123,10 +118,6 @@ cforms2_setINI('global','cforms_upload_err2', __('File is empty. Please upload s
 cforms2_setINI('global','cforms_upload_err3', __('Sorry, file is too large. You may try to zip your file.', 'cforms2'));
 cforms2_setINI('global','cforms_upload_err4', __('File upload failed. Please try again or contact the blog admin.', 'cforms2'));
 cforms2_setINI('global','cforms_upload_err5', __('File not accepted, file type not allowed.', 'cforms2'));
-
-cforms2_setINI('global','cforms_rsskeyall', md5(mt_rand()) );
-cforms2_setINI('global','cforms_rssall', false );
-cforms2_setINI('global','cforms_rssall_count', 5 );
 
 ### form verification
 $cap['h'] = 25;

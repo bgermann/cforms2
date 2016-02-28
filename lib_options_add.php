@@ -23,10 +23,6 @@
 	$cformsSettings['global']['cforms_formcount'] = (string)($FORMCOUNT);
 
 	### new settings container
-	$cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] = md5(mt_rand());
-	$cformsSettings['form'.$no]['cforms'.$no.'_rss'] = false;
-	$cformsSettings['form'.$no]['cforms'.$no.'_rss_count'] = 5;
-
 	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] = false;
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_count_fields'] = '5';

@@ -106,12 +106,6 @@ if( isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_s
 }
 
 
-### new RSS key computed
-if( isset($_REQUEST['cforms_rsskeysnew']) ) {
-	$cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] = md5(mt_rand());
-	update_option('cforms_settings',$cformsSettings);
-}
-
 ### Reset Admin and AutoConf messages
 if( isset($_REQUEST['cforms_resetAdminMsg']) ) {
 	$cformsSettings['form'.$no]['cforms'.$no.'_header'] = __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n";
@@ -724,59 +718,6 @@ if( strlen($fd)<=2 ) {
 				</tr>
 
 				<tr id="it2" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('If you enable an alternative <strong>form action</strong> you <u>will loose any cforms application logic</u> (spam security, field validation, DB tracking etc.) in non-ajax mode! This setting is really only for developers that require additional capabilities around forwarding of form data and will turn cforms into a front-end only, a "form builder" so to speak.', 'cforms2') ?></td></tr>
-
-				<tr class="obSEP"><td colspan="2"></td></tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_rss"><strong><?php _e('RSS feed', 'cforms2'); ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_rss" name="cforms_rss" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) echo "checked=\"checked\""; ?>/> <?php _e('Enable RSS feed to track new submissions', 'cforms2'); ?>  <a class="infobutton" href="#" name="it10"><?php _e('Please read note &raquo;', 'cforms2'); ?></a></td>
-				</tr>
-
-				<tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('For the RSS feed to work you must have %sDatabase Tracking%s turned on under <em>Global-Settings</em>! In order to pick &amp; include input fields in your feed your Tracking page must show at least one record for reference.', 'cforms2'),'<strong>','</strong>'); ?></td></tr>
-
-				<?php if( current_user_can('track_cforms') && $cformsSettings['form'.$no]['cforms'.$no.'_rss'] ) : ?>
-				<tr class="ob">
-					<td class="obL"></td>
-					<td class="obR">
-						<?php $j = $cformsSettings['form'.$no]['cforms'.$no.'_rss_count']; $j = (int)abs($j)>20 ? 20:(int)abs($j); ?>
-						<select name="cforms_rsscount" id="cforms_rsscount"><?php
-                            for ($i=1;$i<=20;$i++) {
-                                echo '<option'.(($i==$j)?' selected="selected"':'').'>' .$i. '</option>';
-                            }
-                        ?></select>
-                    	<label for="cforms_rsscount"><?php _e('Number of shown RSS entries', 'cforms2'); ?></label>
-                    </td>
-				</tr>
-
-				<tr class="ob">
-					<td class="obL"></td>
-					<td class="obR">
-						<label for="cforms_rssfields[]"><?php _e('Form fields included in feed:', 'cforms2'); ?></label>
-                    	<select name="cforms_rssfields[]" id="cforms_rssfields"  multiple="multiple">
-                        <?php
-                        	$f = $cformsSettings['form'.$no]['cforms'.$no.'_rss_fields'];
-							$entries = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT id FROM {$wpdb->cformssubmissions} WHERE form_id=%s LIMIT 0,1)", $no));
-							foreach($entries as $e) {
-                            	if ($e->field_name <> 'page')
-									echo '<option value="'.$e->field_name.'"'.( array_search($e->field_name,$f)!==false?' selected="selected"':'' ).'>'.stripslashes($e->field_name).'</option>';
-                            }
-                        ?>
-						</select>
-                    </td>
-				</tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_rsskey"><strong><?php _e('RSS Feed Security Key', 'cforms2'); ?></strong></label></td>
-					<td class="obR">
-						<input name="cforms_rsskey" id="cforms_rsskey" value="<?php echo $cformsSettings['form'.$no]['cforms'.$no.'_rsskey'];  ?>" />
-						<input type="submit" name="cforms_rsskeysnew" id="cforms_rsskeysnew" value="<?php _e('Reset RSS Key', 'cforms2');  ?>" class="allbuttons"  onclick="javascript:document.mainform.action='#anchoremail';"/>
-                    </td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"></td>
-					<td class="obR"><?php _e('The complete RSS URL &raquo;', 'cforms2'); echo '<br />'.network_site_url().'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?></td>
-				</tr>
-				<?php endif; ?>
 				</table>
 			</div>
 		</fieldset>

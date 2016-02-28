@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -364,98 +364,6 @@ function cforms2_get_ip() {
 	}
 	return $ip_addr;
 }
-
-
-
-class cforms2_rss {
-	static function vars($public_query_vars) {
-        $public_query_vars[] = 'cformsRSS';
-        return $public_query_vars;
-    }
-
-	static function outputRSS() {
-		global $wpdb, $cformsSettings;
-		$temp=get_query_var('cformsRSS');
-		if( $temp <> '' ) {
-
-			$cformsRSS = explode('$#$', $temp);
-            $no = $cformsRSS[0];
-            $key = $cformsRSS[1];
-
-			$all = $no=='-1' && $cformsSettings['global']['cforms_rssall'] && $cformsSettings['global']['cforms_rsskeyall'] == $key;
-			$single = $no<>'-1' && $cformsSettings['form'.$no]['cforms'.$no.'_rss'] && $key<>'' && $cformsSettings['form'.$no]['cforms'.$no.'_rsskey'] == $key;
-			if( $all || $single ){
-
-				### add opt. form content
-
-				$WHERE='';
-				if( $all )
-					$rsscount = ($cformsSettings['global']['cforms_rssall_count']>0)?$cformsSettings['global']['cforms_rssall_count']:5;
-				else if( $single ){
-					$WHERE = "WHERE form_id = '".$no."'";
-					$rsscount = ($cformsSettings['form'.$no]['cforms'.$no.'_rss_count']>0)?$cformsSettings['form'.$no]['cforms'.$no.'_rss_count']:5;
-				}
-				$entries = $wpdb->get_results("SELECT * FROM {$wpdb->cformssubmissions} $WHERE ORDER BY sub_date DESC LIMIT 0,".$rsscount); //TODO check SQL injection
-
-				$content = '';
-                if( count($entries)>0 ){
-					foreach($entries as $entry){
-
-							$ff = $cformsSettings['form'.$entry->form_id];
-							$findex = 'cforms'.$entry->form_id.'_rss_fields';
-							$f = isset($ff[$findex]) ? $ff[$findex] : null;
-	                        $date = mysql2date(get_option('date_format'), $entry->sub_date);
-	                        $time = mysql2date(get_option('time_format'), $entry->sub_date);
-							$title = '['.$entry->id.'] '.$entry->email;
-
-                            $description = '<![CDATA[ <div style="margin:8px 0;"><span style="font-size:150%; color:#aaa;font-weight:bold;">#'.$entry->id.'</span> '. "$date&nbsp;<strong>$time</strong>" .( $single?'':' &nbsp;<strong>"'.$cformsSettings['form'.$entry->form_id]['cforms'.$entry->form_id.'_fname'].'"</strong>:' ).'</div>';
-							$data = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id=%s", $entry->id));
-                            if( is_array($f) && array_count_values($f)>0 ){
-								foreach( $data as $e ){
-									if( array_search($e->field_name,$f)!==false )
-                                    	$description .= '<div style="width:100%; clear:left;"><div style="background:#F8FAFC;width:49%; float:left; text-align:right;margin-right:1%;">'.$e->field_name.':</div><div style="width:50%; float:left;">'.$e->field_val.'</div></div>';
-                                }
-							}
-
-			                $entrylink = network_site_url().'/wp-admin/admin.php?page='.plugin_dir_path(plugin_basename(__FILE__)).'cforms-database.php&amp;d-id='.$entry->id.'#entry'.$entry->id;
-							$description .= '<div style="margin:8px 0;"><a href="'.$entrylink.'">'.__('View details','cforms2').'</a></div> ]]>';
-							$content.= "\t".'<item>'."\n".
-										"\t\t".'<title>'.$title.'</title>'."\n".
-										"\t\t".'<description>'.$description.'</description>'."\n".
-										"\t\t".'<link>'.$entrylink.'</link>'."\n".
-										"\t\t".'<guid isPermaLink="false">'.$entrylink.'</guid>'."\n".
-										"\t\t".'<pubDate>'.mysql2date('D, d M Y H:i:s +0000', $entry->sub_date, false).'</pubDate>'."\n".
-										"\t".'</item>'."\n";
-					}
-				}
-				else
-					$content = '<item><title>'.__('No entries yet','cforms2').'</title><description>'.__('You might want to check back in a little while...','cforms2').'</description>'.
-								'<link></link><guid isPermaLink="false"></guid><pubDate>'.gmdate('D, d M Y H:i:s +0000', current_time('timestamp')).'</pubDate></item>';
-
-	header( 'Content-Type: text/xml; charset='.get_option('blog_charset') );
-
-?>
-<?php echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
-
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-	<title><?php if ($single) echo __('New submissions for >>', 'cforms2').' '.stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fname']); else _e('All new form submissions', 'cforms2'); ?></title>
-	<atom:link href="<?php echo network_site_url().'?cformsRSS='.$no.urlencode('$#$').$cformsSettings['form'.$no]['cforms'.$no.'_rsskey']; ?>" rel="self" type="application/rss+xml" />
-	<link><?php echo network_site_url(); ?></link>
-	<description><?php _e('This RSS feed provides you with the most recent form submissions.', 'cforms2') ?></description>
-	<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></pubDate>
-	<language><?php echo get_option('rss_language'); ?></language>
-<?php echo $content; ?>
-</channel>
-</rss>
-<?php
-				die();
-			}
-		}
-	}
-}
-add_filter('query_vars', array('cforms2_rss', 'vars'));
-add_action('template_redirect', array('cforms2_rss', 'outputRSS'));
 
 
 ###
