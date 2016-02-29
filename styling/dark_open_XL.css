@@ -308,6 +308,7 @@ img.captcha	{
 	margin-left:3px;
 	width:21px;
 	height:21px;
+	cursor: pointer;
 }
 
 img.imgcalendar {
