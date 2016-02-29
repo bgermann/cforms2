@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,9 +87,6 @@
 		_e('Your form has been populated with the preset input fields.', 'cforms2');
 		if( $taf==2 ){
 			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms2'),__('WP comment feature','cforms2'));
-			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms2');
-		} else if( $taf==11 ){
-			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms2'),__('TAF feature','cforms2'));
 			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms2');
 		}
 		?>

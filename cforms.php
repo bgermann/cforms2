@@ -51,7 +51,6 @@ if(!$role->has_cap('track_cforms')) {
 function cforms2_activate() {
     cforms2_setup_db();
 }
-// TODO check if this is run when updated without explicitly activating
 add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate' );
 
 
@@ -106,7 +105,7 @@ function cforms2($args = '',$no = '') {
 	### multi page form: overwrite $no
     $isWPcommentForm = (substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1)=='2');
     $isMPform = $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_form'];
-    $isTAF = substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
+    $isTAF = (int)substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
 
 	##debug
     cforms2_dbg("Comment form = $isWPcommentForm");
@@ -544,10 +543,6 @@ function cforms2($args = '',$no = '') {
 			case "url":
 				$input_id = $input_name = $field_type;
 			case "datepicker":
-			case "yourname":
-			case "youremail":
-			case "friendsname":
-			case "friendsemail":
 			case "textfield":
 			case "pwfield":
 				$field_class = 'single';
@@ -687,10 +682,6 @@ function cforms2($args = '',$no = '') {
 				$field_value = ( $_COOKIE[$cookieset]<>'' ) ? $_COOKIE[$cookieset] : $field_value;
 			
 			case "datepicker":
-			case "yourname":
-			case "youremail":
-			case "friendsname":
-			case "friendsemail":
 			case "textfield":
 			case "pwfield":
 			case "html5color":
@@ -995,8 +986,8 @@ function cforms2($args = '',$no = '') {
 	$custom_error=substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],4,1).$custom_error;
 
 
-	### TAF or WP comment or Extra Fields
-	if ( (int)$isTAF > 0 ){
+	### WP comment or Extra Fields
+	if ( $isTAF > 0 ){
 
 		$nono = $isWPcommentForm?'':$no;
 
@@ -1131,11 +1122,9 @@ function cforms2_insert( $content ) {
 			$newcontent .= substr($content,$last,$p_offset-$last);
 
 			if( $Fname !== '' ){
-			  if ( cforms2_check_for_taf( $fns[$Fname],cforms2_cfget_pid() ) )
-  				$newcontent .= cforms2('',$fns[$Fname]);
+				$newcontent .= cforms2('',$fns[$Fname]);
 			}else{
-			  if ( cforms2_check_for_taf( $Fid,cforms2_cfget_pid() ) )
-    			$newcontent .= cforms2('',$Fid);
+				$newcontent .= cforms2('',$Fid);
             }
 
 			$p_open_after  = strpos($content,'<p>',$b);
@@ -1192,10 +1181,7 @@ function insert_cform($no='',$custom='',$c='') {
 	if( !is_numeric($no) )
 		$no = cforms2_check_form_name( $no );
 
-	if ( !$pid )
-		echo cforms2($custom,$no.$c);
-	else
-		echo cforms2_check_for_taf($no,$pid)?cforms2($custom,$no.$c):'';
+	echo cforms2($custom,$no.$c);
 }
 }
 
@@ -1249,58 +1235,6 @@ function cforms2_check_form_name($no) {
 }
 
 
-### check if t-f-a is set
-function cforms2_check_for_taf($no,$pid) {
-	global $cformsSettings;
-
-	if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)<>'1')
-		return true;
-
-  if( is_single() || in_the_loop() ){
-  	$tmp = get_post_custom($pid);
-  	return $tmp["tell-a-friend"][0] == '1';
-  }else
-    return true;
-}
-
-
-### public function: check if post is t-a-f enabled
-if (!function_exists('is_tellafriend')) {
-	function is_tellafriend($pid) {
-		$tmp = get_post_custom($pid);
-		return $tmp["tell-a-friend"][0]=='1';
-	}
-}
-
-
-### WP 2.7 admin menu hook
-function cforms2_post_box(){
-	global $tafstring;
-	echo $tafstring;
-}
-
-
-function cforms2_add_cforms_post_boxes(){
-	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms2'), 'cforms2_post_box', 'post', 'normal', 'high');
-	add_meta_box('cformspostbox', __('cforms Tell-A-Friend', 'cforms2'), 'cforms2_post_box', 'page', 'normal', 'high');
-}
-
-
-### Add Tell A Friend processing
-function cforms2_enable_tellafriend($post_ID) {
-
-	if ( isset($_POST['action']) && ($_POST['action']=='autosave' || $_POST['action']=='inline-save')  )
-    	return;
-
-	$tellafriend_status = isset($_POST['tellafriend']);
-
-	if($tellafriend_status && intval($post_ID) > 0)
-		add_post_meta($post_ID, 'tell-a-friend', '1', true);
-	else if ( isset($_POST['post_ID']) )
-		delete_post_meta($post_ID, 'tell-a-friend');
-}
-
-
 ### cforms widget
 function cforms2_widget_init() {
 	global $cformsSettings;
@@ -1332,8 +1266,6 @@ function cforms2_localization () {
 	load_plugin_textdomain( 'cforms2' );
 }
 
-### add actions
-global $tafstring;
 
 ### widget init
 add_action('plugins_loaded', 'cforms2_localization' );
@@ -1397,10 +1329,6 @@ function cforms2_field() {
 		'textarea',
 		'pwfield',
 		'hidden',
-		'yourname',
-		'youremail',
-		'friendsname',
-		'friendsemail',
 		'cauthor',
 		'email',
 		'url',
@@ -1438,29 +1366,6 @@ function cforms2_field() {
 if ( is_admin() ) {
 	require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 	add_action('admin_menu', 'cforms2_menu');
-
-	### Check all forms for TAF and set variables
-	for ( $i=1;$i<=$cformsSettings['global']['cforms_formcount'];$i++ ) {
-		$tafenabled = substr($cformsSettings['form'.(($i=='1')?'':$i)]['cforms'.(($i=='1')?'':$i).'_tellafriend'],0,1)=='1';
-		if ( $tafenabled ) break;
-	}
-	$tafform = ($i==1)?'':$i;
-
-	if ( $tafenabled && isset($_GET['post']) ){
-		$edit_post = intval($_GET['post']);
-		$tmp = get_post_custom($edit_post);
-		$taf = $tmp["tell-a-friend"][0];
-
-		$tafchk = ($taf=='1' || ($edit_post=='' && substr($cformsSettings['form'.$tafform]['cforms'.$tafform.'_tellafriend'],1,1)=='1') )?'checked="checked"':'';
-
-		$tafstring = '<label for="tellafriend" class="selectit"><input type="checkbox" id="tellafriend" name="tellafriend" value="1"'. $tafchk .'/>&nbsp;'. __('T-A-F enable this post/page', 'cforms2').'</label>';
-
-		### add admin boxes
-		add_action('admin_menu', 'cforms2_add_cforms_post_boxes');
-		add_action('save_post', 'cforms2_enable_tellafriend');
-
-	} ### if tafenabled
-
 	add_action( 'wp_ajax_cforms2_field', 'cforms2_field' );
 
 	### admin ajax

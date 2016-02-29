@@ -89,10 +89,6 @@ class cforms2_mail {
 	            $this->add_reply($te[0]);
 	    }
 
-	    ### TAF
-	    if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1) == 1 && $cformsSettings['form'.$no]['cforms'.$no.'_tafCC']=='1' && !$adminEmail )
-	        $this->add_cc($te[0],str_replace('"','',$t[1]));
-
 	    ### bcc
 	    $te=array();
 	    $t=array();

@@ -247,6 +247,7 @@ GPL compliance!
 
 * enhanced: remove role capabilities on uninstall
 * other:    remove RSS support
+* other:    remove Tell-a-Friend support
 
 = 14.11.4 =
 

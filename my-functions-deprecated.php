@@ -26,6 +26,7 @@ class cforms2_dreprecated_api {
 
 	public static function my_cforms_action($cformsdata) {
 		if( function_exists('my_cforms_action') ) {
+			trigger_error('You should switch from using my_cforms_action function to cforms2_after_processing_action WordPress action.', E_USER_DEPRECATED);
 			my_cforms_action($cformsdata);
 		}
 	}
@@ -33,3 +34,21 @@ class cforms2_dreprecated_api {
 }
 
 add_action('cforms2_after_processing_action', 'cforms2_dreprecated_api::my_cforms_action');
+
+if (!function_exists('cf_extra_comment_data')) {
+	/**
+	 * @deprecated since version 14.11.3
+	 */
+	function cf_extra_comment_data( $id ) {
+		trigger_error('cf_extra_comment_data is useless', E_USER_DEPRECATED);
+	}
+}
+
+if (!function_exists('is_tellafriend')) {
+	/**
+	 * @deprecated since version 14.12
+	 */
+	function is_tellafriend($pid) {
+		trigger_error('is_tellafriend is useless', E_USER_DEPRECATED);
+	}
+}

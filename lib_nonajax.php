@@ -176,8 +176,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	$field_email = '';
 
 	$filefield=0;
-	$taf_youremail = false;
-	$taf_friendsemail = false;
 
 	$inpFieldArr = array(); // for var[] type input fields
 
@@ -264,21 +262,9 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		$field_name = $obj[0];
 		if (!isset ($_POST[$current_field])) 	
 			$_POST[$current_field] = "";
-		###  special Tell-A-Friend fields
-		if ( !$taf_friendsemail && $field_type=='friendsemail' && $field_stat[3]=='1')
-				$field_email = $taf_friendsemail = $_POST[$current_field];
-
-		if ( !$taf_youremail && $field_type=='youremail' && $field_stat[3]=='1')
-				$taf_youremail = $_POST[$current_field];
-
-		if ( $field_type=='friendsname' )
-				$taf_friendsname = $_POST[$current_field];
-
-		if ( $field_type=='yourname' )
-				$taf_yourname = $_POST[$current_field];
 
 
-		###  special email field in WP Commente
+		###  special email field in WP Comments
 		if ( $field_type=='email' )
 				$field_email = (isset($_POST['email']))?$_POST['email']:$user->user_email;
 
@@ -445,23 +431,11 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	###  FIRST into the database is required!
 	###
 	global $subID, $wpdb;
-	$subID = ( $isTAF =='2' )?'noid':cforms2_write_tracking_record($no,$field_email,$track);
-
-
-	###
-	### set reply-to & watch out for T-A-F
-	###
-	$replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
+	$subID = cforms2_write_tracking_record($no,$field_email,$track);
 
 	if ( !($to_one<>-1 && $to<>'') ){
 		$to = $replyto = preg_replace( array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_email']) );
 	}
-
-
-	### T-A-F overwrite
-	if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
-		$replyto = "\"{$taf_yourname}\" <{$taf_youremail}>";
-
 
 
 	###
@@ -668,11 +642,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	                $s[1] = ($s[1]<>'') ? $s[1] : $s[0];
 
 	                ###  email tracking via 3rd party?
-	                ###  if in Tell-A-Friend Mode, then overwrite header stuff...
-	                if ( $taf_youremail && $taf_friendsemail && $isTAF=='1' )
-	                    $field_email = "\"{$taf_friendsname}\" <{$taf_friendsemail}>";
-					else
-		                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
+	                $field_email = ($cformsSettings['form'.$no]['cforms'.$no.'_tracking']<>'')?$field_email.$cformsSettings['form'.$no]['cforms'.$no.'_tracking']:$field_email;
 									
 	                $mail = new cforms2_mail($no,$frommail,$field_email,$replyto);
 

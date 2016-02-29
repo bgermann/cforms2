@@ -107,7 +107,7 @@ cforms2_setINI('form','cforms_action_page', 'http://');
 cforms2_setINI('form','cforms_tracking', '');
 cforms2_setINI('form','cforms_showdashboard', '1');
 cforms2_setINI('form','cforms_maxentries', '');
-cforms2_setINI('form','cforms_tellafriend', '01');
+cforms2_setINI('form','cforms_tellafriend', '0');
 cforms2_setINI('form','cforms_dashboard', '0');
 
 ### global file settings

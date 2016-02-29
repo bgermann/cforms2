@@ -77,29 +77,6 @@ if ( isset($_REQUEST['formpresets']) )
 $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 
 
-### check if T-A-F action is required
-$alldisabled=false;
-$allenabled=0;
-if( isset($_REQUEST['addTAF']) || isset($_REQUEST['removeTAF']) )
-{
-
-	$posts = $wpdb->get_results("SELECT ID FROM $wpdb->posts");
-
-	if ( isset($_REQUEST['addTAF']) ){
-
-		foreach($posts as $post) {
-			if ( add_post_meta($post->ID, 'tell-a-friend', '1', true) )
-				$allenabled++;
-		}
-
-	} else if ( isset($_REQUEST['removeTAF']) ){
-        $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key = 'tell-a-friend'");
-		$alldisabled=true;
-	}
-
-}
-
-
 ### Update Settings
 if( isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_search("X", $_REQUEST) ){
 	require_once(plugin_dir_path(__FILE__) . 'lib_options_sub.php');
@@ -356,15 +333,7 @@ if( strlen($fd)<=2 ) {
 									?>
 								</optgroup>
 
-                                <?php if ( $isTAF<>1 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
-								<optgroup label="<?php _e('----- T-A-F form fields ------', 'cforms2'); ?>">
-									<option<?php echo $dis; ?> value="yourname" <?php echo($field_type == 'yourname'?' selected="selected"':''); ?>><?php _e('T-A-F * Your Name', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="youremail" <?php echo($field_type == 'youremail'?' selected="selected"':''); ?>><?php _e('T-A-F * Your Email', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="friendsname" <?php echo($field_type == 'friendsname'?' selected="selected"':''); ?>><?php _e('T-A-F * Friend\'s Name', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="friendsemail" <?php echo($field_type == 'friendsemail'?' selected="selected"':''); ?>><?php _e('T-A-F * Friend\'s Email', 'cforms2'); ?></option>
-								</optgroup>
-
-                                <?php if ( $isTAF<>'2' ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
+                                <?php if ( $isTAF<>2 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
 								<optgroup label="<?php _e('--- WP comment form fields ---', 'cforms2'); ?>">
 									<option<?php echo $dis; ?> value="cauthor" <?php echo($field_type == 'cauthor'?' selected="selected"':''); ?>><?php _e('Comment Author', 'cforms2'); ?></option>
 									<option<?php echo $dis; ?> value="email" <?php echo($field_type == 'email'?' selected="selected"':''); ?>><?php _e('Author\'s Email', 'cforms2'); ?></option>
@@ -399,13 +368,13 @@ if( strlen($fd)<=2 ) {
 
 
                             echo '<input tabindex="'.($ti++).'" class="allchk fieldisemail chkfld" type="checkbox" title="'.__('email required', 'cforms2').'" name="field_'.($i).'_emailcheck"'.($field_emailcheck == '1'?' checked="checked"':'');
-                            if( ! in_array($field_type,array('html5email','textfield','youremail','friendsemail','email')) )
+                            if( ! in_array($field_type,array('html5email','textfield','email')) )
                                 echo ' disabled="disabled"';
 							echo '/>';
 
 
                             echo '<input tabindex="'.($ti++).'" class="allchk fieldclear chkfld" type="checkbox" title="'.__('clear field', 'cforms2').'" name="field_'.($i).'_clear"'.($field_clear == '1'?' checked="checked"':'');
-                            if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker','yourname','youremail','friendsname','friendsemail','email','author','url','comment'))) )
+                            if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker','email','author','url','comment'))) )
                                 echo ' disabled="disabled"';
 							echo '/>';
 
@@ -631,10 +600,10 @@ if( strlen($fd)<=2 ) {
 
 				<tr class="ob">
 					<td class="obL"></td>
-					<td class="obR"><input <?php echo ($isTAF==1||$isTAF==2)?'disabled="disabled" class="allchk disabled"':'class="allchk"'; ?> type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if($isTAF=='3') echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php echo sprintf(__('%sExtra variables%s e.g. {Title}', 'cforms2'),'<strong>','</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
+					<td class="obR"><input <?php echo ($isTAF==2)?'disabled="disabled" class="allchk disabled"':'class="allchk"'; ?> type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if($isTAF==3) echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php echo sprintf(__('%sExtra variables%s e.g. {Title}', 'cforms2'),'<strong>','</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
 
-				<tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that belong to the Tell-A-Friend feature but can be enabled here without actually turning on T-A-F.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#tafvariables','onclick="setshow(23)"'); ?> <strong><u><?php _e('Note:', 'cforms2')?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.', 'cforms2')?></td></tr>
+				<tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be enabled here.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#extravariables','onclick="setshow(23)"'); ?> <strong><u><?php _e('Note:', 'cforms2')?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.', 'cforms2')?></td></tr>
 
 				<tr class="ob">
 					<td class="obL"></td>
@@ -982,55 +951,6 @@ if( strlen($fd)<=2 ) {
 		</fieldset>
 
 
-		<fieldset class="cformsoptions" id="tellafriend">
-			<div class="cflegend op-closed" id="p6" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Tell-A-Friend Form Support', 'cforms2')?>
-            </div>
-
-			<div class="cf-content" id="o6">
-				<?php
-					if ( $allenabled <> false )
-						echo '<div id="tafmessage" class="updated fade"><p>'.$allenabled.' '. __('posts and pages processed and tell-a-friend <strong>enabled</strong>.', 'cforms2'). ' </p></div>';
-					else if ( $alldisabled )
-						echo '<div id="tafmessage" class="updated fade"><p>'. __('All posts &amp; pages processed and tell-a-friend <strong>disabled</strong>.', 'cforms2'). ' </p></div>';
-				?>
-
-                <p class="ex"><?php echo sprintf(__('BEFORE turning on this feature, please see the Help section for <a href="%s" %s>more details.</a>', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#taf','onclick="setshow(19)"'); ?></p>
-				<p><?php _e('If enabled, new field types will be made available to cover tell-a-friend requirements.', 'cforms2'); ?></p>
-
-				<table class="form-table">
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tellafriend" name="cforms_tellafriend" <?php if( $isTAF==1 ) echo "checked=\"checked\""; ?>/><label for="cforms_tellafriend"><strong><?php _e('Enable Tell-A-Friend', 'cforms2') ?></strong></label></td>
-				</tr>
-
-				<?php if( $isTAF==1 ) : ?>
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tafCC" name="cforms_tafCC" <?php if( $cformsSettings['form'.$no]['cforms'.$no.'_tafCC']=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_tafCC"><strong><?php _e('CC: User submitting the form', 'cforms2') ?></strong></label></td>
-				</tr>
-				<tr class="ob">
-					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_tafdefault" name="cforms_tafdefault" <?php if( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],1,1)=='1' ) echo "checked=\"checked\""; ?>/><label for="cforms_tafdefault"><strong><?php _e('T-A-F enable <strong>new posts/pages</strong> by default', 'cforms2') ?></strong></label></td>
-				</tr>
-
-				<tr class="ob space20">
-					<td class="obL"><label for="migrate"><?php _e('<strong>Batch T-A-F dis-/enable</strong><br />all your previous posts.', 'cforms2') ?></label></td>
-					<td class="obR">
-						<input type="submit" title="<?php _e('This will add a T-A-F custom field per post/page.', 'cforms2') ?>" name="addTAF" class="allbuttons" style="width:150px;" value="<?php _e('Enable all', 'cforms2') ?>" onclick="document.mainform.action='#tellafriend'; return confirm('<?php _e('Do you really want to enable all previous posts and pages for T-A-F?', 'cforms2') ?>');"/>
-						<input type="submit" title="<?php _e('This will remove the T-A-F custom field on all posts/pages.', 'cforms2') ?>" name="removeTAF" class="allbuttons" style="width:150px;" value="<?php _e('Disable all', 'cforms2') ?>" onclick="document.mainform.action='#tellafriend'; return confirm('<?php _e('Do you really want to disable all previous posts and pages for T-A-F?', 'cforms2') ?>');"/>
-						<span><a class="infobutton" href="#" name="it9"><?php _e('Please read note &raquo;', 'cforms2'); ?></a></span>
-		 			</td>
-				</tr>
-				<tr id="it9" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('You will find a <strong>cforms Tell-A-Friend</strong> checkbox on your <strong>admin/edit page</strong> (typically under "Post/Author")! <br /><u>Check it</u> if you want to have the form to appear on the given post or page.', 'cforms2');?></td></tr>
-				<?php endif; ?>
-
-				</table>
-
-			</div>
-		</fieldset>
-
-
 		<fieldset class="cformsoptions" id="commentrep">
 			<div class="cflegend op-closed" id="p7" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
             	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature', 'cforms2')?>
@@ -1046,11 +966,6 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_commentrep"><strong><?php _e('WP comment form', 'cforms2') ?></strong></label></td>
 					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentrep" name="cforms_commentrep" <?php if( $isTAF==2 ) echo "checked=\"checked\""; ?>/><label for="cforms_commentrep"><?php _e('Enable this form to optionally (user determined) act as a WP comment form', 'cforms2') ?></label></td>
 				</tr>
-
-	            <?php if( $isTAF==2 ) : ?>
-	                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it6"><?php _e('<em>Tell a friend</em> or <em>WP comment</em>? &raquo;', 'cforms2'); ?></a></td></tr>
-					<tr id="it6" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('This feature and T-A-F (above) are mutually exclusive. If you need both features, please create a new form for T-A-F.<br />Again, see the <a href="%s" %s>help section</a> on proper use.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#commentrep','onclick="setshow(19)"'); ?></td></tr>
-	            <?php endif; ?>
 
 				</table>
 

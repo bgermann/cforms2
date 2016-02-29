@@ -39,7 +39,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<li><a href="#inserting" onclick="setshow(18)"><?php _e('Inserting a form', 'cforms2'); ?></a> &raquo;</li>
 			<li><a href="#fields" onclick="setshow(19)"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;
 			<ul style="margin-top:7px	">
-				<li><a href="#taf" onclick="setshow(19)"><?php _e('Special <em>Tell A Friend</em> input fields', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#qa" onclick="setshow(19)"><?php _e('SPAM protection: Q &amp; A', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#hfieldsets" onclick="setshow(19)"><?php _e('Fieldsets', 'cforms2'); ?></a> &raquo;</li>
@@ -119,7 +118,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 				<li><a href="#hidden" onclick="setshow(19)"><?php 	_e('Hidden fields', 'cforms2'); ?></a></li>
 				<li><a href="#qa" onclick="setshow(19)"><?php 		_e('SPAM protection: Q&amp;A input field', 'cforms2'); ?></a></li>
 				<li><a href="#upload" onclick="setshow(19)"><?php 	_e('File attachments / upload', 'cforms2'); ?></a></li>
-				<li><a href="#taf" onclick="setshow(19)"><?php 		_e('Special <em>Tell A Friend</em> input fields', 'cforms2'); ?></a></li>
 				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?></a></li>
 			</ul>
 
@@ -529,131 +527,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 		</table>
 
-
-		<br style="clear:both;"/>
-
-
-		<p class="fieldtitle" id="taf">
-			<span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-			<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
-			<?php _e('Tell a Friend input fields', 'cforms2'); ?>
-		</p>
-		<img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-t-a-f.png"  alt=""/>
-		<table class="hf" cellspacing="2" border="4">
-			<tr>
-				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:<br />of all 4 fields', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s default value %1$s <a href="#regexp">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
-			</tr>
-			<tr>
-				<td class="bleft"><?php _e('Fields:', 'cforms2'); ?></td><td class="bright">
-					<code><strong><?php _e('T-A-F * Your Name', 'cforms2'); ?></strong></code><br />
-					<code><strong><?php _e('T-A-F * Your Email <em>(make sure it\'s checked \'Email\')</em>', 'cforms2'); ?></strong></code><br />
-					<code><strong><?php _e('T-A-F * Friend\'s Name', 'cforms2'); ?></strong></code><br />
-					<code><strong><?php _e('T-A-F * Friend\'s Email <em>(make sure it\'s checked \'Email\')</em>', 'cforms2'); ?></strong></code>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('To get it working:', 'cforms2'); ?></strong>
-					<ol>
-						<li><?php echo sprintf(__('The <a href="%s" %s>Tell A Friend feature</a> needs to be <strong>enabled for the respective form</strong> (<em>check if it\'s the right one!</em>), otherwise you won\'t see the above input fields in the [<em>Field Type</em>] select box.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#tellafriend','onclick="setshow(6)"'); ?></li>
-						<li><?php echo sprintf(__('The <a href="%s" %s>auto confirmation</a> message will be used as a <strong>message template</strong> and needs to be defined. See example below.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?></li>
-						<li><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be used in the <a href="%s" %s>message template</a>.', 'cforms2'),'#tafvariables','onclick="setshow(23)"','?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?></li>
-						<li><?php _e('<strong>Add the form</strong> to your post/page php templates (see deployment options further below).', 'cforms2'); ?></li>
-						<li><img style="float:right;" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-t-a-f2.png"  alt=""/><?php _e('Tell-A-Friend <strong>enable your posts/pages</strong> by checking the T-A-F field in the WP post (page) editor.', 'cforms2'); ?></li>
-					</ol>
-
-				</td>
-			</tr>
-		</table>
-		<br />
-		<table class="hf" cellspacing="2" border="4">
-			<tr>
-				<td class="ball" colspan="2">
-					<?php echo sprintf(__('Here is an example of how to setup the TXT part of the <a href="%s" %s>auto confirmation message</a> as a Tell-A-friend template:', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#cforms_cmsg','onclick="setshow(5)"'); ?>
-
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<code>
-					<?php _e('Hello {Friend\'s Name}','cforms2'); ?>,<br />
-					<?php  _e('{Your Name} left you this message:','cforms2'); ?><br />
-					<?php  _e('{Optional Comment}','cforms2'); ?><br />
-					<?php  _e('The message was sent in reference to','cforms2'); ?> {Title}:<br />
-					{Excerpt}<br />
-					{Permalink}<br />
-					--<br />
-					<?php  _e('This email is sent, as a courtesy of website.com, located at http://website.com. The person who sent this email to you, {Your Name}, gave an email address of {Your Email}. {Your Name} logged into website.com from IP {IP}, and sent the email at {Time}.','cforms2'); ?><br />
-					</code>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('Note:', 'cforms2'); ?></strong> <?php _e('In addition to the above TXT message you can, of course, add an HTML counterpart.', 'cforms2'); ?>
-				</td>
-			</tr>
-		</table>
-		<br />
-		<table class="hf" cellspacing="2" border="4">
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('Recommended Implementation Options:', 'cforms2'); ?></strong>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<?php _e('<em>Alternative 1:</em> The actual form will not show on the WP front page, but in the individual post/page view.', 'cforms2'); ?>
-					<ol>
-						<li><?php echo sprintf(__('Simply add a <code>&lt;?php insert_cform(<em>#</em>); ?&gt;</code> (# = <a href="%s" %s>your form id</a>) to your existing <code>single.php</code> and/or <code>page.php</code> template, e.g:', 'cforms2'),'#inserting','onclick="setshow(18)"');?>
-
-<code  style="font-size: 11px;"><br />
-[...]<br />
-&lt;?php the_content('&lt;p&gt;Read the rest of this entry &raquo;&lt;/p&gt;'); ?&gt;<br />
-<strong style="color:red;">&lt;?php if ( is_tellafriend( $post-&gt;ID ) ) insert_cform(#); ?&gt;</strong><br />
-[...]
-</code>
-						</li>
-						<li><?php _e('Suggestion: For a less crowded layout, optionally add some Javascript code to show/hide the form.', 'cforms2'); ?></li>
-					</ol>
-				</td>
-			</tr>
-			<tr>
-				<td class="ball" colspan="2">
-					<?php _e('<em>Alternative 2:</em> A Tell-A-Friend link is shown under every eligible post/page, displayed both on the blog\'s front page &amp; individual post &amp; page view.', 'cforms2'); ?>
-
-					<ol>
-						<li><?php  _e('This requires a new WP page created (make note of the page ID or permalink), with its own page template (a clone of page.php will do). Add the following code to the new <strong>page template</strong>:', 'cforms2'); ?>
-
-<code  style="font-size: 11px;"><br />
-[...]<br />
-&lt;?php the_content('&lt;p&gt;Read the rest of this page &raquo;&lt;/p&gt;');?&gt;<br />
-<strong style="color:red;">&lt;h3&gt; &lt;?php echo 'E-Mail "'.get_the_title( $_GET['pid'] ).'" to a friend:'; ?&gt; &lt;/p&gt;<br />
-&lt;?php if ( is_tellafriend( $_GET['pid'] ) ) insert_cform(#); ?&gt;</strong><br />
-[...]
-</code>
-						</li>
-						<li><?php _e('In <em>single.php &amp; index.php</em> and/or <em>page.php</em> add beneath the "the_content()" call the link to the new page created above, e.g.:', 'cforms2'); ?>
-
-<code  style="font-size: 11px;"><br />
-[...]<br />
-&lt;?php the_content('&lt;p&gt;Read the rest of this entry &raquo;&lt;/p&gt;'); ?&gt;<br />
-<strong style="color:red;">&lt;?php <br />
-if ( is_tellafriend( $post-&gt;ID ) ) <br />
- &nbsp; &nbsp; echo '&lt;a href="[your-new-page]?&amp;pid='.$post-&gt;ID.'" title="Tell-A-Friend form"&gt;Tell a friend!&lt;/a&gt;'; <br />
-?&gt;</strong><br />
-[...]<br />
-</code>
-						</li>
-						<li><?php _e('Replace <strong>[your-new-page]</strong> with <strong>the permalink</strong> of your newly created page.', 'cforms2'); ?></li>
-					</ol>
-
-				</td>
-			</tr>
-		</table>
-
-		<br style="clear:both;"/>
-
 		<p class="fieldtitle" id="commentrep">
 			<span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
 			<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
@@ -915,25 +788,6 @@ foreach( $array as $e ){
 }
 echo '&lt;/table&gt;';</pre></td></tr>
 			</table>
-			<br />
-			<table class="hf" cellspacing="2" border="4" width="95%">
-				<tr>
-					<td class="apiH" colspan="2"><span class="abbr"><?php _e('API Function', 'cforms2'); ?></span> &nbsp;&nbsp;&nbsp; <strong>cf_extra_comment_data(&nbsp;$commentID&nbsp;)</strong></td>
-				</tr>
-				<tr>
-					<td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms2'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function retrieves all extra data submitted (besides the default Author, Email, URL, Message fields) per a given comment context. This function should be called from within the "comment LOOP".', 'cforms2'); ?></td>
-				</tr>
-				<tr>
-					<td class="bright" colspan="2"><span class="abbr"><?php _e('Parameters', 'cforms2'); ?>:</span></td>
-				</tr>
-				<tr>
-					<td class="bleft"><strong><code class="codehighlight">$commentID&nbsp;::&nbsp;<?php _e('[number]', 'cforms2'); ?></code></strong></td>
-					<td class="bright"><?php _e('The comment ID is expected.', 'cforms2'); ?></td>
-				</tr>
-				<tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms2'); ?>:</span></td></tr>
-				<tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored comment data in a multi-dimensional array.', 'cforms2'); ?></td></tr>
-				<tr><td class="ball" colspan="2"><code>$xtra_comment_data = cf_extra_comment_data( get_comment_ID() );   /* all data, no filters */</code></td></tr>
-			</table>
 
 		</div>
 
@@ -974,11 +828,11 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	        <ul style="list-style:none;">
 	        <li>
 	            <table class="cf_dyn_fields">
-	                <tr><td><strong><?php _e('Basic fields', 'cforms2'); ?></strong></td><td></td><td class="cf-wh">&nbsp;</td><td><strong><?php _e('Special T-A-F fields', 'cforms2'); ?></strong></td><td></td></tr>
-	                <tr><td><?php _e('Text paragraph', 'cforms2'); ?>:</td><td> <code>textonly</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('T-A-F * Your Name', 'cforms2'); ?>:</td><td> <code>yourname</code></td></tr>
-	                <tr><td><?php _e('Single input field', 'cforms2'); ?>:</td><td> <code>textfield</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('T-A-F * Your Email', 'cforms2'); ?>:</td><td> <code>youremail</code></td></tr>
-	                <tr><td><?php _e('Multi line field', 'cforms2'); ?>:</td><td> <code>textarea</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('T-A-F * Friend\'s Name', 'cforms2'); ?>:</td><td> <code>friendsname</code></td></tr>
-	                <tr><td><?php _e('Hidden field', 'cforms2'); ?>:</td><td> <code>hidden</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('T-A-F * Friend\'s Name', 'cforms2'); ?>:</td><td> <code>friendsemail</code></td></tr>
+	                <tr><td><strong><?php _e('Basic fields', 'cforms2'); ?></strong></td><td></td></tr>
+	                <tr><td><?php _e('Text paragraph', 'cforms2'); ?>:</td><td> <code>textonly</code></td></tr>
+	                <tr><td><?php _e('Single input field', 'cforms2'); ?>:</td><td> <code>textfield</code></td></tr>
+	                <tr><td><?php _e('Multi line field', 'cforms2'); ?>:</td><td> <code>textarea</code></td></tr>
+	                <tr><td><?php _e('Hidden field', 'cforms2'); ?>:</td><td> <code>hidden</code></td></tr>
 	                <tr><td><?php _e('Password field', 'cforms2'); ?>:</td><td> <code>pwfield</code></td></tr>
 	                <tr><td><?php _e('Date picker field', 'cforms2'); ?>:</td><td> <code>datepicker</code></td><td class="cf-wh">&nbsp;</td><td><strong><?php _e('WP Comment Feature', 'cforms2'); ?></strong></td><td></td></tr>
 	                <tr><td><?php _e('Check boxes', 'cforms2'); ?>:</td><td> <code>checkbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Comment Author', 'cforms2'); ?>:</td><td> <code>author</code></td></tr>
@@ -1160,10 +1014,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 					<td class="bright" colspan="2">&nbsp;</td>
 				</tr>
 
-				<tr id="tafvariables">
-					<td class="bright" colspan="2"><span class="abbr" title="<?php _e('Case sensitive!', 'cforms2'); ?>"><strong><?php _e('Predefined variables for Tell-A-Friend forms:', 'cforms2'); ?></strong></span></td>
-				</tr>
-				<tr>
+				<tr id="extravariables">
 					<td class="bleft"><code>{Permalink}</code></td>
 					<td class="bright"><?php _e('Inserts the URL of the WP post/page.', 'cforms2'); ?></td>
 				</tr>

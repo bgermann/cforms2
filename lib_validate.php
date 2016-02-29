@@ -185,7 +185,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		cforms2_dbg("\t\t ...is required! check: current_field=$current_field");
 
 		if( in_array($field_type,array( 'html5color','html5date','html5datetime','html5datetime-local','html5email','html5month','html5number','html5range','html5search','html5tel','html5time','html5url','html5week',
-										'cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
+										'cauthor','url','comment','pwfield','textfield','datepicker','textarea')) ){
 
 			$validations[$i+$off] = $current_field!='';
 
@@ -236,7 +236,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 	}
 
 	### REGEXP now outside of 'is required'
-	if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail')) ){
+	if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea')) ){
 
 		### regexp set for textfields?
 		$obj = explode('|', $c_title[0], 3);

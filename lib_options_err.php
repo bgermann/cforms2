@@ -41,12 +41,6 @@ if ( $cformsSettings['form'.$no]['cforms'.$no.'_header']=='' && (($userconfirm&4
 		cforms2_showmesssage(4);
 }
 
-### check for TAF
-if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='1' && (($userconfirm&16)==0) ) {
-		$text = __('You have enabled the <strong>Tell a Friend</strong> feature for this form, please make sure you follow the guidelines on the HELP! page <strong>otherwise your form may not show</strong>!', 'cforms2');
-		cforms2_showmesssage(16);
-}
-
 ### 32 taken in global settings!
 
 ### set fancy errors by default

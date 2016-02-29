@@ -23,7 +23,6 @@
 	$ccbox=false;
 	$emailtobox=false;
 	$WPc=false;
-	$taf=false;
 	$uploadfield=false;
 
 	for($i = 1; $i <= $field_count; $i++) {
@@ -48,11 +47,6 @@
 					$usermsg .= '<span class="exMsg">'.__('WP comment form fields only supported when <em>WP comment feature</em> turned on!', 'cforms2').'</span>';
 					$WPc=true;
 				}
-				if( in_array($type, array('yourname','youremail','friendsname','friendsemail')) && !($isTAF==1) ){
-					$allgood = $taf?false:true;
-					$usermsg .= '<span class="exMsg">'.__('TAF fields only supported when <em>TAF feature</em> turned on!', 'cforms2').'</span>';
-					$taf=true;
-				}
 
 				if( $type=='ccbox' ){
 					$allgood = $ccbox?false:true;
@@ -65,15 +59,15 @@
 					$emailtobox=true;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_required']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','checkbox','multiselectbox','selectbox','emailtobox','upload','yourname','youremail','friendsname','friendsemail','email','cauthor','url','comment','radiobuttons'))) ) {
+				if(isset($_REQUEST['field_' . $i . '_required']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','checkbox','multiselectbox','selectbox','emailtobox','upload','email','cauthor','url','comment','radiobuttons'))) ) {
 					$required = 1;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_emailcheck']) && in_array($type,array('html5email','textfield','datepicker','youremail','friendsemail','email')) ){
+				if(isset($_REQUEST['field_' . $i . '_emailcheck']) && in_array($type,array('html5email','textfield','datepicker','email')) ){
 					$emailcheck = 1;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_clear']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','yourname','youremail','friendsname','friendsemail','email','cauthor','url','comment'))) ) {
+				if(isset($_REQUEST['field_' . $i . '_clear']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','email','cauthor','url','comment'))) ) {
 					$clear = 1;
 				}
 
@@ -194,24 +188,21 @@
 		$cformsSettings['form'.$no]['cforms'.$no.'_ajax']       = '0';
 		$cformsSettings['form'.$no]['cforms'.$no.'_dontclear']  = false; // NOTE that it can't be set with MP!
 	} else
-		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = 			cforms2_get_boolean_from_request('cforms_ajax');
+		$cformsSettings['form'.$no]['cforms'.$no.'_ajax'] = cforms2_get_boolean_from_request('cforms_ajax');
 
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 		'00'; ### default
-	$cformsSettings['form'.$no]['cforms'.$no.'_tafCC'] = 	   		cforms2_get_boolean_from_request('cforms_tafCC');
+	// up to version 14.12 this option string had two characters, which is reflected in its usage
+	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '0';
 
 	if ( isset($_REQUEST['cforms_taftrick']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = 	'31';
-
-	if ( isset($_REQUEST['cforms_tellafriend']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'1'.cforms2_get_boolean_from_request('cforms_tafdefault');
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '3';
 
 
 	if ( isset($_REQUEST['cforms_commentrep']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] =	'20';
+		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '2';
 
 
-	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] =      preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_tracking'));
+	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] = preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_tracking'));
 
 
 	### reorder fields
@@ -223,10 +214,10 @@
 		$tempcount = isset($_REQUEST['AddField'])?($field_count-$_POST['AddFieldNo']):($field_count);
 		while($j < $tempcount)
 		{
-				$new_f = $order[$j]-1;
-				if ( $j <> $new_f )
-						$cformsSettings['form'.$no]['cforms'.$no.'_count_field_'.($j+1)] = $all_fields[$new_f];
-		$j++;
+			$new_f = $order[$j]-1;
+			if ( $j <> $new_f )
+				$cformsSettings['form'.$no]['cforms'.$no.'_count_field_'.($j+1)] = $all_fields[$new_f];
+			$j++;
 		}
 
 	} ### if order changed

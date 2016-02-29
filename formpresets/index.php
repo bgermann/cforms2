@@ -22,8 +22,6 @@ __("Basic: Preset for *GREY BLOCKS* Theme", "cforms2");
 __("This preset will switch your current cforms theme to 'Grey Blocks'. It comes with basic contact form input fields and a custom error message example.", "cforms2");
 __("Basic: *Newsletter* subscription form (w/ titles)", "cforms2");
 __("A small, two input field form that showcases regexp's (default value exclusion) and input field titles.", "cforms2");
-__("Basic: Tell A Friend Form", "cforms2");
-__("If you would like to setup a special T-A-F form, then please use this preset as a basis. It comes with the necessary (special) TAF input fields, verifies and sets the TAF option, switches the current theme and sets a generic tell-a-friend message.", "cforms2");
 __("Advanced: Contact Form with Custom Err Messages", "cforms2");
 __("This form preset is based on the default preset, however, coming with field specific custom error texts. Please check your fancy error message settings, to make sure they're actually displayed.", "cforms2");
 __("Advanced: WP comment feature form", "cforms2");

@@ -74,7 +74,7 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_upload_size'] = '1024';
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] = '';
-	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '00';
+	$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_dashboard'] = '0';
 	$cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] = '';
 

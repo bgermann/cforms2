@@ -205,6 +205,7 @@ function cforms2_get_current_page(){
 
 
 ### check for post custom fields in string
+### TODO what is call to get_post_custom for?
 function cforms2_check_post_vars($fv){
     preg_match_all('/\\{([^\\{]+)\\}/',$fv,$fall);
 
@@ -481,17 +482,4 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
 	}
 	return $cfdata;
 }
-}
-
-
-### API functions #2 : get tracked entries
-if (!function_exists('cf_extra_comment_data')) {
-	function cf_extra_comment_data( $id ) {
-		global $wpdb;
-		$all = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->cformsdata} WHERE sub_id = (SELECT sub_id FROM {$wpdb->cformsdata} WHERE field_name='commentID' AND field_val=%s)", $id));
-		foreach( $all as $a ) {
-			$r[$a->field_name]=$a->field_val;
-        }
-		return $r;
-	}
 }
