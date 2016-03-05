@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function cforms2_add_file($fn, $attachFlag=false, &$fdata, &$fpointer){
+function cforms2_add_file($fn, &$fdata, &$fpointer, $attachFlag=false){
 	if( file_exists($fn) ){
 	    $fdata[$fpointer]['name'] = $fn;
 	    $fdata[$fpointer]['doAttach'] = $attachFlag;
@@ -157,6 +157,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
 cforms2_dbg("REQUEST:".print_r($_REQUEST,1));
 cforms2_dbg("FILES:".print_r($_FILES,1));
 $off = 0;
+$c_errflag=false;
 
 if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {	
 	if ( !$custom )
@@ -504,6 +505,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	$track = array();
 	$trackinstance = array();
 
+	$fieldsetnr=1;
 	$to_one = -1;
 	$ccme = false;
 	$field_email = '';
@@ -863,7 +865,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		### form w/ files, within session or single form 
 		if ( $ongoingSession!='0' && is_array($file)  && !empty($file) ){
 			foreach( $file['tmp_name'] as $fn ){
-				cforms2_add_file($fn, $doAttach, $fdata, $fpointer);
+				cforms2_add_file($fn, $fdata, $fpointer, $doAttach);
 				### debug
 				cforms2_dbg( "File = $fn, attach = $doAttach" );
 			}
@@ -873,7 +875,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 		if( $ongoingSession=='0' && is_array($_SESSION['cforms']['upload']) ){
 			foreach ( array_keys($_SESSION['cforms']['upload']) as $n ) {
 				if ($_SESSION['cforms']['upload'][$n]['files']) foreach ( array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m ){
-					cforms2_add_file(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $_SESSION['cforms']['upload'][$n]['doAttach'], $fdata, $fpointer );
+					cforms2_add_file(str_replace('xx',$subID,$_SESSION['cforms']['upload'][$n]['files'][$m]), $fdata, $fpointer, $_SESSION['cforms']['upload'][$n]['doAttach'] );
 					### debug
 					cforms2_dbg( "(end of session) File = ".$_SESSION['cforms']['upload'][$n]['files'][$m].", attach = ".$_SESSION['cforms']['upload'][$n]['doAttach'] );
                 }

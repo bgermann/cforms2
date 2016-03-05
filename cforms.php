@@ -179,15 +179,11 @@ function cforms2($args = '',$no = '') {
 
 	$validations = array();
 	$all_valid = 1;
-	$off=0;
-	$fieldsetnr=1;
 
-	$c_errflag=false;
 	$custom_error='';
 	$usermessage_class='';
 	$usermessage_text	= "";
 
-	$user = wp_get_current_user();
 	// TODO integrate this check better
 	$server_upload_size_error = false;
 	$displayMaxSize = ini_get('post_max_size');
@@ -1109,8 +1105,6 @@ function cforms2_build_fstat($f) {
 if (!function_exists('insert_cform')) {
 function insert_cform($no='',$custom='',$c='') {
 
-	$pid = cforms2_cfget_pid();
-
 	if( !is_numeric($no) )
 		$no = cforms2_check_form_name( $no );
 
@@ -1127,21 +1121,6 @@ function cforms2_shortcode($atts, $content) {
 		return '';
 	return cforms2('',cforms2_check_form_name($callform));
 }
-
-### GET $pid
-function cforms2_cfget_pid() {
-	global $post;
-
-	if ( isset($_GET['pid']) )
-		$pid = $_GET['pid'];
-	else if ($post->ID == 0)
-		$pid = false;
-	else
-		$pid = $post->ID;
-
-  return $pid;
-}
-
 
 ### inserts a custom cform anywhere you want
 if (!function_exists('insert_custom_cform')) {
