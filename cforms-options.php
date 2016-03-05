@@ -221,7 +221,6 @@ if( strlen($fd)<=2 ) {
 
                     <?php
 
-                    $isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
 					$ti = 1;
 
                     ### pre-check for verification field
@@ -333,14 +332,6 @@ if( strlen($fd)<=2 ) {
 									?>
 								</optgroup>
 
-                                <?php if ( $isTAF<>2 ) $dis=' disabled="disabled" class="disabled"'; else $dis=''; ?>
-								<optgroup label="<?php _e('--- WP comment form fields ---', 'cforms2'); ?>">
-									<option<?php echo $dis; ?> value="cauthor" <?php echo($field_type == 'cauthor'?' selected="selected"':''); ?>><?php _e('Comment Author', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="email" <?php echo($field_type == 'email'?' selected="selected"':''); ?>><?php _e('Author\'s Email', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="url" <?php echo($field_type == 'url'?' selected="selected"':''); ?>><?php _e('Author\'s URL', 'cforms2'); ?></option>
-									<option<?php echo $dis; ?> value="comment" <?php echo($field_type == 'comment'?' selected="selected"':''); ?>><?php _e('Author\'s Comment', 'cforms2'); ?></option>
-								</optgroup>
-
 								<optgroup label="<?php _e('--- HTML5 form fields ---', 'cforms2'); ?>">
 									<option value="html5color" <?php echo($field_type == 'html5color'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Color Field', 'cforms2'); ?></option>
 									<option value="html5date" <?php echo($field_type == 'html5date'?' selected="selected"':''); ?>>html5&nbsp;<?php _e('Date Field', 'cforms2'); ?></option>
@@ -374,7 +365,7 @@ if( strlen($fd)<=2 ) {
 
 
                             echo '<input tabindex="'.($ti++).'" class="allchk fieldclear chkfld" type="checkbox" title="'.__('clear field', 'cforms2').'" name="field_'.($i).'_clear"'.($field_clear == '1'?' checked="checked"':'');
-                            if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker','email','author','url','comment'))) )
+                            if( ! ((strpos($field_type, 'tml5')!==false) || in_array($field_type,array('pwfield','textarea','textfield','datepicker'))) )
                                 echo ' disabled="disabled"';
 							echo '/>';
 
@@ -600,7 +591,7 @@ if( strlen($fd)<=2 ) {
 
 				<tr class="ob">
 					<td class="obL"></td>
-					<td class="obR"><input <?php echo ($isTAF==2)?'disabled="disabled" class="allchk disabled"':'class="allchk"'; ?> type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if($isTAF==3) echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php echo sprintf(__('%sExtra variables%s e.g. {Title}', 'cforms2'),'<strong>','</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)==='3') echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php echo sprintf(__('%sExtra variables%s e.g. {Title}', 'cforms2'),'<strong>','</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
 
 				<tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be enabled here.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#extravariables','onclick="setshow(23)"'); ?> <strong><u><?php _e('Note:', 'cforms2')?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.', 'cforms2')?></td></tr>
@@ -947,28 +938,6 @@ if( strlen($fd)<=2 ) {
 				</tr>
 				</table>
 				<?php endif; ?>
-			</div>
-		</fieldset>
-
-
-		<fieldset class="cformsoptions" id="commentrep">
-			<div class="cflegend op-closed" id="p7" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-            	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('WP Comment Feature', 'cforms2')?>
-            </div>
-
-			<div class="cf-content" id="o7">
-
-				<p><?php _e('cforms can be used to replace your <em>default Wordpress comment form</em> (on posts &amp; pages), allowing your readers to either <strong>comment on the post</strong> or <strong>alternatively send the post author a note</strong>!', 'cforms2') ?></p>
-				<p><?php echo sprintf(__('There will be additional, comment specific <em>input field types</em> available with this feature turned on. For an easy start, use the <em>WP comment form preset</em>. <a href="%s" %s>Configuration details.</a>', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#commentrep','onclick="setshow(19)"'); ?></p>
-
-				<table class="form-table">
-				<tr class="ob">
-					<td class="obL"><label for="cforms_commentrep"><strong><?php _e('WP comment form', 'cforms2') ?></strong></label></td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_commentrep" name="cforms_commentrep" <?php if( $isTAF==2 ) echo "checked=\"checked\""; ?>/><label for="cforms_commentrep"><?php _e('Enable this form to optionally (user determined) act as a WP comment form', 'cforms2') ?></label></td>
-				</tr>
-
-				</table>
-
 			</div>
 		</fieldset>
 

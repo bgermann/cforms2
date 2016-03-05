@@ -79,7 +79,7 @@ function cforms2_move_files($trackf, $no, $subID, &$file){
 /**
  * write DB record
  */
-function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
+function cforms2_write_tracking_record($no,$field_email,$track){
 		global $wpdb, $cformsSettings;
 
 		cforms2_dbg('WRITING TRACKING RECORD');
@@ -97,14 +97,6 @@ function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
 			$sql='';
 			$dosave=false;
             foreach ( $track as $k => $v ){
-				if( $c <> '' ){
-				  	if( !preg_match('/\$\$\$custom/',$k) )
-    	            	continue;
-                    else{
-						$k = $v;
-                        $v = $track[$k];
-                    }
-                }
 
                 ### clean up keys
                 if ( preg_match('/\$\$\$/',$k) ) continue;
@@ -122,7 +114,7 @@ function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
             if( !$dosave ) return;
 
 			### good to go:
-			$page = (substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2')?$_POST['cforms_pl'.$no]:cforms2_get_current_page(); // WP comment fix
+			$page = cforms2_get_current_page();
 
 			$wpdb->query($wpdb->prepare(
 				"INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES (%s, %s, %s, %s);",
@@ -132,10 +124,7 @@ function cforms2_write_tracking_record($no,$field_email,$track,$c=''){
     		$subID = $wpdb->get_row("select LAST_INSERT_ID() as number from $wpdb->cformssubmissions;");
     		$subID = ($subID->number=='')?'1':$subID->number;
 
-			if( $c <> '' )
-				$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'commentID',%s),(%s,'email',%s),", $subID, $c, $subID, $field_email).$sql;
-            else
-				$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s),", $subID, $page).$sql;
+			$sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s),", $subID, $page).$sql;
 
 			$wpdb->query( substr(str_replace('-XXX-',esc_sql($subID),$sql) ,0,-1));
 		}
@@ -264,11 +253,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 			$_POST[$current_field] = "";
 
 
-		###  special email field in WP Comments
-		if ( $field_type=='email' )
-				$field_email = (isset($_POST['email']))?$_POST['email']:$user->user_email;
-
-
 		###  find email address
 		if ( $field_email == '' && $field_stat[3]=='1')
 				$field_email = $_POST[$current_field];
@@ -327,18 +311,6 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
         }
 		else if ( array_key_exists($field_stat[1], $captchas) )
 			$value = $_POST[ $field_stat[1] ];
-
-		else if( $field_type == 'cauthor' )  ###  WP Comments special fields
-			$value = ($user->display_name<>'')?$user->display_name:$_POST[$field_type];
-
-		else if( $field_type == 'url')
-			$value = ($user->user_url<>'')?$user->user_url:$_POST[$field_type];
-
-		else if( $field_type == 'email' )
-			$value = ($user->user_email<>'')?$user->user_email:$_POST[$field_type];
-
-		else if( $field_type == 'comment' )
-			$value = $_POST[$field_type];
 
 		else if( $field_type == 'hidden' )
 			$value = rawurldecode($_POST[$current_field]);
@@ -686,7 +658,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	            }
 
 	        ###  redirect to a different page on suceess?
-	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] && !$isWPcommentForm ) {
+	        if ( $cformsSettings['form'.$no]['cforms'.$no.'_redirect'] ) {
 	            if ( function_exists('my_cforms_logic') )
 	                $cf_redirect = my_cforms_logic($trackf, $cformsSettings['form'.$no]['cforms'.$no.'_redirect_page'],'redirection');  ### use trackf!
 	            else

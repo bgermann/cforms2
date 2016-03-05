@@ -37,16 +37,9 @@
 			$clear = 0;
 			$disabled = 0;
 			$readonly = 0;
-			$isTAF = (int)substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1);
 
         if( !$uploadfield )
           $uploadfield = ($type == 'upload');
-
-				if( in_array($type, array('cauthor','email','url','comment')) && !($isTAF==2) ){
-					$allgood = $WPc?false:true;
-					$usermsg .= '<span class="exMsg">'.__('WP comment form fields only supported when <em>WP comment feature</em> turned on!', 'cforms2').'</span>';
-					$WPc=true;
-				}
 
 				if( $type=='ccbox' ){
 					$allgood = $ccbox?false:true;
@@ -59,15 +52,15 @@
 					$emailtobox=true;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_required']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','checkbox','multiselectbox','selectbox','emailtobox','upload','email','cauthor','url','comment','radiobuttons'))) ) {
+				if(isset($_REQUEST['field_' . $i . '_required']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','checkbox','multiselectbox','selectbox','emailtobox','upload','radiobuttons'))) ) {
 					$required = 1;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_emailcheck']) && in_array($type,array('html5email','textfield','datepicker','email')) ){
+				if(isset($_REQUEST['field_' . $i . '_emailcheck']) && in_array($type,array('html5email','textfield','datepicker')) ){
 					$emailcheck = 1;
 				}
 
-				if(isset($_REQUEST['field_' . $i . '_clear']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea','email','cauthor','url','comment'))) ) {
+				if(isset($_REQUEST['field_' . $i . '_clear']) && ((strpos($type, 'tml5')!==false) || in_array($type,array('pwfield','textfield','datepicker','textarea'))) ) {
 					$clear = 1;
 				}
 
@@ -196,10 +189,6 @@
 
 	if ( isset($_REQUEST['cforms_taftrick']) )
 		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '3';
-
-
-	if ( isset($_REQUEST['cforms_commentrep']) )
-		$cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'] = '2';
 
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_tracking'] = preg_replace("/\\\+/", "\\",cforms2_get_from_request('cforms_tracking'));

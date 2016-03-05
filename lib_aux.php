@@ -125,9 +125,6 @@ function cforms2_format_email($track,$no){
 		if ($v == '' && $cformsSettings['form'.$no]['cforms'.$no.'_emptyoff'])
 			continue;
 
-        ### fix labels
-	 	if ( in_array($k,array('cauthor','email','url','comment')) ) continue;
-
 		if ( preg_match('/\$\$\$/',$k) ) continue;
 
 		if ( strpos($k, 'cf_form') !== false && preg_match('/^cf_form\d*_(.+)/',$k, $r) )
@@ -243,9 +240,6 @@ function cforms2_check_default_vars($m,$no) {
 
 	$time = current_time(get_option('time_format'));
 	$page = cforms2_get_current_page();
-
-	if ( substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'],0,1)=='2' ) // WP comment fix
-		$page = $permalink;
 
 	$find = get_post($pid);
 	if (!empty($find)) {

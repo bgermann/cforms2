@@ -103,17 +103,14 @@ function cforms2($args = '',$no = '') {
     cforms2_dbg("Original form on page #$oldno");
 
 	### multi page form: overwrite $no
-    $isWPcommentForm = (substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1)=='2');
     $isMPform = $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_form'];
-    $isTAF = (int)substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1);
 
 	##debug
-    cforms2_dbg("Comment form = $isWPcommentForm");
     cforms2_dbg("Multi-page form = $isMPform");
    	if (isset($_SESSION) && isset($_SESSION['cforms']['current']))
 		cforms2_dbg("PHP Session = ".$_SESSION['cforms']['current'] );
 
-	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && !$isWPcommentForm ){
+	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 ){
 		cforms2_dbg("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
 		$no = $_SESSION['cforms']['current'];
 	}
@@ -218,18 +215,6 @@ function cforms2($args = '',$no = '') {
 	###
 	###
 	$success=false;
-
-    ###  fix for WP Comment (loading after redirect)
-	if ( isset($_GET['cfemail']) && $isWPcommentForm ){
-		$usermessage_class = ' success';
-		$success=true;
-		if ( $_GET['cfemail']=='sent' || $_GET['cfemail']=='posted' ){
-			$usermessage_text = preg_replace ( '|\r\n|', '<br />', stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_success']) );
-		} else {
-			$usermessage_class = ' failure';
-			$success=false;		
-		}
-	}
 
 	### either show info message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
@@ -340,8 +325,6 @@ function cforms2($args = '',$no = '') {
 		$action = $cformsSettings['form'.$no]['cforms'.$no.'_action_page'];
 		$alt_action=true;
 	}
-	else if( $isWPcommentForm )
-		$action = admin_url('admin-ajax.php'); ### re-route and use WP comment processing
  	else
 		$action = cforms2_get_current_page() . '#usermessage'. $no . $actiontarget;
 
@@ -378,12 +361,6 @@ function cforms2($args = '',$no = '') {
 		$field_disabled   = $field_stat[5];
 		$field_readonly   = $field_stat[6];
 
-
-		### ommit certain fields
-		if( in_array($field_type,array('cauthor','url','email')) && $user->ID )
-			continue;
-
-
 		
 		### check for html5 attributes
 	    $obj = explode('|html5:', $field_name,2);
@@ -405,13 +382,6 @@ function cforms2($args = '',$no = '') {
 		    switch ( $field_type ) {
 			    case 'upload':
 					$custom_error .= 'cf_uploadfile' . $no . '-'. $i . '$#$'.$fielderr.'|';
-	    			break;
-
-				case "cauthor":
-				case "url":
-				case "email":
-				case "comment":
-					$custom_error .= $field_type . '$#$'.$fielderr.'|';
 	    			break;
 
 			    default:
@@ -538,10 +508,6 @@ function cforms2($args = '',$no = '') {
 				$input_id = $input_name = 'cf_uploadfile'.$no.'-'.$i;
 				$field_class = 'upload';
 				break;
-			case "email":
-			case "cauthor":
-			case "url":
-				$input_id = $input_name = $field_type;
 			case "datepicker":
 			case "textfield":
 			case "pwfield":
@@ -549,10 +515,6 @@ function cforms2($args = '',$no = '') {
 				break;
 			case "hidden":
 				$field_class = 'hidden';
-				break;
-			case 'comment':
-				$input_id = $input_name = $field_type;
-				$field_class = 'area';
 				break;
 			case 'textarea':
 				$field_class = 'area';
@@ -631,7 +593,6 @@ function cforms2($args = '',$no = '') {
 		$dp = '';
 		$field  = '';
 		$val = '';
-		$cookieset = '';
 		if (array_key_exists($field_type, $captchas)){
 			$html = $captchas[$field_type]->get_request($input_id, 'secinput fldrequired '.$field_class, $fieldTitle);
 			$field = $html;
@@ -672,14 +633,6 @@ function cforms2($args = '',$no = '') {
 						$ol = false;
 				} else $field='';
 				break;
-
-			case "cauthor":
-				$cookieset = 'comment_author_'.COOKIEHASH;
-			case "url":
-				$cookieset = ($cookieset=='')?'comment_author_url_'.COOKIEHASH:$cookieset;
-			case "email":
-				$cookieset = ($cookieset=='')?'comment_author_email_'.COOKIEHASH:$cookieset;
-				$field_value = ( $_COOKIE[$cookieset]<>'' ) ? $_COOKIE[$cookieset] : $field_value;
 			
 			case "datepicker":
 			case "textfield":
@@ -742,7 +695,6 @@ function cforms2($args = '',$no = '') {
 				$field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="'.$input_name.'" id="'.$input_id.'" value="' . $field_value  . '" title="'.$fieldTitle.'"/></li>';
 				break;
 
-			case "comment":
 			case "textarea":
 			    $onfocus = $field_clear?' onfocus="clearField(this)" onblur="setField(this)"' : '';
 
@@ -967,16 +919,12 @@ function cforms2($args = '',$no = '') {
 
 
 	### rest of the form
-	$comment = substr($cformsSettings['form'.$no]['cforms'.$no.'_tellafriend'], 0, 1) === '2';
-	if ( $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' && !$upload && !$custom && !$alt_action && !$comment)
+	if ( $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' && !$upload && !$custom && !$alt_action)
 		$ajaxenabled = ' onclick="return cforms_validate(\''.$no.'\', false)"';
 	else if ( ($upload || $custom || $alt_action) && $cformsSettings['form'.$no]['cforms'.$no.'_ajax']=='1' )
 		$ajaxenabled = ' onclick="return cforms_validate(\''.$no.'\', true)"';
 	else
-		$ajaxenabled = ' />'
-			. '<input type="hidden" name="cforms_id" value="' . $no
-			. '" /><input type="hidden" name="action" value="submitcomment_direct" />'
-			. '<input type="hidden" name="_wpnonce" value="' . wp_create_nonce('submitcomment_direct') . '"';
+		$ajaxenabled = '';
 
 
 	### just to appease html "strict"
@@ -986,15 +934,9 @@ function cforms2($args = '',$no = '') {
 	$custom_error=substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],4,1).$custom_error;
 
 
-	### WP comment or Extra Fields
-	if ( $isTAF > 0 ){
-
-		$nono = $isWPcommentForm?'':$no;
-
-		if ( $isWPcommentForm )
-			$content .= '<input type="hidden" name="comment_parent" id="comment_parent" value="'.( empty($_REQUEST['replytocom']) ? '0' : $_REQUEST['replytocom'] ).'"/>';
-
-		$content .= '<input type="hidden" name="comment_post_ID'.$nono.'" id="comment_post_ID'.$nono.'" value="' . ( isset($_GET['pid'])? $_GET['pid'] : get_the_ID() ) . '"/>' .
+	### Extra Fields
+	if ( substr($cformsSettings['form'.$oldno]['cforms'.$oldno.'_tellafriend'],0,1) === '3' ){
+		$content .= '<input type="hidden" name="comment_post_ID'.$no.'" id="comment_post_ID'.$no.'" value="' . ( isset($_GET['pid'])? $_GET['pid'] : get_the_ID() ) . '"/>' .
 					'<input type="hidden" name="cforms_pl'.$no.'" id="cforms_pl'.$no.'" value="' . ( isset($_GET['pid'])? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
 	}
 
@@ -1018,13 +960,7 @@ function cforms2($args = '',$no = '') {
 		$back = '<input type="submit" name="backbutton'.$no.'" id="backbutton'.$no.'" class="backbutton" value="' . $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_backtext'] . '">';
 
 
-	$content .= '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p>';
-	if ($isWPcommentForm) {
-		ob_start();
-		do_action( 'comment_form', get_the_ID() );
-		$content .= ob_get_clean();
-	}
-	$content .= '</form>';
+	$content .= '<p class="cf-sb">'.$reset.$back.'<input type="submit" name="sendbutton'.$no.'" id="sendbutton'.$no.'" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_submit_text'])) . '"'.$ajaxenabled.'/></p></form>';
 
 	### either show message above or below
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
@@ -1032,9 +968,6 @@ function cforms2($args = '',$no = '') {
 
 	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
 		$content .= '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>';
-
-	### debug
-	cforms2_dbg( "(cforms) Last stop...".print_r($_SESSION,1) );
 
 	return $content;
 }
@@ -1328,11 +1261,7 @@ function cforms2_field() {
 		'textfield',
 		'textarea',
 		'pwfield',
-		'hidden',
-		'cauthor',
-		'email',
-		'url',
-		'comment'
+		'hidden'
 	);
 	static $checkboxgroup = array(
         'checkboxgroup',
@@ -1426,17 +1355,8 @@ function cforms2_add_items_options( $admin_bar ){
 
 }
 
-function cforms2_submitcomment_direct() {
-	check_admin_referer( 'submitcomment_direct' );
-	require_once (plugin_dir_path(__FILE__) . 'lib_WPcomment.php');
-	cforms2_new_comment($_POST['cforms_id']);
-	die();
-}
-
 ### attaching to filters
 add_action('init', 'cforms2_delete_db_and_deactivate');
-add_action('wp_ajax_submitcomment_direct', 'cforms2_submitcomment_direct');
-add_action('wp_ajax_nopriv_submitcomment_direct', 'cforms2_submitcomment_direct');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_filter('the_content', 'cforms2_insert', 101);
 add_shortcode('cforms' , 'cforms2_shortcode' );

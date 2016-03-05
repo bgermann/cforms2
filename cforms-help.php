@@ -39,7 +39,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			<li><a href="#inserting" onclick="setshow(18)"><?php _e('Inserting a form', 'cforms2'); ?></a> &raquo;</li>
 			<li><a href="#fields" onclick="setshow(19)"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;
 			<ul style="margin-top:7px	">
-				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#qa" onclick="setshow(19)"><?php _e('SPAM protection: Q &amp; A', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#hfieldsets" onclick="setshow(19)"><?php _e('Fieldsets', 'cforms2'); ?></a> &raquo;</li>
 				<li><a href="#regexp" onclick="setshow(19)"><?php _e('Using regular expressions with form fields', 'cforms2'); ?></a> &raquo;</li>
@@ -118,7 +117,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 				<li><a href="#hidden" onclick="setshow(19)"><?php 	_e('Hidden fields', 'cforms2'); ?></a></li>
 				<li><a href="#qa" onclick="setshow(19)"><?php 		_e('SPAM protection: Q&amp;A input field', 'cforms2'); ?></a></li>
 				<li><a href="#upload" onclick="setshow(19)"><?php 	_e('File attachments / upload', 'cforms2'); ?></a></li>
-				<li><a href="#commentrep" onclick="setshow(19)"><?php _e('Special <em>WP Comment Feature</em> input fields', 'cforms2'); ?></a></li>
 			</ul>
 
 
@@ -526,58 +524,6 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 				</td>
 			</tr>
 		</table>
-
-		<p class="fieldtitle" id="commentrep">
-			<span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-			<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
-			<?php _e('WP Comment Feature input fields', 'cforms2'); ?>
-		</p>
-		<div style="float:right" align="center">
-			<img class="helpimg" style="float:none" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-crep1.png"   alt=""/><br /><br />
-			<img class="helpimg" style="float:none" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-crep2sm.png" alt=""/><br />
-			<?php _e('Example Configuration', 'cforms2'); ?>
-		</div>
-		<table class="hf" cellspacing="2" border="4">
-			<tr>
-				<td class="bleft"><?php _e('Special Fields:', 'cforms2'); ?></td><td class="bright">
-					<code><strong><?php _e('Comment Author', 'cforms2'); ?></strong></code><br />
-					<code><strong><?php _e('Author\'s Email', 'cforms2'); ?></strong></code><br />
-					<code><strong><?php _e('Author\'s URL', 'cforms2'); ?></strong></code><br />
-					<code><strong><?php _e('Author\'s Comment', 'cforms2'); ?></strong></code><br />
-				</td>
-			</tr>
-			<tr>
-				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:<br />for top 4 fields', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name  %1$s  default value  %1$s  <a href="#regexp">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
-			</tr>
-
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('To get it working:', 'cforms2'); ?></strong>
-					<ol>
-						<li><?php echo sprintf(__('Turn on the <a href="%s" %s>WP Comment feature</a> for the given form. (<em>Make sure it\'s the right one!</em>), otherwise you won\'t see the above input fields in the [<em>Field Type</em>] select box.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#commentrep','onclick="setshow(7)"'); ?></li>
-						<li><?php _e('Modify this form to include all the necessary (new) input fields, make them required or not, add regexp, anti SPAM fields or even custom err messages. All up to you. Or better yet, start with the built-in preset: "<strong>Advanced: WP comment...</strong>" form.', 'cforms2'); ?></li>
-						<li><?php _e('Edit your WP Theme template for comments. Remove the current <strong><u>comment_form() in comments.php</u></strong> entirely. Instead replace with a PHP call to cforms: <code  style="color:red">&lt;?php insert_cform(X); ?&gt;</code> with <strong>X</strong> being <u>omitted</u> if the form is your default form or starting at <strong>\'2\'</strong> (with single quotes!) for any subsequent form #.', 'cforms2'); ?></li>
-					</ol>
-				</td>
-			</tr>
-		</table>
-
-		<br />
-		<table class="hf" cellspacing="2" border="4">
-			<tr>
-				<td class="ball" colspan="2">
-					<strong><?php _e('Suggestions:', 'cforms2'); ?></strong>
-					<ol>
-						<li><?php echo sprintf(__('I recommend you choose the <strong>wide_form.css</strong> theme under the <a href="%s">Styling</a> menu. And adjust to your liking.', 'cforms2'),'?page='.$plugindir.'/cforms-css.php'); ?></li>
-						<li><?php _e('If you intend to make certain fields "required", I further recommend you add the text "<em>required</em>" to the input field label and set this style: <code  style="color:red">span.reqtxt, span.emailreqtxt {...</code> to <code  style="color:red">display:none;</code>', 'cforms2'); ?></li>
-					</ol>
-				</td>
-			</tr>
-		</table>
-
-
-		<br style="clear:both;"/>
 
 
 		<p class="fieldtitle" id="hfieldsets">

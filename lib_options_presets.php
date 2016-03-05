@@ -80,14 +80,3 @@
     }
 
 	$cformsSettings['form'.$no]["cforms{$no}_count_fields"] = ($i-1);
-
-	?>
-	<div id="message" class="updated fade"><p><strong>
-		<?php
-		_e('Your form has been populated with the preset input fields.', 'cforms2');
-		if( $taf==2 ){
-			echo '<br />'.sprintf(__('Please note, that in order to make this form work, the <strong>%s</strong> has been turned on, too!','cforms2'),__('WP comment feature','cforms2'));
-			echo '<br />'.__('Check with the HELP page on how to <u>properly</u> use this cforms feature and check all your settings below!','cforms2');
-		}
-		?>
-	</strong></p></div>

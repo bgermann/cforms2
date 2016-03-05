@@ -81,14 +81,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 
 	cforms2_dbg("\t ...validating field $field_name");
 
-	### ommit certain fields; validation only!
-	if( in_array($field_type,array('cauthor','url','email')) ){
-		if ( $user->ID ){
-			$validations[$i+$off] = 1;   ### auto approved
-			continue;
-		}
-	}
-
 	$captchas = cforms2_get_pluggable_captchas();
 
 	### captcha not for logged in users
@@ -151,9 +143,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 	else
 		$current_field = isset($_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)]) ? $_REQUEST['cf'.$no.'_field_' . ((int)$i+(int)$off)] : "";
 
-	if( in_array($field_type,array('comment','url','email','cauthor')) )  ### WP comment field name exceptions
-		$current_field = $_REQUEST[$field_type];
-
 	$current_field = is_array($current_field) ? $current_field : stripslashes($current_field);
 
 	if ( $field_emailcheck ) {  ### email field
@@ -161,11 +150,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		###debug
 		cforms2_dbg("\t\t ...found email field ($current_field) is_email = ".cforms2_is_email( $current_field ));
 
-		### special email field in WP Commente
-		if ( $field_type=='email' )
-			$validations[$i+$off] = cforms2_is_email( $_REQUEST['email']) || (!$field_required && $_REQUEST['email']=='');
-		else
-			$validations[$i+$off] = cforms2_is_email( $current_field ) || (!$field_required && $current_field=='');
+		$validations[$i+$off] = cforms2_is_email( $current_field ) || (!$field_required && $current_field=='');
 
 		if ( !$validations[$i+$off] && $err==0 ) $err=1;
 
@@ -185,7 +170,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 		cforms2_dbg("\t\t ...is required! check: current_field=$current_field");
 
 		if( in_array($field_type,array( 'html5color','html5date','html5datetime','html5datetime-local','html5email','html5month','html5number','html5range','html5search','html5tel','html5time','html5url','html5week',
-										'cauthor','url','comment','pwfield','textfield','datepicker','textarea')) ){
+										'pwfield','textfield','datepicker','textarea')) ){
 
 			$validations[$i+$off] = $current_field!='';
 
@@ -213,10 +198,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 				$err=3;
 				$fileerr = $cformsSettings['global']['cforms_upload_err2'];
 			}
-		} else if( in_array($field_type,array('cauthor','url','email','comment')) ) {
-
-			$validations[$i+$off] = $_REQUEST[$field_type]!='';
-
 		} else if( $field_type=="radiobuttons" ) {
 
 			$validations[$i+$off] = $current_field!='';
@@ -236,7 +217,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 	}
 
 	### REGEXP now outside of 'is required'
-	if( in_array($field_type,array('cauthor','url','comment','pwfield','textfield','datepicker','textarea')) ){
+	if( in_array($field_type,array('pwfield','textfield','datepicker','textarea')) ){
 
 		### regexp set for textfields?
 		$obj = explode('|', $c_title[0], 3);

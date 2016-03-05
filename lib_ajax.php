@@ -38,7 +38,7 @@ add_action( 'wp_ajax_submitcform', 'cforms2_submitcform' );
 add_action( 'wp_ajax_nopriv_submitcform', 'cforms2_submitcform' );
 
 ###
-###  submit comment
+###  submit form
 ###
 function cforms2_submitcform() {
 	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $cf_redirect;

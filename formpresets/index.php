@@ -24,8 +24,6 @@ __("Basic: *Newsletter* subscription form (w/ titles)", "cforms2");
 __("A small, two input field form that showcases regexp's (default value exclusion) and input field titles.", "cforms2");
 __("Advanced: Contact Form with Custom Err Messages", "cforms2");
 __("This form preset is based on the default preset, however, coming with field specific custom error texts. Please check your fancy error message settings, to make sure they're actually displayed.", "cforms2");
-__("Advanced: WP comment feature form", "cforms2");
-__("If you plan to replace your original Wordpress comment form with a (c)form, please use this form preset as a jump-start. All necessary fields are included and configured, including some custom, field specific error messages. <em><br />Note: It will also change your current cforms theme.</em>", "cforms2");
 __("Advanced: Online booking form", "cforms2");
 __("Features a quite impressive number of fields, useful for online booking forms. Including custom inline styles, 'must-agree' disclaimers with external link to disclaimer text & anti spam field. <br /><em>Note: Please use this preset with your first form as it does some nifty things with its CSS.</em>", "cforms2");
 __("Advanced: Sign up form (w/ limited seats available)", "cforms2");
