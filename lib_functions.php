@@ -36,10 +36,9 @@ function cforms2_delete_db_and_deactivate () {
 }
 
 ### backup/download cforms settings
-$buffer='';
 function cforms2_download(){
-	global $buffer, $cformsSettings;
-
+	global $cformsSettings;
+	$buffer='';
 	if( isset($_REQUEST['savecformsdata']) || isset($_REQUEST['saveallcformsdata']) ) {
 
 		if( isset($_REQUEST['savecformsdata']) ){
@@ -70,9 +69,8 @@ function cforms2_download(){
 
 ### backup/download cforms settings :: save the array
 function cforms2_save_array($vArray){
-	global $buffer;
     // Every array starts with chr(1)+"{"
-    $buffer .=  "\0{";
+    $buffer = "\0{";
 
     // Go through the given array
     reset($vArray);
@@ -83,7 +81,7 @@ function cforms2_save_array($vArray){
         $MyKey = addslashes(strval( key($vArray) ));
         if (is_array($Current)) {
             $buffer .= $MyKey."\0";
-            cforms2_save_array($Current);
+            $buffer .= cforms2_save_array($Current);
             $buffer .= "\0";
         } else {
             $Current = addslashes($Current);
@@ -99,6 +97,7 @@ function cforms2_save_array($vArray){
         if ($i > count($vArray)) break;
     }
     $buffer .= "\0}";
+	return $buffer;
 }
 
 
@@ -147,14 +146,14 @@ function cforms2_get_request_uri() {
 }
 
 
-function cforms2_enqueue_script_datepicker($localversion, $dateFormat) {
+function cforms2_enqueue_script_datepicker($dateFormat) {
 	global $wp_scripts;
 	$suffix = SCRIPT_DEBUG ? '' : '.min';
 
     $cformsSettings = get_option('cforms_settings');
 	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
-    wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), $localversion);
+    wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), CFORMS2_VERSION);
     $day_names = explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) );
     wp_localize_script('cforms-calendar', 'cforms2_cal', array(
         'buttonImageOnly'  => true,
@@ -183,13 +182,11 @@ function cforms2_enqueue_script_datepicker($localversion, $dateFormat) {
 }
 
 function cforms2_enqueue_style_admin() {
-    global $localversion;
-    wp_register_style('cforms-admin', plugin_dir_url(__FILE__) . 'cforms-admin.css', false, $localversion );
+    wp_register_style('cforms-admin', plugin_dir_url(__FILE__) . 'cforms-admin.css', false, CFORMS2_VERSION);
 	wp_enqueue_style('cforms-admin');
 }
 
 function cforms2_admin_enqueue_scripts() {
-	global $localversion;
 
 	$suffix = SCRIPT_DEBUG ? '' : '.min';
 	$r=plugin_dir_url(__FILE__);
@@ -205,7 +202,7 @@ function cforms2_admin_enqueue_scripts() {
     wp_register_script('jquery-jqmodal',$r.'js/jquery.jqmodal.js',array('jquery'),'1.4.0');
     wp_register_script('cforms-admin',$r.'js/cforms.admin.js', array(
         'jquery', 'jquery-jqmodal', 'jquery-ui-draggable', 'jquery-ui-sortable', 'wp-color-picker'
-    ), $localversion);
+    ), CFORMS2_VERSION);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
 		'cforms2_field' => wp_create_nonce('cforms2_field'),
@@ -218,19 +215,18 @@ function cforms2_admin_enqueue_scripts() {
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();
-    cforms2_enqueue_script_datepicker($localversion, 'dd/mm/yy');
+    cforms2_enqueue_script_datepicker(CFORMS2_VERSION, 'dd/mm/yy');
 }
 
 
 ### footer
 function cforms2_footer() {
-	global $localversion;
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
 			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
 		</em>
 	</p>
-	<p align="center">Version <?php echo $localversion; ?></p>
+	<p align="center">Version <?php echo CFORMS2_VERSION; ?></p>
 <?php
 }
 

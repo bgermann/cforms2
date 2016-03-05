@@ -51,8 +51,6 @@ cforms2_check_access_priv();
 <div class="updated fade"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms2'); ?></p></div>
 <?php
     delete_option('cforms_settings');
-	global $cformsSettings;
-    $cformsSettings = array();
 	cforms2_setup_db();
 	wp_die();
 ?>

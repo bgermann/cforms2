@@ -139,10 +139,10 @@ function cforms2_is_email($string){
 }
 
 
-
+global $cflimit;
+$cflimit = '';
 $inpFieldArr = array(); // for var[] type input fields
 $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
-$cflimit = '';
 $filefield = 0;
 
 cforms2_dbg("lib_validate.php: validating fields for form no. $no");
@@ -393,7 +393,6 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 ### have to upload a file?
 ###
 
-global $file;
 $file=array();
 
 if( isset($_FILES['cf_uploadfile'.$no]) && $all_valid){
@@ -852,7 +851,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	    ### adding attachments now
 	    ###
 	    $attached='';
-		global $fdata, $fpointer;
+
 		$fdata = array();
 		$fpointer = 0;
 
@@ -927,7 +926,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 
 	            ###  send copy or notification?
                 ###  not if no email & already CC'ed				
-	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme&&$trackf['data'][$ccme]<>'') ){
+	            if ( ($cformsSettings['form'.$no]['cforms'.$no.'_confirm']=='1' && $field_email<>'') || ($ccme && $trackf['data'][$ccme]<>'') ){
 
 	                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form'.$no]['cforms'.$no.'_fromemail']),$track);
 
@@ -972,7 +971,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
                     }
 
                     ### CC or auto conf?
-	                if ( $ccme&&$trackf['data'][$ccme]<>'' ) {
+	                if ( $ccme && $trackf['data'][$ccme]<>'' ) {
 							$mail->subj = $s[1];
 	                        if ( $mail->html_show ) {  // 3.2.2012 changed from html_show_ac > admin email setting dictates this!
 	                            $mail->is_html(true);

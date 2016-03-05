@@ -41,7 +41,7 @@ add_action( 'wp_ajax_nopriv_submitcform', 'cforms2_submitcform' );
 ###  submit form
 ###
 function cforms2_submitcform() {
-	global $all_valid, $cformsSettings, $no, $usermessage_class, $usermessage_text, $cf_redirect;
+	global $cformsSettings, $usermessage_class, $usermessage_text, $cf_redirect;
 	check_admin_referer( 'submitcform' );
 	$cformsSettings = get_option('cforms_settings');
 	$all_valid = true;

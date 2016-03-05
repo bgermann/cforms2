@@ -19,7 +19,6 @@
 
 require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 
-### new Global Settings container, will eventually be the only one!
 $cformsSettings = get_option('cforms_settings');
 
 $plugindir   = dirname(plugin_basename(__FILE__));

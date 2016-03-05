@@ -24,8 +24,7 @@
  * Text Domain: cforms2
  */
 
-global $localversion;
-$localversion = '14.11.4';
+define( 'CFORMS2_VERSION', '14.11.4' );
 
 ### db settings
 global $wpdb;
@@ -178,7 +177,7 @@ function cforms2($args = '',$no = '') {
 	$err=0;
 
 	$validations = array();
-	$all_valid = 1;
+	$all_valid = true;
 
 	$custom_error='';
 	$usermessage_class='';
@@ -219,7 +218,7 @@ function cforms2($args = '',$no = '') {
 	if ( function_exists('my_cforms_logic') )
 	    $usermessage_text = my_cforms_logic($trackf, $usermessage_text,'successMessage');
 
-   	$umc = ($usermessage_class<>''&&$no>1)?' '.$usermessage_class.$no:'';
+   	$umc = ($usermessage_class<>'' && $no>1)?' '.$usermessage_class.$no:'';
 
     ##debug
     cforms2_dbg("User info for form #$no");
@@ -962,7 +961,7 @@ function cforms2($args = '',$no = '') {
 	$usermessage_text	= cforms2_check_default_vars($usermessage_text,$no);
 	$usermessage_text	= cforms2_check_cust_vars($usermessage_text,$track);
 
-	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success&&$cformsSettings['form'.$no]['cforms'.$no.'_hide']))
+	if( substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=='y' && !($success && $cformsSettings['form'.$no]['cforms'.$no.'_hide']))
 		$content .= '<div id="usermessage'.$no.'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>';
 
 	return $content;
@@ -971,7 +970,7 @@ function cforms2($args = '',$no = '') {
 
 ### some css for positioning the form elements
 function cforms2_enqueue_scripts() {
-	global $wp_query, $localversion, $cformsSettings;
+	global $wp_query, $cformsSettings;
 
 	### add content actions and filters
 	$page_obj = $wp_query->get_queried_object();
@@ -983,15 +982,15 @@ function cforms2_enqueue_scripts() {
 	if( $onPages=='' || (in_array($page_obj->ID,$onPagesA) && !$exclude) || (!in_array($page_obj->ID,$onPagesA) && $exclude)){
 
 		if( $cformsSettings['global']['cforms_no_css']<>'1' ) {
-			wp_register_style( 'cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), $localversion );
+			wp_register_style( 'cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION );
 			wp_enqueue_style('cforms2');
 		}
 
 		### add calendar
 		if( $cformsSettings['global']['cforms_datepicker']=='1' ){
-			cforms2_enqueue_script_datepicker($localversion, stripslashes($cformsSettings['global']['cforms_dp_date']));
+			cforms2_enqueue_script_datepicker(stripslashes($cformsSettings['global']['cforms_dp_date']));
 		}
-		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), $localversion);
+		wp_register_script( 'cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION);
 		wp_localize_script( 'cforms2', 'cforms2_ajax', array(
 			'url'    => admin_url('admin-ajax.php'),
 			'nonces' => array(
@@ -1017,7 +1016,8 @@ function cforms2_findlast( $haystack,$needle,$offset=null ){
  * @deprecated since version 14.7.1
  */
 function cforms2_insert( $content ) {
-	global $cformsSettings; $newcontent='';
+	global $cformsSettings;
+	$newcontent='';
 
 	$last=0;
 	if ( ($a=strpos($content,'<!--cforms'))!==false ) {  ### only if form tag is present!
@@ -1155,8 +1155,8 @@ function cforms2_widget_init() {
 	register_widget('cforms2_widget');
 }
 
-### get # of submission left (max subs)
-function cforms2_get_submission_left($no='') {
+### get # of submissions left (max subs)
+function cforms2_get_submission_left($no) {
 	global $wpdb, $cformsSettings;
 
 	if ( $no==0 || $no==1 ) $no='';

@@ -18,7 +18,7 @@
  */
 
 function cforms2_setup_db () {
-global $wpdb, $cformsSettings, $localversion;
+global $wpdb, $cformsSettings;
 $cformsSettings = get_option('cforms_settings');
 
 ### new global settings container
@@ -26,7 +26,7 @@ $cformsSettings = get_option('cforms_settings');
 ### Common HTML message information
 
 $cformsSettings['global']['cforms_style_doctype'] 	= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
-$cformsSettings['global']['v'] = $localversion;
+$cformsSettings['global']['v'] = CFORMS2_VERSION;
 
 unset ( $cformsSettings['global']['cforms_style'] );
 $cformsSettings['global']['cforms_style']['body'] 	= 'style="margin:0; padding:0; font-family: Verdana, Arial; font-size: 13px; color:#555;"';

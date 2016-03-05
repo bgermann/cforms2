@@ -382,16 +382,7 @@ function cforms2_compare( $a,$b ){
 }
 
 
-###
-###
-### API functions
-###
-###
-
-
-### API function #1 : get tracked entries
-global $cfdata, $cfsort, $cfsortdir;
-
+### API function: get_cforms_entries
 if (!function_exists('get_cforms_entries')) {
 function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=false,$sd='asc') {
 	global $wpdb, $cformsSettings, $cfdataTMP, $cfsort, $cfsortdir;
@@ -436,7 +427,7 @@ function get_cforms_entries($fname=false,$from=false,$to=false,$s=false,$limit=f
     $in = '';
 
     $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $ORDER_1 $limit";
-	$all = $wpdb->get_results($sql); //TODO check SQL injection
+	$all = $wpdb->get_results($sql);
 	
 	foreach ( $all as $d ){
     	$in .= $wpdb->prepare("%d,", $d->id);
