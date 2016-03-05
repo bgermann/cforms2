@@ -201,7 +201,7 @@ function cforms2($args = '',$no = '') {
     ### non Ajax method
     if( isset($_REQUEST['sendbutton'.$no]) || $server_upload_size_error ) {
 		global $cf_redirect;
-		require_once (plugin_dir_path(__FILE__) . 'lib_nonajax.php');
+		require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
 		$usermessage_class = $all_valid?' success':' failure';
 		if ( $cf_redirect <> '' ) { // TODO rework to do this via HTTP?
 	        echo '<script type="text/javascript">'

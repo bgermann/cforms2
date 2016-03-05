@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2016 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ if ( $sub_id<>'' && $sub_id >= 0){
 	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformsdata WHERE sub_id = %s", $sub_id));
 
 	?>
-	<p><strong><?php echo $i; ?> <?php _e('Entry successfully removed', 'cforms2'); echo $del; ?>.</strong></p>
+	<p><strong><?php _e('Entry successfully removed', 'cforms2'); echo $del; ?>.</strong></p>
 	<?php
 }
 die();
