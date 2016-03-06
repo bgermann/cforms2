@@ -22,7 +22,7 @@
  * 
  * @deprecated since version 14.11
  */
-class cforms2_dreprecated_api {
+class cforms2_deprecated_api {
 
 	public static function my_cforms_action($cformsdata) {
 		if( function_exists('my_cforms_action') ) {
@@ -33,7 +33,7 @@ class cforms2_dreprecated_api {
 
 }
 
-add_action('cforms2_after_processing_action', 'cforms2_dreprecated_api::my_cforms_action');
+add_action('cforms2_after_processing_action', 'cforms2_deprecated_api::my_cforms_action');
 
 if (!function_exists('cf_extra_comment_data')) {
 	/**
