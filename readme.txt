@@ -238,6 +238,7 @@ GPL compliance!
 
 = 14.12 =
 
+* enhanced: make all date picker options configurable (breaks old datepicker settings)
 * enhanced: remove role capabilities on uninstall
 * other:    remove RSS support
 * other:    remove Tell-a-Friend support

@@ -146,30 +146,43 @@ function cforms2_get_request_uri() {
 }
 
 
-function cforms2_enqueue_script_datepicker($dateFormat) {
+function cforms2_enqueue_script_datepicker($date_format) {
 	global $wp_scripts;
 	$suffix = SCRIPT_DEBUG ? '' : '.min';
 
     $cformsSettings = get_option('cforms_settings');
-	$nav = $cformsSettings['global']['cforms_dp_nav'];
 
     wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), CFORMS2_VERSION);
-    $day_names = explode( ',', stripslashes($cformsSettings['global']['cforms_dp_days']) );
-    wp_localize_script('cforms-calendar', 'cforms2_cal', array(
+    $day_names = explode( ',', __('S,M,T,W,T,F,S', 'cforms2') );
+		$month_names = array(
+		__("January", 'cforms2'),
+		__("February", 'cforms2'),
+		__("March", 'cforms2'),
+		__("April", 'cforms2'),
+		__("May", 'cforms2'),
+		__("June", 'cforms2'),
+		__("July", 'cforms2'),
+		__("August", 'cforms2'),
+		__("September", 'cforms2'),
+		__("October", 'cforms2'),
+		__("November", 'cforms2'),
+		__("December", 'cforms2')
+	);
+	$dp_options = array_merge(array(
         'buttonImageOnly'  => true,
         'showOn'           => 'both',
-        'dateFormat'       => $dateFormat,
         'dayNamesMin'      => $day_names,
         'dayNamesShort'    => $day_names,
-        'monthNames'       => explode( ',', stripslashes($cformsSettings['global']['cforms_dp_months']) ),
-        'firstDay'         => stripslashes($cformsSettings['global']['cforms_dp_start']),
-        'prevText'         => stripslashes($nav[1]),
-        'nextText'         => stripslashes($nav[3]),
-        'closeText'        => stripslashes($nav[4]),
-        'buttonText'       => stripslashes($nav[5]),
-        'changeYear'       => $nav[6]==1,
+        'monthNames'       => $month_names,
+        'firstDay'         => get_option('start_of_week'),
+        'prevText'         => __('Previous Month', 'cforms2'),
+        'nextText'         => __('Next Month', 'cforms2'),
+        'closeText'        => __('Close', 'cforms2'),
+        'buttonText'       => __('Choose Date', 'cforms2'),
         'buttonImage'      => plugin_dir_url( __FILE__ ) . 'images/calendar.gif'
-    ) );
+    ), $cformsSettings['global']['cforms_dp_nav']);
+	$dp_options['dateFormat'] = $date_format;
+    wp_localize_script('cforms-calendar', 'cforms2_cal', $dp_options);
     wp_enqueue_script('cforms-calendar');
     
 	$jqui = $wp_scripts->query('jquery-ui-datepicker');
@@ -215,7 +228,7 @@ function cforms2_admin_enqueue_scripts() {
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();
-    cforms2_enqueue_script_datepicker(CFORMS2_VERSION, 'dd/mm/yy');
+    cforms2_enqueue_script_datepicker('dd/mm/yy');
 }
 
 
@@ -225,8 +238,8 @@ function cforms2_footer() {
 		<em>
 			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
 		</em>
+		<br />Version <?php echo CFORMS2_VERSION; ?>
 	</p>
-	<p align="center">Version <?php echo CFORMS2_VERSION; ?></p>
 <?php
 }
 

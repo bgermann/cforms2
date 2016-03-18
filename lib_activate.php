@@ -147,33 +147,9 @@ cforms2_setINI('global','cforms_liID', '0');
 cforms2_setINI('global','cforms_database', '0');
 
 cforms2_setINI('global','cforms_datepicker', '0');
-cforms2_setINI('global','cforms_dp_start', '0');
 cforms2_setINI('global','cforms_dp_date', 'mm/dd/yy');
-cforms2_setINI('global','cforms_dp_days', __('S,M,T,W,T,F,S', 'cforms2'));
-cforms2_setINI('global','cforms_dp_months', implode(',', array(
-    __("January", 'cforms2'),
-    __("February", 'cforms2'),
-    __("March", 'cforms2'),
-    __("April", 'cforms2'),
-    __("May", 'cforms2'),
-    __("June", 'cforms2'),
-    __("July", 'cforms2'),
-    __("August", 'cforms2'),
-    __("September", 'cforms2'),
-    __("October", 'cforms2'),
-    __("November", 'cforms2'),
-    __("December", 'cforms2')
-)));
 
-$nav[0]=__('Previous Year', 'cforms2');
-$nav[1]=__('Previous Month', 'cforms2');
-$nav[2]=__('Next Year', 'cforms2');
-$nav[3]=__('Next Month', 'cforms2');
-$nav[4]=__('Close', 'cforms2');
-$nav[5]=__('Choose Date', 'cforms2');
-$nav[6]='0';
-cforms2_setINI('global','cforms_dp_nav', $nav);
-
+cforms2_setINI('global','cforms_dp_nav', array('changeYear' => true));
 
 ### migrate previous MP settings
 for( $i=1; $i<=$cformsSettings['global']['cforms_formcount']; $i++ ){
@@ -196,10 +172,6 @@ if( isset($cformsSettings['global']['cforms_include']) && $cformsSettings['globa
     $cformsSettings['global']['cforms_inexclude']['ids'] = $cformsSettings['global']['cforms_include'];
     unset($cformsSettings['global']['cforms_include']);
 }
-
-### migrate quoted values in months/days fields
-$cformsSettings['global']['cforms_dp_days'] = str_replace('"', '', $cformsSettings['global']['cforms_dp_days']);
-$cformsSettings['global']['cforms_dp_months'] = str_replace('"', '', $cformsSettings['global']['cforms_dp_months']);
 
 ### UPDATE 'the one'
 update_option('cforms_settings',$cformsSettings);

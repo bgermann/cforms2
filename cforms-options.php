@@ -162,14 +162,14 @@ if( strlen($fd)<=2 ) {
 		<table class="chgformbox" title="<?php _e('Navigate to your other forms.', 'cforms2') ?>">
 		<tr>
             <td class="chgL">
-            	<label for="switchform" class="bignumber navbar"><?php _e('Navigate to', 'cforms2') ?> </label>
+            	<label for="pickform" class="bignumber navbar"><?php _e('Navigate to', 'cforms2') ?> </label>
                 <?php echo $formlistbox; ?><input type="submit" class="allbuttons go" id="go" name="go" value="<?php _e('Go', 'cforms2');?>"/>
             </td>
             <td class="chgM">
                 <?php
                 for ($i=1; $i<=$FORMCOUNT; $i++) {
                     $j   = ( $i > 1 )?$i:'';
-                    echo '<input id="switchform" title="'.stripslashes($cformsSettings['form'.$j]['cforms'.$j.'_fname']).'" class="allbuttons chgbutton'.(($i <> $noDISP)?'':'hi').'" type="submit" name="switchform" value="'.$i.'"/>';
+                    echo '<input title="'.stripslashes($cformsSettings['form'.$j]['cforms'.$j.'_fname']).'" class="allbuttons chgbutton'.(($i <> $noDISP)?'':'hi').'" type="submit" name="switchform" value="'.$i.'"/>';
                 }
                 ?>
         	</td>
@@ -496,7 +496,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_success"><?php _e('<strong>Success message</strong><br />when form filled out correctly', 'cforms2'); ?></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea rows="80px" cols="200px" name="cforms_success" id="cforms_success"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_success'])); ?></textarea></td>
+						<td><textarea name="cforms_success" id="cforms_success"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_success'])); ?></textarea></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -505,7 +505,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_failure"><?php _e('<strong>Failure message</strong><br />when missing fields or wrong field<br />formats (regular expr.)', 'cforms2'); ?></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea rows="80px" cols="200px" name="cforms_failure" id="cforms_failure" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_failure'])); ?></textarea></td>
+						<td><textarea name="cforms_failure" id="cforms_failure" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_failure'])); ?></textarea></td>
                     	</tr></table>
 					</td>
 				</tr>
@@ -652,7 +652,7 @@ if( strlen($fd)<=2 ) {
 				<?php if( $cformsSettings['form'.$no]['cforms'.$no.'_maxentries'] <> '' || $cformsSettings['form'.$no]['cforms'.$no.'_startdate'] <> '' || $cformsSettings['form'.$no]['cforms'.$no.'_enddate'] <> '' ) : ?>
 				<tr class="ob">
 	            	<td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
-	                <td class="obR"><table><tr><td><textarea rows="80px" cols="200px" name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])); ?></textarea></td></tr></table></td>
+	                <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_limittxt'])); ?></textarea></td></tr></table></td>
 				</tr>
 				<?php endif; ?>
 
@@ -740,7 +740,7 @@ if( strlen($fd)<=2 ) {
 					</td>
 					<td class="obR" style="padding-bottom:0">
                     	<table><tr>
-						<td><textarea rows="80px" cols="200px" name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header'])); ?></textarea></td>
+						<td><textarea name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -763,7 +763,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL" style="padding-bottom:0"><label for="cforms_header_html"><?php _e('<strong>Admin HTML message</strong><br />(Header)', 'cforms2') ?></label></td>
 					<td class="obR" style="padding-bottom:0">
                     	<table><tr>
-						<td><textarea rows="80px" cols="200px" name="cforms_header_html" id="cforms_header_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header_html'])); ?></textarea></td>
+						<td><textarea name="cforms_header_html" id="cforms_header_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_header_html'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -832,7 +832,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_cmsg"><strong><?php _e('TEXT message', 'cforms2') ?></strong></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea rows="80px" cols="200px" name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg'])); ?></textarea></td>
+						<td><textarea name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -845,7 +845,7 @@ if( strlen($fd)<=2 ) {
 					<td class="obL"><label for="cforms_cmsg_html"><strong><?php _e('HTML message', 'cforms2') ?></strong></label></td>
 					<td class="obR">
                     	<table><tr>
-						<td><textarea rows="80px" cols="200px" name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'])); ?></textarea></td>
+						<td><textarea name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form'.$no]['cforms'.$no.'_cmsg_html'])); ?></textarea></td>
 						<td><?php echo sprintf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#variables','onclick="setshow(23)"'); ?></td>
                     	</tr></table>
 		 			</td>
@@ -962,8 +962,8 @@ if( strlen($fd)<=2 ) {
 			<input id="cfbar-addbutton" class="allbuttons addbutton" type="submit" name="addbutton" value=""/>
 			<input id="cfbar-dupbutton" class="allbuttons dupbutton" type="submit" name="dupbutton" value=""/>
 			<input id="cfbar-delbutton" class="allbuttons deleteall" type="submit" name="delbutton" value=""/>
-			<input id="preset" type="button" class="jqModalInstall allbuttons" name="<?php echo plugin_dir_url(__FILE__); ?>include/" value=""/>
-			<input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=""/>
+			<input id="preset" type="button" class="jqModalInstall allbuttons" name="<?php echo plugin_dir_url(__FILE__); ?>include/" value=" "/>
+			<input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=" "/>
 			<input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
 	    </div>
 
@@ -981,13 +981,13 @@ function cforms2_insert_modal(){
 		<div class="cf_ed_header"><?php _e('Input Field Settings', 'cforms2'); ?></div>
 		<div class="cf_ed_main">
 			<div id="cf_target"></div>
-			<div class="controls"><a href="#" id="ok" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
+			<div class="controls"><a href="#" id="ok" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_installbox">
 		<div class="cf_ed_header"><?php _e('cforms Out-Of-The-Box Form Repository', 'cforms2'); ?></div>
 		<div class="cf_ed_main">
-			<form action="" name="installpreset" method="post">
+			<form name="installpreset" method="post">
 				<div id="cf_installtarget"></div>
 				<div class="controls"><a href="#" id="okInstall" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" id="cancelInstall" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
 				<input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
@@ -997,7 +997,7 @@ function cforms2_insert_modal(){
 	<div class="jqmWindow" id="cf_backupbox">
 		<div class="cf_ed_header"><?php _e('Backup &amp; Restore Form Settings', 'cforms2'); ?></div>
 		<div class="cf_ed_main_backup">
-			<form enctype="multipart/form-data" action="" name="backupform" method="post">
+			<form enctype="multipart/form-data" name="backupform" method="post">
 				<div class="controls">
 
 	                <input type="submit" id="savecformsdata" name="savecformsdata" class="allbuttons backupbutton"  value="<?php _e('Backup current form settings', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" /><br />
@@ -1005,7 +1005,7 @@ function cforms2_insert_modal(){
 	                <input type="file" id="upload" name="importall" size="25" />
 	                <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
 
-                    <p class="cancel"><a href="#" id="cancel" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
+                    <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
 
         	    </div>
 				<input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
