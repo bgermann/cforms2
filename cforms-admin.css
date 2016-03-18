@@ -830,6 +830,9 @@ margin:5px 6px 2px;
 .infotxt table.hf td {
 padding:0 10px;
 }
+table.hf {
+border: solid 4px;
+}
 
 /****************************************************************
   STYLING PAGE
@@ -1056,7 +1059,6 @@ background:#FFF;
 font-size:11px;
 padding:4px 10px;
 border-style:solid;
-border-color:#FFF;
 border-color:#C9D6ED;
 line-height:1.3em;
 }

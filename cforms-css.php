@@ -82,15 +82,15 @@ if ( isset($_POST['chg_css']) ){
 
 	<p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms2') ?></p>
 
-	<form id="selectcss" method="post" action="">
+	<form id="selectcss" method="post">
 			 <fieldset class="cformsoptions">
 
 				<table>
-				<tr valign="top">
+				<tr>
 
 					<td>
 						<table>
-							<tr valign="middle">
+							<tr>
 								<td class="cssHint"><?php _e('Please choose a theme file to style your forms' , 'cforms2') ?></td>
 								<td class="cssStyles">
 									<?php ### include all css files
@@ -188,7 +188,7 @@ if ( isset($_POST['chg_css']) ){
 
 								$existsjpg = file_exists($d.'/'.$style.'.jpg');
 								if ( $existsjpg )
-									echo __('PREVIEW:', 'cforms2').'<br /><img height="228px" width="300px" src="' . plugin_dir_url(__FILE__).'styling/'.$style.'.jpg' . '" alt="' . __('Theme Preview', 'cforms2') . '" title="' . __('Theme Preview', 'cforms2').': ' . $style .'"/>';
+									echo __('PREVIEW:', 'cforms2').'<br /><img height="228" width="300" src="' . plugin_dir_url(__FILE__).'styling/'.$style.'.jpg' . '" alt="' . __('Theme Preview', 'cforms2') . '" title="' . __('Theme Preview', 'cforms2').': ' . $style .'"/>';
 
 						}?>
 					</td>
