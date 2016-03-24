@@ -176,7 +176,6 @@ jQuery(function() {
         } );
 
         hasht.parentNode.previousSibling.value = line + l_chkstate + l_title + l_cerr + l_html5;
-        return false;
     });
 
     /* LAUNCHED AFTER AJAX */
