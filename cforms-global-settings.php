@@ -325,7 +325,10 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 				</table>
 			</div>
 		</fieldset>
-		<?php if (class_exists('cforms2_really_simple_captcha', false)) : ?>
+		<?php
+			$cap = $cformsSettings['global']['cforms_captcha_def'];
+			if (class_exists('cforms2_really_simple_captcha', false)) :
+		?>
 		<fieldset id="captcha" class="cformsoptions">
 			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
             	<a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms2')?>
@@ -334,7 +337,6 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 			<div class="cf-content" id="o26">
 
 				<?php
-					$cap = $cformsSettings['global']['cforms_captcha_def'];
 					$h = cforms2_prep( $cap['h'],25 );
 					$w = cforms2_prep( $cap['w'],115 );
 					$c = cforms2_prep( $cap['c'],'#000066' );
