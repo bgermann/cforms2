@@ -20,6 +20,10 @@
 function cforms2_setup_db () {
 global $wpdb, $cformsSettings;
 $cformsSettings = get_option('cforms_settings');
+if (!is_array($cformsSettings)) {
+	$cformsSettings = array();
+	$cformsSettings['global'] = array();
+}
 
 ### new global settings container
 
