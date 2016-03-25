@@ -39,10 +39,8 @@ require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 
 
 $role = get_role('administrator');
-if(!$role->has_cap('manage_cforms')) {
+if($role != null) {
 	$role->add_cap('manage_cforms');
-}
-if(!$role->has_cap('track_cforms')) {
 	$role->add_cap('track_cforms');
 }
 
