@@ -779,11 +779,11 @@ echo '&lt;/table&gt;';</pre></td></tr>
 	                <tr><td><?php _e('Multi line field', 'cforms2'); ?>:</td><td> <code>textarea</code></td></tr>
 	                <tr><td><?php _e('Hidden field', 'cforms2'); ?>:</td><td> <code>hidden</code></td></tr>
 	                <tr><td><?php _e('Password field', 'cforms2'); ?>:</td><td> <code>pwfield</code></td></tr>
-	                <tr><td><?php _e('Date picker field', 'cforms2'); ?>:</td><td> <code>datepicker</code></td><td class="cf-wh">&nbsp;</td><td><strong><?php _e('WP Comment Feature', 'cforms2'); ?></strong></td><td></td></tr>
-	                <tr><td><?php _e('Check boxes', 'cforms2'); ?>:</td><td> <code>checkbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Comment Author', 'cforms2'); ?>:</td><td> <code>author</code></td></tr>
-	                <tr><td><?php _e('Check boxes groups', 'cforms2'); ?>:</td><td> <code>checkboxgroup</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s Email', 'cforms2'); ?>:</td><td> <code>email</code></td></tr>
-	                <tr><td><?php _e('Drop down fields', 'cforms2'); ?>:</td><td> <code>selectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s URL', 'cforms2'); ?>:</td><td> <code>url</code></td></tr>
-	                <tr><td><?php _e('Multi select boxes', 'cforms2'); ?>:</td><td> <code>multiselectbox</code></td><td class="cf-wh">&nbsp;</td><td><?php _e('Author\'s Comment', 'cforms2'); ?>:</td><td> <code>comment</code></td></tr>
+	                <tr><td><?php _e('Date picker field', 'cforms2'); ?>:</td><td> <code>datepicker</code></td></tr>
+	                <tr><td><?php _e('Check boxes', 'cforms2'); ?>:</td><td> <code>checkbox</code></td></tr>
+	                <tr><td><?php _e('Check boxes groups', 'cforms2'); ?>:</td><td> <code>checkboxgroup</code></td></tr>
+	                <tr><td><?php _e('Drop down fields', 'cforms2'); ?>:</td><td> <code>selectbox</code></td></tr>
+	                <tr><td><?php _e('Multi select boxes', 'cforms2'); ?>:</td><td> <code>multiselectbox</code></td></tr>
 	                <tr><td><?php _e('\'CC\' check box', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td></tr>
 	                <tr><td><?php _e('Multi-recipients field', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
 	                <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>cforms2_question_and_answer</code></td></tr>
