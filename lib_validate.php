@@ -378,12 +378,7 @@ if ($all_valid) for ($i = 1; $i <= $field_count; $i++) {
 
 	if ( $c_err[1] <> '' && $validations[$i+$off] == false ){
 		$c_errflag=4;
-
-		if ( $cformsSettings['global']['cforms_liID']=='1' ){
-			$custom_error .= '<li><a href="#li-'.$no.'-'.($i+$off).'">'.stripslashes($c_err[1]).' &raquo;</li></a>';
-		} else
-			$custom_error .= '<li>' . stripslashes($c_err[1]) . '</li>';
-
+		$custom_error .= '<li><a href="#li-'.$no.'-'.($i+$off).'">'.stripslashes($c_err[1]).' &raquo;</li></a>';
 	}
 
 }

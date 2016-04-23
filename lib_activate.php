@@ -99,7 +99,7 @@ cforms2_setINI('form','cforms_failure', __('Please fill in all the required fiel
 cforms2_setINI('form','cforms_limittxt', '<strong>'.__('No more submissions accepted at this time.', 'cforms2').'</strong>');
 
 cforms2_setINI('form','cforms_working', __('One moment please...', 'cforms2'));
-cforms2_setINI('form','cforms_showpos', 'ynyyy');
+cforms2_setINI('form','cforms_showpos', 'ynyy');
 
 cforms2_setINI('form','cforms_hide', false);
 cforms2_setINI('form','cforms_redirect', false);
@@ -145,8 +145,6 @@ cforms2_setINI('global','cforms_crlf', array('b' => '0'));
 
 cforms2_setINI('global','cforms_css', 'cforms2012.css');
 cforms2_setINI('global','cforms_jqueryuitheme', 'smoothness');
-cforms2_setINI('global','cforms_labelID', '0');
-cforms2_setINI('global','cforms_liID', '0');
 
 cforms2_setINI('global','cforms_database', '0');
 

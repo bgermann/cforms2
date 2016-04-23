@@ -83,18 +83,14 @@ function cforms_validate(no, upload) {
     var check_for_customerr = function (id) {
 
         var parent_el = document.getElementById(id).parentNode;
-        if( show_err_li==='y' ) {
-            parent_el.className = "cf_li_err";
-        }
+        parent_el.className = "cf_li_err";
 
         return set_customerr(id, parent_el);
     };
 
     var check_for_customerr_radio = function (id, cerr) {
         var parent_el = document.getElementById( id.substr(0, id.length - 5) );
-        if ( show_err_li === 'y' ) {
-            parent_el.className = "cf-box-title cf_li_err";
-        }
+        parent_el.className = "cf-box-title cf_li_err";
 
         return set_customerr(cerr, parent_el);
     };
@@ -255,18 +251,16 @@ function cforms_validate(no, upload) {
     var waiting = decodeURI(document.getElementById('cf_working' + no).value);
     waiting = waiting.replace(/\\/g,"");
 
-    var insert_err = new Array();
-    var insert_err_p = new Array();
+    var insert_err = [];
+    var insert_err_p = [];
     var insert_err_count = 0;
 
-    var all_custom_error = new Array();
+    var all_custom_error = [];
 
     var customerr_concatenated = document.getElementById('cf_customerr' + no).value;
-    var show_err_li  = customerr_concatenated.substr(0,1);
-    var show_err_ins = customerr_concatenated.substr(1,1);
-    var jump_to_err = customerr_concatenated.substr(2,1);
+    var show_err_ins = customerr_concatenated.substr(0,1);
 
-    var error_container = decodeURIComponent( customerr_concatenated.substr(3) ).split('|');
+    var error_container = decodeURIComponent( customerr_concatenated.substr(1) ).split('|');
 
     for (var i=0; i<error_container.length; i++ ) {
         var keyvalue = error_container[i].split('$#$');
@@ -473,12 +467,6 @@ function cforms_validate(no, upload) {
 
     //write out all custom errors
     if( show_err_ins==='y' ) write_customerr();
-
-    //set focus to last erroneous input field
-    if ( last_one!='' && jump_to_err==='y' ){
-        location.hash='#'+last_one;
-        document.getElementById(last_one).focus();
-    }
 
     //all good?  if "upload file" field included, don't do ajax
     if ( all_valid && upload ){

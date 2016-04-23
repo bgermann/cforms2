@@ -448,12 +448,10 @@ function cforms2($args = '',$no = '') {
 
 		### label ID's
 		$labelIDx = '';
-		$labelID  = ($cformsSettings['global']['cforms_labelID']=='1')?' id="label-'.$no.'-'.$i.'"':'';
+		$labelID  = ' id="label-'.$no.'-'.$i.'"';
 
 		### <li> ID's
-		$liID = ( $cformsSettings['global']['cforms_liID']=='1' ||
-				  substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1)=="y" ||
-				  substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1)=="y" )?' id="li-'.$no.'-'.$i.'"':'';
+		$liID = ' id="li-'.$no.'-'.$i.'"';
 
 		### input field names & label
 		$isFieldArray = false;
@@ -538,10 +536,7 @@ function cforms2($args = '',$no = '') {
 			### errors...
 			if ( !$server_upload_size_error && $validations[$i]!=1) {
 				$field_class .= ' cf_error';
-
-				### enhanced error display
-				if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1)=="y")
-					$liERR = 'cf_li_err';
+				$liERR = 'cf_li_err';
 				if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1)=="y")
 					$insertErr = ($fielderr<>'')?'<ul class="cf_li_text_err"><li>'.stripslashes($fielderr).'</li></ul>':'';
 			}
@@ -924,7 +919,7 @@ function cforms2($args = '',$no = '') {
 	$content .= '<fieldset class="cf_hidden"><legend>&nbsp;</legend>';
 
 	### custom error
-	$custom_error=substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1).substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],4,1).$custom_error;
+	$custom_error=substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],3,1).$custom_error;
 
 
 	### Extra Fields

@@ -100,8 +100,7 @@
 	$cformsSettings['form'.$no]['cforms'.$no.'_failure'] =       cforms2_get_from_request('cforms_failure');
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_showpos'] = (cforms2_get_from_request('cforms_showposa')?'y':'n').(cforms2_get_from_request('cforms_showposb')?'y':'n').
-																	(cforms2_get_from_request('cforms_errorLI')?'y':'n').(cforms2_get_from_request('cforms_errorINS')?'y':'n').
-																	(cforms2_get_from_request('cforms_jump')?'y':'n');
+															'y'.(cforms2_get_from_request('cforms_errorINS')?'y':'n');
 
 	$cformsSettings['form'.$no]['cforms'.$no.'_formaction'] =    cforms2_get_from_request('cforms_formaction')?true:false;
 	$cformsSettings['form'.$no]['cforms'.$no.'_dontclear'] =     cforms2_get_from_request('cforms_dontclear')?true:false;

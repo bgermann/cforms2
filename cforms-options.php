@@ -516,21 +516,6 @@ if( strlen($fd)<=2 ) {
 						<input class="allchk" type="checkbox" id="cforms_showposb" name="cforms_showposb" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],1,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_showposb"><?php _e('Below form', 'cforms2'); ?></label>
 					</td>
 				</tr>
-
-				<tr class="obSEP"><td colspan="2"></td></tr>
-
-				<tr class="ob">
-					<td class="obL"><label for="cforms_jump"><strong><?php _e('Jump to Error', 'cforms2'); ?></strong></label></td>
-					<td class="obR">
-						<input class="allchk" type="checkbox" id="cforms_jump" name="cforms_jump" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],4,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_jump"><?php _e('(Only Javascript)', 'cforms2'); ?></label>
-					</td>
-				</tr>
-				<tr class="ob">
-					<td class="obL"><label for="cforms_errorLI"><strong><?php _e('Fancy Error messages', 'cforms2'); ?></strong></label></td>
-					<td class="obR">
-						<input class="allchk" type="checkbox" id="cforms_errorLI" name="cforms_errorLI" <?php if(substr($cformsSettings['form'.$no]['cforms'.$no.'_showpos'],2,1)=="y") echo "checked=\"checked\""; ?>/><label for="cforms_errorLI"><?php _e('Enhanced display of errors (see also new theme CSS classes)', 'cforms2'); ?></label>
-					</td>
-				</tr>
 				<tr class="ob">
 					<td class="obL"><label for="cforms_errorINS"><strong><?php _e('Embedded Custom Error<br />Messages', 'cforms2'); ?></strong></label></td>
 					<td class="obR">

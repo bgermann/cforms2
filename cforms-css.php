@@ -40,19 +40,7 @@ if ( $cformsSettings['global']['cforms_formcount'] == '' ){
 	die;
 }
 
-###
-### Enable/Disable LabelIDs ?
-###
-
-if(isset($_POST['label-ids'])){
-	$cformsSettings['global']['cforms_labelID'] = $cformsSettings['global']['cforms_labelID']?'0':'1';
-	update_option('cforms_settings',$cformsSettings);
-}
-else if(isset($_POST['li-ids'])){
-	$cformsSettings['global']['cforms_liID'] = $cformsSettings['global']['cforms_liID']?'0':'1';
-	update_option('cforms_settings',$cformsSettings);
-}
-else if(isset($_POST['no-css'])){
+if(isset($_POST['no-css'])){
 	$cformsSettings['global']['cforms_no_css'] = $cformsSettings['global']['cforms_no_css']?'0':'1';
 	update_option('cforms_settings',$cformsSettings);
 }
@@ -160,18 +148,9 @@ if ( isset($_POST['chg_css']) ){
 							</tr>
 							<tr>
 								<td colspan="2">
-									<p><?php _e('For comprehensive customization support you may choose to turn on <strong>label &amp; list element ID\'s</strong>. This way each input field &amp; label can be specifically addressed via CSS styles.', 'cforms2') ?> </p>
-
-									<input type="submit" name="label-ids" id="label-ids" class="allbuttons" value="<?php if ( $cformsSettings['global']['cforms_labelID']=='' || $cformsSettings['global']['cforms_labelID']=='0' ) _e('Activate Label IDs', 'cforms2'); else  _e('Deactivate Label IDs', 'cforms2'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_labelID']=='1' ) _e('Currently turned on ', 'cforms2'); ?>
-									<br />
-									<input type="submit" name="li-ids" id="li-ids" class="allbuttons" value="<?php if ( $cformsSettings['global']['cforms_liID']=='' || $cformsSettings['global']['cforms_liID']=='0' ) _e('Activate List Element IDs', 'cforms2'); else  _e('Deactivate List Element IDs', 'cforms2'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_liID']=='1' ) _e('Currently turned on ', 'cforms2'); ?>
-									<br />
 									<br />
 									<input type="submit" name="no-css" id="no-css" class="allbuttons deleteall" style="height:30px" value="<?php if ( $cformsSettings['global']['cforms_no_css']=='' || $cformsSettings['global']['cforms_no_css']=='0' ) _e('Deactivate CSS styling altogether!', 'cforms2'); else  _e('Reactivate CSS styling!', 'cforms2'); ?>" />
 									<?php if ( $cformsSettings['global']['cforms_no_css']=='1' ) _e('No styles are being used', 'cforms2'); ?>
-
 								</td>
 							</tr>
 							<tr>
