@@ -125,7 +125,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					  sub_date timestamp,
 					  email varchar(40) default '',
 					  ip varchar(15) default '',
-					  PRIMARY KEY  (id) ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+					  PRIMARY KEY  (id) ) " . $wpdb->get_charset_collate() . ";";
 
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
@@ -134,7 +134,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 					  f_id int(11) unsigned auto_increment primary key,
 					  sub_id int(11) unsigned NOT NULL,
 					  field_name varchar(100) NOT NULL default '',
-					  field_val text) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+					  field_val text) " . $wpdb->get_charset_collate() . ";";
 
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
