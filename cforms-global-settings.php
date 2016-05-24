@@ -492,17 +492,15 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 </div>
 
 <div class="jqmWindow" id="cf_backupbox">
-    <div class="cf_ed_header"><?php _e('Backup &amp; Restore All Settings','cforms2'); ?></div>
+    <div class="cf_ed_header"><?php _e('Restore all settings (old)','cforms2'); ?></div>
     <div class="cf_ed_main_backup">
         <form enctype="multipart/form-data" name="backupform" method="post">
             <div class="controls">
 
 				<p class="ex"><?php _e('Restoring all settings will overwrite all form specific &amp; global settings!', 'cforms2') ?></p>
 				<p>
-                	<input type="submit" name="saveallcformsdata" title="<?php _e('Backup all settings now!', 'cforms2') ?>" class="allbuttons" value="<?php _e('Backup all settings now!', 'cforms2') ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();"/>&nbsp;&nbsp;&nbsp;
                 	<input type="file" id="importall" name="importall" size="25" /><input type="submit" name="restoreallcformsdata" title="<?php _e('Restore all settings now!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('Restore all settings now!', 'cforms2') ?>" onclick="return confirm('<?php _e('With a broken backup file, this action may erase all your settings! Do you want to continue?', 'cforms2') ?>');"/>
 				</p>
-				<em><?php _e('PS: Individual form configurations can be backup up on the respective form admin page.', 'cforms2') ?></em>
                 <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
 
             </div>

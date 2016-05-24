@@ -980,13 +980,11 @@ function cforms2_insert_modal(){
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_backupbox">
-		<div class="cf_ed_header"><?php _e('Backup &amp; Restore Form Settings', 'cforms2'); ?></div>
+		<div class="cf_ed_header"><?php _e('Restore this form only (old)', 'cforms2'); ?></div>
 		<div class="cf_ed_main_backup">
 			<form enctype="multipart/form-data" name="backupform" method="post">
 				<div class="controls">
 
-	                <input type="submit" id="savecformsdata" name="savecformsdata" class="allbuttons backupbutton"  value="<?php _e('Backup current form settings', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" /><br />
-	                <label for="upload"><?php _e(' or restore previously saved settings:', 'cforms2'); ?></label>
 	                <input type="file" id="upload" name="importall" size="25" />
 	                <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
 

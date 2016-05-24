@@ -186,7 +186,6 @@ The original author who developed cforms until 2012 also has a
 Some things are to be done:
 
 * https://wordpress.org/support/topic/dynamic-forms-3
-* https://wordpress.org/support/topic/captcha-image-load-view-and-usability
 * https://wordpress.org/support/topic/hook-to-get-form-submission-data
 * replace jqModal with jquery-ui-dialog
 * filter user input
@@ -241,7 +240,10 @@ GPL compliance!
 
 = 14.12.1 =
 * enhanced: always set fancy error messages, label IDs and element IDs
+* enhanced: do not force MyISAM as database engine for the cformsII tables
+* enhanced: use default character set for the cformsII tables to enable utf8mb4 if available
 * other:    remove "Jump to Error"
+* other:    remove backup in weird NUL offset format
 
 = 14.12 =
 
