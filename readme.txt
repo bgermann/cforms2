@@ -242,6 +242,7 @@ GPL compliance!
 * enhanced: always set fancy error messages, label IDs and element IDs
 * enhanced: do not force MyISAM as database engine for the cformsII tables
 * enhanced: use default character set for the cformsII tables to enable utf8mb4 if available
+* enhanced: make debug output editable
 * other:    remove "Jump to Error"
 * other:    remove backup in weird NUL offset format
 

@@ -58,7 +58,20 @@ if ( isset($_REQUEST['deletetables']) ) {
 	require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
 
 // Update Settings
-if( isset($_REQUEST['SubmitOptions']) ) {
+if( isset($_REQUEST['SubmitOptions']) )
+if( isset($_REQUEST['raw_cforms_settings']) ) {
+	$raw_cforms_settings = stripslashes(cforms2_get_from_request('raw_cforms_settings'));
+	if (!empty($raw_cforms_settings)) {
+		$raw_cforms_settings = json_decode($raw_cforms_settings, true);
+		if ($raw_cforms_settings === null) {
+			echo '<div id="message" class="updated fade"><p>'.__('Error:', 'cforms2').' ';
+			// As WordPress has a compatibility layer, json_last_error_msg (PHP >= 5.5) can be used
+			echo json_last_error_msg().'</p></div>';
+		} elseif (is_array($raw_cforms_settings)) {
+			update_option('cforms_settings', $raw_cforms_settings);
+		}
+	}
+} else {
 
 	$cforms_dp_nav = stripslashes(cforms2_get_from_request('cforms_dp_nav'));
 	if (empty($cforms_dp_nav)) {
@@ -88,7 +101,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 	$cformsSettings['global']['cforms_inexclude']['ids'] = cforms2_get_from_request('cforms_include');
 
 	$cformsSettings['global']['cforms_crlf']['b'] =	   	cforms2_get_boolean_from_request('cforms_crlf')?'1':'0';
-	$cformsSettings['global']['cforms_smtp'] = null ;
+	unset($cformsSettings['global']['cforms_smtp']);
 
 	$cformsSettings['global']['cforms_upload_err1'] = cforms2_get_from_request('cforms_upload_err1');
 	$cformsSettings['global']['cforms_upload_err2'] = cforms2_get_from_request('cforms_upload_err2');
@@ -172,18 +185,17 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 
 <div class="wrap" id="top">
     <div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('Global Settings','cforms2')?></h2>
-
-    <?php if ( WP_DEBUG && isset($_POST['showinfo']) ) : ###debug "easter egg" 
-
-        echo '<h2>'.__('Debug Info (all major setting groups)', 'cforms2').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">';
-        echo print_r(array_keys($cformsSettings),1)."</pre>";
-        echo '<h2>'.__('Debug Info (all cforms settings)', 'cforms2').'</h2><br/><pre style="font-size:11px;background-color:#F5F5F5;">'.print_r($cformsSettings,1)."</pre>";
+	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post">
+    <?php if ( isset($_POST['showinfo']) ) :
+        echo '<p>' . __('All the global and per form settings are listed here as JSON. You can use this as a backup tool if you like.', 'cforms2') . '</p>';
+		echo '<h2>' . __('Warning!', 'cforms2') . '</h2><p>' . __('Please do not change anything here unless you know what you are doing!', 'cforms2') . '</p>';
+		echo '<textarea style="resize:both;" cols="100" rows="100" name="raw_cforms_settings">' . htmlspecialchars(json_encode($cformsSettings, JSON_PRETTY_PRINT)) . '</textarea>';
+		echo '<input type="hidden" name="showinfo" value="" />';
     
 	else : ?>
 	
     <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms2') ?></p>
 
-	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post">
 		<input type="hidden" name="cforms_database_new" value="<?php if($cformsSettings['global']['cforms_database']=="0") echo 'true'; ?>"/>
 
 		<fieldset id="inandexclude" class="cformsoptions">
@@ -476,7 +488,9 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 			</div>
 		</fieldset>
 
-	    <div class="cf_actions" id="cf_actions" style="display:none;">
+<?php endif; ?>
+
+		<div class="cf_actions" id="cf_actions" style="display:none;">
 			<input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
 			<input id="cfbar-deleteall" class="jqModalDelAll allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
 			<input id="deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
@@ -486,9 +500,7 @@ if( isset($_REQUEST['SubmitOptions']) ) {
 		
 	</form>
 
-	<?php endif; ### not showing debug msgs. ?> 
-	
-	<?php cforms2_footer(); ?>
+<?php cforms2_footer(); ?>
 </div>
 
 <div class="jqmWindow" id="cf_backupbox">
