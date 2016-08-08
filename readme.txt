@@ -185,7 +185,6 @@ The original author who developed cforms until 2012 also has a
 
 Some things are to be done:
 
-* https://wordpress.org/support/topic/dynamic-forms-3
 * https://wordpress.org/support/topic/hook-to-get-form-submission-data
 * replace jqModal with jquery-ui-dialog
 * filter user input
@@ -239,6 +238,7 @@ GPL compliance!
 == Changelog ==
 
 = 14.12.1 =
+* bugfix:   use right number of fields on dynamic forms
 * enhanced: always set fancy error messages, label IDs and element IDs
 * enhanced: do not force MyISAM as database engine for the cformsII tables
 * enhanced: use default character set for the cformsII tables to enable utf8mb4 if available

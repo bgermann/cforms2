@@ -143,6 +143,8 @@ global $cflimit;
 $cflimit = '';
 $inpFieldArr = array(); // for var[] type input fields
 $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
+if ($custom)
+	$field_count = count($customfields);
 $filefield = 0;
 
 cforms2_dbg("lib_validate.php: validating fields for form no. $no");
