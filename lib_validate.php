@@ -700,7 +700,7 @@ if( isset($_POST['sendbutton'.$no]) && $all_valid ) {
 	if( function_exists('my_cforms_filter') )
         my_cforms_filter($no);
 	if( function_exists('my_cforms_ajax_filter') )
-		my_cforms_ajax_filter(array('id' => $no, 'data' => $data));
+		my_cforms_ajax_filter($no);
 
 
     ### multi-form session

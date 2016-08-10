@@ -239,6 +239,7 @@ GPL compliance!
 
 = 14.12.1 =
 * bugfix:   use right number of fields on dynamic forms
+* bugfix:   really change my_cforms_ajax_filter() API function's data structure to the same as my_cforms_filter (as logged for 14.11)
 * enhanced: always set fancy error messages, label IDs and element IDs
 * enhanced: do not force MyISAM as database engine for the cformsII tables
 * enhanced: use default character set for the cformsII tables to enable utf8mb4 if available
