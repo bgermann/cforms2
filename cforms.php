@@ -784,7 +784,7 @@ function cforms2($args = '',$no = '') {
                     ### supporting names & values
 					$optPreset = explode('|set:', $option );
 				    $opt = explode('|', $optPreset[0],2);
-                    if ( $opt[1]=='' ) $opt[1] = $opt[0];
+                    if ( empty($opt[1]) ) $opt[1] = $opt[0];
 
                     $checked = '';
 					if( $moveBack || $isMPform ){
@@ -795,10 +795,8 @@ function cforms2($args = '',$no = '') {
 	                        $checked = ' selected="selected"';
 	                        $j++;
 	                    }
-	                }else{
-						if ( strpos($optPreset[1],'true')!==false )
-						    $checked = ' selected="selected"';
-	                }
+	                } elseif ( isset($optPreset[1]) && strpos($optPreset[1],'true')!==false )
+						$checked = ' selected="selected"';
 
                     $field.= '<option value="'. str_replace('"','&quot;',$opt[1]) .'"'.$checked.'>'.$opt[0].'</option>';
 
