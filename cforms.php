@@ -234,7 +234,6 @@ function cforms2($args = '',$no = '') {
 	if( $all_valid && isset($_REQUEST['sendbutton'.$no]) ){
 
 		$isMPformNext=false; ### default
-    	$oldcurrent = $no;
 
 		##debug
 		cforms2_dbg("Form is all valid & sendbutton pressed.");
@@ -271,12 +270,7 @@ function cforms2($args = '',$no = '') {
 	        $_SESSION['cforms']['pos']=1;
 
 			$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
-        } else {
-	        unset( $_SESSION['cforms'] );
-	        $_SESSION['cforms']['current']=0;
-	        $_SESSION['cforms']['first']=$no;
-	        $_SESSION['cforms']['pos']=1;
-			}
+        }
 	} elseif (!$isMPform) {
 		unset( $_SESSION['cforms'] );
 		$_SESSION['cforms']['current']=0;
