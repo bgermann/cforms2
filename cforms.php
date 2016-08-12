@@ -271,15 +271,9 @@ function cforms2($args = '',$no = '') {
 
 			$field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
         }
-	} elseif (!$isMPform) {
-		unset( $_SESSION['cforms'] );
-		$_SESSION['cforms']['current']=0;
-		$_SESSION['cforms']['first']=$no;
-		$_SESSION['cforms']['pos']=1;
 	}
 
-	
-	
+
     ##debug
     cforms2_dbg("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
 
