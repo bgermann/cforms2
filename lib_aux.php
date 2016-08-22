@@ -202,13 +202,12 @@ function cforms2_get_current_page(){
 
 
 ### check for post custom fields in string
-### TODO what is call to get_post_custom for?
 function cforms2_check_post_vars($fv){
     preg_match_all('/\\{([^\\{]+)\\}/',$fv,$fall);
 
     if ( count($fall[1]) > 0 ) {
 
-    	$custArr = get_post_custom( get_the_ID() );
+    	$custArr = get_post_custom();
         foreach ( $fall[1] as $fvar ) {
             if( $custArr[$fvar][0] <> '')
                 $fv = str_replace('{'.$fvar.'}', $custArr[$fvar][0], $fv);
