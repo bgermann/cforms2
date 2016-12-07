@@ -3,7 +3,7 @@ Contributors: bgermann, olivers, cbacchini, codifex
 Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
 Tags: contact form, ajax, contact, form, input, post, sidebar, spam, admin
 Requires at least: 3.9
-Tested up to: 4.6
+Tested up to: 4.7
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
