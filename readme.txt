@@ -1,6 +1,6 @@
 === cformsII - contact form ===
 Contributors: bgermann, olivers, cbacchini, codifex
-Donate link: https://www.betterplace.org/organisations/tatkraeftig/donations/new
+Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, ajax, contact, form, input, post, sidebar, spam, admin
 Requires at least: 3.9
 Tested up to: 4.7
@@ -77,13 +77,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = Installing the plugin =
 
-You can install the plugin via Wordpress Dashboard. It should show up by
+You can install the plugin via WordPress Dashboard. It should show up by
 searching for cforms2. If this does not work for you, there should be an option
 to upload a zip file, which is available on the
 [wordpress.org plugin directory](https://wordpress.org/plugins/cforms2/).
 
 If you want to install manually, please upload the complete plugin folder
-"cforms2", contained in the zip file, to your WP plugin directory!
+"cforms2", contained in the zip file, to your WordPress plugin directory!
 
 If you want to check integrity of the download, please use the cforms2.*.zip
 downloads and the corresponding .sig
@@ -110,7 +110,7 @@ directory, which is contained in the cforms directory by default.
 
 = Did you modify any cforms theme (CSS) files? =
 
-Create a custom folder under your WP plugin directory & call it "cforms-custom".
+Create a custom folder under your WordPress plugin directory & call it "cforms-custom".
 Move all your custom files into it. This folder will protect your changes going
 forward.
 
@@ -123,7 +123,7 @@ on layout customization.
 
 = I do not get any emails from my form. Why? =
 
-Most probably this is not cformsII's fault. Please check your Wordpress mail
+Most probably this is not cformsII's fault. Please check your WordPress mail
 configuration with a plugin like
 [Check Email](https://wordpress.org/plugins/check-email/).
 
@@ -134,7 +134,7 @@ You can find old versions in the
 
 = Where are the external SMTP settings? =
 
-That function was removed. The Wordpress function
+That function was removed. The WordPress function
 [wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for
 mails now, which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate
@@ -143,7 +143,7 @@ or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
 
 = I upgraded and lost my widgets. What can I do? =
 
-Beginning with 14.6.10 Wordpress 2.8 Widget API is used for cforms widgets.
+Beginning with 14.6.10 WordPress 2.8 Widget API is used for cforms widgets.
 You have to recreate your widgets. You can find your old settings in debug
 output on the Global Settings Admin menu.
 Just search for widgets with your browser's search.
@@ -168,19 +168,6 @@ To use one of those files, please rename the cforms-?.mo file to
 cforms2-?.mo and put it in the wp-content/languages/plugins directory.
 
 
-== Donations ==
-
-This fork is originally developed for the website of
-[tatkräftig](http://tatkraeftig.org) (only German), a German charitable
-organization that encourages and supports people in social engagement.
-If you can afford it, please consider
-[making a donation](https://www.betterplace.org/organisations/tatkraeftig/donations/new)
-to support that organization and further development.
-
-The original author who developed cforms until 2012 also has a
-[donation page](http://www.deliciousdays.com/cforms-donation).
-
-
 == Roadmap ==
 
 Some things are to be done:
@@ -188,7 +175,8 @@ Some things are to be done:
 * https://wordpress.org/support/topic/hook-to-get-form-submission-data
 * replace jqModal with jquery-ui-dialog
 * filter user input
-* grunt build process similar to Wordpress core
+* rework multipart forms to be independent from PHP sessions
+* long term: remove database tracking
 * long term: refactoring with object oriented approach
 * long term: unit tests and continuous integration
 
