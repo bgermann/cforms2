@@ -191,9 +191,9 @@ function cforms_validate(no, upload) {
         var no = message.no;
 
         if (!message.result.match(/success/)) {
-	        call_err(no, message.html, '');
-			return;
-		}
+            call_err(no, message.html, '');
+            return;
+        }
         if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
             document.getElementById('cforms'+no+'form').reset();
 

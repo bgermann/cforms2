@@ -459,7 +459,7 @@ jQuery(function() {
                 type     : type,
                 action   : 'cforms2_field',
                 _wpnonce : cforms2_nonces['cforms2_field']
-			}, load
+            }, load
         );
     };
 
