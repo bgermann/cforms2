@@ -17,14 +17,14 @@
  */
 
 function clearField(thefield) {
-    if ( thefield.defaultValue == thefield.value )
+    if (thefield.defaultValue == thefield.value)
         thefield.value = '';
-};
+}
 
 function setField(thefield) {
-    if ( thefield.value == '' )
+    if (thefield.value == '')
         thefield.value = thefield.defaultValue;
-};
+}
 
 
 function cforms_validate(no, upload) {
@@ -32,31 +32,30 @@ function cforms_validate(no, upload) {
     var doInnerXHTML = function (elementId, stringXHTML) {
 
         try {
-            if ( document.getElementById(elementId+'a') )
-                document.getElementById(elementId+'a').innerHTML = stringXHTML;
-            if ( document.getElementById(elementId+'b') )
-                document.getElementById(elementId+'b').innerHTML = stringXHTML;
+            if (document.getElementById(elementId + 'a'))
+                document.getElementById(elementId + 'a').innerHTML = stringXHTML;
+            if (document.getElementById(elementId + 'b'))
+                document.getElementById(elementId + 'b').innerHTML = stringXHTML;
             return true;
-        }
-        catch(ee) {
+        } catch (ee) {
             return false;
         }
 
     };
 
     var stripslashes = function (str) {
-        str = str.replace(/\\'/g,'\'');
-        str = str.replace(/\\"/g,'"');
-        str = str.replace(/\\\\/g,'\\');
-        str = str.replace(/\\0/g,'\0');
+        str = str.replace(/\\'/g, '\'');
+        str = str.replace(/\\"/g, '"');
+        str = str.replace(/\\\\/g, '\\');
+        str = str.replace(/\\0/g, '\0');
         return str;
     };
 
     var set_customerr = function (id, parent_el) {
         var gotone = all_custom_error[id];
-        if ( all_custom_error[id] && gotone !='' ){
+        if (all_custom_error[id] && gotone != '') {
 
-            if( show_err_ins==='y' ){
+            if (show_err_ins === 'y') {
                 insert_err_p[insert_err_count] = parent_el.id;
 
                 var ul = document.createElement('UL');
@@ -69,13 +68,12 @@ function cforms_validate(no, upload) {
                 insert_err[insert_err_count++] = ul;
             }
 
-            if ( parent_el.id != '' )
-                return custom_error + '<li><a href="#'+parent_el.id+'">' + gotone + ' &raquo;</li></a>';
+            if (parent_el.id != '')
+                return custom_error + '<li><a href="#' + parent_el.id + '">' + gotone + ' &raquo;</li></a>';
             else
                 return custom_error + '<li>' + gotone + '</li>';
 
-        }
-        else
+        } else
             return custom_error;
     };
 
@@ -89,15 +87,15 @@ function cforms_validate(no, upload) {
     };
 
     var check_for_customerr_radio = function (id, cerr) {
-        var parent_el = document.getElementById( id.substr(0, id.length - 5) );
+        var parent_el = document.getElementById(id.substr(0, id.length - 5));
         parent_el.className = "cf-box-title cf_li_err";
 
         return set_customerr(cerr, parent_el);
     };
 
-    var isParentChkBoxGroup = function (el){
-        while( el.parentNode ){
-            if ( el.parentNode.className==='cf-box-group' )
+    var isParentChkBoxGroup = function (el) {
+        while (el.parentNode) {
+            if (el.parentNode.className === 'cf-box-group')
                 return true;
             else
                 el = el.parentNode;
@@ -111,78 +109,79 @@ function cforms_validate(no, upload) {
 
         var params = '';
 
-        var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
+        var objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('*');
 
         for (var i = 0, j = objColl.length; i < j; i++) {
 
             var fld = objColl[i].nodeName.toLowerCase();
             var typ = objColl[i].type;
 
-            if ( fld == "input" || fld == "textarea" || fld == "select" ) {
+            if (fld == "input" || fld == "textarea" || fld == "select") {
 
-                if ( typ == "checkbox" ) {
+                if (typ == "checkbox") {
 
-                    if ( objColl[i].name.match(/\[\]/) ){
-                        var group='';
+                    if (objColl[i].name.match(/\[\]/)) {
+                        var group = '';
 
-                        while ( i<j && isParentChkBoxGroup(objColl[i]) ){
-                            if ( objColl[i].type == 'checkbox' && objColl[i].name.match(/\[\]/) && objColl[i].checked ) {
+                        while (i < j && isParentChkBoxGroup(objColl[i])) {
+                            if (objColl[i].type == 'checkbox' && objColl[i].name.match(/\[\]/) && objColl[i].checked) {
                                 group = group + objColl[i].value + ',';
                             }
                             i++;
                         }
 
-                        if ( group.length > 1 )
-                            params = params + prefix + group.substring(0,group.length-1);
+                        if (group.length > 1)
+                            params = params + prefix + group.substring(0, group.length - 1);
                         else
                             params = params + prefix + "";
-                    }
-                    else
-                        params = params + prefix + (objColl[i].checked?( (objColl[i].value!="")?objColl[i].value:"X"):"");
+                    } else
+                        params = params + prefix + (objColl[i].checked ? ((objColl[i].value != "") ? objColl[i].value : "X") : "");
 
-                } else if ( typ == "radio" ) {
+                } else if (typ == "radio") {
 
-                    var group = objColl[i].checked ? ( (objColl[i].value!="")?objColl[i].value:"X" ) : '' ;
+                    var group = objColl[i].checked ? ((objColl[i].value != "") ? objColl[i].value : "X") : '';
 
-                    while ( i<j && isParentChkBoxGroup(objColl[i+1]) ){
+                    while (i < j && isParentChkBoxGroup(objColl[i + 1])) {
 
-                        if ( objColl[i+1].type == 'radio' && objColl[i+1].checked ){
-                            group = group + ',' + objColl[i+1].value;
+                        if (objColl[i + 1].type == 'radio' && objColl[i + 1].checked) {
+                            group = group + ',' + objColl[i + 1].value;
                         }
 
                         i++;
                     }
-                    if ( group.charAt(0)==',' )
-                        params = params + prefix + group.substring(1,group.length);
+                    if (group.charAt(0) == ',')
+                        params = params + prefix + group.substring(1, group.length);
                     else
                         params = params + prefix + group;
 
 
-                } else if ( typ == "select-multiple" ) {
-                    var all_child_obj='';
-                    for ( var z=0;z<objColl[i].childNodes.length; z++) {
-                        if ( objColl[i].childNodes[z].nodeName.toLowerCase()=='option' && objColl[i].childNodes[z].selected ) {
+                } else if (typ == "select-multiple") {
+                    var all_child_obj = '';
+                    for (var z = 0; z < objColl[i].childNodes.length; z++) {
+                        if (objColl[i].childNodes[z].nodeName.toLowerCase() == 'option' && objColl[i].childNodes[z].selected) {
                             all_child_obj = all_child_obj + objColl[i].childNodes[z].value.replace(regexp, '$') + ',';
                         }
                     }
-                    params = params + prefix + all_child_obj.substring(0,all_child_obj.length-1);
-                } else if ( typ == "hidden" && objColl[i].className.match(/cfhidden/) ) {
+                    params = params + prefix + all_child_obj.substring(0, all_child_obj.length - 1);
+                } else if (typ == "hidden" && objColl[i].className.match(/cfhidden/)) {
                     params = params + prefix + objColl[i].value;
-                } else if ( typ != "hidden" && typ != "submit") {
+                } else if (typ != "hidden" && typ != "submit") {
                     params = params + prefix + objColl[i].value.replace(regexp, '$');
                 }
             }
         }
 
         // Overwrite params with generic form
-        params = jQuery('#cforms'+no+'form').serialize();
+        params = jQuery('#cforms' + no + 'form').serialize();
         var post_data = 'action=submitcform&_wpnonce='
-            + cforms2_ajax.nonces['submitcform']
-            + '&cforms_id=' + no + '&' + params;
+                + cforms2_ajax.nonces['submitcform']
+                + '&cforms_id=' + no + '&' + params;
         jQuery.post(
-            cforms2_ajax.url,
-            post_data,
-            function( data ) {cforms_setsuccessmessage(data);}
+                cforms2_ajax.url,
+                post_data,
+                function (data) {
+                    cforms_setsuccessmessage(data);
+                }
         );
     };
 
@@ -194,62 +193,63 @@ function cforms_validate(no, upload) {
             call_err(no, message.html, '');
             return;
         }
-        if ( !document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/) )
-            document.getElementById('cforms'+no+'form').reset();
+        if (!document.getElementById('cforms' + no + 'form').className.match(/cfnoreset/))
+            document.getElementById('cforms' + no + 'form').reset();
 
-        document.getElementById('sendbutton'+no).style.cursor = "auto";
-        document.getElementById('sendbutton'+no).disabled = false;
+        document.getElementById('sendbutton' + no).style.cursor = "auto";
+        document.getElementById('sendbutton' + no).disabled = false;
 
 
         var stringXHTML = message.html;
 
         // for both message boxes
         var isA = false;
-        var ucm = ( parseInt(no)>1 ) ? ' '+message.result+no : '';
-        if ( document.getElementById('usermessage'+no+'a') ) {
-            document.getElementById('usermessage'+no+'a').className = "cf_info "+message.result+ucm;
+        var ucm = (parseInt(no) > 1) ? ' ' + message.result + no : '';
+        if (document.getElementById('usermessage' + no + 'a')) {
+            document.getElementById('usermessage' + no + 'a').className = "cf_info " + message.result + ucm;
             isA = true;
         }
-        if ( document.getElementById('usermessage'+no+'b') && !(message.hide && isA) ) {
-            document.getElementById('usermessage'+no+'b').className = "cf_info "+message.result+ucm;
+        if (document.getElementById('usermessage' + no + 'b') && !(message.hide && isA)) {
+            document.getElementById('usermessage' + no + 'b').className = "cf_info " + message.result + ucm;
         }
 
-        doInnerXHTML('usermessage'+no, stringXHTML);
+        doInnerXHTML('usermessage' + no, stringXHTML);
 
-        if ( message.hide ) {
-            document.getElementById('cforms'+no+'form').style.display = 'none';
-            if ( !message.redirection )
+        if (message.hide) {
+            document.getElementById('cforms' + no + 'form').style.display = 'none';
+            if (!message.redirection)
                 location.hash = '#usermessage' + no + 'a';
         }
-        
-        if ( message.redirection ) {
+
+        if (message.redirection) {
             location.href = message.redirection;
         }
     };
 
     var write_customerr = function () {
         for (var n = 0; n < insert_err_p.length; n++) {
-            if (document.getElementById( insert_err_p[n] )) {
-                document.getElementById( insert_err_p[n] ).insertBefore(
-                    insert_err[n],
-                    document.getElementById( insert_err_p[n] ).firstChild
-                );
+            if (document.getElementById(insert_err_p[n])) {
+                document.getElementById(insert_err_p[n]).insertBefore(
+                        insert_err[n],
+                        document.getElementById(insert_err_p[n]).firstChild
+                        );
             }
         }
     };
 
-    if (!no) no='';
+    if (!no)
+        no = '';
 
     var msgbox = 'usermessage' + no;
-    if( document.getElementById(msgbox+'a') ){
-        document.getElementById(msgbox+'a').className = "cf_info waiting";
+    if (document.getElementById(msgbox + 'a')) {
+        document.getElementById(msgbox + 'a').className = "cf_info waiting";
     }
-    if( document.getElementById(msgbox+'b') ){
-        document.getElementById(msgbox+'b').className = "cf_info waiting";
+    if (document.getElementById(msgbox + 'b')) {
+        document.getElementById(msgbox + 'b').className = "cf_info waiting";
     }
 
     var waiting = decodeURI(document.getElementById('cf_working' + no).value);
-    waiting = waiting.replace(/\\/g,"");
+    waiting = waiting.replace(/\\/g, "");
 
     var insert_err = [];
     var insert_err_p = [];
@@ -258,11 +258,11 @@ function cforms_validate(no, upload) {
     var all_custom_error = [];
 
     var customerr_concatenated = document.getElementById('cf_customerr' + no).value;
-    var show_err_ins = customerr_concatenated.substr(0,1);
+    var show_err_ins = customerr_concatenated.substr(0, 1);
 
-    var error_container = decodeURIComponent( customerr_concatenated.substr(1) ).split('|');
+    var error_container = decodeURIComponent(customerr_concatenated.substr(1)).split('|');
 
-    for (var i=0; i<error_container.length; i++ ) {
+    for (var i = 0; i < error_container.length; i++) {
         var keyvalue = error_container[i].split('$#$');
         all_custom_error[keyvalue[0]] = keyvalue[1];
     }
@@ -270,33 +270,33 @@ function cforms_validate(no, upload) {
     var custom_error = '';
 
 
-    if( !doInnerXHTML(msgbox, waiting) ) {
+    if (!doInnerXHTML(msgbox, waiting)) {
         return true;
     }
 
     var all_valid = true;
 
-    var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,63})$','i');  // email regexp
+    var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,63})$', 'i');  // email regexp
 
 
     //clean enhanced error if present
-    var objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('li');
-    for (var i=0; i<objColl.length; i++) {
-        if(objColl[i].className.match(/cf_li_err/)) {
-            if(objColl[i].className.match(/cf-box-title/))
-                objColl[i].className='cf-box-title';
+    var objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('li');
+    for (var i = 0; i < objColl.length; i++) {
+        if (objColl[i].className.match(/cf_li_err/)) {
+            if (objColl[i].className.match(/cf-box-title/))
+                objColl[i].className = 'cf-box-title';
             else
-                objColl[i].className='';
+                objColl[i].className = '';
         }
     }
 
-    objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('ul');
-    while ( objColl.length > 0 ) {
-        objColl[0].parentNode.removeChild( objColl[0] );
+    objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('ul');
+    while (objColl.length > 0) {
+        objColl[0].parentNode.removeChild(objColl[0]);
     }
 
 
-    objColl = document.getElementById('cforms'+no+'form').getElementsByTagName('*');
+    objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('*');
     var last_one = false;
 
     for (var i = 0, j = objColl.length; i < j; i++) {
@@ -304,79 +304,80 @@ function cforms_validate(no, upload) {
         var temp = objColl[i].className;
 
         var newclass = '';
-        if ( temp.match(/secinput/) )
+        if (temp.match(/secinput/))
             newclass = 'secinput';
-        else if ( temp.match(/cf-box-./) )
+        else if (temp.match(/cf-box-./))
             newclass = temp.match(/cf-box-./);
-        else if ( temp.match(/cformselect/) )
+        else if (temp.match(/cformselect/))
             newclass = 'cformselect';
-        else if ( temp.match(/upload/) )
+        else if (temp.match(/upload/))
             newclass = 'cf_upload';
-        else if ( temp.match(/cf_date/) )
+        else if (temp.match(/cf_date/))
             newclass = 'single cf_date';
-        else if ( temp.match(/single/) )
+        else if (temp.match(/single/))
             newclass = 'single';
-        else if ( temp.match(/area/) )
+        else if (temp.match(/area/))
             newclass = 'area';
-        else if ( temp.match(/cfselectmulti/) )
+        else if (temp.match(/cfselectmulti/))
             newclass = 'cfselectmulti';
 
         var fld = objColl[i].nodeName.toLowerCase();
         var typ = objColl[i].type;
 
-        if ( (fld == "input" || fld == "textarea" || fld == "select") && !( typ=="hidden" || typ=="submit") ) {
+        if ((fld == "input" || fld == "textarea" || fld == "select") && !(typ == "hidden" || typ == "submit")) {
 
-            if ( temp.match(/required/) && !temp.match(/email/) && typ != "radio" ) {
+            if (temp.match(/required/) && !temp.match(/email/) && typ != "radio") {
 
                 newclass = newclass + ' fldrequired';
 
                 var n = objColl[i].nextSibling;
                 var p = objColl[i].previousSibling;
 
-                if ( temp.match(/cf-box-./) ) {
+                if (temp.match(/cf-box-./)) {
 
-                    if ( !objColl[i].checked ) {
+                    if (!objColl[i].checked) {
 
                         custom_error = check_for_customerr(objColl[i].id);
 
                         newclass = newclass + ' cf_error';
 
                         // we can't change the checkbox much but the text on the side!
-                        if( n && n.nodeName.toLowerCase()=="label" && !n.className.match(/errortxt/) )
+                        if (n && n.nodeName.toLowerCase() == "label" && !n.className.match(/errortxt/))
                             n.className = n.className + " cf_errortxt";
-                        else if ( p && p.nodeName.toLowerCase()=="label" && !p.className.match(/errortxt/) )
+                        else if (p && p.nodeName.toLowerCase() == "label" && !p.className.match(/errortxt/))
                             p.className = p.className + " cf_errortxt";
 
 
-                        all_valid=false;
-                        if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+                        all_valid = false;
+                        if (!last_one && objColl[i].id != '')
+                            last_one = objColl[i].id;
                     } else {
-                            // we can't change the checkbox much but the text on the side!
-                            if( n && n.nodeName.toLowerCase()=="label" && n.className.match(/cf_errortxt/) )
-                                n.className = n.className.substr(0,n.className.search(/ cf_errortxt/));
-                            else if ( p && p.nodeName.toLowerCase()=="label" && p.className.match(/cf_errortxt/) )
-                                p.className = p.className.substr(0,p.className.search(/ cf_errortxt/));
+                        // we can't change the checkbox much but the text on the side!
+                        if (n && n.nodeName.toLowerCase() == "label" && n.className.match(/cf_errortxt/))
+                            n.className = n.className.substr(0, n.className.search(/ cf_errortxt/));
+                        else if (p && p.nodeName.toLowerCase() == "label" && p.className.match(/cf_errortxt/))
+                            p.className = p.className.substr(0, p.className.search(/ cf_errortxt/));
                     }
 
 
-                } else if ( temp.match(/cformselect/) ) {
+                } else if (temp.match(/cformselect/)) {
 
-                    if ( objColl[i].value=='' || objColl[i].value=='-' ){
+                    if (objColl[i].value == '' || objColl[i].value == '-') {
                         newclass = newclass + ' cf_error';
-                        all_valid=false;
+                        all_valid = false;
                         if (!last_one && objColl[i].id != '')
-                            last_one=objColl[i].id;
+                            last_one = objColl[i].id;
 
                         custom_error = check_for_customerr(objColl[i].id);
 
                     }
 
-                } else if ( objColl[i].value=='' ) {
+                } else if (objColl[i].value == '') {
 
                     newclass = newclass + ' cf_error';
-                    all_valid=false;
+                    all_valid = false;
                     if (!last_one && objColl[i].id != '')
-                        last_one=objColl[i].id;
+                        last_one = objColl[i].id;
 
                     custom_error = check_for_customerr(objColl[i].id);
 
@@ -384,46 +385,47 @@ function cforms_validate(no, upload) {
 
             }
 
-            if ( temp.match(/email/) ) {
+            if (temp.match(/email/)) {
                 newclass = newclass + ' fldemail';
-                if ( !(objColl[i].value=='' && !temp.match(/required/)) ) {
-                    if ( !regexp_e.test(objColl[i].value) ) {
+                if (!(objColl[i].value == '' && !temp.match(/required/))) {
+                    if (!regexp_e.test(objColl[i].value)) {
                         newclass = newclass + ' fldrequired cf_error';
-                        all_valid=false;
-                        if (!last_one) last_one=objColl[i].name; // TODO fix?: if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+                        all_valid = false;
+                        if (!last_one)
+                            last_one = objColl[i].name; // TODO fix?: if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
 
                         custom_error = check_for_customerr(objColl[i].id);
 
-                    }
-                    else
+                    } else
                         newclass = newclass + ' fldrequired';
                 }
 
             }
 
-            if ( temp.match(/required/) && temp.match(/cf-box-b/) && typ.match(/radio/) ) {
+            if (temp.match(/required/) && temp.match(/cf-box-b/) && typ.match(/radio/)) {
                 var temp_i = i;
                 var radio_valid = false;
 
-                while ( objColl[i].parentNode.className.match(/cf-box-group/)
-                    || objColl[i].parentNode.parentNode.className.match(/cf-box-group/) ) {
+                while (objColl[i].parentNode.className.match(/cf-box-group/)
+                        || objColl[i].parentNode.parentNode.className.match(/cf-box-group/)) {
                     temp = objColl[i].className;
-                    if( temp.match(/cf-box-b/) && objColl[i].checked ) {
+                    if (temp.match(/cf-box-b/) && objColl[i].checked) {
                         radio_valid = true;
                     }
                     i++;
                 }
 
-                if ( !radio_valid ) {
+                if (!radio_valid) {
                     all_valid = false;
-                    if ( !last_one ) last_one=objColl[temp_i].parentNode.id;
+                    if (!last_one)
+                        last_one = objColl[temp_i].parentNode.id;
                     custom_error = check_for_customerr_radio(
-                        objColl[temp_i].parentNode.id,
-                        objColl[temp_i].id.substr( 0, objColl[temp_i].id.length - 2 )
-                    );
+                            objColl[temp_i].parentNode.id,
+                            objColl[temp_i].id.substr(0, objColl[temp_i].id.length - 2)
+                            );
                 }
-            }
-            else objColl[i].className=newclass;
+            } else
+                objColl[i].className = newclass;
 
 
         } // if fields
@@ -434,28 +436,30 @@ function cforms_validate(no, upload) {
         //if regexp provided use it!
         //
         var regexp = 1;
-        if ( objColl[i] && document.getElementById(objColl[i].id+'_regexp') ) {
+        if (objColl[i] && document.getElementById(objColl[i].id + '_regexp')) {
 
-            var obj_regexp = document.getElementById( objColl[i].id+'_regexp' );
+            var obj_regexp = document.getElementById(objColl[i].id + '_regexp');
             var INPval = objColl[i].value;
-            if (typ=='textarea') INPval = INPval.replace( /\n\r?/g, ' ' );
+            if (typ == 'textarea')
+                INPval = INPval.replace(/\n\r?/g, ' ');
 
-            if ( obj_regexp && obj_regexp.value != '' ) {
+            if (obj_regexp && obj_regexp.value != '') {
 
-                if ( document.getElementById(obj_regexp.value) ){
-                    if ( INPval != document.getElementById(obj_regexp.value).value )
+                if (document.getElementById(obj_regexp.value)) {
+                    if (INPval != document.getElementById(obj_regexp.value).value)
                         regexp = null;
-                }else{
-                        if ( INPval != '' ) { //overrule: normal field, normal regexp, left empty
-                            regexp = new RegExp(obj_regexp.value, ['g']); // normal regexp
-                            regexp = INPval.match(regexp);
-                        }
+                } else {
+                    if (INPval != '') { //overrule: normal field, normal regexp, left empty
+                        regexp = new RegExp(obj_regexp.value, ['g']); // normal regexp
+                        regexp = INPval.match(regexp);
+                    }
                 }
 
-                if ( regexp == null ){
+                if (regexp == null) {
                     newclass = newclass + ' cf_error';
-                    all_valid=false;
-                    if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+                    all_valid = false;
+                    if (!last_one && objColl[i].id != '')
+                        last_one = objColl[i].id;
                     custom_error = check_for_customerr(objColl[i].id);
                 }
 
@@ -466,51 +470,52 @@ function cforms_validate(no, upload) {
     }
 
     //write out all custom errors
-    if( show_err_ins==='y' ) write_customerr();
+    if (show_err_ins === 'y')
+        write_customerr();
 
     //all good?  if "upload file" field included, don't do ajax
-    if ( all_valid && upload ){
-        document.getElementById('sendbutton'+no).disabled=true;
-        var newSENDBUTTON=document.createElement('input');
-        newSENDBUTTON.type='hidden';
-        newSENDBUTTON.name='sendbutton'+no;
-        newSENDBUTTON.value='1';
-        document.getElementById('cf_working'+no).parentNode.appendChild(newSENDBUTTON);
-        document.getElementById('sendbutton'+no).style.cursor = "progress";
-        document.getElementById('cforms'+no+'form').submit();
+    if (all_valid && upload) {
+        document.getElementById('sendbutton' + no).disabled = true;
+        var newSENDBUTTON = document.createElement('input');
+        newSENDBUTTON.type = 'hidden';
+        newSENDBUTTON.name = 'sendbutton' + no;
+        newSENDBUTTON.value = '1';
+        document.getElementById('cf_working' + no).parentNode.appendChild(newSENDBUTTON);
+        document.getElementById('sendbutton' + no).style.cursor = "progress";
+        document.getElementById('cforms' + no + 'form').submit();
         return true;
-    }
-    else if ( all_valid ) {
-        document.getElementById('sendbutton'+no).style.cursor = "progress";
-        document.getElementById('sendbutton'+no).disabled = true;
+    } else if (all_valid) {
+        document.getElementById('sendbutton' + no).style.cursor = "progress";
+        document.getElementById('sendbutton' + no).disabled = true;
         cforms_submitform(no);
     }
 
-    var call_err = function (no,err,custom_error){
+    var call_err = function (no, err, custom_error) {
 
         //temp. turn send button back on
-        document.getElementById('sendbutton'+no).style.cursor = "auto";
-        document.getElementById('sendbutton'+no).disabled = false;
+        document.getElementById('sendbutton' + no).style.cursor = "auto";
+        document.getElementById('sendbutton' + no).disabled = false;
 
-        if ( custom_error!='' ) custom_error = '<ol>'+custom_error+'</ol>';
+        if (custom_error != '')
+            custom_error = '<ol>' + custom_error + '</ol>';
 
-        err = decodeURI( err ) + custom_error;
+        err = decodeURI(err) + custom_error;
 
         var stringXHTML = err.replace(/(\r\n)/g, '<br />');
 
-        var msgbox = 'usermessage'+no;
-        var ucm = ( parseInt(no)>1 ) ? ' failure' + no : '';
+        var msgbox = 'usermessage' + no;
+        var ucm = (parseInt(no) > 1) ? ' failure' + no : '';
 
-        if( document.getElementById(msgbox+'a') )
-            document.getElementById(msgbox+'a').className = "cf_info failure" + ucm;
-        if( document.getElementById(msgbox+'b') )
-            document.getElementById(msgbox+'b').className = "cf_info failure" + ucm;
+        if (document.getElementById(msgbox + 'a'))
+            document.getElementById(msgbox + 'a').className = "cf_info failure" + ucm;
+        if (document.getElementById(msgbox + 'b'))
+            document.getElementById(msgbox + 'b').className = "cf_info failure" + ucm;
 
-        doInnerXHTML(msgbox, stringXHTML.replace(/\\/g,""));
+        doInnerXHTML(msgbox, stringXHTML.replace(/\\/g, ""));
     };
 
-    if ( !all_valid ){
-        call_err(no, document.getElementById('cf_failure'+no).value, custom_error);
+    if (!all_valid) {
+        call_err(no, document.getElementById('cf_failure' + no).value, custom_error);
     }
 
     return false;

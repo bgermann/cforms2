@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-jQuery(function() {
+jQuery(function () {
 
-    if( jQuery('.cf_date').length <= 0 ) {
+    if (jQuery('.cf_date').length <= 0) {
         return;
     }
 

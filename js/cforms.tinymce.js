@@ -1,5 +1,5 @@
 /*
-  * Copyright (c) 2014 Bastian Germann
+ * Copyright (c) 2014 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,18 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    
-tinymce.PluginManager.add('cforms', function(ed) {
-    
+
+tinymce.PluginManager.add('cforms', function (ed) {
+
     ed.addButton('cforms', {
-        title : 'Insert a form',
+        title: 'Insert a form',
         type: 'menubutton',
-        text : 'cforms',
-        menu : cforms2_formnames.map(function(item) {
+        text: 'cforms',
+        menu: cforms2_formnames.map(function (item) {
             return {
                 text: item,
-                onclick: function(){
-                    ed.insertContent('[cforms name="'+item+'"]');
+                onclick: function () {
+                    ed.insertContent('[cforms name="' + item + '"]');
                 }
             };
         })
