@@ -8,16 +8,19 @@ Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
-cformsII is the most customizable, flexible & powerful ajax supporting contact form plugin!
+cformsII is a customizable, flexible & powerful form plugin!
 
 == Description ==
 
 This is a fork of cformsII, a highly customizable, flexible and powerful form
 builder plugin, covering a variety of use cases and features from attachments to
-multi form management, you can even have multiple forms on the same page!
+multi form management.
 
 Oliver, the original author, does not further develop the plugin.
 This fork is an effort to keep it up to date.
+
+For a quick starter you should have a look at the [introduction video by Your Page Today](https://www.youtube.com/watch?v=kBwu4J8SfVo).
+
 If you want to use plugin versions older than 14.6.3, you should rename the
 directory containing the plugin from "cforms2" to "cforms". But bear in mind
 that old versions should not be used in public systems, because they contain
@@ -35,6 +38,26 @@ Simple CAPTCHA, please install the current version and activate the plugin.
 has support for storing cformsII's submission data and exporting in more
 formats than cformsII does. Therefore cformsII's database tracking will be
 removed in the long run.
+
+= Reporting Bugs =
+
+If you happen to find a bug, please feel free to report a bug at the support
+forum, but please be sure to follow these rules:
+
+* Search the forum. Someone may have had the exact same issue.
+* Give your report a meaningful title.
+* Include WordPress and cformsII version numbers and optionally
+  PHP version number you use.
+* If you happen to run your webserver on Microsoft Windows, which is very uncommon,
+  please provide this information.
+* Read the FAQ before reporting.
+  If you post a question about emails not being sent,
+  be sure to include the information that you tried Check Email plugin at least.
+  Otherwise your post will be ignored.
+
+See also
+[How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)
+for further information.
 
 = Credits =
 
@@ -126,11 +149,9 @@ on layout customization.
 Most probably this is not cformsII's fault. Please check your WordPress mail
 configuration with a plugin like
 [Check Email](https://wordpress.org/plugins/check-email/).
-
-= Where can I find old cformsII versions? =
-
-You can find old versions in the
-[Developers section](https://wordpress.org/plugins/cforms2/developers/).
+If that reports not to work, you don't have a mail server running or its
+settings are broken. Please fix it yourself, tell your hosting provider or
+use an external SMTP plugin (see the next question).
 
 = Where are the external SMTP settings? =
 
@@ -140,6 +161,16 @@ mails now, which makes use of built-in PHPMailer.
 If you want to configure it to use an external SMTP server, use an appropriate
 plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/)
 or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
+
+= Why is the Form Settings page broken? =
+
+This was an incompatibility with WordPress 4.2 that was fixed with cformsII 14.9.3.
+Be sure to use a current version.
+
+= Where can I find old cformsII versions? =
+
+You can find old versions in the
+[Developers section](https://wordpress.org/plugins/cforms2/developers/).
 
 = I upgraded and lost my widgets. What can I do? =
 
@@ -224,6 +255,9 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.12.2 =
+* bugfix:   reorganize session reset
 
 = 14.12.1 =
 * bugfix:   use right number of fields on dynamic forms
