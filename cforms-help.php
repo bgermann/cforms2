@@ -58,18 +58,18 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<div class="cf-content" id="o17">
 			<p><?php _e('Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin but it may be the most flexible. The below outline should help you get started with the default form.', 'cforms2'); ?></p>
 			<ol style="margin:10px 0 0 100px;">
-				<li><?php echo sprintf(__('First take a look at the <a href="%s">default form</a>', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
+				<li><?php printf(__('First take a look at the <a href="%s">default form</a>', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
 					<ul style="margin:10px 0 0 30px;">
 						<li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms2'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.png" alt="" title=""/>?</li>
 						<li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms2'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench">&#xF111;</button> </li>
 						<li><?php _e('Check the flags for each field (check boxes to the right).', 'cforms2'); ?></li>
-						<li><?php echo sprintf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'),'#qa','onclick="setshow(19)"','https://wordpress.org/plugins/cforms2-really-simple-captcha/','','?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></li>
+						<li><?php printf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'),'#qa','onclick="setshow(19)"','https://wordpress.org/plugins/cforms2-really-simple-captcha/','','?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?></li>
 					</ul>
 				</li>
-				<li><?php echo sprintf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"'); ?></li>
-				<li><?php echo sprintf(__('Decide if you want the visitor to receive an <a href="%s" %s>auto confirmation message</a> upon form submission.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?></li>
-				<li><?php echo sprintf(__('Would you like <a href="%s" %s>to track</a> form submission via the database?', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#tracking','onclick="setshow(14)"'); ?></li>
-				<li><?php echo sprintf(__('<a href="%s" %s>Add the default form</a> to a post or page.', 'cforms2'),'#inserting','onclick="setshow(18)"'); ?></li>
+				<li><?php printf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"'); ?></li>
+				<li><?php printf(__('Decide if you want the visitor to receive an <a href="%s" %s>auto confirmation message</a> upon form submission.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?></li>
+				<li><?php printf(__('Would you like <a href="%s" %s>to track</a> form submission via the database?', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#tracking','onclick="setshow(14)"'); ?></li>
+				<li><?php printf(__('<a href="%s" %s>Add the default form</a> to a post or page.', 'cforms2'),'#inserting','onclick="setshow(18)"'); ?></li>
 				<li><?php _e('Give it a whirl.', 'cforms2'); ?></li>
 			</ol>
 		</div>
@@ -82,14 +82,14 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<div class="cf-content" id="o18">
 			<h3><strong><?php _e('Editing posts and pages:', 'cforms2'); ?></strong></h3>
 
-			<p><?php echo sprintf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'),'shortcode <code>[cforms name="XYZ"]</code>','<code>XYZ</code>'); ?></p>
-			<p><?php echo sprintf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#wpeditor','onclick="setshow(12)"'); ?></p>
+			<p><?php printf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'),'shortcode <code>[cforms name="XYZ"]</code>','<code>XYZ</code>'); ?></p>
+			<p><?php printf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#wpeditor','onclick="setshow(12)"'); ?></p>
 
 
 			<h3><strong><?php _e('Via PHP function call:', 'cforms2'); ?></strong></h3>
-			<p><?php echo sprintf(__('Alternatively, you can specifically insert a form (into the sidebar for instance etc.) per the PHP function call %1s, or alternatively %2s for the default/first form and/or %2s for any other form.', 'cforms2'),'<code>insert_cform(\'XYZ\');</code>','<code>insert_cform();</code>','<code>insert_cform(\'<span style="color:red; font-weight:bold;">X</span>\');</code>'); ?></p>
+			<p><?php printf(__('Alternatively, you can specifically insert a form (into the sidebar for instance etc.) per the PHP function call %1s, or alternatively %2s for the default/first form and/or %2s for any other form.', 'cforms2'),'<code>insert_cform(\'XYZ\');</code>','<code>insert_cform();</code>','<code>insert_cform(\'<span style="color:red; font-weight:bold;">X</span>\');</code>'); ?></p>
 
-			<p class="ex"><strong><?php _e('Note:', 'cforms2'); ?></strong> <?php echo sprintf(__('"%1s" represents the number of the form, starting with %2s ..and so forth.', 'cforms2'),'<span style="color:red; font-weight:bold;">X</span>','<span style="color:red; font-weight:bold;">2</span>, 3,4'); ?></p>
+			<p class="ex"><strong><?php _e('Note:', 'cforms2'); ?></strong> <?php printf(__('"%1s" represents the number of the form, starting with %2s ..and so forth.', 'cforms2'),'<span style="color:red; font-weight:bold;">X</span>','<span style="color:red; font-weight:bold;">2</span>, 3,4'); ?></p>
 		</div>
 
 
@@ -98,7 +98,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
         </div>
 
 		<div class="cf-content" id="o19">
-			<p><?php echo sprintf(__('All supported input fields are listed below, highlighting the expected <em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, see examples below.', 'cforms2'),'<a class="infobutton" href="#" name="it14">','</a>'); ?></p>
+			<p><?php printf(__('All supported input fields are listed below, highlighting the expected <em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, see examples below.', 'cforms2'),'<a class="infobutton" href="#" name="it14">','</a>'); ?></p>
 
 			<p class="ex" style="display:none; width:400px;" id="it14"><?php _e('While the <em>Field Names</em> are usually just the label of a field (e.g. "Your Name"), they can contain additional information to support special functionality (e.g. default values, regular expressions for extended field validation etc.)', 'cforms2'); ?></p>
 			<p class="helpimg" style="width:400px;"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-wizard.png"  alt=""/><br /><?php _e('A new <em>wizard like</em> mode allows you to configure more complex settings in case all the pipes "|" and pounds "#" are overwhelming.', 'cforms2'); ?></p>
@@ -130,13 +130,13 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('text paragraph %1$s css class %1$s optional style', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
+				<td class="bright"><?php printf(__('text paragraph %1$s css class %1$s optional style', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php _e('Please make sure...', 'cforms2'); ?>|mytextclass|font-size:9x; font-weight:bold;</code></td>
 			</tr>
 			<tr>
-				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php echo sprintf(__('Check %s here %s for more info. %s', 'cforms2'),'&lt;a href="http://mysite.com"&gt;','&lt;/a&gt;','||font-size:9x;'); ?></code></td>
+				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php printf(__('Check %s here %s for more info. %s', 'cforms2'),'&lt;a href="http://mysite.com"&gt;','&lt;/a&gt;','||font-size:9x;'); ?></code></td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2"><?php _e('HTML: the <code>text paragraph</code> supports HTML. If you need actual &lt;, &gt; in your text please use the proper HTML entity.', 'cforms2'); ?></td>
@@ -145,7 +145,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 				<td class="ball" colspan="2"><?php _e('The above expression applies the custom class "<code>mytextclass</code>" <strong>AND</strong> the specific styles "<code>font-size:9x; font-weight:bold;</code>" to the paragraph.', 'cforms2'); ?></td>
 			</tr>
 			<tr>
-				<td class="ball" colspan="2"><?php echo sprintf(__('If you specify a <code>css class</code>, you also need to define it in your current form theme file, <a href="%s">here</a>.', 'cforms2'),'?page=' . $plugindir . '/cforms-css.php'); ?></td>
+				<td class="ball" colspan="2"><?php printf(__('If you specify a <code>css class</code>, you also need to define it in your current form theme file, <a href="%s">here</a>.', 'cforms2'),'?page=' . $plugindir . '/cforms-css.php'); ?></td>
 			</tr>
 		</table>
 
@@ -159,7 +159,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>','#regexp'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>','#regexp'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -167,7 +167,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms2'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"', cforms2_admin_date_format()); ?>
+					<?php printf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms2'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker','onclick="setshow(9)"', cforms2_admin_date_format()); ?>
 				</td>
 			</tr>
 		</table>
@@ -183,7 +183,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>','#regexp'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>','#regexp'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -195,7 +195,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
-					<code>&lt;acronym title="<?php echo sprintf(__('We need your email address for confirmation."%sYour EMail', 'cforms2'),'&gt;'); ?>&lt;/acronym&gt;</code></td>
+					<code>&lt;acronym title="<?php printf(__('We need your email address for confirmation."%sYour EMail', 'cforms2'),'&gt;'); ?>&lt;/acronym&gt;</code></td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
@@ -217,7 +217,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -240,12 +240,12 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php _e('Note:', 'cforms2'); ?><br /><?php echo sprintf(__('<strong>Select box marked "Required":</strong> Using a minus symbol %1$s for the value (after %2$s), will mark an option as invalid! Example:<br /><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. <br />"Please pick..." is shown but not considered a valid value.', 'cforms2'),'<code>-</code>','<span style="color:red; font-weight:bold;">|</span>'); ?>
+					<?php _e('Note:', 'cforms2'); ?><br /><?php printf(__('<strong>Select box marked "Required":</strong> Using a minus symbol %1$s for the value (after %2$s), will mark an option as invalid! Example:<br /><code>Your age#Please pick your age group|-#12 to 18|kiddo#19 to 30|young#31 to 45#45+ |older</code>. <br />"Please pick..." is shown but not considered a valid value.', 'cforms2'),'<code>-</code>','<span style="color:red; font-weight:bold;">|</span>'); ?>
 				</td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php _e('Note:', 'cforms2'); ?><br /><?php echo sprintf(__('<strong>Radio buttons marked "Required":</strong> You can choose to not preselect a radio button upon form load, yet make a user selection mandatory for the form to validate.', 'cforms2')); ?>
+					<?php _e('Note:', 'cforms2'); ?><br /><?php printf(__('<strong>Radio buttons marked "Required":</strong> You can choose to not preselect a radio button upon form load, yet make a user selection mandatory for the form to validate.', 'cforms2')); ?>
 				</td>
 			</tr>
 		</table>
@@ -262,7 +262,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s option1 %2$s value1 %1$s option2 %2$s value2 %1$s option3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -302,7 +302,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name <u>left</u> %s field name <u>right</u>', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name <u>left</u> %s field name <u>right</u>', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -338,7 +338,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s chk box1 label%2$schk box1 value %1$s chk box2 label %3$s chk box3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>','<span style="color:red; font-weight:bold;">##</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s chk box1 label%2$schk box1 value %1$s chk box2 label %3$s chk box3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>','<span style="color:red; font-weight:bold;">|</span>','<span style="color:red; font-weight:bold;">##</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -356,7 +356,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('If no explicit <strong>value</strong> (text after the pipe symbol \'%1$s\') is specified, the provided check box label is both label &amp; submitted value.', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?>
+					<?php printf(__('If no explicit <strong>value</strong> (text after the pipe symbol \'%1$s\') is specified, the provided check box label is both label &amp; submitted value.', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?>
 				</td>
 			</tr>
 			<tr>
@@ -379,7 +379,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name <u>left</u> %s field name <u>right</u>', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name <u>left</u> %s field name <u>right</u>', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -387,7 +387,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('If the visitor chooses to be CC\'ed, <strong>no</strong> additional auto confirmation email (<a href="%s" %s>if configured</a>) is sent out!', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?>
+					<?php printf(__('If the visitor chooses to be CC\'ed, <strong>no</strong> additional auto confirmation email (<a href="%s" %s>if configured</a>) is sent out!', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?>
 				</td>
 			</tr>
 			<tr>
@@ -412,7 +412,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s Name3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s Name1 | email address(es) %1$s Name2 | email address(es)%1$s Name3...', 'cforms2'),'<span style="color:red; font-weight:bold;">#</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -440,7 +440,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s default value', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s default value', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
@@ -478,7 +478,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('No <code>field name</code> required, the field has no configurable label per se, as it is determined at run-time from the list of <strong>Question &amp; Answers</strong> provided <a href="%s" %s>here</a>.', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?>
+					<?php printf(__('No <code>field name</code> required, the field has no configurable label per se, as it is determined at run-time from the list of <strong>Question &amp; Answers</strong> provided <a href="%s" %s>here</a>.', 'cforms2'),'?page=' . $plugindir . '/cforms-global-settings.php#visitorv','onclick="setshow(13)"'); ?>
 				</td>
 			</tr>
 			<tr>
@@ -514,12 +514,12 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms2'),'?page='.$plugindir.'/cforms-global-settings.php#upload','onclick="setshow(11)"'); ?>
+					<?php printf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms2'),'?page='.$plugindir.'/cforms-global-settings.php#upload','onclick="setshow(11)"'); ?>
 				</td>
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms2'),'?page='.$plugindir.'/cforms-global-settings.php#tracking','onclick="setshow(14)"'); ?>
+					<?php printf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms2'),'?page='.$plugindir.'/cforms-global-settings.php#tracking','onclick="setshow(14)"'); ?>
 				</td>
 			</tr>
 		</table>
@@ -581,7 +581,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 		<table class="hf">
 			<tr>
 				<td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-				<td class="bright"><?php echo sprintf(__('field name %1$s default value %1$s regular expression', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
+				<td class="bright"><?php printf(__('field name %1$s default value %1$s regular expression', 'cforms2'),'<span style="color:red; font-weight:bold;">|</span>'); ?></td>
 			</tr>
 			<tr>
 				<td class="bleft"><?php _e('Example:<br />US zip code', 'cforms2'); ?></td><td class="bright">
@@ -633,7 +633,7 @@ $plugindir   = dirname(plugin_basename(__FILE__));
 			</tr>
 			<tr>
 				<td class="ball" colspan="2">
-					<?php echo sprintf(__('More information can be found <a href="%s">here</a>, a great regexp repository <a href="%s">here</a>.', 'cforms2'),'http://php.net/manual/en/book.regex.php','http://regexlib.com'); ?>
+					<?php printf(__('More information can be found <a href="%s">here</a>, a great regexp repository <a href="%s">here</a>.', 'cforms2'),'http://php.net/manual/en/book.regex.php','http://regexlib.com'); ?>
 				</td>
 			</tr>
 		</table>
@@ -645,14 +645,14 @@ $plugindir   = dirname(plugin_basename(__FILE__));
         </div>
 
 		<div class="cf-content" id="o20">
-			<p><?php echo sprintf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms2'),'<code>|title:XXX</code>'); ?></p>
-			<p><?php echo sprintf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_success','onclick="setshow(1)"','?page=' . $plugindir . '/cforms-options.php#cforms_failure','onclick="setshow(1)"','<code>|err:XXX</code>'); ?></p>
-			<p class="ex"><?php echo sprintf(__('Please note the order of these special attributes, first %s (if applicable), then %s.', 'cforms2'),'<code>|title:XXX</code>','<code>|err:XXX</code>');?></p>
+			<p><?php printf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms2'),'<code>|title:XXX</code>'); ?></p>
+			<p><?php printf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_success','onclick="setshow(1)"','?page=' . $plugindir . '/cforms-options.php#cforms_failure','onclick="setshow(1)"','<code>|err:XXX</code>'); ?></p>
+			<p class="ex"><?php printf(__('Please note the order of these special attributes, first %s (if applicable), then %s.', 'cforms2'),'<code>|title:XXX</code>','<code>|err:XXX</code>');?></p>
 
 			<table class="hf">
 				<tr>
 					<td class="bleft"><span class="abbr" title="<?php _e('Extended entry format for the Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-					<td class="bright"><?php echo sprintf(__('field name %1$s your title here %3$s %2$s your error message %3$s', 'cforms2'),'<span style="color:red; font-weight:bold;">|title:<em>','<span style="color:red; font-weight:bold;">|err:<em>','</em></span>'); ?></td>
+					<td class="bright"><?php printf(__('field name %1$s your title here %3$s %2$s your error message %3$s', 'cforms2'),'<span style="color:red; font-weight:bold;">|title:<em>','<span style="color:red; font-weight:bold;">|err:<em>','</em></span>'); ?></td>
 				</tr>
 				<tr>
 					<td class="bleft"><?php _e('Example 1:', 'cforms2'); ?></td><td class="bright">
@@ -749,7 +749,7 @@ echo '&lt;/table&gt;';</pre></td></tr>
 				<li><?php _e('Dynamic forms only work in <strong>non-Ajax</strong> mode.', 'cforms2');?></li>
 				<li><?php _e('Each dynamic form references and thus requires <strong>a base form defined</strong> in the cforms form settings. All its settings will be used, except the form (&amp;field) definition.', 'cforms2');?></li>
 				<li><?php _e('Any of the form fields described in the plugins\' <strong>HELP!</strong> section can be dynamically generated.', 'cforms2');?></li>
-				<li><?php echo sprintf(__('Function call to generate dynamic forms: %s with', 'cforms2'),'<code>insert_custom_cform($fields:array,$form-no:int);</code> ');?>
+				<li><?php printf(__('Function call to generate dynamic forms: %s with', 'cforms2'),'<code>insert_custom_cform($fields:array,$form-no:int);</code> ');?>
 
 	                <br /><br />
 	                <code>$form-no</code>: <?php _e('empty string for the first (default) form and <strong>2</strong>,3,4... for any subsequent form', 'cforms2'); ?><br />
@@ -885,7 +885,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 
 		<div class="cf-content" id="o23">
 			<p>
-				<?php echo sprintf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"','?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?>
+				<?php printf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#anchoremail','onclick="setshow(2)"','?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?>
 			</p>
 			<p class="ex"><?php _e('Note that the variable names are case sensitive!', 'cforms2'); ?></p>
 
@@ -952,7 +952,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 
 				<tr>
 					<td class="bleft"><em><?php _e('Special:', 'cforms2'); ?></em></td>
-					<td class="bright"><?php echo sprintf(__('A single %s (period) on a line inserts a blank line.', 'cforms2'),'"<code>.</code>"'); ?></td>
+					<td class="bright"><?php printf(__('A single %s (period) on a line inserts a blank line.', 'cforms2'),'"<code>.</code>"'); ?></td>
 				</tr>
 
 				<tr>
@@ -987,7 +987,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 				</tr>
 				<tr>
 					<td class="bright" colspan="2">
-						<?php echo sprintf(__('Alternatively to the cforms predefined variables, you can also reference data of any of your form\'s input fields by one of the 3 ways described below.', 'cforms2')); ?>
+						<?php printf(__('Alternatively to the cforms predefined variables, you can also reference data of any of your form\'s input fields by one of the 3 ways described below.', 'cforms2')); ?>
 					</td>
 				</tr>
 				<tr>
@@ -1006,9 +1006,9 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 				<tr>
 					<td class="ball" colspan="2">
 						<?php _e('Example:', 'cforms2'); ?><br />
-						<?php echo sprintf(__('Suppose this is the input field definition string: %sYour Website%s', 'cforms2'),'<span style="padding:0 4px; font-family:monospace; background:#f2f2f2;">','[id:homepage]|http://</span>'); ?><br />
+						<?php printf(__('Suppose this is the input field definition string: %sYour Website%s', 'cforms2'),'<span style="padding:0 4px; font-family:monospace; background:#f2f2f2;">','[id:homepage]|http://</span>'); ?><br />
 						<?php _e('The corresponding variables would be:', 'cforms2'); ?>
-						<?php echo sprintf(__('%1$s{Your Website}%2$s , %1$s{homepage}%2$s, or %1$s%3$s%2$s (assuming it is on the 4th position) respectively.', 'cforms2'),'<span style="padding:0 4px; font-family:monospace; background:#f2f2f2;">','</span>','{_field4}'); ?>
+						<?php printf(__('%1$s{Your Website}%2$s , %1$s{homepage}%2$s, or %1$s%3$s%2$s (assuming it is on the 4th position) respectively.', 'cforms2'),'<span style="padding:0 4px; font-family:monospace; background:#f2f2f2;">','</span>','{_field4}'); ?>
 					</td>
 				</tr>
 				
@@ -1023,7 +1023,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 				</tr>
 				<tr>
 					<td class="ball" colspan="2">
-						<?php echo sprintf(__('Referencing form values in multi-page forms require specification of the actual form the field is on, eg. {%scf_form6_%sYour Name} would reference the field labeled "Your Name" on form #6.', 'cforms2'), '<span style="color:red; font-weight:bold;">','</span>'); ?>
+						<?php printf(__('Referencing form values in multi-page forms require specification of the actual form the field is on, eg. {%scf_form6_%sYour Name} would reference the field labeled "Your Name" on form #6.', 'cforms2'), '<span style="color:red; font-weight:bold;">','</span>'); ?>
 					</td>
 				</tr>
 				
@@ -1039,14 +1039,14 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 </code></pre>
 					<br />
 
-					<?php echo sprintf(__('Results in the first field labeled %1$s to be addressed with %2$s. The second instance of %1$s can be addressed by %3$s, and so on...', 'cforms2'),'\'<strong>Size</strong>\'','<code class="codehighlight">{Size}</code>','<code class="codehighlight">{Size__2}</code>'); ?>
+					<?php printf(__('Results in the first field labeled %1$s to be addressed with %2$s. The second instance of %1$s can be addressed by %3$s, and so on...', 'cforms2'),'\'<strong>Size</strong>\'','<code class="codehighlight">{Size}</code>','<code class="codehighlight">{Size__2}</code>'); ?>
 					</td>
 				</tr>
 			</table>
 			<br />
 			<table class="hf">
 				<tr>
-					<td class="bright"><?php echo sprintf(__('Here is an example for a simple <a href="%s" %s>Admin HTML message</a> <em>(you can copy and paste the below code or change to your liking)</em>:', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_header_html','onclick="setshow(3)"'); ?></td>
+					<td class="bright"><?php printf(__('Here is an example for a simple <a href="%s" %s>Admin HTML message</a> <em>(you can copy and paste the below code or change to your liking)</em>:', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_header_html','onclick="setshow(3)"'); ?></td>
 				</tr>
 
 				<tr>
@@ -1070,7 +1070,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<br />
 			<table class="hf">
 				<tr>
-					<td class="bright"><?php echo sprintf(__('Here is another example for a more detailed <a href="%s" %s>Admin HTML message</a>:', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_header_html','onclick="setshow(3)"'); ?></td>
+					<td class="bright"><?php printf(__('Here is another example for a more detailed <a href="%s" %s>Admin HTML message</a>:', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_header_html','onclick="setshow(3)"'); ?></td>
 				</tr>
 
 				<tr>
@@ -1096,7 +1096,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 			<br />
 			<table class="hf">
 				<tr>
-					<td class="bright"><?php echo sprintf(__('And a final example for a <a href="%s" %s>HTML auto confirmation message</a>:', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_cmsg_html','onclick="setshow(5)"'); ?></td>
+					<td class="bright"><?php printf(__('And a final example for a <a href="%s" %s>HTML auto confirmation message</a>:', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#cforms_cmsg_html','onclick="setshow(5)"'); ?></td>
 				</tr>
 
 				<tr>
@@ -1126,7 +1126,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
         </div>
 
 		<div class="cf-content" id="o30">
-			<p><?php echo sprintf(__('Multi-page-forms support chaining of several forms and gather user input across all linked forms. Inserting a multi page form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms2'),'<strong>','</strong>'); ?></p>
+			<p><?php printf(__('Multi-page-forms support chaining of several forms and gather user input across all linked forms. Inserting a multi page form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms2'),'<strong>','</strong>'); ?></p>
 
 			<p style="margin: 20px 0px 20px 10px; float: right; width: 410px;"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-mp.png" alt=""/></p>
 			<table class="hf">
@@ -1177,8 +1177,8 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 
         <p class="ex"><strong><?php _e('Important Notes:', 'cforms2'); ?></strong></p>
         <ul style="margin-top:10px;">
-            <li><?php echo sprintf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to examine the user data array; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms2'),'<strong>','</strong>'); ?></li>
-            <li><?php echo sprintf(__('Once the multi page form support is enabled, %1$sAjax is being disabled%2$s for this form.', 'cforms2'),'<strong>','</strong>'); ?></li>
+            <li><?php printf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to examine the user data array; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms2'),'<strong>','</strong>'); ?></li>
+            <li><?php printf(__('Once the multi page form support is enabled, %1$sAjax is being disabled%2$s for this form.', 'cforms2'),'<strong>','</strong>'); ?></li>
         </ul>
 
 		</div>
@@ -1189,9 +1189,9 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
         </div>
 
 		<div class="cf-content" id="o24">
-			<p><?php echo sprintf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
-			<p><?php echo sprintf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
-			<p><?php echo sprintf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
+			<p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
+			<p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
+			<p><?php printf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms2'); ?></p>
 		</div>
 
@@ -1201,7 +1201,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
         </div>
 
 		<div class="cf-content" id="o25">
-			<p><?php echo sprintf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms2'),'<a href="https://wordpress.org/plugins/cforms2/faq/">','</a>','<a href="https://wordpress.org/support/plugin/cforms2">','</a>'); ?></p>
+			<p><?php printf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms2'),'<a href="https://wordpress.org/plugins/cforms2/faq/">','</a>','<a href="https://wordpress.org/support/plugin/cforms2">','</a>'); ?></p>
 		</div>
 
 	<?php cforms2_footer(); ?>

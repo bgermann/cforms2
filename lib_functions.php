@@ -169,7 +169,7 @@ function cforms2_admin_enqueue_scripts() {
 function cforms2_footer() {
 ?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
 		<em>
-			<?php echo sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
+			<?php printf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
 		</em>
 		<br />Version <?php echo CFORMS2_VERSION; ?>
 	</p>

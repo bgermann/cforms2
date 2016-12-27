@@ -132,14 +132,14 @@ function cforms2_insert_modal_tracking(){
                         <option value="xml">&nbsp;&nbsp;&nbsp;XML&nbsp;&nbsp;&nbsp;</option>
                         <option value="csv">&nbsp;&nbsp;&nbsp;CSV&nbsp;&nbsp;&nbsp;</option>
                         <option value="tab">&nbsp;&nbsp;&nbsp;TAB&nbsp;&nbsp;&nbsp;</option>
-                    </select><label for="pickDLformat"><?php echo sprintf(__('Please pick a format!','cforms2')); ?></label>
+                    </select><label for="pickDLformat"><?php _e('Please pick a format!','cforms2'); ?></label>
                     <br />
-                    <input type="radio" class="chkBoxW" id="enc-utf8" name="enc" value="utf-8"/><label for="enc-utf8"><?php echo sprintf(__('UTF-8','cforms2')); ?></label>
-                    <input type="radio" class="chkBoxW" id="enc-iso" name="enc" value="iso" checked="checked"/><label for="enc-iso"><?php echo sprintf(__('ISO-8859-1','cforms2')); ?></label>
+                    <input type="radio" class="chkBoxW" id="enc-utf8" name="enc" value="utf-8"/><label for="enc-utf8"><?php _e('UTF-8','cforms2'); ?></label>
+                    <input type="radio" class="chkBoxW" id="enc-iso" name="enc" value="iso" checked="checked"/><label for="enc-iso"><?php _e('ISO-8859-1','cforms2'); ?></label>
                     <br />
-                    <input type="checkbox" class="chkBoxW" id="header" name="header" value="true"/><label for="header"><?php echo sprintf(__('Include field names / header','cforms2')); ?></label><br />
-                    <input type="checkbox" class="chkBoxW" id="addip" name="addip" value="true"/><label for="addip"><?php echo sprintf(__('Include IP address of submitting user','cforms2')); ?></label><br />
-                    <input type="checkbox" class="chkBoxW" id="addurl" name="addurl" value="true"/><label for="addurl"><?php echo sprintf(__('Add URL for upload fields','cforms2')); ?></label>
+                    <input type="checkbox" class="chkBoxW" id="header" name="header" value="true"/><label for="header"><?php _e('Include field names / header','cforms2'); ?></label><br />
+                    <input type="checkbox" class="chkBoxW" id="addip" name="addip" value="true"/><label for="addip"><?php _e('Include IP address of submitting user','cforms2'); ?></label><br />
+                    <input type="checkbox" class="chkBoxW" id="addurl" name="addurl" value="true"/><label for="addurl"><?php _e('Add URL for upload fields','cforms2'); ?></label>
 				</div>
 				<div class="controls"><a href="#" id="okDL" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
 			</form>

@@ -21,7 +21,7 @@
 
 <form method="post">
 
-	<label for="cf_edit_label"><?php _e('Name of Fieldset ( only required for <em>New Fieldset</em> )', 'cforms2'); ?></label>
+	<label for="cf_edit_label"><?php printf(__('Name of Fieldset (only required for %s%s%s)', 'cforms2'), '<em>', __('Begin Fieldset', 'cforms2'), '</em>'); ?></label>
 	<input type="text" id="cf_edit_label" name="cf_edit_label" value="">
 
 </form>

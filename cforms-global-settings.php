@@ -45,7 +45,7 @@ if ( isset($_REQUEST['deletetables']) ) {
 	?>
 	<div id="message" class="updated fade">
 		<p>
-		<strong><?php echo sprintf (__('cforms tracking tables %s have been deleted.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong>
+		<strong><?php printf (__('cforms tracking tables %s have been deleted.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong>
 			<br />
 			<?php _e('Please backup/clean-up your upload directory, chances are that when you turn tracking back on, existing (older) attachments may be <u>overwritten</u>!') ?>
 			<br />
@@ -156,7 +156,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 	        if( $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") <> $wpdb->cformssubmissions ) {
 	            ?>
 	            <div id="message" class="updated fade">
-	                <p><strong><?php echo sprintf(__('ERROR: cforms tracking tables %s could not be created.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
+	                <p><strong><?php printf(__('ERROR: cforms tracking tables %s could not be created.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
 	            </div>
 	            <?php
 			    $cformsSettings['global']['cforms_database'] = '0';
@@ -164,7 +164,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
             }else{
 	            ?>
 	            <div id="message" class="updated fade">
-	                <p><strong><?php echo sprintf(__('cforms tracking tables %s have been created.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
+	                <p><strong><?php printf(__('cforms tracking tables %s have been created.', 'cforms2'),'(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
 	            </div>
 	            <?php
             }
@@ -174,7 +174,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 			$sets = $wpdb->get_var("SELECT count(id) FROM $wpdb->cformssubmissions");
 			?>
 			<div id="message" class="updated fade">
-				<p><strong><?php echo sprintf(__('Found existing cforms tracking tables with %s records!', 'cforms2'),$sets) ?></strong></p>
+				<p><strong><?php printf(__('Found existing cforms tracking tables with %s records!', 'cforms2'),$sets) ?></strong></p>
 			</div>
 			<?php
 		}
@@ -225,7 +225,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
             </div>
 
 			<div class="cf-content" id="o9">
-				<p><?php echo sprintf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#datepicker','onclick="setshow(19)"') ?></p>
+				<p><?php printf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#datepicker','onclick="setshow(19)"') ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
@@ -258,7 +258,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 				<table class="form-table">
 				<tr class="ob">
 					<td class="obL">&nbsp;</td>
-					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php echo sprintf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms2'),'<strong>','</strong>') ?></label></td>
+					<td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if($cformsSettings['global']['cforms_crlf']['b']=="1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php printf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms2'),'<strong>','</strong>') ?></label></td>
 				</tr>
 				</table>
 
@@ -273,8 +273,8 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 
 			<div class="cf-content" id="o11">
 				<p>
-					<?php echo sprintf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#upload','onclick="setshow(19)"'); ?>
-					<?php echo sprintf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#fileupload','onclick="setshow(0)"'); ?>
+					<?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'),'?page='.$plugindir.'/cforms-help.php#upload','onclick="setshow(19)"'); ?>
+					<?php printf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms2'),'?page='.$plugindir.'/cforms-options.php#fileupload','onclick="setshow(0)"'); ?>
 				</p>
 
 				<p class="ex">
@@ -426,7 +426,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
             </div>
 
 			<div class="cf-content" id="o13">
-				<p><?php echo sprintf(__('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field %s preferably in its own FIELDSET!', 'cforms2'), '<code>' . __('Visitor verification (Q&amp;A)', 'cforms2') . '</code>'); ?></p>
+				<p><?php printf(__('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field %s preferably in its own FIELDSET!', 'cforms2'), '<code>' . __('Visitor verification (Q&amp;A)', 'cforms2') . '</code>'); ?></p>
 
 				<table class="form-table">
 				<tr class="ob">
@@ -473,7 +473,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 					<td class="obL">&nbsp;</td>
 					<td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
 				</tr>
-				<tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php echo sprintf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?></td></tr>
+				<tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'),'?page=' . $plugindir . '/cforms-options.php#autoconf','onclick="setshow(5)"'); ?></td></tr>
 
 				<tr class="ob space15">
 					<td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
