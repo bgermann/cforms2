@@ -1179,7 +1179,7 @@ if ( $cfadmin ) {
 
 require_once (plugin_dir_path(__FILE__) . 'my-functions-deprecated.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_ajax.php');
-require_once (plugin_dir_path(__FILE__) . 'cforms-captcha.php');
+require_once (plugin_dir_path(__FILE__) . '/fieldtypes/captcha.php');
 
 function cforms2_field() {
 	check_admin_referer( 'cforms2_field' );
