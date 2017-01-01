@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -113,11 +113,8 @@ jQuery(function () {
         var l_label_select = jQuery('#cf_edit_label_select').val();
         if (l_label_select == null)
             l_label_select = '';
-        var l_left = jQuery('#cf_edit_label_left').val();
-        if (l_left == null)
-            l_left = '';
 
-        var line = l_left + l_label + l_label_group + l_label_select;
+        var line = l_label + l_label_group + l_label_select;
 
         var l_css = jQuery('#cf_edit_css').val();
         if (l_css == null)
@@ -290,9 +287,9 @@ jQuery(function () {
             regexpval = line.substr(content[0].length + content[1].length + 2);
             jQuery('#cf_edit_regexp').val(regexpval);
             line = '';
-        } else if (document.getElementById('cf_edit_label_left')) {
+        } else if (document.getElementById('cf_edit_label_right')) {
             content = line.split('#');
-            jQuery('#cf_edit_label_left').val(content[0]);
+            jQuery('#cf_edit_label').val(content[0]);
             jQuery('#cf_edit_label_right').val(content[1]);
             line = '';
         } else if (document.getElementById('cf_edit_label_group')) {

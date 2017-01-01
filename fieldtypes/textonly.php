@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2015 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-?>
 
+class cforms2_fieldtype_textonly extends cforms2_fieldtype {
 
-<form method="post">
+	public function get_id() {
+		return 'textonly';
+	}
 
-	<label for="cf_edit_label"><?php _e('Text (HTML is supported)', 'cforms2'); ?></label>
-	<input type="text" id="cf_edit_label" name="cf_edit_label" value="">
+	public function get_name() {
+		return __('Text only (no input)', 'cforms2');
+	}
 
-	<label for="cf_edit_css"><?php _e('CSS (assigns class to this form element)', 'cforms2'); ?></label>
-	<input type="text" id="cf_edit_css" name="cf_edit_css" value="">
+	protected function get_text_inputs() {
+		return array(
+			"cf_edit_label" => __('Text (HTML is supported)', 'cforms2'),
+			"cf_edit_css" => __('CSS (assigns class to this form element)', 'cforms2'),
+			"cf_edit_style" => sprintf(__('Inline style (e.g. %s)', 'cforms2'),'<strong>color:red; font-size:11px;</strong>')
+		);
+	}
 
-	<label for="cf_edit_style"><?php printf(__('Inline style (e.g. %s)', 'cforms2'),'<strong>color:red; font-size:11px;</strong>'); ?></label>
-	<input type="text" id="cf_edit_style" name="cf_edit_style" value="">
+	public static function register() {
+		$t = new cforms2_fieldtype_textonly();
+		$t->register_at_filter();
+	}
 
-</form>
+}

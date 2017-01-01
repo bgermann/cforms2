@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1179,72 +1179,17 @@ if ( $cfadmin ) {
 
 require_once (plugin_dir_path(__FILE__) . 'my-functions-deprecated.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_ajax.php');
-require_once (plugin_dir_path(__FILE__) . '/fieldtypes/captcha.php');
+require_once (plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
+cforms2_fieldtype::register();
 
 function cforms2_field() {
 	check_admin_referer( 'cforms2_field' );
 
-	static $html5 = array(
-		'html5color',
-        'html5date',
-        'html5datetime',
-        'html5datetime-local',
-        'html5email',
-        'html5month',
-        'html5number',
-        'html5range',
-        'html5search',
-        'html5time',
-        'html5url',
-        'html5week',
-        'html5tel'
-	);
-	static $fieldsetstart = array(
-        'fieldsetstart',
-		'fieldsetend'
-	);
-	static $checkbox = array(
-        'ccbox',
-        'checkbox'
-	);
-	static $selectbox = array(
-        'emailtobox',
-        'selectbox',
-        'multiselectbox'
-	);
-	static $textfield = array(
-		'upload',
-		'datepicker',
-		'textfield',
-		'textarea',
-		'pwfield',
-		'hidden'
-	);
-	static $checkboxgroup = array(
-        'checkboxgroup',
-        'radiobuttons'
-    );
-
 	$type = $_REQUEST['type'];
-	if (in_array($type, $html5))
-		require ('include/html5field.php');
-	else if (in_array($type, $checkbox))
-		require ('include/checkbox.php');
-	else if (in_array($type, $checkboxgroup))
-		require ('include/checkboxgroup.php');
-	else if (in_array($type, $fieldsetstart))
-		require ('include/fieldsetstart.php');
-	else if (in_array($type, $selectbox))
-		require ('include/selectbox.php');
-	else if (in_array($type, $textfield))
-		require ('include/textfield.php');
-	else if ($type == 'textonly')
-		require ('include/textonly.php');
-	else {
-		$captchas = cforms2_get_pluggable_captchas();
-		if (array_key_exists($type, $captchas))
-			$captchas[$type]->render_settings();
-	}
+	$fields = cforms2_get_fieldtypes();
+	if (array_key_exists($type, $fields))
+		echo $fields[$type]->render_settings();
+
 	die();
 }
 
