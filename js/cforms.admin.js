@@ -102,7 +102,7 @@ jQuery(function () {
     var hasht, groupcount, totalcount;
 
     /* MODIFY THE OK BUTTON CLICK EVENT */
-    jQuery('a#ok').click(function () {
+    var clickeventhandler = function () {
 
         var l_label = jQuery('#cf_edit_label').val();
         if (l_label == null)
@@ -215,7 +215,7 @@ jQuery(function () {
         });
 
         hasht.parentNode.previousSibling.value = line + l_chkstate + l_title + l_cerr + l_html5;
-    });
+    };
 
     /* LAUNCHED AFTER AJAX */
     var load = function () {
@@ -498,15 +498,12 @@ jQuery(function () {
     };
 
     /* LAUNCHED BEFORE AJAX */
-    var open = function (hash) {
-        hash.w.css('opacity', 1).show();
-        hasht = hash.t;
-        var type = hash.t.parentNode.nextSibling.value;
+    var open = function () {
         jQuery('#cf_target').load(
                 ajaxurl,
                 {
                     limit: 25,
-                    type: type,
+                    type: hasht.parentNode.nextSibling.value,
                     action: 'cforms2_field',
                     _wpnonce: cforms2_nonces['cforms2_field']
                 }, load
@@ -522,7 +519,38 @@ jQuery(function () {
     };
 
     /* ASSSOCIATE DIALOG */
-    jQuery('#cf_editbox').jqm({modal: true, overlay: 30, onShow: open, onHide: close}).draggable();
+    var editbox = jQuery('#cf_editbox').dialog({
+        autoOpen: false,
+        modal: true,
+        width: 500,
+        open: open,
+        buttons: [
+            {
+                text: cforms2_i18n.OK,
+                icons: {
+                    primary: "ui-icon-check"
+                },
+                click: function () {
+                    clickeventhandler();
+                    jQuery(this).dialog("close");
+                }
+            },
+            {
+                text: cforms2_i18n.Cancel,
+                icons: {
+                    primary: "ui-icon-close"
+                },
+                click: function () {
+                    jQuery(this).dialog("close");
+                }
+            }
+        ]
+    }).draggable();
+
+    jQuery('.cf_editbox_button').click(function (hash) {
+        hasht = hash.target;
+        editbox.dialog("open");
+    });
 
     /* INSTALL PRESET FUNCTIONS */
     jQuery('a#okInstall').click(function () {
@@ -579,7 +607,16 @@ jQuery(function () {
         onHide: closeInstall
     }).draggable();
     jQuery('#cf_backupbox').jqm({trigger: '.jqModalBackup', modal: true, overlay: 30}).draggable();
-    jQuery('#cf_delall_dialog').jqm({trigger: '.jqModalDelAll', modal: true, overlay: 30}).draggable();
+
+    var delallDialog = jQuery('#cf_delall_dialog').dialog({
+        autoOpen: false,
+        modal: true
+    }).draggable();
+
+    jQuery('#cfbar-deleteall').click(function (hash) {
+        hasht = hash.target;
+        delallDialog.dialog("open");
+    });
 
 
     /* DELETE RECORDS DIALOG */

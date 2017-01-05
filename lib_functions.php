@@ -147,7 +147,7 @@ function cforms2_admin_enqueue_scripts() {
 
     wp_register_script('jquery-jqmodal',$r.'js/jquery.jqmodal.js',array('jquery'),'1.4.0');
     wp_register_script('cforms-admin',$r.'js/cforms.admin.js', array(
-        'jquery', 'jquery-jqmodal', 'jquery-ui-draggable', 'jquery-ui-sortable', 'wp-color-picker'
+        'jquery', 'jquery-jqmodal', 'jquery-ui-button', 'jquery-ui-dialog', 'jquery-ui-draggable', 'jquery-ui-sortable', 'wp-color-picker'
     ), CFORMS2_VERSION);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'installpreset' => wp_create_nonce('cforms2_installpreset'),
@@ -158,6 +158,10 @@ function cforms2_admin_enqueue_scripts() {
 		'dlentries'     => wp_create_nonce('database_dlentries'),
 		'getentries'    => wp_create_nonce('database_getentries')
     ) );
+	wp_localize_script('cforms-admin', 'cforms2_i18n', array(
+		'OK' => __('OK', 'cforms2'),
+		'Cancel' => __('Cancel', 'cforms2')
+	) );
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();

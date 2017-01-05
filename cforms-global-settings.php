@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -492,7 +492,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 
 		<div class="cf_actions" id="cf_actions" style="display:none;">
 			<input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
-			<input id="cfbar-deleteall" class="jqModalDelAll allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
+			<input id="cfbar-deleteall" class="allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
 			<input id="deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
 			<input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=" "/>
 			<input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
@@ -520,20 +520,17 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
         </form>
     </div>
 </div>
-<div class="jqmWindow" id="cf_delall_dialog">
-    <div class="cf_ed_header"><?php _e('Uninstalling / Removing cforms','cforms2'); ?></div>
-    <div class="cf_ed_main_backup">
+<div title="<?php _e('Uninstalling / Removing cforms','cforms2'); ?>" id="cf_delall_dialog">
+    <fieldset class="cf_ed_main">
         <form name="deleteform" method="post">
             <div id="cf_target_del"><?php _e('Warning!','cforms2'); ?></div>
             <div class="controls">
 				<p><?php _e('Generally, simple deactivation of cforms does <strong>not</strong> erase any of its data. If you like to quit using cforms for good, please erase all data before deactivating the plugin.', 'cforms2') ?></p>
-				<p><strong><?php _e('This is irrevocable!', 'cforms2') ?></strong>&nbsp;&nbsp;&nbsp;<br />
-					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms2') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms2') ?>');"/></p>
-
-                <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
+				<p><strong><?php _e('This is irrevocable!', 'cforms2') ?></strong><br />
+					 <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms2') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms2') ?>');" /></p>
             </div>
         </form>
-    </div>
+    </fieldset>
 </div>
 
 <?php

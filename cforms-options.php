@@ -290,7 +290,7 @@ if( strlen($fd)<=2 ) {
 
 	                            <span class="itemHeader<?php echo ($alternate<>'')?' altmove':''; ?>" title="<?php _e('Drag me', 'cforms2')?>"><?php echo (($i<10)?'0':'').$i; ?></span>
 
-	                            <input tabindex="<?php echo $ti++ ?>" title="<?php _e('Please enter field definition', 'cforms2'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend')?'--':$field_name; ?>" /><span title="<?php echo plugin_dir_url(__FILE__).'include/'; ?>"><input value="&#xF111;" type="submit" onfocus="this.blur()" class="wrench jqModal" title="<?php _e('Edit', 'cforms2'); ?>"/></span><select tabindex="<?php echo $ti++ ?>" title="<?php _e('Pick a field type', 'cforms2'); ?>" class="fieldtype selfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_type" id="field_<?php echo($i); ?>_type">
+	                            <input tabindex="<?php echo $ti++ ?>" title="<?php _e('Please enter field definition', 'cforms2'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend')?'--':$field_name; ?>" /><span title="<?php echo plugin_dir_url(__FILE__).'include/'; ?>"><input value="&#xF111;" type="button" onfocus="this.blur()" class="wrench cf_editbox_button" title="<?php _e('Edit', 'cforms2'); ?>"/></span><select tabindex="<?php echo $ti++ ?>" title="<?php _e('Pick a field type', 'cforms2'); ?>" class="fieldtype selfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_type" id="field_<?php echo($i); ?>_type">
 
 								<optgroup label="<?php _e('----- General form fields ----', 'cforms2'); ?>">
 									<option value="fieldsetstart" <?php echo($field_type == 'fieldsetstart'?' selected="selected"':''); ?>><?php _e('Begin Fieldset', 'cforms2'); ?></option>
@@ -962,11 +962,9 @@ add_action('admin_footer', 'cforms2_insert_modal');
 function cforms2_insert_modal(){
 	global $noDISP;
 ?>
-	<div class="jqmWindow" id="cf_editbox">
-		<div class="cf_ed_header"><?php _e('Input Field Settings', 'cforms2'); ?></div>
+	<div id="cf_editbox" title="<?php _e('Input Field Settings', 'cforms2'); ?>">
 		<div class="cf_ed_main">
 			<div id="cf_target"></div>
-			<div class="controls"><a href="#" id="ok" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_installbox">

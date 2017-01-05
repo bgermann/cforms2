@@ -1261,6 +1261,14 @@ display:block;
 font-weight:bold;
 }
 
+.cf_ed_main label {
+display:block;
+}
+
+.cf_ed_main input[type=text] {
+width:100%;
+}
+
 .jqmWindow .cf_edit_groups_header {
 margin-top:5px;
 }

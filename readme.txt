@@ -204,7 +204,6 @@ cforms2-?.mo and put it in the wp-content/languages/plugins directory.
 Some things are to be done:
 
 * https://wordpress.org/support/topic/hook-to-get-form-submission-data
-* replace jqModal with jquery-ui-dialog
 * filter user input
 * rework multipart forms to be independent from PHP sessions
 * long term: remove database tracking
@@ -258,6 +257,7 @@ GPL compliance!
 
 = 14.12.2 =
 * bugfix:   reorganize session reset
+* enhanced: replace jqModal with jquery-ui-dialog in some dialogs
 
 = 14.12.1 =
 * bugfix:   use right number of fields on dynamic forms
