@@ -255,6 +255,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.12.3 =
+
+* bugfix:   repair wrong cforms2_fieldtype_multi_id construction
+
 = 14.12.2 =
 * bugfix:   reorganize session reset
 * enhanced: replace jqModal with jquery-ui-dialog in some dialogs
