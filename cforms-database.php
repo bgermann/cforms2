@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ if ( cforms2_check_erased() )
 	return;
 ?>
 <div class="wrap" id="top">
-	<div id="icon-cforms-tracking" class="icon32"><br/></div><h2><?php _e('Tracking Form Data','cforms2')?></h2>
+	<h2><?php _e('Tracking Form Data','cforms2')?></h2>
 
 	<p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch and download as XML, TAB or CSV formatted file. Attachments can be accessed in the details section (<strong>View records</strong>). When deleting entries, associated attachments will be removed, too! ', 'cforms2') ?></p>
 

@@ -64,8 +64,7 @@ ol.cf-ol li.textonly {
 .cform label {
 	width:90px; 
 	margin:4px 10px 0 0; 
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	text-align:left;
 	vertical-align:top;
 	color: #aaa;
@@ -112,21 +111,18 @@ label.cf-group-after span {
 	border:1px solid #aaa; 
 	font:0.9em Trebuchet MS,sans-serif;
 	color:#888;
-	background:#ffffff url(../images/field-bg-top.gif) repeat-x top left;
 	vertical-align:top;
 }
 .cform input:hover,
 .cform textarea:hover,
 .cform select:hover	{
 	border: 1px solid #FFCC00;
-	background:#ffffff url(../images/field-bg-bottom.gif) repeat-x bottom left; 
 }
 
 .cform input:focus,
 .cform textarea:focus,
 .cform select:focus	{ 
 	color:#666;
-	background:#ffffff url(../images/field-bg-bottom.gif) repeat-x bottom left; 
 }
 
 .cform textarea,
@@ -217,7 +213,7 @@ p.cf-sb {
 	padding:2px 1em; 
 	margin: 0;
 	font-size:0.8em;
-	background:url(../images/button-bg.gif) repeat-x; 
+	background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x; 
 	border:1px solid #adadad!important;
 	border-left-color:#ececec!important; 
 	border-top-color:#ececec!important;
@@ -233,7 +229,7 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#DF7D7D;
 	border-style:solid;
 	border-width:1px 0pt;
@@ -338,7 +334,7 @@ div.success {
 }
 div.failure {
 	display:block;
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#DF7D7D;
 	border-style:solid;
 	border-width:1px 0pt;

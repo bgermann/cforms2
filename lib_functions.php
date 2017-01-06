@@ -38,7 +38,7 @@ function cforms2_delete_db_and_deactivate () {
 ### check user access
 function cforms2_check_access_priv($r='manage_cforms'){
 	if( !current_user_can($r) ){
-		$err = '<div class="wrap"><div id="icon-cforms-error" class="icon32"><br/></div><h2>'.__('cforms error','cforms2').'</h2><div class="updated fade" id="message"><p>'.__('You do not have the proper privileges to access this page.','cforms2').'</p></div></div>';
+		$err = '<h2>'.__('cforms error','cforms2').'</h2><div class="updated fade" id="message"><p>'.__('You do not have the proper privileges to access this page.','cforms2').'</p></div></div>';
 		die( $err );
     }
 }
@@ -188,7 +188,7 @@ function cforms2_check_erased() {
     if ( $cformsSettings['global']['cforms_formcount'] == '' ){
 		?>
 		<div class="wrap">
-		<div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
+		<h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
 	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') ?></p>
 	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms2') ?></p>
 	    </div>

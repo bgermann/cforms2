@@ -184,7 +184,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 ?>
 
 <div class="wrap" id="top">
-    <div id="icon-cforms-global" class="icon32"><br/></div><h2><?php _e('Global Settings','cforms2')?></h2>
+    <h2><?php _e('Global Settings','cforms2')?></h2>
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post">
     <?php if ( isset($_POST['showinfo']) ) :
         echo '<p>' . __('All the global and per form settings are listed here as JSON. You can use this as a backup tool if you like.', 'cforms2') . '</p>';
@@ -505,7 +505,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 
 <div class="jqmWindow" id="cf_backupbox">
     <div class="cf_ed_header"><?php _e('Restore all settings (old)','cforms2'); ?></div>
-    <div class="cf_ed_main_backup">
+    <div class="cf_ed_main">
         <form enctype="multipart/form-data" name="backupform" method="post">
             <div class="controls">
 

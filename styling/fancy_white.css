@@ -76,8 +76,7 @@ ol.cf-ol li.textonly {
 }
 
 label.cf-before {
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	margin:4px 5px 0 0;
 }
 
@@ -87,8 +86,7 @@ label.cf-before span{
 }
 
 label.cf-after 	{
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	margin:4px 19px 0pt 4px;
 	text-align:left;
 	width:90px;
@@ -100,8 +98,7 @@ label.cf-after span {
 }
 
 label.cf-group-after {
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	margin:4px 6px 0 4px;
 	width:105px;
 	text-align:left;
@@ -260,7 +257,7 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#DF7D7D;
 	border-style:solid;
 	border-width:0pt;
@@ -297,8 +294,7 @@ label.seccap {
 }
 
 label.secq{
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	width:auto;
 	padding:2px 4px 2px 2px;
 }
@@ -375,7 +371,7 @@ div.success {
 }
 div.failure {
 	display:block;
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 }
 div.waiting {
 	background:#F9F9F9;

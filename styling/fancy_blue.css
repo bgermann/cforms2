@@ -77,8 +77,7 @@ ol.cf-ol li.textonly {
 }
 
 label.cf-before {
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	margin:4px 5px 0 0; 
 }
 
@@ -88,8 +87,7 @@ label.cf-before span{
 }
 
 label.cf-after 	{
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	margin:4px 10px 0pt 4px;
 	text-align:left;
 	width:100px;
@@ -101,8 +99,7 @@ label.cf-after span {
 }
 
 label.cf-group-after {
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	margin:4px 6px 0 4px;
 	width:105px;
 	text-align:left;
@@ -239,12 +236,13 @@ p.cf-sb {
 	margin:5px 30px 4px 0pt;
 	padding:0pt 0pt 1px;
 	width:119px;
-	background:url(fancy_blue_submit.gif) no-repeat 0 0px; 
+	background:#97AEFF linear-gradient(0deg, #7492AE, #EBF0F6);
+	border-radius: 6px;
 	border:none;
 	cursor:pointer;
 }
 .cform input.sendbutton:hover	{ 
-	background-position:0 -35px;
+	background:#97AEFF linear-gradient(0deg, #23334D, #3A4C69, #7492AE, #EBF0F6);
 }
 .cform input.resetbutton {
 	margin:5px 10px 4px 0pt;
@@ -257,7 +255,7 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#DF7D7D;
 	border-style:solid;
 	border-width:0pt;
@@ -294,8 +292,7 @@ label.seccap {
 }
 
 label.secq{
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	width:auto;
 	padding:2px 4px 2px 2px;
 }
@@ -373,7 +370,7 @@ div.success {
 }
 div.failure {
 	display:block;
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 }
 div.waiting {
 	background:#F9F9F9;

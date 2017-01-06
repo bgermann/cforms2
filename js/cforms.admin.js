@@ -493,8 +493,6 @@ jQuery(function () {
             }
         });
 
-        jQuery('.cf_ed_main').addClass('ajaxloaded');
-
     };
 
     /* LAUNCHED BEFORE AJAX */
@@ -512,7 +510,6 @@ jQuery(function () {
 
     /* LAUNCHED WHEN BOX CLOSED */
     var close = function (hash) {
-        jQuery('.cf_ed_main').removeClass('ajaxloaded');
         hash.w.hide();
         jQuery('#cf_target').html('');
         hash.o.remove();
@@ -522,7 +519,7 @@ jQuery(function () {
     var editbox = jQuery('#cf_editbox').dialog({
         autoOpen: false,
         modal: true,
-        width: 500,
+        width: 600,
         open: open,
         buttons: [
             {
@@ -562,7 +559,6 @@ jQuery(function () {
         oldDesc = 0;
         jQuery('select#formpresets').keypress(showDesc);
         jQuery('select#formpresets').change(showDesc);
-        jQuery('.cf_ed_main').addClass('ajaxloaded');
         jQuery('select#formpresets').focus();
     };
 
@@ -592,7 +588,6 @@ jQuery(function () {
     /* LAUNCHED WHEN BOX CLOSED */
     var closeInstall = function (hash) {
         jQuery('span', 'p#descPreset').hide();
-        jQuery('.cf_ed_main').removeClass('ajaxloaded');
         hash.w.hide();
         jQuery('#cf_installtarget').html('');
         hash.o.remove();
@@ -622,7 +617,6 @@ jQuery(function () {
     /* DELETE RECORDS DIALOG */
     var open_data = function (hash) {
         hash.w.css('opacity', 1).show();
-        jQuery('.cf_ed_main').addClass('ajaxloaded');
     };
     var close_data = function (hash) {
         hash.w.hide();

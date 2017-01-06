@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ $cformsSettings['global']['v'] = CFORMS2_VERSION;
 unset ( $cformsSettings['global']['cforms_style'] );
 $cformsSettings['global']['cforms_style']['body'] 	= 'style="margin:0; padding:0; font-family: Verdana, Arial; font-size: 13px; color:#555;"';
 $cformsSettings['global']['cforms_style']['meta'] 	= 'style="font-size: 90%; margin:0; background:#aaaaaa; padding:1em 2em 1em 0.6em; color:#555555; text-shadow:0 1px 0 #c5c5c5; border-bottom:1px solid #9d9d9d;"';
-$cformsSettings['global']['cforms_style']['admin'] 	= 'style="background:#f0f0f0; border-top:1px solid #777; box-shadow:0 -2px 2px #999; -webkit-box-shadow:0 -2px 2px #999;"';
+$cformsSettings['global']['cforms_style']['admin'] 	= 'style="background:#f0f0f0; border-top:1px solid #777; box-shadow:0 -2px 2px #999;"';
 $cformsSettings['global']['cforms_style']['title'] 	= 'style="font-size: 90%; margin:0; background:#fcfcfc; padding:1em 2em 1em 0.6em; color:#888888; display:inline-block;"';
 $cformsSettings['global']['cforms_style']['table'] 	= 'style="width:auto; margin: 0.2em 2em 2em; font-size: 100%;"';
 $cformsSettings['global']['cforms_style']['fs'] 	= 'style="color:#555; padding:1em 0 0.4em; font-size: 110%; font-weight:bold; text-shadow:0 1px 0 #fff;"';

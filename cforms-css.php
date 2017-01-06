@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ cforms2_check_access_priv();
 if ( $cformsSettings['global']['cforms_formcount'] == '' ){
 	?>
 	<div class="wrap">
-		<div id="icon-cforms-css" class="icon32"><br/></div><h2><?php _e('Styling your forms','cforms2')?></h2>
+	<h2><?php _e('Styling your forms','cforms2')?></h2>
 
 	<h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
 	<p><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') ?></p>
@@ -66,7 +66,7 @@ if ( isset($_POST['chg_css']) ){
 
 ?>
 <div class="wrap" id="top">
-		<div id="icon-cforms-css" class="icon32"><br/></div><h2><?php _e('Styling your forms','cforms2')?></h2>
+	<h2><?php _e('Styling your forms','cforms2')?></h2>
 
 	<p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms2') ?></p>
 

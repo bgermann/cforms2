@@ -38,7 +38,7 @@ abstract class cforms2_fieldtype {
 		$out = '<form method="post">';
 		$inputs = $this->get_text_inputs();
 		foreach ($inputs as $id => $label) {
-			$out .= sprintf('<label for="%1$s">%2$s</label><input type="text" id="%1$s" name="%1$s" value="" />', $id, $label);
+			$out .= sprintf('<label for="%1$s">%2$s</label><input type="text" id="%1$s" name="%1$s" class="cf_text" />', $id, $label);
 		}
 		$out .= $this->render_additional_settings();
 		$out .= '</form>';

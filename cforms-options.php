@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ if( strlen($fd)<=2 ) {
 ?>
 
 <div class="wrap" id="top">
-	<div id="icon-cforms-settings" class="icon32"><br/></div><h2><?php _e('Form Settings', 'cforms2')?></h2>
+	<h2><?php _e('Form Settings', 'cforms2')?></h2>
 
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="#">
 		<table class="chgformbox" title="<?php _e('Navigate to your other forms.', 'cforms2') ?>">
@@ -979,7 +979,7 @@ function cforms2_insert_modal(){
 	</div>
 	<div class="jqmWindow" id="cf_backupbox">
 		<div class="cf_ed_header"><?php _e('Restore this form only (old)', 'cforms2'); ?></div>
-		<div class="cf_ed_main_backup">
+		<div class="cf_ed_main">
 			<form enctype="multipart/form-data" name="backupform" method="post">
 				<div class="controls">
 

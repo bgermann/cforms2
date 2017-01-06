@@ -258,6 +258,7 @@ GPL compliance!
 = 14.12.2 =
 * bugfix:   reorganize session reset
 * enhanced: replace jqModal with jquery-ui-dialog in some dialogs
+* other:    remove fancy-dark theme
 
 = 14.12.1 =
 * bugfix:   use right number of fields on dynamic forms

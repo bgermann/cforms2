@@ -9,9 +9,6 @@
     width: 510px;
     border: 1px solid #eee;
     border-radius: 3px;
-	-moz-border-radius:3px;
-	-khtml-border-radius:3px;
-	-webkit-border-radius:3px;
 }
 
 .cform fieldset	{ 
@@ -31,9 +28,6 @@
 .cform legend { 
     background: none repeat scroll 0 0 #eaeaea;
     border-radius: 0 3px 3px 0;
-	-moz-border-radius:0 3px 3px 0;
-	-khtml-border-radius:0 3px 3px 0;
-	-webkit-border-radius:0 3px 3px 0;	
     color: #777777;
     font-size: 0.8em;
     font-weight: bold;
@@ -42,9 +36,6 @@
 }
 .cform fieldset:first-child legend { 
     border-radius: 0 0 3px 0;
-	-moz-border-radius:0 0 3px 0;
-	-khtml-border-radius:0 0 3px 0;
-	-webkit-border-radius:0 0 3px 0;
 }
 
 ol.cf-ol { 
@@ -132,34 +123,13 @@ label.cf-group-after span {
     font-size: 0.9em;
     padding: 5px 10px;
 	
-	background: #f9f9f9; 
 	border: 1px solid #e2e2e2; 
 	vertical-align:top;
 
 	box-shadow: none;	
-	background: #f7f7f7; /* Old browsers */
-	background: -moz-linear-gradient(top,  #f7f7f7 0%, #eeeeee 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* IE10+ */
-	background: linear-gradient(top,  #f7f7f7 0%,#eeeeee 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+	background: #f7f7f7 linear-gradient(0deg, #f7f7f7, #eeeeee);
 }
-/*
-.cform input:hover,
-.cform textarea:hover,
-.cform select:hover	{
-background: #ffffff; 
-background: -moz-linear-gradient(top,  #ffffff 0%, #efefef 100%); 
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); 
-background: -webkit-linear-gradient(top,  #ffffff 0%,#efefef 100%); 
-background: -o-linear-gradient(top,  #ffffff 0%,#efefef 100%); 
-background: -ms-linear-gradient(top,  #ffffff 0%,#efefef 100%);
-background: linear-gradient(top,  #ffffff 0%,#efefef 100%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); 
-}
-*/
+
 .cform input:hover,
 .cform textarea:hover,
 .cform select:hover,
@@ -272,33 +242,15 @@ p.cf-sb {
 	width:auto;
 
     border-radius: 3px 0 0 0;
-	-moz-border-radius:3px 0 0 0;
-	-khtml-border-radius:3px 0 0 0;
-	-webkit-border-radius:3px 0 0 0;
 
 	border:1px solid #ccc;
-	
-	background: #f7f7f7; /* Old browsers */
-	background: -moz-linear-gradient(top,  #f7f7f7 1%, #e5e5e5 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#f7f7f7), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* IE10+ */
-	background: linear-gradient(top,  #f7f7f7 1%,#e5e5e5 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+	background: #f7f7f7 linear-gradient(0deg, #f7f7f7, #e5e5e5);
 }
 .cform input.backbutton:hover,
 .cform input.resetbutton:hover,
 .cform input.sendbutton:hover {
 	border:1px solid #aaa;
-	background: #fdfdfd; /* Old browsers */
-	background: -moz-linear-gradient(top,  #f7f7f7 1%, #c1c1c1 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#f7f7f7), color-stop(100%,#c1c1c1)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* IE10+ */
-	background: linear-gradient(top,  #f7f7f7 1%,#c1c1c1 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#c1c1c1',GradientType=0 ); /* IE6-9 */
+	background: #fdfdfd linear-gradient(0deg, #f7f7f7, #c1c1c1);
 }
 .cform input.resetbutton {
 	width: auto;
@@ -313,7 +265,7 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#EDC4C4;
 	border-style:solid;
 	border-width:1px 0pt;
@@ -425,12 +377,9 @@ div.success {
 }
 div.failure {
 	display:block;
-    background: url(li-err-bg.png) repeat scroll 0 0 #FFDFDF !important;
+    background: repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) scroll 0 0 #FFDFDF !important;
     border: 1px solid #EDC4C4;
     border-radius: 3px;
-	-moz-border-radius:3px;
-	-khtml-border-radius:3px;
-	-webkit-border-radius:3px;
 }
 div.waiting {
 	background:#F9F9F9;

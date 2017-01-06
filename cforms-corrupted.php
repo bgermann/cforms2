@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 cforms2_check_access_priv();
 ?>
 <div class="wrap">
-	<div id="icon-cforms-corrupted" class="icon32"><br/></div><h2><?php _e('cforms error','cforms2')?></h2>
+	<h2><?php _e('cforms error','cforms2')?></h2>
 
 <?php if( $_POST['fixsettings'] ) :?>
 

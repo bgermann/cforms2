@@ -6,7 +6,8 @@
 /*  ** (or remove for your 1st, default form)         */
 
 .cform fieldset.cf-fs1 {
-	background: url(../images/customform_shiny_bg.jpg) no-repeat;
+	background: white linear-gradient(180deg, #ccc, white 30px);
+	border-radius: 10px 10px 0 0;
 	padding-bottom:0;
 }
 .cform fieldset.cf-fs1 ol.cf-ol { 
@@ -74,8 +75,7 @@ ol.cf-ol li.textonly {
 	color:#666666;
 	width:90px; 
 	margin:4px 10px 0 0; 
-	display:-moz-inline-box; /*for mozilla*/
-	display:inline-block; /*for Opera & IE*/
+	display:inline-block;
 	text-align:right;
 	vertical-align:top;
 }
@@ -166,7 +166,7 @@ span.emailreqtxt {
 	color:#a2a2a2;
 	margin:3px 0 0 5px;
 	font:normal 9px Tahoma;
-	display: -moz-inline-box; 
+	display:inline-block;
 	vertical-align:top;
 	letter-spacing:1px;
 }
@@ -218,7 +218,8 @@ p.cf-sb {
 	text-align:right;
 	padding:0!important;
 	margin:0;
-	background: url(../images/customform_shiny_bg_bottom.jpg) no-repeat bottom left;
+	background: white linear-gradient(0deg, #ccc, white 30px);
+	border-radius: 0 0 10px 10px;
 }
 .cform input.backbutton,
 .cform input.resetbutton,
@@ -231,15 +232,11 @@ p.cf-sb {
 	margin: 0px 10px 10px 0px;
 	padding: 0 0 5px;
 	width:120px;
-	background: white url(../images/customform_shiny_submit.jpg) no-repeat;
-	border:none;
+	background: #777 linear-gradient(0deg, #777 30%, #ccc 70%);
+	border-radius: 6px;
 }
 .cform input.sendbutton:hover	{ 
-	background-position:0 -31px;
-}
-.cform input.resetbutton {
-}
-.cform input.backbutton {
+	background: #555 linear-gradient(0deg, #555 30%, #aaa 70%);;
 }
 
 
@@ -247,7 +244,7 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#DF7D7D;
 	border-style:solid;
 	border-width:1px 0pt;
@@ -355,7 +352,7 @@ div.success {
 }
 div.failure {
 	display:block;
-	background:#FFDFDF url(li-err-bg.png) repeat!important;
+	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
 	border-color:#DF7D7D;
 	border-style:solid;
 	border-width:1px 0pt;
