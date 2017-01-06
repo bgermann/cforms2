@@ -20,10 +20,12 @@ class cforms2_fieldtype_multi_id extends cforms2_fieldtype {
 
 	private $id;
 	private $name;
+	private $special;
 
-	protected function __construct($id, $name) {
+	protected function __construct($id, $name, $special) {
 		$this->id = $id;
 		$this->name = $name;
+		$this->special = $special;
 	}
 
 	public function get_id() {
@@ -33,7 +35,11 @@ class cforms2_fieldtype_multi_id extends cforms2_fieldtype {
 	public function get_name() {
 		return $this->name;
 	}
-	
+
+	public function is_special() {
+		return $this->special;
+	}
+
 	public static function register() {
 		$t = new cforms2_fieldtype_multi_id('fieldsetend', __('End Fieldset', 'cforms2'));
 		$t->register_at_filter();

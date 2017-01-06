@@ -19,8 +19,8 @@
 
 class cforms2_fieldtype_text extends cforms2_fieldtype_multi_id {
 
-	protected function __construct($id, $name) {
-		parent::__construct($id, $name);
+	protected function __construct($id, $name, $special) {
+		parent::__construct($id, $name, $special);
 	}
 
 	protected function get_text_inputs() {
@@ -35,15 +35,15 @@ class cforms2_fieldtype_text extends cforms2_fieldtype_multi_id {
 
 	public static function register() {
 		$types = array(
-			'textfield' => __('Single line of text', 'cforms2'),
-			'upload' => __('File Upload Box', 'cforms2'),
-			'datepicker' => __('Date Entry/Dialog', 'cforms2'),
-			'textarea' => __('Multiple lines of text', 'cforms2'),
-			'pwfield' => __('Password Field', 'cforms2'),
-			'hidden' => __('Hidden Field', 'cforms2')
+			'textfield' => array(__('Single line of text', 'cforms2'), false),
+			'upload' => array(__('File Upload Box', 'cforms2'), false),
+			'datepicker' => array(__('Date Entry/Dialog', 'cforms2'), true),
+			'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
+			'pwfield' => array(__('Password Field', 'cforms2'), false),
+			'hidden' => array(__('Hidden Field', 'cforms2'), false)
 		);
 		foreach ($types as $id => $label) {
-			$t = new cforms2_fieldtype_text($id, $label);
+			$t = new cforms2_fieldtype_text($id, $label[0], $label[1]);
 			$t->register_at_filter();
 		}
 	}

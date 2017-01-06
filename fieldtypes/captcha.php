@@ -49,6 +49,10 @@ abstract class cforms2_captcha extends cforms2_fieldtype {
 		return false;
 	}
 
+	public function is_special() {
+		return true;
+	}
+
 	protected function register_at_filter() {
 		add_filter('cforms2_add_fieldtype', array($this, 'add_instance'));
 		add_filter('cforms2_add_captcha', array($this, 'add_instance'));

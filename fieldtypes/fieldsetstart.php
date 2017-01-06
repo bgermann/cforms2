@@ -31,9 +31,11 @@ class cforms2_fieldtype_fieldsetstart extends cforms2_fieldtype {
 		$t->register_at_filter();
 	}
 
+/*  TODO Implement an alternative for multipart forms
 	protected function render_additional_settings() {
 		return '<label for="cf_edit_checked">' . __('Show this fieldset only if all previous fields were filled out correctly.', 'cforms2')
 			. '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
 	}
+*/
 
 }

@@ -20,7 +20,7 @@
 class cforms2_fieldtype_html5 extends cforms2_fieldtype_multi_id {
 
 	protected function __construct($id, $name) {
-		parent::__construct($id, $name);
+		parent::__construct($id, $name, true);
 	}
 
 	protected function get_text_inputs() {

@@ -32,6 +32,14 @@ abstract class cforms2_fieldtype {
 	abstract public function get_name();
 
 	/**
+	 * @return boolean true if this field type is special.
+	 * Special fields are not automatically rendered as an option for fields.
+	 */
+	public function is_special() {
+		return false;
+	}
+
+	/**
 	 * @return the HTML required for the settings modal dialog
 	 */
 	public function render_settings() {
@@ -42,6 +50,21 @@ abstract class cforms2_fieldtype {
 		}
 		$out .= $this->render_additional_settings();
 		$out .= '</form>';
+		return $out;
+	}
+
+	/**
+	 * @return the HTML required for the field type dropdown selection menu
+	 */
+	public function render_form_option($selected, $disabled) {
+		$out .= '<option';
+		if ($selected)
+			$out .= ' selected="selected"';
+		elseif ($disabled)
+			$out .= ' disabled="disabled" class="disabled"';
+		$out .= ' value="'. $this->get_id() .'">';
+		$out .= $this->get_name();
+		$out .= '</option>';
 		return $out;
 	}
 

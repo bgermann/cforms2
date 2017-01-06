@@ -20,7 +20,7 @@
 class cforms2_fieldtype_checkboxgroup extends cforms2_fieldtype_multi_id {
 
 	protected function __construct($id, $name) {
-		parent::__construct($id, $name);
+		parent::__construct($id, $name, false);
 	}
 
 	protected function get_text_inputs() {

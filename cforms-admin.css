@@ -150,7 +150,6 @@ padding:5px; /* content-box padding-box border-box*/
 a.allbuttons,
 input.allbuttons {
 color:#333;
-text-shadow:white 0 1px 0;
 
 line-height:16px;
 padding:2px 8px;
@@ -1148,7 +1147,6 @@ padding:12px;
 }
 
 .cf_ed_main input {
-width:568px;
 font-size:11px;
 margin-left:0;
 line-height:1em;
@@ -1192,7 +1190,7 @@ margin-top:5px;
 .cf_edit_groups_header span, #cf_edit_groups input {
 font-size:10px;
 display:block;
-width:222px;
+width:207px;
 float:left;
 margin-right:5px;
 }

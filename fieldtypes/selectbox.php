@@ -19,8 +19,8 @@
 
 class cforms2_fieldtype_selectbox extends cforms2_fieldtype_multi_id {
 
-	protected function __construct($id, $name) {
-		parent::__construct($id, $name);
+	protected function __construct($id, $name, $special) {
+		parent::__construct($id, $name, $special);
 	}
 
 	protected function get_text_inputs() {
@@ -43,12 +43,12 @@ class cforms2_fieldtype_selectbox extends cforms2_fieldtype_multi_id {
 
 	public static function register() {
 		$types = array(
-			'emailtobox' => __('Multiple Recipients', 'cforms2'),
-			'selectbox' => __('Select Box', 'cforms2'),
-			'multiselectbox' => __('Multi Select Box', 'cforms2')
+			'emailtobox' => array(__('Multiple Recipients', 'cforms2'), true),
+			'selectbox' => array(__('Select Box', 'cforms2'), false),
+			'multiselectbox' => array(__('Multi Select Box', 'cforms2'), false)
 		);
 		foreach ($types as $id => $label) {
-			$t = new cforms2_fieldtype_selectbox($id, $label);
+			$t = new cforms2_fieldtype_selectbox($id, $label[0], $label[1]);
 			$t->register_at_filter();
 		}
 	}

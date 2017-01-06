@@ -19,8 +19,8 @@
 
 class cforms2_fieldtype_checkbox extends cforms2_fieldtype_multi_id {
 
-	protected function __construct($id, $name) {
-		parent::__construct($id, $name);
+	protected function __construct($id, $name, $special) {
+		parent::__construct($id, $name, $special);
 	}
 
 	protected function get_text_inputs() {
@@ -39,11 +39,11 @@ class cforms2_fieldtype_checkbox extends cforms2_fieldtype_multi_id {
 
 	public static function register() {
 		$types = array(
-			'ccbox' => __('CC: option for user', 'cforms2'),
-			'checkbox' => __('Check Box', 'cforms2')
+			'ccbox' => array(__('CC: option for user', 'cforms2'), true),
+			'checkbox' => array(__('Check Box', 'cforms2'), false)
 		);
 		foreach ($types as $id => $label) {
-			$t = new cforms2_fieldtype_checkbox($id, $label);
+			$t = new cforms2_fieldtype_checkbox($id, $label[0], $label[1]);
 			$t->register_at_filter();
 		}
 	}

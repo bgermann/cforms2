@@ -214,14 +214,14 @@ jQuery(function () {
 
         });
 
-        hasht.parentNode.previousSibling.value = line + l_chkstate + l_title + l_cerr + l_html5;
+        hasht.parentNode.previousElementSibling.value = line + l_chkstate + l_title + l_cerr + l_html5;
     };
 
     /* LAUNCHED AFTER AJAX */
     var load = function () {
 
         /* GET CURRENT CONFIG */
-        var line = hasht.parentNode.previousSibling.value;
+        var line = hasht.parentNode.previousElementSibling.value;
 
         var content;
         if (line.indexOf('|html5:') > 0) {
@@ -495,13 +495,12 @@ jQuery(function () {
 
     };
 
-    /* LAUNCHED BEFORE AJAX */
     var open = function () {
         jQuery('#cf_target').load(
                 ajaxurl,
                 {
                     limit: 25,
-                    type: hasht.parentNode.nextSibling.value,
+                    type: hasht.parentNode.nextElementSibling.value,
                     action: 'cforms2_field',
                     _wpnonce: cforms2_nonces['cforms2_field']
                 }, load
