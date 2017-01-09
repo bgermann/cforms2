@@ -41,7 +41,7 @@ class cforms2_fieldtype_multi_id extends cforms2_fieldtype {
 	}
 
 	public static function register() {
-		$t = new cforms2_fieldtype_multi_id('fieldsetend', __('End Fieldset', 'cforms2'));
+		$t = new cforms2_fieldtype_multi_id('fieldsetend', __('End Fieldset', 'cforms2'), false);
 		$t->register_at_filter();
 	}
 
