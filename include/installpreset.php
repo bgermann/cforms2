@@ -20,16 +20,14 @@
 add_action( 'wp_ajax_cforms2_installpreset', 'cforms2_installpreset' );
 
 function cforms2_installpreset() {
-check_admin_referer( 'cforms2_installpreset' );
-
-?>
-
-	<p>
-		<label for="cf_edit_label_select"><?php _e('Please select a predefined form:', 'cforms2'); ?></label>
-		<?php echo cforms2_get_form_presets(); ?>
-	</p>
-	<p class="ex installNote"><?php _e('By accepting and choosing OK, you will <strong>replace</strong> all your existing input fields with this new preset! If you\'re unsure about this, make a backup copy of the form first.', 'cforms2'); ?></p>
-<?php die();
+	check_admin_referer( 'cforms2_installpreset' );
+	echo '<p>'
+		.'<label for="cf_edit_label_select">' .__('Please select a predefined form:', 'cforms2'). '</label>'
+		.cforms2_get_form_presets()
+		.'</p>'
+		.'<p class="ex installNote">' .__('By accepting and choosing OK, you will <strong>replace</strong> all your existing input fields with this new preset! If you\'re unsure about this, make a backup copy of the form first.', 'cforms2')
+		.'</p>';
+	die();
 }
 
 ### read all presets from the dir

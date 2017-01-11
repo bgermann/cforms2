@@ -171,13 +171,9 @@ function cforms2_admin_enqueue_scripts() {
 
 ### footer
 function cforms2_footer() {
-?>	<p style="padding-top:50px; font-size:11px; text-align:center;">
-		<em>
-			<?php printf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>') ?>
-		</em>
-		<br />Version <?php echo CFORMS2_VERSION; ?>
-	</p>
-<?php
+	echo '<p style="padding-top:50px; font-size:11px; text-align:center;"><em>'
+		. sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'),'<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">','</a>')
+		. '</em><br />Version ' .CFORMS2_VERSION. '</p>';
 }
 
 
@@ -185,15 +181,14 @@ function cforms2_footer() {
 ### plugin uninstalled?
 function cforms2_check_erased() {
 	global $cformsSettings;
-    if ( $cformsSettings['global']['cforms_formcount'] == '' ){
-		?>
-		<div class="wrap">
-		<h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
-	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') ?></p>
-	    <p class="ex" style="padding:5px 35px 10px 41px;"><?php _e('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms2') ?></p>
-	    </div>
-		<?php
-	    return true;
+	if ( $cformsSettings['global']['cforms_formcount'] == '' ){
+		echo '<div class="wrap"><h2>'
+			.__('All cforms data has been erased!', 'cforms2')
+			.'</h2>'
+			.'<p class="ex" style="padding:5px 35px 10px 41px;">' .__('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2'). '</p>'
+			.'<p class="ex" style="padding:5px 35px 10px 41px;">' .__('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms2'). '</p>'
+			.'</div>';
+		return true;
 	}
 	return false;
 }

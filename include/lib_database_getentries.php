@@ -83,10 +83,10 @@ if ($showIDs<>'') {
     $sql = $wpdb->prepare($sql, $sqlargs);
 	$entries = $wpdb->get_results($sql);
     cforms2_dbg($sql);
-	?>
 
-	<div id="top">
-	<?php if ($entries) :
+	echo '<div id="top">';
+
+	if ($entries) {
 
 		$sub_id='';
 		foreach ($entries as $entry){
@@ -173,12 +173,12 @@ if ($showIDs<>'') {
 		}
 		echo '</div>';
 
-	else : ?>
+	} else {
 
-		<p align="center"><?php _e('Sorry, data not found. Please refresh your data table.', 'cforms2') ?></p>
-		</div>
+		echo '<p align="center">' .__('Sorry, data not found. Please refresh your data table.', 'cforms2'). '</p>';
+		echo '</div>';
 
-	<?php endif;
+	};
 
 }
 die();

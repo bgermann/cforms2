@@ -69,9 +69,7 @@ if ( $sub_id<>'' && $sub_id >= 0){
 	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformssubmissions WHERE id = %s", $sub_id));
 	$nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformsdata WHERE sub_id = %s", $sub_id));
 
-	?>
-	<p><strong><?php _e('Entry successfully removed', 'cforms2'); echo $del; ?>.</strong></p>
-	<?php
+	echo '<p><strong>' .__('Entry successfully removed', 'cforms2').$del. '</strong></p>';
 }
 die();
 }
