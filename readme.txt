@@ -59,23 +59,6 @@ See also
 [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)
 for further information.
 
-= Credits =
-
-The translations that are or were distributed were provided by:
-
-* www.alpenimmobilien.de
-* Michael Lederstatter / Buy-Hosting.net
-* Leadvirus
-* Gianni Diurno
-* Gill Ajoft
-* Serge Rauber
-* Cyrille Sanson-Stern
-* Pedro Germani Ghiorzi
-* Cátia Kitahara
-* Sofia Panchenko
-* [Stas Mykhajlyuk](http://kosivart.if.ua)
-* Charles Tang
-
 = License Information =
 
 Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
@@ -191,6 +174,10 @@ These features were remove with version 14.12.
 == Localization ==
 
 You can see the available languages and contribute via [GlotPress](https://translate.wordpress.org/projects/wp-plugins/cforms2).
+Only some of them that are almost completely translated are installed automatically.
+
+If you want to install another language, please choose its cell in the Development column,
+export it as Machine Object Message Catalog (.mo) and put it in the wp-content/languages/plugins directory.
 
 If your language is not available, you can find a list of the
 [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
@@ -254,6 +241,10 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 14.13 =
+
+* other:    remove the remaining translation files
 
 = 14.12.3 =
 
