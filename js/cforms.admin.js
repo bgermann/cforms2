@@ -548,58 +548,6 @@ jQuery(function () {
         editbox.dialog("open");
     });
 
-    /* INSTALL PRESET FUNCTIONS */
-    jQuery('a#okInstall').click(function () {
-        document.installpreset.submit();
-    });
-
-    var oldDesc;
-    var loadInstall = function () {
-        oldDesc = 0;
-        jQuery('select#formpresets').keypress(showDesc);
-        jQuery('select#formpresets').change(showDesc);
-        jQuery('select#formpresets').focus();
-    };
-
-    var showDesc = function () {
-        jQuery('span#descInstall' + oldDesc).toggle();
-        jQuery('span#descInstall' + this.selectedIndex).toggle();
-        oldDesc = this.selectedIndex;
-    };
-
-    /* LAUNCHED BEFORE AJAX */
-    var openInstall = function (hash) {
-        hash.w.css('opacity', 1).show();
-        hasht = hash.t;
-        jQuery('#cf_installtarget').load(
-                ajaxurl,
-                {
-                    limit: 25,
-                    action: 'cforms2_installpreset',
-                    _wpnonce: cforms2_nonces.installpreset
-                },
-                function () {
-                    loadInstall();
-                }
-        );
-    };
-
-    /* LAUNCHED WHEN BOX CLOSED */
-    var closeInstall = function (hash) {
-        jQuery('span', 'p#descPreset').hide();
-        hash.w.hide();
-        jQuery('#cf_installtarget').html('');
-        hash.o.remove();
-    };
-
-    /* ASSSOCIATE DIALOG */
-    jQuery('#cf_installbox').jqm({
-        trigger: '.jqModalInstall',
-        modal: true,
-        overlay: 30,
-        onShow: openInstall,
-        onHide: closeInstall
-    }).draggable();
     jQuery('#cf_backupbox').jqm({trigger: '.jqModalBackup', modal: true, overlay: 30}).draggable();
 
     var delallDialog = jQuery('#cf_delall_dialog').dialog({

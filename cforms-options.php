@@ -67,11 +67,6 @@ if(isset($_REQUEST['addbutton'])){
 
 }
 
-### PRESETS
-if ( isset($_REQUEST['formpresets']) )
-	require_once(plugin_dir_path(__FILE__) . 'lib_options_presets.php');
-
-
 ### default: $field_count = what's in the DB
 $field_count = $cformsSettings['form'.$no]['cforms'.$no.'_count_fields'];
 
@@ -939,7 +934,6 @@ if( strlen($fd)<=2 ) {
 			<input id="cfbar-addbutton" class="allbuttons addbutton" type="submit" name="addbutton" value=""/>
 			<input id="cfbar-dupbutton" class="allbuttons dupbutton" type="submit" name="dupbutton" value=""/>
 			<input id="cfbar-delbutton" class="allbuttons deleteall" type="submit" name="delbutton" value=""/>
-			<input id="preset" type="button" class="jqModalInstall allbuttons" name="<?php echo plugin_dir_url(__FILE__); ?>include/" value=" "/>
 			<input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=" "/>
 			<input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
 		</div>
@@ -957,16 +951,6 @@ function cforms2_insert_modal(){
 	<div id="cf_editbox" title="<?php _e('Input Field Settings', 'cforms2'); ?>">
 		<div class="cf_ed_main">
 			<div id="cf_target"></div>
-		</div>
-	</div>
-	<div class="jqmWindow" id="cf_installbox">
-		<div class="cf_ed_header"><?php _e('cforms Out-Of-The-Box Form Repository', 'cforms2'); ?></div>
-		<div class="cf_ed_main">
-			<form name="installpreset" method="post">
-				<div id="cf_installtarget"></div>
-				<div class="controls"><a href="#" id="okInstall" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" id="cancelInstall" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
-				<input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
-			</form>
 		</div>
 	</div>
 	<div class="jqmWindow" id="cf_backupbox">

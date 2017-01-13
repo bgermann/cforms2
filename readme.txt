@@ -245,6 +245,7 @@ GPL compliance!
 = 14.13 =
 
 * other:    remove the remaining translation files
+* other:    remove the form presets
 
 = 14.12.3 =
 

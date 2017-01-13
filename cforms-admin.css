@@ -324,36 +324,12 @@ border:1px solid #ccc;
 background:#fafafa;
 }
 
-#formpresets {
-margin:0 2px 0 0;
-font-size:11px;
-padding:3px 2px 3px;
-}
-
-#formpresets option {
-padding:0;
-}
-
-p.descPreset span {
-border-left:9px solid #8cbad0;
-display:block;
-font-size:14px;
-line-height:15px;
-margin:10px 40px;
-padding:0 0 0 10px;
-}
-
 .installNote {
 color:#666;
 font-size:11px;
 margin:0;
 padding:0 35px 2px 40px;
 }
-
-.descPreset {
-margin:5px 0 20px;
-}
-
 
 p.addfieldbox {
 margin:20px auto 10px;

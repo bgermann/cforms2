@@ -1199,9 +1199,6 @@ if ( is_admin() ) {
 	add_action('admin_menu', 'cforms2_menu');
 	add_action( 'wp_ajax_cforms2_field', 'cforms2_field' );
 
-	### admin ajax
-	require_once (plugin_dir_path(__FILE__) . 'include/installpreset.php');
-
 	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentries.php');
 	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
 	require_once (plugin_dir_path(__FILE__) . 'include/lib_database_dlentries.php');
@@ -1250,7 +1247,6 @@ function cforms2_add_items_options( $admin_bar ){
 	if ( (int)$cfo['global']['cforms_formcount'] > 1)
 		cforms2_add_admin_bar_item($admin_bar,'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'), 'if ( confirm("'.__('This will delete the current form!', 'cforms2').'")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
 
-	cforms2_add_admin_bar_item($admin_bar,'cforms-preset', __('Install a form preset', 'cforms2'), __('Pick a form preset from the repository', 'cforms2'), 'jQuery("#preset").trigger("click"); return false;');
 	cforms2_add_admin_bar_item($admin_bar,'cforms-backup', __('Restore this form only (old)', 'cforms2'), '', 'jQuery("#backup").trigger("click"); return false;');
 
 	cforms2_add_admin_bar_item($admin_bar,'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');

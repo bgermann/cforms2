@@ -150,7 +150,6 @@ function cforms2_admin_enqueue_scripts() {
         'jquery', 'jquery-jqmodal', 'jquery-ui-button', 'jquery-ui-dialog', 'jquery-ui-draggable', 'jquery-ui-sortable', 'wp-color-picker'
     ), CFORMS2_VERSION);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
-        'installpreset' => wp_create_nonce('cforms2_installpreset'),
 		'cforms2_field' => wp_create_nonce('cforms2_field'),
 
         'deleteentries' => wp_create_nonce('database_deleteentries'),
