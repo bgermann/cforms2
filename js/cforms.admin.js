@@ -20,14 +20,15 @@ var focusedFormControl = null;
 
 jQuery(function () {
 
+    var nameEQ = "cformsshowui=";
     window.setshow = function (el) {
         var val = readcookie();
-        var c = 'cformsshowui=';
-        if (document.getElementById('p' + el) && document.getElementById('o' + el) && val.charAt(el) == 1) {
-            jQuery("#p" + el).attr("class", "cflegend");
-            jQuery("div", "#p" + el).attr("class", "blindminus");
-            jQuery("#o" + el).show();
-        }
+        var x = val.charAt(el) === '0';
+        jQuery("#p" + el).attr("class", x ? 'cflegend op-closed' : 'cflegend');
+        jQuery("div", "#p" + el).attr("class", x ? 'blindplus' : 'blindminus');
+        var elo = jQuery("#o" + el);
+        x ? elo.hide() : elo.show();
+
         var a, b;
         if (el > 0)
             a = val.slice(0, el);
@@ -37,28 +38,23 @@ jQuery(function () {
             b = val.slice((el + 1), val.length);
         else
             b = '';
-        document.cookie = c + a + 0 + b + ";expires=" + timeout.toGMTString() + ";";
+        document.cookie = nameEQ + a + (x ? '1' : '0') + b + ";";
         return false;
     };
 
     var readcookie = function () {
-        var nameEQ = "cformsshowui=";
         var ca = document.cookie.split(';');
         for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ')
-                c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0)
-                return c.substring(nameEQ.length, c.length);
+            var c = ca[i].trim();
+            if (c.indexOf(nameEQ) === 0)
+                return c.substr(nameEQ.length);
         }
         return null;
     };
 
-    var val = readcookie();
-    var timeout = new Date(jQuery.now() + 3 * 86400000);
-
-    if (!val || !(val.length === 35)) {
-        document.cookie = "cformsshowui=11111111111111111111111111111111111;expires=" + timeout.toGMTString() + ";";
+    var cookie = readcookie();
+    if (!cookie || cookie.length !== 35) {
+        document.cookie = nameEQ + "11111111111111111111111111111111111;";
     }
 
     // moving dialog box options
@@ -507,19 +503,15 @@ jQuery(function () {
                 );
     };
 
-    /* LAUNCHED WHEN BOX CLOSED */
-    var close = function (hash) {
-        hash.w.hide();
-        jQuery('#cf_target').html('');
-        hash.o.remove();
-    };
-
     /* ASSSOCIATE DIALOG */
     var editbox = jQuery('#cf_editbox').dialog({
         autoOpen: false,
         modal: true,
         width: 600,
         open: open,
+        close: function () {
+            jQuery('#cf_target').html('');
+        },
         buttons: [
             {
                 text: cforms2_i18n.OK,
@@ -650,33 +642,10 @@ jQuery(function () {
 
     jQuery('#anchorfields').show();
 
-    /* MANAGE COOKIES & BLINDS */
-    val = readcookie();
-    var toggleui = function (th) {
-        var val = readcookie();
-        var c = 'cformsshowui=';
-        var el = parseInt(jQuery(th).attr("id").substr(1));
-        var x = val.charAt(el) ^ 1;
-        jQuery("div", th).attr("class", ((x) ? 'blindplus' : 'blindminus'));
-        jQuery(th).attr('class', ((x) ? 'cflegend op-closed' : 'cflegend'));
-        jQuery("#o" + el).toggle();
-
-        var a;
-        if (el > 0)
-            a = val.slice(0, el);
-        else
-            a = '';
-        if (el < val.length)
-            b = val.slice((el + 1), val.length);
-        else
-            b = '';
-        document.cookie = c + a + x + b + ";expires=" + timeout.toGMTString() + ";";
-    };
-
     for (var i = 0; i < 35; i++) {
         var el = document.getElementById('o' + i);
         var elp = document.getElementById('p' + i);
-        if (el && val.charAt(i) == 0) {
+        if (el && cookie.charAt(i) === '0') {
             jQuery(el).show();
             if (elp) {
                 jQuery("div", elp).attr('class', 'blindminus');
@@ -685,12 +654,12 @@ jQuery(function () {
         }
         if (elp)
             jQuery(elp).click(function () {
-                toggleui(this);
+                setshow(parseInt(jQuery(this).attr("id").substr(1)));
             });
     }
 
     if (this.location.href.indexOf('#') > 0)
-        this.location.href = this.location.href.substring(this.location.href.indexOf('#'), this.location.href.length);
+        this.location.href = this.location.href.substr(this.location.href.indexOf('#'));
 
     jQuery('#wp-admin-bar-cforms-bar').appendTo('#wp-admin-bar-root-default');
     jQuery('#wp-admin-bar-cforms-SubmitOptions').appendTo('#wp-admin-bar-root-default');
@@ -711,7 +680,7 @@ jQuery(function () {
 });
 
 function getFieldset(t) {
-    if (!t || t == null)
+    if (!t)
         return '';
 
     while (t.parentNode && !t.parentNode.className.match(/wrap/)) {
