@@ -246,6 +246,7 @@ GPL compliance!
 
 * other:    remove the remaining translation files
 * other:    remove the form presets
+* other:    remove wide_brown_light theme
 
 = 14.12.3 =
 
