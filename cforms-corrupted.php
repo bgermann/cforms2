@@ -23,7 +23,7 @@ cforms2_check_access_priv();
 <div class="wrap">
 	<h2><?php _e('cforms error','cforms2')?></h2>
 
-<?php if( $_POST['fixsettings'] ) :?>
+<?php if( $_POST['fixsettings'] ) {?>
 
 <div class="error"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms2'); ?></p></div>
 <?php
@@ -46,7 +46,7 @@ cforms2_check_access_priv();
 	die();
 ?>
 
-<?php elseif( $_POST['resetsettings'] ) : ?>
+<?php } elseif( $_POST['resetsettings'] ) { ?>
 
 <div class="updated fade"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.','cforms2'); ?></p></div>
 <?php
@@ -55,11 +55,11 @@ cforms2_check_access_priv();
 	wp_die();
 ?>
 
-<?php else :?>
+<?php } else {?>
 
 <div class="error"><p><?php _e('It appears that WP has corrupted your cforms settings, the settings array can not be read properly.','cforms2'); ?></p></div>
 
-<?php endif;
+<?php }
 
 global $wpdb;
 $c = str_replace('&','&amp;',$wpdb->get_var("SELECT option_value FROM `$wpdb->options` WHERE option_name='cforms_settings'"));

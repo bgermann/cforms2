@@ -186,13 +186,13 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 <div class="wrap" id="top">
     <h2><?php _e('Global Settings','cforms2')?></h2>
 	<form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post">
-    <?php if ( isset($_POST['showinfo']) ) :
+    <?php if ( isset($_POST['showinfo']) ) {
         echo '<p>' . __('All the global and per form settings are listed here as JSON. You can use this as a backup tool if you like.', 'cforms2') . '</p>';
 		echo '<h2>' . __('Warning!', 'cforms2') . '</h2><p>' . __('Please do not change anything here unless you know what you are doing!', 'cforms2') . '</p>';
 		echo '<textarea style="resize:both;" cols="100" rows="100" name="raw_cforms_settings">' . htmlspecialchars(json_encode($cformsSettings, JSON_PRETTY_PRINT)) . '</textarea>';
 		echo '<input type="hidden" name="showinfo" value="" />';
     
-	else : ?>
+	} else { ?>
 	
     <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms2') ?></p>
 
@@ -339,7 +339,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 		</fieldset>
 		<?php
 			$cap = $cformsSettings['global']['cforms_captcha_def'];
-			if (class_exists('cforms2_really_simple_captcha', false)) :
+			if (class_exists('cforms2_really_simple_captcha', false)) {
 		?>
 		<fieldset id="captcha" class="cformsoptions">
 			<div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
@@ -418,7 +418,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 				</table>
 			</div>
 		</fieldset>
-		<?php endif; ?>
+		<?php } ?>
 
 		<fieldset id="visitorv" class="cformsoptions">
 			<div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
@@ -488,7 +488,7 @@ if( isset($_REQUEST['raw_cforms_settings']) ) {
 			</div>
 		</fieldset>
 
-<?php endif; ?>
+<?php } ?>
 
 		<div class="cf_actions" id="cf_actions" style="display:none;">
 			<input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
