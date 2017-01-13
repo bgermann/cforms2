@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ if ( $sub_ids<>'' ){
 	else
 		$all_entries = explode(',',substr($sub_ids,0,-1));
 
-	foreach ($all_entries as $entry) :
+	foreach ($all_entries as $entry) {
 		$entry = (int) $entry;
 
 		if ($entry <> 'all')
@@ -118,7 +118,7 @@ if ( $sub_ids<>'' ){
 
 		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformsdata} WHERE $whereD $dospecialquery"); //TODO check SQL injection
 		$nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE $whereS $doquery"); //TODO check SQL injection
-	endforeach;
+	}
 
 	 _e('Entries successfully removed from the tracking tables!', 'cforms2');
 }
