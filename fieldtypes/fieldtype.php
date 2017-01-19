@@ -57,7 +57,7 @@ abstract class cforms2_fieldtype {
 	 * @return the HTML required for the field type dropdown selection menu
 	 */
 	public function render_form_option($selected, $disabled) {
-		$out .= '<option';
+		$out = '<option';
 		if ($selected)
 			$out .= ' selected="selected"';
 		elseif ($disabled)
