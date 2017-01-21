@@ -39,25 +39,6 @@ has support for storing cformsII's submission data and exporting in more
 formats than cformsII does. Therefore cformsII's database tracking will be
 removed in the long run.
 
-= Reporting Bugs =
-
-If you happen to find a bug, please feel free to report a bug at the support
-forum, but please be sure to follow these rules:
-
-* Search the forum. Someone may have had the exact same issue.
-* Give your report a meaningful title.
-* Include WordPress and cformsII version numbers and optionally
-  PHP version number you use.
-* If you happen to run your webserver on Microsoft Windows, which is very uncommon,
-  please provide this information.
-* Read the FAQ before reporting.
-  If you post a question about emails not being sent,
-  be sure to include the information that you tried Check Email plugin at least.
-  Otherwise your post will be ignored.
-
-See also
-[How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html)
-for further information.
 
 = License Information =
 
