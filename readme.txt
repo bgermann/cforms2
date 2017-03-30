@@ -1,147 +1,98 @@
-=== cformsII - contact form ===
+=== cformsII ===
 Contributors: bgermann, olivers, cbacchini, codifex
 Donate link: https://www.betterplace.org/projects/11633/donations/new
-Tags: contact form, ajax, contact, form, input, post, sidebar, spam, admin
+Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 3.9
 Tested up to: 4.7
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
-cformsII is a customizable, flexible & powerful form plugin!
-
 == Description ==
 
-This is a fork of cformsII, a highly customizable, flexible and powerful form
-builder plugin, covering a variety of use cases and features from attachments to
-multi form management.
+This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi form management.
 
-Oliver, the original author, does not further develop the plugin.
-This fork is an effort to keep it up to date.
+Oliver, the original author, discontinued developing the plugin. This fork is an effort to keep it up to date.
 
 For a quick starter you should have a look at the [introduction video by Your Page Today](https://www.youtube.com/watch?v=kBwu4J8SfVo).
 
-If you want to use plugin versions older than 14.6.3, you should rename the
-directory containing the plugin from "cforms2" to "cforms". But bear in mind
-that old versions should not be used in public systems, because they contain
-known serious vulnerabilities that are exploited in the wild. The current
-security baseline version is 14.11.
+If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms". But bear in mind that old versions should not be used in public systems, because they contain [known serious vulnerabilities](https://wpvulndb.com/plugins/cforms) that are exploited in the wild.
 
-= Related Plugins =
-
-cformsII has pluggable CAPTCHA support.
-[Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha)
-provides an image CAPTCHA. To convert the old CAPTCHA fields to Really
-Simple CAPTCHA, please install the current version and activate the plugin.
-
-[Contact Form DB](https://wordpress.org/plugins/contact-form-7-to-database-extension)
-has support for storing cformsII's submission data and exporting in more
-formats than cformsII does. Therefore cformsII's database tracking will be
-removed in the long run.
+The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 14.11.
 
 
-= License Information =
+== Related Plugins ==
 
-Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
+[Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha) provides an image CAPTCHA via cformsII's pluggable CAPTCHA facility. To convert the old CAPTCHA fields to Really Simple CAPTCHA, please install the current version and activate the plugin.
 
-Copyright (c) 2014-2017 Bastian Germann
+[Contact Form DB](https://cfdbplugin.com) has support for storing cformsII's submission data and exporting in more formats than cformsII does. Therefore cformsII's database tracking will be removed in the long run.
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+[Unofficial CForms II table display](https://wordpress.org/plugins/cformstable/) introduces the ability to view the tracking database on any page via Shortcodes.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+== Localization ==
+
+You can see the available languages and contribute via [GlotPress](https://translate.wordpress.org/projects/wp-plugins/cforms2). Only some of them that are almost completely translated are installed automatically.
+
+If you want to install another language, please choose its cell in the Development column, export it as Machine Object Message Catalog (.mo) and put it in the wp-content/languages/plugins directory.
+
+If your language is not available, you can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/), which also work with this fork. To use one of those files, please rename the cforms-?.mo file to cforms2-?.mo and put it in the wp-content/languages/plugins directory.
+
+
+== Roadmap ==
+
+Some things are to be done:
+
+* [Hook to get form submission data](https://wordpress.org/support/topic/hook-to-get-form-submission-data)
+* filter user input better
+* rework multipart forms to be independent from PHP sessions
+* long term: remove database tracking
+* long term: refactoring with object oriented approach
+* long term: unit tests and continuous integration
 
 
 == Installation ==
 
 = Installing the plugin =
 
-You can install the plugin via WordPress Dashboard. It should show up by
-searching for cforms2. If this does not work for you, there should be an option
-to upload a zip file, which is available on the
-[wordpress.org plugin directory](https://wordpress.org/plugins/cforms2/).
+You can install the plugin via WordPress Dashboard. It should show up by searching for cforms2. If this does not work for you, there should be an option to upload a zip file, which is available on the [wordpress.org plugin directory](https://wordpress.org/plugins/cforms2/).
 
-If you want to install manually, please upload the complete plugin folder
-"cforms2", contained in the zip file, to your WordPress plugin directory!
+If you want to install manually, please upload the complete plugin folder "cforms2", contained in the zip file, to your WordPress plugin directory!
 
-If you want to check integrity of the download, please use the cforms2.*.zip
-downloads and the corresponding .sig
-GPG signature files that are published via
-[GitHub releases](https://github.com/bgermann/cforms2/releases).
-The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53)
-has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`.
-The git tags themselves are also signed beginning with version 14.8.
+If you want to check integrity of the download, please use the cforms2.*.zip downloads and the corresponding .sig GPG signature files that are published via [GitHub releases](https://github.com/bgermann/cforms2/releases). The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53) has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`. The git tags themselves are also signed beginning with version 14.8.
 
-Please note that cformsII depends on [PHP Session Extensions](http://php.net/manual/book.session.php),
-which are enabled by default.
+Please note that cformsII depends on [PHP Session Extensions](http://php.net/manual/book.session.php), which are enabled by default.
 
 = Upgrading the plugin =
 
-If you want to upgrade from the original cformsII from deliciousdays.com, please
-upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip)
-first, make sure you upgraded your settings (resave your global settings and every form)
-and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database).
-Then deactivate the original plugin and install the current version of this fork.
+If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin and install the current version of this fork.
 
-If you want to delete the 14.6.0.5 version by deleting directory "cforms" and
-you have any cforms-uploaded files, make sure you do not delete your attachments
-directory, which is contained in the cforms directory by default.
+If you want to delete the 14.6.0.5 version by deleting directory "cforms" and you have any cforms-uploaded files, make sure you do not delete your attachments directory, which is contained in the cforms directory by default.
 
-= Did you modify any cforms theme (CSS) files? =
+= Custom theme (CSS) files =
 
-Create a custom folder under your WordPress plugin directory & call it "cforms-custom".
-Move all your custom files into it. This folder will protect your changes going
-forward.
+Create a folder under your WordPress plugin directory and call it "cforms-custom". Move all your custom theme files into it. This folder will protect your changes going forward.
 
-Check out the
-[cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf)
-on layout customization.
+Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf) on layout customization.
 
 
 == Frequently Asked Questions ==
 
 = I do not get any emails from my form. Why? =
 
-Most probably this is not cformsII's fault. Please check your WordPress mail
-configuration with a plugin like
-[Check Email](https://wordpress.org/plugins/check-email/).
-If that reports not to work, you don't have a mail server running or its
-settings are broken. Please fix it yourself, tell your hosting provider or
-use an external SMTP plugin (see the next question).
+Most probably this is not cformsII's fault. Please check your WordPress mail configuration with a plugin like [Check Email](https://wordpress.org/plugins/check-email/). If that reports not to work, you don't have a mail server running or its settings are broken. Please fix it yourself, tell your hosting provider or use an external SMTP plugin (see the next question).
 
 = Where are the external SMTP settings? =
 
-That function was removed. The WordPress function
-[wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for
-mails now, which makes use of built-in PHPMailer.
-If you want to configure it to use an external SMTP server, use an appropriate
-plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/)
-or [Postman SMTP Mailer](https://wordpress.org/plugins/postman-smtp/).
+That function was removed. The WordPress function [wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for mails now, which makes use of built-in PHPMailer. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
 
 = Why is the Form Settings page broken? =
 
-This was an incompatibility with WordPress 4.2 that was fixed with cformsII 14.9.3.
-Be sure to use a current version.
-
-= Where can I find old cformsII versions? =
-
-You can find old versions in the
-[Developers section](https://wordpress.org/plugins/cforms2/developers/).
+This was an incompatibility with WordPress 4.2 that was fixed with cformsII 14.9.3. Be sure to use a current version.
 
 = I upgraded and lost my widgets. What can I do? =
 
-Beginning with 14.6.10 WordPress 2.8 Widget API is used for cforms widgets.
-You have to recreate your widgets. You can find your old settings in debug
-output on the Global Settings Admin menu.
-Just search for widgets with your browser's search.
+Beginning with 14.6.10 WordPress 2.8 Widget API is used for cforms widgets. You have to recreate your widgets. You can find your old settings in debug output on the Global Settings Admin menu. Just search for widgets with your browser's search.
 
 = How can I contribute code? =
 
@@ -150,33 +101,6 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 = Where are comment and Tell-a-Friend fields? =
 
 These features were remove with version 14.12.
-
-
-== Localization ==
-
-You can see the available languages and contribute via [GlotPress](https://translate.wordpress.org/projects/wp-plugins/cforms2).
-Only some of them that are almost completely translated are installed automatically.
-
-If you want to install another language, please choose its cell in the Development column,
-export it as Machine Object Message Catalog (.mo) and put it in the wp-content/languages/plugins directory.
-
-If your language is not available, you can find a list of the
-[translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/),
-which also work with this fork.
-To use one of those files, please rename the cforms-?.mo file to
-cforms2-?.mo and put it in the wp-content/languages/plugins directory.
-
-
-== Roadmap ==
-
-Some things are to be done:
-
-* https://wordpress.org/support/topic/hook-to-get-form-submission-data
-* filter user input
-* rework multipart forms to be independent from PHP sessions
-* long term: remove database tracking
-* long term: refactoring with object oriented approach
-* long term: unit tests and continuous integration
 
 
 == Upgrade Notice ==
@@ -758,7 +682,6 @@ GPL compliance!
                                         or 'date', 'ip', 'id', 'form', 'email'
                $limit     = [numeric] : limits number of records retrieved
                $cfsortdir = [text]    : sort direction 'asc' or 'desc'
-
             (see updated Help page too!)
 
 = 10.4 =
