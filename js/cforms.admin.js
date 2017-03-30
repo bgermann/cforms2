@@ -449,13 +449,13 @@ jQuery(function () {
                 }
 
                 jQuery(
-                        '<div class="cf_edit_group_new" id="edit_group' + groupcount + '">' +
-                        '<a href="#" id="rgi_' + groupcount + '" class="cf_edit_minus dashicons dashicons-dismiss"></a>' +
-                        '<input type="text" id="cf_edit_group_o' + groupcount + '" name="cf_edit_group_o' + groupcount + '"'
+                        "<div class=\"cf_edit_group_new\" id=\"edit_group" + groupcount + "\">" +
+                        "<a href=\"#\" id=\"rgi_" + groupcount + '" class="cf_edit_minus dashicons dashicons-dismiss"></a>' +
+                        "<input type=\"text\" id=\"cf_edit_group_o" + groupcount + '" name="cf_edit_group_o' + groupcount + '"'
                         + ' value="' + defval[0].replace(/"/g, '&quot;') + '"/>' +
-                        '<input type="text" id="cf_edit_group_v' + groupcount + '" name="cf_edit_group_v' + groupcount + '"'
+                        "<input type=\"text\" id=\"cf_edit_group_v" + groupcount + '" name="cf_edit_group_v' + groupcount + '"'
                         + ' value="' + defval[1].replace(/"/g, '&quot;') + '" class="inpOpt"/>' +
-                        '<input type="checkbox" id="cf_edit_group_chked' + groupcount + '" name="cf_edit_group_chked' + groupcount + '"'
+                        "<input type=\"checkbox\" id=\"cf_edit_group_chked" + groupcount + '" name="cf_edit_group_chked' + groupcount + '"'
                         + ' ' + chk + ' class="allchk cf_chked"/>' +
                         '<a href="javascript:void(0);" class="cf_edit_move_up dashicons dashicons-arrow-up-alt"></a>' +
                         '<a href="javascript:void(0);" class="cf_edit_move_down dashicons dashicons-arrow-down-alt"></a></div>'
