@@ -84,7 +84,9 @@ Most probably this is not cformsII's fault. Please check your WordPress mail con
 
 = Where are the external SMTP settings? =
 
-That function was removed. The WordPress function [wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for mails now, which makes use of built-in PHPMailer. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+That function was removed. The WordPress function [wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for mails now, which makes use of built-in PHPMailer by default. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
+
+If wp_mail is replaced by some plugin, multipart/alternative emails may not be sent properly, which is the case with e.g. Postman SMTP Mailer/Email Log.
 
 = Why is the Form Settings page broken? =
 
