@@ -155,7 +155,7 @@ if ( isset($_POST['chg_css']) ){
 							</tr>
 							<tr>
 								<td colspan="2">
-										<p><?php printf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
+										<p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 								</td>
 							</tr>
 
