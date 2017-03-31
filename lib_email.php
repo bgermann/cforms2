@@ -214,6 +214,15 @@ class cforms2_mail {
 
     }
 
+    /**
+     * Sets the line ending and the multipart/alternative text/plain part.
+     * This is only functional if the built-in wp_mail function is not replaced.
+     * 
+     * TODO When https://core.trac.wordpress.org/ticket/15448 is resolved,
+     * use wp_mail's new multipart detection and do not depend on PHPMailer.
+     * 
+     * @param PHPMailer $phpmailer the object in use
+     */
     public function phpmailer_init($phpmailer) {
         $phpmailer->LE = $this->eol;
         $phpmailer->AltBody = $this->body_alt;
