@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2016 Bastian Germann
+ * Copyright (c) 2016-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,31 +24,35 @@
  */
 class cforms2_deprecated_api {
 
-	public static function my_cforms_action($cformsdata) {
-		if( function_exists('my_cforms_action') ) {
-			trigger_error('You should switch from using my_cforms_action function to cforms2_after_processing_action WordPress action.', E_USER_WARNING);
-			my_cforms_action($cformsdata);
-		}
-	}
+    public static function my_cforms_action($cformsdata) {
+        if (function_exists('my_cforms_action')) {
+            trigger_error('You should switch from using my_cforms_action function to cforms2_after_processing_action WordPress action.', E_USER_WARNING);
+            my_cforms_action($cformsdata);
+        }
+    }
 
 }
 
 add_action('cforms2_after_processing_action', 'cforms2_deprecated_api::my_cforms_action');
 
 if (!function_exists('cf_extra_comment_data')) {
-	/**
-	 * @deprecated since version 14.11.3
-	 */
-	function cf_extra_comment_data( $id ) {
-		trigger_error('cf_extra_comment_data is useless', E_USER_WARNING);
-	}
+
+    /**
+     * @deprecated since version 14.11.3
+     */
+    function cf_extra_comment_data($id) {
+        trigger_error('cf_extra_comment_data is useless', E_USER_WARNING);
+    }
+
 }
 
 if (!function_exists('is_tellafriend')) {
-	/**
-	 * @deprecated since version 14.12
-	 */
-	function is_tellafriend($pid) {
-		trigger_error('is_tellafriend is useless', E_USER_WARNING);
-	}
+
+    /**
+     * @deprecated since version 14.12
+     */
+    function is_tellafriend($pid) {
+        trigger_error('is_tellafriend is useless', E_USER_WARNING);
+    }
+
 }

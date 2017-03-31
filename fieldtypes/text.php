@@ -19,33 +19,36 @@
 
 class cforms2_fieldtype_text extends cforms2_fieldtype_multi_id {
 
-	protected function __construct($id, $name, $special) {
-		parent::__construct($id, $name, $special);
-	}
+    protected function __construct($id, $name, $special) {
+        parent::__construct($id, $name, $special);
 
-	protected function get_text_inputs() {
-		return array(
-			'cf_edit_label' => __('Field label', 'cforms2'),
-			'cf_edit_default' => __('Default value', 'cforms2'),
-			'cf_edit_regexp' => sprintf(__('Regular expression for field validation (e.g. %s). See Help! for more examples.', 'cforms2'),'^[A-Za-z ]+$'),
-			'cf_edit_title' => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
-			'cf_edit_customerr' => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
-		);
-	}
+    }
 
-	public static function register() {
-		$types = array(
-			'textfield' => array(__('Single line of text', 'cforms2'), false),
-			'upload' => array(__('File Upload Box', 'cforms2'), false),
-			'datepicker' => array(__('Date Entry/Dialog', 'cforms2'), true),
-			'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
-			'pwfield' => array(__('Password Field', 'cforms2'), false),
-			'hidden' => array(__('Hidden Field', 'cforms2'), false)
-		);
-		foreach ($types as $id => $label) {
-			$t = new cforms2_fieldtype_text($id, $label[0], $label[1]);
-			$t->register_at_filter();
-		}
-	}
+    protected function get_text_inputs() {
+        return array(
+            'cf_edit_label' => __('Field label', 'cforms2'),
+            'cf_edit_default' => __('Default value', 'cforms2'),
+            'cf_edit_regexp' => sprintf(__('Regular expression for field validation (e.g. %s). See Help! for more examples.', 'cforms2'), '^[A-Za-z ]+$'),
+            'cf_edit_title' => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
+            'cf_edit_customerr' => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
+        );
+
+    }
+
+    public static function register() {
+        $types = array(
+            'textfield' => array(__('Single line of text', 'cforms2'), false),
+            'upload' => array(__('File Upload Box', 'cforms2'), false),
+            'datepicker' => array(__('Date Entry/Dialog', 'cforms2'), true),
+            'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
+            'pwfield' => array(__('Password Field', 'cforms2'), false),
+            'hidden' => array(__('Hidden Field', 'cforms2'), false)
+        );
+        foreach ($types as $id => $label) {
+            $t = new cforms2_fieldtype_text($id, $label[0], $label[1]);
+            $t->register_at_filter();
+        }
+
+    }
 
 }

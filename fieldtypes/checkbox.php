@@ -19,33 +19,37 @@
 
 class cforms2_fieldtype_checkbox extends cforms2_fieldtype_multi_id {
 
-	protected function __construct($id, $name, $special) {
-		parent::__construct($id, $name, $special);
-	}
+    protected function __construct($id, $name, $special) {
+        parent::__construct($id, $name, $special);
 
-	protected function get_text_inputs() {
-		return array(
-			"cf_edit_label" => __('Field label left of the checkbox...', 'cforms2'),
-			"cf_edit_label_right" => __('...or define a field label to the right of the checkbox', 'cforms2'),
-			"cf_edit_title" => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
-			"cf_edit_customerr" => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
-		);
-	}
-	
-	protected function render_additional_settings() {
-		return '<label for="cf_edit_checked">' . __('Set default state', 'cforms2')
-			. '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
-	}
+    }
 
-	public static function register() {
-		$types = array(
-			'ccbox' => array(__('CC: option for user', 'cforms2'), true),
-			'checkbox' => array(__('Check Box', 'cforms2'), false)
-		);
-		foreach ($types as $id => $label) {
-			$t = new cforms2_fieldtype_checkbox($id, $label[0], $label[1]);
-			$t->register_at_filter();
-		}
-	}
+    protected function get_text_inputs() {
+        return array(
+            "cf_edit_label" => __('Field label left of the checkbox...', 'cforms2'),
+            "cf_edit_label_right" => __('...or define a field label to the right of the checkbox', 'cforms2'),
+            "cf_edit_title" => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
+            "cf_edit_customerr" => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
+        );
+
+    }
+
+    protected function render_additional_settings() {
+        return '<label for="cf_edit_checked">' . __('Set default state', 'cforms2')
+                . '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
+
+    }
+
+    public static function register() {
+        $types = array(
+            'ccbox' => array(__('CC: option for user', 'cforms2'), true),
+            'checkbox' => array(__('Check Box', 'cforms2'), false)
+        );
+        foreach ($types as $id => $label) {
+            $t = new cforms2_fieldtype_checkbox($id, $label[0], $label[1]);
+            $t->register_at_filter();
+        }
+
+    }
 
 }

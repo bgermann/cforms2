@@ -19,42 +19,42 @@
 
 class cforms2_fieldtype_selectbox extends cforms2_fieldtype_multi_id {
 
-	protected function __construct($id, $name, $special) {
-		parent::__construct($id, $name, $special);
-	}
+    protected function __construct($id, $name, $special) {
+        parent::__construct($id, $name, $special);
 
-	protected function get_text_inputs() {
-		return array(
-			"cf_edit_label_select" => __('Field label', 'cforms2'),
-			"cf_edit_title" => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
-			"cf_edit_customerr" => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
-		);
-	}
+    }
 
-	protected function render_additional_settings() {
-		$out = '<div class="cf_edit_groups_header">';
-		$out .= '<span class="cf_option">' . __('Check box/radio box option (displayed)', 'cforms2') . '</span>'
-			 .  '<span class="cf_optVal">' . __('Optional value (transmitted)', 'cforms2') . '</span>'
-			 .  '<span class="cf_chked dashicons dashicons-yes" title="' . __('Set default state', 'cforms2') . '"></span></div>';
-		$out .= '<div id="cf_edit_groups"></div>';
-		$out .= '<div class="add_group_item"><a href="#" id="add_group_button" class="cf_edit_plus dashicons dashicons-plus-alt"></a></div>';
-		return $out;
-	}
+    protected function get_text_inputs() {
+        return array(
+            "cf_edit_label_select" => __('Field label', 'cforms2'),
+            "cf_edit_title" => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
+            "cf_edit_customerr" => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
+        );
 
-	public static function register() {
-		$types = array(
-			'emailtobox' => array(__('Multiple Recipients', 'cforms2'), true),
-			'selectbox' => array(__('Select Box', 'cforms2'), false),
-			'multiselectbox' => array(__('Multi Select Box', 'cforms2'), false)
-		);
-		foreach ($types as $id => $label) {
-			$t = new cforms2_fieldtype_selectbox($id, $label[0], $label[1]);
-			$t->register_at_filter();
-		}
-	}
+    }
+
+    protected function render_additional_settings() {
+        $out = '<div class="cf_edit_groups_header">';
+        $out .= '<span class="cf_option">' . __('Check box/radio box option (displayed)', 'cforms2') . '</span>'
+                . '<span class="cf_optVal">' . __('Optional value (transmitted)', 'cforms2') . '</span>'
+                . '<span class="cf_chked dashicons dashicons-yes" title="' . __('Set default state', 'cforms2') . '"></span></div>';
+        $out .= '<div id="cf_edit_groups"></div>';
+        $out .= '<div class="add_group_item"><a href="#" id="add_group_button" class="cf_edit_plus dashicons dashicons-plus-alt"></a></div>';
+        return $out;
+
+    }
+
+    public static function register() {
+        $types = array(
+            'emailtobox' => array(__('Multiple Recipients', 'cforms2'), true),
+            'selectbox' => array(__('Select Box', 'cforms2'), false),
+            'multiselectbox' => array(__('Multi Select Box', 'cforms2'), false)
+        );
+        foreach ($types as $id => $label) {
+            $t = new cforms2_fieldtype_selectbox($id, $label[0], $label[1]);
+            $t->register_at_filter();
+        }
+
+    }
 
 }
-
-
-
-

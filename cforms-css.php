@@ -20,160 +20,160 @@
 $cformsSettings = get_option('cforms_settings');
 $s = DIRECTORY_SEPARATOR;
 
-### CSS styles
-$style		= $cformsSettings['global']['cforms_css'];
-$stylefile	= plugin_dir_path(__FILE__)."styling{$s}".$style;
+$style = $cformsSettings['global']['cforms_css'];
+$stylefile = plugin_dir_path(__FILE__) . "styling{$s}" . $style;
 
-### Check Whether User Can Manage Database
+// Check Whether User Can Manage Database
 cforms2_check_access_priv();
 
-### if all data has been erased quit
-if ( $cformsSettings['global']['cforms_formcount'] == '' ){
-	?>
-	<div class="wrap">
-	<h2><?php _e('Styling your forms','cforms2')?></h2>
+// if all data has been erased quit
+if ($cformsSettings['global']['cforms_formcount'] == '') {
+    ?>
+    <div class="wrap">
+        <h2><?php _e('Styling your forms', 'cforms2') ?></h2>
 
-	<h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
-	<p><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') ?></p>
-	</div>
-	<?php
-	die;
+        <h2><?php _e('All cforms data has been erased!', 'cforms2') ?></h2>
+        <p><?php _e('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') ?></p>
+    </div>
+    <?php
+    die();
 }
 
-if(isset($_POST['no-css'])){
-	$cformsSettings['global']['cforms_no_css'] = $cformsSettings['global']['cforms_no_css']?'0':'1';
-	update_option('cforms_settings',$cformsSettings);
+if (isset($_POST['no-css'])) {
+    $cformsSettings['global']['cforms_no_css'] = $cformsSettings['global']['cforms_no_css'] ? '0' : '1';
+    update_option('cforms_settings', $cformsSettings);
 }
 
-###
-### Select new CSS?
-###
-if ( isset($_POST['chg_css']) ){
+// Select new CSS?
+if (isset($_POST['chg_css'])) {
 
-	$uitheme = $_POST['jqueryuitheme'];
-	$cformsSettings['global']['cforms_jqueryuitheme'] = $uitheme;
+    $uitheme = $_POST['jqueryuitheme'];
+    $cformsSettings['global']['cforms_jqueryuitheme'] = $uitheme;
 
-	$newstyle = $_POST['style'];
-	if ( strpos($newstyle,'cforms-custom/')!==false)
-		$newstyle = '../../' . $newstyle;
-	$cformsSettings['global']['cforms_css'] = $newstyle;
-	update_option('cforms_settings',$cformsSettings);
+    $newstyle = $_POST['style'];
+    if (strpos($newstyle, 'cforms-custom/') !== false)
+        $newstyle = '../../' . $newstyle;
+    $cformsSettings['global']['cforms_css'] = $newstyle;
+    update_option('cforms_settings', $cformsSettings);
 
-	$style = $cformsSettings['global']['cforms_css'];
-	$stylefile  = plugin_dir_path(__FILE__)."styling{$s}".$style;
-	echo ' <div id="message" class="updated fade"><p><strong>'. __('New theme selected.', 'cforms2') .'</strong></p></div>'."\n";
+    $style = $cformsSettings['global']['cforms_css'];
+    $stylefile = plugin_dir_path(__FILE__) . "styling{$s}" . $style;
+    echo ' <div id="message" class="updated fade"><p><strong>' . __('New theme selected.', 'cforms2') . '</strong></p></div>' . "\n";
 }
-
 ?>
 <div class="wrap" id="top">
-	<h2><?php _e('Styling your forms','cforms2')?></h2>
+    <h2><?php _e('Styling your forms', 'cforms2') ?></h2>
 
-	<p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms2') ?></p>
+    <p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms2') ?></p>
 
-	<form id="selectcss" method="post">
-			 <fieldset class="cformsoptions">
+    <form id="selectcss" method="post">
+        <fieldset class="cformsoptions">
 
-				<table>
-				<tr>
+            <table>
+                <tr>
 
-					<td>
-						<table>
-							<tr>
-								<td class="cssHint"><?php _e('Please choose a theme file to style your forms' , 'cforms2') ?></td>
-								<td class="cssStyles">
-									<?php ### include all css files
-										$d   = plugin_dir_path(__FILE__)."styling";
-										$dCustom = plugin_dir_path(__FILE__)."..{$s}cforms-custom";
+                    <td>
+                        <table>
+                            <tr>
+                                <td class="cssHint"><?php _e('Please choose a theme file to style your forms', 'cforms2') ?></td>
+                                <td class="cssStyles">
+                                    <?php
+                                    // include all css files
+                                    $d = plugin_dir_path(__FILE__) . "styling";
+                                    $dCustom = plugin_dir_path(__FILE__) . "..{$s}cforms-custom";
 
-										$exists = file_exists($d);
-										if ( $exists == false )
-											echo '<p><strong>' . __('Please make sure that the <code>/styling</code> folder exists in the cforms plugin directory!', 'cforms2') . '</strong></p>';
+                                    $exists = file_exists($d);
+                                    if ($exists == false)
+                                        echo '<p><strong>' . __('Please make sure that the <code>/styling</code> folder exists in the cforms plugin directory!', 'cforms2') . '</strong></p>';
 
-										else {
-											?>
-											<select name="style"><?php
+                                    else {
+                                        ?>
+                                        <select name="style"><?php
+                                            if (file_exists($dCustom)) {
+                                                echo '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' . __('custom css files', 'cforms2') . ' ***&nbsp;&nbsp;</option>';
 
+                                                // customer CSS files
+                                                $allcustomCSS = array();
+                                                $dir = opendir($dCustom);
+                                                while ($dir && ($f = readdir($dir))) {
+                                                    if (preg_match("/\.css$/i", $f)) {
 
-												if (file_exists($dCustom)){
-													echo '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** '.__('custom css files','cforms2').' ***&nbsp;&nbsp;</option>';
+                                                        array_push($allcustomCSS, $f);
+                                                    }
+                                                }
+                                                sort($allcustomCSS);
+                                                foreach ($allcustomCSS as $f) {
+                                                    if (strpos($style, $f) !== false)
+                                                        echo '<option style="background:#fbd0d3" selected="selected" value="cforms-custom/' . $f . '">' . $f . '</option>' . "\n";
+                                                    else
+                                                        echo '<option value="cforms-custom/' . $f . '">' . $f . '</option>';
+                                                }
 
-													### customer CSS files
-													$allcustomCSS = array();
-													$dir = opendir($dCustom);
-													while ( $dir && ($f = readdir($dir)) ) {
-														if( preg_match("/\.css$/i", $f) ){
-														
-															array_push($allcustomCSS, $f);
-														}
-													}
-													sort($allcustomCSS);
-													foreach ( $allcustomCSS as $f ) {
-														if( strpos($style,$f)!==false )
-														    	echo '<option style="background:#fbd0d3" selected="selected" value="cforms-custom/'.$f.'">'.$f.'</option>'."\n";
-														else
-																echo '<option value="cforms-custom/'.$f.'">'.$f.'</option>';
-													}
+                                                echo '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** ' . __('cform css files', 'cforms2') . ' ***&nbsp;&nbsp;</option>';
+                                            }
 
-													echo '<option disabled="disabled" style="background:#e4e4e4">&nbsp;&nbsp;*** '.__('cform css files','cforms2').' ***&nbsp;&nbsp;</option>';
-												}
+                                            // core CSS files
+                                            $allCSS = array();
+                                            $dir = opendir($d);
+                                            while ($dir && ($f = readdir($dir))) {
+                                                if (preg_match("/\.css$/i", $f)) {
+                                                    array_push($allCSS, $f);
+                                                }
+                                            }
+                                            sort($allCSS);
+                                            foreach ($allCSS as $f) {
+                                                if ($f == $style)
+                                                    echo '<option style="background:#fbd0d3" selected="selected" value="' . $f . '">' . $f . '</option>' . "\n";
+                                                else
+                                                    echo '<option value="' . $f . '">' . $f . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="jqueryuitheme"><a href="http://jqueryui.com/themeroller/#themeGallery"><?php _e('jQuery UI theme', 'cforms2'); ?> </a></label></td>
+                                <td><input type="text" name="jqueryuitheme" id="jqueryuitheme" value="<?php echo $cformsSettings['global']['cforms_jqueryuitheme']; ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms2'); ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br />
+                                    <input type="submit" name="no-css" id="no-css" class="allbuttons deleteall" style="height:30px" value="<?php
+                                           if ($cformsSettings['global']['cforms_no_css'] == '' || $cformsSettings['global']['cforms_no_css'] == '0')
+                                               _e('Deactivate CSS styling altogether!', 'cforms2');
+                                           else
+                                               _e('Reactivate CSS styling!', 'cforms2');
+                                           ?>" />
+                                           <?php if ($cformsSettings['global']['cforms_no_css'] == '1') _e('No styles are being used', 'cforms2'); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
+                                </td>
+                            </tr>
 
-												### core CSS files
-												$allCSS = array();
-												$dir = opendir($d);
-												while ( $dir && ($f = readdir($dir)) ) {
-													if ( preg_match("/\.css$/i", $f) ) {
-														array_push($allCSS, $f);
-													}
-												}
-												sort($allCSS);
-												foreach ( $allCSS as $f ) {
-													if( $f==$style )
-													    	echo '<option style="background:#fbd0d3" selected="selected" value="'.$f.'">'.$f.'</option>'."\n";
-													else
-															echo '<option value="'.$f.'">'.$f.'</option>';
-												}
+                        </table>
+                    </td>
 
-											?>
-											</select>
-									<?php } ?>
-								</td>
-							</tr>
-							<tr>
-								<td><label for="jqueryuitheme"><a href="http://jqueryui.com/themeroller/#themeGallery"><?php _e('jQuery UI theme', 'cforms2'); ?> </a></label></td>
-								<td><input type="text" name="jqueryuitheme" id="jqueryuitheme" value="<?php echo $cformsSettings['global']['cforms_jqueryuitheme']; ?>" /></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><input type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms2'); ?>" /></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<br />
-									<input type="submit" name="no-css" id="no-css" class="allbuttons deleteall" style="height:30px" value="<?php if ( $cformsSettings['global']['cforms_no_css']=='' || $cformsSettings['global']['cforms_no_css']=='0' ) _e('Deactivate CSS styling altogether!', 'cforms2'); else  _e('Reactivate CSS styling!', 'cforms2'); ?>" />
-									<?php if ( $cformsSettings['global']['cforms_no_css']=='1' ) _e('No styles are being used', 'cforms2'); ?>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-										<p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
-								</td>
-							</tr>
+                    <td>
+                        <?php
+                        if ($exists) {
 
-						</table>
-					</td>
+                            $existsjpg = file_exists($d . '/' . $style . '.jpg');
+                            if ($existsjpg)
+                                echo __('PREVIEW:', 'cforms2') . '<br /><img height="228" width="300" src="' . plugin_dir_url(__FILE__) . 'styling/' . $style . '.jpg' . '" alt="' . __('Theme Preview', 'cforms2') . '" title="' . __('Theme Preview', 'cforms2') . ': ' . $style . '"/>';
+                        }
+                        ?>
+                    </td>
 
-					<td>
-						<?php if ( $exists ) {
-
-								$existsjpg = file_exists($d.'/'.$style.'.jpg');
-								if ( $existsjpg )
-									echo __('PREVIEW:', 'cforms2').'<br /><img height="228" width="300" src="' . plugin_dir_url(__FILE__).'styling/'.$style.'.jpg' . '" alt="' . __('Theme Preview', 'cforms2') . '" title="' . __('Theme Preview', 'cforms2').': ' . $style .'"/>';
-
-						}?>
-					</td>
-
-				</tr>
-				</table>
-			</fieldset>
-	 </form>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 </div>

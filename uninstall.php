@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2012      Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) 
+if (!defined('WP_UNINSTALL_PLUGIN'))
     exit();
 
 delete_option('cforms_settings');
 
 $role = get_role('administrator');
-if($role != null) {
-	$role->remove_cap('manage_cforms');
-	$role->remove_cap('track_cforms');
+if ($role != null) {
+    $role->remove_cap('manage_cforms');
+    $role->remove_cap('track_cforms');
 }
 
 global $wpdb;

@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,34 +17,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$noDISP = '1'; $no='';
-	if( $_REQUEST['no']<>'1' )
-		$noDISP = $no = $_REQUEST['no'];
+$noDISP = '1';
+$no = '';
+if ($_REQUEST['no'] <> '1')
+    $noDISP = $no = $_REQUEST['no'];
 
-	for ( $i=(int)$noDISP; $i < $cformsSettings['global']['cforms_formcount']; $i++) {  // move all forms "to the left"
+for ($i = (int) $noDISP; $i < $cformsSettings['global']['cforms_formcount']; $i++) {  // move all forms "to the left"
+    $n = ($i == 1) ? '' : $i;
+    unset($cformsSettings['form' . $n]);
 
-		$n = ($i==1)?'':$i;
-		unset( $cformsSettings['form'.$n] );
+    foreach (array_keys($cformsSettings['form' . ($i + 1)]) as $key) {
+        $newkey = ( strpos($key, 'form2_') !== false ) ? str_replace('2_', '_', $key) : str_replace(($i + 1) . '_', $i . '_', $key);
+        $cformsSettings['form' . $n][$newkey] = $cformsSettings['form' . ($i + 1)][$key];
+    }
+}
 
-		foreach(array_keys($cformsSettings['form'.($i+1)]) as $key){
-            $newkey = ( strpos($key,'form2_')!==false )?str_replace('2_','_',$key):str_replace(($i+1).'_',$i.'_',$key);
-			$cformsSettings['form'.$n][$newkey] = $cformsSettings['form'.($i+1)][$key];
-		}
+unset($cformsSettings['form' . $cformsSettings['global']['cforms_formcount']]);
 
-	}
+$FORMCOUNT = $FORMCOUNT - 1;
 
-    unset( $cformsSettings['form'.$cformsSettings['global']['cforms_formcount']] );
+if ($FORMCOUNT > 1) {
+    if (isset($_REQUEST['no']) && (int) $_REQUEST['no'] > $FORMCOUNT) // otherwise stick with the current form
+        $no = $noDISP = $FORMCOUNT;
+} else {
+    $noDISP = '1';
+    $no = '';
+}
+$cformsSettings['global']['cforms_formcount'] = (string) ($FORMCOUNT);
 
-	$FORMCOUNT=$FORMCOUNT-1;
+update_option('cforms_settings', $cformsSettings);
 
-	if ( $FORMCOUNT>1 ) {
-		if( isset($_REQUEST['no']) && (int)$_REQUEST['no'] > $FORMCOUNT ) // otherwise stick with the current form
-			$no = $noDISP = $FORMCOUNT;
-	} else {
-		$noDISP = '1'; $no='';
-	}
-	$cformsSettings['global']['cforms_formcount'] = (string)($FORMCOUNT);
-
-	update_option('cforms_settings',$cformsSettings);
-
-	echo '<div id="message" class="updated fade"><p>'. __('Form deleted', 'cforms2').'.</p></div>';
+echo '<div id="message" class="updated fade"><p>' . __('Form deleted', 'cforms2') . '.</p></div>';

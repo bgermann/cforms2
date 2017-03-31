@@ -18,22 +18,26 @@
 
 class cforms2_fieldtype_fieldsetstart extends cforms2_fieldtype {
 
-	public function get_id() {
-		return 'fieldsetstart';
-	}
+    public function get_id() {
+        return 'fieldsetstart';
 
-	public function get_name() {
-		return __('Begin Fieldset', 'cforms2');
-	}
+    }
 
-	public static function register() {
-		$t = new cforms2_fieldtype_fieldsetstart();
-		$t->register_at_filter();
-	}
+    public function get_name() {
+        return __('Begin Fieldset', 'cforms2');
 
-	protected function render_additional_settings() {
-		return '<label for="cf_edit_checked">' . __('Show this and following fieldsets only if all previous fields were filled out correctly.', 'cforms2')
-			. '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
-	}
+    }
+
+    public static function register() {
+        $t = new cforms2_fieldtype_fieldsetstart();
+        $t->register_at_filter();
+
+    }
+
+    protected function render_additional_settings() {
+        return '<label for="cf_edit_checked">' . __('Show this and following fieldsets only if all previous fields were filled out correctly.', 'cforms2')
+                . '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
+
+    }
 
 }

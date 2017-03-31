@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2016 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,40 +17,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-### used to insert button in editor
+/** used to insert button in editor */
 function cforms2_mce_button($buttons) {
     array_push($buttons, "separator", "cforms");
     return $buttons;
+
 }
 
-### adding to TinyMCE
+/** adding to TinyMCE */
 function cforms2_mce($plugins) {
-	$plugins['cforms'] = plugin_dir_url( __FILE__ ).'js/cforms.tinymce.js';
-	return $plugins;
+    $plugins['cforms'] = plugin_dir_url(__FILE__) . 'js/cforms.tinymce.js';
+    return $plugins;
+
 }
 
 function cforms2_mce_translation($mce_translation) {
-	$mce_translation['Insert a form'] = __('Insert a form', 'cforms2');
+    $mce_translation['Insert a form'] = __('Insert a form', 'cforms2');
     return $mce_translation;
+
 }
 
 function cforms2_mce_script() {
-	$cformsSettings = get_option('cforms_settings');
+    $cformsSettings = get_option('cforms_settings');
     $fns = array();
     $forms = $cformsSettings['global']['cforms_formcount'];
-    for ($i=0;$i<$forms;$i++) {
-        $no = ($i==0)?'':($i+1);
-        $fns[] = $cformsSettings['form'.$no]['cforms'.$no.'_fname'];
+    for ($i = 0; $i < $forms; $i++) {
+        $no = ($i == 0) ? '' : ($i + 1);
+        $fns[] = $cformsSettings['form' . $no]['cforms' . $no . '_fname'];
     }
-	echo '<script type="text/javascript">cforms2_formnames = ' . json_encode($fns) . ';</script>';
+    echo '<script type="text/javascript">cforms2_formnames = ' . json_encode($fns) . ';</script>';
+
 }
 
-### only insert buttons if enabled!
-if($cformsSettings['global']['cforms_show_quicktag'] && is_admin()) {
-
-	add_filter('mce_external_plugins', 'cforms2_mce');
-	add_filter('wp_mce_translation'  , 'cforms2_mce_translation');
-	add_filter('mce_buttons'         , 'cforms2_mce_button');
-	add_action('admin_print_scripts' , 'cforms2_mce_script' );
-
+// only insert buttons if enabled!
+if ($cformsSettings['global']['cforms_show_quicktag'] && is_admin()) {
+    add_filter('mce_external_plugins', 'cforms2_mce');
+    add_filter('wp_mce_translation', 'cforms2_mce_translation');
+    add_filter('mce_buttons', 'cforms2_mce_button');
+    add_action('admin_print_scripts', 'cforms2_mce_script');
 }

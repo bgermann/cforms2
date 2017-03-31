@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0
 
 == Description ==
 
-This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi form management.
+This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi-part form management.
 
 Oliver, the original author, discontinued developing the plugin. This fork is an effort to keep it up to date.
 
@@ -45,7 +45,7 @@ Some things are to be done:
 
 * [Hook to get form submission data](https://wordpress.org/support/topic/hook-to-get-form-submission-data)
 * filter user input better
-* rework multipart forms to be independent from PHP sessions
+* rework multi-part forms to be independent from PHP sessions
 * long term: remove database tracking
 * long term: refactoring with object oriented approach
 * long term: unit tests and continuous integration

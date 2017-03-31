@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014      Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,110 +17,100 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-	$file = $_FILES['importall'];
-	$err = '';
+$file = $_FILES['importall'];
+$err = '';
 
-    $noDISP = '1'; $no='';
-    if( $_REQUEST['noSub']<>'1' )
-        $noDISP = $no = $_REQUEST['noSub'];
+$noDISP = '1';
+$no = '';
+if ($_REQUEST['noSub'] <> '1')
+    $noDISP = $no = $_REQUEST['noSub'];
 
-	// A successful upload will pass this test. It makes no sense to override this one.
-	if ( $file['error'] > 0 )
-			$err = $file['error'];
+// A successful upload will pass this test. It makes no sense to override this one.
+if ($file['error'] > 0)
+    $err = $file['error'];
 
-	// A non-empty file will pass this test.
-	if ( !( $file['size'] > 0 ) )
-			$err = __('File is empty. Please upload something more substantial.', 'cforms2');
+// A non-empty file will pass this test.
+if (!( $file['size'] > 0 ))
+    $err = __('File is empty. Please upload something more substantial.', 'cforms2');
 
-	// A properly uploaded file will pass this test. There should be no reason to override this one.
-	if (! is_uploaded_file( $file['tmp_name'] ) )
-			$err = __('Specified file failed upload test.', 'cforms2');
+// A properly uploaded file will pass this test. There should be no reason to override this one.
+if (!is_uploaded_file($file['tmp_name']))
+    $err = __('Specified file failed upload test.', 'cforms2');
 
-	if ( $err <> '' ){
+if ($err <> '') {
 
-	  echo '<div id="message" class="updated fade"><p>'.__('Error:', 'cforms2').' '.$err.'</p></div>';
+    echo '<div id="message" class="updated fade"><p>' . __('Error:', 'cforms2') . ' ' . $err . '</p></div>';
+} elseif (isset($_REQUEST['uploadcformsdata'])) {
 
-	} else if( isset($_REQUEST['uploadcformsdata']) ) {
+    $fo = fopen($file['tmp_name'], "rb");
+    $cformsSettings['form' . $no] = cforms2_load_array($no, $fo);
+    update_option('cforms_settings', $cformsSettings);
 
-		$fo = fopen($file['tmp_name'],"rb");
-		$cformsSettings['form'.$no] = cforms2_load_array( $no , $fo );
-		update_option('cforms_settings',$cformsSettings);
+    echo '<div id="message" class="updated fade"><p>' . __('All form specific settings have been restored from the backup file.', 'cforms2') . '</p></div>';
+} elseif (isset($_REQUEST['restoreallcformsdata'])) {
 
-		echo '<div id="message" class="updated fade"><p>'.__('All form specific settings have been restored from the backup file.', 'cforms2').'</p></div>';
+    $fo = fopen($file['tmp_name'], "rb");
+    $cformsSettings = cforms2_load_array('-1', $fo);
 
-	} else if( isset($_REQUEST['restoreallcformsdata']) ) {
+    update_option('cforms_settings', $cformsSettings);
 
-		$fo = fopen($file['tmp_name'],"rb");
-		$cformsSettings = cforms2_load_array( '-1', $fo );
+    echo '<div id="message" class="updated fade"><p>' . __('All cforms settings have been restored from the backup file.', 'cforms2') . '</p></div>';
+}
 
-        update_option('cforms_settings',$cformsSettings);
+function cforms2_load_array($k, $vFile) {
+    $ForRet = array();
 
-		echo '<div id="message" class="updated fade"><p>'.__('All cforms settings have been restored from the backup file.', 'cforms2').'</p></div>';
-	}
+    $Wert = fread($vFile, 2);
 
-	function cforms2_load_array($k, $vFile){
-	    $ForRet = array();
+    if ($Wert != "\0{")
+        return;
+    while (true) {
+        if (cforms2_next_matches($vFile, "\0}")) {
+            fread($vFile, 2);
+            return $ForRet;
+        }
 
-/*		### corrupted file fix
-        if (  ftell($vFile)==0  ){
-        	while (  $Wert != "00"  ){
-	            $pos  = ftell($vFile);
-				$Wert = bin2hex( fread($vFile,1) );
-                if( $pos > 10 )
-					wp_die(__('Corrupted File detected. Restore process aborted.', 'cforms2'));
+        $MyKey = "";
+        while (true) {
+            $Zeichen = fread($vFile, 1);
+            if ($Zeichen == "\0")
+                break;
+            else
+                $MyKey .= $Zeichen;
+        }
+        $MyKey = stripslashes($MyKey);
+
+        if (cforms2_next_matches($vFile, "\0{")) {
+            if ($k <> '-1' && !is_array($MyKey))
+                $MyKey = 'cforms' . $k . substr($MyKey, strpos($MyKey, '_'));
+            $ForRet[$MyKey] = cforms2_load_array($k, $vFile);
+            fread($vFile, 1);
+        } else {
+            $MyVal = "";
+            while (true) {
+                $Zeichen = fread($vFile, 1);
+                if ($Zeichen == "\0")
+                    break;
+                else
+                    $MyVal .= $Zeichen;
             }
-		    fseek($vFile, $pos+1);
-		}
-*/
-	    $Wert = fread($vFile,2);
+            $MyVal = stripslashes($MyVal);
+            if ($k <> '-1' && !is_array($MyKey))
+                $MyKey = 'cforms' . $k . substr($MyKey, strpos($MyKey, '_'));
+            $ForRet[$MyKey] = $MyVal;
+        }
+    }
 
-	    if ($Wert != "\0{") return;
-	    while (true) {
-	        if (cforms2_next_matches($vFile,"\0}")) {
-	            fread($vFile,2);
-	            return $ForRet;
-	        }
+}
 
-	        $MyKey = "";
-	        while (true) {
-	            $Zeichen = fread($vFile,1);
-	            if ($Zeichen == "\0")
-	                break;
-	            else
-	                $MyKey .= $Zeichen;
-	        }
-	        $MyKey = stripslashes($MyKey);
+function cforms2_next_matches($vFile, $Text) {
+    $PrevPos = ftell($vFile);
+    $Jump = strlen($Text);
+    $stats = fstat($vFile);
+    if (ftell($vFile) + $Jump > $stats[7])
+        return false;
+    $Erg = fread($vFile, $Jump);
+    fseek($vFile, $PrevPos);
+    return ($Erg == $Text);
 
-	        if (cforms2_next_matches($vFile,"\0{")) {
-				if ($k<>'-1' && !is_array($MyKey))
-                	$MyKey = 'cforms'.$k.substr( $MyKey, strpos($MyKey,'_') );
-                $ForRet[$MyKey] = cforms2_load_array($k,$vFile);
-	            fread($vFile,1);
-	        } else {
-	            $MyVal = "";
-	            while (true) {
-	                $Zeichen = fread($vFile,1);
-	                if ($Zeichen == "\0")
-	                    break;
-	                else
-	                    $MyVal .= $Zeichen;
-	            }
-	            $MyVal = stripslashes($MyVal);
-				if ($k<>'-1' && !is_array($MyKey))
-                	$MyKey = 'cforms'.$k.substr( $MyKey, strpos($MyKey,'_') );
-	            $ForRet[$MyKey] = $MyVal;
-	        }
-
-	    }
-	}
-	### Syntax: cforms2_next_matches($vFile, $Text);
-	function cforms2_next_matches($vFile, $Text){
-	    $PrevPos = ftell($vFile);
-	    $Jump = strlen($Text);
-	    $stats = fstat($vFile);
-	    if (ftell($vFile) + $Jump > $stats[7])
-	        return false;
-	    $Erg = fread($vFile,$Jump);
-	    fseek($vFile, $PrevPos);
-	    return ($Erg == $Text);
-	}
+}

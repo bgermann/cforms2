@@ -23,39 +23,42 @@
  */
 abstract class cforms2_captcha extends cforms2_fieldtype {
 
-	/**
-	 * Returns an associative array consisting of
-	 * "html" => HTML including at least an input field with this class's name as name
-	 * "hint" => the information needed for check_response method to evaluate the response
-	 * 
-	 * @param string $input_classes The class names for the input field
-	 * @param string $input_title The title for the input field
-	 * @return string HTML representing the captcha
-	 */
-	abstract public function get_request($input_id, $input_classes, $input_title);
+    /**
+     * Returns an associative array consisting of
+     * "html" => HTML including at least an input field with this class's name as name
+     * "hint" => the information needed for check_response method to evaluate the response
+     * 
+     * @param string $input_classes The class names for the input field
+     * @param string $input_title The title for the input field
+     * @return string HTML representing the captcha
+     */
+    abstract public function get_request($input_id, $input_classes, $input_title);
 
-	/**
-	 * Checks the answer given by the user for correctness.
-	 * 
-	 * @param string $post The possibly filtered HTTP POST data from submitting a form.
-	 * @return bool true, if the answer was correct.
-	 */
-	abstract public function check_response($post);
+    /**
+     * Checks the answer given by the user for correctness.
+     * 
+     * @param string $post The possibly filtered HTTP POST data from submitting a form.
+     * @return bool true, if the answer was correct.
+     */
+    abstract public function check_response($post);
 
-	/**
-	 * @return bool true, if all users have to resolve the CAPTCHA, including the authenticated users.
-	 */
-	public function check_authn_users() {
-		return false;
-	}
+    /**
+     * @return bool true, if all users have to resolve the CAPTCHA, including the authenticated users.
+     */
+    public function check_authn_users() {
+        return false;
 
-	public function is_special() {
-		return true;
-	}
+    }
 
-	protected function register_at_filter() {
-		add_filter('cforms2_add_fieldtype', array($this, 'add_instance'));
-		add_filter('cforms2_add_captcha', array($this, 'add_instance'));
-	}
+    public function is_special() {
+        return true;
+
+    }
+
+    protected function register_at_filter() {
+        add_filter('cforms2_add_fieldtype', array($this, 'add_instance'));
+        add_filter('cforms2_add_captcha', array($this, 'add_instance'));
+
+    }
 
 }

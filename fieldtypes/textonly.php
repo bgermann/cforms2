@@ -19,25 +19,29 @@
 
 class cforms2_fieldtype_textonly extends cforms2_fieldtype {
 
-	public function get_id() {
-		return 'textonly';
-	}
+    public function get_id() {
+        return 'textonly';
 
-	public function get_name() {
-		return __('Text only (no input)', 'cforms2');
-	}
+    }
 
-	protected function get_text_inputs() {
-		return array(
-			"cf_edit_label" => __('Text (HTML is supported)', 'cforms2'),
-			"cf_edit_css" => __('CSS (assigns class to this form element)', 'cforms2'),
-			"cf_edit_style" => sprintf(__('Inline style (e.g. %s)', 'cforms2'),'<strong>color:red; font-size:11px;</strong>')
-		);
-	}
+    public function get_name() {
+        return __('Text only (no input)', 'cforms2');
 
-	public static function register() {
-		$t = new cforms2_fieldtype_textonly();
-		$t->register_at_filter();
-	}
+    }
+
+    protected function get_text_inputs() {
+        return array(
+            "cf_edit_label" => __('Text (HTML is supported)', 'cforms2'),
+            "cf_edit_css" => __('CSS (assigns class to this form element)', 'cforms2'),
+            "cf_edit_style" => sprintf(__('Inline style (e.g. %s)', 'cforms2'), '<strong>color:red; font-size:11px;</strong>')
+        );
+
+    }
+
+    public static function register() {
+        $t = new cforms2_fieldtype_textonly();
+        $t->register_at_filter();
+
+    }
 
 }
