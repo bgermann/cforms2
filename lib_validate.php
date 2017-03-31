@@ -792,7 +792,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
 
     // HTML email
     if ($mail->html_show) {
-        $mail->is_html(true);
+        $mail->set_html(true);
         $mail->body = $cformsSettings['global']['cforms_style_doctype'] . $mail->eol . "<html xmlns=\"http://www.w3.org/1999/xhtml\">" . $mail->eol . "<head><title></title></head>" . $mail->eol . "<body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? $mail->eol . $htmlformdata : '') . $mail->eol . "</body></html>" . $mail->eol;
         $mail->body_alt = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
     } else
@@ -921,8 +921,8 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                 // CC or auto conf?
                 if ($ccme && $trackf['data'][$ccme] <> '') {
                     $mail->subj = $s[1];
-                    if ($mail->html_show) {  // 3.2.2012 changed from html_show_ac > admin email setting dictates this!
-                        $mail->is_html(true);
+                    if ($mail->html_show) {
+                        $mail->set_html(true);
                         $mail->body = $cformsSettings['global']['cforms_style_doctype'] . $mail->eol . "<html xmlns=\"http://www.w3.org/1999/xhtml\">" . $mail->eol . "<head><title></title></head>" . $mail->eol . "<body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? $mail->eol . $htmlformdata : '') . $mail->eol . "</body></html>" . $mail->eol;
                         $mail->body_alt = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
                     } else
@@ -933,7 +933,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                 else { // auto conf
                     $mail->subj = $s[0];
                     if ($mail->html_show_ac) {
-                        $mail->is_html(true);
+                        $mail->set_html(true);
                         $mail->body = $cformsSettings['global']['cforms_style_doctype'] . $mail->eol . "<html xmlns=\"http://www.w3.org/1999/xhtml\">" . $mail->eol . "<head><title></title></head>" . $mail->eol . "<body {$cformsSettings['global']['cforms_style']['body']}>" . $cmsghtml . "</body></html>" . $mail->eol;
                         $mail->body_alt = $cmsg;
                     } else

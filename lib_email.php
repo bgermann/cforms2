@@ -103,7 +103,7 @@ class cforms2_mail {
 
     }
 
-    public function is_html($bool) {
+    public function set_html($bool) {
         $this->content_type = $bool ? 'text/html' : 'text/plain';
 
     }
