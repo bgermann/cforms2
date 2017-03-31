@@ -1207,7 +1207,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
     </div>
 
     <div class="cf-content" id="o25">
-        <p><?php printf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms2'), '<a href="https://wordpress.org/plugins/cforms2/faq/">', '</a>', '<a href="https://wordpress.org/support/plugin/cforms2">', '</a>'); ?></p>
+        <p><?php printf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms2'), '<a href="https://wordpress.org/plugins/cforms2/#faq">', '</a>', '<a href="https://wordpress.org/support/plugin/cforms2">', '</a>'); ?></p>
     </div>
 
     <?php cforms2_footer(); ?>
