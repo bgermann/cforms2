@@ -1191,7 +1191,7 @@ insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'c
 		<div class="cf-content" id="o24">
 			<p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'),'?page=' . $plugindir . '/cforms-css.php'); ?></p>
 			<p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
-			<p><?php printf(__('You might also want to study the <a href="%s">PDF guide on cforms CSS</a> I put together to give you a head start.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
+			<p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'),'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
 			<p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms2'); ?></p>
 		</div>
 
