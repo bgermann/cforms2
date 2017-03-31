@@ -912,9 +912,10 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
 
                 // auto conf attachment?
                 $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
-                $a = (substr($a, 0, 1) == '/') ? $a : plugin_dir_path(__FILE__) . $a;
-                if ($a <> '' && file_exists($a)) {
-                    $mail->add_file($a); // optional name
+                if (!empty($a)) {
+                    $a = (substr($a, 0, 1) === '/') ? $a : plugin_dir_path(__FILE__) . $a;
+                    if (file_exists($a))
+                        $mail->add_file($a);
                 }
 
                 // CC or auto conf?

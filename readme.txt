@@ -149,6 +149,7 @@ GPL compliance!
 
 = 14.13 =
 
+* bugfix:   do not attach the upload directory to auto confirmation mails
 * other:    remove the remaining translation files
 * other:    remove the form presets
 * other:    remove wide_brown_light theme
