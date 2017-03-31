@@ -624,7 +624,7 @@ if (strlen($fd) <= 2) {
                         <tr class="ob">
                             <td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_limittxt'])); ?></textarea></td></tr></table></td>
-                        </tr>
+                            </tr>
                     <?php endif; ?>
 
                 <tr class="obSEP"><td colspan="2"></td></tr>
@@ -792,41 +792,41 @@ if (strlen($fd) <= 2) {
                 <tr id="it8" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('For the <em>auto confirmation</em> feature to work, make sure to mark at least one field <code>Email</code>, otherwise <strong>NO</strong> auto confirmation email will be sent out! If multiple fields are checked "Email", only the first in the list will receive a notification.', 'cforms2') ?></td></tr>
 
                     <?php if ($o == "1") : ?>
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><label for="cforms_csubject"><strong><?php _e('Subject auto confirmation', 'cforms2') ?></strong></label></td>
-                                                                        <td class="obR"><input type="text" name="cforms_csubject" id="cforms_csubject" value="<?php
+                        <tr class="ob">
+                            <td class="obL"><label for="cforms_csubject"><strong><?php _e('Subject auto confirmation', 'cforms2') ?></strong></label></td>
+                            <td class="obR"><input type="text" name="cforms_csubject" id="cforms_csubject" value="<?php
                                 $t = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
                                 echo stripslashes(htmlspecialchars($t[0]));
                                 ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
-                                                                    </tr>
-                                                                    <tr class="ob space20">
-                                                                        <td class="obL" style="padding-bottom:0">&nbsp;</td>
-                                                                        <td class="obR" style="padding-bottom:0">
-                                                                            <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" onclick="javascript:document.mainform.action = '#autoconf';"/>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><label for="cforms_cmsg"><strong><?php _e('TEXT message', 'cforms2') ?></strong></label></td>
-                                                                        <td class="obR">
-                                                                            <table><tr>
-                                                                            <td><textarea name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_cmsg'])); ?></textarea></td>
-                                                                            <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
-                                                                            </tr></table>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="ob space15">
-                                                                        <td class="obL"><label for="cforms_user_html"><strong><?php _e('Enable HTML', 'cforms2') ?></strong></label></td>
-                                                                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_user_html" name="cforms_user_html" <?php if ($o2 = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') echo "checked=\"checked\""; ?>/></td>
-                                                                    </tr>
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><label for="cforms_cmsg_html"><strong><?php _e('HTML message', 'cforms2') ?></strong></label></td>
-                                                                        <td class="obR">
-                                                                            <table><tr>
-                                                                            <td><textarea name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'])); ?></textarea></td>
-                                                                            <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
-                                                                            </tr></table>
-                                                                        </td>
-                                                                    </tr>
+                        </tr>
+                        <tr class="ob space20">
+                            <td class="obL" style="padding-bottom:0">&nbsp;</td>
+                            <td class="obR" style="padding-bottom:0">
+                                <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" onclick="javascript:document.mainform.action = '#autoconf';"/>
+                            </td>
+                        </tr>
+                        <tr class="ob">
+                            <td class="obL"><label for="cforms_cmsg"><strong><?php _e('TEXT message', 'cforms2') ?></strong></label></td>
+                            <td class="obR">
+                                <table><tr>
+                                <td><textarea name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_cmsg'])); ?></textarea></td>
+                                <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                                </tr></table>
+                            </td>
+                        </tr>
+                        <tr class="ob space15">
+                            <td class="obL"><label for="cforms_user_html"><strong><?php _e('Enable HTML', 'cforms2') ?></strong></label></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_user_html" name="cforms_user_html" <?php if ($o2 = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') echo "checked=\"checked\""; ?>/></td>
+                        </tr>
+                        <tr class="ob">
+                            <td class="obL"><label for="cforms_cmsg_html"><strong><?php _e('HTML message', 'cforms2') ?></strong></label></td>
+                            <td class="obR">
+                                <table><tr>
+                                <td><textarea name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'])); ?></textarea></td>
+                                <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                                </tr></table>
+                            </td>
+                        </tr>
 
                         <?php
                         $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
@@ -837,10 +837,10 @@ if (strlen($fd) <= 2) {
                         }
                         ?>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><label for="cforms_cattachment"><strong><?php _e('Attachment', 'cforms2') ?></strong></label></td>
-                                                                        <td class="obR"><input type="text" name="cforms_cattachment" id="cforms_cattachment" value="<?php echo stripslashes(htmlspecialchars($a)); ?>" /> <?php printf(__('File path: relative to the cforms plugin folder or an absolute path.', 'cforms2')); ?><?php echo $err; ?></td>
-                                                                    </tr>
+                        <tr class="ob">
+                            <td class="obL"><label for="cforms_cattachment"><strong><?php _e('Attachment', 'cforms2') ?></strong></label></td>
+                            <td class="obR"><input type="text" name="cforms_cattachment" id="cforms_cattachment" value="<?php echo stripslashes(htmlspecialchars($a)); ?>" /> <?php printf(__('File path: relative to the cforms plugin folder or an absolute path.', 'cforms2')); ?><?php echo $err; ?></td>
+                        </tr>
                     <?php endif; ?>
 
                 </table>
@@ -858,61 +858,61 @@ if (strlen($fd) <= 2) {
 
                 <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) : ?>
 
-                                                                    <table class="form-table">
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><strong><?php _e('Email &amp; Tracking', 'cforms2') ?></strong></td>
-                                                                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_email" name="cforms_mp_email" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_email"><?php _e('Suppress admin email and DB tracking for *this* form', 'cforms2') ?></label></td>
-                                                                    </tr>
+                    <table class="form-table">
+                        <tr class="ob">
+                            <td class="obL"><strong><?php _e('Email &amp; Tracking', 'cforms2') ?></strong></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_email" name="cforms_mp_email" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_email"><?php _e('Suppress admin email and DB tracking for *this* form', 'cforms2') ?></label></td>
+                        </tr>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><strong><?php _e('First Form', 'cforms2') ?></strong></td>
-                                                                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_first" name="cforms_mp_first" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_first'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_first"><?php _e('This is the *first* form of a series of forms', 'cforms2') ?></label></td>
-                                                                    </tr>
+                        <tr class="ob">
+                            <td class="obL"><strong><?php _e('First Form', 'cforms2') ?></strong></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_first" name="cforms_mp_first" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_first'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_first"><?php _e('This is the *first* form of a series of forms', 'cforms2') ?></label></td>
+                        </tr>
 
-                                                                    <tr class="obSEP"><td colspan="2"></td></tr>
+                        <tr class="obSEP"><td colspan="2"></td></tr>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><strong><?php _e('Reset Button', 'cforms2') ?></strong></td>
-                                                                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_reset" name="cforms_mp_reset" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_reset'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_reset"><?php _e('Add a reset button to this form (reset to the first form in a series)', 'cforms2') ?></label></td>
-                                                                    </tr>
+                        <tr class="ob">
+                            <td class="obL"><strong><?php _e('Reset Button', 'cforms2') ?></strong></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_reset" name="cforms_mp_reset" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_reset'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_reset"><?php _e('Add a reset button to this form (reset to the first form in a series)', 'cforms2') ?></label></td>
+                        </tr>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><strong><?php _e('Text', 'cforms2') ?></strong></td>
-                                                                        <td class="obR"><input type="text" id="cforms_mp_resettext" name="cforms_mp_resettext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_resettext'])); ?>"/><label for="cforms_mp_resettext"><?php _e('Text for reset button', 'cforms2') ?></label></td>
-                                                                    </tr>
+                        <tr class="ob">
+                            <td class="obL"><strong><?php _e('Text', 'cforms2') ?></strong></td>
+                            <td class="obR"><input type="text" id="cforms_mp_resettext" name="cforms_mp_resettext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_resettext'])); ?>"/><label for="cforms_mp_resettext"><?php _e('Text for reset button', 'cforms2') ?></label></td>
+                        </tr>
 
-                                                                    <tr class="obSEP"><td colspan="2"></td></tr>
+                        <tr class="obSEP"><td colspan="2"></td></tr>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><strong><?php _e('Back Button', 'cforms2') ?></strong></td>
-                                                                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_back" name="cforms_mp_back" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_back'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_back"><?php _e('Add a back button to this form (back to the previous form)', 'cforms2') ?></label></td>
-                                                                    </tr>
+                        <tr class="ob">
+                            <td class="obL"><strong><?php _e('Back Button', 'cforms2') ?></strong></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_back" name="cforms_mp_back" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_back'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_back"><?php _e('Add a back button to this form (back to the previous form)', 'cforms2') ?></label></td>
+                        </tr>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL"><strong><?php _e('Text', 'cforms2') ?></strong></td>
-                                                                        <td class="obR"><input type="text" id="cforms_mp_backtext" name="cforms_mp_backtext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_backtext'])); ?>"/><label for="cforms_mp_backtext"><?php _e('Text for back button', 'cforms2') ?></label></td>
-                                                                    </tr>
+                        <tr class="ob">
+                            <td class="obL"><strong><?php _e('Text', 'cforms2') ?></strong></td>
+                            <td class="obR"><input type="text" id="cforms_mp_backtext" name="cforms_mp_backtext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_backtext'])); ?>"/><label for="cforms_mp_backtext"><?php _e('Text for back button', 'cforms2') ?></label></td>
+                        </tr>
 
-                                                                    <tr class="obSEP"><td colspan="2"></td></tr>
+                        <tr class="obSEP"><td colspan="2"></td></tr>
 
-                                                                    <tr class="ob">
-                                                                        <td class="obL">&nbsp;</td>
-                                                                        <td class="obR">
-                                <?php
-                                $formlistbox = ' <select id="picknextform" name="cforms_mp_next"' . ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_last'] == '1' ? ' disabled="disabled"' : '') . '>';
-                                for ($i = 1; $i <= $FORMCOUNT; $i++) {
-                                    $j = ( $i > 1 ) ? $i : '';
-                                    $sel = ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == $cformsSettings['form' . $j]['cforms' . $j . '_fname']) ? ' selected="selected"' : '';
-                                    $formlistbox .= '<option ' . $sel . '>' . $cformsSettings['form' . $j]['cforms' . $j . '_fname'] . '</option>';
-                                }
-                                $formlistbox .= '<option style="background:#F2D7E0;" value="-1" ' . (($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == '-1') ? ' selected="selected"' : '') . '>' . __('* stop here (last form) *', 'cforms2') . '</option>';
-                                $formlistbox .= '</select>';
-                                echo $formlistbox;
-                                ?>
-                                <?php _e('Please choose the next form after this', 'cforms2') ?>
-                                                                        </td>
-                                                                    </tr>
-                                                                    </table>
+                        <tr class="ob">
+                            <td class="obL">&nbsp;</td>
+                            <td class="obR">
+                            <?php
+                            $formlistbox = ' <select id="picknextform" name="cforms_mp_next"' . ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_last'] == '1' ? ' disabled="disabled"' : '') . '>';
+                            for ($i = 1; $i <= $FORMCOUNT; $i++) {
+                                $j = ( $i > 1 ) ? $i : '';
+                                $sel = ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == $cformsSettings['form' . $j]['cforms' . $j . '_fname']) ? ' selected="selected"' : '';
+                                $formlistbox .= '<option ' . $sel . '>' . $cformsSettings['form' . $j]['cforms' . $j . '_fname'] . '</option>';
+                            }
+                            $formlistbox .= '<option style="background:#F2D7E0;" value="-1" ' . (($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == '-1') ? ' selected="selected"' : '') . '>' . __('* stop here (last form) *', 'cforms2') . '</option>';
+                            $formlistbox .= '</select>';
+                            echo $formlistbox;
+                            ?>
+                            <?php _e('Please choose the next form after this', 'cforms2') ?>
+                            </td>
+                        </tr>
+                    </table>
                 <?php endif; ?>
             </div>
         </fieldset>
@@ -954,27 +954,27 @@ add_action('admin_footer', 'cforms2_insert_modal');
 function cforms2_insert_modal() {
     global $noDISP;
     ?>
-    <div id="cf_editbox" title="<?php _e('Input Field Settings', 'cforms2'); ?>">
-        <div class="cf_ed_main">
-            <div id="cf_target"></div>
+        <div id="cf_editbox" title="<?php _e('Input Field Settings', 'cforms2'); ?>">
+            <div class="cf_ed_main">
+                <div id="cf_target"></div>
+            </div>
         </div>
-    </div>
-    <div class="jqmWindow" id="cf_backupbox">
-        <div class="cf_ed_header"><?php _e('Restore this form only (old)', 'cforms2'); ?></div>
-        <div class="cf_ed_main">
-            <form enctype="multipart/form-data" name="backupform" method="post">
-                <div class="controls">
+        <div class="jqmWindow" id="cf_backupbox">
+            <div class="cf_ed_header"><?php _e('Restore this form only (old)', 'cforms2'); ?></div>
+            <div class="cf_ed_main">
+                <form enctype="multipart/form-data" name="backupform" method="post">
+                    <div class="controls">
 
-                    <input type="file" id="upload" name="importall" size="25" />
-                    <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
+                        <input type="file" id="upload" name="importall" size="25" />
+                        <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
 
-                    <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
+                        <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
 
-                </div>
-                <input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
-            </form>
+                    </div>
+                    <input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
+                </form>
+            </div>
         </div>
-    </div>
     <?php
 
 }

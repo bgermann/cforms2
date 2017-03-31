@@ -452,38 +452,38 @@ if (isset($_REQUEST['SubmitOptions']))
                             <td class="obL"><label for="cforms_sec_qa"><?php _e('<strong>Questions &amp; Answers</strong><br />format: Q=A', 'cforms2') ?></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_sec_qa" id="cforms_sec_qa" ><?php echo $qa; ?></textarea></td></tr></table></td>
                         </tr>
-                        </table>
-                    </div>
-                </fieldset>
+                    </table>
+                </div>
+            </fieldset>
 
 
-                <fieldset id="tracking" class="cformsoptions">
-                    <div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms2') ?>
-                    </div>
+            <fieldset id="tracking" class="cformsoptions">
+                <div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms2') ?>
+                </div>
 
-                    <div class="cf-content" id="o14">
-                        <p><?php _e('If you like to track your form submissions also via the database, please enable this feature below. If required, two new tables will be created and you\'ll see a new sub tab "<strong>Tracking</strong>" under the cforms menu.', 'cforms2') ?></p>
+                <div class="cf-content" id="o14">
+                    <p><?php _e('If you like to track your form submissions also via the database, please enable this feature below. If required, two new tables will be created and you\'ll see a new sub tab "<strong>Tracking</strong>" under the cforms menu.', 'cforms2') ?></p>
 
-                        <table class="form-table">
-                        <tr class="ob">
-                            <td class="obL">&nbsp;</td>
-                            <td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
-                        </tr>
-                        <tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?></td></tr>
+                    <table class="form-table">
+                    <tr class="ob">
+                        <td class="obL">&nbsp;</td>
+                        <td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
+                    </tr>
+                    <tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?></td></tr>
 
-                        <tr class="ob space15">
-                            <td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if ($cformsSettings['global']['cforms_database'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms2') ?></td>
-                        </tr>
+                    <tr class="ob space15">
+                        <td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
+                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if ($cformsSettings['global']['cforms_database'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms2') ?></td>
+                    </tr>
 
-                        <tr class="ob">
-                            <td class="obL"><label for="cforms_showdashboard"><strong><?php _e('Show on dashboard', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_showdashboard" name="cforms_showdashboard" <?php if ($cformsSettings['global']['cforms_showdashboard'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Make sure to enable your forms individually as well!', 'cforms2') ?></td>
-                        </tr>
-                        </table>
-                    </div>
-                </fieldset>
+                    <tr class="ob">
+                        <td class="obL"><label for="cforms_showdashboard"><strong><?php _e('Show on dashboard', 'cforms2') ?></strong></label></td>
+                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_showdashboard" name="cforms_showdashboard" <?php if ($cformsSettings['global']['cforms_showdashboard'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Make sure to enable your forms individually as well!', 'cforms2') ?></td>
+                    </tr>
+                    </table>
+                </div>
+            </fieldset>
 
         <?php } ?>
 
