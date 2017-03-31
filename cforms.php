@@ -18,7 +18,7 @@
  * 
  * Plugin Name: cforms2
  * Plugin URI: https://wordpress.org/plugins/cforms2/
- * Description: cformsII offers unparalleled flexibility in deploying contact forms across your blog. Features include: comprehensive SPAM protection, Ajax support, Backup & Restore, Multi-Recipients, Role Manager support, Database tracking and many more.
+ * Description: cformsII is a customizable, flexible and powerful form plugin including simple spam protection, multi-step forms, role manager support, submission database tracking and custom themes.
  * Author: Oliver Seidel, Bastian Germann
  * Version: 14.12.3
  * Text Domain: cforms2
@@ -52,7 +52,7 @@ add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate' );
 
 
 
-### settings corruputed?
+### settings corrupted?
 if ( !is_array($cformsSettings) ){
 	add_action('admin_menu', 'cforms2_settings_corrupted');
     return;
@@ -80,8 +80,6 @@ function cforms2_start_session() {
 	$session_id = session_id();
 	if ( empty($session_id) ){
 		session_start();
-		### debug
-		cforms2_dbg( "After session (".session_id().")start: ".print_r($_SESSION,1) );
 	}
 }
 
@@ -94,28 +92,22 @@ function cforms2($args = '',$no = '') {
 
 	global $subID, $track, $cformsSettings, $trackf;
 
-    $oldno = ($no=='1')?'':$no;  ### remeber old val, to reset session when in new MP form
+    $oldno = ($no=='1')?'':$no;  ### remember old val to reset session when in new MP form
 
-    ##debug
     cforms2_dbg("Original form on page #$oldno");
 
 	### multi page form: overwrite $no
     $isMPform = $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_form'];
 
-	##debug
     cforms2_dbg("Multi-page form = $isMPform");
-   	if (isset($_SESSION) && isset($_SESSION['cforms']['current']))
-		cforms2_dbg("PHP Session = ".$_SESSION['cforms']['current'] );
 
 	if( $isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 ){
-		cforms2_dbg("form no. rewrite from #{$no} to #").$_SESSION['cforms']['current'];
 		$no = $_SESSION['cforms']['current'];
 	}
 
 	### Safety, in case someone uses '1' for the default form
 	$no = ($no=='1')?'':$no;
 
-    ##debug
     cforms2_dbg("Switch to form #$no");
 
     $moveBack=false;
@@ -127,7 +119,7 @@ function cforms2($args = '',$no = '') {
 	    $_SESSION['cforms']['first']=$oldno;
 	    $_SESSION['cforms']['pos']=1;
 	    unset( $_REQUEST );
-	    ##debug
+
 	    cforms2_dbg("Reset-Button pressed");
 	}
 	else ### multi page form: back button
@@ -135,13 +127,12 @@ function cforms2($args = '',$no = '') {
 		$no = $_SESSION['cforms']['list'][($_SESSION['cforms']['pos']--)-1];
 	    $_SESSION['cforms']['current']=$no;
         $moveBack=true;
-	    ##debug
+
 	    cforms2_dbg("Back-Button pressed");
 	}
 	else ### mp init: must be mp, first & not submitted!
 	if( $isMPform && !is_array($_SESSION['cforms']) && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] ){
-	//if( $isMPform && $cformsSettings['form'.$oldno]['cforms'.$oldno.'_mp']['mp_first'] && !isset($_REQUEST['sendbutton'.$no]) ){
-	    ##debug
+
 	    cforms2_dbg("Current form is *first* MP-form");
         cforms2_dbg("Session found, you're on the first form and session is reset!");
 
@@ -152,10 +143,6 @@ function cforms2($args = '',$no = '') {
         $_SESSION['cforms']['first']=$no;
         $_SESSION['cforms']['pos']=1;
     }
-	
-
-	##debug
-	cforms2_dbg( print_r($_SESSION,1) );
 
 
 	### custom fields support
@@ -218,7 +205,6 @@ function cforms2($args = '',$no = '') {
 
    	$umc = ($usermessage_class<>'' && $no>1)?' '.$usermessage_class.$no:'';
 
-    ##debug
     cforms2_dbg("User info for form #$no");
 
 	### where to show message
@@ -235,7 +221,6 @@ function cforms2($args = '',$no = '') {
 
 		$isMPformNext=false; ### default
 
-		##debug
 		cforms2_dbg("Form is all valid & sendbutton pressed.");
 
 		if( $isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current']>0 && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']<>-1 ){
@@ -243,7 +228,6 @@ function cforms2($args = '',$no = '') {
         	$isMPformNext=true;
             $no = cforms2_check_form_name( $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next'] );
 
-	        ##debug
 	        cforms2_dbg("Session active and now moving on to form #$no");
 
 	        ### logic: possibly change next form
@@ -257,7 +241,6 @@ function cforms2($args = '',$no = '') {
 
 	    }elseif( $isMPform && $cformsSettings['form'.$no]['cforms'.$no.'_mp']['mp_next']==-1 ){
 
-	        ##debug
 	        cforms2_dbg("Session was active but is being reset now");
 
 			$oldcurrent = $no;
@@ -274,11 +257,7 @@ function cforms2($args = '',$no = '') {
 	}
 
 
-    ##debug
-    cforms2_dbg("All good, currently on form #$no, [current]=".$_SESSION['cforms']['current']);
-
-	##debug
-	cforms2_dbg(print_r($_SESSION,1));
+    cforms2_dbg("All good, currently on form #$no");
 	cforms2_dbg(print_r($track,1));
 
 	### redirect == 2 : hide form?    || or if max entries reached! w/ SESSION support if#2
@@ -348,7 +327,6 @@ function cforms2($args = '',$no = '') {
 		$obj[] = "";
 		$html5 = ($obj[1]<>'') ? preg_split('/\x{00A4}/u',$obj[1], -1) : '';
 
-		###debug
 		cforms2_dbg("\t\t html5 check, settings = ".print_r($html5,1));
 		
 		### check for custom err message and split field_name
@@ -356,7 +334,6 @@ function cforms2($args = '',$no = '') {
 		$obj[] = "";
 		$fielderr = $obj[1];
 		
-		###debug
 		cforms2_dbg("\t adding $field_type field: $field_name");
 		
 		if ( $fielderr <> '')	{
@@ -381,7 +358,6 @@ function cforms2($args = '',$no = '') {
 		$obj[] = "";
 		$fieldTitle = ($obj[1]<>'')?str_replace('"','&quot;',stripslashes($obj[1])):'';
 
-		###debug
 		cforms2_dbg("\t\t title check, obj[0] = ".$obj[0]);
 		
 
@@ -395,7 +371,7 @@ function cforms2($args = '',$no = '') {
 			}
 			$chkboxClicked[] = "";
 			$chkboxClicked[] = "";
-			###debug
+
 			cforms2_dbg("\t\t found checkbox:, obj[0] = ".$obj[0]);
 
 			$options = explode('#', stripslashes($obj[0]) );
@@ -404,8 +380,7 @@ function cforms2($args = '',$no = '') {
 				$field_name = ( $options[0]=='' ) ? $options[1]:$options[0];
 			else
 				$field_name = $options[0];
-				
-			###debug
+
 			cforms2_dbg("\t\t left from '#' (=field_name) = ".$options[0].", right from '#': ".$options[1] . "  -> field_name= $field_name");
 
 		}
@@ -465,8 +440,8 @@ function cforms2($args = '',$no = '') {
 					$input_id = $input_name = cforms2_sanitize_ids( substr($field_name,$idPartA+4,($idPartB-$idPartA)-4) );
 
 				$field_name = substr_replace($field_name,'',$idPartA,($idPartB-$idPartA)+1);
-				###debug
-				cforms2_dbg("\t \t parsing custom ID/NAME...new field_name = $field_name, ID=$input_id");
+
+				cforms2_dbg("\t\t parsing custom ID/NAME...new field_name = $field_name, ID=$input_id");
 				
 			} else
 				$input_id = $input_name = cforms2_sanitize_ids(stripslashes($field_name));
@@ -591,11 +566,15 @@ function cforms2($args = '',$no = '') {
 						$ol = false;
 				}
 				if (!$fieldsetopen) {
+						$fieldsethide = explode('|set:', $field_name, 2);
+						$fieldsethide []= '';
+						$fieldsethide[1] = strcasecmp($fieldsethide[1], 'true') === 0 ? 'display:none;' : ''; // TODO add condition for at least one previous fields invalid
+
 						if ($ol)
 							$field = '</ol>';
 
-						$field .= '<fieldset class="cf-fs'.$fscount++.'">'
-						       .  '<legend>' . stripslashes($field_name) . '</legend>'
+						$field .= '<fieldset class="cf-fs'.$fscount++.'" style="'.$fieldsethide[1].'">'
+						       .  '<legend>' . stripslashes($fieldsethide[0]) . '</legend>'
 						       .  '<ol class="cf-ol">';
 						$fieldsetopen = true;
 						$ol = true;
@@ -644,7 +623,7 @@ function cforms2($args = '',$no = '') {
 					}
 					$h5_7 = ( $field_required ) ? ' required="required"' : '';
 					$h5 .= $h5_7 . ' ';
-					###debug
+
 					cforms2_dbg('......html5 attributes: '.$h5);
 				}else
 					$type = ($field_type=='pwfield')?'password':'text';
@@ -866,7 +845,6 @@ function cforms2($args = '',$no = '') {
 
 		}
 
-		### debug
 		cforms2_dbg("Form setup: $field_type, val=$field_value, default=$defaultvalue");
 
 		### add new field
