@@ -265,3 +265,9 @@ function cforms2_admin_date_format() {
     return __('dd', 'cforms2') . '/' . __('mm', 'cforms2') . '/' . __('yyyy', 'cforms2');
 
 }
+
+function cforms2_wp_mail_failed($wp_mail_failed_error) {
+    $err_data = "\nError data: " . print_r($wp_mail_failed_error->get_error_data('wp_mail_failed'), 1);
+    trigger_error($wp_mail_failed_error->get_error_message('wp_mail_failed') . $err_data, E_USER_WARNING);
+
+}

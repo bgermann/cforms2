@@ -1248,3 +1248,4 @@ add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_filter('the_content', 'cforms2_insert', 101);
 add_shortcode('cforms', 'cforms2_shortcode');
+add_action('wp_mail_failed', 'cforms2_wp_mail_failed');

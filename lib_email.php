@@ -206,7 +206,7 @@ class cforms2_mail {
         remove_action('phpmailer_init', array($this, 'phpmailer_init'));
 
         if (!$rt) {
-            $this->set_err(__('Could not instantiate wp_mail function.', 'cforms2'));
+            $this->set_err(__('Could not successfully run wp_mail function. There may be a warning in the PHP error log with more information.', 'cforms2'));
             return false;
         }
 

@@ -930,7 +930,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
 
                     $sent = $mail->send();
                 }
-                else { // ac below
+                else { // auto conf
                     $mail->subj = $s[0];
                     if ($mail->html_show_ac) {
                         $mail->is_html(true);
@@ -942,7 +942,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                     $sent = $mail->send();
                 }
 
-                if ($sent <> '1') {
+                if ($sent) {
                     $usermessage_text = __('Error occurred while sending the auto confirmation message: ', 'cforms2') . '<br />' . $mail->err;
                     $usermessage_class = ' mailerr';
                 }
