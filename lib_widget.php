@@ -25,6 +25,7 @@ class cforms2_widget extends WP_Widget {
             'description' => __('Add any cforms form to your sidebar', 'cforms2')
                 ), array('width' => 200, 'height' => 200)
         );
+
     }
 
     /**
@@ -41,6 +42,7 @@ class cforms2_widget extends WP_Widget {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         insert_cform($no);
         echo $args['after_widget'];
+
     }
 
     /**
@@ -72,6 +74,7 @@ class cforms2_widget extends WP_Widget {
 
         echo '<label for="' . $this->get_field_id('form') . '">' . __('Form', 'cforms2') . ':</label>' .
         '<select id="' . $this->get_field_id('form') . '" name="' . $this->get_field_name('form') . '" style="width:220px; font-size:10px; font-family:Arial;">' . $opt . '</select>';
+
     }
 
     /**
@@ -92,6 +95,7 @@ class cforms2_widget extends WP_Widget {
         }
 
         return $instance;
+
     }
 
 }

@@ -29,6 +29,7 @@ class cforms2_deprecated_api {
             trigger_error('You should switch from using my_cforms_action function to cforms2_after_processing_action WordPress action.', E_USER_WARNING);
             my_cforms_action($cformsdata);
         }
+
     }
 
 }
@@ -42,6 +43,7 @@ if (!function_exists('cf_extra_comment_data')) {
      */
     function cf_extra_comment_data($id) {
         trigger_error('cf_extra_comment_data is useless', E_USER_WARNING);
+
     }
 
 }
@@ -53,6 +55,7 @@ if (!function_exists('is_tellafriend')) {
      */
     function is_tellafriend($pid) {
         trigger_error('is_tellafriend is useless', E_USER_WARNING);
+
     }
 
 }

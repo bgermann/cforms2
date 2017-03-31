@@ -959,5 +959,4 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
             $usermessage_class = ' mailerr';
         }
     }
-
 }
