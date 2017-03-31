@@ -174,7 +174,7 @@ if( strlen($fd)<=2 ) {
 		<input type="hidden" name="noSub" value="<?php echo $noDISP; ?>" />
 
 		<p>
-			<?php printf(__('<strong>cforms</strong> allows you <a href="%s" %s>to insert</a> one or more custom designed contact forms, which on submission (preferably via Ajax) will send the visitor info via email and optionally stores the feedback in the database.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#inserting','onclick="setshow(18)"'); ?>
+			<?php _e('cformsII allows you to insert one or more customly designed contact forms, which sends the visitor info via email and optionally stores the feedback in the database.', 'cforms2'); ?>
 			<?php printf(__('<a href="%s" %s>Here</a> is a quick step by step quide to get you up and running quickly.', 'cforms2'),'?page='. $plugindir.'/cforms-help.php#guide','onclick="setshow(17)"'); ?>
 		</p>
 
