@@ -1170,8 +1170,10 @@ if ($cfadmin) {
 
 require_once (plugin_dir_path(__FILE__) . 'my-functions-deprecated.php');
 require_once (plugin_dir_path(__FILE__) . 'lib_ajax.php');
-require_once (plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
-cforms2_fieldtype::register();
+if (!class_exists('cforms2_fieldtype', false)) {
+    require_once (plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
+    cforms2_fieldtype::register();
+}
 
 function cforms2_field() {
     check_admin_referer('cforms2_field');
