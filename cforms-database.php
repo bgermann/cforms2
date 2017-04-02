@@ -51,6 +51,7 @@ if (cforms2_check_erased())
     ?>
 
     <script type="text/javascript">
+        // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later'
         jQuery("#flex1").flexigrid({
             url: ajaxurl,
             dataType: 'xml',
@@ -100,6 +101,7 @@ if (cforms2_check_erased())
             width: 900,
             height: 250
         });
+        // @license-end
     </script>
 
     <?php

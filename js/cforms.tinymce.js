@@ -1,4 +1,7 @@
 /*
+ * @licstart  The following is the entire license notice for the 
+ * JavaScript code in this page.
+ * 
  * Copyright (c) 2014 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,6 +16,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in this page.
  */
 
 tinymce.PluginManager.add('cforms', function (ed) {

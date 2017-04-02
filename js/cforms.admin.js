@@ -1,4 +1,7 @@
 /*
+ * @licstart  The following is the entire license notice for the 
+ * JavaScript code in this page.
+ * 
  * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
  * Copyright (c) 2014-2017 Bastian Germann
  *
@@ -14,6 +17,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in this page.
  */
 
 var focusedFormControl = null;
