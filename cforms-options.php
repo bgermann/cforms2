@@ -372,7 +372,7 @@ if (strlen($fd) <= 2) {
             </div>
 
             <p class="addfieldbox">
-                <input tabindex="<?php echo $ti++; ?>" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms2'); ?>" value="<?php _e('Add', 'cforms2'); ?>" onfocus="this.blur()" onclick="javascript:document.mainform.action = '#anchorfields';" />
+                <input tabindex="<?php echo $ti++; ?>" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms2'); ?>" value="<?php _e('Add', 'cforms2'); ?>" onfocus="this.blur()" onclick="document.mainform.action = '#anchorfields';" />
                 <input tabindex="<?php echo $ti++; ?>" type="text" name="AddFieldNo" value="1" class="addfieldno"/><?php _e('new field(s) @ position', 'cforms2'); ?>
                 <select tabindex="<?php echo $ti++; ?>" name="AddFieldPos" class="addfieldno">
                     <?php
@@ -701,7 +701,7 @@ if (strlen($fd) <= 2) {
                 <tr class="ob space20">
                     <td class="obL" style="padding-bottom:0">&nbsp;</td>
                     <td class="obR" style="padding-bottom:0">
-                        <input type="submit" class="allbuttons" name="cforms_resetAdminMsg" id="cforms_resetAdminMsg" value="<?php _e('Reset admin message to default', 'cforms2') ?>" onclick="javascript:document.mainform.action = '#emailoptions';" />
+                        <input type="submit" class="allbuttons" name="cforms_resetAdminMsg" id="cforms_resetAdminMsg" value="<?php _e('Reset admin message to default', 'cforms2') ?>" onclick="document.mainform.action = '#emailoptions';" />
                     </td>
                 </tr>
 
@@ -802,7 +802,7 @@ if (strlen($fd) <= 2) {
                         <tr class="ob space20">
                             <td class="obL" style="padding-bottom:0">&nbsp;</td>
                             <td class="obR" style="padding-bottom:0">
-                                <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" onclick="javascript:document.mainform.action = '#autoconf';"/>
+                                <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" onclick="document.mainform.action = '#autoconf';"/>
                             </td>
                         </tr>
                         <tr class="ob">
@@ -966,7 +966,7 @@ function cforms2_insert_modal() {
                     <div class="controls">
 
                         <input type="file" id="upload" name="importall" size="25" />
-                        <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="javascript:jQuery('#cf_backupbox').jqmHide();" />
+                        <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="jQuery('#cf_backupbox').jqmHide();" />
 
                         <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
 
