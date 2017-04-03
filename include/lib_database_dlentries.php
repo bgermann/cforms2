@@ -142,7 +142,7 @@ function cforms2_database_dlentries() {
 function cforms2_get_csv_tab($handle, $fnames, $where, $in_list, $sortBy, $sortOrder, $cformsSettings, $charset, $format = 'csv') {
     global $wpdb;
 
-    $results = $wpdb->get_results("SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC"); //TODO check SQL injection
+    $results = $wpdb->get_results("SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC"); // TODO check SQL injection
 
     $br = "\n";
     $buffer = array();
@@ -249,7 +249,7 @@ function cforms2_get_xml($handle, $fnames, $where, $in_list, $sortBy, $sortOrder
 
     $results = $wpdb->get_results(
             "SELECT ip, id, sub_date, form_id, field_name,field_val FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE sub_id=id $where $in_list ORDER BY $sortBy $sortOrder, f_id ASC"
-    ); //TODO check SQL injection
+    ); // TODO check SQL injection
 
     $sub_id = '';
     foreach ($results as $entry) {

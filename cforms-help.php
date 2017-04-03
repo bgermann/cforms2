@@ -824,7 +824,7 @@ foreach ( $formdata as $field ) {
     $fields['isreadonly'][$i++] = $field[6];
 }
 
-insert_custom_cform($fields,'');    //<?php _e('Call default form with two defined fields', 'cforms2'); ?></code></pre>
+insert_custom_cform($fields,'');    // <?php _e('Call default form with two defined fields', 'cforms2'); ?></code></pre>
             </li>
         </ul>
 
@@ -856,12 +856,12 @@ while ($nextitem = fgets($fp, 512))
 
 fclose ($fp);
 
-$fields['label'][3]  = substr( $fields['label'][3], 0, strlen($fields['label'][3])-1 );  //<?php _e('Remove the last \'#\'', 'cforms2'); ?>
+$fields['label'][3]  = substr( $fields['label'][3], 0, strlen($fields['label'][3])-1 );  // <?php _e('Remove the last \'#\'', 'cforms2'); ?>
 $fields['type'][3]   ='selectbox';
 $fields['isreq'][3]  ='1';
 $fields['isemail'][3]='0';
 
-insert_custom_cform($fields,5);    //<?php _e('Call form #5 with new fields', 'cforms2'); ?></code></pre>
+insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', 'cforms2'); ?></code></pre>
             </li>
         </ul>
 

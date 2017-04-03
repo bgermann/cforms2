@@ -79,7 +79,7 @@ function cforms2_database_deleteentries() {
                 $sub_id = '1';
 
             $sql = "SELECT field_val,form_id,sub_id FROM {$wpdb->cformsdata},{$wpdb->cformssubmissions} WHERE $sub_id $doquery AND id=sub_id AND field_name LIKE '%[*%'";
-            $filevalues = $wpdb->get_results($sql); //TODO check SQL injection
+            $filevalues = $wpdb->get_results($sql); // TODO check SQL injection
 
             $found = 0;
 
@@ -113,8 +113,8 @@ function cforms2_database_deleteentries() {
             else
                 $dospecialquery = '';
 
-            $nuked = $wpdb->query("DELETE FROM {$wpdb->cformsdata} WHERE $whereD $dospecialquery"); //TODO check SQL injection
-            $nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE $whereS $doquery"); //TODO check SQL injection
+            $nuked = $wpdb->query("DELETE FROM {$wpdb->cformsdata} WHERE $whereD $dospecialquery"); // TODO check SQL injection
+            $nuked = $wpdb->query("DELETE FROM {$wpdb->cformssubmissions} WHERE $whereS $doquery"); // TODO check SQL injection
         }
 
         _e('Entries successfully removed from the tracking tables!', 'cforms2');

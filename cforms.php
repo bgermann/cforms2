@@ -661,7 +661,7 @@ function cforms2($args = '', $no = '') {
 
                 case "ccbox":
                 case "checkbox":
-                    if (!$all_valid || ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form' . $no]))) //exclude MP! if first time on the form = array = null
+                    if (!$all_valid || ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form' . $no]))) // exclude MP! if first time on the form = array = null
                         $preChecked = ( $field_value && $field_value <> '' ) ? ' checked="checked"' : '';  // for MPs
                     else
                         $preChecked = ( strpos($chkboxClicked[1], 'true') !== false ) ? ' checked="checked"' : '';  // $all_valid = user choice prevails
@@ -745,7 +745,7 @@ function cforms2($args = '', $no = '') {
                     $j = 0;
 
                     // MP session support
-                    if ($moveBack || $isMPform) //$isMPformNext
+                    if ($moveBack || $isMPform)
                         $field_value = explode(',', $field_value);
 
                     foreach ($options as $option) {
@@ -1018,7 +1018,7 @@ function cforms2_insert($content) {
             $p_close_after = strpos($content, '</p>', $b);
 
             // wrapped in <p>?
-            $b = ($p_close_after < $p_open_after || ($p_close_after !== false && $p_open_after === false)) ? $p_close_after + 1 : $b;  //add'l +3 covered by $last = $b+3; !! :-)
+            $b = ($p_close_after < $p_open_after || ($p_close_after !== false && $p_open_after === false)) ? $p_close_after + 1 : $b;
 
 
             $a = strpos($content, '<!--cforms', $b);

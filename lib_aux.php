@@ -380,11 +380,11 @@ if (!function_exists('get_cforms_entries')) {
     function get_cforms_entries($fname = false, $from = false, $to = false, $s = false, $limit = false, $sd = 'asc') {
         global $wpdb, $cformsSettings, $cfdataTMP, $cfsort, $cfsortdir;
 
-        //unify
+        // unify
         if ($s == 'date' || $s == 'timestamp')
             $s = 'sub_date';
 
-        //set limit
+        // set limit
         $limit = ($limit && $limit <> '') ? 'LIMIT 0,' . $limit : '';
 
 
@@ -396,11 +396,11 @@ if (!function_exists('get_cforms_entries')) {
             $cfsort = $s;
         }
 
-        //SORT
+        // SORT
         $cfdata = array();
         $cfsortdir = $sd;
 
-        //GENERAL WHERE
+        // GENERAL WHERE
         $where = false;
 
         $fname_in = '';

@@ -224,7 +224,7 @@ if (strlen($fd) <= 2) {
                     if (strpos($allfields[$i], 'ccbox') !== false)
                         $ccboxused = true;
                     if (strpos($allfields[$i], 'upload') !== false)
-                        $fileupload = true; //needed for config
+                        $fileupload = true; // needed for config
                 }
 
                 $captchas = cforms2_get_pluggable_captchas();

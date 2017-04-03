@@ -91,12 +91,12 @@ function cforms2_database_overview() {
         $total = 1;
     else {
         $sql = "SELECT count(id) FROM {$wpdb->cformssubmissions} $where";
-        $total = $wpdb->get_var($sql); //TODO check SQL injection
+        $total = $wpdb->get_var($sql); // TODO check SQL injection
     }
 
     // get results
     $sql = "SELECT * FROM {$wpdb->cformssubmissions} $where $sort $limit";
-    $result = $wpdb->get_results($sql); //TODO check SQL injection
+    $result = $wpdb->get_results($sql); // TODO check SQL injection
 
     $xml = "<?xml version=\"1.0\"?>\n";
     $xml .= "<rows>";

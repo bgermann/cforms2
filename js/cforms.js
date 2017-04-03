@@ -285,7 +285,7 @@ function cforms_validate(no, upload) {
     var regexp_e = new RegExp('^[_a-z0-9+-]+(\\.[_a-z0-9+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,63})$', 'i');  // email regexp
 
 
-    //clean enhanced error if present
+    // clean enhanced error if present
     var objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('li');
     for (var i = 0; i < objColl.length; i++) {
         if (objColl[i].className.match(/cf_li_err/)) {
@@ -434,13 +434,10 @@ function cforms_validate(no, upload) {
                 objColl[i].className = newclass;
 
 
-        } // if fields
+        }
 
 
-
-        //
-        //if regexp provided use it!
-        //
+        // if regexp provided use it!
         var regexp = 1;
         if (objColl[i] && document.getElementById(objColl[i].id + '_regexp')) {
 
@@ -455,8 +452,8 @@ function cforms_validate(no, upload) {
                     if (INPval != document.getElementById(obj_regexp.value).value)
                         regexp = null;
                 } else {
-                    if (INPval != '') { //overrule: normal field, normal regexp, left empty
-                        regexp = new RegExp(obj_regexp.value, ['g']); // normal regexp
+                    if (INPval != '') { // overrule: normal field, normal regexp, left empty
+                        regexp = new RegExp(obj_regexp.value, ['g']);
                         regexp = INPval.match(regexp);
                     }
                 }
@@ -475,11 +472,11 @@ function cforms_validate(no, upload) {
 
     }
 
-    //write out all custom errors
+    // write out all custom errors
     if (show_err_ins === 'y')
         write_customerr();
 
-    //all good?  if "upload file" field included, don't do ajax
+    // all good?  if "upload file" field included, don't do ajax
     if (all_valid && upload) {
         document.getElementById('sendbutton' + no).disabled = true;
         var newSENDBUTTON = document.createElement('input');
@@ -498,7 +495,7 @@ function cforms_validate(no, upload) {
 
     var call_err = function (no, err, custom_error) {
 
-        //temp. turn send button back on
+        // temp. turn send button back on
         document.getElementById('sendbutton' + no).style.cursor = "auto";
         document.getElementById('sendbutton' + no).disabled = false;
 
