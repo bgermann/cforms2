@@ -662,7 +662,7 @@ function cforms2($args = '', $no = '') {
                 case "ccbox":
                 case "checkbox":
                     if (!$all_valid || ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form' . $no]))) //exclude MP! if first time on the form = array = null
-                        $preChecked = ( $field_value && $field_value <> '' ) ? ' checked="checked"' : '';  // for MPs 
+                        $preChecked = ( $field_value && $field_value <> '' ) ? ' checked="checked"' : '';  // for MPs
                     else
                         $preChecked = ( strpos($chkboxClicked[1], 'true') !== false ) ? ' checked="checked"' : '';  // $all_valid = user choice prevails
 

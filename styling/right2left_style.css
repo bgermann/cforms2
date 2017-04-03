@@ -12,46 +12,46 @@ ol.cf-ol li.infotext { font-size:0.9em; color:#de8a0c; }
 /*  main 'top-level' form elements                    */
 /*                                                    */
 .cform {
-	direction:rtl;
-	text-align:right;
-	margin:10px auto 0 auto; 
-	width: 410px; 
+    direction:rtl;
+    text-align:right;
+    margin:10px auto 0 auto;
+    width: 410px;
 }
 
-.cform fieldset	{ 
-	margin-top:10px; 
-	padding:5px 0 15px 0; 
-	border:none; 
-	background:white;
+.cform fieldset {
+    margin-top:10px;
+    padding:5px 0 15px 0;
+    border:none;
+    background:white;
 }
 
 .cform .cf_hidden {
-	display:none; 
-	border:none!important;
-	background:none!important;
-	padding:0!important;
-	margin:0!important;
+    display:none;
+    border:none!important;
+    background:none!important;
+    padding:0!important;
+    margin:0!important;
 }
 
-.cform legend { 
-	color:#c66300;
-	font-size:20px;
-	font-weight:bold;
-	letter-spacing:2px;
-	line-height:24px;
+.cform legend {
+    color:#c66300;
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:2px;
+    line-height:24px;
 }
 
-ol.cf-ol { 
-	margin:0!important; 
-	padding:0!important; 
+ol.cf-ol {
+    margin:0!important;
+    padding:0!important;
 }
-ol.cf-ol li	{
-	background:none!important; 
-	margin:5px 0!important; /*some themes may interfere otherwise*/
-	padding:0; 
-	list-style:none!important; 
-	text-align:right;
-	line-height:1.3em;
+ol.cf-ol li {
+    background:none!important;
+    margin:5px 0!important; /*some themes may interfere otherwise*/
+    padding:0;
+    list-style:none!important;
+    text-align:right;
+    line-height:1.3em;
 }
 
 
@@ -60,9 +60,9 @@ ol.cf-ol li	{
 /*                                                    */
 
 ol.cf-ol li.textonly {
-	color:#C66300;
-	letter-spacing:1px;
-	padding:3px 0pt;
+    color:#C66300;
+    letter-spacing:1px;
+    padding:3px 0pt;
 }
 
 
@@ -71,43 +71,43 @@ ol.cf-ol li.textonly {
 /*                                                    */
 
 .cform label {
-	width:90px; 
-	margin:4px 0 0 0;
-	padding-left:10px;
-	display:inline-block;
-	text-align:left;
-	vertical-align:top;
+    width:90px;
+    margin:4px 0 0 0;
+    padding-left:10px;
+    display:inline-block;
+    text-align:left;
+    vertical-align:top;
 }
 .cform label span {
-	width:90px; /* must be the same as above!*/
-	display:block;
+    width:90px; /* must be the same as above!*/
+    display:block;
 }
 
 label.cf-before {
-	margin:4px 0 0 0; 
+    margin:4px 0 0 0;
 }
 
-label.cf-after 	{
-	margin:4px 0 0 0; 
-	padding-right:10px;
-	width:200px;
-	text-align:right;
+label.cf-after {
+    margin:4px 0 0 0;
+    padding-right:10px;
+    width:200px;
+    text-align:right;
 }
 
 label.cf-after span {
-	width:200px;
-	display:block;
+    width:200px;
+    display:block;
 }
 
 label.cf-group-after {
-	padding-right:10px;
-	margin:4px 0 0 2px;
-	width:110px;
-	text-align:right;
+    padding-right:10px;
+    margin:4px 0 0 2px;
+    width:110px;
+    text-align:right;
 }
 label.cf-group-after span {
-	width:110px;
-	display:block;
+    width:110px;
+    display:block;
 }
 
 /*                                                    */
@@ -116,45 +116,45 @@ label.cf-group-after span {
 
 .cform input,
 .cform textarea,
-.cform select { 
-	padding:3px;
-	background: #FAF8F1; 
-	border:1px solid #FAE3AD;
-	vertical-align:top;	
-	margin-left:10px;
-	color:#C66300;
-	letter-spacing:2px;
-	font:normal 12px Helvetica,Arial;
+.cform select {
+    padding:3px;
+    background: #FAF8F1;
+    border:1px solid #FAE3AD;
+    vertical-align:top;
+    margin-left:10px;
+    color:#C66300;
+    letter-spacing:2px;
+    font:normal 12px Helvetica,Arial;
 }
 .cform input:hover,
 .cform textarea:hover,
-.cform select:hover	{
-	background:#FAF8F1; 
-	border: 1px solid #F5C074; 
+.cform select:hover {
+    background:#FAF8F1;
+    border: 1px solid #F5C074;
 }
 
 .cform input:focus,
 .cform textarea:focus,
-.cform select:focus	{ 
-	background:#FAF8F1; 
-	border: 1px solid #F5C074; 
+.cform select:focus {
+    background:#FAF8F1;
+    border: 1px solid #F5C074;
 }
 
 .cform textarea,
 .cform input {
-	width:150px; 
+    width:150px;
 }
 .cform select {
-	width:158px; /* attempt to have equal length */
-}  
+    width:158px; /* attempt to have equal length */
+}
 
-.cform select.cfselectmulti	{ 
-	height:7.5em; 
+.cform select.cfselectmulti {
+    height:7.5em;
 }
 
 .cform textarea {
-	width:380px;
-	overflow:auto;
+    width:380px;
+    overflow:auto;
 }
 
 /*                                                    */
@@ -163,12 +163,12 @@ label.cf-group-after span {
 
 span.reqtxt,
 span.emailreqtxt {
-	color:#C66300;
-	padding-right:4px;
-	margin:5px 0 0 0;
-	font-size:0.8em;
-	display:inline-block;
-	vertical-align:top;
+    color:#C66300;
+    padding-right:4px;
+    margin:5px 0 0 0;
+    font-size:0.8em;
+    display:inline-block;
+    vertical-align:top;
 }
 
 
@@ -177,11 +177,11 @@ span.emailreqtxt {
 /*                                                    */
 
 ol.cf-ol li.cf-box-title {
-	color:#C66300;
-	letter-spacing:1px;
-	padding:3px 0pt;
-	margin:6px 0!important;
-	padding-right:100px; /* check with label 'width' incl. */
+    color:#C66300;
+    letter-spacing:1px;
+    padding:3px 0pt;
+    margin:6px 0!important;
+    padding-right:100px; /* check with label 'width' incl. */
 }
 
 /*                                                    */
@@ -189,28 +189,28 @@ ol.cf-ol li.cf-box-title {
 /*                                                    */
 
 input.cf-box-a,
-input.cf-box-b 	{ 
-	margin:2px 0 0 0; 
-	width:16px; 
-	height:22px;
-	border:none; 
-	background:none; 
+input.cf-box-b {
+    margin:2px 0 0 0;
+    width:16px;
+    height:22px;
+    border:none;
+    background:none;
 }
 
-input.cf-box-a 	{ 
-	margin-right:100px; /* check with label 'width' incl. */
-} 
+input.cf-box-a {
+    margin-right:100px; /* check with label 'width' incl. */
+}
 
-html:first-child>*:first-child+b\ody input.cf-box-a { 
-	margin:2px 0 0 100px; /* only for Opera! */
+html:first-child>*:first-child+b\ody input.cf-box-a {
+    margin:2px 0 0 100px; /* only for Opera! */
 }
 /*                                                    */
 /* check box groups                                   */
 /*                                                    */
 
 ol.cf-ol li.cf-box-group {
-	padding: 0 100px 5px 0; 
-} 
+    padding: 0 100px 5px 0;
+}
 
 
 /*                                                    */
@@ -218,21 +218,21 @@ ol.cf-ol li.cf-box-group {
 /*                                                    */
 
 p.cf-sb {
-	padding: 0!important;
-	text-align:right;
-	margin: 0;
+    padding: 0!important;
+    text-align:right;
+    margin: 0;
 }
 .cform input.backbutton,
 .cform input.resetbutton,
-.cform input.sendbutton	{ 
-	width:120px;  
-	padding:2px; 
-	margin: 0px 2px 5px 0;
-	font-size:0.8em;
-	background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x; 
-	border:1px solid #C66300	!important;
-	border-left-color:#ececec!important; 
-	border-top-color:#ececec!important;
+.cform input.sendbutton {
+    width:120px;
+    padding:2px;
+    margin: 0px 2px 5px 0;
+    font-size:0.8em;
+    background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x;
+    border:1px solid #C66300 !important;
+    border-left-color:#ececec!important;
+    border-top-color:#ececec!important;
 }
 .cform input.resetbutton {
 }
@@ -245,30 +245,30 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
-	border-color:#DF7D7D;
-	border-style:solid;
-	border-width:1px 0pt;
-	padding:5px 0!important;
-	margin:5px 0!important;
+    background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
+    border-color:#DF7D7D;
+    border-style:solid;
+    border-width:1px 0pt;
+    padding:5px 0!important;
+    margin:5px 0!important;
 }
 
 ol.cf-ol li ul.cf_li_text_err {
-	margin:0pt 100px 0pt 0pt;
-	padding:0;
-	color:#333;
+    margin:0pt 100px 0pt 0pt;
+    padding:0;
+    color:#333;
 }
 
 ol.cf-ol ul.cf_li_text_err li {
-	background:url(icon-alert.png) no-repeat right 1px!important;
-	list-style:none!important;
-	font-weight:bold;
-	text-indent:0;
-	margin:0 0 2px!important;
-	padding-right:15px;
+    background:url(icon-alert.png) no-repeat right 1px!important;
+    list-style:none!important;
+    font-weight:bold;
+    text-indent:0;
+    margin:0 0 2px!important;
+    padding-right:15px;
 }
 ol.cf-ol ul.cf_li_text_err li:before {
-	content:'';
+    content:'';
 }
 
 /*                                                    */
@@ -277,12 +277,12 @@ ol.cf-ol ul.cf_li_text_err li:before {
 
 label.secq,
 label.seccap {
-	vertical-align:text-bottom;
-	margin-bottom:4px;
+    vertical-align:text-bottom;
+    margin-bottom:4px;
 }
 
 input.secinput {
-	vertical-align:text-bottom;
+    vertical-align:text-bottom;
 }
 
 #cforms_captcha6,
@@ -291,32 +291,32 @@ input.secinput {
 #cforms_captcha3,
 #cforms_captcha2,
 #cforms_captcha {
-	height:15px;
-	width:80px;
-	padding: 4px 4px;
-	margin: 0 0 0 10px;
-	vertical-align:text-bottom;
+    height:15px;
+    width:80px;
+    padding: 4px 4px;
+    margin: 0 0 0 10px;
+    vertical-align:text-bottom;
 }
 
-img.captcha	{
-	vertical-align:text-bottom;
-	margin:0!important;
-	padding:0 10px 0 0!important;
-	border:none!important;
-	float:none!important;
+img.captcha {
+    vertical-align:text-bottom;
+    margin:0!important;
+    padding:0 10px 0 0!important;
+    border:none!important;
+    float:none!important;
 }
 
 .captcha-reset {
-	vertical-align:text-bottom;
-	color:#C66300;
-	margin-bottom:2px;
-	padding-right:5px;
-	width:21px;
-	height:21px;
-	cursor: pointer;
+    vertical-align:text-bottom;
+    color:#C66300;
+    margin-bottom:2px;
+    padding-right:5px;
+    width:21px;
+    height:21px;
+    cursor: pointer;
 }
 img.imgcalendar {
-	border:none;
+    border:none;
 }
 
 /*                                                    */
@@ -324,56 +324,56 @@ img.imgcalendar {
 /*                                                    */
 
 div.cf_info {
-	color:#333;
-	display:none;
-	padding:10px 15px!important;
-	width:380px;
-	line-height:1.3em;
-	margin:10px auto;
-	direction:rtl;
+    color:#333;
+    display:none;
+    padding:10px 15px!important;
+    width:380px;
+    line-height:1.3em;
+    margin:10px auto;
+    direction:rtl;
 }
 div.cf_info ol {
-	margin:0;
-	padding:5px 15px 0 30px;
+    margin:0;
+    padding:5px 15px 0 30px;
 }
 div.cf_info ol li {
-	padding:1px 0;
-	margin:2px 0;
+    padding:1px 0;
+    margin:2px 0;
 }
-div.cf_info a	{
-	color:#ad2929!important;
-	text-decoration:underline!important;
+div.cf_info a {
+    color:#ad2929!important;
+    text-decoration:underline!important;
 }
 div.success {
-	background:#FAF8F1 none repeat scroll 0%;
-	color:#C66300;
-	display:block;
+    background:#FAF8F1 none repeat scroll 0%;
+    color:#C66300;
+    display:block;
 }
 div.failure {
-	display:block;
-	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
-	border-color:#DF7D7D;
-	border-style:solid;
-	border-width:1px 0pt;
+    display:block;
+    background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
+    border-color:#DF7D7D;
+    border-style:solid;
+    border-width:1px 0pt;
 }
 div.waiting {
-	background:#F9F9F9;
-	color:#AAAAAA;
-	display:block;
+    background:#F9F9F9;
+    color:#AAAAAA;
+    display:block;
 }
 /*                                                    */
 /*   formatting for invalid user inputs               */
 /*                                                    */
-.cform .cf_error { 
-	color:#ad2929; 
-	border:1px solid #ad2929; 
+.cform .cf_error {
+    color:#ad2929;
+    border:1px solid #ad2929;
 }
 div.mailerr {
-	display:block;
+    display:block;
 }
 .mailerr,
 .cform .cf_errortxt {
-	color:#ad2929; 
+    color:#ad2929;
 }
 
 /*                                                    */
@@ -381,12 +381,12 @@ div.mailerr {
 /*                                                    */
 
 [disabled] {
-	color:#dddddd;
-	border-color:#dddddd!important;
-	background:none!important;
+    color:#dddddd;
+    border-color:#dddddd!important;
+    background:none!important;
 }
 .disabled {
-	border-color:#dddddd!important;
+    border-color:#dddddd!important;
 }
 
 /*                                                    */
@@ -394,53 +394,7 @@ div.mailerr {
 /*                                                    */
 
 .cform input.cf_upload  {
-	width:260px;
-	background: #f9f9f9;
-	border:1px solid #888888;
-}
-
-/*                                                    */
-/*  Other: browser hacks                              */
-/*                                                    */
-* html .cform fieldset {
-	position: relative;
-	margin-top:15px;
-	padding-top:25px; 
-}
-* html .cform legend { 
-	position:absolute; 
-	top: -10px; 
-	right: -7px; 
-	margin-left:0;
-}
-*+html .cform fieldset {
-	position: relative;
-	margin-top:15px;
-	padding-top:25px; 
-}
-*+html .cform legend { 
-	position:absolute; 
-	top: -10px; 
-	right: -7px; 
-	margin-left:0;
-}
-* html ol.cf-ol,
-* html ol.cf-ol li,
-* html span.reqtxt,
-* html span.emailreqtxt { 
-	display: inline-block;  /*for ie6*/
-}
-*+html ol.cf-ol,
-*+html ol.cf-ol li,
-*+html .cform label,
-*+html span.reqtxt,
-*+html span.emailreqtxt {
-	display: inline-block; /*for ie7*/
-}
-
-* html img.captcha	{
-	margin-bottom:1px!important;
-}
-*+html img.captcha	{
-	margin-bottom:1px!important;
+    width:260px;
+    background: #f9f9f9;
+    border:1px solid #888888;
 }

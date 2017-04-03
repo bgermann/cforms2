@@ -110,16 +110,16 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
     if ( $setting == "autoConfSUBJ" || $setting == "autoConfSUBJ" ){
         $m = preg_replace_callback( '/{DateFuture=([0-9]+)d}/i',
-                        create_function(
-                            '$days',
-                            '
+            create_function(
+                '$days',
+                '
 
-                            $datefuture = strtotime ("+$days[1] days");
+                $datefuture = strtotime ("+$days[1] days");
 
-                            return strtoupper( strftime( "%A %d %B %Y",  $datefuture ) );
-                            '
-                        ),
-                        $oldvalue ); 
+                return strtoupper( strftime( "%A %d %B %Y",  $datefuture ) );
+                '
+            ),
+            $oldvalue );
 
         return $m;
     }

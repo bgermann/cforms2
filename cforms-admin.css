@@ -3,164 +3,164 @@
 *****************************************************************/
 
 #wpadminbar #wp-admin-bar-cforms-bar {
-margin-left:100px;
-border-left:1px solid #555;
+    margin-left:100px;
+    border-left:1px solid #555;
 }
 #wpadminbar #wp-admin-bar-cforms-bar > .ab-item {
-background-repeat:no-repeat;
-background-image:url(images/cformsicon.png);
-background-position:10px center;
-padding-left:33px;
-border-left:1px solid #333;
-color:#f8f8f8;
+    background-repeat:no-repeat;
+    background-image:url(images/cformsicon.png);
+    background-position:10px center;
+    padding-left:33px;
+    border-left:1px solid #333;
+    color:#f8f8f8;
 }
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions.hover > a,
 #wpadminbar #wp-admin-bar-cforms-bar.hover > .ab-item {
-color:#333;
+    color:#333;
 }
 
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions {
-border-right:1px solid #555;
+    border-right:1px solid #555;
 }
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions > a {
-color:#f8f8f8;
-border-right:1px solid #333;
+    color:#f8f8f8;
+    border-right:1px solid #333;
 }
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions.hiLightBar {
-background-color:#6a3737;
-background-color:rgba(255, 0, 0, 0.2);
+    background-color:#6a3737;
+    background-color:rgba(255, 0, 0, 0.2);
 }
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions.hiLightBar > a {
-color:#E14040;
-font-weight:bold;
+    color:#E14040;
+    font-weight:bold;
 }
 /****************************************************************
   GENERAL
 *****************************************************************/
 
 .wrap {
-font-size:12px;
-overflow:hidden;
+    font-size:12px;
+    overflow:hidden;
 }
 
 .corruptedsettings h3 {
-margin:2em 0 0;
+    margin:2em 0 0;
 }
 
 #icon-cforms-error {
-background-position:-11px -5px;
+    background-position:-11px -5px;
 }
 
 #icon-cforms-corrupted {
-background-position:-72px -5px;
+    background-position:-72px -5px;
 }
 
 #icon-cforms-settings {
-background-position:-130px -5px;
+    background-position:-130px -5px;
 }
 
 #icon-cforms-global {
-background-position:-190px -5px;
+    background-position:-190px -5px;
 }
 
 #icon-cforms-tracking {
-background-position:-250px -5px;
+    background-position:-250px -5px;
 }
 
 #icon-cforms-css {
-background-position:-300px -5px;
+    background-position:-300px -5px;
 }
 
 #icon-cforms-help {
-background-position:-360px -5px;
+    background-position:-360px -5px;
 }
 
 a.helptop {
-font-size:8px;
-line-height:1em;
-float:right;
-margin-top:13px;
-margin-right:8px;
-color:#888;
-text-decoration:none;
-border-bottom:1px solid #2583AD;
+    font-size:8px;
+    line-height:1em;
+    float:right;
+    margin-top:13px;
+    margin-right:8px;
+    color:#888;
+    text-decoration:none;
+    border-bottom:1px solid #2583AD;
 }
 
 .corruptedsettings textarea {
-width:750px;
-font-size:10px;
+    width:750px;
+    font-size:10px;
 }
 
 #fixsettings {
-margin-bottom:10px;
+    margin-bottom:10px;
 }
 
 .form-table {
-width:80%;
-margin-bottom:0;
+    width:80%;
+    margin-bottom:0;
 }
 
 .form-table td {
-padding:2px 10px 4px;
+    padding:2px 10px 4px;
 }
 
 ul.ex,p.ex,.form-table td.ex {
-padding:2px 35px 10px 0;
-font-size:11px;
-line-height:17px;
-text-align:justify;
+    padding:2px 35px 10px 0;
+    font-size:11px;
+    line-height:17px;
+    text-align:justify;
 }
 ul.ex:before,p.ex:before,.form-table td.ex:before {
-content:"\f348";
-font-family:dashicons;
-font-size:40px;
-height:30px;
-line-height:30px;
-float:left;
+    content:"\f348";
+    font-family:dashicons;
+    font-size:40px;
+    height:30px;
+    line-height:30px;
+    float:left;
 }
 
 #cf_target {
-margin-left:0;
-margin-top:10px;
+    margin-left:0;
+    margin-top:10px;
 }
 
 span.abbr {
-text-decoration:underline dotted;
-cursor:help;
+    text-decoration:underline dotted;
+    cursor:help;
 }
 
 .ob textarea {
-width:400px;
-height:80px;
+    width:400px;
+    height:80px;
 }
 
 .ob textarea.errmsgbox {
-height:45px;
+    height:45px;
 }
 
 /****************************************************************
   buttons
 *****************************************************************/
 input {
-line-height:1em;
-padding:5px; /* content-box padding-box border-box*/
+    line-height:1em;
+    padding:5px; /* content-box padding-box border-box*/
 }
 
 .cf_ed_main .allbuttons,
 a.allbuttons,
 input.allbuttons {
-color:#333;
+    color:#333;
 
-line-height:16px;
-padding:2px 8px;
-font-size:12px;
-overflow:visible;
-cursor:pointer;
-min-width:2em;
-text-decoration:none;
+    line-height:16px;
+    padding:2px 8px;
+    font-size:12px;
+    overflow:visible;
+    cursor:pointer;
+    min-width:2em;
+    text-decoration:none;
 
-background:#f7f7f7 linear-gradient(0deg, #f7f7f7, #e2e2e2);
-border:1px solid #cfcfcf;
+    background:#f7f7f7 linear-gradient(0deg, #f7f7f7, #e2e2e2);
+    border:1px solid #cfcfcf;
 }
 .cf_ed_main .allbuttons:focus,
 a.allbuttons:focus,
@@ -168,586 +168,586 @@ input.allbuttons:focus,
 .cf_ed_main .allbuttons:hover,
 a.allbuttons:hover,
 input.allbuttons:hover {
-color:black;
-border-color:#999;
-background:#fdfdfd linear-gradient(0deg, #ffffff, #e6e6e6);
+    color:black;
+    border-color:#999;
+    background:#fdfdfd linear-gradient(0deg, #ffffff, #e6e6e6);
 }
 
 input.addbutton,input.dupbutton {
-background:#cefcba linear-gradient(0deg, #cefcba, #b1f591);
-border:1px solid #9CD37E;
-text-shadow:#fff 0 1px 0;
+    background:#cefcba linear-gradient(0deg, #cefcba, #b1f591);
+    border:1px solid #9CD37E;
+    text-shadow:#fff 0 1px 0;
 }
 input.addbutton:focus, input.dupbutton:focus,
 input.addbutton:hover, input.dupbutton:hover {
-background:#e6f9de linear-gradient(0deg, #f9f9f9, #b1f591);
-border:1px solid #82b06a;
+    background:#e6f9de linear-gradient(0deg, #f9f9f9, #b1f591);
+    border:1px solid #82b06a;
 }
 
 a.deleteall ,
 input.deleteall {
-background:#d47674 !important;
-border:1px solid #963F43;
-color:#fafafa;
+    background:#d47674 !important;
+    border:1px solid #963F43;
+    color:#fafafa;
 }
 
 .chgformbox input.chgbutton {
-font-size:11px;
-background:#f7f7f7 linear-gradient(0deg, #f7f7f7, #c1c1c1);
-border:1px solid #4a7581;
+    font-size:11px;
+    background:#f7f7f7 linear-gradient(0deg, #f7f7f7, #c1c1c1);
+    border:1px solid #4a7581;
 }
 .chgformbox input.chgbutton:focus,
 .chgformbox input.chgbutton:hover {
-border-color:#666;
-background:#f7f7f7;
-box-shadow:0 0 2px #666;
+    border-color:#666;
+    background:#f7f7f7;
+    box-shadow:0 0 2px #666;
 }
 .chgformbox input.chgbuttonhi {
-color:#fff;
-text-shadow:#000 0 -1px 0;
-background:#31555e linear-gradient(0deg, #31555e, #40727c);
-border:1px solid #31555E;
+    color:#fff;
+    text-shadow:#000 0 -1px 0;
+    background:#31555e linear-gradient(0deg, #31555e, #40727c);
+    border:1px solid #31555E;
 }
 
 input.updbutton {
 }
 
 input.formupd {
-margin-top:3px;
+    margin-top:3px;
 }
 
 * html .wrap input {
-padding:6px 3px 4px;
+    padding:6px 3px 4px;
 }
 
 *+html .wrap input {
-padding:6px 3px 4px;
+    padding:6px 3px 4px;
 }
 
 * html .wrap input.allbuttons {
-padding:2px 8px;
+    padding:2px 8px;
 }
 
 * html .wrap input.updbutton {
-margin-top:4px;
+    margin-top:4px;
 }
 
 *+html .wrap input.allbuttons {
-padding:2px 8px;
+    padding:2px 8px;
 }
 
 *+html .wrap input.updbutton {
-margin-top:4px;
+    margin-top:4px;
 }
 
 .cf_ed_main input.allchk {
-border:0;
-background:none;
+    border:0;
+    background:none;
 }
 
 /****************************************************************
   styling options
 *****************************************************************/
 input.stylebutton {
-width:158px;
+    width:158px;
 }
 
 .flexigrid {
-margin:0 auto;
+    margin:0 auto;
 }
 
 /****************************************************************
   form settings
 *****************************************************************/
 .mainoptions, .chgformbox {
-margin:10px 0 0;
-width:100%;
-overflow:hidden;
-line-height:34px;
-margin:5px 0 0;
-padding:0;
+    margin:10px 0 0;
+    width:100%;
+    overflow:hidden;
+    line-height:34px;
+    margin:5px 0 0;
+    padding:0;
 
-background:#87b9c6 linear-gradient(0deg, #87b9c6, #3d7b8e);
+    background:#87b9c6 linear-gradient(0deg, #87b9c6, #3d7b8e);
 
-border:1px solid #28758C;
-border-radius:3px;
+    border:1px solid #28758C;
+    border-radius:3px;
 }
 
 .mainoptions {
-background:#f9f9f9 linear-gradient(0deg, #f9f9f9, #e8e8e8);
-border:1px solid #cfcfcf;
-border-radius:3px 3px 0 0;
+    background:#f9f9f9 linear-gradient(0deg, #f9f9f9, #e8e8e8);
+    border:1px solid #cfcfcf;
+    border-radius:3px 3px 0 0;
 }
 
 .chgL {
-white-space:nowrap;
-padding:5px 4px;
+    white-space:nowrap;
+    padding:5px 4px;
 }
 
 .chgM {
-text-align:center;
-width:100%;
+    text-align:center;
+    width:100%;
 }
 
 .mainoptions label,.mainoptions input,.chgformbox select,.chgformbox input {
-vertical-align:middle!important;
+    vertical-align:middle!important;
 }
 
 #anchorfields {
-border-top:0;
-padding-top:10px;
+    border-top:0;
+    padding-top:10px;
 }
 
 .bignumber {
-font-size:18px;
-text-shadow:white 0 1px 0;
-color:#464646;
+    font-size:18px;
+    text-shadow:white 0 1px 0;
+    color:#464646;
 }
 .navbar {
-color:white;
-text-shadow:#555 0 -1px 0;
-font-size:20px;
+    color:white;
+    text-shadow:#555 0 -1px 0;
+    font-size:20px;
 }
 #pickform {
-padding:0px 0 0 2px;
-height:2em;
-border:1px solid #28758C;
+    padding:0px 0 0 2px;
+    height:2em;
+    border:1px solid #28758C;
 }
 
 #cforms_fname {
-margin:0 5px;
-padding:5px;
-font-weight:bold;
-font-size:10px;
-width:18em;
-border:1px solid #ccc;
-background:#fafafa;
+    margin:0 5px;
+    padding:5px;
+    font-weight:bold;
+    font-size:10px;
+    width:18em;
+    border:1px solid #ccc;
+    background:#fafafa;
 }
 
 .installNote {
-color:#666;
-font-size:11px;
-margin:0;
-padding:0 35px 2px 40px;
+    color:#666;
+    font-size:11px;
+    margin:0;
+    padding:0 35px 2px 40px;
 }
 
 p.addfieldbox {
-margin:20px auto 10px;
-padding:5px;
-text-align:center;
-width:800px;
-clear:both;
+    margin:20px auto 10px;
+    padding:5px;
+    text-align:center;
+    width:800px;
+    clear:both;
 }
 
 p.addfieldbox input, #wpcontent p.addfieldbox select.addfieldno {
-vertical-align:middle;
+    vertical-align:middle;
 }
 
 input.backupbutton,input.restorebutton {
-font-weight:400;
+    font-weight:400;
 }
 
 select.addfieldno,
 input.addfieldno {
-line-height:1em;
-border:1px solid #aaa;
-width:1.5em;
-margin:0 8px 0 5px;
-text-align:center;
-padding:2px 0;
-background:#fff;
-color:#111;
-font-size:11px;
+    line-height:1em;
+    border:1px solid #aaa;
+    width:1.5em;
+    margin:0 8px 0 5px;
+    text-align:center;
+    padding:2px 0;
+    background:#fff;
+    color:#111;
+    font-size:11px;
 }
 
 select.addfieldno {
-height:19px;
-padding:0;
-width:4em;
-text-align:center;
+    height:19px;
+    padding:0;
+    width:4em;
+    text-align:center;
 }
 
 input.addfieldno:active {
-background:#aaa!important;
+    background:#aaa!important;
 }
 
 input.addfieldno:focus {
-background:#fff!important;
+    background:#fff!important;
 }
 
 #cformswarning {
-font-size:11px;
-line-height:17px;
+    font-size:11px;
+    line-height:17px;
 
-color:#b3424e;
-letter-spacing:2px;
-text-align:left;
+    color:#b3424e;
+    letter-spacing:2px;
+    text-align:left;
 }
 
 /****************************************************************
   HIDE blocks
 *****************************************************************/
 .blindminus,.blindplus {
-overflow:hidden;
-width:20px;
-height:34px;
-margin:0 6px 0 0;
-display:block;
-float:left;
-background:transparent url(images/menu-bits.gif) no-repeat scroll left 0px;
-border:none;
-text-decoration:none;
+    overflow:hidden;
+    width:20px;
+    height:34px;
+    margin:0 6px 0 0;
+    display:block;
+    float:left;
+    background:transparent url(images/menu-bits.gif) no-repeat scroll left 0px;
+    border:none;
+    text-decoration:none;
 }
 
 .blindminus {
-background-position:0 -34px;
+    background-position:0 -34px;
 }
 
 #o0,#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,
 #o17,#o18,#o19,#o20,#o20,#o21,#o22,#o23,#o24,#o25,#o26,#o27,#o28,#o29,#o30 {
-padding-bottom:10px;
+    padding-bottom:10px;
 }
 
 /****************************************************************
   Docking Boxes core CSS: YOU MUST NOT CHANGE OR OVERRIDE THESE
 *****************************************************************/
 .tableheader {
-margin:25px auto 2px;
-width:790px;
-overflow:hidden;
+    margin:25px auto 2px;
+    width:790px;
+    overflow:hidden;
 }
 
 .tableheader div {
-vertical-align:bottom;
-text-align:center;
+    vertical-align:bottom;
+    text-align:center;
 }
 
 .tableheader div div {
-width:41px;
-font-size:8px;
-color:#888;
-float:left;
+    width:41px;
+    font-size:8px;
+    color:#888;
+    float:left;
 }
 
 .tableheader div div.fh1,
 .tableheader div div.fh2 {
-font-size:11px;
-text-align:left;
-width:300px;
+    font-size:11px;
+    text-align:left;
+    width:300px;
 }
 
 .tableheader div div.fh2 {
-width:219px;
-padding-left:45px;
+    width:219px;
+    padding-left:45px;
 }
 
 .tableheader div div img {
-cursor:help;
+    cursor:help;
 }
 
 .itemContent a {
-border:0;
+    border:0;
 }
 
 #wpcontent select.fieldtype, .itemContent input.inpfld {
-font-weight:normal;
-font-size:11px;
-width:300px;
-background:#fff;
-border:0;
-padding:5px;
-display:inline-box;
-box-sizing:border-box!important;
+    font-weight:normal;
+    font-size:11px;
+    width:300px;
+    background:#fff;
+    border:0;
+    padding:5px;
+    display:inline-box;
+    box-sizing:border-box!important;
 }
 #pickform:focus,
 #cforms_fname:focus,
 #wpcontent select.fieldtype:focus, .itemContent input.inpfld:focus {
-border-left:2px solid #2244ED;
+    border-left:2px solid #2244ED;
 }
 
 #wpcontent select.fieldtype {
-font-weight:normal;
-font-size:10px;
-height:22px;
-padding:5px 0 1px;
+    font-weight:normal;
+    font-size:10px;
+    height:22px;
+    padding:5px 0 1px;
 }
 
 .itemContent select.fieldtype,
 #wpcontent .itemContent select.fieldtype {
-width:190px;
-margin-left:3px;
+    width:190px;
+    margin-left:3px;
 }
 
 .wrench,.noxbutton,.xbutton {
-border:0 none !important;
-height:16px;
-width:16px;
-overflow:hidden;
-border:none;
-margin-right:8px;
-cursor:pointer;
-font-family:"dashicons";
-font-size:16px;
-background:none;
-padding:0;
+    border:0 none !important;
+    height:16px;
+    width:16px;
+    overflow:hidden;
+    border:none;
+    margin-right:8px;
+    cursor:pointer;
+    font-family:"dashicons";
+    font-size:16px;
+    background:none;
+    padding:0;
 }
 
 .noxbutton {
-color:gray;
-cursor:not-allowed;
+    color:gray;
+    cursor:not-allowed;
 }
 
 .xbutton {
-color:red;
-margin-left:2px;
+    color:red;
+    margin-left:2px;
 }
 
 .wrench {
-margin-right:2px;
+    margin-right:2px;
 }
 
 option.disabled {
-background-color:#f0f0f0;
-color:#999;
+    background-color:#f0f0f0;
+    color:#999;
 }
 option.disabled.title {
-color:#666666;
-background-color:#ccc;
+    color:#666666;
+    background-color:#ccc;
 }
 
 input[type="checkbox"].fieldisreq, input[type="checkbox"].fieldisemail, input[type="checkbox"].fielddisabled,
 input[type="checkbox"].fieldreadonly, input[type="checkbox"].fieldclear {
-margin:0 10px 0 15px;
-width:13px;
-height:13px;
-padding:0;
+    margin:0 10px 0 15px;
+    width:13px;
+    height:13px;
+    padding:0;
 }
 input[type="checkbox"]:focus, input[type="radio"]:focus {
-outline:1px solid #2244ED;
+    outline:1px solid #2244ED;
 }
 
 .alternate, .rowalt, .rowalt input[type="checkbox"].fieldisreq,
 .rowalt input[type="checkbox"].fieldisemail, .rowalt input[type="checkbox"].fielddisabled,
 .rowalt input[type="checkbox"].fieldreadonly, .rowalt input[type="checkbox"].fieldclear {
-background-color:#eee!important;
+    background-color:#eee!important;
 }
 
 .itemContent span,.itemContent strong,.itemContent a,.itemContent img,.itemContent input,.itemContent select {
-vertical-align:middle!important;
+    vertical-align:middle!important;
 }
 
 #dragHelper {
-background:#fce0cf!important;
+    background:#fce0cf!important;
 }
 
 .itemContent {
-vertical-align:top;
-overflow:hidden;
+    vertical-align:top;
+    overflow:hidden;
 }
 
 .groupWrapper {
-clear:both;
-width:790px;
-margin:0 auto;
+    clear:both;
+    width:790px;
+    margin:0 auto;
 }
 
 .groupItem {
-margin:1px 0;
-padding:3px 0;
-background:#ddd;
+    margin:1px 0;
+    padding:3px 0;
+    background:#ddd;
 }
 
 * html .groupItem {
-padding:2px 0;
+    padding:2px 0;
 }
 
 *+html .groupItem {
-padding:2px 0;
+    padding:2px 0;
 }
 
 .altmove {
 }
 
 .groupItem .itemHeader {
-padding:4px;
-cursor:move;
-background:url(images/move.png) no-repeat top center;
-font-weight:normal;
-font-size:8px;
+    padding:4px;
+    cursor:move;
+    background:url(images/move.png) no-repeat top center;
+    font-weight:normal;
+    font-size:8px;
 }
 
 .groupWrapper p {
-height:1px;
-overflow:hidden;
-margin:0;
-padding:0;
+    height:1px;
+    overflow:hidden;
+    margin:0;
+    padding:0;
 }
 
 fieldset.cformsoptions {
 }
 
 .cf-content {
-display:none;
-background-color:whiteSmoke;
-padding:0 5px;
-margin-bottom:5px;
-border:1px solid #DFDFDF;
-border-radius:0 0 3px 3px;
+    display:none;
+    background-color:whiteSmoke;
+    padding:0 5px;
+    margin-bottom:5px;
+    border:1px solid #DFDFDF;
+    border-radius:0 0 3px 3px;
 }
 
 .cflegend {
-cursor:pointer;
-font-size:15px;
-text-shadow:white 0 1px 0;
-color:#464646;
-overflow:hidden;
-line-height:34px;
-margin:5px 0 0;
-padding:0;
+    cursor:pointer;
+    font-size:15px;
+    text-shadow:white 0 1px 0;
+    color:#464646;
+    overflow:hidden;
+    line-height:34px;
+    margin:5px 0 0;
+    padding:0;
 
-background:#F1F1F1 linear-gradient(0deg, #F9F9F9, #ECECEC);
+    background:#F1F1F1 linear-gradient(0deg, #F9F9F9, #ECECEC);
 
-border:1px solid #eee;
-border-bottom:none;
-border-radius:3px 3px 0 0;
+    border:1px solid #eee;
+    border-bottom:none;
+    border-radius:3px 3px 0 0;
 }
 
 .op-closed {
-border:1px solid #eee;
-border-radius:3px;
+    border:1px solid #eee;
+    border-radius:3px;
 }
 
 tr.obSEP {
-line-height:10px;
-height:10px;
+    line-height:10px;
+    height:10px;
 }
 
 tr.ob {
-font-size:11px;
+    font-size:11px;
 }
 
 .form-table tr.space20 td {
-padding-top:20px;
+    padding-top:20px;
 }
 
 .form-table tr.space15 td {
-padding-top:15px;
+    padding-top:15px;
 }
 
 .ob input[type=text], .ob input[type=text]:focus,
 .ob textarea:focus, .ob textarea {
-font-size:11px;
-padding:2px 3px 3px;
-border:1px solid #ccc;
-border-radius:0;
+    font-size:11px;
+    padding:2px 3px 3px;
+    border:1px solid #ccc;
+    border-radius:0;
 }
 .ob input[type=text]:focus,
 .ob textarea:focus {
-border:1px solid #aaa;
-border-left:2px solid #2244ED;
-outline:0;
+    border:1px solid #aaa;
+    border-left:2px solid #2244ED;
+    outline:0;
 }
 
 .ob input[type=text] {
-width:320px;
-line-height:1em;
+    width:320px;
+    line-height:1em;
 }
 
 .ob input[type=text].cap {
-width:6em;
-margin-right:10px;
+    width:6em;
+    margin-right:10px;
 }
 
 .ob input#cforms_resetAutoCMsg,
 .ob input#cforms_resetAdminMsg {
-font-weight:bold;
-width:auto;
-padding-left:1em;
-padding-right:1em;
-border-radius:2px;
+    font-weight:bold;
+    width:auto;
+    padding-left:1em;
+    padding-right:1em;
+    border-radius:2px;
 }
 
 
 
 * html .ob input {
-padding-top:2px;
-padding-bottom:4px;
+    padding-top:2px;
+    padding-bottom:4px;
 }
 
 .obL label {
-line-height:1.3em;
+    line-height:1.3em;
 }
 
 .obL {
-text-align:right;
-width:30%;
-margin-right:10px;
+    text-align:right;
+    width:30%;
+    margin-right:10px;
 }
 
 .obR table td {
-text-align:left;
-padding:0;
-margin:0;
-vertical-align:top;
+    text-align:left;
+    padding:0;
+    margin:0;
+    vertical-align:top;
 }
 
 .obR label,.obR input {
-padding-left:3px;
-line-height:1.3em;
-vertical-align:middle;
+    padding-left:3px;
+    line-height:1.3em;
+    vertical-align:middle;
 }
 
 input#cforms_fromemail {
-background:#fdc4c4;
+    background:#fdc4c4;
 }
 
 input#cforms_maxentries {
-width:4em;
-margin-right:3px;
+    width:4em;
+    margin-right:3px;
 }
 
 input#cforms_endtime,input#cforms_starttime {
-width:5em;
-margin-right:3px;
-text-align:center;
+    width:5em;
+    margin-right:3px;
+    text-align:center;
 }
 
 input#cforms_startdate,input#cforms_enddate {
-width:7em;
-margin-right:3px;
-text-align:center;
+    width:7em;
+    margin-right:3px;
+    text-align:center;
 }
 
 input#cforms_space {
-width:4em;
-text-align:center;
+    width:4em;
+    text-align:center;
 }
 
 input#cforms_mp_backtext,input#cforms_mp_resettext {
-width:15em;
+    width:15em;
 }
 
 .ob input.allchk {
-width:auto;
+    width:auto;
 }
 
 .ob input.allchk:focus {
-outline:1px solid #2244ED;
+    outline:1px solid #2244ED;
 }
 
 .inexclude td.obL {
-vertical-align:top;
+    vertical-align:top;
 }
 
 
 select#emailprio {
-width:5em;
-text-align:center;
+    width:5em;
+    text-align:center;
 }
 
 .sub {
-text-align:right;
-margin:5px 6px 2px;
+    text-align:right;
+    margin:5px 6px 2px;
 }
 
 
@@ -755,513 +755,513 @@ margin:5px 6px 2px;
   GLOBAL SETTINGS
 *****************************************************************/
 .infotxt table.hf td {
-padding:0 10px;
+    padding:0 10px;
 }
 table.hf {
-border:solid 4px;
+    border:solid 4px;
 }
 
 /****************************************************************
   STYLING PAGE
 *****************************************************************/
 .cssHint {
-white-space:nowrap;
+    white-space:nowrap;
 }
 .cssStyles {
-width:100%;
+    width:100%;
 }
 /****************************************************************
   TRACKING PAGE
 *****************************************************************/
 #cf_target_dl {
-margin-left:0;
-margin-top:10px;
-margin-left:200px;
+    margin-left:0;
+    margin-top:10px;
+    margin-left:200px;
 }
 
 #cf_target_dl label {
-display:inline;
-font-size:12px;
+    display:inline;
+    font-size:12px;
 }
 
 #ctrlmessage {
-background-color:#FFEBE8;
-border-color:#C00;
-margin:2px auto 15px;
-padding:10px 10px;
-text-align:center;
-width:880px;
-display:none;
-border-radius:3px;
+    background-color:#FFEBE8;
+    border-color:#C00;
+    margin:2px auto 15px;
+    padding:10px 10px;
+    text-align:center;
+    width:880px;
+    display:none;
+    border-radius:3px;
 }
 
 .showform {
-width:90%;
-margin:30px 5% 5px;
-padding:0;
-background:#EEE;
-display:block;
-color:#4F4F4F;
-font-size:16px;
-clear: both;
+    width:90%;
+    margin:30px 5% 5px;
+    padding:0;
+    background:#EEE;
+    display:block;
+    color:#4F4F4F;
+    font-size:16px;
+    clear: both;
 }
 
 .dataheader {
-width:auto;
-padding:3px 10px;
-background:#AAA;
-margin-bottom:10px;
-color:#444;
-box-shadow:0 1px 1px #aaa;
-border-bottom:1px solid #888;
-text-shadow:#DDD 0 1px 0;
+    width:auto;
+    padding:3px 10px;
+    background:#AAA;
+    margin-bottom:10px;
+    color:#444;
+    box-shadow:0 1px 1px #aaa;
+    border-bottom:1px solid #888;
+    text-shadow:#DDD 0 1px 0;
 }
 
 .dataheader td {
-padding-top:3px;
-vertical-align:middle;
-white-space:nowrap;
+    padding-top:3px;
+    vertical-align:middle;
+    white-space:nowrap;
 }
 
 .dataheader td.b {
-font-weight:bold;
-padding-left:30px;
+    font-weight:bold;
+    padding-left:30px;
 }
 
 .dataheader td.e {
-font-size:12px;
-vertical-align:bottom;
-font-weight:bold;
+    font-size:12px;
+    vertical-align:bottom;
+    font-weight:bold;
 }
 
 .dataheader td.d {
-font-size:12px;
-padding-left:50px;
-vertical-align:bottom;
+    font-size:12px;
+    padding-left:50px;
+    vertical-align:bottom;
 }
 
 .dataheader td.s {
-width:100%;
+    width:100%;
 }
 
 a.cdatabutton {
-height:20px;
-width:20px;
-overflow:hidden;
-display:block;
-margin-left:10px;
-cursor:pointer;
+    height:20px;
+    width:20px;
+    overflow:hidden;
+    display:block;
+    margin-left:10px;
+    cursor:pointer;
 }
 
 .showformfield {
-width:auto;
-margin:0;
-font-size:12px;
-color:#999;
+    width:auto;
+    margin:0;
+    font-size:12px;
+    color:#999;
 }
 .showformfield.meta div {
-color:#999!important;
+    color:#999!important;
 }
 
 .wrap p {
-clear:both
+    clear:both
 }
 
 .showformfield .R {
-float:left;
-width:55%;
-margin:1px 0;
-padding:3px 5px;
-color:#111;
+    float:left;
+    width:55%;
+    margin:1px 0;
+    padding:3px 5px;
+    color:#111;
 }
 
 .showformfield .L {
-float:left;
-width:35%;
-margin:1px 0;
-padding:3px;
-clear:both;
+    float:left;
+    width:35%;
+    margin:1px 0;
+    padding:3px;
+    clear:both;
 }
 
 .showformfield .L {
-text-align:right;
-padding-right:15px;
+    text-align:right;
+    padding-right:15px;
 }
 
 .tfieldset {
-margin:10px 5px;
-font-size:15px;
-text-shadow:#fff 0 1px 0;
-font-weight:bold;
-margin:5px 0 2px 0;
+    margin:10px 5px;
+    font-size:15px;
+    text-shadow:#fff 0 1px 0;
+    font-weight:bold;
+    margin:5px 0 2px 0;
 }
 
 .dataheader,
 .showformfield {
-display:block;
+    display:block;
 }
 
 /****************************************************************
   HELP PAGE
 *****************************************************************/
 h4 a.helptop {
-color:#fff!important;
-border-bottom:1px solid #fff;
+    color:#fff!important;
+    border-bottom:1px solid #fff;
 }
 
 h3 a.helptop {
-margin:10px 10px 0 0;
+    margin:10px 10px 0 0;
 }
 
 .helpimg {
-text-align:center;
-float:right;
-border:1px solid #e0e0e0;
-margin-left:20px;
-margin-right:30px;
+    text-align:center;
+    float:right;
+    border:1px solid #e0e0e0;
+    margin-left:20px;
+    margin-right:30px;
 }
 
 
 .cftoctitle {
-font-size:18px;
-color:#555;
-margin:20px 0 0;
-padding:4px 15px 4px 0;
+    font-size:18px;
+    color:#555;
+    margin:20px 0 0;
+    padding:4px 15px 4px 0;
 }
 
 .cftoc {
-margin:5px 0 0;
-padding:20px 0 20px 50px;
-list-style:decimal;
-font-weight:700;
+    margin:5px 0 0;
+    padding:20px 0 20px 50px;
+    list-style:decimal;
+    font-weight:700;
 }
 
 .cftoc li ul {
-margin-left:20px;
+    margin-left:20px;
 }
 
 table.hf ol {
-margin-top:5px;
+    margin-top:5px;
 }
 
 table.hf ol li {
-font-size:11px;
-list-style-type:decimal;
-list-style-position:inside;
+    font-size:11px;
+    list-style-type:decimal;
+    list-style-position:inside;
 }
 
 #o22 ol li {
-list-style-type:decimal;
-list-style-position:inside;
+    list-style-type:decimal;
+    list-style-position:inside;
 }
 
 #o17 ol li {
-list-style-type:decimal;
+    list-style-type:decimal;
 }
 
 #o17 ol li ul li {
-list-style-type:disc;
+    list-style-type:disc;
 }
 
 .wrap table.hf {
-margin-left:30px;
-background:#FFF;
+    margin-left:30px;
+    background:#FFF;
 }
 
 .wrap table.hf td {
-font-size:11px;
-padding:4px 10px;
-border-style:solid;
-border-color:#C9D6ED;
-line-height:1.3em;
+    font-size:11px;
+    padding:4px 10px;
+    border-style:solid;
+    border-color:#C9D6ED;
+    line-height:1.3em;
 }
 
 .wrap table.hf tr {
-vertical-align:middle;
+    vertical-align:middle;
 }
 
 .wrap table.hf td.bleft {
-width:80px;
-background:#DFE8FF;
-padding-right:8px;
-font-size:10px;
-font-weight:700;
-text-align:right;
+    width:80px;
+    background:#DFE8FF;
+    padding-right:8px;
+    font-size:10px;
+    font-weight:700;
+    text-align:right;
 }
 
 .wrap table.hf td.apiH {
-font-size:13px;
-background:#d0f0ec;
+    font-size:13px;
+    background:#d0f0ec;
 }
 
 .wrap table.hf td.bright {
-background:#DFE8FF;
+    background:#DFE8FF;
 }
 
 .wrap table.hf td span.abbr {
-font-weight:bold;
+    font-weight:bold;
 }
 
 .wrap table.hf td.ball {
-background:#F2DFFF;
+    background:#F2DFFF;
 }
 
 .wrap table.dateinfo td {
-font-size:10px;
+    font-size:10px;
 }
 
 .wrap table.dateinfo th {
-font-size:10px;
-font-weight:700;
-background:#FFF;
+    font-size:10px;
+    font-weight:700;
+    background:#FFF;
 }
 
 code, pre code,table.hf code {
-padding:1px 6px;
-font-size:11px;
+    padding:1px 6px;
+    font-size:11px;
 }
 
 p.fieldtitle {
-background:#bbb;
-color:#fff;
-padding:2px 5px;
-font-size:18px;
-margin:20px 30px;
+    background:#bbb;
+    color:#fff;
+    padding:2px 5px;
+    font-size:18px;
+    margin:20px 30px;
 }
 
 .h4ff {
-float:left;
-padding-right:20px;
-font-size:9px;
-line-height:12px;
-font-weight:400;
+    float:left;
+    padding-right:20px;
+    font-size:9px;
+    line-height:12px;
+    font-weight:400;
 }
 
 p.fieldtitle a.helptop {
-margin-top:8px;
-color:#FFF;
+    margin-top:8px;
+    color:#FFF;
 }
 
 table.cf_dyn_fields td {
-background:#f2f2f2;
-padding:2px 6px;
-font-size:11px;
+    background:#f2f2f2;
+    padding:2px 6px;
+    font-size:11px;
 }
 
 table.cf_dyn_fields td.cf-wh {
-background:#FFF;
+    background:#FFF;
 }
 
 /****************************************************************
   POPUP WINDOWS
 *****************************************************************/
 .jqmWindow {
-display:none;
-position:fixed;
-top:25%;
-left:50%;
-margin-left:-300px;
-width:600px;
-background-color:#FFF;
-color:#333;
-border:3px solid #E7423A;
-box-shadow:#333 0 0px 22px;
+    display:none;
+    position:fixed;
+    top:25%;
+    left:50%;
+    margin-left:-300px;
+    width:600px;
+    background-color:#FFF;
+    color:#333;
+    border:3px solid #E7423A;
+    box-shadow:#333 0 0px 22px;
 }
 
 .jqmOverlay {
-background-color:#000;
+    background-color:#000;
 }
 
 #cf_target_del {
-text-align:center;
-font-weight:bold;
-margin:10px 0 0 0;
+    text-align:center;
+    font-weight:bold;
+    margin:10px 0 0 0;
 }
 
 #cf_delall_dialog #cf_target_del {
-letter-spacing:2px;
-font-size:18px
+    letter-spacing:2px;
+    font-size:18px
 }
 
 #cf_delall_dialog p {
-text-align:left;
+    text-align:left;
 }
 
 .jqmWindow .cf_ed_header {
-margin:0;
-text-align:center;
-background-color:#E7423A;
-color:#FFF;
-font-weight:bold;
-font-size:11px;
-letter-spacing:2px;
-padding:3px;
+    margin:0;
+    text-align:center;
+    background-color:#E7423A;
+    color:#FFF;
+    font-weight:bold;
+    font-size:11px;
+    letter-spacing:2px;
+    padding:3px;
 }
 
 .jqmWindow .controls {
-text-align:right;
-margin-top:8px;
-margin-bottom:4px;
+    text-align:right;
+    margin-top:8px;
+    margin-bottom:4px;
 }
 
 .jqmWindow .controls a {
-margin-left:5px;
-margin-right:5px;
-border:0;
-text-decoration:none;
-font-size:35px;
+    margin-left:5px;
+    margin-right:5px;
+    border:0;
+    text-decoration:none;
+    font-size:35px;
 }
 
 .cf_ed_main {
-padding:12px;
+    padding:12px;
 }
 
 .cf_ed_main input {
-font-size:11px;
-margin-left:0;
-line-height:1em;
-background:#fbfbfb;
+    font-size:11px;
+    margin-left:0;
+    line-height:1em;
+    background:#fbfbfb;
 }
 .cf_multi_data1 td {
-padding-right:10px;
+    padding-right:10px;
 }
 .cf_multi_data2 input {
-min-width:8em;
-width:auto;
+    min-width:8em;
+    width:auto;
 }
 
 .cf_ed_main input.chkBox {
-width:16px;
+    width:16px;
 }
 
 .cf_ed_main input.chkBoxW {
-width:22px;
+    width:22px;
 }
 
 .cf_ed_main input:focus {
-border:1px solid #aaa;
+    border:1px solid #aaa;
 }
 
 .cf_ed_main label {
-font-size:10px;
-margin-top:5px;
-display:block;
-font-weight:bold;
+    font-size:10px;
+    margin-top:5px;
+    display:block;
+    font-weight:bold;
 }
 
 .cf_ed_main input.cf_text {
-width:100%;
+    width:100%;
 }
 
 .cf_edit_groups_header {
-margin-top:5px;
+    margin-top:5px;
 }
 
 .cf_edit_groups_header span, #cf_edit_groups input {
-font-size:10px;
-display:block;
-width:207px;
-float:left;
-margin-right:5px;
+    font-size:10px;
+    display:block;
+    width:207px;
+    float:left;
+    margin-right:5px;
 }
 
 #cf_edit_groups input.inpOpt {
-width:198px;
+    width:198px;
 }
 
 #cf_edit_groups input.cf_chked {
-width:16px;
-margin-top:4px;
-margin-left:3px;
+    width:16px;
+    margin-top:4px;
+    margin-left:3px;
 }
 
 #cf_edit_groups input.cf_br {
-width:16px;
-margin-top:4px;
-margin-left:3px;
+    width:16px;
+    margin-top:4px;
+    margin-left:3px;
 }
 
 .cf_edit_groups_header span.cf_option {
-width:224px;
+    width:224px;
 }
 
 .cf_edit_groups_header span.cf_optVal {
-width:196px;
+    width:196px;
 }
 
 .cf_edit_groups_header span.cf_chked {
-width:16px;
-height:16px;
-font-size:20px;
-cursor:help;
+    width:16px;
+    height:16px;
+    font-size:20px;
+    cursor:help;
 }
 
 .cf_edit_groups_header span.cf_br {
-width:16px;
-height:16px;
-font-size:20px;
-cursor:help;
+    width:16px;
+    height:16px;
+    font-size:20px;
+    cursor:help;
 }
 
 #cf_edit_groups input.cf_chked, #cf_edit_groups input.cf_br {
-margin:1px 0 0 2px;
+    margin:1px 0 0 2px;
 }
 
 #cf_edit_groups .cf_edit_group_new {
-clear:left;
-height:24px;
+    clear:left;
+    height:24px;
 }
 
 #cf_edit_groups .cf_br_label {
-display:inline;
+    display:inline;
 }
 
 .cf_ed_main .add_group_item, #cf_edit_groups {
-clear:both;
+    clear:both;
 }
 
 .cf_ed_main .cf_edit_move_up,.cf_ed_main .cf_edit_move_down,.cf_ed_main .cf_edit_minus {
-border:none;
-color:red;
-float:left;
-display:block;
-width:13px;
-height:13px;
-font-size:13px;
-margin:5px 2px 0 0;
+    border:none;
+    color:red;
+    float:left;
+    display:block;
+    width:13px;
+    height:13px;
+    font-size:13px;
+    margin:5px 2px 0 0;
 }
 
 .cf_ed_main .cf_edit_plus {
-border:none;
-color:red;
-display:block;
-width:16px;
-height:16px;
-font-size:16px;
-margin-top:1px;
+    border:none;
+    color:red;
+    display:block;
+    width:16px;
+    height:16px;
+    font-size:16px;
+    margin-top:1px;
 }
 
 .cf_ed_main .add_group_item {
-padding:1px 0 0 20px;
+    padding:1px 0 0 20px;
 }
 
 /* Backup Dialog */
 #cf_backupbox {
-width:635px!important;
+    width:635px!important;
 }
 #cf_backupbox input {
-width:auto;
-padding:3px 10px;
+    width:auto;
+    padding:3px 10px;
 }
 
 #cf_backupbox .controls {
-padding:0 8px;
-text-align:left;
+    padding:0 8px;
+    text-align:left;
 }
 
 #cf_delall_dialog .controls p.cancel,
 #cf_backupbox .controls p.cancel {
-text-align:right;
-margin:0;
-padding:0;
+    text-align:right;
+    margin:0;
+    padding:0;
 }

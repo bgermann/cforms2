@@ -2,49 +2,49 @@
 /*  main 'top-level' form elements                    */
 /*                                                    */
 
-.cform { 
-	margin:10px auto 0 auto; 
-	width: 450px; 
+.cform {
+    margin:10px auto 0 auto;
+    width: 450px;
 }
 
-.cform fieldset	{ 
-	margin-top:10px; 
-	padding:4px 0 10px 0; 
-	border:0px solid #adadad; 
-	border-left-color:#ececec; 
-	border-top-color:#ececec; 
-	background:none; 
+.cform fieldset {
+    margin-top:10px;
+    padding:4px 0 10px 0;
+    border:0px solid #adadad;
+    border-left-color:#ececec;
+    border-top-color:#ececec;
+    background:none;
 }
 
 .cform .cf_hidden {
-	display:none; 
-	border:none!important;
-	background:none!important;
-	padding:0!important;
-	margin:0!important;
+    display:none;
+    border:none!important;
+    background:none!important;
+    padding:0!important;
+    margin:0!important;
 }
 
-.cform legend { 
-	margin-left:10px;
-	padding: 0 2px; 
-	font:normal 20px monospace; 
-	color:#F0F0F0;
-	letter-spacing:5px;
+.cform legend {
+    margin-left:10px;
+    padding: 0 2px;
+    font:normal 20px monospace;
+    color:#F0F0F0;
+    letter-spacing:5px;
 }
 
-ol.cf-ol { 
-	border-top:2px dashed #e5e5e5;
-	margin:0pt!important;
-	padding:20px 0pt 0pt!important;
+ol.cf-ol {
+    border-top:2px dashed #e5e5e5;
+    margin:0pt!important;
+    padding:20px 0pt 0pt!important;
 }
-ol.cf-ol li	{
-	background:none!important; 
-	margin:0 10px!important; /*some themes may interfere otherwise*/
-	padding:0; 
-	list-style:none!important; 
-	text-align:left;
-	line-height:1.3em;
-	font:normal 12px monospace; 
+ol.cf-ol li {
+    background:none!important;
+    margin:0 10px!important; /*some themes may interfere otherwise*/
+    padding:0;
+    list-style:none!important;
+    text-align:left;
+    line-height:1.3em;
+    font:normal 12px monospace;
 }
 
 
@@ -53,10 +53,10 @@ ol.cf-ol li	{
 /*                                                    */
 
 ol.cf-ol li.textonly {
-	letter-spacing:2px;
-	margin:6px 0pt !important;
-	padding:3px 0; 
-	text-align:center;
+    letter-spacing:2px;
+    margin:6px 0pt !important;
+    padding:3px 0;
+    text-align:center;
 }
 
 
@@ -65,48 +65,48 @@ ol.cf-ol li.textonly {
 /*                                                    */
 
 .cform label {
-	width:200px; 
-	margin:0px 10px 0 0; 
-	text-align:left;
-	font-size: 10px;
-	display:block;
-	color:#E0E0E0;
-	background:none;
-	padding:2px;
-	font:normal 12px monospace; 
+    width:200px;
+    margin:0px 10px 0 0;
+    text-align:left;
+    font-size: 10px;
+    display:block;
+    color:#E0E0E0;
+    background:none;
+    padding:2px;
+    font:normal 12px monospace;
 }
 
 label.cf-before {
-	display:inline-block;
-	margin:4px 5px 0 0; 
+    display:inline-block;
+    margin:4px 5px 0 0;
 }
 
 label.cf-before span{
-	width:200px; 
-	display:block;
+    width:200px;
+    display:block;
 }
 
-label.cf-after 	{
-	display:inline-block;
-	margin:4px 2px 0 4px;
-	width:110px;
-	text-align:left;	
+label.cf-after {
+    display:inline-block;
+    margin:4px 2px 0 4px;
+    width:110px;
+    text-align:left;
 }
 
 label.cf-after span {
-	width:110px;
-	display:block;
+    width:110px;
+    display:block;
 }
 
 label.cf-group-after {
-	display:inline-block;
-	margin:4px 6px 0 4px;
-	width:105px;
-	text-align:left;
+    display:inline-block;
+    margin:4px 6px 0 4px;
+    width:105px;
+    text-align:left;
 }
 label.cf-group-after span {
-	width:105px;
-	display:block;
+    width:105px;
+    display:block;
 }
 
 /*                                                    */
@@ -115,50 +115,50 @@ label.cf-group-after span {
 
 .cform input,
 .cform textarea,
-.cform select { 
-	margin:0 0 8px 0;
-	padding:3px;
-	background: #333; 
-	border:none;
-	border-top: 1px solid #f0f0f0; 
-	vertical-align:top;
-	font:normal 12px monospace;
-	letter-spacing:1px;
-	color:white;
+.cform select {
+    margin:0 0 8px 0;
+    padding:3px;
+    background: #333;
+    border:none;
+    border-top: 1px solid #f0f0f0;
+    vertical-align:top;
+    font:normal 12px monospace;
+    letter-spacing:1px;
+    color:white;
 }
 .cform input:hover,
 .cform textarea:hover,
-.cform select:hover	{
-	background:#444; 
+.cform select:hover {
+    background:#444;
 }
 
 .cform input:focus,
 .cform textarea:focus,
-.cform select:focus	{ 
-	background:#333; 
+.cform select:focus {
+    background:#333;
 }
 
 .cform textarea,
 .cform input {
-	width:415px; 
+    width:415px;
 }
 .cform select {
-	width:421px; /* attempt to have equal length */
-}  
+    width:421px; /* attempt to have equal length */
+}
 
-.cform select.cfselectmulti	{ 
-	height:6.5em; 
+.cform select.cfselectmulti {
+    height:6.5em;
 }
 
 .cform textarea {
-	font-family: monospace;
-	font-size: 0.9em;
-	height: 6em;
-	overflow:auto;
+    font-family: monospace;
+    font-size: 0.9em;
+    height: 6em;
+    overflow:auto;
 }
 
 .cform input.cf_date {
-	width:395px;
+    width:395px;
 }
 
 /*                                                    */
@@ -166,9 +166,9 @@ label.cf-group-after span {
 /*                                                    */
 
 ol.cf-ol li.cf-box-title {
-	letter-spacing:2px;
-	margin:12px 0pt 4px 10px!important;
-	color:#888888;
+    letter-spacing:2px;
+    margin:12px 0pt 4px 10px!important;
+    color:#888888;
 }
 
 /*                                                    */
@@ -176,12 +176,12 @@ ol.cf-ol li.cf-box-title {
 /*                                                    */
 
 input.cf-box-a,
-input.cf-box-b 	{ 
-	margin:3px 0 0 0; 
-	width:16px; 
-	height:22px;
-	border:none!important;
-	background:none!important; 
+input.cf-box-b {
+    margin:3px 0 0 0;
+    width:16px;
+    height:22px;
+    border:none!important;
+    background:none!important;
 }
 
 
@@ -190,8 +190,8 @@ input.cf-box-b 	{
 /*                                                    */
 
 ol.cf-ol li.cf-box-group {
-	padding: 0 0 12px 0; 
-} 
+    padding: 0 0 12px 0;
+}
 
 
 /*                                                    */
@@ -199,55 +199,55 @@ ol.cf-ol li.cf-box-group {
 /*                                                    */
 
 span.reqtxt,
-span.emailreqtxt { 
-	display:block; /*for mozilla*/
-	width:421px;
-	font-size:9px;
-	vertical-align:top;
-	color:#888888;
-	text-align:right;
-	margin:0;
-	height:13px;
-	line-height:13px;
-	font:normal 10px monospace; 
+span.emailreqtxt {
+    display:block; /*for mozilla*/
+    width:421px;
+    font-size:9px;
+    vertical-align:top;
+    color:#888888;
+    text-align:right;
+    margin:0;
+    height:13px;
+    line-height:13px;
+    font:normal 10px monospace;
 }
 
 .cform textarea.fldemail,
 .cform textarea.fldrequired,
 .cform input.fldemail,
 .cform input.fldrequired {
-	margin:0;
+    margin:0;
 }
 /*                                                    */
 /*   FORM submit button                               */
 /*                                                    */
 
 p.cf-sb {
-	padding: 0!important;
-	margin: 0;
-	text-align:right;
+    padding: 0!important;
+    margin: 0;
+    text-align:right;
 }
 .cform input.backbutton,
 .cform input.resetbutton,
-.cform input.sendbutton	{ 
-	width:150px;  
-	padding:5px; 
-	margin: 5px 3px 4px 0pt;
-	font-size:13px;
-	background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x; 
-	border:1px solid #adadad!important;
-	border-left-color:#ececec!important; 
-	border-top-color:#ececec!important;
-	color:#333;
-	font-size:14px;
+.cform input.sendbutton {
+    width:150px;
+    padding:5px;
+    margin: 5px 3px 4px 0pt;
+    font-size:13px;
+    background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x;
+    border:1px solid #adadad!important;
+    border-left-color:#ececec!important;
+    border-top-color:#ececec!important;
+    color:#333;
+    font-size:14px;
 }
 .cform input.resetbutton {
-	width: auto;
-	padding:5px 1em;
+    width: auto;
+    padding:5px 1em;
 }
 .cform input.backbutton {
-	width: auto;
-	padding:5px 1em;
+    width: auto;
+    padding:5px 1em;
 }
 
 
@@ -255,31 +255,31 @@ p.cf-sb {
 /*   FORM FIELDS enhanced error display               */
 /*                                                    */
 ol.cf-ol li.cf_li_err {
-	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
-	border-color:#DF7D7D;
-	border-style:solid;
-	border-width:1px 0pt;
-	padding:5px 10px!important;
-	margin:5px 0!important;
+    background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
+    border-color:#DF7D7D;
+    border-style:solid;
+    border-width:1px 0pt;
+    padding:5px 10px!important;
+    margin:5px 0!important;
 }
 
 ol.cf-ol li ul.cf_li_text_err {
-	padding:0 0 0 10px;
-	margin:0;
-	color:#333;
-	display:inline-block;
+    padding:0 0 0 10px;
+    margin:0;
+    color:#333;
+    display:inline-block;
 }
 
 ol.cf-ol ul.cf_li_text_err li {
-	background:url(icon-alert.png) no-repeat left 1px!important;
-	list-style:none!important;
-	font-weight:bold;
-	text-indent:0;
-	margin:0 0 2px!important;
-	padding-left:15px;
+    background:url(icon-alert.png) no-repeat left 1px!important;
+    list-style:none!important;
+    font-weight:bold;
+    text-indent:0;
+    margin:0 0 2px!important;
+    padding-left:15px;
 }
 ol.cf-ol ul.cf_li_text_err li:before {
-	content:'';
+    content:'';
 }
 
 
@@ -288,21 +288,21 @@ ol.cf-ol ul.cf_li_text_err li:before {
 /*                                                    */
 
 label.seccap {
-	margin-top: 6px;
+    margin-top: 6px;
 }
 
 label.secq{
-	display:inline-block;
-	width:auto;
-	padding:2px 4px 2px 2px;
+    display:inline-block;
+    width:auto;
+    padding:2px 4px 2px 2px;
 }
 label.secq span {
-	display:block!important;
-	width:auto;
+    display:block!important;
+    width:auto;
 }
 
 input.secinput {
-	vertical-align:text-bottom;
+    vertical-align:text-bottom;
 }
 
 #cforms_captcha6,
@@ -311,33 +311,33 @@ input.secinput {
 #cforms_captcha3,
 #cforms_captcha2,
 #cforms_captcha {
-	height:15px;
-	width:196px;
-	padding: 4px 4px;
-	margin: 0 0 8px 0;
-	vertical-align:text-bottom;
+    height:15px;
+    width:196px;
+    padding: 4px 4px;
+    margin: 0 0 8px 0;
+    vertical-align:text-bottom;
 }
 
-img.captcha	{
-	vertical-align:text-bottom;
-	margin:0 0 8px 10px!important;
-	padding:0!important;
-	border:none!important;
-	float:none!important;
+img.captcha {
+    vertical-align:text-bottom;
+    margin:0 0 8px 10px!important;
+    padding:0!important;
+    border:none!important;
+    float:none!important;
 }
 
 .captcha-reset {
-	vertical-align:top;
-	color:white;
-	margin:0pt 0pt 0px 3px;
-	width:21px;
-	height:21px;
-	border:none!important;
-	cursor: pointer;
+    vertical-align:top;
+    color:white;
+    margin:0pt 0pt 0px 3px;
+    width:21px;
+    height:21px;
+    border:none!important;
+    cursor: pointer;
 }
 
 img.imgcalendar {
-	border:none!important;
+    border:none!important;
 }
 
 /*                                                    */
@@ -345,56 +345,56 @@ img.imgcalendar {
 /*                                                    */
 
 div.cf_info {
-	color:#333;
-	display:none;
-	padding:10px 15px!important;
-	width:420px;
-	line-height:1.3em;
-	margin:10px auto;
-	font-family:monospace;
+    color:#333;
+    display:none;
+    padding:10px 15px!important;
+    width:420px;
+    line-height:1.3em;
+    margin:10px auto;
+    font-family:monospace;
 }
 div.cf_info ol {
-	margin:0;
-	padding:5px 15px 0 30px;
+    margin:0;
+    padding:5px 15px 0 30px;
 }
 div.cf_info ol li {
-	padding:1px 0;
-	margin:2px 0;
+    padding:1px 0;
+    margin:2px 0;
 }
-div.cf_info a	{
-	color:red!important;
-	text-decoration:underline!important;
+div.cf_info a {
+    color:red!important;
+    text-decoration:underline!important;
 }
 div.success {
-	background:#F9F9F9 none repeat scroll 0%;
-	color:#AAAAAA;
-	display:block;
+    background:#F9F9F9 none repeat scroll 0%;
+    color:#AAAAAA;
+    display:block;
 }
 div.failure {
-	display:block;
-	background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
-	border-color:#DF7D7D;
-	border-style:solid;
-	border-width:1px 0pt;
+    display:block;
+    background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
+    border-color:#DF7D7D;
+    border-style:solid;
+    border-width:1px 0pt;
 }
 div.waiting {
-	background:#F9F9F9;
-	color:#AAAAAA;
-	display:block;
+    background:#F9F9F9;
+    color:#AAAAAA;
+    display:block;
 }
 /*                                                    */
 /*   formatting for invalid user inputs               */
 /*                                                    */
-.cform .cf_error { 
-	color:#ad2929; 
-	border:1px solid #ad2929; 
+.cform .cf_error {
+    color:#ad2929;
+    border:1px solid #ad2929;
 }
 div.mailerr {
-	display:block;
+    display:block;
 }
 .mailerr,
 .cform .cf_errortxt {
-	color:#ad2929; 
+    color:#ad2929;
 }
 
 /*                                                    */
@@ -402,12 +402,12 @@ div.mailerr {
 /*                                                    */
 
 [disabled] {
-	color:#dddddd;
-	border-color:#dddddd!important;
-	background:none!important;
+    color:#dddddd;
+    border-color:#dddddd!important;
+    background:none!important;
 }
 .disabled {
-	border-color:#dddddd!important;
+    border-color:#dddddd!important;
 }
 
 /*                                                    */
@@ -415,32 +415,7 @@ div.mailerr {
 /*                                                    */
 
 .cform input.cf_upload  {
-	width:220px;
-	background: #f9f9f9;
-	border:1px solid #888888;
+    width:220px;
+    background: #f9f9f9;
+    border:1px solid #888888;
 }
-  
-/*                                                    */
-/*  Other: browser hacks                              */
-/*                                                    */
-* html .cform legend { 
-	position:absolute; 
-	top: -10px; 
-	left: 10px; 
-	margin-left:0;
-}
-* html .cform fieldset {
-	position: relative;
-	margin-top:15px;
-	padding-top:25px; 
-}
-* html ol.cf-ol 	{
-	display:inline-block; /*for IE6!!*/
-}
-* html img.captcha	{
-	margin-bottom:9px!important;
-}
-*+html img.captcha	{
-	margin-bottom:9px!important;
-}
-

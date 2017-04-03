@@ -817,7 +817,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
         // attachments wanted for current form? (tracking session form uploads handled above!)
         $doAttach = !($cformsSettings['form' . $no]['cforms' . $no . '_noattachments']);
 
-        // form with files, within session or single form 
+        // form with files, within session or single form
         if ($ongoingSession != '0' && is_array($file) && !empty($file)) {
             foreach ($file['tmp_name'] as $fn) {
                 cforms2_add_file($fn, $fdata, $fpointer, $doAttach);
