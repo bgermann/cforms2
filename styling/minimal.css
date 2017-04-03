@@ -68,7 +68,7 @@ ol.cf-ol li.textonly {
     text-align:left;
     vertical-align:top;
     color: #aaa;
-    font:0.9em Trebuchet MS,sans-serif;
+    font:0.9em "Trebuchet MS",sans-serif;
 }
 .cform label span {
     width:90px; /* must be the same as above!*/
@@ -109,7 +109,7 @@ label.cf-group-after span {
 .cform select {
     padding:3px;
     border:1px solid #aaa;
-    font:0.9em Trebuchet MS,sans-serif;
+    font:0.9em "Trebuchet MS",sans-serif;
     color:#888;
     vertical-align:top;
 }

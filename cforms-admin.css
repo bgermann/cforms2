@@ -206,7 +206,7 @@ input.deleteall {
     color:#fff;
     text-shadow:#000 0 -1px 0;
     background:#31555e linear-gradient(0deg, #31555e, #40727c);
-    border:1px solid #31555E;
+    border:1px solid;
 }
 
 input.updbutton {
@@ -456,7 +456,7 @@ input.addfieldno:focus {
     background:#fff;
     border:0;
     padding:5px;
-    display:inline-box;
+    display:inline-block;
     box-sizing:border-box!important;
 }
 #pickform:focus,
@@ -486,7 +486,7 @@ input.addfieldno:focus {
     border:none;
     margin-right:8px;
     cursor:pointer;
-    font-family:"dashicons";
+    font-family:dashicons;
     font-size:16px;
     background:none;
     padding:0;
