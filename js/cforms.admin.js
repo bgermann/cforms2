@@ -381,8 +381,9 @@ jQuery(function () {
 
             jQuery('.cf_edit_group_new > a.cf_edit_minus').bind("click", function () {
                 jQuery(this).parent().remove();
-                if (totalcount-- < 5)
+                if (totalcount < 5)
                     jQuery('#cf_edit_groups').css({height: ""});
+                totalcount--;
                 return false;
             });
 
@@ -474,8 +475,9 @@ jQuery(function () {
 
             jQuery('.cf_edit_group_new > a.cf_edit_minus').bind("click", function () {
                 jQuery(this).parent().remove();
-                if (totalcount-- < 5)
+                if (totalcount < 5)
                     jQuery('#cf_edit_groups').css({height: ""});
+                totalcount--;
                 return false;
             });
 
