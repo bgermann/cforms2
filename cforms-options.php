@@ -389,7 +389,7 @@ if (strlen($fd) <= 2) {
         </fieldset>
 
 
-        <?php if ($fileupload) : ?>
+        <?php if ($fileupload) { ?>
             <fieldset id="fileupload" class="cformsoptions">
                 <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
                     <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('File Upload Settings', 'cforms2') ?>
@@ -442,7 +442,7 @@ if (strlen($fd) <= 2) {
                     </table>
                 </div>
             </fieldset>
-        <?php endif; ?>
+        <?php } ?>
 
 
         <fieldset class="cformsoptions" id="anchormessage">
@@ -538,19 +538,19 @@ if (strlen($fd) <= 2) {
                         </td>
                     </tr>
 
-                    <?php if ($cformsSettings['global']['cforms_showdashboard'] == '1') : ?>
+                    <?php if ($cformsSettings['global']['cforms_showdashboard'] == '1') { ?>
                         <tr class="ob space10">
                             <td class="obL"></td>
                             <td class="obR"><input class="allchk" type="checkbox" id="cforms_dashboard" name="cforms_dashboard" <?php if ($o = $cformsSettings['form' . $no]['cforms' . $no . '_dashboard'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_dashboard"><?php printf(__('Show new entries on %sdashboard%s', 'cforms2'), '<strong>', '</strong>') ?></label></td>
                         </tr>
-                    <?php endif; ?>
+                    <?php } ?>
 
-                    <?php if ($cformsSettings['global']['cforms_database'] == '1') : ?>
+                    <?php if ($cformsSettings['global']['cforms_database'] == '1') { ?>
                         <tr class="ob">
                             <td class="obL"></td>
                             <td class="obR"><input class="allchk" type="checkbox" id="cforms_notracking" name="cforms_notracking" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_notracking']) echo "checked=\"checked\""; ?>/><label for="cforms_notracking"><?php printf(__('%sExclude this form%s from database tracking', 'cforms2'), '<strong>', '</strong>') ?></label></td>
                         </tr>
-                    <?php endif; ?>
+                    <?php } ?>
 
                     <tr class="ob">
                         <td class="obL"></td>
@@ -588,14 +588,14 @@ if (strlen($fd) <= 2) {
                             <input type="text" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
                                 $dt = 'x';
-                                if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1):
+                                if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                                     $dt = human_time_diff(cforms2_make_time(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_startdate'])));
-                                    if ($dt > 0):
+                                    if ($dt > 0) {
                                         echo __('The form will be available in ', 'cforms2') . $dt;
-                                    else:
+                                    } else {
                                         echo __('The form is available now.', 'cforms2');
-                                    endif;
-                                endif;
+                                    }
+                                }
                                 ?>
                             </label>
                         </td>
@@ -608,24 +608,24 @@ if (strlen($fd) <= 2) {
                             <input type="text" class="cf_date" id="cforms_enddate" name="cforms_enddate" placeholder="<?php echo cforms2_admin_date_format(); ?>" value="<?php echo $date[0]; ?>"/>
                             <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
-                                if ($dt == 'x' && strlen($cformsSettings['form' . $no]['cforms' . $no . '_enddate']) > 1):
+                                if ($dt == 'x' && strlen($cformsSettings['form' . $no]['cforms' . $no . '_enddate']) > 1) {
                                     $dt = human_time_diff(cforms2_make_time(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])));
-                                    if ($dt > 0):
+                                    if ($dt > 0) {
                                         echo __('The form will be available for another ', 'cforms2') . $dt;
-                                    else:
+                                    } else {
                                         echo __('The form is not available anymore.', 'cforms2');
-                                    endif;
-                                endif;
+                                    }
+                                }
                                 ?></label>
                         </td>
                     </tr>
 
-                    <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] <> '' || $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] <> '' || $cformsSettings['form' . $no]['cforms' . $no . '_enddate'] <> '') : ?>
+                    <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] <> '' || $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] <> '' || $cformsSettings['form' . $no]['cforms' . $no . '_enddate'] <> '') { ?>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_limittxt'])); ?></textarea></td></tr></table></td>
                             </tr>
-                    <?php endif; ?>
+                    <?php } ?>
 
                 <tr class="obSEP"><td colspan="2"></td></tr>
 
@@ -791,7 +791,7 @@ if (strlen($fd) <= 2) {
 
                 <tr id="it8" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('For the <em>auto confirmation</em> feature to work, make sure to mark at least one field <code>Email</code>, otherwise <strong>NO</strong> auto confirmation email will be sent out! If multiple fields are checked "Email", only the first in the list will receive a notification.', 'cforms2') ?></td></tr>
 
-                    <?php if ($o == "1") : ?>
+                    <?php if ($o == "1") { ?>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_csubject"><strong><?php _e('Subject auto confirmation', 'cforms2') ?></strong></label></td>
                             <td class="obR"><input type="text" name="cforms_csubject" id="cforms_csubject" value="<?php
@@ -841,7 +841,7 @@ if (strlen($fd) <= 2) {
                             <td class="obL"><label for="cforms_cattachment"><strong><?php _e('Attachment', 'cforms2') ?></strong></label></td>
                             <td class="obR"><input type="text" name="cforms_cattachment" id="cforms_cattachment" value="<?php echo stripslashes(htmlspecialchars($a)); ?>" /> <?php printf(__('File path: relative to the cforms plugin folder or an absolute path.', 'cforms2')); ?><?php echo $err; ?></td>
                         </tr>
-                    <?php endif; ?>
+                    <?php } ?>
 
                 </table>
             </div>
@@ -856,7 +856,7 @@ if (strlen($fd) <= 2) {
             <div class="cf-content" id="o29">
                 <p><?php _e('If enabled, new options will be shown below.', 'cforms2'); ?> <label for="cforms_mp_form"><?php _e('Mark this form to belong to a series of forms:', 'cforms2') ?></label> <input class="allchk" type="checkbox" id="cforms_mp_form" name="cforms_mp_form" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] == '1') echo "checked=\"checked\""; ?>/></p>
 
-                <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) : ?>
+                <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) { ?>
 
                     <table class="form-table">
                         <tr class="ob">
@@ -913,7 +913,7 @@ if (strlen($fd) <= 2) {
                             </td>
                         </tr>
                     </table>
-                <?php endif; ?>
+                <?php } ?>
             </div>
         </fieldset>
 
