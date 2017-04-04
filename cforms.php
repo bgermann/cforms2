@@ -1191,7 +1191,6 @@ if (is_admin()) {
     add_action('admin_menu', 'cforms2_menu');
     add_action('wp_ajax_cforms2_field', 'cforms2_field');
 
-    require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentries.php');
     require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
     require_once (plugin_dir_path(__FILE__) . 'include/lib_database_dlentries.php');
     require_once (plugin_dir_path(__FILE__) . 'include/lib_database_getentries.php');

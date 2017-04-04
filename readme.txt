@@ -18,7 +18,7 @@ For a quick starter you should have a look at the [introduction video by Your Pa
 
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms". But bear in mind that old versions should not be used in public systems, because they contain [known serious vulnerabilities](https://wpvulndb.com/plugins/cforms) that are exploited in the wild.
 
-The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 14.11.
+The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 14.13.
 
 
 == Related Plugins ==
@@ -151,6 +151,7 @@ GPL compliance!
 
 = 14.13 =
 
+* bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" feature
 * bugfix:   do not attach the upload directory to auto confirmation mails
 * added:    hook wp_mail_failed action to give warnings with PHPMailer error details
 * other:    remove the remaining translation files

@@ -561,7 +561,7 @@ jQuery(function () {
     });
 
 
-    /* DELETE RECORDS DIALOG */
+    /* DOWNLOAD RECORDS DIALOG */
     var open_data = function (hash) {
         hash.w.css('opacity', 1).show();
     };
@@ -569,41 +569,6 @@ jQuery(function () {
         hash.w.hide();
         hash.o.remove();
     };
-    jQuery('#cf_delete_dialog').jqm({
-        modal: true,
-        overlay: 30,
-        onShow: open_data,
-        onHide: close_data
-    }).draggable();
-
-    jQuery('a#okDelete').click(function () {
-        var getString = '';
-        jQuery('.trSelected', '#flex1').each(function () {
-            getString = getString + jQuery('td:first > div', this).html() + ',';
-        });
-        if (getString == '')
-            getString = 'all';
-        var query = jQuery('.qsbox', '.sDiv').attr('value');
-        var qtype = jQuery('select', '.sDiv').attr('value');
-        jQuery.post(
-                ajaxurl,
-                {
-                    ids: getString,
-                    query: query,
-                    qtype: qtype,
-                    action: 'database_deleteentries',
-                    _wpnonce: cforms2_nonces.deleteentries
-                },
-                function (ret) {
-                    jQuery('#ctrlmessage').show();
-                    jQuery('#ctrlmessage').html(ret);
-                    jQuery('.pReload').trigger('click');
-                    jQuery('#ctrlmessage').fadeOut(5000);
-                }
-        );
-    });
-
-    /* DOWNLOAD RECORDS DIALOG */
     jQuery('#cf_dl_dialog').jqm({modal: true, overlay: 30, onShow: open_data, onHide: close_data}).draggable();
     jQuery('a#okDL').click(function () {
         var getString = '';

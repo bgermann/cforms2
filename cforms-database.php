@@ -37,7 +37,6 @@ if (cforms2_check_erased())
 
     <p class="ex" style="margin-bottom:30px;"><?php _e('If you want to select <strong>ALL</strong> entries, e.g. for download, simply don\'t select any particular row. When <strong>viewing records</strong>: Fields with a <em>grey background</em> can be clicked on and edited!', 'cforms2') ?></p>
 
-    <div id="ctrlmessage"></div>
     <div class="bborderx"><table id="flex1" style="display:none"><tr><td></td></tr></table></div>
     <div id="entries"></div>
     <div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>include/"></div>
@@ -64,9 +63,6 @@ if (cforms2_check_erased())
             ],
             buttons: [
                 {name: '<?php _e('View records', 'cforms2'); ?>', bclass: 'dashicons-before dashicons-media-text', onpress: cf_tracking_view},
-                {name: '<?php _e('Delete records', 'cforms2'); ?>', bclass: 'dashicons-before dashicons-trash', onpress: function () {
-                        jQuery('#cf_delete_dialog').jqmShow();
-                    }},
                 {name: '<?php _e('Download records', 'cforms2'); ?>', bclass: 'dashicons-before dashicons-download', onpress: function () {
                         jQuery('#cf_dl_dialog').jqmShow();
                     }},
@@ -119,15 +115,6 @@ add_action('admin_footer', 'cforms2_insert_modal_tracking');
 
 function cforms2_insert_modal_tracking() {
     ?>
-    <div class="jqmWindow" id="cf_delete_dialog">
-        <div class="cf_ed_header"><?php _e('Please Confirm', 'cforms2'); ?></div>
-        <div class="cf_ed_main">
-            <form name="deleteform" method="post">
-                <div id="cf_target_del"><?php _e('Are you sure you want to delete the record(s)?', 'cforms2'); ?></div>
-                <div class="controls"><a href="#" id="okDelete" class="jqmClose dashicons dashicons-yes" title="<?php _e('OK', 'cforms2') ?>"></a><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></div>
-            </form>
-        </div>
-    </div>
     <div class="jqmWindow" id="cf_dl_dialog">
         <div class="cf_ed_header"><?php _e('Please Confirm', 'cforms2'); ?></div>
         <div class="cf_ed_main">
