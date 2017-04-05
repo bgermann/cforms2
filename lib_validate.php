@@ -90,7 +90,7 @@ function cforms2_write_tracking_record($no, $field_email, $track) {
     if ($cformsSettings['global']['cforms_database'] == '1') {
 
         // first process fields, perhaps need to bail out
-        $sql = '';
+        $additional_fields = array();
         $dosave = false;
         foreach ($track as $k => $v) {
 
@@ -105,7 +105,7 @@ function cforms2_write_tracking_record($no, $field_email, $track) {
                 $k = $r[1];
 
 
-            $sql .= $wpdb->prepare("('-XXX-',%s,%s),", $k, $v);
+            $additional_fields[$k] = $v;
             $dosave = true;
         }
         if (!$dosave)
@@ -114,16 +114,21 @@ function cforms2_write_tracking_record($no, $field_email, $track) {
         // good to go
         $page = cforms2_get_current_page();
 
-        $wpdb->query($wpdb->prepare(
-                        "INSERT INTO $wpdb->cformssubmissions (form_id,email,ip,sub_date) VALUES (%s, %s, %s, %s);", $no, $field_email, cforms2_get_ip(), current_time('Y-m-d H:i:s')
+        $wpdb->insert($wpdb->cformssubmissions, array('form_id' => $no,
+            'email' => $field_email,
+            'ip' => cforms2_get_ip(),
+            'sub_date' => current_time('Y-m-d H:i:s')
         ));
 
         $subID = $wpdb->get_row("select LAST_INSERT_ID() as number from $wpdb->cformssubmissions;");
         $subID = ($subID->number == '') ? '1' : $subID->number;
 
-        $sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s),", $subID, $page) . $sql;
+        $sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s)", $subID, $page);
+        foreach ($additional_fields as $k => $v) {
+            $sql .= ',' . $wpdb->prepare('(%s,%s,%s)', $subID, $k, $v);
+        }
 
-        $wpdb->query(substr(str_replace('-XXX-', esc_sql($subID), $sql), 0, -1));
+        $wpdb->query($sql);
     } else
         $subID = 'noid';
 
@@ -930,7 +935,6 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                     $usermessage_class = ' mailerr';
                 }
             }
-
         } else {
             $usermessage_text = __('Error occurred while sending the message: ', 'cforms2') . '<br />' . $mail->err;
             $usermessage_class = ' mailerr';

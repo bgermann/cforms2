@@ -65,8 +65,8 @@ function cforms2_database_deleteentry() {
         elseif ($found == 1)
             $del = ' ' . __('(including all attachment/s)', 'cforms2');
 
-        $nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformssubmissions WHERE id = %s", $sub_id));
-        $nuked = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->cformsdata WHERE sub_id = %s", $sub_id));
+        $wpdb->delete($wpdb->cformssubmissions, array(id => $sub_id));
+        $wpdb->delete($wpdb->cformsdata, array(sub_id => $sub_id));
 
         echo '<p><strong>' . __('Entry successfully removed', 'cforms2') . $del . '</strong></p>';
     }
