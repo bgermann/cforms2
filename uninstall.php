@@ -29,6 +29,6 @@ if ($role != null) {
 }
 
 global $wpdb;
-$wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key = 'tell-a-friend'");
+$wpdb->delete($wpdb->postmeta, array('meta_key' => 'tell-a-friend'));
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformssubmissions');
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformsdata');
