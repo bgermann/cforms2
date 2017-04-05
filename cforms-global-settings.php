@@ -51,8 +51,7 @@ if (isset($_REQUEST['deletetables'])) {
         </p>
     </div>
     <?php
-} elseif (isset($_REQUEST['restoreallcformsdata']))
-    require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
+}
 
 // Update Settings
 if (isset($_REQUEST['SubmitOptions']))
@@ -491,7 +490,6 @@ if (isset($_REQUEST['SubmitOptions']))
             <input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
             <input id="cfbar-deleteall" class="allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
             <input id="deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
-            <input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=" "/>
             <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
         </div>
 
@@ -500,23 +498,6 @@ if (isset($_REQUEST['SubmitOptions']))
     <?php cforms2_footer(); ?>
 </div>
 
-<div class="jqmWindow" id="cf_backupbox">
-    <div class="cf_ed_header"><?php _e('Restore all settings (old)', 'cforms2'); ?></div>
-    <div class="cf_ed_main">
-        <form enctype="multipart/form-data" name="backupform" method="post">
-            <div class="controls">
-
-                <p class="ex"><?php _e('Restoring all settings will overwrite all form specific &amp; global settings!', 'cforms2') ?></p>
-                <p>
-                    <input type="file" id="importall" name="importall" size="25" /><input type="submit" name="restoreallcformsdata" title="<?php _e('Restore all settings now!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('Restore all settings now!', 'cforms2') ?>" onclick="return confirm('<?php _e('With a broken backup file, this action may erase all your settings! Do you want to continue?', 'cforms2') ?>');"/>
-                </p>
-                <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
-
-            </div>
-            <input type="hidden" name="noSub" value="<?php if (!empty($noDISP)) echo $noDISP; ?>"/>
-        </form>
-    </div>
-</div>
 <div title="<?php _e('Uninstalling / Removing cforms', 'cforms2'); ?>" id="cf_delall_dialog">
     <fieldset class="cf_ed_main">
         <form name="deleteform" method="post">

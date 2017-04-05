@@ -1216,8 +1216,6 @@ function cforms2_add_items_global($admin_bar) {
     if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)
         cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'), 'if ( confirm("' . __('Do you really want to erase all collected data?', 'cforms2') . '") ) jQuery("#deletetables").trigger("click"); return false;');
 
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-backup', __('Restore all settings (old)', 'cforms2'), '', 'jQuery("#backup").trigger("click"); return false;');
-
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
 
 }
@@ -1232,8 +1230,6 @@ function cforms2_add_items_options($admin_bar) {
     cforms2_add_admin_bar_item($admin_bar, 'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
     if ((int) $cfo['global']['cforms_formcount'] > 1)
         cforms2_add_admin_bar_item($admin_bar, 'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'), 'if ( confirm("' . __('This will delete the current form!', 'cforms2') . '")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
-
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-backup', __('Restore this form only (old)', 'cforms2'), '', 'jQuery("#backup").trigger("click"); return false;');
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
 

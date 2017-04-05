@@ -40,8 +40,6 @@ if (isset($_REQUEST['addbutton'])) {
     require_once(plugin_dir_path(__FILE__) . 'lib_options_add.php');
 } elseif (isset($_REQUEST['dupbutton'])) {
     require_once(plugin_dir_path(__FILE__) . 'lib_options_dup.php');
-} elseif (isset($_REQUEST['uploadcformsdata'])) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_options_up.php');
 } elseif (isset($_REQUEST['delbutton']) && $FORMCOUNT > 1) {
     require_once(plugin_dir_path(__FILE__) . 'lib_options_del.php');
 } else {
@@ -939,7 +937,6 @@ if (strlen($fd) <= 2) {
             <input id="cfbar-addbutton" class="allbuttons addbutton" type="submit" name="addbutton" value=""/>
             <input id="cfbar-dupbutton" class="allbuttons dupbutton" type="submit" name="dupbutton" value=""/>
             <input id="cfbar-delbutton" class="allbuttons deleteall" type="submit" name="delbutton" value=""/>
-            <input id="backup" type="button" class="jqModalBackup allbuttons" name="backup"  value=" "/>
             <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
         </div>
 
@@ -957,22 +954,6 @@ function cforms2_insert_modal() {
         <div id="cf_editbox" title="<?php _e('Input Field Settings', 'cforms2'); ?>">
             <div class="cf_ed_main">
                 <div id="cf_target"></div>
-            </div>
-        </div>
-        <div class="jqmWindow" id="cf_backupbox">
-            <div class="cf_ed_header"><?php _e('Restore this form only (old)', 'cforms2'); ?></div>
-            <div class="cf_ed_main">
-                <form enctype="multipart/form-data" name="backupform" method="post">
-                    <div class="controls">
-
-                        <input type="file" id="upload" name="importall" size="25" />
-                        <input type="submit" name="uploadcformsdata" class="allbuttons restorebutton" value="<?php _e('Restore from file', 'cforms2'); ?>" onclick="jQuery('#cf_backupbox').jqmHide();" />
-
-                        <p class="cancel"><a href="#" class="jqmClose dashicons dashicons-no-alt" title="<?php _e('Cancel', 'cforms2') ?>"></a></p>
-
-                    </div>
-                    <input type="hidden" name="noSub" value="<?php echo $noDISP; ?>"/>
-                </form>
             </div>
         </div>
     <?php

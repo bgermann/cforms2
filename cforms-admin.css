@@ -119,11 +119,6 @@ ul.ex:before,p.ex:before,.form-table td.ex:before {
     float:left;
 }
 
-#cf_target {
-    margin-left:0;
-    margin-top:10px;
-}
-
 span.abbr {
     text-decoration:underline dotted;
     cursor:help;
@@ -341,10 +336,6 @@ p.addfieldbox {
 
 p.addfieldbox input, #wpcontent p.addfieldbox select.addfieldno {
     vertical-align:middle;
-}
-
-input.backupbutton,input.restorebutton {
-    font-weight:400;
 }
 
 select.addfieldno,
@@ -1033,22 +1024,6 @@ table.cf_dyn_fields td.cf-wh {
 /****************************************************************
   POPUP WINDOWS
 *****************************************************************/
-.jqmWindow {
-    display:none;
-    position:fixed;
-    top:25%;
-    left:50%;
-    margin-left:-300px;
-    width:600px;
-    background-color:#FFF;
-    color:#333;
-    border:3px solid #E7423A;
-    box-shadow:#333 0 0px 22px;
-}
-
-.jqmOverlay {
-    background-color:#000;
-}
 
 #cf_target_del {
     text-align:center;
@@ -1063,31 +1038,6 @@ table.cf_dyn_fields td.cf-wh {
 
 #cf_delall_dialog p {
     text-align:left;
-}
-
-.jqmWindow .cf_ed_header {
-    margin:0;
-    text-align:center;
-    background-color:#E7423A;
-    color:#FFF;
-    font-weight:bold;
-    font-size:11px;
-    letter-spacing:2px;
-    padding:3px;
-}
-
-.jqmWindow .controls {
-    text-align:right;
-    margin-top:8px;
-    margin-bottom:4px;
-}
-
-.jqmWindow .controls a {
-    margin-left:5px;
-    margin-right:5px;
-    border:0;
-    text-decoration:none;
-    font-size:35px;
 }
 
 .cf_ed_main {
@@ -1194,7 +1144,7 @@ table.cf_dyn_fields td.cf-wh {
     clear:both;
 }
 
-.cf_ed_main .cf_edit_move_up,.cf_ed_main .cf_edit_move_down,.cf_ed_main .cf_edit_minus {
+.cf_ed_main .cf_edit_move_up, .cf_ed_main .cf_edit_move_down, .cf_ed_main .cf_edit_minus {
     border:none;
     color:red;
     float:left;
@@ -1217,25 +1167,4 @@ table.cf_dyn_fields td.cf-wh {
 
 .cf_ed_main .add_group_item {
     padding:1px 0 0 20px;
-}
-
-/* Backup Dialog */
-#cf_backupbox {
-    width:635px!important;
-}
-#cf_backupbox input {
-    width:auto;
-    padding:3px 10px;
-}
-
-#cf_backupbox .controls {
-    padding:0 8px;
-    text-align:left;
-}
-
-#cf_delall_dialog .controls p.cancel,
-#cf_backupbox .controls p.cancel {
-    text-align:right;
-    margin:0;
-    padding:0;
 }

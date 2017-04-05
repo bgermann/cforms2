@@ -548,8 +548,6 @@ jQuery(function () {
         editbox.dialog("open");
     });
 
-    jQuery('#cf_backupbox').jqm({trigger: '.jqModalBackup', modal: true, overlay: 30}).draggable();
-
     var delallDialog = jQuery('#cf_delall_dialog').dialog({
         autoOpen: false,
         modal: true
