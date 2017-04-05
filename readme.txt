@@ -107,6 +107,9 @@ These features were remove with version 14.12.
 
 == Upgrade Notice ==
 
+= 14.13 =
+This release contains a security fix! Some features were removed for the fix. Please have a look at the changelog.
+
 = 14.12 =
 RSS support is removed. If you depend on it, please try Contact Form DB's RSS support. WordPress comment support and Tell-a-Friend support is removed, too.
 
@@ -151,11 +154,12 @@ GPL compliance!
 
 = 14.13 =
 
-* bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" and "Download Entries" feature
+* bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" and "Download Entries" features and filtering user input
 * bugfix:   do not attach the upload directory to auto confirmation mails
 * added:    hook wp_mail_failed action to give warnings with PHPMailer error details
 * added:    cforms2FormSent JavaScript event on successful form submission
 * other:    remove restore feature and with it jqModal dependency
+* other:    remove tracking DB GUI's search
 * other:    remove the remaining translation files
 * other:    remove the form presets
 * other:    remove wide_brown_light theme

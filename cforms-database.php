@@ -39,14 +39,6 @@ if (cforms2_check_erased())
     <div id="entries"></div>
     <div id="geturl" title="<?php echo plugin_dir_url(__FILE__); ?>include/"></div>
 
-    <?php
-    // if called from dashboard
-    $dashboard = '';
-    if (isset($_GET['d-id'])) {
-        $dashboard = "qtype: 'id', query: '" . $_GET['d-id'] . "',";
-    }
-    ?>
-
     <script type="text/javascript">
         // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later'
         jQuery("#flex1").flexigrid({
@@ -62,13 +54,6 @@ if (cforms2_check_erased())
             buttons: [
                 {name: '<?php _e('View records', 'cforms2'); ?>', bclass: 'dashicons-before dashicons-media-text', onpress: cf_tracking_view}
             ],
-            searchitems: [
-                {display: '<?php _e('# Number(s)', 'cforms2'); ?>', name: 'id'},
-                {display: '<?php _e('Form Name', 'cforms2'); ?>', name: 'form_id'},
-                {display: '<?php _e('e-mail Address', 'cforms2'); ?>', name: 'email', isdefault: true},
-                {display: '<?php _e('Date', 'cforms2'); ?>', name: 'sub_date'},
-                {display: '<?php _e('IP', 'cforms2'); ?>', name: 'ip'}
-            ],<?php echo $dashboard; ?>
             sortname: "id",
             sortorder: "desc",
             usepager: true,
@@ -94,12 +79,5 @@ if (cforms2_check_erased())
         // @license-end
     </script>
 
-    <?php
-    // if called from dashboard
-    if (isset($_GET['d-id'])) {
-        $_POST['showids'] = $_GET['d-id'] . ',';
-    }
-
-    cforms2_footer();
-    ?>
+    <?php cforms2_footer(); ?>
 </div>

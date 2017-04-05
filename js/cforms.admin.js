@@ -637,16 +637,12 @@ function cf_tracking_view(com, grid) {
         getString = 'all';
     var sortBy = jQuery('.sorted', grid).attr('abbr');
     var sortOrder = jQuery('.sorted > div:first', grid).attr('class');
-    var query = jQuery('.qsbox', '.sDiv').attr('value');
-    var qtype = jQuery('select', '.sDiv').attr('value');
     jQuery('#entries').load(
             ajaxurl,
             {
                 showids: getString,
                 sorted: sortBy,
                 sortorder: sortOrder,
-                query: query,
-                qtype: qtype,
                 action: 'database_getentries',
                 _wpnonce: cforms2_nonces.getentries
             },

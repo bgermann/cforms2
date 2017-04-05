@@ -25,78 +25,21 @@ function cforms2_database_overview() {
     if (!current_user_can('track_cforms'))
         die("access restricted.");
 
-    global $wpdb;
-
-    $wpdb->cformssubmissions = $wpdb->prefix . 'cformssubmissions';
-    $wpdb->cformsdata = $wpdb->prefix . 'cformsdata';
-
-    $cformsSettings = get_option('cforms_settings');
-
-    $page = $_POST['page'];
-    $rp = $_POST['rp'];
-    $sortname = $_POST['sortname'];
-    $sortorder = $_POST['sortorder'];
-
-    $qtype = $_POST['qtype'];
-    $query = $_POST['query'];
-
-    // get form id from name
-    $query = str_replace('*', '', $query);
-    $form_ids = false;
-    if ($qtype == 'form_id' && $query <> '') {
-
-        $forms = $cformsSettings['global']['cforms_formcount'];
-
-        for ($i = 0; $i < $forms; $i++) {
-            $no = ($i == 0) ? '' : ($i + 1);
-
-            if (preg_match('/' . $query . '/i', $cformsSettings['form' . $no]['cforms' . $no . '_fname'])) {
-                $form_ids = $form_ids . "'$no',";
-            }
-        }
-        $querystr = (!$form_ids ) ? '$%&/' : ' form_id IN (' . substr($form_ids, 0, -1) . ')';
-    } else {
-        $querystr = '%' . $query . '%';
-    }
-
-
-    if ($form_ids)
-        $where = "WHERE $querystr";
-    elseif ($query <> '')
-        $where = "WHERE $qtype LIKE '$querystr'";
-    else
-        $where = '';
-
-    if (!$sortname)
-        $sortname = 'id';
-    if (!$sortorder)
-        $sortorder = 'desc';
-    $sort = "ORDER BY $sortname $sortorder";
-    if (!$page)
+    $page = (int) $_POST['page'];
+    if ($page < 1)
         $page = 1;
-    if (!$rp)
+
+    $rp = (int) $_POST['rp'];
+    if ($rp < 1)
         $rp = 10;
 
     $start = (($page - 1) * $rp);
-    $limit = "LIMIT $start, $rp";
 
-    for ($i = 1; $i <= $cformsSettings['global']['cforms_formcount']; $i++) {
-        $n = ( $i == 1 ) ? '' : $i;
-        $fnames[$i] = stripslashes($cformsSettings['form' . $n]['cforms' . $n . '_fname']);
-    }
+    global $wpdb;
+    $sql = "SELECT count(id) FROM {$wpdb->prefix}cformssubmissions";
+    $total = $wpdb->get_var($sql);
 
-
-    // total count
-    if ($qtype == 'id')
-        $total = 1;
-    else {
-        $sql = "SELECT count(id) FROM {$wpdb->cformssubmissions} $where";
-        $total = $wpdb->get_var($sql); // TODO check SQL injection
-    }
-
-    // get results
-    $sql = "SELECT * FROM {$wpdb->cformssubmissions} $where $sort $limit";
-    $result = $wpdb->get_results($sql); // TODO check SQL injection
+    $result = get_cforms_entries(false, false, false, $_POST['sortname'], $rp, $_POST['sortorder'], $start);
 
     $xml = "<?xml version=\"1.0\"?>\n";
     $xml .= "<rows>";
@@ -104,13 +47,12 @@ function cforms2_database_overview() {
     $xml .= "<total>$total</total>";
 
     foreach ($result as $entry) {
-        $n = ( $entry->form_id == '' ) ? '1' : $entry->form_id;
-        $xml .= "<row id='" . $entry->id . "'>";
-        $xml .= "<cell><![CDATA[" . $entry->id . "]]></cell>";
-        $xml .= "<cell><![CDATA[" . ( $fnames[$n] ) . "]]></cell>";
-        $xml .= "<cell><![CDATA[" . ( $entry->email ) . "]]></cell>";
-        $xml .= "<cell><![CDATA[" . ( $entry->sub_date ) . "]]></cell>";
-        $xml .= "<cell><![CDATA[" . ( $entry->ip ) . "]]></cell>";
+        $xml .= "<row id='" . $entry['id'] . "'>";
+        $xml .= "<cell><![CDATA[" . $entry['id'] . "]]></cell>";
+        $xml .= "<cell><![CDATA[" . ( $entry['form'] ) . "]]></cell>";
+        $xml .= "<cell><![CDATA[" . ( $entry['email'] ) . "]]></cell>";
+        $xml .= "<cell><![CDATA[" . ( $entry['date'] ) . "]]></cell>";
+        $xml .= "<cell><![CDATA[" . ( $entry['ip'] ) . "]]></cell>";
         $xml .= "</row>";
     }
 

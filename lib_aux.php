@@ -377,28 +377,33 @@ function cforms2_compare($a, $b) {
 if (!function_exists('get_cforms_entries')) {
 
     /** API function: get_cforms_entries */
-    function get_cforms_entries($fname = false, $from = false, $to = false, $s = false, $limit = false, $sd = 'asc') {
-        global $wpdb, $cformsSettings, $cfdataTMP, $cfsort, $cfsortdir;
+    function get_cforms_entries($fname = false, $from = false, $to = false, $sort = false, $limit = false, $sortdir = 'asc', $limitstart = 0) {
+        global $wpdb, $cfdataTMP, $cfsort, $cfsortdir;
+
+        $cformsSettings = get_option('cforms_settings');
 
         // unify
-        if ($s == 'date' || $s == 'timestamp')
-            $s = 'sub_date';
+        if ($sort === 'date' || $sort === 'timestamp')
+            $sort = 'sub_date';
+        else if ($sort === 'form')
+            $sort = 'form_id';
 
-        // set limit
-        $limit = ($limit && $limit <> '') ? 'LIMIT 0,' . $limit : '';
+        $limit = empty($limit) ? '' : 'LIMIT ' . ((int) $limitstart) . ',' . (int) $limit;
+
+        $sortdir = strtolower($sortdir) === 'asc' ? 'asc' : 'desc';
 
 
         $ORDER_1 = $cfsort = '';
-        if (in_array($s, array('id', 'form', 'timestamp', 'email', 'ip')))
-            $ORDER_1 = "ORDER BY " . $s . ' ' . $sd;
+        if (in_array($sort, array('id', 'form_id', 'sub_date', 'email', 'ip')))
+            $ORDER_1 = "ORDER BY " . $sort . ' ' . $sortdir;
         else {
             $ORDER_1 = "ORDER BY id DESC";
-            $cfsort = $s;
+            $cfsort = $sort;
         }
 
         // SORT
         $cfdata = array();
-        $cfsortdir = $sd;
+        $cfsortdir = $sortdir;
 
         // GENERAL WHERE
         $where = false;
@@ -411,10 +416,10 @@ if (!function_exists('get_cforms_entries')) {
                 $fname_in .= "'$n'" . ',';
         }
 
-        if ($fname <> '')
-            $where = ($fname_in <> '') ? ' form_id IN (' . substr($fname_in, 0, -1) . ')' : " form_id='-1'";
-        $where .= $from ? ($where ? ' AND' : '') . " sub_date > '$from'" : '';
-        $where .= $to ? ($where ? ' AND' : '') . " sub_date < '$to'" : '';
+        if (!empty($fname))
+            $where = empty($fname_in) ? " form_id='-1'" : ' form_id IN (' . substr($fname_in, 0, -1) . ')';
+        $where .= $from ? ($where ? ' AND' : '') . $wpdb->prepare(" sub_date > '%s'", $from) : '';
+        $where .= $to ? ($where ? ' AND' : '') . $wpdb->prepare(" sub_date < '%s'", $to) : '';
         $where = $where ? 'WHERE' . $where : '';
 
         $in = '';
@@ -453,7 +458,7 @@ if (!function_exists('get_cforms_entries')) {
             $cfdata[$d->sub_id]['data'][$d->field_name . $tmp] = $d->field_val;
         }
 
-        if ($cfsort <> '') {
+        if (!empty($cfsort)) {
             $cfdataTMP = $cfdata;
             uksort($cfdata, 'cforms2_compare');
         }
