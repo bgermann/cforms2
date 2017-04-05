@@ -205,6 +205,13 @@ function cforms_validate(no, upload) {
         document.getElementById('sendbutton' + no).style.cursor = "auto";
         document.getElementById('sendbutton' + no).disabled = false;
 
+        if (document.createEvent) {
+            var event = document.createEvent("HTMLEvents");
+            event.initEvent("cforms2FormSent", true, true);
+            event.eventName = "cforms2FormSent";
+            event.formNumber = no;
+            document.body.dispatchEvent(event);
+        }
 
         var stringXHTML = message.html;
 

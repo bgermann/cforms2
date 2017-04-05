@@ -1,5 +1,5 @@
 === cformsII ===
-Contributors: bgermann, olivers, cbacchini, codifex
+Contributors: bgermann, olivers, cbacchini, codifex, nb000
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 3.9
@@ -154,6 +154,7 @@ GPL compliance!
 * bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" and "Download Entries" feature
 * bugfix:   do not attach the upload directory to auto confirmation mails
 * added:    hook wp_mail_failed action to give warnings with PHPMailer error details
+* added:    cforms2FormSent JavaScript event on successful form submission
 * other:    remove restore feature and with it jqModal dependency
 * other:    remove the remaining translation files
 * other:    remove the form presets
