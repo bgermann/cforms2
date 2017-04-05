@@ -773,17 +773,6 @@ table.hf {
 /****************************************************************
   TRACKING PAGE
 *****************************************************************/
-#cf_target_dl {
-    margin-left:0;
-    margin-top:10px;
-    margin-left:200px;
-}
-
-#cf_target_dl label {
-    display:inline;
-    font-size:12px;
-}
-
 .showform {
     width:90%;
     margin:30px 5% 5px;
@@ -1121,10 +1110,6 @@ table.cf_dyn_fields td.cf-wh {
 
 .cf_ed_main input.chkBox {
     width:16px;
-}
-
-.cf_ed_main input.chkBoxW {
-    width:22px;
 }
 
 .cf_ed_main input:focus {

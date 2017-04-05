@@ -153,7 +153,6 @@ function cforms2_admin_enqueue_scripts() {
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
         'cforms2_field' => wp_create_nonce('cforms2_field'),
         'deleteentry' => wp_create_nonce('database_deleteentry'),
-        'dlentries' => wp_create_nonce('database_dlentries'),
         'getentries' => wp_create_nonce('database_getentries')
     ));
     wp_localize_script('cforms-admin', 'cforms2_i18n', array(

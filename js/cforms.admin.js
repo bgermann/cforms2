@@ -561,41 +561,6 @@ jQuery(function () {
     });
 
 
-    /* DOWNLOAD RECORDS DIALOG */
-    var open_data = function (hash) {
-        hash.w.css('opacity', 1).show();
-    };
-    var close_data = function (hash) {
-        hash.w.hide();
-        hash.o.remove();
-    };
-    jQuery('#cf_dl_dialog').jqm({modal: true, overlay: 30, onShow: open_data, onHide: close_data}).draggable();
-    jQuery('a#okDL').click(function () {
-        var getString = '';
-        jQuery('.trSelected', '#flex1').each(function () {
-            getString = getString + jQuery('td:first > div', this).html() + ',';
-        });
-        if (getString == '')
-            getString = 'all';
-
-        var sortBy = jQuery('.sorted', '#flex1').attr('abbr');
-        var sortOrder = jQuery('.sorted > div:first', '#flex1').attr('class');
-        var query = jQuery('.qsbox', '.sDiv').attr('value');
-        var qtype = jQuery('select', '.sDiv').attr('value');
-        var format = jQuery('#pickDLformat').attr('value');
-        var enc = jQuery("input:radio:checked[name='enc']").val();
-        var header = jQuery('#header').is(':checked');
-        var addIP = jQuery('#addip').is(':checked');
-        var addURL = jQuery('#addurl').is(':checked');
-
-        location.href = ajaxurl
-                + '?addurl=' + addURL + '&addip=' + addIP + '&header=' + header + '&enc=' + enc
-                + '&format=' + format + '&ids=' + getString + '&sorted=' + sortBy + '&sortorder=' + sortOrder
-                + '&query=' + query + '&qtype=' + qtype + '&action=database_dlentries'
-                + '&_wpnonce=' + cforms2_nonces.dlentries;
-    });
-
-
     /* MAKE FORM FIELDS SORTABLE */
     if (jQuery('.groupWrapper')) {
         jQuery('.groupWrapper').sortable(

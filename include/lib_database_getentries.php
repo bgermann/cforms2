@@ -129,9 +129,6 @@ function cforms2_database_getentries() {
                     $passID = ($cformsSettings['form' . $no]['cforms' . $no . '_noid']) ? '' : $entry->sub_id;
                     $fileInfoArr = array('name' => strip_tags($val), 'path' => $fileurl, 'subID' => $passID);
 
-                    if (function_exists('my_cforms_logic'))
-                        $fileInfoArr = my_cforms_logic($entries, $fileInfoArr, 'fileDestinationTrackingPage');
-
                     if (!array_key_exists('modified', $fileInfoArr))
                         $fileInfoArr['name'] = $subID . $fileInfoArr['name'];
 

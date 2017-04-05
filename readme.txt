@@ -151,12 +151,13 @@ GPL compliance!
 
 = 14.13 =
 
-* bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" feature
+* bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" and "Download Entries" feature
 * bugfix:   do not attach the upload directory to auto confirmation mails
 * added:    hook wp_mail_failed action to give warnings with PHPMailer error details
 * other:    remove the remaining translation files
 * other:    remove the form presets
 * other:    remove wide_brown_light theme
+* other:    remove deprecated my_cforms_logic callers: redirection, successMessage, ReplyTo, adminTO, adminEmailSUBJ, autoConfSUBJ, fileDestination and fileDestinationTrackingPage
 
 = 14.12.3 =
 

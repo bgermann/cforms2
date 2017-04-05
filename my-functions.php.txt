@@ -30,22 +30,16 @@
 
 
 ###
-### Your custom application logic features
+### Your custom application logic features with $setting being:
 ###
-### "successMessage"                $cformsdata = cforms datablock
-### "redirection"                   $cformsdata = cforms datablock
-### "filename"                      $cformsdata = $_REQUEST
-### "fileDestination"               $cformsdata = $oldvalue = array!
-### "fileDestinationTrackingPage"   $cformsdata = all SQL data, $oldvalue = array!
-### "adminTO"                       $cformsdata = cforms datablock
-### "nextForm"                      $cformsdata = cforms datablock
-###
-### "adminEmailTXT"                 $cformsdata = cforms datablock
-### "adminEmailHTML"                $cformsdata = cforms datablock
-### "autoConfTXT"                   $cformsdata = cforms datablock
-### "autoConfHTML"                  $cformsdata = cforms datablock
-### "adminEmailSUBJ"                $cformsdata = cforms datablock
-### "autoConfSUBJ"                  $cformsdata = cforms datablock
+### "filename"
+### "nextForm"
+### "adminEmailTXT"
+### "adminEmailDataTXT"
+### "adminEmailHTML"
+### "adminEmailDataHTML"
+### "autoConfTXT"
+### "autoConfHTML"
 ### @deprecated
 ###
 function my_cforms_logic($cformsdata,$oldvalue,$setting) {
@@ -63,20 +57,6 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
         if ( $cformsdata['id']=='2' && $cformsdata['data']['Your Name']<>'' ){
 
             return '"'.$cformsdata['data']['Your Name'].'"' . ' <'.$oldvalue.'>';  ### This requires the form to have field labeled "Your Name" !
-
-        }
-
-    }
-
-
-    ### example: the below code changes the original Success Message
-
-    if ( $setting == "successMessage" && $oldvalue<>'' ){
-
-        ### only form #1 (default form) should be affected:
-        if ( $cformsdata['id']=='' ){
-
-            return $oldvalue . '<br />Form submitted on '.date('D, d M Y H:i:s');
 
         }
 
@@ -101,27 +81,6 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
         }
 
-    }
-
-
-    ### example: the below code replaces the custom var {DateFuture=Nd} in the subject
-    ###          field of the admin email & auto confirmation email
-    ### Code Contribution by Regis Villemin
-
-    if ( $setting == "autoConfSUBJ" || $setting == "autoConfSUBJ" ){
-        $m = preg_replace_callback( '/{DateFuture=([0-9]+)d}/i',
-            create_function(
-                '$days',
-                '
-
-                $datefuture = strtotime ("+$days[1] days");
-
-                return strtoupper( strftime( "%A %d %B %Y",  $datefuture ) );
-                '
-            ),
-            $oldvalue );
-
-        return $m;
     }
 
 

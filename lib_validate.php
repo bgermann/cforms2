@@ -52,10 +52,6 @@ function cforms2_move_files($trackf, $no, $subID, &$file) {
 
                 $fileInfoArr = array('name' => str_replace(' ', '_', $file2['name'][$i]), 'path' => $fileuploaddir, 'subID' => $subID);
 
-                if (function_exists('my_cforms_logic')) {
-                    $fileInfoArr = my_cforms_logic($trackf, $fileInfoArr, 'fileDestination');
-                }
-
                 if (!array_key_exists('modified', $fileInfoArr))
                     $fileInfoArr['name'] = $subID_ . $fileInfoArr['name'];
 
@@ -749,14 +745,9 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
 
     $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fromemail']), $track);
 
-    // logic: dynamic admin email address
-    if (function_exists('my_cforms_logic'))
-        $to = my_cforms_logic($trackf, $to, 'adminTO');
     // either use configured subject or user determined
     // now replace the left over {xyz} variables with the input data
     $vsubject = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_subject']);
-    if (function_exists('my_cforms_logic'))
-        $vsubject = my_cforms_logic($trackf, $vsubject, 'adminEmailSUBJ');
     $vsubject = cforms2_check_default_vars($vsubject, $no);
     $vsubject = cforms2_check_cust_vars($vsubject, $track);
 
@@ -781,13 +772,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
         $htmlmessage = cforms2_check_cust_vars($htmlmessage, $track, true);
     }
 
-    // custom user ReplyTo handling
-    if (function_exists('my_cforms_logic'))
-        $userReplyTo = my_cforms_logic($trackf, $field_email, 'ReplyTo');
-    else
-        $userReplyTo = $field_email;
-
-    $mail = new cforms2_mail($no, $frommail, $to, $userReplyTo, true);
+    $mail = new cforms2_mail($no, $frommail, $to, $field_email, true);
     $mail->subj = $vsubject;
 
     // HTML email
@@ -896,8 +881,6 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
 
                 // subject
                 $subject2 = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
-                if (function_exists('my_cforms_logic'))
-                    $subject2 = my_cforms_logic($trackf, $subject2, 'autoConfSUBJ');
                 $subject2 = cforms2_check_default_vars($subject2, $no);
                 $subject2 = cforms2_check_cust_vars($subject2, $track);
 
@@ -948,13 +931,6 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                 }
             }
 
-            // redirect to a different page on success?
-            if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
-                if (function_exists('my_cforms_logic'))
-                    $cf_redirect = my_cforms_logic($trackf, $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'], 'redirection');
-                else
-                    $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
-            }
         } else {
             $usermessage_text = __('Error occurred while sending the message: ', 'cforms2') . '<br />' . $mail->err;
             $usermessage_class = ' mailerr';

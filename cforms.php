@@ -182,12 +182,14 @@ function cforms2($args = '', $no = '') {
 
     // non-AJAX method
     if (isset($_REQUEST['sendbutton' . $no]) || $server_upload_size_error) {
-        global $cf_redirect;
         require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
         $usermessage_class = $all_valid ? ' success' : ' failure';
-        if ($cf_redirect <> '') { // TODO rework to do this via HTTP?
-            echo '<script type="text/javascript">'
-            . 'location.href = "' . $cf_redirect . '"</script>';
+        if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
+            $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
+            if (!empty($cf_redirect)) { // TODO rework to do this via HTTP?
+                echo '<script type="text/javascript">'
+                . 'location.href = "' . $cf_redirect . '"</script>';
+            }
         }
     }
 
@@ -197,10 +199,6 @@ function cforms2($args = '', $no = '') {
     // either show info message above or below
     $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
-
-    // logic: possibly change usermessage
-    if (function_exists('my_cforms_logic'))
-        $usermessage_text = my_cforms_logic($trackf, $usermessage_text, 'successMessage');
 
     $umc = ($usermessage_class <> '' && $no > 1) ? ' ' . $usermessage_class . $no : '';
 
@@ -1192,7 +1190,6 @@ if (is_admin()) {
     add_action('wp_ajax_cforms2_field', 'cforms2_field');
 
     require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
-    require_once (plugin_dir_path(__FILE__) . 'include/lib_database_dlentries.php');
     require_once (plugin_dir_path(__FILE__) . 'include/lib_database_getentries.php');
     require_once (plugin_dir_path(__FILE__) . 'include/lib_database_overview.php');
 }
