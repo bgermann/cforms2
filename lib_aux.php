@@ -439,7 +439,7 @@ if (!function_exists('get_cforms_entries')) {
         }
 
         if ($in == '')
-            return false;
+            return array();
 
         $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE sub_id IN (" . substr($in, 0, -1) . ")";
         $all = $wpdb->get_results($sql);

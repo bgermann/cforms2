@@ -3,7 +3,6 @@
 /*                                                    */
 
 .cform {
-    font-family:Arial,sans-serif;
     background: none repeat scroll 0 0 #f9f9f9;
     margin: 10px auto 0;
     width: 510px;
@@ -156,7 +155,6 @@ label.cf-group-after span {
 }
 
 .cform textarea {
-    font-family: arial;
     font-size: 0.9em;
     overflow:auto;
     resize:none;
@@ -345,7 +343,6 @@ img.imgcalendar {
 /*                                                    */
 
 div.cf_info {
-    font-family:Arial,sans-serif;
     font-size:0.8em;
     color:#333;
     display:none;

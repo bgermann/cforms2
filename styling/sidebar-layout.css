@@ -31,7 +31,7 @@
 .cform legend {
     margin-left:10px;
     padding: 0 2px;
-    font:normal 14px Times;
+    font-size:14px;
     font-variant:small-caps;
     color:#666666;
 }
@@ -147,7 +147,6 @@ label.cf-group-after span {
 }
 
 .cform textarea {
-    font-family: arial;
     font-size: 0.9em;
     height:5em;
     overflow:auto;
@@ -318,7 +317,6 @@ div.cf_info {
     display:none;
     color:#333333;
     display:none;
-    font-family:Tahoma;
     font-size:10px;
     margin:10px auto;
     padding:10px 5px !important;

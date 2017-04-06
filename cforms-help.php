@@ -1058,13 +1058,13 @@ insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', '
             <tr>
                 <td class="ball">
                     <strong><?php _e('HTML code:', 'cforms2'); ?></strong><br />
-                    <?php echo '<p>&lt;p style="background:#fafafa; text-align:center; font:10px arial"&gt;' . sprintf(__('a form has been submitted on %s, via: %s [IP %s]', 'cforms2'), '{Date}', '{Page}', '{IP}') . '&lt;/p&gt;</p>'; ?>
+                    <?php echo '<p>&lt;p style="background:#fafafa; text-align:center;"&gt;' . sprintf(__('a form has been submitted on %s, via: %s [IP %s]', 'cforms2'), '{Date}', '{Page}', '{IP}') . '&lt;/p&gt;</p>'; ?>
                 </td>
             </tr>
             <tr>
                 <td class="ball">
                     <strong><?php _e('Output:', 'cforms2'); ?></strong><br />
-                    <?php echo '<p style="background:#fafafa; text-align:center; font:10px arial">' . __('a form has been submitted on June 13, 2007 @ 9:38 pm, via: / [IP 184.153.91.231]', 'cforms2') . '</p>'; ?>
+                    <?php echo '<p style="background:#fafafa; text-align:center; font-size:10px;">' . __('a form has been submitted on June 13, 2007 @ 9:38 pm, via: / [IP 184.153.91.231]', 'cforms2') . '</p>'; ?>
                 </td>
             </tr>
             <tr>

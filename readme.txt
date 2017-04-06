@@ -160,6 +160,7 @@ GPL compliance!
 * added:    cforms2FormSent JavaScript event on successful form submission
 * other:    remove restore feature and with it jqModal dependency
 * other:    remove tracking DB GUI's search
+* other:    remove Dashboard widget
 * other:    remove the remaining translation files
 * other:    remove the form presets
 * other:    remove wide_brown_light theme

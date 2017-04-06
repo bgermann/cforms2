@@ -1155,11 +1155,6 @@ $cfadmin = array_key_exists('QUERY_STRING', $_SERVER);
 if ($cfadmin)
     $cfadmin = strpos($_SERVER['QUERY_STRING'], 'cforms') !== false;
 
-// dashboard
-if ($cformsSettings['global']['cforms_showdashboard'] == '1' && $cformsSettings['global']['cforms_database'] == '1') {
-    require_once(plugin_dir_path(__FILE__) . 'lib_dashboard.php');
-}
-
 // cforms specific stuff
 if ($cfadmin) {
     require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');

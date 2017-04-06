@@ -32,7 +32,7 @@ function cforms2_setup_db() {
     $cformsSettings['global']['v'] = CFORMS2_VERSION;
 
     unset($cformsSettings['global']['cforms_style']);
-    $cformsSettings['global']['cforms_style']['body'] = 'style="margin:0; padding:0; font-family: Verdana, Arial; font-size: 13px; color:#555;"';
+    $cformsSettings['global']['cforms_style']['body'] = 'style="margin:0; padding:0; font-size: 13px; color:#555;"';
     $cformsSettings['global']['cforms_style']['meta'] = 'style="font-size: 90%; margin:0; background:#aaaaaa; padding:1em 2em 1em 0.6em; color:#555555; text-shadow:0 1px 0 #c5c5c5; border-bottom:1px solid #9d9d9d;"';
     $cformsSettings['global']['cforms_style']['admin'] = 'style="background:#f0f0f0; border-top:1px solid #777; box-shadow:0 -2px 2px #999;"';
     $cformsSettings['global']['cforms_style']['title'] = 'style="font-size: 90%; margin:0; background:#fcfcfc; padding:1em 2em 1em 0.6em; color:#888888; display:inline-block;"';
@@ -44,9 +44,8 @@ function cforms2_setup_db() {
     $cformsSettings['global']['cforms_style']['autoconf'] = 'style="padding:1em 1em 0; background:#f0f0f0; color:#333;"';
     $cformsSettings['global']['cforms_style']['dear'] = 'style="margin:0.5em 30px; font-weight:bold; margin-bottom:1.2em;"';
     $cformsSettings['global']['cforms_style']['confp'] = 'style="margin:0.5em 30px;"';
-    $cformsSettings['global']['cforms_style']['confirmationmsg'] = 'style="margin:4em 30px 0; padding-bottom:1em; font-size:80%; color:#aaa; font-family:Tahoma,Arial;"';
+    $cformsSettings['global']['cforms_style']['confirmationmsg'] = 'style="margin:4em 30px 0; padding-bottom:1em; font-size:80%; color:#aaa;"';
 
-    cforms2_setINI('global', 'cforms_showdashboard', '');
     if (!isset($cformsSettings['global']['cforms_inexclude']['ex']))
         $cformsSettings['global']['cforms_inexclude']['ex'] = '';
     if (!isset($cformsSettings['global']['cforms_inexclude']['ids']))
@@ -107,10 +106,7 @@ function cforms2_setup_db() {
     cforms2_setINI('form', 'cforms_action_page', 'http://');
 
     cforms2_setINI('form', 'cforms_tracking', '');
-    cforms2_setINI('form', 'cforms_showdashboard', '1');
     cforms2_setINI('form', 'cforms_maxentries', '');
-    cforms2_setINI('form', 'cforms_tellafriend', '0');
-    cforms2_setINI('form', 'cforms_dashboard', '0');
 
     // global file settings
 

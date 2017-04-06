@@ -50,7 +50,8 @@ ol.cf-ol li {
 ol.cf-ol li.textonly {
     padding:4px 0;
     text-align:left;
-    font: bold 14px Arial;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 
@@ -62,7 +63,7 @@ ol.cf-ol li.textonly {
 
     background:#E0E0E0 none repeat scroll 0%;
     color:black;
-    font:12px Arial;
+    font-size:12px;
     margin:0 10px 0 0;
     padding:5px 5px 5px;
     width:140px;
@@ -113,7 +114,7 @@ label.cf-group-after span {
 .cform input,
 .cform textarea,
 .cform select {
-    font:12px Arial;
+    font-size:12px;
     margin:0;
     border:1px solid #CCCCCC;
     color:#666666;
@@ -226,7 +227,7 @@ p.cf-sb {
     background-color:#909090;
     color:#FFFFFF;
     cursor:pointer;
-    font:14px Arial;
+    font-size:14px;
     height:31px;
     line-height:31px;
     margin: 0px 7px 10px 0px;

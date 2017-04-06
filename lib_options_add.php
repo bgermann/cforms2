@@ -74,8 +74,6 @@ $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = 'txt,zip,doc,rtf
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = '1024';
 
 $cformsSettings['form' . $no]['cforms' . $no . '_tracking'] = '';
-$cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'] = '0';
-$cformsSettings['form' . $no]['cforms' . $no . '_dashboard'] = '0';
 $cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] = '';
 
 update_option('cforms_settings', $cformsSettings);

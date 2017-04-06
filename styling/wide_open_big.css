@@ -24,7 +24,8 @@
 .cform legend {
     margin-left:0px;
     padding:0;
-    font:bold 20px Verdana;
+    font-weight:bold;
+    font-size:20px;
     color:#888;
     letter-spacing:4px;
 }
@@ -143,7 +144,6 @@ label.cf-group-after span {
 }
 
 .cform textarea {
-    font-family: arial;
     font-size: 16px;
     height: 6em;
     overflow:auto;

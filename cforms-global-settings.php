@@ -85,7 +85,6 @@ if (isset($_REQUEST['SubmitOptions']))
         $cformsSettings['global']['cforms_sec_qa'] = cforms2_get_from_request('cforms_sec_qa');
         $cformsSettings['global']['cforms_codeerr'] = cforms2_get_from_request('cforms_codeerr');
         $cformsSettings['global']['cforms_database'] = cforms2_get_boolean_from_request('cforms_database');
-        $cformsSettings['global']['cforms_showdashboard'] = cforms2_get_boolean_from_request('cforms_showdashboard');
         $cformsSettings['global']['cforms_datepicker'] = cforms2_get_boolean_from_request('cforms_datepicker');
         $cformsSettings['global']['cforms_dp_date'] = cforms2_get_from_request('cforms_dp_date');
 
@@ -476,10 +475,6 @@ if (isset($_REQUEST['SubmitOptions']))
                         <td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if ($cformsSettings['global']['cforms_database'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms2') ?></td>
                     </tr>
 
-                    <tr class="ob">
-                        <td class="obL"><label for="cforms_showdashboard"><strong><?php _e('Show on dashboard', 'cforms2') ?></strong></label></td>
-                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_showdashboard" name="cforms_showdashboard" <?php if ($cformsSettings['global']['cforms_showdashboard'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Make sure to enable your forms individually as well!', 'cforms2') ?></td>
-                    </tr>
                     </table>
                 </div>
             </fieldset>

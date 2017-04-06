@@ -124,7 +124,8 @@ label.cf-group-after span {
     margin-left:10px;
     color:#C66300;
     letter-spacing:2px;
-    font:normal 12px Helvetica,Arial;
+    font-style:normal;
+    font-size:12px;
 }
 .cform input:hover,
 .cform textarea:hover,

@@ -536,13 +536,6 @@ if (strlen($fd) <= 2) {
                         </td>
                     </tr>
 
-                    <?php if ($cformsSettings['global']['cforms_showdashboard'] == '1') { ?>
-                        <tr class="ob space10">
-                            <td class="obL"></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_dashboard" name="cforms_dashboard" <?php if ($o = $cformsSettings['form' . $no]['cforms' . $no . '_dashboard'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_dashboard"><?php printf(__('Show new entries on %sdashboard%s', 'cforms2'), '<strong>', '</strong>') ?></label></td>
-                        </tr>
-                    <?php } ?>
-
                     <?php if ($cformsSettings['global']['cforms_database'] == '1') { ?>
                         <tr class="ob">
                             <td class="obL"></td>

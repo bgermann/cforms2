@@ -25,10 +25,11 @@
 }
 
 .cform legend {
-    margin-left:10px;
+    margin-left: 10px;
     padding: 0 2px;
-    font:normal 20px Times;
-    color:#666666;
+    font-style: normal;
+    font-size: 20px;
+    color: #666666;
 }
 
 ol.cf-ol {
@@ -139,7 +140,6 @@ label.cf-group-after span {
 }
 
 .cform textarea {
-    font-family: arial;
     font-size: 0.9em;
     overflow:auto;
 }

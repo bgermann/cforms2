@@ -126,7 +126,8 @@ label.cf-group-after span {
     line-height:normal;
     padding:4px 3px;
     vertical-align:top;
-    font:bold 9px Arial;
+    font-style:bold;
+    font-size:9px;
 }
 
 .cform input:hover,
@@ -165,7 +166,8 @@ span.reqtxt,
 span.emailreqtxt {
     color:#a2a2a2;
     margin:3px 0 0 5px;
-    font:normal 9px Tahoma;
+    font-style:normal;
+    font-size:9px;
     display:inline-block;
     vertical-align:top;
     letter-spacing:1px;
@@ -226,7 +228,7 @@ p.cf-sb {
 .cform input.sendbutton {
     color:#FFFFFF;
     cursor:pointer;
-    font:14px Arial;
+    font-size:14px;
     height:31px;
     line-height:31px;
     margin: 0px 10px 10px 0px;

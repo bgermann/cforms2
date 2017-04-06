@@ -62,7 +62,7 @@ cforms2_check_access_priv();
     }
 
     global $wpdb;
-    $c = str_replace('&', '&amp;', $wpdb->get_var("SELECT option_value FROM `$wpdb->options` WHERE option_name='cforms_settings'"));
+    $c = str_replace('&', '&amp;', $wpdb->get_var("SELECT option_value FROM {$wpdb->options} WHERE option_name='cforms_settings'"));
     ?>
 
     <form name="corruptedsettings" class="corruptedsettings" method="POST">
