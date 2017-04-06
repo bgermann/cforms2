@@ -28,7 +28,7 @@ function cforms2_add_file($fn, &$fdata, &$fpointer, $attachFlag = false) {
 }
 
 /** move uploaded files to local dir */
-function cforms2_move_files($trackf, $no, $subID, &$file) {
+function cforms2_move_files($no, $subID, &$file) {
     global $cformsSettings;
 
     $temp = explode('$#$', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'])));
@@ -129,8 +129,9 @@ function cforms2_write_tracking_record($no, $field_email, $track) {
         }
 
         $wpdb->query($sql);
-    } else
+    } else {
         $subID = 'noid';
+    }
 
     return $subID;
 
@@ -753,7 +754,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
     // either use configured subject or user determined
     // now replace the left over {xyz} variables with the input data
     $vsubject = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_subject']);
-    $vsubject = cforms2_check_default_vars($vsubject, $no);
+    $vsubject = cforms2_check_default_vars($vsubject, $no, $subID);
     $vsubject = cforms2_check_cust_vars($vsubject, $track);
 
     // prepare message text, replace variables
@@ -762,7 +763,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
         $message = my_cforms_logic($trackf, $message, 'adminEmailTXT');
         $formdata = my_cforms_logic($trackf, $formdata, 'adminEmailDataTXT');
     }
-    $message = cforms2_check_default_vars($message, $no);
+    $message = cforms2_check_default_vars($message, $no, $subID);
     $message = cforms2_check_cust_vars($message, $track);
 
     // actual user message
@@ -773,7 +774,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
             $htmlmessage = my_cforms_logic($trackf, $htmlmessage, 'adminEmailHTML');
             $htmlformdata = my_cforms_logic($trackf, $htmlformdata, 'adminEmailDataHTML');
         }
-        $htmlmessage = cforms2_check_default_vars($htmlmessage, $no);
+        $htmlmessage = cforms2_check_default_vars($htmlmessage, $no, $subID);
         $htmlmessage = cforms2_check_cust_vars($htmlmessage, $track, true);
     }
 
@@ -871,7 +872,7 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                 $cmsg = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg']);
                 if (function_exists('my_cforms_logic'))
                     $cmsg = my_cforms_logic($trackf, $cmsg, 'autoConfTXT');
-                $cmsg = cforms2_check_default_vars($cmsg, $no);
+                $cmsg = cforms2_check_default_vars($cmsg, $no, $subID);
                 $cmsg = cforms2_check_cust_vars($cmsg, $track);
 
                 // HTML text
@@ -880,13 +881,13 @@ if (isset($_POST['sendbutton' . $no]) && $all_valid) {
                     $cmsghtml = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html']);
                     if (function_exists('my_cforms_logic'))
                         $cmsghtml = my_cforms_logic($trackf, $cmsghtml, 'autoConfHTML');
-                    $cmsghtml = cforms2_check_default_vars($cmsghtml, $no);
+                    $cmsghtml = cforms2_check_default_vars($cmsghtml, $no, $subID);
                     $cmsghtml = cforms2_check_cust_vars($cmsghtml, $track, true);
                 }
 
                 // subject
                 $subject2 = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
-                $subject2 = cforms2_check_default_vars($subject2, $no);
+                $subject2 = cforms2_check_default_vars($subject2, $no, $subID);
                 $subject2 = cforms2_check_cust_vars($subject2, $track);
 
                 // different cc and ac subjects?

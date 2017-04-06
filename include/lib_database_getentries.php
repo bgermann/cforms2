@@ -133,7 +133,7 @@ function cforms2_database_getentries() {
 
             echo '<p align="center">' . __('Sorry, data not found. Please refresh your data table.', 'cforms2') . '</p>';
             echo '</div>';
-        };
+        }
     }
 
     die();

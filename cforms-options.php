@@ -718,7 +718,7 @@ if (strlen($fd) <= 2) {
 
                 <tr class="ob space20">
                     <td class="obL"><label for="cforms_admin_html"><strong><?php _e('Enable HTML', 'cforms2') ?></strong></label></td>
-                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_admin_html" name="cforms_admin_html" <?php if ($o = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 2, 1) == '1') echo "checked=\"checked\""; ?>/></td>
+                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_admin_html" name="cforms_admin_html" <?php $o = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 2, 1) == '1'; if ($o) echo "checked=\"checked\""; ?>/></td>
                 </tr>
 
                 <tr class="ob <?php if (!$o == '1') echo "hidden"; ?>">
@@ -775,7 +775,7 @@ if (strlen($fd) <= 2) {
                 <tr class="ob">
                     <td class="obL">&nbsp;</td>
                     <td class="obR">
-                        <input class="allchk" type="checkbox" id="cforms_confirm" name="cforms_confirm" <?php if ($o = $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == "1") echo "checked=\"checked\""; ?>/><label for="cforms_confirm"><strong><?php _e('Activate auto confirmation', 'cforms2') ?></strong></label><br />
+                        <input class="allchk" type="checkbox" id="cforms_confirm" name="cforms_confirm" <?php $o = $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == "1"; if ($o) echo "checked=\"checked\""; ?>/><label for="cforms_confirm"><strong><?php _e('Activate auto confirmation', 'cforms2') ?></strong></label><br />
                         <a class="infobutton" href="#" name="it8"><?php _e('Please read note &raquo;', 'cforms2'); ?></a>
                     </td>
                 </tr>
@@ -807,7 +807,7 @@ if (strlen($fd) <= 2) {
                         </tr>
                         <tr class="ob space15">
                             <td class="obL"><label for="cforms_user_html"><strong><?php _e('Enable HTML', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_user_html" name="cforms_user_html" <?php if ($o2 = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') echo "checked=\"checked\""; ?>/></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_user_html" name="cforms_user_html" <?php $o2 = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1'; if ($o2) echo "checked=\"checked\""; ?>/></td>
                         </tr>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_cmsg_html"><strong><?php _e('HTML message', 'cforms2') ?></strong></label></td>
@@ -942,13 +942,7 @@ if (strlen($fd) <= 2) {
 add_action('admin_footer', 'cforms2_insert_modal');
 
 function cforms2_insert_modal() {
-    global $noDISP;
-    ?>
-        <div id="cf_editbox" title="<?php _e('Input Field Settings', 'cforms2'); ?>">
-            <div class="cf_ed_main">
-                <div id="cf_target"></div>
-            </div>
-        </div>
-    <?php
+    echo '<div id="cf_editbox" title="' . _e('Input Field Settings', 'cforms2') .'">'
+        . '<div class="cf_ed_main"><div id="cf_target"></div></div></div>';
 
 }

@@ -197,7 +197,7 @@ function cforms2($args = '', $no = '') {
     $success = false;
 
     // either show info message above or below
-    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
+    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, $subID);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
     $umc = ($usermessage_class <> '' && $no > 1) ? ' ' . $usermessage_class . $no : '';
@@ -400,7 +400,7 @@ function cforms2($args = '', $no = '') {
             else
                 $reg_exp = '';
             if ($obj[1] <> '')
-                $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no));
+                $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no, $subID));
 
             $field_name = $obj[0];
         }
@@ -641,7 +641,7 @@ function cforms2($args = '', $no = '') {
                 case "hidden":
 
                     $field_value = cforms2_check_post_vars($field_value);
-                    $field_value = cforms2_check_default_vars($field_value, $no);
+                    $field_value = cforms2_check_default_vars($field_value, $no, $subID);
 
                     if (preg_match('/^<([a-zA-Z0-9]+)>$/', $field_value, $getkey))
                         $field_value = $_GET[$getkey[1]];
@@ -799,9 +799,9 @@ function cforms2($args = '', $no = '') {
                         if ($field_value == '' || $field_value == '-') {
                             if (strpos($optPreset[1], 'true') !== false)
                                 $checked = ' selected="selected"';
-                        } else
-                        if ($opt[1] == $field_value || $jj == $field_value)
+                        } elseif ($opt[1] == $field_value || $jj == $field_value) {
                             $checked = ' selected="selected"';
+                        }
 
                         $field .= '<option value="' . (($field_type == 'emailtobox') ? $jj : $opt[1]) . '"' . $checked . '>' . $opt[0] . '</option>';
                     }
@@ -914,7 +914,7 @@ function cforms2($args = '', $no = '') {
     $content .= '<p class="cf-sb">' . $reset . $back . '<input type="submit" name="sendbutton' . $no . '" id="sendbutton' . $no . '" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_submit_text'])) . '"' . $ajaxenabled . '/></p></form>';
 
     // either show message above or below
-    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
+    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, $subID);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
     if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y' && !($success && $cformsSettings['form' . $no]['cforms' . $no . '_hide']))

@@ -208,8 +208,8 @@ function cforms2_check_post_vars($fv) {
 }
 
 /** look for default/system variables */
-function cforms2_check_default_vars($m, $no) {
-    global $subID, $cformsSettings;
+function cforms2_check_default_vars($m, $no, $subID) {
+    global $cformsSettings;
 
     $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
@@ -385,7 +385,7 @@ if (!function_exists('get_cforms_entries')) {
         // unify
         if ($sort === 'date' || $sort === 'timestamp')
             $sort = 'sub_date';
-        else if ($sort === 'form')
+        elseif ($sort === 'form')
             $sort = 'form_id';
 
         $limit = empty($limit) ? '' : 'LIMIT ' . ((int) $limitstart) . ',' . (int) $limit;
