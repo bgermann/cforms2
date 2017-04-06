@@ -59,7 +59,7 @@ You can install the plugin via WordPress Dashboard. It should show up by searchi
 
 If you want to install manually, please upload the complete plugin folder "cforms2", contained in the zip file, to your WordPress plugin directory!
 
-If you want to check integrity of the download, please use the cforms2.*.zip downloads and the corresponding .sig GPG signature files that are published via [GitHub releases](https://github.com/bgermann/cforms2/releases). The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53) has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`. The git tags themselves are also signed beginning with version 14.8.
+If you want to check integrity of the download, please use the cforms2.*.sig GPG signature files that are published via [GitHub releases](https://github.com/bgermann/cforms2/releases). The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53) has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`. The git tags themselves are also signed beginning with version 14.8.
 
 Please note that cformsII depends on [PHP Session Extensions](http://php.net/manual/book.session.php), which are enabled by default.
 
