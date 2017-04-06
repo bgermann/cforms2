@@ -3,6 +3,7 @@
 .flexigrid {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
+	line-height: normal;
 	position: relative;
 	border: 0px solid #eee;
 	overflow: hidden;
@@ -554,6 +555,11 @@ div.pGroup {
 	vertical-align: text-top;
 	position: relative;
 	top: -5px;
+	margin: 3px;
+}
+
+.flexigrid div.pDiv select {
+	margin: 3px;
 }
 
 .flexigrid div.pDiv  div.pButton {

@@ -135,7 +135,6 @@ function cforms2_enqueue_style_admin() {
 
 function cforms2_admin_enqueue_scripts() {
 
-    $suffix = SCRIPT_DEBUG ? '' : '.min';
     $r = plugin_dir_url(__FILE__);
 
     wp_enqueue_style('wp-color-picker');
@@ -143,7 +142,7 @@ function cforms2_admin_enqueue_scripts() {
     wp_register_style('jquery-flexigrid', $r . 'js/css/flexigrid.css', false, '1.1');
     wp_enqueue_style('jquery-flexigrid');
 
-    wp_register_script('jquery-flexigrid', $r . "js/jquery.flexigrid$suffix.js", array('jquery'), '1.1');
+    wp_register_script('jquery-flexigrid', $r . "js/jquery.flexigrid.js", array('jquery'), '1.1');
     wp_enqueue_script('jquery-flexigrid');
 
     wp_register_script('cforms-admin', $r . 'js/cforms.admin.js', array(
