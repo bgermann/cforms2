@@ -26,16 +26,13 @@ function cforms2_database_deleteentry() {
 
     global $wpdb;
 
-    $wpdb->cformssubmissions = $wpdb->prefix . 'cformssubmissions';
-    $wpdb->cformsdata = $wpdb->prefix . 'cformsdata';
-
     $cformsSettings = get_option('cforms_settings');
 
     $sub_id = $_POST['id'];
 
     if ($sub_id <> '' && $sub_id >= 0) {
 
-        $sql = "SELECT field_val,form_id FROM $wpdb->cformsdata, $wpdb->cformssubmissions WHERE sub_id = %s AND id=sub_id AND field_name LIKE '%%[*%%'";
+        $sql = "SELECT field_val,form_id FROM {$wpdb->prefix}cformsdata, {$wpdb->prefix}cformssubmissions WHERE sub_id = %s AND id=sub_id AND field_name LIKE '%%[*%%'";
         $filevalues = $wpdb->get_results($wpdb->prepare($sql, $sub_id));
 
         $del = '';
@@ -65,8 +62,8 @@ function cforms2_database_deleteentry() {
         elseif ($found == 1)
             $del = ' ' . __('(including all attachment/s)', 'cforms2');
 
-        $wpdb->delete($wpdb->cformssubmissions, array(id => $sub_id));
-        $wpdb->delete($wpdb->cformsdata, array(sub_id => $sub_id));
+        $wpdb->delete($wpdb->prefix . 'cformssubmissions', array(id => $sub_id));
+        $wpdb->delete($wpdb->prefix . 'cformsdata', array(sub_id => $sub_id));
 
         echo '<p><strong>' . __('Entry successfully removed', 'cforms2') . $del . '</strong></p>';
     }

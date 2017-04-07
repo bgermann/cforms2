@@ -17,13 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$track = array();
-
-// debug message handling
-if (!defined('WP_DEBUG_CFORMS2')) {
-    define('WP_DEBUG_CFORMS2', false);
-}
-
 function cforms2_dbg($m) {
     if (WP_DEBUG_CFORMS2)
         trigger_error('DEBUG cforms2: ' . $m);
@@ -238,7 +231,7 @@ function cforms2_check_default_vars($m, $no, $subID) {
         $user_name = $post_title = $post_excerpt = '';
     }
 
-    $CurrUser = wp_get_current_user();
+    $current_user = wp_get_current_user();
 
     if (isset($_SERVER['HTTP_REFERER']))
         $m = str_replace('{Referer}', $_SERVER['HTTP_REFERER'], $m);
@@ -251,11 +244,11 @@ function cforms2_check_default_vars($m, $no, $subID) {
     $m = str_replace('{IP}', cforms2_get_ip(), $m);
     $m = str_replace('{BLOGNAME}', get_option('blogname'), $m);
 
-    $m = str_replace('{CurUserID}', $CurrUser->ID, $m);
-    $m = str_replace('{CurUserName}', $CurrUser->display_name, $m);
-    $m = str_replace('{CurUserEmail}', $CurrUser->user_email, $m);
-    $m = str_replace('{CurUserFirstName}', $CurrUser->user_firstname, $m);
-    $m = str_replace('{CurUserLastName}', $CurrUser->user_lastname, $m);
+    $m = str_replace('{CurUserID}', $current_user->ID, $m);
+    $m = str_replace('{CurUserName}', $current_user->display_name, $m);
+    $m = str_replace('{CurUserEmail}', $current_user->user_email, $m);
+    $m = str_replace('{CurUserFirstName}', $current_user->user_firstname, $m);
+    $m = str_replace('{CurUserLastName}', $current_user->user_lastname, $m);
 
     $m = str_replace('{Permalink}', $permalink, $m);
     $m = str_replace('{Title}', $post_title, $m);
@@ -276,14 +269,14 @@ function cforms2_check_default_vars($m, $no, $subID) {
 }
 
 /** look for custom variables */
-function cforms2_check_cust_vars($m, $t, $html = false) {
+function cforms2_check_cust_vars($m, $track, $html = false) {
 
     global $cformsSettings;
     $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
     preg_match_all('/\\{([^\\{]+)\\}/', $m, $findall);
     if (count($findall[1]) > 0) {
-        $allvars = array_keys($t);
+        $allvars = array_keys($track);
 
         foreach ($findall[1] as $fvar) {
 
@@ -293,19 +286,19 @@ function cforms2_check_cust_vars($m, $t, $html = false) {
             if (strpos($fvar, '_field') !== false) {
                 $fNo = substr($fvar, 6);
                 if ($allvars[$fNo] <> '')
-                    $fTrackedVar = $t['$$$' . $fNo]; // reset to actual label name and continue
+                    $fTrackedVar = $track['$$$' . $fNo]; // reset to actual label name and continue
             }
 
             // convert if alt [id:] used
             if (in_array('$$$' . $fTrackedVar, $allvars)) {
-                if ($t['$$$' . $fTrackedVar] <> '')
-                    $fTrackedVar = $t['$$$' . $fTrackedVar]; // reset to actual label name and continue
+                if ($track['$$$' . $fTrackedVar] <> '')
+                    $fTrackedVar = $track['$$$' . $fTrackedVar]; // reset to actual label name and continue
             }
 
             // check if label name is tracked...
             if (in_array($fTrackedVar, $allvars)) {
 
-                $v = stripslashes($t[$fTrackedVar]);
+                $v = stripslashes($track[$fTrackedVar]);
 
                 // CRs for textareas \r\n user input hardcoded!
                 if ($html && strpos($v, "\n") !== false)
@@ -424,7 +417,7 @@ if (!function_exists('get_cforms_entries')) {
 
         $in = '';
 
-        $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->cformssubmissions} $where $ORDER_1 $limit";
+        $sql = "SELECT *, UNIX_TIMESTAMP(sub_date) as rawdate  FROM {$wpdb->prefix}cformssubmissions $where $ORDER_1 $limit";
         $all = $wpdb->get_results($sql);
 
         foreach ($all as $d) {

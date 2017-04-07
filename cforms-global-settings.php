@@ -18,8 +18,6 @@
  */
 
 global $wpdb;
-$wpdb->cformssubmissions = $wpdb->prefix . 'cformssubmissions';
-$wpdb->cformsdata = $wpdb->prefix . 'cformsdata';
 
 $cformsSettings = get_option('cforms_settings');
 
@@ -505,11 +503,3 @@ if (isset($_REQUEST['SubmitOptions']))
         </form>
     </fieldset>
 </div>
-
-<?php
-
-/** strip stuff */
-function cforms2_prep($v, $d) {
-    return ($v <> '') ? stripslashes(htmlspecialchars($v)) : $d;
-
-}

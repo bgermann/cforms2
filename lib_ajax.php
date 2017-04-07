@@ -16,9 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
-
 function cforms2_json_die($no, $result, $html, $hide = false, $redirection = null) {
     header('Content-Type: application/json');
     echo json_encode(array(
@@ -39,17 +36,18 @@ add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');
  * submit form
  */
 function cforms2_submitcform() {
-    global $cformsSettings, $usermessage_class, $usermessage_text;
+    global $cformsSettings;
     check_admin_referer('submitcform');
     $cformsSettings = get_option('cforms_settings');
-    $all_valid = true;
     $no = $_POST['cforms_id'];
     $_POST['sendbutton' . $no] = true;
-    require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
-    $hide = $all_valid && ($cformsSettings['form' . $no]['cforms' . $no . '_hide'] || cforms2_get_submission_left($no) == 0);
+    require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
+    $validation_result = cforms2_validate($no);
+    $hide = $validation_result['all_valid'] && ($cformsSettings['form' . $no]['cforms' . $no . '_hide'] || cforms2_get_submission_left($no) == 0);
+    $cf_redirect = null;
     if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
         $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
     }
-    cforms2_json_die($no, $usermessage_class, $usermessage_text, $hide, $cf_redirect);
+    cforms2_json_die($no, $validation_result['class'], $validation_result['text'], $hide, $cf_redirect);
 
 }

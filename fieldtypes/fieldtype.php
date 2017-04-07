@@ -111,31 +111,32 @@ abstract class cforms2_fieldtype {
      * Registers the field type with all possible combinations of ID and name to be used by cformsII.
      */
     public static function register() {
-        require_once (plugin_dir_path(__FILE__) . 'multiid.php');
+        require_once(plugin_dir_path(__FILE__) . 'multiid.php');
         cforms2_fieldtype_multi_id::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'checkbox.php');
+        require_once(plugin_dir_path(__FILE__) . 'checkbox.php');
         cforms2_fieldtype_checkbox::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'checkboxgroup.php');
+        require_once(plugin_dir_path(__FILE__) . 'checkboxgroup.php');
         cforms2_fieldtype_checkboxgroup::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'fieldsetstart.php');
+        require_once(plugin_dir_path(__FILE__) . 'fieldsetstart.php');
         cforms2_fieldtype_fieldsetstart::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'html5.php');
+        require_once(plugin_dir_path(__FILE__) . 'html5.php');
         cforms2_fieldtype_html5::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'question_and_answer.php');
+        require_once(plugin_dir_path(__FILE__) . 'captcha.php');
+        require_once(plugin_dir_path(__FILE__) . 'question_and_answer.php');
         cforms2_question_and_answer::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'selectbox.php');
+        require_once(plugin_dir_path(__FILE__) . 'selectbox.php');
         cforms2_fieldtype_selectbox::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'text.php');
+        require_once(plugin_dir_path(__FILE__) . 'text.php');
         cforms2_fieldtype_text::register();
 
-        require_once (plugin_dir_path(__FILE__) . 'textonly.php');
+        require_once(plugin_dir_path(__FILE__) . 'textonly.php');
         cforms2_fieldtype_textonly::register();
 
     }

@@ -26,6 +26,11 @@
 
 define('CFORMS2_VERSION', '14.12.3');
 
+// debug message handling
+if (!defined('WP_DEBUG_CFORMS2')) {
+    define('WP_DEBUG_CFORMS2', false);
+}
+
 global $wpdb;
 
 $cformsSettings = get_option('cforms_settings');
@@ -69,9 +74,9 @@ function cforms2_settings_corrupted() {
 
 }
 
-require_once (plugin_dir_path(__FILE__) . 'lib_email.php');
-require_once (plugin_dir_path(__FILE__) . 'lib_aux.php');
-require_once (plugin_dir_path(__FILE__) . 'lib_editor.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_editor.php');
 
 
 // session control for multi-part form
@@ -91,7 +96,7 @@ function cforms2_start_session() {
  */
 function cforms2($args = '', $no = '') {
 
-    global $subID, $track, $cformsSettings, $trackf;
+    global $cformsSettings;
 
     // remember old value to reset session when in new multi-part form
     $oldno = ($no == '1') ? '' : $no;
@@ -156,15 +161,14 @@ function cforms2($args = '', $no = '') {
     } else {
         $custom = false;
         $field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
+        $customfields = array();
     }
 
 
     $content = '';
 
-    $err = 0;
-
     $validations = array();
-    $all_valid = true;
+    $track = array();
 
     $custom_error = '';
     $usermessage_class = '';
@@ -181,9 +185,17 @@ function cforms2($args = '', $no = '') {
     }
 
     // non-AJAX method
+    $all_valid = true;
+    $subID = 'noid';
     if (isset($_REQUEST['sendbutton' . $no]) || $server_upload_size_error) {
-        require_once (plugin_dir_path(__FILE__) . 'lib_validate.php');
-        $usermessage_class = $all_valid ? ' success' : ' failure';
+        require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
+        $validation_result = cforms2_validate($no, $isMPform, $custom, $customfields);
+        $all_valid = $validation_result['all_valid'];
+        $usermessage_text = $validation_result['text'];
+        $usermessage_class = $validation_result['class'];
+        $track = $validation_result['track'];
+        $subID = $validation_result['sub_id'];
+
         if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
             $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
             if (!empty($cf_redirect)) { // TODO rework to do this via HTTP?
@@ -200,7 +212,7 @@ function cforms2($args = '', $no = '') {
     $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, $subID);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
-    $umc = ($usermessage_class <> '' && $no > 1) ? ' ' . $usermessage_class . $no : '';
+    $umc = (!empty($usermessage_class) && $no > 1) ? ' ' . $usermessage_class . $no : '';
 
     cforms2_dbg("User info for form #$no");
 
@@ -226,10 +238,6 @@ function cforms2($args = '', $no = '') {
             $no = cforms2_check_form_name($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next']);
 
             cforms2_dbg("Session active and now moving on to form #$no");
-
-            // logic: possibly change next form
-            if (function_exists('my_cforms_logic'))
-                $no = my_cforms_logic($trackf, $no, "nextForm"); // use trackf!
 
             $oldcurrent = $_SESSION['cforms']['current'];
             $_SESSION['cforms']['current'] = ($no == '') ? 1 : $no;
@@ -265,8 +273,7 @@ function cforms2($args = '', $no = '') {
         return $content;
     elseif (($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] <> '' && cforms2_get_submission_left($no) <= 0) || !cforms2_check_time($no)) {
 
-        global $cflimit;
-        if ($cflimit == "reached")
+        if ($validation_result['limit_reached'])
             return stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
         else
             return $content . stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
@@ -1161,9 +1168,9 @@ if ($cfadmin) {
     add_action('admin_enqueue_scripts', 'cforms2_admin_enqueue_scripts');
 }
 
-require_once (plugin_dir_path(__FILE__) . 'my-functions-deprecated.php');
-require_once (plugin_dir_path(__FILE__) . 'lib_ajax.php');
-require_once (plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
+require_once(plugin_dir_path(__FILE__) . 'my-functions-deprecated.php');
+require_once(plugin_dir_path(__FILE__) . 'lib_ajax.php');
+require_once(plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
 cforms2_fieldtype::register();
 
 function cforms2_field() {
@@ -1184,9 +1191,9 @@ if (is_admin()) {
     add_action('admin_menu', 'cforms2_menu');
     add_action('wp_ajax_cforms2_field', 'cforms2_field');
 
-    require_once (plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
-    require_once (plugin_dir_path(__FILE__) . 'include/lib_database_getentries.php');
-    require_once (plugin_dir_path(__FILE__) . 'include/lib_database_overview.php');
+    require_once(plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
+    require_once(plugin_dir_path(__FILE__) . 'include/lib_database_getentries.php');
+    require_once(plugin_dir_path(__FILE__) . 'include/lib_database_overview.php');
 }
 
 // admin bar

@@ -26,9 +26,6 @@ function cforms2_database_getentries() {
 
     global $wpdb;
 
-    $wpdb->cformssubmissions = $wpdb->prefix . 'cformssubmissions';
-    $wpdb->cformsdata = $wpdb->prefix . 'cformsdata';
-
     $cformsSettings = get_option('cforms_settings');
 
     $showIDs = $_POST['showids'];
@@ -36,7 +33,7 @@ function cforms2_database_getentries() {
         $sortBy = isset($_POST['sortby']) && $_POST['sortby'] <> '' ? $_POST['sortby'] : 'sub_id';
         $sortOrder = isset($_POST['sortorder']) && $_POST['sortorder'] === 'asc' ? 'asc' : 'desc';
 
-        $sql = "SELECT *, form_id, ip FROM $wpdb->cformsdata, $wpdb->cformssubmissions WHERE sub_id=id ";
+        $sql = "SELECT *, form_id, ip FROM {$wpdb->prefix}cformsdata, {$wpdb->prefix}cformssubmissions WHERE sub_id=id ";
         $sqlargs = array();
 
         if ($showIDs <> 'all') {

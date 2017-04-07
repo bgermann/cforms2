@@ -42,17 +42,3 @@ if ($cformsSettings['form' . $no]['cforms' . $no . '_header'] == '' && (($userco
 }
 
 echo '</form>';
-
-function cforms2_showmessage($confirm, $text, $no, $userconfirm) {
-    global $cformsSettings;
-
-    if ($confirm < 8)
-        $text = __('It seems that you have recently upgraded cforms', 'cforms2') . ' ' . $text;
-
-    if (isset($_GET['cf_confirm']) && $_GET['cf_confirm'] == 'confirm' . $confirm) {
-        $cformsSettings['form' . $no]['cforms' . $no . '_confirmerr'] = ($userconfirm | $confirm);
-        update_option('cforms_settings', $cformsSettings);
-    } else
-        echo '<div id="message' . $confirm . '" class="updated fade"><p>' . $text . '</p><p><a href="?page=' . plugin_dir_path(plugin_basename(__FILE__)) . 'cforms-options.php&cf_confirm=confirm' . $confirm . '" class="rm_button allbuttons">' . __('Remove Message', 'cforms2') . '</a></p></div>';
-
-}

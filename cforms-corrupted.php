@@ -23,10 +23,12 @@ cforms2_check_access_priv();
 <div class="wrap">
     <h2><?php _e('cforms error', 'cforms2') ?></h2>
 
-    <?php if ($_POST['fixsettings']) { ?>
+    <?php
+    if ($_POST['fixsettings']) {
 
-        <div class="error"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.', 'cforms2'); ?></p></div>
-        <?php
+        echo '<div class="error"><p>';
+        _e('Please deactivate and then re-activate the cforms plugin now.', 'cforms2');
+        echo '</p></div>';
         $c = stripslashes($_POST['currentsettings']);
 
         $nc = '';
@@ -43,22 +45,16 @@ cforms2_check_access_priv();
 
         update_option('cforms_settings', $nc);
         die();
-        ?>
+    } elseif ($_POST['resetsettings']) {
 
-    <?php } elseif ($_POST['resetsettings']) { ?>
-
-        <div class="updated fade"><p><?php _e('Please deactivate and then re-activate the cforms plugin now.', 'cforms2'); ?></p></div>
-        <?php
+        echo '<div class="updated fade"><p>';
+        _e('Please deactivate and then re-activate the cforms plugin now.', 'cforms2');
+        echo '</p></div>';
         delete_option('cforms_settings');
         cforms2_setup_db();
         wp_die();
-        ?>
-
-    <?php } else { ?>
-
-        <div class="error"><p><?php _e('It appears that WP has corrupted your cforms settings, the settings array can not be read properly.', 'cforms2'); ?></p></div>
-
-        <?php
+    } else {
+        echo '<div class="error"><p>' . __('It appears that WP has corrupted your cforms settings, the settings array can not be read properly.', 'cforms2') . '</p></div>';
     }
 
     global $wpdb;
@@ -67,27 +63,26 @@ cforms2_check_access_priv();
 
     <form name="corruptedsettings" class="corruptedsettings" method="POST">
 
-        <h3><?php _e('Corrupted cforms settings detected', 'cforms2'); ?></h2>
-            <table class="form-table">
-                <tr><td><?php _e('You can either try and fix the settings array or reset it and start from scratch.', 'cforms2'); ?> &nbsp;<input class="allbuttons deleteall" type="submit" name="resetsettings" id="resetsettings" value="<?php _e('RESET', 'cforms2'); ?>"/></td></tr>
-            </table>
+        <h3><?php _e('Corrupted cforms settings detected', 'cforms2'); ?></h3>
+        <table class="form-table">
+            <tr><td><?php _e('You can either try and fix the settings array or reset it and start from scratch.', 'cforms2'); ?> &nbsp;<input class="allbuttons deleteall" type="submit" name="resetsettings" id="resetsettings" value="<?php _e('RESET', 'cforms2'); ?>"/></td></tr>
+        </table>
 
-            <h3><?php _e('Corrupted cforms settings array (raw code)', 'cforms2'); ?></h2>
-                <table class="form-table">
-                    <tr><td>
-                            <?php _e('Depending on your Wordpress/PHP skills you may want to try and fix the serialized data below, then hit the fix button or try just like that, cforms may magically fix it for you.', 'cforms2'); ?>
-                        </td></tr>
-                    <tr><td>
-                            <textarea rows="16" cols="10" name="currentsettings" id="currentsettings"><?php echo $c; ?></textarea>
-                        </td></tr>
-                    <tr><td>
-                            <input class="allbuttons" type="submit" name="fixsettings" id="fixsettings" value="<?php _e('FIX and save data', 'cforms2'); ?>"/>
-                        </td></tr>
-                </table>
+        <h3><?php _e('Corrupted cforms settings array (raw code)', 'cforms2'); ?></h3>
+        <table class="form-table">
+            <tr>
+                <td><?php _e('Depending on your Wordpress/PHP skills you may want to try and fix the serialized data below, then hit the fix button or try just like that, cforms may magically fix it for you.', 'cforms2'); ?></td>
+            </tr>
+            <tr>
+                <td><textarea rows="16" cols="10" name="currentsettings" id="currentsettings"><?php echo $c; ?></textarea></td>
+            </tr>
+            <tr>
+                <td><input class="allbuttons" type="submit" name="fixsettings" id="fixsettings" value="<?php _e('FIX and save data', 'cforms2'); ?>"/></td>
+            </tr>
+        </table>
 
-                </form>
+    </form>
 
-                </div>
-                <?php
-                wp_die();
-                
+</div>
+<?php
+wp_die();

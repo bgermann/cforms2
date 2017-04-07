@@ -940,9 +940,3 @@ if (strlen($fd) <= 2) {
 
 <?php
 add_action('admin_footer', 'cforms2_insert_modal');
-
-function cforms2_insert_modal() {
-    echo '<div id="cf_editbox" title="' . _e('Input Field Settings', 'cforms2') .'">'
-        . '<div class="cf_ed_main"><div id="cf_target"></div></div></div>';
-
-}

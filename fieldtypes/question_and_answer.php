@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once (plugin_dir_path(__FILE__) . 'captcha.php');
-
 /**
  * Replaces the old Q&A feature.
  */

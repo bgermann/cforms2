@@ -17,10 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-global $wpdb;
-$wpdb->cformssubmissions = $wpdb->prefix . 'cformssubmissions';
-$wpdb->cformsdata = $wpdb->prefix . 'cformsdata';
-
 // Check Whether User Can Manage Database
 cforms2_check_access_priv('track_cforms');
 
