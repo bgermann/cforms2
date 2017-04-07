@@ -123,7 +123,7 @@ if (isset($_REQUEST['SubmitOptions']))
         // Setup database tables ?
         if (isset($_REQUEST['cforms_database']) && $_REQUEST['cforms_database_new'] == 'true') {
 
-            if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") <> $wpdb->cformssubmissions) {
+            if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") !== $wpdb->cformssubmissions) {
 
                 $sql = "CREATE TABLE " . $wpdb->cformssubmissions . " (
                         id int(11) unsigned auto_increment,
@@ -145,7 +145,7 @@ if (isset($_REQUEST['SubmitOptions']))
                 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
                 dbDelta($sql);
 
-                if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") <> $wpdb->cformssubmissions) {
+                if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") !== $wpdb->cformssubmissions) {
                     ?>
                     <div id="message" class="updated fade">
                         <p><strong><?php printf(__('ERROR: cforms tracking tables %s could not be created.', 'cforms2'), '(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>

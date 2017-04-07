@@ -48,11 +48,11 @@ if (isset($_REQUEST['addbutton'])) {
     $noDISP = '1';
     $no = '';
     if (isset($_REQUEST['switchform'])) { // only set when hitting form chg buttons
-        if ($_REQUEST['switchform'] <> '1')
+        if ($_REQUEST['switchform'] !== '1')
             $noDISP = $no = $_REQUEST['switchform'];
     }
     elseif (isset($_REQUEST['go'])) { // only set when hitting form chg buttons
-        if ($_REQUEST['pickform'] <> '1')
+        if ($_REQUEST['pickform'] !== '1')
             $noDISP = $no = $_REQUEST['pickform'];
     }
     elseif (isset($_REQUEST['noSub']) && (int) $_REQUEST['noSub'] > 1) { // otherwise stick with the current form
@@ -132,8 +132,8 @@ if ($cformsSettings['form' . $no]['cforms' . $no . '_fromemail'] == '') {
 // check if HTML needs to be enabled
 $fd = $cformsSettings['form' . $no]['cforms' . $no . '_formdata'];
 if (strlen($fd) <= 2) {
-    $fd .= ( $cformsSettings['form' . $no]['cforms' . $no . '_header_html'] <> '' ) ? '1' : '0';
-    $fd .= ( $cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'] <> '' ) ? '1' : '0';
+    $fd .= empty( $cformsSettings['form' . $no]['cforms' . $no . '_header_html']) ? '0' : '1';
+    $fd .= empty( $cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html']) ? '0' : '1';
     $cformsSettings['form' . $no]['cforms' . $no . '_formdata'] = $fd;
     update_option('cforms_settings', $cformsSettings);
 }
@@ -153,7 +153,7 @@ if (strlen($fd) <= 2) {
                     <?php
                     for ($i = 1; $i <= $FORMCOUNT; $i++) {
                         $j = ( $i > 1 ) ? $i : '';
-                        echo '<input title="' . stripslashes($cformsSettings['form' . $j]['cforms' . $j . '_fname']) . '" class="allbuttons chgbutton' . (($i <> $noDISP) ? '' : 'hi') . '" type="submit" name="switchform" value="' . $i . '"/>';
+                        echo '<input title="' . stripslashes($cformsSettings['form' . $j]['cforms' . $j . '_fname']) . '" class="allbuttons chgbutton' . (($i != $noDISP) ? '' : 'hi') . '" type="submit" name="switchform" value="' . $i . '"/>';
                     }
                     ?>
                 </td>
@@ -286,7 +286,7 @@ if (strlen($fd) <= 2) {
 
                         <div class="itemContent">
 
-                            <span class="itemHeader<?php echo ($alternate <> '') ? ' altmove' : ''; ?>" title="<?php _e('Drag me', 'cforms2') ?>"><?php echo (($i < 10) ? '0' : '') . $i; ?></span>
+                            <span class="itemHeader<?php echo empty($alternate) ? '' : ' altmove'; ?>" title="<?php _e('Drag me', 'cforms2') ?>"><?php echo (($i < 10) ? '0' : '') . $i; ?></span>
 
                             <input tabindex="<?php echo $ti++ ?>" title="<?php _e('Please enter field definition', 'cforms2'); ?>" class="inpfld" <?php echo $specialclass; ?> name="field_<?php echo($i); ?>_name" id="field_<?php echo($i); ?>_name" size="30" value="<?php echo ($field_type == 'fieldsetend') ? '--' : $field_name; ?>" />
 
@@ -611,7 +611,7 @@ if (strlen($fd) <= 2) {
                         </td>
                     </tr>
 
-                    <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] <> '' || $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] <> '' || $cformsSettings['form' . $no]['cforms' . $no . '_enddate'] <> '') { ?>
+                    <?php if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_maxentries']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])) { ?>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_limittxt'])); ?></textarea></td></tr></table></td>
@@ -823,7 +823,7 @@ if (strlen($fd) <= 2) {
                         $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
                         $err = '';
                         $t = (substr($a, 0, 1) == '/') ? $a : plugin_dir_path(__FILE__) . $a;
-                        if ($t <> '' && !file_exists($t)) {
+                        if (!empty($t) && !file_exists($t)) {
                             $err = '<br /><p class="error">' . sprintf(__('Can\'t find the specified <strong>Attachment</strong> (%s)! Please verify the server path!', 'cforms2'), $t) . '</p>';
                         }
                         ?>

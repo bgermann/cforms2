@@ -192,7 +192,7 @@ function cforms2_check_post_vars($fv) {
 
         $custArr = get_post_custom();
         foreach ($fall[1] as $fvar) {
-            if ($custArr[$fvar][0] <> '')
+            if (!empty($custArr[$fvar][0]))
                 $fv = str_replace('{' . $fvar . '}', $custArr[$fvar][0], $fv);
         }
     }
@@ -261,7 +261,7 @@ function cforms2_check_default_vars($m, $no, $subID) {
     $m = str_replace("\r", "\n", $m);
     $m = str_replace("\n", $eol, $m);
 
-    if ($cformsSettings['global']['cforms_database'] && $subID <> '')
+    if ($cformsSettings['global']['cforms_database'] && !empty($subID))
         $m = str_replace('{ID}', $subID, $m);
 
     return $m;
@@ -285,13 +285,13 @@ function cforms2_check_cust_vars($m, $track, $html = false) {
             // convert _fieldXYZ to actual label name tracked...
             if (strpos($fvar, '_field') !== false) {
                 $fNo = substr($fvar, 6);
-                if ($allvars[$fNo] <> '')
+                if (!empty($allvars[$fNo]))
                     $fTrackedVar = $track['$$$' . $fNo]; // reset to actual label name and continue
             }
 
             // convert if alt [id:] used
             if (in_array('$$$' . $fTrackedVar, $allvars)) {
-                if ($track['$$$' . $fTrackedVar] <> '')
+                if (!empty($track['$$$' . $fTrackedVar]))
                     $fTrackedVar = $track['$$$' . $fTrackedVar]; // reset to actual label name and continue
             }
 
@@ -337,8 +337,8 @@ function cforms2_compare($a, $b) {
 
     if (!is_array($a) && !is_array($b)) {
 
-        $na = ($cfdataTMP[$a]['data'][$cfsort] <> '') ? $cfdataTMP[$a]['data'][$cfsort] : false;
-        $nb = ($cfdataTMP[$b]['data'][$cfsort] <> '') ? $cfdataTMP[$b]['data'][$cfsort] : false;
+        $na = empty($cfdataTMP[$a]['data'][$cfsort]) ? false : $cfdataTMP[$a]['data'][$cfsort];
+        $nb = empty($cfdataTMP[$b]['data'][$cfsort]) ? false : $cfdataTMP[$b]['data'][$cfsort];
 
         if (!($na && $nb)) {
             if (!$na)
@@ -439,7 +439,7 @@ if (!function_exists('get_cforms_entries')) {
         $offsets = array();
         foreach ($all as $d) {
 
-            if (isset($offsets[$d->sub_id][$d->field_name]) && $offsets[$d->sub_id][$d->field_name] <> '')
+            if (isset($offsets[$d->sub_id][$d->field_name]) && !empty($offsets[$d->sub_id][$d->field_name]))
                 $offsets[$d->sub_id][$d->field_name] ++;
             else
                 $offsets[$d->sub_id][$d->field_name] = 1;

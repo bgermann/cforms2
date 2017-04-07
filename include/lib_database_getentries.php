@@ -29,14 +29,14 @@ function cforms2_database_getentries() {
     $cformsSettings = get_option('cforms_settings');
 
     $showIDs = $_POST['showids'];
-    if ($showIDs <> '') {
-        $sortBy = isset($_POST['sortby']) && $_POST['sortby'] <> '' ? $_POST['sortby'] : 'sub_id';
+    if (!empty($showIDs)) {
+        $sortBy = isset($_POST['sortby']) && !empty($_POST['sortby']) ? $_POST['sortby'] : 'sub_id';
         $sortOrder = isset($_POST['sortorder']) && $_POST['sortorder'] === 'asc' ? 'asc' : 'desc';
 
         $sql = "SELECT *, form_id, ip FROM {$wpdb->prefix}cformsdata, {$wpdb->prefix}cformssubmissions WHERE sub_id=id ";
         $sqlargs = array();
 
-        if ($showIDs <> 'all') {
+        if ($showIDs !== 'all') {
             $sub_ids = explode(',', substr($showIDs, 0, -1));
             $placeholder = implode(',', array_fill(0, count($sub_ids), '%d'));
             $sql .= "AND sub_id in ($placeholder) ";
@@ -56,9 +56,9 @@ function cforms2_database_getentries() {
             $sub_id = '';
             foreach ($entries as $entry) {
 
-                if ($sub_id <> $entry->sub_id) {
+                if ($sub_id != $entry->sub_id) {
 
-                    if ($sub_id <> '')
+                    if (!empty($sub_id))
                         echo '</div>';
 
                     $sub_id = $entry->sub_id;

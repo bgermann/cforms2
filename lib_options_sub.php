@@ -27,7 +27,7 @@ $uploadfield = false;
 
 for ($i = 1; $i <= $field_count; $i++) {
 
-    if ($_REQUEST['field_' . $i . '_name'] <> '') {
+    if (!empty($_REQUEST['field_' . $i . '_name'])) {
         $allgood = true;
         $name = str_replace('$#$', '$', $_REQUEST['field_' . $i . '_name']);
         $type = $_REQUEST['field_' . $i . '_type'];
@@ -84,7 +84,7 @@ $cformsSettings['form' . $no]['cforms' . $no . '_fname'] = preg_replace(array('/
 if (!isset($_REQUEST['cforms_upload_noid']))
     $_REQUEST['cforms_upload_noid'] = "";
 $cformsSettings['form' . $no]['cforms' . $no . '_noid'] = cforms2_get_boolean_from_request('cforms_upload_noid');
-if ($uploadfield && cforms2_get_from_request('cforms_upload_dir') <> '')
+if ($uploadfield && !empty(cforms2_get_from_request('cforms_upload_dir')))
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'] = cforms2_get_from_request('cforms_upload_dir') . '$#$' . cforms2_get_from_request('cforms_upload_dir_url');
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = cforms2_get_from_request('cforms_upload_ext');
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = cforms2_get_from_request('cforms_upload_size');
@@ -112,13 +112,13 @@ $startdate = cforms2_get_from_request('cforms_startdate');
 $starttime = cforms2_get_from_request('cforms_starttime');
 $enddate = cforms2_get_from_request('cforms_enddate');
 $endtime = cforms2_get_from_request('cforms_endtime');
-if ($startdate <> '' && $starttime == '')
+if (!empty($startdate) && empty($starttime))
     $_REQUEST['cforms_starttime'] = '00:00';
-if ($starttime <> '' && $startdate == '')
+if (!empty($starttime) && empty($startdate))
     $_REQUEST['cforms_startdate'] = current_time('d/m/Y');
-if ($enddate <> '' && $endtime == '')
+if (!empty($enddate) && empty($endtime))
     $_REQUEST['cforms_endtime'] = '00:00';
-if ($endtime <> '' && $enddate == '')
+if (!empty($endtime) && empty($enddate))
     $_REQUEST['cforms_enddate'] = current_time('d/m/Y');
 $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] = preg_replace("/\\\+/", "\\", $startdate) . ' ' .
         preg_replace("/\\\+/", "\\", $starttime);
@@ -189,7 +189,7 @@ $cformsSettings['form' . $no]['cforms' . $no . '_tracking'] = preg_replace("/\\\
 
 
 // reorder fields if order changed
-if (isset($_REQUEST['field_order']) && $_REQUEST['field_order'] <> '') {
+if (isset($_REQUEST['field_order']) && !empty($_REQUEST['field_order'])) {
     $j = 0;
 
     $result = preg_match_all('/allfields\[\]=f([^&]+)&?/', $_REQUEST['field_order'], $order);
@@ -197,7 +197,7 @@ if (isset($_REQUEST['field_order']) && $_REQUEST['field_order'] <> '') {
     $tempcount = isset($_REQUEST['AddField']) ? ($field_count - $_POST['AddFieldNo']) : ($field_count);
     while ($j < $tempcount) {
         $new_f = $order[$j] - 1;
-        if ($j <> $new_f)
+        if ($j != $new_f)
             $cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . ($j + 1)] = $all_fields[$new_f];
         $j++;
     }
@@ -212,7 +212,7 @@ if (isset($_REQUEST['AddField']) && isset($_REQUEST['field_count_submit'])) {
     $_POST['AddFieldPos'] = ($_POST['AddFieldPos'] == "0") ? 1 : $_POST['AddFieldPos'];
 
     // need to insert empty fields in between?
-    if ($_POST['AddFieldPos'] <> '' && $_POST['AddFieldPos'] < $_POST['field_count_submit']) {
+    if (!empty($_POST['AddFieldPos']) && $_POST['AddFieldPos'] < $_POST['field_count_submit']) {
         for ($i = $_POST['field_count_submit']; $i >= $_POST['AddFieldPos']; $i--) {
             $cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . (int) ($i + $_POST['AddFieldNo'])] = $cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . (int) ($i)];
         }

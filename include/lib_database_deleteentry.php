@@ -30,7 +30,7 @@ function cforms2_database_deleteentry() {
 
     $sub_id = $_POST['id'];
 
-    if ($sub_id <> '' && $sub_id >= 0) {
+    if (!empty($sub_id) && $sub_id >= 0) {
 
         $sql = "SELECT field_val,form_id FROM {$wpdb->prefix}cformsdata, {$wpdb->prefix}cformssubmissions WHERE sub_id = %s AND id=sub_id AND field_name LIKE '%%[*%%'";
         $filevalues = $wpdb->get_results($wpdb->prepare($sql, $sub_id));
@@ -45,7 +45,7 @@ function cforms2_database_deleteentry() {
 
             $file = $fileuploaddir . '/' . $sub_id . '-' . $fileval->field_val;
 
-            if ($fileval->field_val <> '') {
+            if (!empty($fileval->field_val)) {
                 if (file_exists($file)) {
                     unlink($file);
                     $found = $found | 1;
