@@ -342,11 +342,11 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 $obj[] = "";
                 $obj[] = "";
 
-                if ($obj[2] <> '') {
+                if (!empty($obj[2])) {
                     // check against other field!
-                    if (isset($_REQUEST[$obj[2]]) && $_REQUEST[$obj[2]] <> '') {
+                    if (isset($_REQUEST[$obj[2]]) && !empty($_REQUEST[$obj[2]])) {
 
-                        if ($current_field <> $_REQUEST[$obj[2]])
+                        if ($current_field != $_REQUEST[$obj[2]])
                             $validations[$i + $off] = false;
                     }
                     else {
@@ -361,7 +361,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         else
                             $valField = $current_field;
 
-                        if ($current_field <> '' && !preg_match('/' . $reg_exp . '/', $valField)) {
+                        if (!empty($current_field) && !preg_match('/' . $reg_exp . '/', $valField)) {
                             $validations[$i + $off] = false;
                         }
                     }
@@ -374,7 +374,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
             $all_valid = $all_valid && $validations[$i + $off];
 
-            if ($c_err[1] <> '' && $validations[$i + $off] == false) {
+            if (!empty($c_err[1]) && $validations[$i + $off] == false) {
                 $c_errflag = 4;
                 $custom_error .= '<li><a href="#li-' . $no . '-' . ($i + $off) . '">' . stripslashes($c_err[1]) . ' &raquo;</li></a>';
             }
@@ -429,7 +429,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 if (!is_uploaded_file($file['tmp_name'][$i]))
                     $fileerr = $cformsSettings['global']['cforms_upload_err4'];
 
-                if ($fileerr <> '') {
+                if (!empty($fileerr)) {
                     $err = 3;
                     $all_valid = false;
                 }
@@ -459,7 +459,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             break;
     }
 
-    if ($err <> 0 && $c_errflag)
+    if ($err !== 0 && $c_errflag)
         $usermessage_text .= '<ol>' . $custom_error . '</ol>';
 
 
@@ -472,7 +472,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         if (function_exists('my_cforms_filter'))
             my_cforms_filter($_POST);
 
-        if (($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] <> '' && cforms2_get_submission_left($no) == 0) || !cforms2_check_time($no)) {
+        if ((!empty($cformsSettings['form' . $no]['cforms' . $no . '_maxentries']) && cforms2_get_submission_left($no) == 0) || !cforms2_check_time($no)) {
             return array(
                 'text' => $usermessage_text,
                 'class' => $usermessage_class,
@@ -686,9 +686,9 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $ongoingSession = 'noSess';
         if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) {
 
-            if ($field_email <> '')
+            if (!empty($field_email))
                 $_SESSION['cforms']['email'] = $field_email;
-            if ($ccme <> '')
+            if (!empty($ccme))
                 $_SESSION['cforms']['ccme'] = $ccme;
             $_SESSION['cforms']['list'][$_SESSION['cforms']['pos'] ++] = $no;
             $_SESSION['cforms']['current'] = $no == '' ? 1 : $no;
@@ -723,7 +723,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
         $subID = cforms2_write_tracking_record($no, $field_email, $track);
 
-        if (!($to_one <> -1 && $to <> '')) {
+        if (!($to_one != -1 && !empty($to))) {
             $to = $replyto = preg_replace(array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_email']));
         }
 
@@ -731,7 +731,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         // Files attached??
         if (is_array($file)) {
             // create $_SESSION['cforms']['upload'] via cforms2_move_files()
-            if ($subID <> -1 && $ongoingSession != '0')
+            if ($subID != -1 && $ongoingSession != '0')
                 cforms2_move_files($no, $subID, $file);
             else
                 cforms2_move_files($no, 'xx', $file);
@@ -832,7 +832,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             }
             // parse through all files (both single and multi-part forms)
             foreach ($fdata as $file) {
-                if ($file['doAttach'] && $file['name'] <> '') {
+                if ($file['doAttach'] && !empty($file['name'])) {
                     $mail->add_file($file['name']); // optional name
                     cforms2_dbg('Attaching file (' . $file['name'] . ') to email');
                 }
@@ -867,7 +867,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                 // send copy or notification?
                 // not if no email and already CC'ed
-                if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && $field_email <> '') || ($ccme && $trackf['data'][$ccme] <> '')) {
+                if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && !empty($field_email)) || !empty($ccme && $trackf['data'][$ccme])) {
 
                     $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fromemail']), $track);
 
@@ -895,10 +895,10 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                     // different cc and ac subjects?
                     $s = explode('$#$', $subject2);
-                    $s[1] = ($s[1] <> '') ? $s[1] : $s[0];
+                    $s[1] = empty($s[1]) ? $s[0] : $s[1];
 
                     // email tracking via 3rd party?
-                    $field_email = ($cformsSettings['form' . $no]['cforms' . $no . '_tracking'] <> '') ? $field_email . $cformsSettings['form' . $no]['cforms' . $no . '_tracking'] : $field_email;
+                    $field_email = empty($cformsSettings['form' . $no]['cforms' . $no . '_tracking']) ? $field_email : $field_email . $cformsSettings['form' . $no]['cforms' . $no . '_tracking'];
 
                     $mail = new cforms2_mail($no, $frommail, $field_email, $replyto);
 
@@ -911,7 +911,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     }
 
                     // CC or auto conf?
-                    if ($ccme && $trackf['data'][$ccme] <> '') {
+                    if ($ccme && !empty($trackf['data'][$ccme])) {
                         $mail->subj = $s[1];
                         if ($mail->html_show) {
                             $mail->set_html(true);

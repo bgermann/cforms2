@@ -232,7 +232,7 @@ function cforms2($args = '', $no = '') {
 
         cforms2_dbg("Form is all valid & sendbutton pressed.");
 
-        if ($isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current'] > 0 && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] <> -1) {
+        if ($isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current'] > 0 && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] != -1) {
 
             $isMPformNext = true;
             $no = cforms2_check_form_name($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next']);
@@ -271,7 +271,7 @@ function cforms2($args = '', $no = '') {
             )
     )
         return $content;
-    elseif (($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] <> '' && cforms2_get_submission_left($no) <= 0) || !cforms2_check_time($no)) {
+    elseif ((!empty($cformsSettings['form' . $no]['cforms' . $no . '_maxentries']) && cforms2_get_submission_left($no) <= 0) || !cforms2_check_time($no)) {
 
         if ($validation_result['limit_reached'])
             return stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
@@ -326,7 +326,7 @@ function cforms2($args = '', $no = '') {
         // check for html5 attributes
         $obj = explode('|html5:', $field_name, 2);
         $obj[] = "";
-        $html5 = ($obj[1] <> '') ? preg_split('/\x{00A4}/u', $obj[1], -1) : '';
+        $html5 = empty($obj[1]) ? '' : preg_split('/\x{00A4}/u', $obj[1], -1);
 
         cforms2_dbg("\t\t html5 check, settings = " . print_r($html5, 1));
 
@@ -337,7 +337,7 @@ function cforms2($args = '', $no = '') {
 
         cforms2_dbg("\t adding $field_type field: $field_name");
 
-        if ($fielderr <> '') {
+        if (!empty($fielderr)) {
             switch ($field_type) {
                 case 'upload':
                     $custom_error .= 'cf_uploadfile' . $no . '-' . $i . '$#$' . $fielderr . '|';
@@ -357,7 +357,7 @@ function cforms2($args = '', $no = '') {
         // check for title attribute
         $obj = explode('|title:', $obj[0], 2);
         $obj[] = "";
-        $fieldTitle = ($obj[1] <> '') ? str_replace('"', '&quot;', stripslashes($obj[1])) : '';
+        $fieldTitle = empty($obj[1]) ? '' : str_replace('"', '&quot;', stripslashes($obj[1]));
 
         cforms2_dbg("\t\t title check, obj[0] = " . $obj[0]);
 
@@ -387,7 +387,7 @@ function cforms2($args = '', $no = '') {
 
 
         // check if fieldset is open
-        if (!$fieldsetopen && !$ol && $field_type <> 'fieldsetstart') {
+        if (!$fieldsetopen && !$ol && $field_type !== 'fieldsetstart') {
             $content .= '<ol class="cf-ol">';
             $ol = true;
         }
@@ -402,11 +402,11 @@ function cforms2($args = '', $no = '') {
             $obj[] = "";
             $obj[] = "";
 
-            if ($obj[2] <> '')
+            if (!empty($obj[2]))
                 $reg_exp = str_replace('"', '&quot;', stripslashes($obj[2]));
             else
                 $reg_exp = '';
-            if ($obj[1] <> '')
+            if (!empty($obj[1]))
                 $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no, $subID));
 
             $field_name = $obj[0];
@@ -506,7 +506,7 @@ function cforms2($args = '', $no = '') {
                 $field_class .= ' cf_error';
                 $liERR = 'cf_li_err';
                 if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 3, 1) == "y")
-                    $insertErr = ($fielderr <> '') ? '<ul class="cf_li_text_err"><li>' . stripslashes($fielderr) . '</li></ul>' : '';
+                    $insertErr = empty($fielderr) ? '' : '<ul class="cf_li_text_err"><li>' . stripslashes($fielderr) . '</li></ul>';
             }
 
             if (!isset($_REQUEST[$input_name]))
@@ -536,7 +536,7 @@ function cforms2($args = '', $no = '') {
 
 
         // if not reloaded (due to error) then use default values
-        if ($field_value == '' && $defaultvalue <> '')
+        if ($field_value == '' && !empty($defaultvalue))
             $field_value = $defaultvalue;
 
         // field disabled or readonly, greyed out?
@@ -561,7 +561,7 @@ function cforms2($args = '', $no = '') {
                     break;
 
                 case "textonly":
-                    $field .= '<li' . $liID . ' class="textonly' . (($defaultvalue <> '') ? ' ' . $defaultvalue : '') . '"' . (($reg_exp <> '') ? ' style="' . $reg_exp . '" ' : '') . '>' . stripslashes(($field_name)) . '</li>';
+                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . $reg_exp . '" ') . '>' . stripslashes(($field_name)) . '</li>';
                     break;
 
                 case "fieldsetstart":
@@ -639,7 +639,7 @@ function cforms2($args = '', $no = '') {
                     $onfocus = $field_clear ? ' onfocus="clearField(this)" onblur="setField(this)"' : '';
 
                     $field = '<input' . $h5 . $readonly . $disabled . ' type="' . $type . '" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '" value="' . $field_value . '"' . $onfocus . ' title="' . $fieldTitle . '"/>';
-                    if ($reg_exp <> '')
+                    if (!empty($reg_exp))
                         $field .= '<input type="hidden" name="' . $input_name . '_regexp" id="' . $input_id . '_regexp" value="' . $reg_exp . '" title="' . $fieldTitle . '"/>';
 
                     $field .= $dp;
@@ -660,24 +660,24 @@ function cforms2($args = '', $no = '') {
                     $onfocus = $field_clear ? ' onfocus="clearField(this)" onblur="setField(this)"' : '';
 
                     $field = '<textarea' . $readonly . $disabled . ' cols="30" rows="8" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '"' . $onfocus . ' title="' . $fieldTitle . '">' . $field_value . '</textarea>';
-                    if ($reg_exp <> '')
+                    if (!empty($reg_exp))
                         $field .= '<input type="hidden" name="' . $input_name . '_regexp" id="' . $input_id . '_regexp" value="' . $reg_exp . '" title="' . $fieldTitle . '"/>';
                     break;
 
                 case "ccbox":
                 case "checkbox":
                     if (!$all_valid || ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form' . $no]))) // exclude MP! if first time on the form = array = null
-                        $preChecked = ( $field_value && $field_value <> '' ) ? ' checked="checked"' : '';  // for MPs
+                        $preChecked = ( $field_value && !empty($field_value) ) ? ' checked="checked"' : '';  // for MPs
                     else
                         $preChecked = ( strpos($chkboxClicked[1], 'true') !== false ) ? ' checked="checked"' : '';  // $all_valid = user choice prevails
 
                     $err = '';
-                    if (!$server_upload_size_error && !$all_valid && $validations[$i] <> 1)
+                    if (!$server_upload_size_error && !$all_valid && $validations[$i] != 1)
                         $err = ' cf_errortxt';
 
                     $opt = explode('|', $field_name, 2);
                     $opt[] = "";
-                    if ($options[1] <> '') {
+                    if (!empty($options[1])) {
                         $before = '<li' . $liID . ' class="' . $liERR . '">' . $insertErr;
                         $after = '<label' . $labelID . ' for="' . $input_id . '" class="cf-after' . $err . '"><span>' . $opt[0] . '</span></label></li>';
                         $ba = 'a';
@@ -688,7 +688,7 @@ function cforms2($args = '', $no = '') {
                     }
 
                     if ($val == '')
-                        $val = ($opt[1] <> '') ? ' value="' . $opt[1] . '"' : '';
+                        $val = empty($opt[1]) ? '' : ' value="' . $opt[1] . '"';
 
                     $field = $before . '<input' . $readonly . $disabled . ' type="checkbox" name="' . $input_name . '" id="' . $input_id . '" class="cf-box-' . $ba . $field_class . '"' . $val . ' title="' . $fieldTitle . '"' . $preChecked . '/>' . $after;
 
@@ -696,7 +696,7 @@ function cforms2($args = '', $no = '') {
 
 
                 case "checkboxgroup":
-                    $liID_b = ($liID <> '') ? substr($liID, 0, -1) . 'items"' : '';
+                    $liID_b = empty($liID) ? '' : substr($liID, 0, -1) . 'items"';
                     array_shift($options);
                     $field .= '<li' . $liID . ' class="cf-box-title">' . (($field_name)) . '</li>' .
                             '<li' . $liID_b . ' class="cf-box-group">';
@@ -731,7 +731,7 @@ function cforms2($args = '', $no = '') {
 
                         $brackets = $isFieldArray ? '' : '[]';
 
-                        if ($labelID <> '')
+                        if (!empty($labelID))
                             $labelIDx = substr($labelID, 0, -1) . $id . '"';
 
                         if ($opt[0] == '')
@@ -795,7 +795,7 @@ function cforms2($args = '', $no = '') {
                             $opt[1] = $opt[0];
 
                         // email-to-box valid entry?
-                        if ($field_type == 'emailtobox' && $opt[1] <> '-')
+                        if ($field_type === 'emailtobox' && $opt[1] !== '-')
                             $jj = $j;
                         else
                             $jj = '-';
@@ -816,7 +816,7 @@ function cforms2($args = '', $no = '') {
                     break;
 
                 case "radiobuttons":
-                    $liID_b = ($liID <> '') ? substr($liID, 0, -1) . 'items"' : ''; // only if label IDs active
+                    $liID_b = empty($liID) ? '' : substr($liID, 0, -1) . 'items"'; // only if label IDs active
 
                     array_shift($options);
                     $field .= '<li' . $liID . ' class="' . $liERR . ' cf-box-title">' . $insertErr . (($field_name)) . '</li>' .
@@ -841,7 +841,7 @@ function cforms2($args = '', $no = '') {
                         if ($opt[1] == $field_value)
                             $checked = ' checked="checked"';
 
-                        if ($labelID <> '')
+                        if (!empty($labelID))
                             $labelIDx = substr($labelID, 0, -1) . $id . '"';
 
                         if ($opt[0] == '')
@@ -944,7 +944,7 @@ function cforms2_enqueue_scripts() {
 
     if ($onPages == '' || (in_array($page_obj->ID, $onPagesA) && !$exclude) || (!in_array($page_obj->ID, $onPagesA) && $exclude)) {
 
-        if ($cformsSettings['global']['cforms_no_css'] <> '1') {
+        if ($cformsSettings['global']['cforms_no_css'] != '1') {
             wp_register_style('cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION);
             wp_enqueue_style('cforms2');
         }
