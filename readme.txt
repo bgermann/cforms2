@@ -152,6 +152,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.13.1 =
+
+* bugfix:   wrong parentheses
+
 = 14.13 =
 
 * bugfix:   fix authenticated SQL injections in the tracking DB GUI by removing "Delete Entries" and "Download Entries" features and filtering user input
