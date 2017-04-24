@@ -35,8 +35,8 @@ class cforms2_fieldtype_fieldsetstart extends cforms2_fieldtype {
     }
 
     protected function render_additional_settings() {
-        return '<label for="cf_edit_checked">' . __('Show this and following fieldsets only if all previous fields were filled out correctly.', 'cforms2')
-                . '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
+        return '<!--<label for="cf_edit_checked">' . __('Show this and following fieldsets only if all previous fields were filled out correctly.', 'cforms2')
+                . '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />-->';
 
     }
 
