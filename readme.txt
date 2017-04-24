@@ -102,7 +102,7 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 = Where are comment and Tell-a-Friend fields? =
 
-These features were remove with version 14.12.
+These features were removed with version 14.12.
 
 
 == Upgrade Notice ==
