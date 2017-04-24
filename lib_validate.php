@@ -867,7 +867,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                 // send copy or notification?
                 // not if no email and already CC'ed
-                if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && !empty($field_email)) || !empty($ccme && $trackf['data'][$ccme])) {
+                if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && !empty($field_email)) || $ccme && !empty($trackf['data'][$ccme])) {
 
                     $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fromemail']), $track);
 
