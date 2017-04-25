@@ -152,6 +152,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.13.3 =
+
+* bugfix:   only redirect non-ajax forms for validated forms
+
 = 14.13.2 =
 
 * bugfix:   fix fatal error caused by using empty() on a function return with PHP < 5.5

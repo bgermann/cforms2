@@ -18,7 +18,7 @@
  */
 
 if (!defined('WP_UNINSTALL_PLUGIN'))
-    exit();
+    die();
 
 delete_option('cforms_settings');
 

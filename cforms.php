@@ -196,7 +196,7 @@ function cforms2($args = '', $no = '') {
         $track = $validation_result['track'];
         $subID = $validation_result['sub_id'];
 
-        if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
+        if ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
             $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
             if (!empty($cf_redirect)) { // TODO rework to do this via HTTP?
                 echo '<script type="text/javascript">'
