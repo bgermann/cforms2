@@ -51,7 +51,7 @@ Some things are to be done:
 * long term: unit tests and continuous integration
 
 
-== Installation Instructions ==
+== Installation ==
 
 = Installing the plugin =
 
