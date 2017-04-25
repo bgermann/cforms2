@@ -25,7 +25,7 @@ The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is
 
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha) provides an image CAPTCHA via cformsII's pluggable CAPTCHA facility. To convert the old CAPTCHA fields to Really Simple CAPTCHA, please install the current version and activate the plugin.
 
-[Contact Form DB](https://cfdbplugin.com) has support for storing cformsII's submission data and exporting in more formats than cformsII does. Therefore cformsII's database tracking will be removed in the long run.
+[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Therefore cformsII's database tracking will be removed in the long run.
 
 [Unofficial CForms II table display](https://wordpress.org/plugins/cformstable/) introduces the ability to view the tracking database on any page via Shortcodes.
 
