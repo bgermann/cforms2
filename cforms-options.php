@@ -207,7 +207,7 @@ if (strlen($fd) <= 2) {
                 <?php
                 $ti = 1;
 
-// pre-check for verification field
+                // pre-check for verification field
                 $ccboxused = false;
                 $emailtoboxused = false;
                 $fileupload = false; // only for hide/show options

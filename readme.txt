@@ -152,6 +152,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.13.2 =
+
+* bugfix:   fix fatal error caused by using empty() on a function return with PHP < 5.5
+
 = 14.13.1 =
 
 * bugfix:   wrong parentheses

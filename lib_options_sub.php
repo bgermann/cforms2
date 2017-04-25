@@ -84,7 +84,7 @@ $cformsSettings['form' . $no]['cforms' . $no . '_fname'] = preg_replace(array('/
 if (!isset($_REQUEST['cforms_upload_noid']))
     $_REQUEST['cforms_upload_noid'] = "";
 $cformsSettings['form' . $no]['cforms' . $no . '_noid'] = cforms2_get_boolean_from_request('cforms_upload_noid');
-if ($uploadfield && !empty(cforms2_get_from_request('cforms_upload_dir')))
+if ($uploadfield && cforms2_get_from_request('cforms_upload_dir') != '')
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'] = cforms2_get_from_request('cforms_upload_dir') . '$#$' . cforms2_get_from_request('cforms_upload_dir_url');
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = cforms2_get_from_request('cforms_upload_ext');
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = cforms2_get_from_request('cforms_upload_size');
