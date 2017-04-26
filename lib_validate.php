@@ -934,7 +934,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         $sent = $mail->send();
                     }
 
-                    if ($sent) {
+                    if (!$sent) {
                         $usermessage_text = __('Error occurred while sending the auto confirmation message: ', 'cforms2') . '<br />' . $mail->err;
                         $usermessage_class = ' mailerr';
                     }

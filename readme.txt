@@ -155,6 +155,7 @@ GPL compliance!
 = 14.13.3 =
 
 * bugfix:   only redirect non-ajax forms for validated forms
+* bugfix:   wrong condition for error on auto confirmation message
 
 = 14.13.2 =
 
