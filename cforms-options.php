@@ -49,14 +49,14 @@ if (isset($_REQUEST['addbutton'])) {
     $no = '';
     if (isset($_REQUEST['switchform'])) { // only set when hitting form chg buttons
         if ($_REQUEST['switchform'] !== '1')
-            $noDISP = $no = $_REQUEST['switchform'];
+            $noDISP = $no = (int) $_REQUEST['switchform'];
     }
     elseif (isset($_REQUEST['go'])) { // only set when hitting form chg buttons
         if ($_REQUEST['pickform'] !== '1')
-            $noDISP = $no = $_REQUEST['pickform'];
+            $noDISP = $no = (int) $_REQUEST['pickform'];
     }
     elseif (isset($_REQUEST['noSub']) && (int) $_REQUEST['noSub'] > 1) { // otherwise stick with the current form
-        $noDISP = $no = $_REQUEST['noSub'];
+        $noDISP = $no = (int) $_REQUEST['noSub'];
     }
 }
 

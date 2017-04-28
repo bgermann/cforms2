@@ -18,7 +18,7 @@ For a quick starter you should have a look at the [introduction video by Your Pa
 
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms". But bear in mind that old versions should not be used in public systems, because they contain [known serious vulnerabilities](https://wpvulndb.com/plugins/cforms) that are exploited in the wild.
 
-The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 14.13.
+The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 14.13.3.
 
 
 == Related Plugins ==
@@ -154,6 +154,7 @@ GPL compliance!
 
 = 14.13.3 =
 
+* bugfix:   fix some verified and some possible authenticated XSS vulnerabilities
 * bugfix:   only redirect non-ajax forms for validated forms
 * bugfix:   wrong condition for error on auto confirmation message
 

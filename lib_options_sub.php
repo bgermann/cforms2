@@ -206,10 +206,10 @@ if (isset($_REQUEST['field_order']) && !empty($_REQUEST['field_order'])) {
 // new field added (will actually be added below!)
 if (isset($_REQUEST['AddField']) && isset($_REQUEST['field_count_submit'])) {
 
-    $field_count = $_POST['field_count_submit'] + $_POST['AddFieldNo'];
+    $field_count = (int) $_POST['field_count_submit'] + (int) $_POST['AddFieldNo'];
     $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'] = $field_count;
 
-    $_POST['AddFieldPos'] = ($_POST['AddFieldPos'] == "0") ? 1 : $_POST['AddFieldPos'];
+    $_POST['AddFieldPos'] = ($_POST['AddFieldPos'] == "0") ? 1 : (int) $_POST['AddFieldPos'];
 
     // need to insert empty fields in between?
     if (!empty($_POST['AddFieldPos']) && $_POST['AddFieldPos'] < $_POST['field_count_submit']) {

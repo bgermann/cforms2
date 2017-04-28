@@ -20,8 +20,8 @@
 $noDISP = '1';
 $no = '';
 if (isset($_REQUEST['no'])) {
-    if ($_REQUEST['no'] != '1')
-        $noDISP = $no = $_REQUEST['no'];
+    if ($_REQUEST['no'] !== '1')
+        $noDISP = $no = (int) $_REQUEST['no'];
 }
 
 $FORMCOUNT++;

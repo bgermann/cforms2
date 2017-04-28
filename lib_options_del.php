@@ -19,8 +19,8 @@
 
 $noDISP = '1';
 $no = '';
-if ($_REQUEST['no'] != '1')
-    $noDISP = $no = $_REQUEST['no'];
+if ($_REQUEST['no'] !== '1')
+    $noDISP = $no = (int) $_REQUEST['no'];
 
 for ($i = (int) $noDISP; $i < $cformsSettings['global']['cforms_formcount']; $i++) {  // move all forms "to the left"
     $n = ($i == 1) ? '' : $i;
