@@ -185,9 +185,6 @@ if (isset($_REQUEST['cforms_taftrick']))
     $cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'] = '3';
 
 
-$cformsSettings['form' . $no]['cforms' . $no . '_tracking'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_tracking'));
-
-
 // reorder fields if order changed
 if (isset($_REQUEST['field_order']) && !empty($_REQUEST['field_order'])) {
     $j = 0;

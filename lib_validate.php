@@ -897,9 +897,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     $s = explode('$#$', $subject2);
                     $s[1] = empty($s[1]) ? $s[0] : $s[1];
 
-                    // email tracking via 3rd party?
-                    $field_email = empty($cformsSettings['form' . $no]['cforms' . $no . '_tracking']) ? $field_email : $field_email . $cformsSettings['form' . $no]['cforms' . $no . '_tracking'];
-
                     $mail = new cforms2_mail($no, $frommail, $field_email, $replyto);
 
                     // auto conf attachment?

@@ -152,6 +152,10 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.13.4 =
+
+* other:    remove 3rd party read-notification support
+
 = 14.13.3 =
 
 * bugfix:   fix some verified and some possible authenticated XSS vulnerabilities

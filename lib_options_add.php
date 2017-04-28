@@ -73,7 +73,6 @@ $cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'] = $wp_upload_dir['
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = 'txt,zip,doc,rtf,xls';
 $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = '1024';
 
-$cformsSettings['form' . $no]['cforms' . $no . '_tracking'] = '';
 $cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] = '';
 
 update_option('cforms_settings', $cformsSettings);

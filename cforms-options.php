@@ -908,24 +908,6 @@ if (strlen($fd) <= 2) {
             </div>
         </fieldset>
 
-
-        <fieldset class="cformsoptions" id="readnotify">
-            <div class="cflegend op-closed" id="p8" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('3rd Party Read-Notification Support', 'cforms2') ?>
-            </div>
-
-            <div class="cf-content" id="o8">
-                <p><?php printf(__('If you\'d like to utilize 3rd party email tracking such as %s or %s, add the respective suffix (e.g.: %s) here:', 'cforms2'), '<strong>readnotify.com</strong>', '<strong>didtheyreadit.com</strong>', '<code>.readnotify.com</code>') ?></p>
-
-                <table class="form-table">
-                <tr class="ob">
-                    <td class="obL"><label for="cforms_tracking"><strong><?php _e('Suffix for email tracking', 'cforms2') ?></strong></label></td>
-                    <td class="obR"><input type="text" id="cforms_tracking" name="cforms_tracking" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_tracking'])); ?>"/></td>
-                </tr>
-                </table>
-            </div>
-        </fieldset>
-
         <div class="cf_actions" id="cf_actions" style="display:none;">
             <input id="cfbar-addbutton" class="allbuttons addbutton" type="submit" name="addbutton" value=""/>
             <input id="cfbar-dupbutton" class="allbuttons dupbutton" type="submit" name="dupbutton" value=""/>
