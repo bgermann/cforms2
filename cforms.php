@@ -167,7 +167,6 @@ function cforms2($args = '', $no = '') {
 
     $content = '';
 
-    $validations = array();
     $track = array();
 
     $custom_error = '';
@@ -195,6 +194,7 @@ function cforms2($args = '', $no = '') {
         $usermessage_class = $validation_result['class'];
         $track = $validation_result['track'];
         $subID = $validation_result['sub_id'];
+        $validations = $validation_result['validations'];
 
         if ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
             $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];

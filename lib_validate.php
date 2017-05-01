@@ -145,6 +145,7 @@ function cforms2_is_email($string) {
 function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array()) {
     global $cformsSettings;
 
+    $validations = array();
     $all_valid = true;
 
     $inpFieldArr = array(); // for var[] type input fields
@@ -479,7 +480,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 'all_valid' => $all_valid,
                 'track' => $track,
                 'limit_reached' => true,
-                'sub_id' => 'noid'
+                'sub_id' => 'noid',
+                'validations' => $validations
             );
         }
 
@@ -949,7 +951,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         'all_valid' => $all_valid,
         'track' => $track,
         'limit_reached' => false,
-        'sub_id' => $subID
+        'sub_id' => $subID,
+        'validations' => $validations
     );
 
 }

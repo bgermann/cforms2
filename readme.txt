@@ -154,6 +154,7 @@ GPL compliance!
 
 = 14.13.4 =
 
+* bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * other:    remove 3rd party read-notification support
 
 = 14.13.3 =
