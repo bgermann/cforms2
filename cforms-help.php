@@ -1134,7 +1134,6 @@ insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', '
     <div class="cf-content" id="o30">
         <p><?php printf(__('Multi-part forms support chaining of several forms and gather user input across all linked forms. Inserting a multi-part form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms2'), '<strong>', '</strong>'); ?></p>
 
-        <p style="margin: 20px 0px 20px 10px; float: right; width: 410px;"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-mp.png" alt=""/></p>
         <table class="hf">
             <tr>
                 <td class="bright"><strong><?php _e('Multi-part form features:', 'cforms2'); ?></strong></td>
@@ -1198,16 +1197,7 @@ insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', '
         <p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></p>
         <p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
         <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
-        <p class="ex"><?php _e('Your form <strong>doesn\'t</strong> look like the preview image, or your individual changes don\'t take effect, check your global WP theme CSS! It may overwrite some or many cforms CSS declarations. If you don\'t know how to trouble shoot, take a look at the Firefox extension "Firebug" - an excellent CSS troubleshooting tool!', 'cforms2'); ?></p>
-    </div>
-
-
-    <div class="cflegend op-closed" id="p25" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="troubles" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Need more help?', 'cforms2') ?>
-    </div>
-
-    <div class="cf-content" id="o25">
-        <p><?php printf(__('For up-to-date information first check the %sFAQs%s &amp; %scforms forum%s and comment section on the plugin homepage.', 'cforms2'), '<a href="https://wordpress.org/plugins/cforms2/#faq">', '</a>', '<a href="https://wordpress.org/support/plugin/cforms2">', '</a>'); ?></p>
+        <p class="ex"><?php _e('Your form does not look like the preview image or your individual changes do not take effect? Check your global WP theme CSS! It may overwrite some or many cforms CSS declarations.', 'cforms2'); ?></p>
     </div>
 
     <?php cforms2_footer(); ?>

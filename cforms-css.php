@@ -152,11 +152,6 @@ if (isset($_POST['chg_css'])) {
                                            <?php if ($cformsSettings['global']['cforms_no_css'] == '1') _e('No styles are being used', 'cforms2'); ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
-                                </td>
-                            </tr>
 
                         </table>
                     </td>
