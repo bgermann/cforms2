@@ -94,7 +94,7 @@ function cforms2_start_session() {
 /**
  * main function
  */
-function cforms2($args = '', $no = '') {
+function cforms2($no = '', $customfields = array()) {
 
     global $cformsSettings;
 
@@ -153,15 +153,15 @@ function cforms2($args = '', $no = '') {
 
 
     // custom fields support
-    if (!(strpos($no, '+') === false)) {
-        $no = substr($no, 0, -1);
-        $customfields = cforms2_build_fstat($args);
-        $field_count = count($customfields);
-        $custom = true;
-    } else {
+    if (empty($customfields)) {
+        $customfields = array();
         $custom = false;
         $field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
-        $customfields = array();
+    } else {
+        $no = substr($no, 0, -1);
+        $customfields = cforms2_build_fstat($customfields);
+        $field_count = count($customfields);
+        $custom = true;
     }
 
 
@@ -1014,9 +1014,9 @@ function cforms2_insert($content) {
             $newcontent .= substr($content, $last, $p_offset - $last);
 
             if ($Fname !== '') {
-                $newcontent .= cforms2('', $fns[$Fname]);
+                $newcontent .= cforms2($fns[$Fname]);
             } else {
-                $newcontent .= cforms2('', $Fid);
+                $newcontent .= cforms2($Fid);
             }
 
             $p_open_after = strpos($content, '<p>', $b);
@@ -1068,20 +1068,6 @@ function cforms2_build_fstat($f) {
 
 }
 
-if (!function_exists('insert_cform')) {
-
-    /** inserts a cform anywhere you want */
-    function insert_cform($no = '', $custom = '', $c = '') {
-
-        if (!is_numeric($no))
-            $no = cforms2_check_form_name($no);
-
-        echo cforms2($custom, $no . $c);
-
-    }
-
-}
-
 function cforms2_shortcode($atts, $content) {
     if (empty($atts))
         $callform = $content;
@@ -1089,17 +1075,7 @@ function cforms2_shortcode($atts, $content) {
         $callform = array_pop($atts);
     if (empty($callform))
         return '';
-    return cforms2('', cforms2_check_form_name($callform));
-
-}
-
-if (!function_exists('insert_custom_cform')) {
-
-    /** inserts a custom cform anywhere you want */
-    function insert_custom_cform($fields = '', $no = '') {
-        insert_cform($no, $fields, '+');
-
-    }
+    return cforms2(cforms2_check_form_name($callform));
 
 }
 

@@ -367,9 +367,67 @@ function cforms2_compare($a, $b) {
 
 }
 
+if (!function_exists('insert_cform')) {
+
+    /**
+     * API function: insert_cform
+     * 
+     * Inserts a cform anywhere you want. If you use the $customfields parameter, a dynamic form is generated.
+     * 
+     * A few things to note on dynamic forms:
+     * 1. Dynamic forms only work in non-AJAX mode.
+     * 2. Each dynamic form references and thus requires a base form defined in the cformsII form settings.
+     *    All its settings will be used, except the form (&field) definition.
+     * 3. Any of the form fields described in the plugins' HELP! section can be dynamically generated.
+     * 
+     * @param string $no The numeric ID of the form that you want to render. '' for the first form.
+     * @param array $customfields The fields to be used for the dynamic form:
+     * 
+     *              $customfields['label'][n]      : field name;
+     *              $customfields['type'][n]       : input field type;       default: 'textfield';
+     *              $customfields['isreq'][n]      : bool;                   default: false;
+     *              $customfields['isemail'][n]    : bool;                   default: false;
+     *              $customfields['isclear'][n]    : bool;                   default: false;
+     *              $customfields['isdisabled'][n] : bool;                   default: false;
+     *              $customfields['isreadonly'][n] : bool;                   default: false;
+     * 
+     *              for each form n. n = 0,1,2... and input field type is one of the values returned
+     *              by cforms2_fieldtype::get_id() and the overwriting methods in its subclasses.
+     * 
+     * @return void The form's HTML output will be printed. The output depends on the submission state.
+     */
+    function insert_cform($no = '', $customfields = array()) {
+
+        if (!is_numeric($no))
+            $no = cforms2_check_form_name($no);
+
+        echo cforms2($no, $customfields);
+
+    }
+
+}
+
 if (!function_exists('get_cforms_entries')) {
 
-    /** API function: get_cforms_entries */
+    /**
+     * API function: get_cforms_entries
+     * 
+     * This function allows to conveniently retrieve submitted data from the cforms tracking tables.
+     * 
+     * @param string $fname text string (regexp pattern), e.g. the form name
+     * @param string $from DATETIME string (format: Y-m-d H:i:s). Date & time defining the target period, e.g. 2008-09-17 15:00:00
+     * @param string $to   DATETIME string (format: Y-m-d H:i:s). Date & time defining the target period, e.g. 2008-09-17 15:00:00
+     * @param string $sort 'form', 'id', 'date', 'ip', 'email' or any form input field, e.g. 'Your Name'
+     * @param int $limit limiting the number of results, '' (empty or false) = no limits!
+     * @param string $sortdir "asc" for ascending or "desc" for descending sort direction
+     * 
+     * @return array a set of stored form submissions in a multi-dimensional array
+     * 
+     * Examples:
+     * get_cforms_entries() => all data, no filters
+     * get_cforms_entries('contact',false,false,'date',5,'desc') => last 5 submissions of "my contact form", order by date
+     * get_cforms_entries(false,date ("Y-m-d H:i:s", time()-(3600*2))) => all submissions in the last 2 hours
+     */
     function get_cforms_entries($fname = false, $from = false, $to = false, $sort = false, $limit = false, $sortdir = 'asc', $limitstart = 0) {
         global $wpdb, $cfdataTMP, $cfsort, $cfsortdir;
 

@@ -35,19 +35,13 @@ $plugindir = dirname(plugin_basename(__FILE__));
     <ul class="cftoc">
         <li><a href="#guide" onclick="setshow(17)"><?php _e('Basic steps, a small guide', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#inserting" onclick="setshow(18)"><?php _e('Inserting a form', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#fields" onclick="setshow(19)"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;
-            <ul style="margin-top:7px">
-                <li><a href="#qa" onclick="setshow(19)"><?php _e('SPAM protection: Q &amp; A', 'cforms2'); ?></a> &raquo;</li>
-                <li><a href="#hfieldsets" onclick="setshow(19)"><?php _e('Fieldsets', 'cforms2'); ?></a> &raquo;</li>
-                <li><a href="#regexp" onclick="setshow(19)"><?php _e('Using regular expressions with form fields', 'cforms2'); ?></a> &raquo;</li>
-            </ul></li>
+        <li><a href="#fields" onclick="setshow(19)"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#customerr" onclick="setshow(20)"><?php _e('Custom error messages &amp; input field titles', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#hook" onclick="setshow(21)"><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#hook" onclick="setshow(21)"><?php _e('Advanced: cformsII API', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#dynamicforms" onclick="setshow(22)"><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#variables" onclick="setshow(23)"><?php _e('Using variables in email subjects &amp; messages', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#variables" onclick="setshow(23)"><?php _e('Using variables in email subject and messages', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#multipart" onclick="setshow(30)"><?php _e('Multi-part forms', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#CSS" onclick="setshow(24)"><?php _e('Styling your forms', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#troubles" onclick="setshow(25)"><?php _e('Need more help?', 'cforms2'); ?></a> &raquo;</li>
     </ul>
 
     <div class="cflegend op-closed" id="p17" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
@@ -67,9 +61,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             </li>
             <li><?php printf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', 'onclick="setshow(2)"'); ?></li>
             <li><?php printf(__('Decide if you want the visitor to receive an <a href="%s" %s>auto confirmation message</a> upon form submission.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?></li>
-            <li><?php printf(__('Would you like <a href="%s" %s>to track</a> form submission via the database?', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', 'onclick="setshow(14)"'); ?></li>
             <li><?php printf(__('<a href="%s" %s>Add the default form</a> to a post or page.', 'cforms2'), '#inserting', 'onclick="setshow(18)"'); ?></li>
-            <li><?php _e('Give it a whirl.', 'cforms2'); ?></li>
         </ol>
     </div>
 
@@ -79,16 +71,8 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
     <div class="cf-content" id="o18">
-        <h3><strong><?php _e('Editing posts and pages:', 'cforms2'); ?></strong></h3>
-
         <p><?php printf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'), 'shortcode <code>[cforms name="XYZ"]</code>', '<code>XYZ</code>'); ?></p>
         <p><?php printf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#wpeditor', 'onclick="setshow(12)"'); ?></p>
-
-
-        <h3><strong><?php _e('Via PHP function call:', 'cforms2'); ?></strong></h3>
-        <p><?php printf(__('Alternatively, you can specifically insert a form (into the sidebar for instance etc.) per the PHP function call %1s, or alternatively %2s for the default/first form and/or %2s for any other form.', 'cforms2'), '<code>insert_cform(\'XYZ\');</code>', '<code>insert_cform();</code>', '<code>insert_cform(\'<span style="color:red; font-weight:bold;">X</span>\');</code>'); ?></p>
-
-        <p class="ex"><strong><?php _e('Note:', 'cforms2'); ?></strong> <?php printf(__('"%1s" represents the number of the form, starting with %2s ..and so forth.', 'cforms2'), '<span style="color:red; font-weight:bold;">X</span>', '<span style="color:red; font-weight:bold;">2</span>, 3,4'); ?></p>
     </div>
 
 
@@ -97,28 +81,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
     <div class="cf-content" id="o19">
-        <p><?php printf(__('All supported input fields are listed below, highlighting the expected <em><u>formats</u></em> for their associated %sField Names <sup>*)</sup>%s. Form labels (<em>Field Names</em>) permit the use of <strong>HTML</strong>, see examples below.', 'cforms2'), '<a class="infobutton" href="#" name="it14">', '</a>'); ?></p>
-
-        <p class="ex" style="display:none; width:400px;" id="it14"><?php _e('While the <em>Field Names</em> are usually just the label of a field (e.g. "Your Name"), they can contain additional information to support special functionality (e.g. default values, regular expressions for extended field validation etc.)', 'cforms2'); ?></p>
-        <p class="helpimg" style="width:400px;"><img src="<?php echo plugin_dir_url(__FILE__); ?>images/example-wizard.png"  alt=""/><br /><?php _e('A new <em>wizard like</em> mode allows you to configure more complex settings in case all the pipes "|" and pounds "#" are overwhelming.', 'cforms2'); ?></p>
-
-        <ul style="margin:10px 0 0 100px; list-style:square;">
-            <li><a href="#textonly" onclick="setshow(19)"><?php _e('Text only elements', 'cforms2'); ?></a></li>
-            <li><a href="#datepicker" onclick="setshow(19)"><?php _e('Javascript Date Picker input field', 'cforms2'); ?></a></li>
-            <li><a href="#single" onclick="setshow(19)"><?php _e('Single-, Password &amp; Multi-line fields', 'cforms2'); ?></a></li>
-            <li><a href="#select" onclick="setshow(19)"><?php _e('Select / drop down box &amp; radio buttons', 'cforms2'); ?></a></li>
-            <li><a href="#multiselect" onclick="setshow(19)"><?php _e('Multi-select box', 'cforms2'); ?></a></li>
-            <li><a href="#check" onclick="setshow(19)"><?php _e('Check boxes', 'cforms2'); ?></a></li>
-            <li><a href="#checkboxgroup" onclick="setshow(19)"><?php _e('Check box groups', 'cforms2'); ?></a></li>
-            <li><a href="#ccme" onclick="setshow(19)"><?php _e('CC:me check box', 'cforms2'); ?></a></li>
-            <li><a href="#multirecipients" onclick="setshow(19)"><?php _e('Multiple recipients drop down box', 'cforms2'); ?></a></li>
-            <li><a href="#hidden" onclick="setshow(19)"><?php _e('Hidden fields', 'cforms2'); ?></a></li>
-            <li><a href="#qa" onclick="setshow(19)"><?php _e('SPAM protection: Q&amp;A input field', 'cforms2'); ?></a></li>
-            <li><a href="#upload" onclick="setshow(19)"><?php _e('File attachments / upload', 'cforms2'); ?></a></li>
-        </ul>
-
-
-        <br style="clear:both;"/>
+        <p><?php _e('All supported input fields are listed below, highlighting the expected formats for their associated Field Names.', 'cforms2'); ?></p>
 
         <p class="fieldtitle" id="textonly">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
@@ -682,206 +645,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <div class="cflegend op-closed" id="p21" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="hook" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Advanced: cforms APIs &amp; (Post-)Processing of submitted data', 'cforms2') ?>
-    </div>
-
-    <div class="cf-content" id="o21">
-        <br/>
-        <table class="hf">
-            <tr>
-                <td class="apiH" colspan="2"><span class="abbr"><?php _e('API Function', 'cforms2'); ?></span> &nbsp;&nbsp;&nbsp; <strong>get_cforms_entries(&nbsp;$fname,&nbsp;$from,&nbsp;$to,&nbsp;$sort,&nbsp;$limit&nbsp;,$sortdir&nbsp;)</strong></td>
-            </tr>
-            <tr>
-                <td class="bright" colspan="2"><span class="abbr"><?php _e('Description', 'cforms2'); ?>:</span> &nbsp;&nbsp;&nbsp; <?php _e('This function allows to conveniently retrieve submitted data from the cforms tracking tables.', 'cforms2'); ?></td>
-            </tr>
-            <tr>
-                <td class="bright" colspan="2"><span class="abbr"><?php _e('Parameters', 'cforms2'); ?>:</span></td>
-            </tr>
-            <tr>
-                <td class="bleft"><strong><code class="codehighlight">$fname&nbsp;::&nbsp;<?php _e('[text]', 'cforms2'); ?></code></strong></td>
-                <td class="bright"><?php _e('text string (regexp pattern), e.g. the form name', 'cforms2'); ?></td>
-            </tr>
-            <tr>
-                <td class="bleft"><strong><code class="codehighlight">$from,&nbsp;$to&nbsp;::&nbsp;<?php _e('[date]', 'cforms2'); ?></code></strong></td>
-                <td class="bright"><?php _e('DATETIME string (format: Y-m-d H:i:s). Date &amp; time defining the target period, e.g.', 'cforms2'); ?><strong style="color:red;"> 2008-09-17 15:00:00</strong></td>
-            </tr>
-            <tr>
-                <td class="bleft"><strong><code class="codehighlight">$sort&nbsp;::&nbsp;<?php _e('[text]', 'cforms2'); ?></code></strong></td>
-                <td class="bright"><strong style="color:red;">'form'</strong>, <strong style="color:red;">'id'</strong>, <strong style="color:red;">'date'</strong>, <strong style="color:red;">'ip'</strong> <?php _e('or', 'cforms2'); ?> <strong style="color:red;">'email'</strong><?php _e(' or any other form input field, e.g. \'Your Name\'', 'cforms2'); ?></td>
-            </tr>
-            <tr>
-                <td class="bleft"><strong><code class="codehighlight">$limit&nbsp;::&nbsp;<?php _e('[number]', 'cforms2'); ?></code></strong></td>
-                <td class="bright"><?php _e('limiting the number of results, \'\' (empty or false) = no limits!', 'cforms2'); ?></td>
-            </tr>
-            <tr>
-                <td class="bleft"><strong><code class="codehighlight">$sortdir&nbsp;::&nbsp;<?php _e('[text]', 'cforms2'); ?></code></strong></td>
-                <td class="bright"><strong style="color:red;">asc</strong>, <strong style="color:red;">desc</strong></td>
-            </tr>
-            <tr><td class="bright" colspan="2"><span class="abbr"><?php _e('Output', 'cforms2'); ?>:</span></td></tr>
-            <tr><td class="bright" colspan="2"><?php _e('This function will return a set of stored form submissions in a multi-dimensional array.', 'cforms2'); ?></td></tr>
-            <tr><td class="ball" colspan="2"><span class="abbr"><?php _e('Examples', 'cforms2'); ?></span></td></tr>
-            <tr><td class="ball" colspan="2"><code>$array = get_cforms_entries();   /* all data, no filters */</code></td></tr>
-            <tr><td class="ball" colspan="2"><code>$array = get_cforms_entries('contact',false,false,'date',5,'desc');   /* last 5 submissions of "my contact form", order by date */</code></td></tr>
-            <tr><td class="ball" colspan="2"><code>$array = get_cforms_entries(false,date ("Y-m-d H:i:s", time()-(3600*2)));   /* all submissions in the last 2 hours */</code></td></tr>
-            <tr><td class="ball" colspan="2">
-                    <span class="abbr"><?php _e('Example: Table Output', 'cforms2'); ?></span><br /><br />
-                    <pre style="font-size: 11px; background:#EAEAEA;">$array = get_cforms_entries();   /* all data, no filters */
-
-echo '&lt;table&gt;';
-echo '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Website&lt;/th&gt;&lt;/tr&gt;';
-foreach( $array as $e ){
-    echo '&lt;tr&gt;&lt;td&gt;' . $e['data']['Your Name'] . '&lt;/td&gt;&lt;td&gt;' . $e['data']['Email'] . '&lt;/td&gt;&lt;td&gt;' . $e['data']['Website'] . '&lt;/td&gt;&lt;tr&gt;';
-}
-echo '&lt;/table&gt;';</pre></td></tr>
-        </table>
-
-    </div>
-
-
-    <div class="cflegend op-closed" id="p22" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="dynamicforms" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms2') ?>
-    </div>
-
-    <div class="cf-content" id="o22">
-        <p><?php _e('Again, this is for the advanced user who requires ad-hoc creation of forms.', 'cforms2'); ?></p>
-
-        <p><strong><?php _e('A few things to note on dynamic forms:', 'cforms2'); ?></strong></p>
-        <ol>
-            <li><?php _e('Dynamic forms only work in <strong>non-Ajax</strong> mode.', 'cforms2'); ?></li>
-            <li><?php _e('Each dynamic form references and thus requires <strong>a base form defined</strong> in the cforms form settings. All its settings will be used, except the form (&amp;field) definition.', 'cforms2'); ?></li>
-            <li><?php _e('Any of the form fields described in the plugins\' <strong>HELP!</strong> section can be dynamically generated.', 'cforms2'); ?></li>
-            <li><?php printf(__('Function call to generate dynamic forms: %s with', 'cforms2'), '<code>insert_custom_cform($fields:array,$form-no:int);</code> '); ?>
-
-                <br /><br />
-                <code>$form-no</code>: <?php _e('empty string for the first (default) form and <strong>2</strong>,3,4... for any subsequent form', 'cforms2'); ?><br />
-                <code>$fields</code> :
-
-                <pre style="font-size: 11px;"><code style="background:none;">
-                $fields['label'][n]      = '<?php _e('field name', 'cforms2'); ?>';           <?php _e('<em>field name</em> format described above', 'cforms2'); ?>
-
-                $fields['type'][n]       = 'input field type';     default: 'textfield';
-                $fields['isreq'][n]      = true|false;             default: false;
-                $fields['isemail'][n]    = true|false;             default: false;
-                $fields['isclear'][n]    = true|false;             default: false;
-                $fields['isdisabled'][n] = true|false;             default: false;
-                $fields['isreadonly'][n] = true|false;             default: false;
-
-                n = 0,1,2...</code></pre>
-            </li>
-        </ol>
-
-
-        <strong><?php _e('Form input field types (\'type\'):', 'cforms2'); ?></strong>
-        <ul style="list-style:none;">
-            <li>
-                <table class="cf_dyn_fields">
-                    <tr><td><strong><?php _e('Basic fields', 'cforms2'); ?></strong></td><td></td></tr>
-                    <tr><td><?php _e('Text paragraph', 'cforms2'); ?>:</td><td> <code>textonly</code></td></tr>
-                    <tr><td><?php _e('Single input field', 'cforms2'); ?>:</td><td> <code>textfield</code></td></tr>
-                    <tr><td><?php _e('Multi line field', 'cforms2'); ?>:</td><td> <code>textarea</code></td></tr>
-                    <tr><td><?php _e('Hidden field', 'cforms2'); ?>:</td><td> <code>hidden</code></td></tr>
-                    <tr><td><?php _e('Password field', 'cforms2'); ?>:</td><td> <code>pwfield</code></td></tr>
-                    <tr><td><?php _e('Date picker field', 'cforms2'); ?>:</td><td> <code>datepicker</code></td></tr>
-                    <tr><td><?php _e('Check boxes', 'cforms2'); ?>:</td><td> <code>checkbox</code></td></tr>
-                    <tr><td><?php _e('Check boxes groups', 'cforms2'); ?>:</td><td> <code>checkboxgroup</code></td></tr>
-                    <tr><td><?php _e('Drop down fields', 'cforms2'); ?>:</td><td> <code>selectbox</code></td></tr>
-                    <tr><td><?php _e('Multi select boxes', 'cforms2'); ?>:</td><td> <code>multiselectbox</code></td></tr>
-                    <tr><td><?php _e('\'CC\' check box', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>ccbox</code></td></tr>
-                    <tr><td><?php _e('Multi-recipients field', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>emailtobox</code></td></tr>
-                    <tr><td><?php _e('Spam/Q&amp;A verification', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>cforms2_question_and_answer</code></td></tr>
-                    <tr><td><?php _e('File upload fields', 'cforms2'); ?> <sup>*)</sup>:</td><td> <code>upload</code></td></tr>
-                    <tr><td><?php _e('Begin of a fieldset', 'cforms2'); ?>:</td><td> <code>fieldsetstart</code></td></tr>
-                    <tr><td><?php _e('End of a fieldset', 'cforms2'); ?>:</td><td> <code>fieldsetend</code></td></tr>
-                </table>
-            </li>
-            <li><sup>*)</sup> <em><?php _e('Should only be used <strong>once</strong> per generated form!', 'cforms2'); ?></em></li>
-        </ul>
-
-        <br />
-
-        <a id="ex1"></a>
-        <strong><?php _e('Simple example:', 'cforms2'); ?></strong>
-        <ul style="list-style:none;">
-            <li>
-                <pre style="font-size: 11px;"><code style="background:none;">
-$fields = array();
-
-$formdata = array(
-    array('<?php _e('Your Name|Your Name', 'cforms2'); ?>','textfield',0,1,0,1,0),
-    array('<?php _e('Your Email', 'cforms2'); ?>','textfield',0,0,1,0,0),
-    array('<?php _e('Your Message', 'cforms2'); ?>','textarea',0,0,0,0,0)
-);
-
-$i=0;
-foreach ( $formdata as $field ) {
-    $fields['label'][$i]        = $field[0];
-    $fields['type'][$i]         = $field[1];
-    $fields['isdisabled'][$i]   = $field[2];
-    $fields['isreq'][$i]        = $field[3];
-    $fields['isemail'][$i]      = $field[4];
-    $fields['isclear'][$i]      = $field[5];
-    $fields['isreadonly'][$i++] = $field[6];
-}
-
-insert_custom_cform($fields,'');    // <?php _e('Call default form with two defined fields', 'cforms2'); ?></code></pre>
-            </li>
-        </ul>
-
-        <br />
-
-        <a id="ex2"></a>
-        <?php _e('<strong>More advanced example</strong> (file access)', 'cforms2'); ?><strong>:</strong>
-        <ul style="list-style:none;">
-            <li>
-                <pre style="font-size:11px"><code style="background:none;">
-$fields['label'][0]  ='<?php _e('Your Name|Your Name', 'cforms2'); ?>';
-$fields['type'][0]   ='textfield';
-$fields['isreq'][0]  ='1';
-$fields['isemail'][0]='0';
-$fields['isclear'][0]='1';
-$fields['label'][1]  ='<?php _e('Email', 'cforms2'); ?>';
-$fields['type'][1]   ='textfield';
-$fields['isreq'][1]  ='0';
-$fields['isemail'][1]='1';
-$fields['label'][2]  ='<?php _e('Please pick a month for delivery:', 'cforms2'); ?>||font-size:14px; padding-top:12px; text-align:left;';
-$fields['type'][2]   ='textonly';
-
-$fields['label'][3]='<?php _e('Deliver on#Please pick a month', 'cforms2'); ?>|-#';
-
-$fp = fopen(plugin_dir_path(__FILE__).'months.txt', "r"); // <?php _e('Need to put this file into your themes dir!', 'cforms2'); ?>
-
-while ($nextitem = fgets($fp, 512))
-    $fields['label'][3] .= $nextitem.'#';
-
-fclose ($fp);
-
-$fields['label'][3]  = substr( $fields['label'][3], 0, strlen($fields['label'][3])-1 );  // <?php _e('Remove the last \'#\'', 'cforms2'); ?>
-$fields['type'][3]   ='selectbox';
-$fields['isreq'][3]  ='1';
-$fields['isemail'][3]='0';
-
-insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', 'cforms2'); ?></code></pre>
-            </li>
-        </ul>
-
-        <?php _e('With <code>month.txt</code> containing all 12 months of a year:', 'cforms2'); ?>
-        <ul style="list-style:none;">
-            <li>
-                <pre><code style="background:none;">
-                        <?php _e('January', 'cforms2'); ?>
-
-                        <?php _e('February', 'cforms2'); ?>
-
-                        <?php _e('March', 'cforms2'); ?>
-
-...</code></pre>
-            </li>
-        </ul>
-
-    </div>
-
-
     <div class="cflegend op-closed" id="p23" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
         <a id="variables" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Using variables in email subject and messages', 'cforms2') ?>
     </div>
@@ -1182,7 +945,7 @@ insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', '
 
         <p class="ex"><strong><?php _e('Important Notes:', 'cforms2'); ?></strong></p>
         <ul style="margin-top:10px;">
-            <li><?php printf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms. Use the %1$s mail() %2$s example in my-functions.php.txt to examine the user data array; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms2'), '<strong>', '</strong>'); ?></li>
+            <li><?php printf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms2'), '<strong>', '</strong>'); ?></li>
             <li><?php printf(__('Once the multi-part form support is enabled, %1$sAJAX is being disabled%2$s for this form.', 'cforms2'), '<strong>', '</strong>'); ?></li>
         </ul>
 
@@ -1190,7 +953,7 @@ insert_custom_cform($fields,5);    // <?php _e('Call form #5 with new fields', '
 
 
     <div class="cflegend op-closed" id="p24" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Styling Your Forms (CSS theme files)', 'cforms2') ?>
+        <a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Styling your forms', 'cforms2') ?>
     </div>
 
     <div class="cf-content" id="o24">

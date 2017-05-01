@@ -36,6 +36,19 @@ class cforms2_deprecated_api {
 
 add_action('cforms2_after_processing_action', 'cforms2_deprecated_api::my_cforms_action');
 
+if (!function_exists('insert_custom_cform')) {
+
+    /**
+     * @deprecated since version 14.13.4
+     */
+    function insert_custom_cform($customfields = array(), $no = '') {
+        trigger_error('You should switch from using insert_custom_cform function to insert_cform.', E_USER_WARNING);
+        insert_cform($no, $customfields);
+
+    }
+
+}
+
 if (!function_exists('cf_extra_comment_data')) {
 
     /**
