@@ -53,12 +53,12 @@ $plugindir = dirname(plugin_basename(__FILE__));
                     <li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms2'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.png" alt="" title=""/>?</li>
                     <li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms2'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench">&#xF111;</button> </li>
                     <li><?php _e('Check the flags for each field (check boxes to the right).', 'cforms2'); ?></li>
-                    <li><?php printf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'), '#qa', 'onclick="setshow(19)"', 'https://wordpress.org/plugins/cforms2-really-simple-captcha/', '', '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', 'onclick="setshow(13)"'); ?></li>
+                    <li><?php printf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'), '#qa', '', 'https://wordpress.org/plugins/cforms2-really-simple-captcha/', '', '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', ''); ?></li>
                 </ul>
             </li>
-            <li><?php printf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', 'onclick="setshow(2)"'); ?></li>
-            <li><?php printf(__('Decide if you want the visitor to receive an <a href="%s" %s>auto confirmation message</a> upon form submission.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?></li>
-            <li><?php printf(__('<a href="%s" %s>Add the default form</a> to a post or page.', 'cforms2'), '#inserting', 'onclick="setshow(18)"'); ?></li>
+            <li><?php printf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', ''); ?></li>
+            <li><?php printf(__('Decide if you want the visitor to receive an <a href="%s" %s>auto confirmation message</a> upon form submission.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?></li>
+            <li><?php printf(__('<a href="%s" %s>Add the default form</a> to a post or page.', 'cforms2'), '#inserting', ''); ?></li>
         </ol>
     </div>
 
@@ -67,7 +67,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <div class="cf-content">
         <p><?php printf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'), 'shortcode <code>[cforms name="XYZ"]</code>', '<code>XYZ</code>'); ?></p>
-        <p><?php printf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#wpeditor', 'onclick="setshow(12)"'); ?></p>
+        <p><?php printf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#wpeditor', ''); ?></p>
     </div>
 
 
@@ -124,7 +124,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             </tr>
             <tr>
                 <td class="ball" colspan="2">
-                    <?php printf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms2'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker', 'onclick="setshow(9)"', cforms2_admin_date_format()); ?>
+                    <?php printf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms2'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker', '', cforms2_admin_date_format()); ?>
                 </td>
             </tr>
         </table>
@@ -338,7 +338,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             </tr>
             <tr>
                 <td class="ball" colspan="2">
-                    <?php printf(__('If the visitor chooses to be CC\'ed, <strong>no</strong> additional auto confirmation email (<a href="%s" %s>if configured</a>) is sent out!', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?>
+                    <?php printf(__('If the visitor chooses to be CC\'ed, <strong>no</strong> additional auto confirmation email (<a href="%s" %s>if configured</a>) is sent out!', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?>
                 </td>
             </tr>
             <tr>
@@ -426,7 +426,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             </tr>
             <tr>
                 <td class="ball" colspan="2">
-                    <?php printf(__('No <code>field name</code> required, the field has no configurable label per se, as it is determined at run-time from the list of <strong>Question &amp; Answers</strong> provided <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', 'onclick="setshow(13)"'); ?>
+                    <?php printf(__('No <code>field name</code> required, the field has no configurable label per se, as it is determined at run-time from the list of <strong>Question &amp; Answers</strong> provided <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', ''); ?>
                 </td>
             </tr>
             <tr>
@@ -461,12 +461,12 @@ $plugindir = dirname(plugin_basename(__FILE__));
             </tr>
             <tr>
                 <td class="ball" colspan="2">
-                    <?php printf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', 'onclick="setshow(11)"'); ?>
+                    <?php printf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', ''); ?>
                 </td>
             </tr>
             <tr>
                 <td class="ball" colspan="2">
-                    <?php printf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', 'onclick="setshow(14)"'); ?>
+                    <?php printf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', ''); ?>
                 </td>
             </tr>
         </table>
@@ -588,7 +588,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <div class="cf-content">
         <p><?php printf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms2'), '<code>|title:XXX</code>'); ?></p>
-        <p><?php printf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_success', 'onclick="setshow(1)"', '?page=' . $plugindir . '/cforms-options.php#cforms_failure', 'onclick="setshow(1)"', '<code>|err:XXX</code>'); ?></p>
+        <p><?php printf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_success', '', '?page=' . $plugindir . '/cforms-options.php#cforms_failure', '', '<code>|err:XXX</code>'); ?></p>
         <p class="ex"><?php printf(__('Please note the order of these special attributes, first %s (if applicable), then %s.', 'cforms2'), '<code>|title:XXX</code>', '<code>|err:XXX</code>'); ?></p>
 
         <table class="hf">
@@ -626,7 +626,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <div class="cf-content">
         <p>
-            <?php printf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', 'onclick="setshow(2)"', '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?>
+            <?php printf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', '', '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?>
         </p>
         <p class="ex"><?php _e('Note that the variable names are case sensitive!', 'cforms2'); ?></p>
 
@@ -790,7 +790,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
         <br />
         <table class="hf">
             <tr>
-                <td class="bright"><?php printf(__('Here is an example for a simple <a href="%s" %s>Admin HTML message</a> <em>(you can copy and paste the below code or change to your liking)</em>:', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_header_html', 'onclick="setshow(3)"'); ?></td>
+                <td class="bright"><?php printf(__('Here is an example for a simple <a href="%s" %s>Admin HTML message</a> <em>(you can copy and paste the below code or change to your liking)</em>:', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_header_html', ''); ?></td>
             </tr>
 
             <tr>
@@ -814,7 +814,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
         <br />
         <table class="hf">
             <tr>
-                <td class="bright"><?php printf(__('Here is another example for a more detailed <a href="%s" %s>Admin HTML message</a>:', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_header_html', 'onclick="setshow(3)"'); ?></td>
+                <td class="bright"><?php printf(__('Here is another example for a more detailed <a href="%s" %s>Admin HTML message</a>:', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_header_html', ''); ?></td>
             </tr>
 
             <tr>
@@ -840,7 +840,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
         <br />
         <table class="hf">
             <tr>
-                <td class="bright"><?php printf(__('And a final example for a <a href="%s" %s>HTML auto confirmation message</a>:', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_cmsg_html', 'onclick="setshow(5)"'); ?></td>
+                <td class="bright"><?php printf(__('And a final example for a <a href="%s" %s>HTML auto confirmation message</a>:', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_cmsg_html', ''); ?></td>
             </tr>
 
             <tr>
