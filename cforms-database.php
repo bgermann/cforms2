@@ -26,7 +26,7 @@ $cformsSettings = get_option('cforms_settings');
 if (cforms2_check_erased())
     return;
 ?>
-<div class="wrap" id="top">
+<div class="wrap">
     <h2><?php _e('Tracking Form Data', 'cforms2') ?></h2>
 
     <p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch. Attachments can be accessed in the details section. When deleting an entry, associated attachments will be removed, too! ', 'cforms2') ?></p>

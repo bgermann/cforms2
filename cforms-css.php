@@ -61,7 +61,7 @@ if (isset($_POST['chg_css'])) {
     echo ' <div id="message" class="updated fade"><p><strong>' . __('New theme selected.', 'cforms2') . '</strong></p></div>' . "\n";
 }
 ?>
-<div class="wrap" id="top">
+<div class="wrap">
     <h2><?php _e('Styling your forms', 'cforms2') ?></h2>
 
     <p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms2') ?></p>
