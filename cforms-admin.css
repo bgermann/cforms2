@@ -603,6 +603,9 @@ fieldset.cformsoptions {
 div.cflegend {
     cursor:pointer;
 }
+h3.cflegend {
+    padding-left: 10px;
+}
 
 .op-closed {
     border:1px solid #eee;
