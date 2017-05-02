@@ -22,12 +22,10 @@
  * for the JavaScript code in this page.
  */
 
-var focusedFormControl = null;
-
 jQuery(function () {
 
     var nameEQ = "cformsshowui=";
-    window.setshow = function (el) {
+    var setshow = function (el) {
         var val = readcookie();
         var x = val.charAt(el) === '0';
         jQuery("#p" + el).attr("class", x ? 'cflegend op-closed' : 'cflegend');
@@ -79,14 +77,29 @@ jQuery(function () {
         return false;
     };
 
+    var registerMenuAction = function (clickIdSuffix, confirmMessage) {
+        jQuery('#wp-admin-bar-cforms-' + clickIdSuffix).click(function () {
+            if (confirmMessage && !confirm(confirmMessage))
+                return false;
+            jQuery("#cfbar-" + clickIdSuffix).trigger("click");
+            return false;
+        });
+    };
+
     var trackChg = false;
 
     jQuery('.wrap').click(function (e) {
         if (e.target.className.match(/allchk/)) {
             jQuery(e.target).focus();
         }
-        ;
     });
+    registerMenuAction('showinfo');
+    registerMenuAction('deleteall');
+    registerMenuAction('addbutton');
+    registerMenuAction('dupbutton');
+    registerMenuAction('deletetables', commonL10n.warnDelete);
+    registerMenuAction('delbutton', commonL10n.warnDelete);
+    registerMenuAction('SubmitOptions');
 
     /* INFO BUTTONS */
     jQuery('.infotxt').css({display: 'none'});
@@ -584,8 +597,7 @@ jQuery(function () {
         if (el && cookie.charAt(i) === '1') {
             jQuery(el).hide();
             if (elp) {
-                jQuery("div", elp).attr('class', 'blindminus');
-                elp.className = 'cflegend';
+                jQuery("div", elp).attr('class', 'blindplus');
             }
         }
         if (elp)
@@ -604,7 +616,6 @@ jQuery(function () {
         jQuery('#go').trigger('click');
     });
     jQuery('#cformsdata').on('change', ':input', function () {
-        focusedFormControl = this;
         if (!trackChg) {
             trackChg = true;
             jQuery('#wp-admin-bar-cforms-SubmitOptions').addClass('hiLightBar');
@@ -614,18 +625,6 @@ jQuery(function () {
     jQuery('.colorpicker').wpColorPicker();
 
 });
-
-function getFieldset(t) {
-    if (!t)
-        return '';
-
-    while (t.parentNode && !t.parentNode.className.match(/wrap/)) {
-        t = t.parentNode;
-        if (t.tagName.toUpperCase().match(/FIELDSET/))
-            return t.id;
-    }
-    return '';
-}
 
 /* TRACKING RECORDS ROUTINES */
 function cf_tracking_view(com, grid) {

@@ -878,10 +878,8 @@ function cforms2($no = '', $customfields = array()) {
 
 
     // rest of the form
-    if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '1' && !$upload && !$custom && !$alt_action)
-        $ajaxenabled = ' onclick="return cforms_validate(\'' . $no . '\', false)"';
-    elseif (($upload || $custom || $alt_action) && $cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '1')
-        $ajaxenabled = ' onclick="return cforms_validate(\'' . $no . '\', true)"';
+    if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '1')
+        $ajaxenabled = ' onclick="return cforms_validate(\'' . $no . '\', ' . ($upload || $custom || $alt_action) . ')"';
     else
         $ajaxenabled = '';
 
@@ -1188,13 +1186,13 @@ function cforms2_add_items_global($admin_bar) {
 
     cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'), 'jQuery("#cfbar-showinfo").trigger("click"); return false;');
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-dellAllButton', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'), 'jQuery("#cfbar-deleteall").trigger("click"); return false;');
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'));
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-deleteall', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'));
 
     if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)
-        cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'), 'if ( confirm("' . __('Do you really want to erase all collected data?', 'cforms2') . '") ) jQuery("#deletetables").trigger("click"); return false;');
+        cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'));
 
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
 
 }
 
@@ -1204,12 +1202,12 @@ function cforms2_add_items_options($admin_bar) {
 
     cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'), 'jQuery("#cfbar-addbutton").trigger("click"); return false;');
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'), 'jQuery("#cfbar-dupbutton").trigger("click"); return false;');
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'));
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'));
     if ((int) $cfo['global']['cforms_formcount'] > 1)
-        cforms2_add_admin_bar_item($admin_bar, 'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'), 'if ( confirm("' . __('This will delete the current form!', 'cforms2') . '")) jQuery("#cfbar-delbutton").trigger("click"); return false;');
+        cforms2_add_admin_bar_item($admin_bar, 'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'));
 
-    cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'document.mainform.action="#"+getFieldset(focusedFormControl); jQuery("#cfbar-SubmitOptions").trigger("click"); return false;', 'root-default');
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
 
 }
 

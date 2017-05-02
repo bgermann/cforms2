@@ -37,11 +37,126 @@ if (cforms2_check_erased())
 $FORMCOUNT = $cformsSettings['global']['cforms_formcount'];
 
 if (isset($_REQUEST['addbutton'])) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_options_add.php');
+    $FORMCOUNT = $FORMCOUNT + 1;
+    $no = $noDISP = $FORMCOUNT;
+
+    $cformsSettings['global']['cforms_formcount'] = (string) ($FORMCOUNT);
+
+    // new settings container
+    $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] = false;
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'] = '5';
+    $cformsSettings['form' . $no]['cforms' . $no . '_count_field_1'] = __('My Fieldset', 'cforms2') . '$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0';
+    $cformsSettings['form' . $no]['cforms' . $no . '_count_field_2'] = __('Your Name|Your Name', 'cforms2') . '$#$textfield$#$1$#$0$#$1$#$0$#$0';
+    $cformsSettings['form' . $no]['cforms' . $no . '_count_field_3'] = __('Email', 'cforms2') . '$#$textfield$#$1$#$1$#$0$#$0$#$0';
+    $cformsSettings['form' . $no]['cforms' . $no . '_count_field_4'] = __('Website|http://', 'cforms2') . '$#$textfield$#$0$#$0$#$0$#$0$#$0';
+    $cformsSettings['form' . $no]['cforms' . $no . '_count_field_5'] = __('Message', 'cforms2') . '$#$textarea$#$0$#$0$#$0$#$0$#$0';
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_required'] = __('(required)', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_emailrequired'] = __('(valid email required)', 'cforms2');
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_ajax'] = '1';
+    $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] = '0';
+    $cformsSettings['form' . $no]['cforms' . $no . '_fname'] = __('A new form', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_csubject'] = __('Re: Your note', 'cforms2') . '$#$' . __('Re: Submitted form (copy)', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_cmsg'] = __('Dear {Your Name},', 'cforms2') . "\n" . __('Thank you for your note!', 'cforms2') . "\n" . __('We will get back to you as soon as possible.', 'cforms2') . "\n\n";
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'] = '<div ' . $cformsSettings['global']['cforms_style']['autoconf'] . '><p ' . $cformsSettings['global']['cforms_style']['dear'] . '>' . __('Dear {Your Name},', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('Thank you for your note!', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('We will get back to you as soon as possible.', 'cforms2') . "\n<div " . $cformsSettings['global']['cforms_style']['confirmationmsg'] . '>' . __('This is an automatic confirmation message.', 'cforms2') . " {Date}.</div></div>\n\n";
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_email'] = get_bloginfo('admin_email');
+    $cformsSettings['form' . $no]['cforms' . $no . '_fromemail'] = get_bloginfo('admin_email');
+    $cformsSettings['form' . $no]['cforms' . $no . '_bcc'] = '';
+    $cformsSettings['form' . $no]['cforms' . $no . '_header'] = __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n";
+    $cformsSettings['form' . $no]['cforms' . $no . '_header_html'] = '<p ' . $cformsSettings['global']['cforms_style']['meta'] . '>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms2') . '</p>';
+    $cformsSettings['form' . $no]['cforms' . $no . '_formdata'] = '1111';
+    $cformsSettings['form' . $no]['cforms' . $no . '_space'] = '30';
+    $cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] = '0';
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_subject'] = __('A comment from {Your Name}', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_submit_text'] = __('Submit', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_success'] = __('Thank you for your comment!', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_failure'] = __('Please fill in all the required fields.', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_limittxt'] = '<strong>' . __('No more submissions accepted at this time.', 'cforms2') . '</strong>';
+    $cformsSettings['form' . $no]['cforms' . $no . '_working'] = __('One moment please...', 'cforms2');
+    $cformsSettings['form' . $no]['cforms' . $no . '_showpos'] = 'ynyy';
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_hide'] = false;
+    $cformsSettings['form' . $no]['cforms' . $no . '_redirect'] = false;
+    $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'] = __('http://redirect.to.this.page', 'cforms2');
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_action'] = '0';
+    $cformsSettings['form' . $no]['cforms' . $no . '_action_page'] = 'http://';
+
+    // file upload
+    $wp_upload_dir = wp_upload_dir();
+    $cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'] = $wp_upload_dir['basedir'];
+    $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = 'txt,zip,doc,rtf,xls';
+    $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = '1024';
+
+    $cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] = '';
+
+    update_option('cforms_settings', $cformsSettings);
+    echo '<div id="message" class="updated fade"><p>' . __('A new form with default fields has been added.', 'cforms2') . '</p></div>';
+
 } elseif (isset($_REQUEST['dupbutton'])) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_options_dup.php');
+    $noDISP = '1';
+    $no = '';
+    if (isset($_REQUEST['no'])) {
+        if ($_REQUEST['no'] !== '1')
+            $noDISP = $no = (int) $_REQUEST['no'];
+    }
+
+    $FORMCOUNT++;
+    $cformsSettings['global']['cforms_formcount'] = (string) ($FORMCOUNT);
+
+    // new settings container
+    foreach (array_keys($cformsSettings['form' . $no]) as $k) {
+        $tmp = preg_match('/cforms\d*_(.*)/', $k, $kk);
+        if (strpos($k, '_fname') !== false)
+            $cformsSettings['form' . $FORMCOUNT]['cforms' . $FORMCOUNT . '_' . $kk[1]] = $cformsSettings['form' . $no][$k] . ' (' . __('copy of form #', 'cforms2') . ($no == '' ? '1' : $no) . ')';
+        else
+            $cformsSettings['form' . $FORMCOUNT]['cforms' . $FORMCOUNT . '_' . $kk[1]] = $cformsSettings['form' . $no][$k];
+    }
+
+    echo '<div id="message" class="updated fade"><p>' . __('The form has been duplicated, you\'re now working on the copy.', 'cforms2') . '</p></div>';
+
+    update_option('cforms_settings', $cformsSettings);
+
+    //set $no afterwards: need it to duplicate fields
+    $no = $noDISP = $FORMCOUNT;
 } elseif (isset($_REQUEST['delbutton']) && $FORMCOUNT > 1) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_options_del.php');
+    $noDISP = '1';
+    $no = '';
+    if ($_REQUEST['no'] !== '1')
+        $noDISP = $no = (int) $_REQUEST['no'];
+
+    for ($i = (int) $noDISP; $i < $cformsSettings['global']['cforms_formcount']; $i++) {  // move all forms "to the left"
+        $n = ($i == 1) ? '' : $i;
+        unset($cformsSettings['form' . $n]);
+
+        foreach (array_keys($cformsSettings['form' . ($i + 1)]) as $key) {
+            $newkey = ( strpos($key, 'form2_') !== false ) ? str_replace('2_', '_', $key) : str_replace(($i + 1) . '_', $i . '_', $key);
+            $cformsSettings['form' . $n][$newkey] = $cformsSettings['form' . ($i + 1)][$key];
+        }
+    }
+
+    unset($cformsSettings['form' . $cformsSettings['global']['cforms_formcount']]);
+
+    $FORMCOUNT = $FORMCOUNT - 1;
+
+    if ($FORMCOUNT > 1) {
+        if (isset($_REQUEST['no']) && (int) $_REQUEST['no'] > $FORMCOUNT) // otherwise stick with the current form
+            $no = $noDISP = $FORMCOUNT;
+    } else {
+        $noDISP = '1';
+        $no = '';
+    }
+    $cformsSettings['global']['cforms_formcount'] = (string) ($FORMCOUNT);
+
+    update_option('cforms_settings', $cformsSettings);
+
+    echo '<div id="message" class="updated fade"><p>' . __('Form deleted', 'cforms2') . '.</p></div>';
+
 } else {
 
     // set parameters to default, if not exists
@@ -109,8 +224,6 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $fie
     }
     update_option('cforms_settings', $cformsSettings);
 }
-// check possible errors
-require_once(plugin_dir_path(__FILE__) . 'lib_options_err.php');
 
 
 // prepare dropdown box for form selection
@@ -164,7 +277,7 @@ if (strlen($fd) <= 2) {
 
         <p>
             <?php _e('cformsII allows you to insert one or more customly designed contact forms, which sends the visitor info via email and optionally stores the feedback in the database.', 'cforms2'); ?>
-            <?php printf(__('<a href="%s" %s>Here</a> is a quick step by step quide to get you up and running quickly.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#guide', 'onclick="setshow(17)"'); ?>
+            <?php printf(__('<a href="%s" %s>Here</a> is a quick step by step quide to get you up and running quickly.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#guide', ''); ?>
         </p>
 
         <table class="mainoptions">
@@ -182,10 +295,10 @@ if (strlen($fd) <= 2) {
 
             <div>
                 <?php
-                echo sprintf(__('Please see the <strong>Help!</strong> section for information on how to deploy the various <a href="%s" %s>supported fields</a>,', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#fields', 'onclick="setshow(19)"') . ' ' .
-                sprintf(__('set up forms using <a href="%s" %s>FIELDSETS</a>,', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#hfieldsets', 'onclick="setshow(19)"') .
-                sprintf(__('use <a href="%s" %s>default values</a> &amp; <a href="%s" %s>regular expressions</a> for single &amp; multi-line fields. ', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#single', 'onclick="setshow(19)"', '?page=' . $plugindir . '/cforms-help.php#regexp', 'onclick="setshow(19)"') .
-                sprintf(__('Besides the generic success &amp; failure messages below, you can add <a href="%s" %s>custom error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#customerr', 'onclick="setshow(20)"');
+                echo sprintf(__('Please see the <strong>Help!</strong> section for information on how to deploy the various <a href="%s" %s>supported fields</a>,', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#fields', '') . ' ' .
+                sprintf(__('set up forms using <a href="%s" %s>FIELDSETS</a>,', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#hfieldsets', '') .
+                sprintf(__('use <a href="%s" %s>default values</a> &amp; <a href="%s" %s>regular expressions</a> for single &amp; multi-line fields. ', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#single', '', '?page=' . $plugindir . '/cforms-help.php#regexp', '') .
+                sprintf(__('Besides the generic success &amp; failure messages below, you can add <a href="%s" %s>custom error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#customerr', '');
                 ?>
             </div>
 
@@ -292,7 +405,7 @@ if (strlen($fd) <= 2) {
 
                             <?php
                             $out = '<span title="' . plugin_dir_url(__FILE__) . 'include/">';
-                            $out .= '<input value="&#xF111;" type="button" onfocus="this.blur()" class="wrench cf_editbox_button" title="' . __('Edit', 'cforms2') . '"/></span>';
+                            $out .= '<input value="&#xF111;" type="button" class="wrench cf_editbox_button" title="' . __('Edit', 'cforms2') . '"/></span>';
                             $out .= '<select tabindex="' . ($ti++) . '" title="' . __('Pick a field type', 'cforms2') . '" class="fieldtype selfld" ' . $specialclass . ' name="field_' . $i . '_type" id="field_' . $i . '_type">';
                             $out .= '<optgroup label="' . __('----- General form fields ----', 'cforms2') . '">';
                             foreach ($field_types as $field_id => $field_type_desc) {
@@ -324,7 +437,7 @@ if (strlen($fd) <= 2) {
                             }
                             $out .= '</optgroup></select>';
 
-                            $out .= '<input tabindex="' . ($ti++) . '" ' . (($field_count <= 1) ? 'disabled="disabled"' : '') . ' class="' . (($field_count <= 1) ? 'noxbutton' : 'xbutton') . '" type="submit" name="DeleteField' . $i . '" value="&#xF153;" title="' . __('Remove input field', 'cforms2') . '" onfocus="this.blur()"/>';
+                            $out .= '<input tabindex="' . ($ti++) . '" ' . (($field_count <= 1) ? 'disabled="disabled"' : '') . ' class="' . (($field_count <= 1) ? 'noxbutton' : 'xbutton') . '" type="submit" name="DeleteField' . $i . '" value="&#xF153;" title="' . __('Remove input field', 'cforms2') . '" />';
 
 
                             $out .= '<input tabindex="' . ($ti++) . '" class="allchk fieldisreq chkfld" type="checkbox" title="' . __('input required', 'cforms2') . '" name="field_' . ($i) . '_required"' . ($field_required == '1' ? ' checked="checked"' : '');
@@ -370,7 +483,7 @@ if (strlen($fd) <= 2) {
             </div>
 
             <p class="addfieldbox">
-                <input tabindex="<?php echo $ti++; ?>" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms2'); ?>" value="<?php _e('Add', 'cforms2'); ?>" onfocus="this.blur()" onclick="document.mainform.action = '#anchorfields';" />
+                <input tabindex="<?php echo $ti++; ?>" type="submit" name="AddField" class="allbuttons addbutton" title="<?php _e('Add more input field(s)', 'cforms2'); ?>" value="<?php _e('Add', 'cforms2'); ?>" />
                 <input tabindex="<?php echo $ti++; ?>" type="text" name="AddFieldNo" value="1" class="addfieldno"/><?php _e('new field(s) @ position', 'cforms2'); ?>
                 <select tabindex="<?php echo $ti++; ?>" name="AddFieldPos" class="addfieldno">
                     <?php
@@ -395,8 +508,8 @@ if (strlen($fd) <= 2) {
 
                 <div class="cf-content" id="o0">
                     <p>
-                        <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', 'onclick="setshow(19)"'); ?>
-                        <?php printf(__('You may also want to verify the global, file upload specific  <a href="%s" %s>error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', 'onclick="setshow(11)"'); ?>
+                        <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
+                        <?php printf(__('You may also want to verify the global, file upload specific  <a href="%s" %s>error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', ''); ?>
                     </p>
 
                     <?php
@@ -435,7 +548,7 @@ if (strlen($fd) <= 2) {
 
                         <tr class="ob">
                             <td class="obL"><label for="cforms_noattachments"><strong><?php _e('Do not email attachments', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] == '1') echo "checked=\"checked\""; ?>/><br /><?php printf(__('<u>Note</u>: Attachments are stored on the server &amp; can be accessed via the <a href="%s" %s>cforms tracking</a> tables.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', 'onclick="setshow(14)"'); ?></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] == '1') echo "checked=\"checked\""; ?>/><br /><?php printf(__('<u>Note</u>: Attachments are stored on the server &amp; can be accessed via the <a href="%s" %s>cforms tracking</a> tables.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', ''); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -449,7 +562,7 @@ if (strlen($fd) <= 2) {
             </div>
 
             <div class="cf-content" id="o1">
-                <p><?php printf(__('These are the messages displayed to the user on successful (or failed) form submission. These messages are form specific, a general message for entering a wrong <strong>visitor verification code</strong> can be found <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', 'onclick="setshow(13)"'); ?></p>
+                <p><?php printf(__('These are the messages displayed to the user on successful (or failed) form submission. These messages are form specific, a general message for entering a wrong <strong>visitor verification code</strong> can be found <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', ''); ?></p>
 
                 <table class="form-table">
 
@@ -555,7 +668,7 @@ if (strlen($fd) <= 2) {
                         <td class="obR"><input class="allchk" type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if (substr($cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'], 0, 1) === '3') echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php printf(__('%sExtra variables%s e.g. {Title}', 'cforms2'), '<strong>', '</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
                     </tr>
 
-                    <tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be enabled here.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#extravariables', 'onclick="setshow(23)"'); ?> <strong><u><?php _e('Note:', 'cforms2') ?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.', 'cforms2') ?></td></tr>
+                    <tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be enabled here.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#extravariables', ''); ?> <strong><u><?php _e('Note:', 'cforms2') ?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.', 'cforms2') ?></td></tr>
 
                     <tr class="ob">
                         <td class="obL"></td>
@@ -651,7 +764,7 @@ if (strlen($fd) <= 2) {
 
             <div class="cf-content" id="o3">
                 <p><?php _e('Generally, emails sent to the admin and the submitting user can be both in plain text and HTML. The TXT part <strong>is required</strong>, HTML is <strong>optional</strong>.', 'cforms2'); ?></p>
-                <p><?php printf(__('Below you\'ll find the settings for both the <strong>TXT part</strong> of the admin email as well as the <strong>optional HTML part</strong> of the message. Both areas permit the use of any of the <strong>pre-defined variables</strong> or <strong>data from input fields</strong>. <a href="%s" %s>Please see the documentation on the HELP page</a> (including HTML message examples!).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></p>
+                <p><?php printf(__('Below you\'ll find the settings for both the <strong>TXT part</strong> of the admin email as well as the <strong>optional HTML part</strong> of the message. Both areas permit the use of any of the <strong>pre-defined variables</strong> or <strong>data from input fields</strong>. <a href="%s" %s>Please see the documentation on the HELP page</a> (including HTML message examples!).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></p>
 
                 <table class="form-table">
                 <tr class="ob space15">
@@ -678,7 +791,7 @@ if (strlen($fd) <= 2) {
                     <td class="obR"><input type="text" name="cforms_email" id="cforms_email" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_email'])); ?>" /> <a class="infobutton" href="#" name="it1"><?php _e('More than one "<strong>form admin</strong>"? &raquo;', 'cforms2'); ?></a></td>
                 </tr>
 
-                <tr id="it1" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('Simply add additional email addresses separated by a <strong style="color:red">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the visitor to choose from any of these per select box, you need to add a "<code>Multiple Recipients</code>" input field <a href="#anchorfields">above</a> (see the HELP section for <a href="%s" %s>more details</a>. If <strong>no</strong> "Multiple Recipients" input field is defined above, the submitted form data will go out to <strong>every address listed</strong>!', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#multirecipients', 'onclick="setshow(19)"'); ?></td></tr>
+                <tr id="it1" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('Simply add additional email addresses separated by a <strong style="color:red">comma</strong>. &nbsp; <em><u>Note:</u></em> &nbsp; If you want the visitor to choose from any of these per select box, you need to add a "<code>Multiple Recipients</code>" input field <a href="#anchorfields">above</a> (see the HELP section for <a href="%s" %s>more details</a>. If <strong>no</strong> "Multiple Recipients" input field is defined above, the submitted form data will go out to <strong>every address listed</strong>!', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#multirecipients', ''); ?></td></tr>
 
                 <tr class="ob">
                     <td class="obL"><label for="cforms_bcc"><strong><?php _e('BCC', 'cforms2') ?></strong></label></td>
@@ -686,13 +799,13 @@ if (strlen($fd) <= 2) {
                 </tr>
                 <tr class="ob">
                     <td class="obL"><label for="cforms_subject"><strong><?php _e('Subject admin email', 'cforms2') ?></strong></label></td>
-                    <td class="obR"><input type="text" name="cforms_subject" id="cforms_subject" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_subject'])); ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                    <td class="obR"><input type="text" name="cforms_subject" id="cforms_subject" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_subject'])); ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                 </tr>
 
                 <tr class="ob space20">
                     <td class="obL" style="padding-bottom:0">&nbsp;</td>
                     <td class="obR" style="padding-bottom:0">
-                        <input type="submit" class="allbuttons" name="cforms_resetAdminMsg" id="cforms_resetAdminMsg" value="<?php _e('Reset admin message to default', 'cforms2') ?>" onclick="document.mainform.action = '#emailoptions';" />
+                        <input type="submit" class="allbuttons" name="cforms_resetAdminMsg" id="cforms_resetAdminMsg" value="<?php _e('Reset admin message to default', 'cforms2') ?>" />
                     </td>
                 </tr>
 
@@ -703,7 +816,7 @@ if (strlen($fd) <= 2) {
                     <td class="obR" style="padding-bottom:0">
                         <table><tr>
                         <td><textarea name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_header'])); ?></textarea></td>
-                        <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                        <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                         </tr></table>
                     </td>
                 </tr>
@@ -726,7 +839,7 @@ if (strlen($fd) <= 2) {
                     <td class="obR" style="padding-bottom:0">
                         <table><tr>
                         <td><textarea name="cforms_header_html" id="cforms_header_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_header_html'])); ?></textarea></td>
-                        <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                        <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                         </tr></table>
                     </td>
                 </tr>
@@ -755,7 +868,7 @@ if (strlen($fd) <= 2) {
                     <td class="obR"><input type="text" name="cforms_ccsubject" id="cforms_ccsubject" value="<?php
                             $t = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
                             echo stripslashes(htmlspecialchars($t[1]));
-                            ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                            ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                 </tr>
                 </table>
 
@@ -788,12 +901,12 @@ if (strlen($fd) <= 2) {
                             <td class="obR"><input type="text" name="cforms_csubject" id="cforms_csubject" value="<?php
                                 $t = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
                                 echo stripslashes(htmlspecialchars($t[0]));
-                                ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                                ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                         </tr>
                         <tr class="ob space20">
                             <td class="obL" style="padding-bottom:0">&nbsp;</td>
                             <td class="obR" style="padding-bottom:0">
-                                <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" onclick="document.mainform.action = '#autoconf';"/>
+                                <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" />
                             </td>
                         </tr>
                         <tr class="ob">
@@ -801,7 +914,7 @@ if (strlen($fd) <= 2) {
                             <td class="obR">
                                 <table><tr>
                                 <td><textarea name="cforms_cmsg" id="cforms_cmsg" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_cmsg'])); ?></textarea></td>
-                                <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                                <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                                 </tr></table>
                             </td>
                         </tr>
@@ -814,7 +927,7 @@ if (strlen($fd) <= 2) {
                             <td class="obR">
                                 <table><tr>
                                 <td><textarea name="cforms_cmsg_html" id="cforms_cmsg_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'])); ?></textarea></td>
-                                <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', 'onclick="setshow(23)"'); ?></td>
+                                <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                                 </tr></table>
                             </td>
                         </tr>

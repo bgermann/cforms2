@@ -33,7 +33,7 @@ function setField(thefield) {
 }
 
 
-function cforms_validate(no, upload) {
+function cforms_validate(no, directFormSubmission) {
 
     var doInnerXHTML = function (elementId, stringXHTML) {
 
@@ -483,21 +483,20 @@ function cforms_validate(no, upload) {
     if (show_err_ins === 'y')
         write_customerr();
 
-    // all good?  if "upload file" field included, don't do ajax
-    if (all_valid && upload) {
+    if (all_valid) {
         document.getElementById('sendbutton' + no).disabled = true;
-        var newSENDBUTTON = document.createElement('input');
-        newSENDBUTTON.type = 'hidden';
-        newSENDBUTTON.name = 'sendbutton' + no;
-        newSENDBUTTON.value = '1';
-        document.getElementById('cf_working' + no).parentNode.appendChild(newSENDBUTTON);
         document.getElementById('sendbutton' + no).style.cursor = "progress";
-        document.getElementById('cforms' + no + 'form').submit();
-        return true;
-    } else if (all_valid) {
-        document.getElementById('sendbutton' + no).style.cursor = "progress";
-        document.getElementById('sendbutton' + no).disabled = true;
-        cforms_submitform(no);
+        if (directFormSubmission) {
+            var newSendButton = document.createElement('input');
+            newSendButton.type = 'hidden';
+            newSendButton.name = 'sendbutton' + no;
+            newSendButton.value = '1';
+            document.getElementById('cf_working' + no).parentNode.appendChild(newSendButton);
+            document.getElementById('cforms' + no + 'form').submit();
+            return true;
+        } else {
+            cforms_submitform(no);
+        }
     }
 
     var call_err = function (no, err, custom_error) {

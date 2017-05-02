@@ -219,7 +219,7 @@ if (isset($_REQUEST['SubmitOptions']))
                 </div>
 
                 <div class="cf-content" id="o9">
-                    <p><?php printf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#datepicker', 'onclick="setshow(19)"') ?></p>
+                    <p><?php printf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#datepicker', '') ?></p>
 
                     <table class="form-table">
                         <tr class="ob">
@@ -267,8 +267,8 @@ if (isset($_REQUEST['SubmitOptions']))
 
                 <div class="cf-content" id="o11">
                     <p>
-                        <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', 'onclick="setshow(19)"'); ?>
-                        <?php printf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#fileupload', 'onclick="setshow(0)"'); ?>
+                        <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
+                        <?php printf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#fileupload', ''); ?>
                     </p>
 
                     <p class="ex">
@@ -466,7 +466,7 @@ if (isset($_REQUEST['SubmitOptions']))
                         <td class="obL">&nbsp;</td>
                         <td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
                     </tr>
-                    <tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?></td></tr>
+                    <tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?></td></tr>
 
                     <tr class="ob space15">
                         <td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
@@ -498,7 +498,7 @@ if (isset($_REQUEST['SubmitOptions']))
             <div class="controls">
                 <p><?php _e('Generally, simple deactivation of cforms does <strong>not</strong> erase any of its data. If you like to quit using cforms for good, please erase all data before deactivating the plugin.', 'cforms2') ?></p>
                 <p><strong><?php _e('This is irrevocable!', 'cforms2') ?></strong><br />
-                     <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms2') ?>" onclick="return confirm('<?php _e('Final Warning!', 'cforms2') ?>');" /></p>
+                     <input type="submit" name="cfdeleteall" title="<?php _e('Are you sure you want to do this?!', 'cforms2') ?>" class="allbuttons deleteall" value="<?php _e('DELETE *ALL* CFORMS DATA', 'cforms2') ?>" /></p>
             </div>
         </form>
     </fieldset>

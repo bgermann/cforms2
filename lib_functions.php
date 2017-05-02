@@ -197,13 +197,12 @@ function cforms2_add_admin_bar_root($admin_bar, $id, $ti) {
 
 }
 
-function cforms2_add_admin_bar_item($admin_bar, $id, $ti, $hi, $ev, $p = 'cforms-bar') {
+function cforms2_add_admin_bar_item($admin_bar, $id, $ti, $hi, $p = 'cforms-bar') {
     $arr = array('parent' => $p,
         'id' => $id,
         'title' => $ti,
         'href' => '#',
-        'meta' => array('title' => $hi,
-            'onclick' => $ev)
+        'meta' => array('title' => $hi)
     );
 
     $admin_bar->add_node($arr);
@@ -277,8 +276,7 @@ function cforms2_insert_modal() {
 function cforms2_showmessage($confirm, $text, $no, $userconfirm) {
     global $cformsSettings;
 
-    if ($confirm < 8)
-        $text = __('It seems that you have recently upgraded cforms', 'cforms2') . ' ' . $text;
+    $text = __('It seems that you have recently upgraded cforms', 'cforms2') . ' ' . $text;
 
     if (isset($_GET['cf_confirm']) && $_GET['cf_confirm'] == 'confirm' . $confirm) {
         $cformsSettings['form' . $no]['cforms' . $no . '_confirmerr'] = ($userconfirm | $confirm);
