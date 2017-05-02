@@ -37,15 +37,13 @@ $plugindir = dirname(plugin_basename(__FILE__));
         <li><a href="#inserting"><?php _e('Inserting a form', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#fields"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#customerr"><?php _e('Custom error messages &amp; input field titles', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#hook"><?php _e('Advanced: cformsII API', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#dynamicforms"><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#variables"><?php _e('Using variables in email subject and messages', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#multipart"><?php _e('Multi-part forms', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#CSS"><?php _e('Styling your forms', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#css"><?php _e('Styling your forms', 'cforms2'); ?></a> &raquo;</li>
     </ul>
 
 
-    <h3 class="cflegend"><?php _e('Basic steps, a small guide', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="guide"><?php _e('Basic steps, a small guide', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p><?php _e('Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin but it may be the most flexible. The below outline should help you get started with the default form.', 'cforms2'); ?></p>
@@ -65,7 +63,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <h3 class="cflegend"><?php _e('Inserting a form', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="inserting"><?php _e('Inserting a form', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p><?php printf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'), 'shortcode <code>[cforms name="XYZ"]</code>', '<code>XYZ</code>'); ?></p>
@@ -73,7 +71,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <h3 class="cflegend"><?php _e('Configuring form input fields', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="fields"><?php _e('Configuring form input fields', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p><?php _e('All supported input fields are listed below, highlighting the expected formats for their associated Field Names.', 'cforms2'); ?></p>
@@ -586,7 +584,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <h3 class="cflegend"><?php _e('Custom error messages &amp; input field titles', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="customerr"><?php _e('Custom error messages &amp; input field titles', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p><?php printf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms2'), '<code>|title:XXX</code>'); ?></p>
@@ -624,7 +622,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <h3 class="cflegend"><?php _e('Using variables in email subject and messages', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="variables"><?php _e('Using variables in email subject and messages', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p>
@@ -867,7 +865,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <h3 class="cflegend"><?php _e('Multi-part forms', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="multipart"><?php _e('Multi-part forms', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p><?php printf(__('Multi-part forms support chaining of several forms and gather user input across all linked forms. Inserting a multi-part form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms2'), '<strong>', '</strong>'); ?></p>
@@ -927,7 +925,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <h3 class="cflegend"><?php _e('Styling your forms', 'cforms2') ?></h3>
+    <h3 class="cflegend" id="css"><?php _e('Styling your forms', 'cforms2') ?></h3>
 
     <div class="cf-content">
         <p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></p>
