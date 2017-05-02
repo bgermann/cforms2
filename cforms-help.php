@@ -23,7 +23,7 @@ $cformsSettings = get_option('cforms_settings');
 
 $plugindir = dirname(plugin_basename(__FILE__));
 ?>
-<div class="wrap" id="top">
+<div class="wrap">
 
     <h2><?php _e('Help', 'cforms2') ?></h2>
 
@@ -33,22 +33,21 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <p class="cftoctitle"><?php _e('Table of Contents', 'cforms2'); ?></p>
     <ul class="cftoc">
-        <li><a href="#guide" onclick="setshow(17)"><?php _e('Basic steps, a small guide', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#inserting" onclick="setshow(18)"><?php _e('Inserting a form', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#fields" onclick="setshow(19)"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#customerr" onclick="setshow(20)"><?php _e('Custom error messages &amp; input field titles', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#hook" onclick="setshow(21)"><?php _e('Advanced: cformsII API', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#dynamicforms" onclick="setshow(22)"><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#variables" onclick="setshow(23)"><?php _e('Using variables in email subject and messages', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#multipart" onclick="setshow(30)"><?php _e('Multi-part forms', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#CSS" onclick="setshow(24)"><?php _e('Styling your forms', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#guide"><?php _e('Basic steps, a small guide', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#inserting"><?php _e('Inserting a form', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#fields"><?php _e('Configuring form input fields', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#customerr"><?php _e('Custom error messages &amp; input field titles', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#hook"><?php _e('Advanced: cformsII API', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#dynamicforms"><?php _e('Advanced: Real-time creation of dynamic forms', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#variables"><?php _e('Using variables in email subject and messages', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#multipart"><?php _e('Multi-part forms', 'cforms2'); ?></a> &raquo;</li>
+        <li><a href="#CSS"><?php _e('Styling your forms', 'cforms2'); ?></a> &raquo;</li>
     </ul>
 
-    <div class="cflegend op-closed" id="p17" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="guide" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Basic steps, a small guide', 'cforms2') ?>
-    </div>
 
-    <div class="cf-content" id="o17">
+    <h3 class="cflegend"><?php _e('Basic steps, a small guide', 'cforms2') ?></h3>
+
+    <div class="cf-content">
         <p><?php _e('Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin but it may be the most flexible. The below outline should help you get started with the default form.', 'cforms2'); ?></p>
         <ol style="margin:10px 0 0 100px;">
             <li><?php printf(__('First take a look at the <a href="%s">default form</a>', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
@@ -66,26 +65,21 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <div class="cflegend op-closed" id="p18" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="inserting" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Inserting a form', 'cforms2') ?>
-    </div>
+    <h3 class="cflegend"><?php _e('Inserting a form', 'cforms2') ?></h3>
 
-    <div class="cf-content" id="o18">
+    <div class="cf-content">
         <p><?php printf(__('If you like to do it the \'code\' way, make sure to use %1s to include them in your <em>Pages/Posts</em>. With %2s being <u>your form NAME</u>.', 'cforms2'), 'shortcode <code>[cforms name="XYZ"]</code>', '<code>XYZ</code>'); ?></p>
         <p><?php printf(__('A more elegant and safer way is to use the <strong>TinyMCE Button</strong> (double check if <a href="%3s" %s>Button Support</a> is enabled!).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#wpeditor', 'onclick="setshow(12)"'); ?></p>
     </div>
 
 
-    <div class="cflegend op-closed" id="p19" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="fields" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Configuring form input fields', 'cforms2') ?>
-    </div>
+    <h3 class="cflegend"><?php _e('Configuring form input fields', 'cforms2') ?></h3>
 
-    <div class="cf-content" id="o19">
+    <div class="cf-content">
         <p><?php _e('All supported input fields are listed below, highlighting the expected formats for their associated Field Names.', 'cforms2'); ?></p>
 
         <p class="fieldtitle" id="textonly">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Text only elements (no input)', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-text.png"  alt=""/>
@@ -115,7 +109,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="datepicker">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Javascript Date Picker', 'cforms2'); ?>
         </p>
         <table class="hf">
@@ -142,7 +135,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="single">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Single, Password &amp; Multi line input fields', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-single.png"  alt=""/>
@@ -176,7 +168,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="select">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Select boxes &amp; radio buttons', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-dropdown.png"  alt=""/>
@@ -221,7 +212,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="multiselect">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Multi select boxes', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-ms.png"  alt=""/>
@@ -261,7 +251,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="check">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Check boxes', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-checkbox.png"  alt=""/>
@@ -297,7 +286,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="checkboxgroup">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Check box groups', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-grp.png"  alt=""/>
@@ -338,7 +326,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="ccme">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('CC: option for visitors', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-cc.png"  alt=""/>
@@ -369,7 +356,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="multirecipients">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Multiple form mail recipients', 'cforms2'); ?>
         </p>
 
@@ -400,7 +386,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="hidden">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Hidden input fields', 'cforms2'); ?>
         </p>
         <table class="hf">
@@ -429,7 +414,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="qa">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Visitor verification (Q&amp;A)', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-vv.png"  alt=""/>
@@ -465,7 +449,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="upload">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Attachments / File Upload Box', 'cforms2'); ?>
         </p>
         <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-upload.png"  alt=""/>
@@ -493,7 +476,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="hfieldsets">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Fieldsets', 'cforms2'); ?>
         </p>
 
@@ -537,7 +519,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="fieldtitle" id="regexp">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a>
             <?php _e('Using regular expressions with form fields', 'cforms2'); ?>
         </p>
 
@@ -605,11 +586,9 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <div class="cflegend op-closed" id="p20" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="customerr" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Custom error messages &amp; input field titles', 'cforms2') ?>
-    </div>
+    <h3 class="cflegend"><?php _e('Custom error messages &amp; input field titles', 'cforms2') ?></h3>
 
-    <div class="cf-content" id="o20">
+    <div class="cf-content">
         <p><?php printf(__('On top of their labels, input fields can have titles, too. Simply append a %s to a given field configuration string.', 'cforms2'), '<code>|title:XXX</code>'); ?></p>
         <p><?php printf(__('If you like to add custom error messages (next to your generic <a href="%s" %s>success</a> and <a href="%s" %s>error</a> messages) for your input fields, simply append a %s to a given <em>definition string/field name</em>. HTML is supported.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#cforms_success', 'onclick="setshow(1)"', '?page=' . $plugindir . '/cforms-options.php#cforms_failure', 'onclick="setshow(1)"', '<code>|err:XXX</code>'); ?></p>
         <p class="ex"><?php printf(__('Please note the order of these special attributes, first %s (if applicable), then %s.', 'cforms2'), '<code>|title:XXX</code>', '<code>|err:XXX</code>'); ?></p>
@@ -645,11 +624,9 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <div class="cflegend op-closed" id="p23" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="variables" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Using variables in email subject and messages', 'cforms2') ?>
-    </div>
+    <h3 class="cflegend"><?php _e('Using variables in email subject and messages', 'cforms2') ?></h3>
 
-    <div class="cf-content" id="o23">
+    <div class="cf-content">
         <p>
             <?php printf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', 'onclick="setshow(2)"', '?page=' . $plugindir . '/cforms-options.php#autoconf', 'onclick="setshow(5)"'); ?>
         </p>
@@ -890,11 +867,9 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <div class="cflegend op-closed" id="p30" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="multipart" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Multi-part forms', 'cforms2') ?>
-    </div>
+    <h3 class="cflegend"><?php _e('Multi-part forms', 'cforms2') ?></h3>
 
-    <div class="cf-content" id="o30">
+    <div class="cf-content">
         <p><?php printf(__('Multi-part forms support chaining of several forms and gather user input across all linked forms. Inserting a multi-part form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms2'), '<strong>', '</strong>'); ?></p>
 
         <table class="hf">
@@ -952,11 +927,9 @@ $plugindir = dirname(plugin_basename(__FILE__));
     </div>
 
 
-    <div class="cflegend op-closed" id="p24" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-        <a id="CSS" class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Styling your forms', 'cforms2') ?>
-    </div>
+    <h3 class="cflegend"><?php _e('Styling your forms', 'cforms2') ?></h3>
 
-    <div class="cf-content" id="o24">
+    <div class="cf-content">
         <p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></p>
         <p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
         <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>

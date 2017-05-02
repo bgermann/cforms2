@@ -578,7 +578,6 @@ fieldset.cformsoptions {
 }
 
 .cf-content {
-    display:none;
     background-color:whiteSmoke;
     padding:0 5px;
     margin-bottom:5px;
@@ -587,7 +586,6 @@ fieldset.cformsoptions {
 }
 
 .cflegend {
-    cursor:pointer;
     font-size:15px;
     text-shadow:white 0 1px 0;
     color:#464646;
@@ -601,6 +599,9 @@ fieldset.cformsoptions {
     border:1px solid #eee;
     border-bottom:none;
     border-radius:3px 3px 0 0;
+}
+div.cflegend {
+    cursor:pointer;
 }
 
 .op-closed {
@@ -922,14 +923,6 @@ table.hf ol li {
 #o22 ol li {
     list-style-type:decimal;
     list-style-position:inside;
-}
-
-#o17 ol li {
-    list-style-type:decimal;
-}
-
-#o17 ol li ul li {
-    list-style-type:disc;
 }
 
 .wrap table.hf {

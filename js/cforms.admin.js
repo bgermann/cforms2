@@ -581,8 +581,8 @@ jQuery(function () {
     for (var i = 0; i < 35; i++) {
         var el = document.getElementById('o' + i);
         var elp = document.getElementById('p' + i);
-        if (el && cookie.charAt(i) === '0') {
-            jQuery(el).show();
+        if (el && cookie.charAt(i) === '1') {
+            jQuery(el).hide();
             if (elp) {
                 jQuery("div", elp).attr('class', 'blindminus');
                 elp.className = 'cflegend';
