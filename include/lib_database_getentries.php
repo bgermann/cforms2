@@ -49,7 +49,7 @@ function cforms2_database_getentries() {
         $sql = $wpdb->prepare($sql, $sqlargs);
         $entries = $wpdb->get_results($sql);
 
-        echo '<div id="top">';
+        echo '<div>';
 
         if ($entries) {
 
@@ -125,12 +125,10 @@ function cforms2_database_getentries() {
                     '<div id="' . $entry->f_id . '" class="R">' . str_replace("\n", "<br />", strip_tags($val)) . '</div></div>' . "\n";
                 }
             }
-            echo '</div>';
         } else {
-
             echo '<p align="center">' . __('Sorry, data not found. Please refresh your data table.', 'cforms2') . '</p>';
-            echo '</div>';
         }
+        echo '</div>';
     }
 
     die();
