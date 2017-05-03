@@ -175,15 +175,14 @@ if (isset($_REQUEST['addbutton'])) {
     }
 }
 
-// default: $field_count = what's in the DB
-$field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
-
-
 // Update Settings
 if (isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_search("X", $_REQUEST)) {
     require_once(plugin_dir_path(__FILE__) . 'lib_options_sub.php');
+    cforms2_option_submission($no, $cformsSettings);
 }
 
+// default: $field_count = what's in the DB
+$field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
 
 // Reset Admin and AutoConf messages
 if (isset($_REQUEST['cforms_resetAdminMsg'])) {
