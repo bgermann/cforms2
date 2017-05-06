@@ -50,7 +50,7 @@ function cforms2_menu() {
 
     $p = plugin_dir_path(plugin_basename(__FILE__));
 
-    $tablesup = $wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions;
+    $tablesup = cforms2_is_table_present($wpdb->cformssubmissions);
 
     $o = $p . 'cforms-options.php';
 

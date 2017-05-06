@@ -464,11 +464,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
                     <?php printf(__('Please double-check the <a href="%s" %s>Global Settings</a> for proper configuration of the <code>File Upload</code> functionality (allowed extensions, file size etc.).', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', ''); ?>
                 </td>
             </tr>
-            <tr>
-                <td class="ball" colspan="2">
-                    <?php printf(__('Please enable <a href="%s" %s>Database Input Tracking</a> on the Global Settings page to ensure a unique upload ID per attachment and to avoid accidentally overwriting an attachment.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', ''); ?>
-                </td>
-            </tr>
         </table>
 
 
@@ -774,7 +769,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <tr>
                 <td class="bright" style="padding:10px; background:#fdcbaa;"><?php
                     echo '<strong>' . __('Important:', 'cforms2') . '</strong> ';
-                    _e('If you are using multiple input fields with <strong>the same</strong> recorded field label (you can always check the "Tracking" menu tab for how the fields are stored), e.g:', 'cforms2');
+                    _e('If you are using multiple input fields with <strong>the same</strong> recorded field label, e.g:', 'cforms2');
                     ?><br />
                     <pre style="font-size:11px"><code style="background:none">
 <strong>Size</strong>#250gr.#500gr#1kg circa

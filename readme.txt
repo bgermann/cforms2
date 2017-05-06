@@ -25,9 +25,7 @@ The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is
 
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha) provides an image CAPTCHA via cformsII's pluggable CAPTCHA facility. To convert the old CAPTCHA fields to Really Simple CAPTCHA, please install the current version and activate the plugin.
 
-[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Therefore cformsII's database tracking will be removed in the long run.
-
-[Unofficial CForms II table display](https://wordpress.org/plugins/cformstable/) introduces the ability to view the tracking database on any page via Shortcodes.
+[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Therefore cformsII's database tracking will be removed in the next major version.
 
 
 == Localization ==
@@ -46,7 +44,7 @@ Some things are to be done:
 * [Hook to get form submission data](https://wordpress.org/support/topic/hook-to-get-form-submission-data)
 * filter user input better
 * rework multi-part forms to be independent from PHP sessions
-* long term: remove database tracking
+* remove database tracking
 * long term: refactoring with object oriented approach
 * long term: unit tests and continuous integration
 
@@ -106,7 +104,7 @@ These features were removed with version 14.12.
 
 = Can I use cformsII with Content Security Policy enabled? =
 
-You can. Most of the JavaScript is included in the HTML header. The only form feature depending on inline scripting is redirection to an alternative success page. On the dashboard there are inline scripts for WordPress editor button and Tracking Form Data page.
+You can. Most of the JavaScript is included in the HTML header. The only form feature depending on inline scripting is redirection to an alternative success page. On the Dashboard there are inline scripts for WordPress editor button and Tracking Form Data page.
 
 
 == Upgrade Notice ==
@@ -161,6 +159,7 @@ GPL compliance!
 * enhanced: deprecate insert_custom_cform in favour of insert_cform
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * other:    remove 3rd party read-notification support
+* other:    hide Global Settings for Tracking DB if there are no existing tables
 
 = 14.13.3 =
 

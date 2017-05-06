@@ -1178,6 +1178,11 @@ if (isset($_GET['page'])) {
         add_action('admin_bar_menu', 'cforms2_add_items_global', 999);
 }
 
+function cforms2_is_table_present($table_name) {
+    global $wpdb;
+    return $wpdb->get_var("show tables like '$table_name'") == $table_name;
+}
+
 function cforms2_add_items_global($admin_bar) {
 
     global $wpdb;

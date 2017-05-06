@@ -42,10 +42,6 @@ if (isset($_REQUEST['deletetables'])) {
     <div id="message" class="updated fade">
         <p>
             <strong><?php printf(__('cforms tracking tables %s have been deleted.', 'cforms2'), '(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong>
-            <br />
-            <?php _e('Please backup/clean-up your upload directory, chances are that when you turn tracking back on, existing (older) attachments may be <u>overwritten</u>!') ?>
-            <br />
-            <small><?php _e('(only of course, if your form includes a file upload field)') ?></small>
         </p>
     </div>
     <?php
@@ -453,36 +449,40 @@ if (isset($_REQUEST['SubmitOptions']))
             </fieldset>
 
 
-            <fieldset id="tracking" class="cformsoptions">
-                <div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms2') ?>
-                </div>
+            <?php if (cforms2_is_table_present($wpdb->cformssubmissions)) { ?>
+                <fieldset id="tracking" class="cformsoptions">
+                    <div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms2') ?>
+                    </div>
 
-                <div class="cf-content" id="o14">
-                    <p><?php _e('If you like to track your form submissions also via the database, please enable this feature below. If required, two new tables will be created and you\'ll see a new sub tab "<strong>Tracking</strong>" under the cforms menu.', 'cforms2') ?></p>
+                    <div class="cf-content" id="o14">
+                        <p><?php _e('If you like to track your form submissions also via the database, please enable this feature below. If required, two new tables will be created and you\'ll see a new sub tab "<strong>Tracking</strong>" under the cforms menu.', 'cforms2') ?></p>
 
-                    <table class="form-table">
-                    <tr class="ob">
-                        <td class="obL">&nbsp;</td>
-                        <td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
-                    </tr>
-                    <tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?></td></tr>
+                        <table class="form-table">
+                        <tr class="ob">
+                            <td class="obL">&nbsp;</td>
+                            <td class="obR"><a class="infobutton" href="#" name="it13"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
+                        </tr>
+                        <tr id="it13" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('If you\'ve enabled the <a href="%s" %s>auto confirmation message</a> feature or have included a <code>CC: me</code> input field, you can optionally configure the subject line/message of the email to include the form tracking ID by using the variable <code>{ID}</code>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?></td></tr>
 
-                    <tr class="ob space15">
-                        <td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
-                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if ($cformsSettings['global']['cforms_database'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms2') ?></td>
-                    </tr>
+                        <tr class="ob space15">
+                            <td class="obL"><label for="cforms_database"><strong><?php _e('Enable Database Tracking', 'cforms2') ?></strong></label></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_database" name="cforms_database" <?php if ($cformsSettings['global']['cforms_database'] == "1") echo "checked=\"checked\""; ?>/> <?php _e('Will create two new tables in your WP database.', 'cforms2') ?></td>
+                        </tr>
 
-                    </table>
-                </div>
-            </fieldset>
+                        </table>
+                    </div>
+                </fieldset>
 
-        <?php } ?>
+<?php
+            }
+        }
+?>
 
         <div class="cf_actions" id="cf_actions" style="display:none;">
             <input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
             <input id="cfbar-deleteall" class="allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
-            <input id="deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
+            <input id="cfbar-deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
             <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
         </div>
 
