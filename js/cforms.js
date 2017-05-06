@@ -530,3 +530,12 @@ function cforms_validate(no, directFormSubmission) {
     return false;
 
 }
+
+jQuery(function () {
+    jQuery('form.cform[id^="cforms"][id$="form"]').submit(function(ev) {
+        var id = jQuery(ev.target).attr('id');
+        var no = /^cforms(\d*)form$/.exec(id)[1];
+        var direct = jQuery(ev.target).hasClass('cformsdirect');
+        cforms_validate(no, direct);
+    });
+});

@@ -292,12 +292,10 @@ function cforms2($no = '', $customfields = array()) {
 
     $enctype = $cformsSettings['form' . $no]['cforms' . $no . '_formaction'] ? 'enctype="application/x-www-form-urlencoded"' : 'enctype="multipart/form-data"';
 
-    // start with form tag
-    $content .= '<form ' . $enctype . ' action="' . $action . '" method="post" class="cform ' . sanitize_title_with_dashes($cformsSettings['form' . $no]['cforms' . $no . '_fname']) . ' ' . ( $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] ? ' cfnoreset' : '' ) . '" id="cforms' . $no . 'form">';
-
-
     // session item counter (for default values)
     $sItem = 1;
+
+    $formcontent = '';
 
     // start with no fieldset
     $fieldsetopen = false;
@@ -388,7 +386,7 @@ function cforms2($no = '', $customfields = array()) {
 
         // check if fieldset is open
         if (!$fieldsetopen && !$ol && $field_type !== 'fieldsetstart') {
-            $content .= '<ol class="cf-ol">';
+            $formcontent .= '<ol class="cf-ol">';
             $ol = true;
         }
 
@@ -529,9 +527,9 @@ function cforms2($no = '', $customfields = array()) {
         // Print label only for non "textonly" fields! Skip some others also, and handle them below individually.
         $standard_field = !in_array($field_type, array('hidden', 'textonly', 'fieldsetstart', 'fieldsetend', 'ccbox', 'checkbox', 'checkboxgroup', 'radiobuttons'));
         if ($standard_field) {
-            $content .= '<li' . $liID . ' class="' . $liERR . '">' . $insertErr;
+            $formcontent .= '<li' . $liID . ' class="' . $liERR . '">' . $insertErr;
             if (!in_array($field_type, array_keys($captchas)))
-                $content .= '<label' . $labelID . ' for="' . $input_id . '"' . ($field_type == 'captcha' ? ' class="seccap"' : '') . '><span>' . stripslashes(($field_name)) . '</span></label>';
+                $formcontent .= '<label' . $labelID . ' for="' . $input_id . '"' . ($field_type == 'captcha' ? ' class="seccap"' : '') . '><span>' . stripslashes(($field_name)) . '</span></label>';
         }
 
 
@@ -857,34 +855,32 @@ function cforms2($no = '', $customfields = array()) {
         cforms2_dbg("Form setup: $field_type, val=$field_value, default=$defaultvalue");
 
         // add new field
-        $content .= $field;
+        $formcontent .= $field;
 
         // adding "required" text if needed
         if ($field_emailcheck == 1)
-            $content .= '<span class="emailreqtxt">' . stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_emailrequired']) . '</span>';
+            $formcontent .= '<span class="emailreqtxt">' . stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_emailrequired']) . '</span>';
         elseif ($field_required == 1 && !in_array($field_type, array('ccbox', 'checkbox', 'radiobuttons')))
-            $content .= '<span class="reqtxt">' . stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_required']) . '</span>';
+            $formcontent .= '<span class="reqtxt">' . stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_required']) . '</span>';
 
         // close <li> item
         if ($standard_field)
-            $content .= '</li>';
+            $formcontent .= '</li>';
     }
 
     // close any open tags
     if ($ol)
-        $content .= '</ol>';
+        $formcontent .= '</ol>';
     if ($fieldsetopen)
-        $content .= '</fieldset>';
+        $formcontent .= '</fieldset>';
 
 
-    // rest of the form
-    if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '1')
-        $ajaxenabled = ' onclick="return cforms_validate(\'' . $no . '\', ' . ($upload || $custom || $alt_action) . ')"';
-    else
-        $ajaxenabled = '';
+    $direct_submission = '';
+    if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '1' && ($upload || $custom || $alt_action))
+        $direct_submission = 'cformsdirect ';
 
 
-    $content .= '<fieldset class="cf_hidden"><legend>&nbsp;</legend>';
+    $formcontent .= '<fieldset class="cf_hidden"><legend>&nbsp;</legend>';
 
     // custom error
     $custom_error = substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 3, 1) . $custom_error;
@@ -892,17 +888,19 @@ function cforms2($no = '', $customfields = array()) {
 
     // Extra Fields
     if (substr($cformsSettings['form' . $oldno]['cforms' . $oldno . '_tellafriend'], 0, 1) === '3') {
-        $content .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . ( isset($_GET['pid']) ? $_GET['pid'] : get_the_ID() ) . '"/>' .
+        $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . ( isset($_GET['pid']) ? $_GET['pid'] : get_the_ID() ) . '"/>' .
                 '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . ( isset($_GET['pid']) ? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
     }
 
 
-    $content .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="<span>' . rawurlencode($cformsSettings['form' . $no]['cforms' . $no . '_working']) . '</span>"/>' .
+    $formcontent .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="<span>' . rawurlencode($cformsSettings['form' . $no]['cforms' . $no . '_working']) . '</span>"/>' .
             '<input type="hidden" name="cf_failure' . $no . '" id="cf_failure' . $no . '" value="<span>' . rawurlencode($cformsSettings['form' . $no]['cforms' . $no . '_failure']) . '</span>"/>' .
             '<input type="hidden" name="cf_customerr' . $no . '" id="cf_customerr' . $no . '" value="' . rawurlencode($custom_error) . '"/>';
 
-    $content .= '</fieldset>';
+    $formcontent .= '</fieldset>';
 
+    // start with form tag
+    $content .= '<form ' . $enctype . ' action="' . $action . '" method="post" class="cform ' . $direct_submission . sanitize_title_with_dashes($cformsSettings['form' . $no]['cforms' . $no . '_fname']) . ' ' . ( $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] ? ' cfnoreset' : '' ) . '" id="cforms' . $no . 'form">';
 
     // multi-part form: reset
     $reset = '';
@@ -916,7 +914,7 @@ function cforms2($no = '', $customfields = array()) {
         $back = '<input type="submit" name="backbutton' . $no . '" id="backbutton' . $no . '" class="backbutton" value="' . $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_backtext'] . '">';
 
 
-    $content .= '<p class="cf-sb">' . $reset . $back . '<input type="submit" name="sendbutton' . $no . '" id="sendbutton' . $no . '" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_submit_text'])) . '"' . $ajaxenabled . '/></p></form>';
+    $content .= $formcontent . '<p class="cf-sb">' . $reset . $back . '<input type="submit" name="sendbutton' . $no . '" id="sendbutton' . $no . '" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_submit_text'])) . '" /></p></form>';
 
     // either show message above or below
     $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, $subID);
