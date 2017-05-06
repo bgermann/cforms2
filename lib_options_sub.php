@@ -108,8 +108,6 @@ function cforms2_option_submission($no, &$cformsSettings) {
     $cformsSettings['form' . $no]['cforms' . $no . '_customnames'] = cforms2_get_boolean_from_request('cforms_customnames');
     $cformsSettings['form' . $no]['cforms' . $no . '_hide'] = cforms2_get_from_request('cforms_hide') ? true : false;
 
-    $cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] = cforms2_get_from_request('cforms_maxentries') == '' ? '' : (int) cforms2_get_from_request('cforms_maxentries');
-
     $startdate = cforms2_get_from_request('cforms_startdate');
     $starttime = cforms2_get_from_request('cforms_starttime');
     $enddate = cforms2_get_from_request('cforms_enddate');

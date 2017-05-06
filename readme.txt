@@ -159,6 +159,7 @@ GPL compliance!
 * enhanced: deprecate insert_custom_cform in favour of insert_cform
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * other:    remove 3rd party read-notification support
+* other:    remove submission limit feature
 * other:    hide Global Settings for Tracking DB if there are no existing tables
 
 = 14.13.3 =

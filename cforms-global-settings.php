@@ -187,7 +187,7 @@ if (isset($_REQUEST['SubmitOptions']))
 
             <fieldset id="inandexclude" class="cformsoptions">
                 <div class="cflegend op-closed" id="p27" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Include cforms header data only on specific pages', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Include cforms header data only on specific pages', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o27">
@@ -211,7 +211,7 @@ if (isset($_REQUEST['SubmitOptions']))
 
             <fieldset id="popupdate" class="cformsoptions">
                 <div class="cflegend op-closed" id="p9" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Popup Date Picker', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Popup Date Picker', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o9">
@@ -239,7 +239,7 @@ if (isset($_REQUEST['SubmitOptions']))
 
             <fieldset id="smtp" class="cformsoptions">
                 <div class="cflegend op-closed" id="p10" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Mail Server Settings', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Mail Server Settings', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o10">
@@ -258,7 +258,7 @@ if (isset($_REQUEST['SubmitOptions']))
 
             <fieldset id="upload" class="cformsoptions">
                 <div class="cflegend op-closed" id="p11" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Global File Upload Settings', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Global File Upload Settings', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o11">
@@ -314,7 +314,7 @@ if (isset($_REQUEST['SubmitOptions']))
 
             <fieldset id="wpeditor" class="cformsoptions">
                 <div class="cflegend op-closed" id="p12" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('WP Editor Button support', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('WP Editor Button support', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o12">
@@ -333,7 +333,7 @@ if (isset($_REQUEST['SubmitOptions']))
                 ?>
                 <fieldset id="captcha" class="cformsoptions">
                     <div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('CAPTCHA Image Settings', 'cforms2') ?>
+                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('CAPTCHA Image Settings', 'cforms2') ?>
                     </div>
 
                     <div class="cf-content" id="o26">
@@ -411,7 +411,7 @@ if (isset($_REQUEST['SubmitOptions']))
 
             <fieldset id="visitorv" class="cformsoptions">
                 <div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o13">
@@ -452,7 +452,7 @@ if (isset($_REQUEST['SubmitOptions']))
             <?php if (cforms2_is_table_present($wpdb->cformssubmissions)) { ?>
                 <fieldset id="tracking" class="cformsoptions">
                     <div class="cflegend op-closed" id="p14" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Database Input Tracking', 'cforms2') ?>
+                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Database Input Tracking', 'cforms2') ?>
                     </div>
 
                     <div class="cf-content" id="o14">

@@ -43,7 +43,7 @@ function cforms2_submitcform() {
     $_POST['sendbutton' . $no] = true;
     require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
     $validation_result = cforms2_validate($no);
-    $hide = $validation_result['all_valid'] && ($cformsSettings['form' . $no]['cforms' . $no . '_hide'] || cforms2_get_submission_left($no) == 0);
+    $hide = $validation_result['all_valid'] && $cformsSettings['form' . $no]['cforms' . $no . '_hide'];
     $cf_redirect = null;
     if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
         $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];

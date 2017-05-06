@@ -473,7 +473,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         if (function_exists('my_cforms_filter'))
             my_cforms_filter($_POST);
 
-        if ((!empty($cformsSettings['form' . $no]['cforms' . $no . '_maxentries']) && cforms2_get_submission_left($no) == 0) || !cforms2_check_time($no)) {
+        if (!cforms2_check_time($no)) {
             return array(
                 'text' => $usermessage_text,
                 'class' => $usermessage_class,

@@ -93,8 +93,6 @@ if (isset($_REQUEST['addbutton'])) {
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = 'txt,zip,doc,rtf,xls';
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = '1024';
 
-    $cformsSettings['form' . $no]['cforms' . $no . '_maxentries'] = '';
-
     update_option('cforms_settings', $cformsSettings);
     echo '<div id="message" class="updated fade"><p>' . __('A new form with default fields has been added.', 'cforms2') . '</p></div>';
 
@@ -502,7 +500,7 @@ if (strlen($fd) <= 2) {
         <?php if ($fileupload) { ?>
             <fieldset id="fileupload" class="cformsoptions">
                 <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('File Upload Settings', 'cforms2') ?>
+                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o0">
@@ -557,7 +555,7 @@ if (strlen($fd) <= 2) {
 
         <fieldset class="cformsoptions" id="anchormessage">
             <div class="cflegend op-closed" id="p1" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Messages, Text and Button Label', 'cforms2') ?>
+                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Messages, Text and Button Label', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o1">
@@ -620,7 +618,7 @@ if (strlen($fd) <= 2) {
 
         <fieldset class="cformsoptions" id="anchoremail">
             <div class="cflegend op-closed" id="p2" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Core Form Admin / Email Options', 'cforms2') ?>
+                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Core Form Admin / Email Options', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o2">
@@ -679,11 +677,6 @@ if (strlen($fd) <= 2) {
                     <tr class="obSEP"><td colspan="2"></td></tr>
 
                     <tr class="ob">
-                        <td class="obL"><strong><?php _e('Submission Limit', 'cforms2'); ?></strong></td>
-                        <td class="obR"><input type="text" id="cforms_maxentries" name="cforms_maxentries" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_maxentries'])); ?>"/><label for="cforms_maxentries"><?php _e('<u>total</u> # of submissions accepted [<strong>empty or 0 (zero) = off</strong>] (tracking must be enabled!)', 'cforms2') ?></label></td>
-                    </tr>
-
-                    <tr class="ob">
                         <td class="obL" style="padding-top:7px"><strong><?php _e('Start Date', 'cforms2'); ?></strong></td>
                         <?php $date = explode(' ', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_startdate']))); ?>
                         <td class="obR">
@@ -723,7 +716,7 @@ if (strlen($fd) <= 2) {
                         </td>
                     </tr>
 
-                    <?php if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_maxentries']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])) { ?>
+                    <?php if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])) { ?>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_limittxt'])); ?></textarea></td></tr></table></td>
@@ -758,7 +751,7 @@ if (strlen($fd) <= 2) {
 
         <fieldset class="cformsoptions" id="emailoptions">
             <div class="cflegend op-closed" id="p3" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Admin Email Message Options', 'cforms2') ?>
+                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Admin Email Message Options', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o3">
@@ -855,7 +848,7 @@ if (strlen($fd) <= 2) {
 
         <fieldset class="cformsoptions <?php if (!$ccboxused) echo "hidden"; ?>" id="cc">
             <div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('CC Settings', 'cforms2') ?>
+                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('CC Settings', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o4">
@@ -877,7 +870,7 @@ if (strlen($fd) <= 2) {
 
         <fieldset class="cformsoptions" id="autoconf">
             <div class="cflegend op-closed" id="p5" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Auto Confirmation', 'cforms2') ?>
+                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Auto Confirmation', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o5">
@@ -953,7 +946,7 @@ if (strlen($fd) <= 2) {
 
         <fieldset class="cformsoptions" id="multipart">
             <div class="cflegend op-closed" id="p29" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindplus"></div><?php _e('Multi-part forms', 'cforms2') ?>
+                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Multi-part forms', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o29">

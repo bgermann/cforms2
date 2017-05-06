@@ -105,8 +105,6 @@ function cforms2_setup_db() {
     cforms2_setINI('form', 'cforms_action', '0');
     cforms2_setINI('form', 'cforms_action_page', 'http://');
 
-    cforms2_setINI('form', 'cforms_maxentries', '');
-
     // global file settings
 
     cforms2_setINI('global', 'cforms_formcount', '1');

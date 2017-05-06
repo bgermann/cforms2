@@ -271,7 +271,7 @@ function cforms2($no = '', $customfields = array()) {
             )
     )
         return $content;
-    elseif ((!empty($cformsSettings['form' . $no]['cforms' . $no . '_maxentries']) && cforms2_get_submission_left($no) <= 0) || !cforms2_check_time($no)) {
+    elseif (!cforms2_check_time($no)) {
 
         if ($validation_result['limit_reached'])
             return stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
@@ -1097,26 +1097,6 @@ function cforms2_widget_init() {
     $cformsSettings = get_option('cforms_settings');
     require_once(plugin_dir_path(__FILE__) . 'lib_widget.php');
     register_widget('cforms2_widget');
-
-}
-
-/** get # of submissions left (max subs) */
-function cforms2_get_submission_left($no) {
-    global $wpdb, $cformsSettings;
-
-    if ($no == 0 || $no == 1)
-        $no = '';
-    $max = (int) $cformsSettings['form' . $no]['cforms' . $no . '_maxentries'];
-
-    if ($max == '' || $max == 0 || $cformsSettings['global']['cforms_database'] == '0')
-        return -1;
-
-    $entries = $wpdb->get_row($wpdb->prepare("SELECT count(id) as submitted FROM {$wpdb->cformssubmissions} WHERE form_id=%s", $no));
-
-    if ($max - $entries->submitted > 0)
-        return ($max - $entries->submitted);
-    else
-        return 0;
 
 }
 

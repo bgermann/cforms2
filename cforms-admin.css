@@ -696,11 +696,6 @@ input#cforms_fromemail {
     background:#fdc4c4;
 }
 
-input#cforms_maxentries {
-    width:4em;
-    margin-right:3px;
-}
-
 input#cforms_endtime,input#cforms_starttime {
     width:5em;
     margin-right:3px;
