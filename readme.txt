@@ -104,6 +104,10 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 These features were removed with version 14.12.
 
+= Can I use cformsII with Content Security Policy enabled? =
+
+You can. Most of the JavaScript is included in the HTML header. The only form feature depending on inline scripting is redirection to an alternative success page. On the dashboard there are inline scripts for WordPress editor button and Tracking Form Data page.
+
 
 == Upgrade Notice ==
 
