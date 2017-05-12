@@ -17,10 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
-
-$cformsSettings = get_option('cforms_settings');
-
 $plugindir = dirname(plugin_basename(__FILE__));
 ?>
 <div class="wrap">
