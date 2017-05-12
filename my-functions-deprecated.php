@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// TODO when available: https://core.trac.wordpress.org/ticket/36561
+
 /**
  * This is a compatibility layer for the transition from the old
  * my-functions API to native WordPress actions/filters.

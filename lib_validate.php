@@ -35,14 +35,11 @@ function cforms2_move_files($no, $subID, &$file) {
     $fileuploaddir = $temp[0];
 
     $inSession = (strpos($subID, 'xx') !== false);
-    $subID_ = ($cformsSettings['form' . $no]['cforms' . $no . '_noid']) ? '' : $subID . '-';
 
     $file2 = $file;
     $i = 0;
 
     $_SESSION['cforms']['upload'][$no]['doAttach'] = !($cformsSettings['form' . $no]['cforms' . $no . '_noattachments']);
-
-    cforms2_dbg("... in session=$inSession, moving files on form $no, tracking ID=$subID_");
 
     if (is_array($file2) && isset($file2['tmp_name'])) {
         foreach ($file2['tmp_name'] as $tmpfile) {
@@ -53,7 +50,7 @@ function cforms2_move_files($no, $subID, &$file) {
                 $fileInfoArr = array('name' => str_replace(' ', '_', $file2['name'][$i]), 'path' => $fileuploaddir, 'subID' => $subID);
 
                 if (!array_key_exists('modified', $fileInfoArr))
-                    $fileInfoArr['name'] = $subID_ . $fileInfoArr['name'];
+                    $fileInfoArr['name'] = $fileInfoArr['name'];
 
                 $destfile = $fileInfoArr['path'] . '/' . $fileInfoArr['name'];
 
@@ -845,6 +842,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
 
             $trackf['uploaded_files'] = $fdata;
+            $trackf['submit_time'] = time();
             try {
                 // This action is meant to enable you to implement additional features
                 // after validating and most other processing are done

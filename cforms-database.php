@@ -29,6 +29,35 @@ if (cforms2_check_erased())
 <div class="wrap">
     <h2><?php _e('Tracking Form Data', 'cforms2') ?></h2>
 
+    <?php
+    if (class_exists('CF7DBPlugin')) {
+        echo '<p><strong>';
+        if (isset($_GET['copytocfdb'])) {
+            $db_entries = get_cforms_entries();
+            $count_entries = 0;
+            foreach ($db_entries as $db_entry) {
+                $trackf = array();
+                $trackf['id'] = $db_entry['id'];
+                $trackf['title'] = $db_entry['form'];
+                $trackf['submit_time'] = (int) $db_entry['timestamp'];
+                // ip field is only set for copying old database entries
+                $trackf['ip'] = $db_entry['ip'];
+                $trackf['data'] = $db_entry['data'];
+                // TODO $trackf['uploaded_files']
+                do_action('cforms2_after_processing_action', $trackf);
+                $count_entries++;
+            }
+            printf(__('%d submissions were copied to CFDB.', 'cforms2'), $count_entries);;
+        } else {
+            echo '<a href="?page=';
+            echo dirname(plugin_basename(__FILE__));
+            echo '%2Fcforms-database.php&amp;copytocfdb">';
+            _e('Copy all submissions to CFDB', 'cforms2');
+            echo '</a>';
+        }
+        echo '</strong></p>';
+    }
+    ?>
     <p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch. Attachments can be accessed in the details section. When deleting an entry, associated attachments will be removed, too! ', 'cforms2') ?></p>
 
     <table id="flex1" style="display:none"><tr><td></td></tr></table>

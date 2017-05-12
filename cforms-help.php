@@ -662,10 +662,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
                 <td class="bright"><?php _e('Inserts visitor IP address.', 'cforms2'); ?></td>
             </tr>
             <tr>
-                <td class="bleft"><code>{ID}</code></td>
-                <td class="bright"><?php _e('Inserts a unique and referenceable form ID (provided that DB Tracking is enabled!)', 'cforms2'); ?></td>
-            </tr>
-            <tr>
                 <td class="bleft"><code>{CurUserID}</code></td>
                 <td class="bright"><?php _e('Inserts the ID of the currently logged-in user.', 'cforms2'); ?></td>
             </tr>

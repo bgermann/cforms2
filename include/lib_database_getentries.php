@@ -84,21 +84,18 @@ function cforms2_database_getentries() {
                     $fileuploaddir = $temp[0];
                     $fileuploaddirurl = $temp[1];
 
-                    $subID = ($cformsSettings['form' . $no]['cforms' . $no . '_noid']) ? '' : $entry->sub_id . '-';
-
                     if ($fileuploaddirurl == '') {
                         $fileurl = get_site_url() . substr(trailingslashit($fileuploaddir), strlen(get_home_path()) - 1);
                     } else
                         $fileurl = trailingslashit($fileuploaddirurl);
 
+                    $rawfileName = strip_tags($val);
 
-                    $passID = ($cformsSettings['form' . $no]['cforms' . $no . '_noid']) ? '' : $entry->sub_id;
-                    $fileInfoArr = array('name' => strip_tags($val), 'path' => $fileurl, 'subID' => $passID);
+                    $fileName = $entry->sub_id . '-' . $rawfileName;
+                    if (!file_exists(trailingslashit($fileuploaddir) . $fileName))
+                        $fileName = $rawfileName;
 
-                    if (!array_key_exists('modified', $fileInfoArr))
-                        $fileInfoArr['name'] = $subID . $fileInfoArr['name'];
-
-                    $fileurl = $fileInfoArr['path'] . $fileInfoArr['name'] . $_GET['format'];
+                    $fileurl = $fileurl . $fileName . $_GET['format'];
 
                     echo '<div class="showformfield meta"><div class="L">';
                     echo substr($name, 0, strpos($name, '[*'));

@@ -528,11 +528,6 @@ if (strlen($fd) <= 2) {
                             <td class="obR"><input type="text" id="cforms_upload_dir_url" name="cforms_upload_dir_url" value="<?php echo $fileuploaddirurl; ?>"/> <?php _e('e.g. /wp-content/my-upload-dir', 'cforms2') ?></td>
                         </tr>
 
-                        <tr class="ob space10">
-                            <td class="obL"><label for="cforms_upload_noid"><strong><?php _e('Disable noid- (tracking ID) prefix', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_upload_noid" name="cforms_upload_noid" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_noid'] == '1') echo "checked=\"checked\""; ?>/></td>
-                        </tr>
-
                         <tr class="ob space15">
                             <td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms2') ?></strong></label></td>
                             <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'])); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
@@ -545,7 +540,7 @@ if (strlen($fd) <= 2) {
 
                         <tr class="ob">
                             <td class="obL"><label for="cforms_noattachments"><strong><?php _e('Do not email attachments', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] == '1') echo "checked=\"checked\""; ?>/><br /><?php printf(__('<u>Note</u>: Attachments are stored on the server &amp; can be accessed via the <a href="%s" %s>cforms tracking</a> tables.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#tracking', ''); ?></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] == '1') echo "checked=\"checked\""; ?>/></td>
                         </tr>
                     </table>
                 </div>

@@ -104,7 +104,7 @@ These features were removed with version 14.12.
 
 = Can I use cformsII with Content Security Policy enabled? =
 
-You can. Most of the JavaScript is included in the HTML header. The only form feature depending on inline scripting is redirection to an alternative success page. On the Dashboard there are inline scripts for WordPress editor button and Tracking Form Data page.
+You can. Most of the JavaScript is included in the HTML head. The only form feature depending on inline scripting is redirection to an alternative success page. On the Dashboard there are inline scripts for WordPress editor button and Tracking Form Data page. If you have the JavaScript date picker enabled, some CSS is loaded from ajax.googleapis.com.
 
 
 == Upgrade Notice ==
@@ -154,13 +154,16 @@ GPL compliance!
 
 == Changelog ==
 
-= 14.13.4 =
+= 14.14 =
 
 * enhanced: deprecate insert_custom_cform in favour of insert_cform
+* enhanced: for consistency, run JavaScript also for non-AJAX forms
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
+* added:    feature to copy old submission data to CFDB
 * other:    remove 3rd party read-notification support
 * other:    remove submission limit feature
-* other:    hide Global Settings for Tracking DB if there are no existing tables
+* other:    remove Global Settings for Tracking DB
+* other:    remove Tracking ID for files
 
 = 14.13.3 =
 

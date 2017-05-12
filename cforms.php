@@ -876,7 +876,7 @@ function cforms2($no = '', $customfields = array()) {
 
 
     $direct_submission = '';
-    if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '1' && ($upload || $custom || $alt_action))
+    if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == '0' || $upload || $custom || $alt_action)
         $direct_submission = 'cformsdirect ';
 
 

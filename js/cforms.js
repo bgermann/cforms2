@@ -484,17 +484,11 @@ function cforms_validate(no, directFormSubmission) {
         write_customerr();
 
     if (all_valid) {
-        document.getElementById('sendbutton' + no).disabled = true;
         document.getElementById('sendbutton' + no).style.cursor = "progress";
         if (directFormSubmission) {
-            var newSendButton = document.createElement('input');
-            newSendButton.type = 'hidden';
-            newSendButton.name = 'sendbutton' + no;
-            newSendButton.value = '1';
-            document.getElementById('cf_working' + no).parentNode.appendChild(newSendButton);
-            document.getElementById('cforms' + no + 'form').submit();
             return true;
         } else {
+            document.getElementById('sendbutton' + no).disabled = true;
             cforms_submitform(no);
         }
     }
@@ -536,6 +530,6 @@ jQuery(function () {
         var id = jQuery(ev.target).attr('id');
         var no = /^cforms(\d*)form$/.exec(id)[1];
         var direct = jQuery(ev.target).hasClass('cformsdirect');
-        cforms_validate(no, direct);
+        return cforms_validate(no, direct);
     });
 });
