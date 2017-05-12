@@ -37,8 +37,9 @@ if (cforms2_check_erased())
             $count_entries = 0;
             foreach ($db_entries as $sub_id => $db_entry) {
                 $trackf = array();
-                $trackf['id'] = $db_entry['id'];
                 $trackf['title'] = $db_entry['form'];
+                $no = cforms2_check_form_name($trackf['title']);
+                $trackf['id'] = $no;
                 $trackf['submit_time'] = (int) $db_entry['timestamp'];
                 // ip field is only set for copying old database entries
                 $trackf['ip'] = $db_entry['ip'];
