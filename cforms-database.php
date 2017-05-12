@@ -35,23 +35,34 @@ if (cforms2_check_erased())
         if (isset($_GET['copytocfdb'])) {
             $db_entries = get_cforms_entries();
             $count_entries = 0;
-            foreach ($db_entries as $db_entry) {
+            foreach ($db_entries as $sub_id => $db_entry) {
                 $trackf = array();
                 $trackf['id'] = $db_entry['id'];
                 $trackf['title'] = $db_entry['form'];
                 $trackf['submit_time'] = (int) $db_entry['timestamp'];
                 // ip field is only set for copying old database entries
                 $trackf['ip'] = $db_entry['ip'];
-                $trackf['data'] = $db_entry['data'];
-                if (!empty($trackf['data']['page'])) {
-                    $trackf['data']['Submitted From'] = $trackf['data']['page'];
-                    unset($trackf['data']['page']);
+                $trackf['data'] = array();
+                $trackf['uploaded_files'] = array();
+                foreach ($db_entry['data'] as $key => $value) {
+                    if ($key === 'page') {
+                        $trackf['data']['Submitted From'] = $value;
+                        continue;
+                    }
+                    if (strpos($key, '[*') !== false) {
+                        $temp = explode('$#$', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'])));
+                        $fileuploaddir = trailingslashit($temp[0]);
+                        $fileName = $fileuploaddir . $sub_id . '-' . $value;
+                        if (!file_exists($fileName))
+                            $fileName = $fileuploaddir . $value;
+                        $trackf['uploaded_files'][] = array('name' => $fileName);
+                    }
+                    $trackf['data'][$key] = $value;
                 }
-                // TODO $trackf['uploaded_files']
                 do_action('cforms2_after_processing_action', $trackf);
                 $count_entries++;
             }
-            printf(__('%d submissions were copied to CFDB.', 'cforms2'), $count_entries);;
+            printf(__('%d submissions were copied to CFDB.', 'cforms2'), $count_entries);
         } else {
             echo '<a href="?page=';
             echo dirname(plugin_basename(__FILE__));
