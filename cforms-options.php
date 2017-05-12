@@ -512,7 +512,7 @@ if (strlen($fd) <= 2) {
                     <?php
                     $temp = explode('$#$', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'])));
                     $fileuploaddir = $temp[0];
-                    $fileuploaddirurl = $temp[1];
+
                     if ($fileupload && !file_exists($fileuploaddir)) {
                         echo '<div class="updated fade"><p>' . __('Can\'t find the specified <strong>Upload Directory</strong> ! Please verify that it exists!', 'cforms2') . '</p></div>';
                     }
@@ -521,11 +521,6 @@ if (strlen($fd) <= 2) {
                         <tr class="ob space15">
                             <td class="obL"><label for="cforms_upload_dir"><strong><?php _e('Upload directory (absolute path)', 'cforms2') ?></strong></label></td>
                             <td class="obR"><input type="text" id="cforms_upload_dir" name="cforms_upload_dir" value="<?php echo $fileuploaddir; ?>"/> <?php _e('e.g. /home/user/www/wp-content/my-upload-dir', 'cforms2') ?></td>
-                        </tr>
-
-                        <tr class="ob">
-                            <td class="obL"><label for="cforms_upload_dir_url"><strong><?php _e('Upload directory URL (relative path/URL)', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input type="text" id="cforms_upload_dir_url" name="cforms_upload_dir_url" value="<?php echo $fileuploaddirurl; ?>"/> <?php _e('e.g. /wp-content/my-upload-dir', 'cforms2') ?></td>
                         </tr>
 
                         <tr class="ob space15">

@@ -84,7 +84,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
     // update new settings container
     $cformsSettings['form' . $no]['cforms' . $no . '_fname'] = preg_replace(array('/\\\+/', '/\//', '/"/'), array('\\', '-', '\''), $_REQUEST['cforms_fname']);
     if ($uploadfield && cforms2_get_from_request('cforms_upload_dir') != '')
-        $cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'] = cforms2_get_from_request('cforms_upload_dir') . '$#$' . cforms2_get_from_request('cforms_upload_dir_url');
+        $cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'] = cforms2_get_from_request('cforms_upload_dir');
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = cforms2_get_from_request('cforms_upload_ext');
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = cforms2_get_from_request('cforms_upload_size');
     $cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] = cforms2_get_boolean_from_request('cforms_noattachments');

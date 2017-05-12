@@ -81,28 +81,20 @@ function cforms2_database_getentries() {
                     $no = $r[1] == '' ? $entry->form_id : ($r[1] == 1 ? '' : $r[1]);
 
                     $temp = explode('$#$', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'])));
-                    $fileuploaddir = $temp[0];
-                    $fileuploaddirurl = $temp[1];
-
-                    if ($fileuploaddirurl == '') {
-                        $fileurl = get_site_url() . substr(trailingslashit($fileuploaddir), strlen(get_home_path()) - 1);
-                    } else
-                        $fileurl = trailingslashit($fileuploaddirurl);
+                    $fileuploaddir = trailingslashit($temp[0]);
 
                     $rawfileName = strip_tags($val);
 
                     $fileName = $entry->sub_id . '-' . $rawfileName;
-                    if (!file_exists(trailingslashit($fileuploaddir) . $fileName))
+                    if (!file_exists($fileuploaddir . $fileName))
                         $fileName = $rawfileName;
-
-                    $fileurl = $fileurl . $fileName;
 
                     echo '<div class="showformfield meta"><div class="L">';
                     echo substr($name, 0, strpos($name, '[*'));
                     if ($entry->field_val == '')
                         echo '</div><div class="R">' . __('-', 'cforms2') . '</div></div>' . "\n";
                     else
-                        echo '</div><div class="R">' . '<a href="' . $fileurl . '">' . str_replace("\n", "<br />", strip_tags($val)) . '</a>' . '</div></div>' . "\n";
+                        echo '</div><div class="R">' . str_replace("\n", "<br />", strip_tags($val)) . '</div></div>' . "\n";
                 }
                 elseif ($name == 'page') {  // special field: page
                     echo '<div class="showformfield meta"><div class="L">';
