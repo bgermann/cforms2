@@ -161,26 +161,6 @@ function cforms2_setup_db() {
     // Update 'the one'
     update_option('cforms_settings', $cformsSettings);
 
-
-    // update existing tracking db
-    if ($wpdb->get_var("show tables like '$wpdb->cformsdata'") == $wpdb->cformsdata) {
-
-        // fetch table column structure from the database
-        $tablefields = $wpdb->get_results("DESCRIBE {$wpdb->cformsdata};");
-
-        $afield = array();
-        foreach ($tablefields as $field) {
-            array_push($afield, $field->Field);
-        }
-
-        if (!in_array('f_id', $afield)) {
-            $sql = "ALTER TABLE " . $wpdb->cformsdata . "
-                  ADD f_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                  CHANGE field_name field_name varchar(100) NOT NULL default '';";
-            $wpdb->query($sql);
-        }
-    }
-
 }
 
 /** check if option is set */
