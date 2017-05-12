@@ -268,7 +268,7 @@ function cforms2_wp_mail_failed($wp_mail_failed_error) {
 }
 
 function cforms2_insert_modal() {
-    echo '<div id="cf_editbox" title="' . _e('Input Field Settings', 'cforms2') . '">'
+    echo '<div id="cf_editbox" title="' . __('Input Field Settings', 'cforms2') . '">'
     . '<div class="cf_ed_main"><div id="cf_target"></div></div></div>';
 
 }
