@@ -59,6 +59,7 @@ if (cforms2_check_erased())
     }
     ?>
     <p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch. Attachments can be accessed in the details section. When deleting an entry, associated attachments will be removed, too! ', 'cforms2') ?></p>
+    <p><strong>THIS DATABASE VIEW WILL BE REMOVED WITH CFOMRSII VERSION 14.15!</strong></p>
 
     <table id="flex1" style="display:none"><tr><td></td></tr></table>
     <div id="entries"></div>
