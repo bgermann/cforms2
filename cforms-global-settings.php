@@ -78,7 +78,6 @@ if (isset($_REQUEST['SubmitOptions']))
         $cformsSettings['global']['cforms_show_quicktag'] = cforms2_get_boolean_from_request('cforms_show_quicktag');
         $cformsSettings['global']['cforms_sec_qa'] = cforms2_get_from_request('cforms_sec_qa');
         $cformsSettings['global']['cforms_codeerr'] = cforms2_get_from_request('cforms_codeerr');
-        $cformsSettings['global']['cforms_database'] = cforms2_get_boolean_from_request('cforms_database');
         $cformsSettings['global']['cforms_datepicker'] = cforms2_get_boolean_from_request('cforms_datepicker');
         $cformsSettings['global']['cforms_dp_date'] = cforms2_get_from_request('cforms_dp_date');
 
@@ -115,57 +114,6 @@ if (isset($_REQUEST['SubmitOptions']))
         $cformsSettings['global']['cforms_captcha_def'] = $cap;
 
         update_option('cforms_settings', $cformsSettings);
-
-        // Setup database tables ?
-        if (isset($_REQUEST['cforms_database']) && $_REQUEST['cforms_database_new'] == 'true') {
-
-            if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") !== $wpdb->cformssubmissions) {
-
-                $sql = "CREATE TABLE " . $wpdb->cformssubmissions . " (
-                        id int(11) unsigned auto_increment,
-                        form_id varchar(3) default '',
-                        sub_date timestamp,
-                        email varchar(40) default '',
-                        ip varchar(15) default '',
-                        PRIMARY KEY  (id) ) " . $wpdb->get_charset_collate() . ";";
-
-                require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-                dbDelta($sql);
-
-                $sql = "CREATE TABLE " . $wpdb->cformsdata . " (
-                        f_id int(11) unsigned auto_increment primary key,
-                        sub_id int(11) unsigned NOT NULL,
-                        field_name varchar(100) NOT NULL default '',
-                        field_val text) " . $wpdb->get_charset_collate() . ";";
-
-                require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-                dbDelta($sql);
-
-                if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") !== $wpdb->cformssubmissions) {
-                    ?>
-                    <div id="message" class="updated fade">
-                        <p><strong><?php printf(__('ERROR: cforms tracking tables %s could not be created.', 'cforms2'), '(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
-                    </div>
-                    <?php
-                    $cformsSettings['global']['cforms_database'] = '0';
-                    update_option('cforms_settings', $cformsSettings);
-                } else {
-                    ?>
-                    <div id="message" class="updated fade">
-                        <p><strong><?php printf(__('cforms tracking tables %s have been created.', 'cforms2'), '(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong></p>
-                    </div>
-                    <?php
-                }
-            } else {
-
-                $sets = $wpdb->get_var("SELECT count(id) FROM $wpdb->cformssubmissions");
-                ?>
-                <div id="message" class="updated fade">
-                    <p><strong><?php printf(__('Found existing cforms tracking tables with %s records!', 'cforms2'), $sets) ?></strong></p>
-                </div>
-                <?php
-            }
-        }
     }
 ?>
 
