@@ -43,6 +43,10 @@ if (cforms2_check_erased())
                 // ip field is only set for copying old database entries
                 $trackf['ip'] = $db_entry['ip'];
                 $trackf['data'] = $db_entry['data'];
+                if (!empty($trackf['data']['page'])) {
+                    $trackf['data']['Submitted From'] = $trackf['data']['page'];
+                    unset($trackf['data']['page']);
+                }
                 // TODO $trackf['uploaded_files']
                 do_action('cforms2_after_processing_action', $trackf);
                 $count_entries++;

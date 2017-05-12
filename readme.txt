@@ -41,7 +41,6 @@ If your language is not available, you can find a list of the [translations for 
 
 Some things are to be done:
 
-* [Hook to get form submission data](https://wordpress.org/support/topic/hook-to-get-form-submission-data)
 * filter user input better
 * rework multi-part forms to be independent from PHP sessions
 * remove database tracking

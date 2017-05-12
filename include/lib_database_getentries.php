@@ -95,7 +95,7 @@ function cforms2_database_getentries() {
                     if (!file_exists(trailingslashit($fileuploaddir) . $fileName))
                         $fileName = $rawfileName;
 
-                    $fileurl = $fileurl . $fileName . $_GET['format'];
+                    $fileurl = $fileurl . $fileName;
 
                     echo '<div class="showformfield meta"><div class="L">';
                     echo substr($name, 0, strpos($name, '[*'));

@@ -174,7 +174,6 @@ function cforms2_format_email($track, $no) {
 
 }
 
-/** replace standard & custom variables in message/subject text */
 function cforms2_get_current_page() {
 
     $page = $_SERVER['REQUEST_URI'];
