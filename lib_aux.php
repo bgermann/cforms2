@@ -422,6 +422,8 @@ if (!function_exists('get_cforms_entries')) {
      * 
      * @return array a set of stored form submissions in a multi-dimensional array
      * 
+     * @deprecated since version 14.14
+     * 
      * Examples:
      * get_cforms_entries() => all data, no filters
      * get_cforms_entries('contact',false,false,'date',5,'desc') => last 5 submissions of "my contact form", order by date
