@@ -64,6 +64,8 @@ Please note that cformsII depends on [PHP Session Extensions](http://php.net/man
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin and install the current version of this fork.
 
+The form inlusion does not work with HTML comments (<!--cforms name="..."-->) anymore. You have to use shortcodes [cforms name="..."] now. Please change the form calls accordingly.
+
 If you want to delete the 14.6.0.5 version by deleting directory "cforms" and you have any cforms-uploaded files, make sure you do not delete your attachments directory, which is contained in the cforms directory by default.
 
 = Custom theme (CSS) files =
@@ -163,6 +165,7 @@ GPL compliance!
 * other:    remove submission limit feature
 * other:    remove Global Settings for Tracking DB
 * other:    remove Tracking ID for files
+* other:    remove deprecated HTML comment placeholder
 
 = 14.13.3 =
 

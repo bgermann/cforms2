@@ -971,77 +971,6 @@ function cforms2_findlast($haystack, $needle, $offset = null) {
 
 }
 
-/**
- * replace placeholder by generated code
- * @deprecated since version 14.7.1
- */
-function cforms2_insert($content) {
-    global $cformsSettings;
-    $newcontent = '';
-
-    $last = 0;
-    if (($a = strpos($content, '<!--cforms')) !== false) { // only if form tag is present!
-        $p_offset = 0;
-        $part_content = substr($content, 0, $a - $last);
-        $p_open = cforms2_findlast($part_content, '<p>');
-        $p_close = cforms2_findlast($part_content, '</p>');
-
-        // wrapped in <p>?
-        $p_offset = ($p_close < $p_open || ($p_open !== false && $p_close === false) ) ? $p_open : $a;
-
-        $forms = $cformsSettings['global']['cforms_formcount'];
-
-        $fns = array();
-        for ($i = 0; $i < $forms; $i++) {
-            $no = ($i == 0) ? '' : ($i + 1);
-            $fns[sanitize_title_with_dashes($cformsSettings['form' . $no]['cforms' . $no . '_fname'])] = $i + 1;
-        }
-
-        while ($a !== false) {
-
-            $b = strpos($content, '-->', $a);
-
-            $Fid = substr($content, $a + 10, ($b - $a - 10));
-            $Fname = '';
-
-            if (($fQ = strpos($Fid, '"')) !== false)
-                $Fname = sanitize_title_with_dashes(substr($Fid, $fQ + 1, strpos($Fid, '"', $fQ + 1) - $fQ - 1));
-
-            $newcontent .= substr($content, $last, $p_offset - $last);
-
-            if ($Fname !== '') {
-                $newcontent .= cforms2($fns[$Fname]);
-            } else {
-                $newcontent .= cforms2($Fid);
-            }
-
-            $p_open_after = strpos($content, '<p>', $b);
-            $p_close_after = strpos($content, '</p>', $b);
-
-            // wrapped in <p>?
-            $b = ($p_close_after < $p_open_after || ($p_close_after !== false && $p_open_after === false)) ? $p_close_after + 1 : $b;
-
-
-            $a = strpos($content, '<!--cforms', $b);
-            $last = $b + 3;
-
-
-            // next wrapping <p> tags
-            $part_content = substr($content, $last, $a - $last);
-            $p_open = cforms2_findlast($part_content, '<p>');
-            $p_close = cforms2_findlast($part_content, '</p>');
-
-            // wrapped in <p>?
-            $p_offset = ($p_close < $p_open) ? $a - (strlen($part_content) - $p_open) : $a;
-        }
-        $newcontent .= substr($content, $last);
-
-        return $newcontent;
-    } else
-        return $content;
-
-}
-
 /** build field_stat string from array (for custom forms) */
 function cforms2_build_fstat($f) {
     $cfarray = array();
@@ -1197,6 +1126,5 @@ function cforms2_add_items_options($admin_bar) {
 // attaching to filters
 add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
-add_filter('the_content', 'cforms2_insert', 101);
 add_shortcode('cforms', 'cforms2_shortcode');
 add_action('wp_mail_failed', 'cforms2_wp_mail_failed');
