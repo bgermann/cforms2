@@ -138,7 +138,7 @@ function cforms2($no = '', $customfields = array()) {
         cforms2_dbg("Back-Button pressed");
     }
     // multi-part form init: must be multi-part, first and not submitted!
-    elseif ($isMPform && !is_array($_SESSION['cforms']) && $cformsSettings['form' . $oldno]['cforms' . $oldno . '_mp']['mp_first']) {
+    elseif ($isMPform && $cformsSettings['form' . $oldno]['cforms' . $oldno . '_mp']['mp_first']) {
 
         cforms2_dbg("Current form is *first* MP-form");
         cforms2_dbg("Session found, you're on the first form and session is reset!");

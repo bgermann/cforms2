@@ -160,6 +160,7 @@ GPL compliance!
 * enhanced: deprecate insert_custom_cform in favour of insert_cform
 * enhanced: for consistency, run JavaScript also for non-AJAX forms
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
+* bugfix:   reset multipart forms on every first form
 * added:    feature to copy old submission data to CFDB
 * other:    remove 3rd party read-notification support
 * other:    remove submission limit feature
