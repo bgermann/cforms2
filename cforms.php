@@ -138,17 +138,14 @@ function cforms2($no = '', $customfields = array()) {
         cforms2_dbg("Back-Button pressed");
     }
     // multi-part form init: must be multi-part, first and not submitted!
-    elseif ($isMPform && $cformsSettings['form' . $oldno]['cforms' . $oldno . '_mp']['mp_first']) {
-
-        cforms2_dbg("Current form is *first* MP-form");
-        cforms2_dbg("Session found, you're on the first form and session is reset!");
-
-        $no = ($oldno == '1') ? '' : $oldno; // restore old val
+    elseif ($isMPform && (!is_array($_SESSION['cforms']) || $_SESSION['cforms']['first'] !== $oldno) && $cformsSettings['form' . $oldno]['cforms' . $oldno . '_mp']['mp_first']) {
+        $no = $oldno;
         unset($_SESSION['cforms']);
-
         $_SESSION['cforms']['current'] = 0;
         $_SESSION['cforms']['first'] = $no;
         $_SESSION['cforms']['pos'] = 1;
+
+        cforms2_dbg("Session found, you're on the first form and session is reset!");
     }
 
 
@@ -1090,6 +1087,7 @@ if (isset($_GET['page'])) {
 function cforms2_is_table_present($table_name) {
     global $wpdb;
     return $wpdb->get_var("show tables like '$table_name'") == $table_name;
+
 }
 
 function cforms2_add_items_global($admin_bar) {
