@@ -367,8 +367,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
             // this will check if any blank field is entered
             if (!empty($value)) {
-                if (function_exists('my_cforms_logic'))
-                    $file['name'][$i] = my_cforms_logic($_REQUEST, $_FILES['cf_uploadfile' . $no]['name'][$i], "filename");
 
                 $fileerr = '';
                 // A successful upload will pass this test. It makes no sense to override this one.

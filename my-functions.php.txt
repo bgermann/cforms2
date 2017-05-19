@@ -32,7 +32,6 @@
 ###
 ### Your custom application logic features with $setting being:
 ###
-### "filename"
 ### "adminEmailTXT"
 ### "adminEmailDataTXT"
 ### "adminEmailHTML"
@@ -66,13 +65,6 @@ function my_cforms_logic($cformsdata,$oldvalue,$setting) {
 
         }
 
-    }
-
-
-    ### example: changes the name of the uploaded file in the email (adding a prefix taken form a form field)
-
-    if ( $setting == "filename" ){
-        return $_POST['filetype'] . $oldvalue;
     }
 
     return $oldvalue;
