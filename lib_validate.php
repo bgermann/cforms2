@@ -362,8 +362,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             $file['size'][] = $_FILES['cf_uploadfile' . $no]['size'][$i];
         }
 
-        $i = 0;
-        foreach ($file['name'] as $value) {
+        foreach ($file['name'] as $i => $value) {
 
             // this will check if any blank field is entered
             if (!empty($value)) {
@@ -399,7 +398,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     $all_valid = false;
                 }
             }
-            $i++;
         }
     }
 
