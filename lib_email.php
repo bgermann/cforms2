@@ -115,13 +115,6 @@ class cforms2_mail {
 
     }
 
-    private function add_cc($address, $name = '') {
-        $t = count($this->cc);
-        $this->cc[$t][0] = trim($address);
-        $this->cc[$t][1] = $name;
-
-    }
-
     private function add_bcc($address, $name = '') {
         $t = count($this->bcc);
         $this->bcc[$t][0] = trim($address);
