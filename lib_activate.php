@@ -76,6 +76,14 @@ function cforms2_setup_db() {
     cforms2_setINI('form', 'cforms_cmsg', __('Dear {Your Name},', 'cforms2') . "\n" . __('Thank you for your note!', 'cforms2') . "\n" . __('We will get back to you as soon as possible.', 'cforms2') . "\n\n");
     cforms2_setINI('form', 'cforms_cmsg_html', '<div ' . $cformsSettings['global']['cforms_style']['autoconf'] . '><p ' . $cformsSettings['global']['cforms_style']['dear'] . '>' . __('Dear {Your Name},', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('Thank you for your note!', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('We will get back to you as soon as possible.', 'cforms2') . "\n<div " . $cformsSettings['global']['cforms_style']['confirmationmsg'] . '>' . __('This is an automatic confirmation message.', 'cforms2') . " {Date}.</div></div>\n\n");
 
+    cforms2_setINI('form', 'cforms_emailoff', '0');
+    cforms2_setINI('form', 'cforms_emptyoff', '0');
+    cforms2_setINI('form', 'cforms_tellafriend', '0');
+    cforms2_setINI('form', 'cforms_customnames', '0');
+    cforms2_setINI('form', 'cforms_startdate', ' ');
+    cforms2_setINI('form', 'cforms_enddate', ' ');
+    cforms2_setINI('form', 'cforms_formaction', false);
+
     cforms2_setINI('form', 'cforms_email', get_bloginfo('admin_email'));
     cforms2_setINI('form', 'cforms_fromemail', get_bloginfo('admin_email'));
     cforms2_setINI('form', 'cforms_bcc', '');
@@ -102,6 +110,16 @@ function cforms2_setup_db() {
 
     cforms2_setINI('form', 'cforms_action', '0');
     cforms2_setINI('form', 'cforms_action_page', 'http://');
+    cforms2_setINI('form', 'cforms_mp', array(
+        "mp_form" => false,
+        "mp_next" => "",
+        "mp_first" => false,
+        "mp_email" => false,
+        "mp_reset" => false,
+        "mp_resettext" => "",
+        "mp_back" => false,
+        "mp_backtext" => ""
+    ));
 
     // global file settings
 
