@@ -45,7 +45,8 @@ if (isset($_REQUEST['addbutton'])) {
     // new settings container
     $cformsSettings['form' . $no] = array(
         'cforms' . $no . '_dontclear' => false,
-        'cforms' . $no . '_count_fields' => '0',
+        'cforms' . $no . '_count_fields' => '1',
+        'cforms' . $no . '_count_field_1' => __('My Fieldset', 'cforms2') . '$#$fieldsetstart$#$0$#$0$#$0$#$0$#$0',
         'cforms' . $no . '_required' => __('(required)', 'cforms2'),
         'cforms' . $no . '_emailrequired' => __('(valid email required)', 'cforms2'),
         'cforms' . $no . '_ajax' => '1',
@@ -56,6 +57,13 @@ if (isset($_REQUEST['addbutton'])) {
         'cforms' . $no . '_cmsg_html' => '<div ' . $cformsSettings['global']['cforms_style']['autoconf'] . '><p ' . $cformsSettings['global']['cforms_style']['dear'] . '>' . __('Dear {Your Name},', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('Thank you for your note!', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('We will get back to you as soon as possible.', 'cforms2') . "\n<div " . $cformsSettings['global']['cforms_style']['confirmationmsg'] . '>' . __('This is an automatic confirmation message.', 'cforms2') . " {Date}.</div></div>\n\n",
         'cforms' . $no . '_email' => get_bloginfo('admin_email'),
         'cforms' . $no . '_fromemail' => get_bloginfo('admin_email'),
+        'cforms' . $no . '_emailoff' => '0',
+        'cforms' . $no . '_emptyoff' => '0',
+        'cforms' . $no . '_tellafriend' => '0',
+        'cforms' . $no . '_customnames' => '0',
+        'cforms' . $no . '_startdate' => ' ',
+        'cforms' . $no . '_enddate' => ' ',
+        'cforms' . $no . '_formaction' => false,
         'cforms' . $no . '_bcc' => '',
         'cforms' . $no . '_header' => __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n",
         'cforms' . $no . '_header_html' => '<p ' . $cformsSettings['global']['cforms_style']['meta'] . '>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms2') . '</p>',
@@ -74,8 +82,18 @@ if (isset($_REQUEST['addbutton'])) {
         'cforms' . $no . '_redirect_page' => __('http://redirect.to.this.page', 'cforms2'),
         'cforms' . $no . '_action' => '0',
         'cforms' . $no . '_action_page' => 'http://',
-        'cforms' . $no . '_upload_ext' => 'txt,zip,doc,rtf,xls',
-        'cforms' . $no . '_upload_size' => '1024'
+        'cforms' . $no . '_upload_ext' => 'txt,zip',
+        'cforms' . $no . '_upload_size' => '1024',
+        'cforms' . $no . '_mp' => array(
+            "mp_form" => false,
+            "mp_next" => "",
+            "mp_first" => false,
+            "mp_email" => false,
+            "mp_reset" => false,
+            "mp_resettext" => "",
+            "mp_back" => false,
+            "mp_backtext" => ""
+        )
     );
 
     update_option('cforms_settings', $cformsSettings);
@@ -675,12 +693,12 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                         </td>
                     </tr>
 
-                                <?php if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])) { ?>
+                    <?php if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])) { ?>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_limittxt'])); ?></textarea></td></tr></table></td>
-                                </tr>
-                                <?php } ?>
+                        </tr>
+                    <?php } ?>
 
                 <tr class="obSEP"><td colspan="2"></td></tr>
 
