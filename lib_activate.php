@@ -53,9 +53,7 @@ function cforms2_setup_db() {
     cforms2_setINI('global', 'cforms_no_css', '');
 
     // file upload
-    $wp_upload_dir = wp_upload_dir();
-    cforms2_setINI('form', 'cforms_upload_dir', $wp_upload_dir['basedir']);
-    cforms2_setINI('form', 'cforms_upload_ext', 'txt,zip,doc,rtf,xls');
+    cforms2_setINI('form', 'cforms_upload_ext', 'txt,zip');
     cforms2_setINI('form', 'cforms_upload_size', '1024');
     cforms2_setINI('form', 'cforms_dontclear', false);
 

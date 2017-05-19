@@ -41,7 +41,6 @@ if (isset($_REQUEST['addbutton'])) {
     $no = $no_disp = $formcount;
 
     $cformsSettings['global']['cforms_formcount'] = (string) $formcount;
-    $wp_upload_dir = wp_upload_dir();
 
     // new settings container
     $cformsSettings['form' . $no] = array(
@@ -75,7 +74,6 @@ if (isset($_REQUEST['addbutton'])) {
         'cforms' . $no . '_redirect_page' => __('http://redirect.to.this.page', 'cforms2'),
         'cforms' . $no . '_action' => '0',
         'cforms' . $no . '_action_page' => 'http://',
-        'cforms' . $no . '_upload_dir' => $wp_upload_dir['basedir'],
         'cforms' . $no . '_upload_ext' => 'txt,zip,doc,rtf,xls',
         'cforms' . $no . '_upload_size' => '1024'
     );
@@ -493,21 +491,7 @@ for ($i = 1; $i <= $field_count; $i++) {
     <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
     <?php printf(__('You may also want to verify the global, file upload specific  <a href="%s" %s>error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', ''); ?>
                     </p>
-
-    <?php
-    $temp = explode('$#$', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'])));
-    $fileuploaddir = $temp[0];
-
-    if ($fileupload && !file_exists($fileuploaddir)) {
-        echo '<div class="updated fade"><p>' . __('Can\'t find the specified <strong>Upload Directory</strong> ! Please verify that it exists!', 'cforms2') . '</p></div>';
-    }
-    ?>
                     <table class="form-table">
-                        <tr class="ob space15">
-                            <td class="obL"><label for="cforms_upload_dir"><strong><?php _e('Upload directory (absolute path)', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input type="text" id="cforms_upload_dir" name="cforms_upload_dir" value="<?php echo $fileuploaddir; ?>"/> <?php _e('e.g. /home/user/www/wp-content/my-upload-dir', 'cforms2') ?></td>
-                        </tr>
-
                         <tr class="ob space15">
                             <td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms2') ?></strong></label></td>
                             <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'])); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
@@ -740,14 +724,12 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                 </tr>
                 </table>
 
-                <table class="form-table">
+                <table class="form-table<?php if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') echo " hidden"; ?>">
                 <tr class="">
                     <td class="obL"></td>
                     <td class="obR"><input class="allchk" type="checkbox" id="cforms_emptyoff" name="cforms_emptyoff" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_emptyoff'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_emptyoff"><?php printf(__('%sExclude empty fields%s from admin email', 'cforms2'), '<strong>', '</strong>') ?></label></td>
                 </tr>
-                </table>
 
-                <table class="form-table<?php if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') echo " hidden"; ?>">
                 <tr class="ob space15">
                     <td class="obL"><label for="cforms_fromemail"><strong><?php _e('FROM: email address', 'cforms2') ?></strong></label></td>
                     <td class="obR"><input type="text" name="cforms_fromemail" id="cforms_fromemail" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_fromemail'])); ?>" /></td>

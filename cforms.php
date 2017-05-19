@@ -182,7 +182,6 @@ function cforms2($no = '', $customfields = array()) {
 
     // non-AJAX method
     $all_valid = true;
-    $subID = 'noid';
     if (isset($_REQUEST['sendbutton' . $no]) || $server_upload_size_error) {
         require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
         $validation_result = cforms2_validate($no, $isMPform, $custom, $customfields);
@@ -190,7 +189,6 @@ function cforms2($no = '', $customfields = array()) {
         $usermessage_text = $validation_result['text'];
         $usermessage_class = $validation_result['class'];
         $track = $validation_result['track'];
-        $subID = $validation_result['sub_id'];
         $validations = $validation_result['validations'];
 
         if ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
@@ -206,7 +204,7 @@ function cforms2($no = '', $customfields = array()) {
     $success = false;
 
     // either show info message above or below
-    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, $subID);
+    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
     $umc = (!empty($usermessage_class) && $no > 1) ? ' ' . $usermessage_class . $no : '';
@@ -402,7 +400,7 @@ function cforms2($no = '', $customfields = array()) {
             else
                 $reg_exp = '';
             if (!empty($obj[1]))
-                $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no, $subID));
+                $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no));
 
             $field_name = $obj[0];
         }
@@ -643,7 +641,7 @@ function cforms2($no = '', $customfields = array()) {
                 case "hidden":
 
                     $field_value = cforms2_check_post_vars($field_value);
-                    $field_value = cforms2_check_default_vars($field_value, $no, $subID);
+                    $field_value = cforms2_check_default_vars($field_value, $no);
 
                     if (preg_match('/^<([a-zA-Z0-9]+)>$/', $field_value, $getkey))
                         $field_value = $_GET[$getkey[1]];
@@ -914,7 +912,7 @@ function cforms2($no = '', $customfields = array()) {
     $content .= $formcontent . '<p class="cf-sb">' . $reset . $back . '<input type="submit" name="sendbutton' . $no . '" id="sendbutton' . $no . '" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_submit_text'])) . '" /></p></form>';
 
     // either show message above or below
-    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, $subID);
+    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
     if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y' && !($success && $cformsSettings['form' . $no]['cforms' . $no . '_hide']))

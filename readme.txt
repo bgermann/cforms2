@@ -162,10 +162,11 @@ GPL compliance!
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * bugfix:   reset multipart forms on every first form
 * added:    feature to copy old submission data to CFDB
+* other:    remove persistent file storage (please use CFDB)
 * other:    remove 3rd party read-notification support
 * other:    remove submission limit feature
 * other:    remove Global Settings for Tracking DB
-* other:    remove Tracking ID for files
+* other:    remove Tracking ID for files and {ID} variable
 * other:    remove deprecated HTML comment placeholder
 
 = 14.13.3 =

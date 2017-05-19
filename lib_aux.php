@@ -200,7 +200,7 @@ function cforms2_check_post_vars($fv) {
 }
 
 /** look for default/system variables */
-function cforms2_check_default_vars($m, $no, $subID) {
+function cforms2_check_default_vars($m, $no) {
     global $cformsSettings;
 
     $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
@@ -259,9 +259,6 @@ function cforms2_check_default_vars($m, $no, $subID) {
     $m = str_replace("\r\n", "\n", $m);
     $m = str_replace("\r", "\n", $m);
     $m = str_replace("\n", $eol, $m);
-
-    if ($cformsSettings['global']['cforms_database'] && !empty($subID))
-        $m = str_replace('{ID}', $subID, $m);
 
     return $m;
 
