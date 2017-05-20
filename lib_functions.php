@@ -49,16 +49,13 @@ function cforms2_menu() {
     global $wpdb;
 
     $p = plugin_dir_path(plugin_basename(__FILE__));
-
-    $tablesup = cforms2_is_table_present($wpdb->cformssubmissions);
-
     $o = $p . 'cforms-options.php';
 
     add_menu_page(__('cformsII', 'cforms2'), __('cformsII', 'cforms2'), 'manage_cforms', $o, '', plugin_dir_url(__FILE__) . 'images/cformsicon.png');
 
     add_submenu_page($o, __('Form Settings', 'cforms2'), __('Form Settings', 'cforms2'), 'manage_cforms', $o);
     add_submenu_page($o, __('Global Settings', 'cforms2'), __('Global Settings', 'cforms2'), 'manage_cforms', $p . 'cforms-global-settings.php');
-    if (($tablesup || isset($_REQUEST['cforms_database'])) && !isset($_REQUEST['deletetables']))
+    if (cforms2_is_table_present($wpdb->prefix . 'cformssubmissions') && !isset($_REQUEST['deletetables']))
         add_submenu_page($o, __('Tracking', 'cforms2'), __('Tracking', 'cforms2'), 'track_cforms', $p . 'cforms-database.php');
     add_submenu_page($o, __('Styling', 'cforms2'), __('Styling', 'cforms2'), 'manage_cforms', $p . 'cforms-css.php');
     add_submenu_page($o, __('Help!', 'cforms2'), __('Help!', 'cforms2'), 'manage_cforms', $p . 'cforms-help.php');

@@ -490,7 +490,7 @@ if (!function_exists('get_cforms_entries')) {
         if ($in == '')
             return array();
 
-        $sql = "SELECT * FROM {$wpdb->cformsdata} WHERE sub_id IN (" . substr($in, 0, -1) . ")";
+        $sql = "SELECT * FROM {$wpdb->prefix}cformsdata WHERE sub_id IN (" . substr($in, 0, -1) . ")";
         $all = $wpdb->get_results($sql);
         $offsets = array();
         foreach ($all as $d) {

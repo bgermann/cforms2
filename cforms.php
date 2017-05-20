@@ -34,8 +34,6 @@ if (!defined('WP_DEBUG_CFORMS2')) {
 global $wpdb;
 
 $cformsSettings = get_option('cforms_settings');
-$wpdb->cformssubmissions = $wpdb->prefix . 'cformssubmissions';
-$wpdb->cformsdata = $wpdb->prefix . 'cformsdata';
 
 require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
@@ -1097,7 +1095,7 @@ function cforms2_add_items_global($admin_bar) {
     cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'));
     cforms2_add_admin_bar_item($admin_bar, 'cforms-deleteall', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'));
 
-    if ($wpdb->get_var("show tables like '$wpdb->cformssubmissions'") == $wpdb->cformssubmissions)
+    if ($wpdb->get_var("show tables like '{$wpdb->prefix}cformssubmissions'") == $wpdb->prefix . 'cformssubmissions')
         cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'));
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');

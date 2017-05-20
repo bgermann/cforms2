@@ -93,7 +93,7 @@ function cforms2_write_tracking_record($no, $field_email, $track) {
         $subID = $wpdb->get_row("select LAST_INSERT_ID() as number from {$wpdb->prefix}cformssubmissions;");
         $subID = ($subID->number == '') ? '1' : $subID->number;
 
-        $sql = $wpdb->prepare("INSERT INTO $wpdb->cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s)", $subID, cforms2_get_current_page());
+        $sql = $wpdb->prepare("INSERT INTO {$wpdb->prefix}cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s)", $subID, cforms2_get_current_page());
         foreach ($additional_fields as $key => $value) {
             $sql .= ',' . $wpdb->prepare('(%s,%s,%s)', $subID, $key, $value);
         }
