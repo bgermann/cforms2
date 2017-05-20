@@ -130,19 +130,7 @@ function cforms2_setup_db() {
     cforms2_setINI('global', 'cforms_upload_err4', __('File upload failed. Please try again or contact the blog admin.', 'cforms2'));
     cforms2_setINI('global', 'cforms_upload_err5', __('File not accepted, file type not allowed.', 'cforms2'));
 
-    // form verification
-    $cap['h'] = 25;
-    $cap['w'] = 115;
-    $cap['c'] = '#000066';
-    $cap['l'] = '#ffffff';
-    $cap['f1'] = 17;
-    $cap['f2'] = 19;
-    $cap['c1'] = 4;
-    $cap['c2'] = 5;
-    $cap['ac'] = 'abcdefghijkmnpqrstuvwxyz23456789';
-    $cap['fo'] = '0';
-    $cap['foqa'] = '0';
-    cforms2_setINI('global', 'cforms_captcha_def', $cap);
+    cforms2_setINI('global', 'cforms_captcha_def', array('foqa' => '0'));
     cforms2_setINI('global', 'cforms_sec_qa', __('What color is snow?=white', 'cforms2') . "\r\n" . __('The color of grass is=green', 'cforms2') . "\r\n" . __('Ten minus five equals=five', 'cforms2'));
     cforms2_setINI('global', 'cforms_codeerr', __('Please double-check your verification code.', 'cforms2'));
 

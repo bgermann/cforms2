@@ -169,6 +169,7 @@ GPL compliance!
 * other:    remove Tracking ID for files and {ID} variable
 * other:    remove deprecated HTML comment placeholder
 * other:    remove deprecated my_cforms_logic caller filename
+* other:    remove image CAPTCHA settings
 
 = 14.13.3 =
 

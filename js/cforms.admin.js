@@ -622,8 +622,6 @@ jQuery(function () {
         }
     });
 
-    jQuery('.colorpicker').wpColorPicker();
-
 });
 
 /* TRACKING RECORDS ROUTINES */

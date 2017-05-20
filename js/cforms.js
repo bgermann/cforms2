@@ -526,7 +526,7 @@ function cforms_validate(no, directFormSubmission) {
 }
 
 jQuery(function () {
-    jQuery('form.cform[id^="cforms"][id$="form"]').submit(function(ev) {
+    jQuery('form.cform[id^="cforms"][id$="form"]').submit(function (ev) {
         var id = jQuery(ev.target).attr('id');
         var no = /^cforms(\d*)form$/.exec(id)[1];
         var direct = jQuery(ev.target).hasClass('cformsdirect');

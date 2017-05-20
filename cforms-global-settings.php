@@ -97,21 +97,7 @@ if (isset($_REQUEST['SubmitOptions']))
         $cformsSettings['global']['cforms_upload_err4'] = cforms2_get_from_request('cforms_upload_err4');
         $cformsSettings['global']['cforms_upload_err5'] = cforms2_get_from_request('cforms_upload_err5');
 
-        $cap = array();
-        $cap['w'] = cforms2_get_from_request('cforms_cap_w');
-        $cap['h'] = cforms2_get_from_request('cforms_cap_h');
-        $cap['c'] = cforms2_get_from_request('cforms_cap_c');
-        $cap['l'] = cforms2_get_from_request('cforms_cap_l');
-        $cap['fo'] = cforms2_get_from_request('cforms_cap_fo');
-        $cap['foqa'] = cforms2_get_from_request('cforms_cap_foqa');
-        $cap['f1'] = cforms2_get_from_request('cforms_cap_f1');
-        $cap['f2'] = cforms2_get_from_request('cforms_cap_f2');
-        $cap['c1'] = cforms2_get_from_request('cforms_cap_c1');
-        $cap['c2'] = cforms2_get_from_request('cforms_cap_c2');
-        $cap['ac'] = cforms2_get_from_request('cforms_cap_ac');
-
-        // update new settings container
-        $cformsSettings['global']['cforms_captcha_def'] = $cap;
+        $cformsSettings['global']['cforms_captcha_def']['foqa'] = cforms2_get_from_request('cforms_cap_foqa');
 
         update_option('cforms_settings', $cformsSettings);
     }
@@ -273,87 +259,6 @@ if (isset($_REQUEST['SubmitOptions']))
                     </table>
                 </div>
             </fieldset>
-            <?php
-            $cap = $cformsSettings['global']['cforms_captcha_def'];
-            if (class_exists('cforms2_really_simple_captcha', false)) {
-                ?>
-                <fieldset id="captcha" class="cformsoptions">
-                    <div class="cflegend op-closed" id="p26" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                        <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('CAPTCHA Image Settings', 'cforms2') ?>
-                    </div>
-
-                    <div class="cf-content" id="o26">
-
-                        <?php
-                        $h = cforms2_prep($cap['h'], 25);
-                        $w = cforms2_prep($cap['w'], 115);
-                        $c = cforms2_prep($cap['c'], '#000066');
-                        $l = cforms2_prep($cap['l'], '#000066');
-                        $f1 = cforms2_prep($cap['f1'], 17);
-                        $f2 = cforms2_prep($cap['f2'], 19);
-                        $c1 = cforms2_prep($cap['c1'], 4);
-                        $c2 = cforms2_prep($cap['c2'], 5);
-                        $ac = cforms2_prep($cap['ac'], 'abcdefghijkmnpqrstuvwxyz23456789');
-                        ?>
-
-                        <table class="form-table">
-
-                            <tr class="ob">
-                                <td class="obL"><label for="cforms_cap_fo"><strong><?php _e('Force display', 'cforms2') ?></strong></label></td>
-                                <td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_fo" name="cforms_cap_fo" value="1" <?php if ($cap['fo']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_fo"><?php _e('Force CAPTCHA display for logged in users', 'cforms2') ?></label></td>
-                            </tr>
-
-                            <tr class="ob space15">
-                                <td class="obL"><label for="cforms_cap_w"><strong><?php _e('Width', 'cforms2') ?></strong></label></td>
-                                <td class="obR">
-                                    <input class="cap" type="text" id="cforms_cap_w" name="cforms_cap_w" value="<?php echo $w; ?>"/>
-                                    <label for="cforms_cap_h" class="second-l"><strong><?php _e('Height', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_h" name="cforms_cap_h" value="<?php echo $h; ?>"/>
-                                </td>
-                            </tr>
-                            <tr class="ob">
-                                <td class="obL"><label for="inputID1"><strong><?php _e('Background Color', 'cforms2') ?></strong></label></td>
-                                <td class="obR">
-                                    <input class="cap colorpicker" type="text" id="inputID1" name="cforms_cap_l" value="<?php echo $l; ?>"/>
-                                </td>
-                            </tr>
-
-                            <tr class="ob space15">
-                                <td class="obL">&nbsp;</td>
-                                <td class="obR"><strong><?php _e('Font Type', 'cforms2') ?></strong></td>
-                            </tr>
-                            <tr class="ob">
-                                <td class="obL"><label for="cforms_cap_f1"><strong><?php _e('Min Size', 'cforms2') ?></strong></label></td>
-                                <td class="obR">
-                                    <input class="cap" type="text" id="cforms_cap_f1" name="cforms_cap_f1" value="<?php echo $f1; ?>"/>
-                                    <label for="cforms_cap_f2" class="second-l"><strong><?php _e('Max Size', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_f2" name="cforms_cap_f2" value="<?php echo $f2; ?>"/>
-                                </td>
-                            </tr>
-                            <tr class="ob">
-                                <td class="obL"><label for="inputID2"><strong><?php _e('Color', 'cforms2') ?></strong></label></td>
-                                <td class="obR">
-                                    <input class="cap colorpicker" type="text" id="inputID2" name="cforms_cap_c" value="<?php echo $c; ?>"/>
-                                </td>
-                            </tr>
-
-                            <tr class="ob space15">
-                                <td class="obL">&nbsp;</td>
-                                <td class="obR"><strong><?php _e('Number of shown characters', 'cforms2') ?></strong></td>
-                            </tr>
-                            <tr class="ob">
-                                <td class="obL"><label for="cforms_cap_c1"><strong><?php _e('Minimum', 'cforms2') ?></strong></label></td>
-                                <td class="obR">
-                                    <input class="cap" type="text" id="cforms_cap_c1" name="cforms_cap_c1" value="<?php echo $c1; ?>"/>
-                                    <label for="cforms_cap_c2" class="second-l"><strong><?php _e('Maximum', 'cforms2') ?></strong></label><input class="cap" type="text" id="cforms_cap_c2" name="cforms_cap_c2" value="<?php echo $c2; ?>"/>
-                                </td>
-                            </tr>
-                            <tr class="ob">
-                                <td class="obL"><label for="cforms_cap_ac"><strong><?php _e('Allowed characters', 'cforms2') ?></strong></label></td>
-                                <td class="obR"><input type="text" id="cforms_cap_ac" name="cforms_cap_ac" value="<?php echo $ac; ?>"/></td>
-                            </tr>
-                        </table>
-                    </div>
-                </fieldset>
-            <?php } ?>
 
             <fieldset id="visitorv" class="cformsoptions">
                 <div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
@@ -366,7 +271,7 @@ if (isset($_REQUEST['SubmitOptions']))
                     <table class="form-table">
                         <tr class="ob">
                             <td class="obL"><label for="cforms_cap_foqa"><strong><?php _e('Force display', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_foqa" name="cforms_cap_foqa" value="1" <?php if ($cap['foqa']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_foqa"><?php _e('Force Q&amp;A display for logged in users', 'cforms2') ?></label></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_cap_foqa" name="cforms_cap_foqa" value="1" <?php if ($cformsSettings['global']['cforms_captcha_def']['foqa']) echo "checked=\"checked\""; ?>/><label for="cforms_cap_foqa"><?php _e('Force Q&amp;A display for logged in users', 'cforms2') ?></label></td>
                         </tr>
 
                         <tr class="ob space15">
@@ -395,10 +300,7 @@ if (isset($_REQUEST['SubmitOptions']))
             </fieldset>
 
 
-<?php
-
-        }
-?>
+<?php } ?>
 
         <div class="cf_actions" id="cf_actions" style="display:none;">
             <input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
