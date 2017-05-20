@@ -352,13 +352,16 @@ input.addfieldno:focus {
     margin:0 6px 0 0;
     display:block;
     float:left;
-    background:transparent url(images/menu-bits.gif) no-repeat scroll left 0px;
-    border:none;
+    font-family:dashicons;
+    color:gray;
+    border-right:1px solid gray;
     text-decoration:none;
 }
-
-.blindminus {
-    background-position:0 -34px;
+.blindplus:before {
+    content:"\f140";
+}
+.blindminus:before {
+    content:"\f142";
 }
 
 #o0,#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,
