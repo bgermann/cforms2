@@ -3,7 +3,7 @@ Contributors: bgermann, olivers, cbacchini, codifex, nb000
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 3.9
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
