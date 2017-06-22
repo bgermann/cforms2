@@ -162,7 +162,7 @@ GPL compliance!
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * bugfix:   reset multipart forms on every first form
 * added:    feature to copy old submission data to CFDB
-* added:    WordPress filters cforms2_admin_email_filter, cforms2_cc_me_email_filter, cforms2_auto_conf_email_filter
+* added:    WordPress filters cforms2_admin_email_filter, cforms2_cc_me_email_filter, cforms2_auto_conf_email_filter, cforms2_usermessage_filter
 * other:    remove persistent file storage (please use CFDB)
 * other:    remove 3rd party read-notification support
 * other:    remove submission limit feature

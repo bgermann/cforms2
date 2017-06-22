@@ -205,6 +205,8 @@ function cforms2($no = '', $customfields = array()) {
     $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
     $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
+    $usermessage_text = apply_filters('cforms2_usermessage_filter', $usermessage_text);
+
     $umc = (!empty($usermessage_class) && $no > 1) ? ' ' . $usermessage_class . $no : '';
 
     cforms2_dbg("User info for form #$no");
@@ -908,10 +910,6 @@ function cforms2($no = '', $customfields = array()) {
 
 
     $content .= $formcontent . '<p class="cf-sb">' . $reset . $back . '<input type="submit" name="sendbutton' . $no . '" id="sendbutton' . $no . '" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_submit_text'])) . '" /></p></form>';
-
-    // either show message above or below
-    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
-    $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
 
     if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y' && !($success && $cformsSettings['form' . $no]['cforms' . $no . '_hide']))
         $content .= '<div id="usermessage' . $no . 'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>';
