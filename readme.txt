@@ -25,7 +25,7 @@ The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is
 
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha) provides an image CAPTCHA via cformsII's pluggable CAPTCHA facility. To convert the old CAPTCHA fields to Really Simple CAPTCHA, please install the current version and activate the plugin.
 
-[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Therefore cformsII's database tracking will be removed in the next major version.
+[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Therefore cformsII's database tracking will be removed in version 14.15. If you have CFDB installed, you will find an export tool at the Tracking DB site.
 
 
 == Localization ==
@@ -89,7 +89,7 @@ If wp_mail is replaced by some plugin, multipart/alternative emails may not be s
 
 = Why is the Form Settings page broken? =
 
-This was an incompatibility with WordPress 4.2 that was fixed with cformsII 14.9.3. Be sure to use a current version.
+This is an incompatibility with WordPress 4.2+ that was fixed with cformsII 14.9.3. Be sure to use a current version.
 
 = I upgraded and lost my widgets. What can I do? =
 
@@ -102,6 +102,10 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 = Where are comment and Tell-a-Friend fields? =
 
 These features were removed with version 14.12.
+
+= Does cformsII expose an API? =
+
+cformsII can be extended via WordPress actions and filters. You find their 'cforms2_' prefixed names and inline documentation at the apply_filters and do_action calls. Older cformsII versions had an API called my-functions, but that is removed as of version 14.14.
 
 = Can I use cformsII with Content Security Policy enabled? =
 
@@ -169,7 +173,7 @@ GPL compliance!
 * other:    remove Global Settings for Tracking DB
 * other:    remove Tracking ID for files and {ID} variable
 * other:    remove deprecated HTML comment placeholder
-* other:    remove deprecated API functions my_cforms_logic and my_cforms_ajax_filter
+* other:    remove deprecated API functions my_cforms_logic, my_cforms_filter and my_cforms_ajax_filter
 * other:    remove image CAPTCHA settings
 
 = 14.13.3 =

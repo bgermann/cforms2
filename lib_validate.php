@@ -432,9 +432,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
         // all valid? get ready to send
 
-        if (function_exists('my_cforms_filter'))
-            my_cforms_filter($_POST);
-
         if (!cforms2_check_time($no)) {
             return array(
                 'text' => $usermessage_text,
@@ -637,11 +634,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             if (!empty($customTrackingID))
                 $track['$$$' . $customTrackingID] = $trackname . $inc;
         }
-
-        // prefilter user input
-        if (function_exists('my_cforms_filter'))
-            my_cforms_filter($no);
-
 
         // multi-part form session
         $ongoingSession = 'noSess';

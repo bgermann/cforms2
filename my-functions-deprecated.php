@@ -75,9 +75,12 @@ if (!function_exists('is_tellafriend')) {
 
 }
 
+if (function_exists('my_cforms_filter')) {
+    trigger_error('my_cforms_filter is useless since cformsII version 14.14.', E_USER_WARNING);
+}
+
 if (function_exists('my_cforms_ajax_filter')) {
-    trigger_error('my_cforms_ajax_filter is useless since cformsII version 14.14.'
-            . ' You should switch to using my_cforms_filter.', E_USER_WARNING);
+    trigger_error('my_cforms_ajax_filter is useless since cformsII version 14.14.', E_USER_WARNING);
 }
 
 if (function_exists('my_cforms_logic')) {
