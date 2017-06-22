@@ -201,12 +201,6 @@ function cforms2($no = '', $customfields = array()) {
     // paint form
     $success = false;
 
-    // either show info message above or below
-    $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
-    $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
-
-    $usermessage_text = apply_filters('cforms2_usermessage_filter', $usermessage_text);
-
     $umc = (!empty($usermessage_class) && $no > 1) ? ' ' . $usermessage_class . $no : '';
 
     cforms2_dbg("User info for form #$no");
@@ -883,7 +877,7 @@ function cforms2($no = '', $customfields = array()) {
 
     // Extra Fields
     if (substr($cformsSettings['form' . $oldno]['cforms' . $oldno . '_tellafriend'], 0, 1) === '3') {
-        $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . ( isset($_GET['pid']) ? $_GET['pid'] : get_the_ID() ) . '"/>' .
+        $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . ( isset($_GET['pid']) ? (int) $_GET['pid'] : get_the_ID() ) . '"/>' .
                 '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . ( isset($_GET['pid']) ? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
     }
 

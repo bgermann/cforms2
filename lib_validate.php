@@ -121,6 +121,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
     $filefield = 0;
     $err = 0;
 
+    $pid = cforms2_get_the_id($no);
+
     cforms2_dbg("lib_validate.php: validating fields for form no. $no");
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
             empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0) {
@@ -732,6 +734,9 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         } else
             $mail->body = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
 
+        $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
+        $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
+        $usermessage_text = apply_filters('cforms2_usermessage_filter', $usermessage_text, $no, $pid);
 
 
 
@@ -796,7 +801,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 $sentadmin = 1;
             } else {
                 // This filter allows manipulation of the admin email just before sending
-                $mail = apply_filters('cforms2_admin_email_filter', $mail);
+                $mail = apply_filters('cforms2_admin_email_filter', $mail, $no, $pid);
                 $sentadmin = $mail->send();
             }
 
@@ -854,7 +859,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                             $mail->body = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
 
                         // This filter allows manipulation of the cc me email just before sending
-                        $mail = apply_filters('cforms2_cc_me_email_filter', $mail);
+                        $mail = apply_filters('cforms2_cc_me_email_filter', $mail, $no, $pid);
                         $sent = $mail->send();
                     }
                     else { // auto conf
@@ -867,7 +872,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                             $mail->body = $cmsg;
 
                         // This filter allows manipulation of the auto conf email just before sending
-                        $mail = apply_filters('cforms2_auto_conf_email_filter', $mail);
+                        $mail = apply_filters('cforms2_auto_conf_email_filter', $mail, $no, $pid);
                         $sent = $mail->send();
                     }
 

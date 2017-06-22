@@ -23,6 +23,14 @@ function cforms2_dbg($m) {
 
 }
 
+function cforms2_get_the_id($no) {
+    if (isset($_POST['comment_post_ID' . $no]) && $_POST['comment_post_ID' . $no])
+        return (int) $_POST['comment_post_ID' . $no];
+    else
+        return get_the_ID();
+
+}
+
 /** make time */
 function cforms2_make_time($t) {
     $time = str_replace('/', '.', $t) . sprintf(' %+d', get_option('gmt_offset'));
@@ -205,10 +213,7 @@ function cforms2_check_default_vars($m, $no) {
 
     $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
-    if (isset($_POST['comment_post_ID' . $no]) && $_POST['comment_post_ID' . $no])
-        $pid = $_POST['comment_post_ID' . $no];
-    else
-        $pid = get_the_ID();
+    $pid = cforms2_get_the_id($no);
 
     if (isset($_POST['cforms_pl' . $no]) && $_POST['cforms_pl' . $no])
         $permalink = $_POST['cforms_pl' . $no];
