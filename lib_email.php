@@ -28,10 +28,10 @@ class cforms2_mail {
     public $subj = '';
     public $body = '';
     public $body_alt = '';
+    public $to = array();
     private $content_type = 'text/plain';
     private $from = '';
     private $fname;
-    private $to = array();
     private $cc = array();
     private $bcc = array();
     private $replyto = array();

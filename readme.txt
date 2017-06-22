@@ -162,13 +162,14 @@ GPL compliance!
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * bugfix:   reset multipart forms on every first form
 * added:    feature to copy old submission data to CFDB
+* added:    WordPress filters cforms2_admin_email_filter, cforms2_cc_me_email_filter, cforms2_auto_conf_email_filter
 * other:    remove persistent file storage (please use CFDB)
 * other:    remove 3rd party read-notification support
 * other:    remove submission limit feature
 * other:    remove Global Settings for Tracking DB
 * other:    remove Tracking ID for files and {ID} variable
 * other:    remove deprecated HTML comment placeholder
-* other:    remove deprecated my_cforms_logic caller filename
+* other:    remove deprecated API functions my_cforms_logic and my_cforms_ajax_filter
 * other:    remove image CAPTCHA settings
 
 = 14.13.3 =

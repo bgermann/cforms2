@@ -10,12 +10,9 @@
 
 ### DEPRECATED
 ###
-### my_cforms_logic()  : gets triggered throughout cforms, supporting real-time configuration
-###
 ### my_cforms_filter() : in case you'd like to manipulate / check user input after standard validation,
 ###                      but before special validations, like captchas.
 ###
-### my_cforms_ajax_filter() and
 ### my_cforms_filter() : after validation, before processing/saving input data
 ###
 ### my_cforms_action() : compatible to new cforms2_after_processing_action
@@ -26,49 +23,6 @@
 ###  2) rename it ending with extension *.php
 ###  3) remove the functions you do not need and customize the needed ones
 ###  4) activate this plugin
-
-
-
-###
-### Your custom application logic features with $setting being:
-###
-### "adminEmailTXT"
-### "adminEmailDataTXT"
-### "adminEmailHTML"
-### "adminEmailDataHTML"
-### "autoConfTXT"
-### "autoConfHTML"
-### @deprecated
-###
-function my_cforms_logic($cformsdata,$oldvalue,$setting) {
-
-
-    ### If you're unsure how to reference $cformsdata use the below mail call to send you the data array
-    ### wp_mail('you@example.com', 'my_cforms_logic test', print_r($cformsdata,1), 'From: you@example.com');
-
-
-    ### example: the below code changes a user-variable in both the Text & HTML part of
-    ###          the admin email & auto confirmation email
-
-    if ( $setting == "adminEmailTXT" || $setting == "adminEmailHTML" || $setting == "autoConfTXT" || $setting == "autoConfHTML" ||
-         $setting == "adminEmailDataTXT" || $setting == "adminEmailDataHTML"){
-
-        ### it's only changed though for form #2
-        ### and requires "{CustomSalutation}" to be in the message(s)
-        if ( $cformsdata['id']==2 ){
-
-            ### Returned message depends on user choosing the radio option "Mrs" or "Mr" (field value!)
-            if( $cformsdata['data']['Salutation']=='Mrs' )
-                return str_replace('{CustomSalutation}','Dear Mrs. ',$oldvalue);
-            else
-                return str_replace('{CustomSalutation}','Dear Mr. ',$oldvalue);
-
-        }
-
-    }
-
-    return $oldvalue;
-}
 
 
 
@@ -105,19 +59,6 @@ function my_cforms_filter($formIDOrPostData) {
     }
 
 }
-
-
-
-###
-### Your custom user data input filter
-### @deprecated
-###
-function my_cforms_ajax_filter($formID) {
-
-    ### See my_cforms_filter
-
-}
-
 
 
 /**

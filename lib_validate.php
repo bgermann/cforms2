@@ -641,8 +641,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         // prefilter user input
         if (function_exists('my_cforms_filter'))
             my_cforms_filter($no);
-        if (function_exists('my_cforms_ajax_filter'))
-            my_cforms_ajax_filter($no);
 
 
         // multi-part form session
@@ -720,10 +718,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
         // prepare message text, replace variables
         $message = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_header']);
-        if (function_exists('my_cforms_logic')) {
-            $message = my_cforms_logic($trackf, $message, 'adminEmailTXT');
-            $formdata = my_cforms_logic($trackf, $formdata, 'adminEmailDataTXT');
-        }
         $message = cforms2_check_default_vars($message, $no);
         $message = cforms2_check_cust_vars($message, $track);
 
@@ -731,10 +725,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $htmlmessage = '';
         if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 2, 1) == '1') {
             $htmlmessage = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_header_html']);
-            if (function_exists('my_cforms_logic')) {
-                $htmlmessage = my_cforms_logic($trackf, $htmlmessage, 'adminEmailHTML');
-                $htmlformdata = my_cforms_logic($trackf, $htmlformdata, 'adminEmailDataHTML');
-            }
             $htmlmessage = cforms2_check_default_vars($htmlmessage, $no);
             $htmlmessage = cforms2_check_cust_vars($htmlmessage, $track, true);
         }
@@ -810,10 +800,13 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
             cforms2_dbg('TRACKF' . print_r($trackf, 1) . "\n");
 
-            if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1')
+            if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') {
                 $sentadmin = 1;
-            else
+            } else {
+                // This filter allows manipulation of the admin email just before sending
+                $mail = apply_filters('cforms2_admin_email_filter', $mail);
                 $sentadmin = $mail->send();
+            }
 
             if ($sentadmin == 1) {
 
@@ -828,8 +821,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                     // actual user message
                     $cmsg = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg']);
-                    if (function_exists('my_cforms_logic'))
-                        $cmsg = my_cforms_logic($trackf, $cmsg, 'autoConfTXT');
                     $cmsg = cforms2_check_default_vars($cmsg, $no);
                     $cmsg = cforms2_check_cust_vars($cmsg, $track);
 
@@ -837,8 +828,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     $cmsghtml = '';
                     if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') {
                         $cmsghtml = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html']);
-                        if (function_exists('my_cforms_logic'))
-                            $cmsghtml = my_cforms_logic($trackf, $cmsghtml, 'autoConfHTML');
                         $cmsghtml = cforms2_check_default_vars($cmsghtml, $no);
                         $cmsghtml = cforms2_check_cust_vars($cmsghtml, $track, true);
                     }
@@ -872,6 +861,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         } else
                             $mail->body = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
 
+                        // This filter allows manipulation of the cc me email just before sending
+                        $mail = apply_filters('cforms2_cc_me_email_filter', $mail);
                         $sent = $mail->send();
                     }
                     else { // auto conf
@@ -883,6 +874,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         } else
                             $mail->body = $cmsg;
 
+                        // This filter allows manipulation of the auto conf email just before sending
+                        $mail = apply_filters('cforms2_auto_conf_email_filter', $mail);
                         $sent = $mail->send();
                     }
 
