@@ -18,26 +18,6 @@
 
 // TODO when available: https://core.trac.wordpress.org/ticket/36561
 
-/**
- * This is a compatibility layer for the transition from the old
- * my-functions API to native WordPress actions/filters.
- * 
- * @deprecated since version 14.11
- */
-class cforms2_deprecated_api {
-
-    public static function my_cforms_action($cformsdata) {
-        if (function_exists('my_cforms_action')) {
-            trigger_error('You should switch from using my_cforms_action function to cforms2_after_processing_action WordPress action.', E_USER_WARNING);
-            my_cforms_action($cformsdata);
-        }
-
-    }
-
-}
-
-add_action('cforms2_after_processing_action', 'cforms2_deprecated_api::my_cforms_action');
-
 if (!function_exists('insert_custom_cform')) {
 
     /**
@@ -75,6 +55,10 @@ if (!function_exists('is_tellafriend')) {
 
 }
 
+if (function_exists('my_cforms_action')) {
+    trigger_error('my_cforms_action is useless since cformsII version 14.14.', E_USER_WARNING);
+}
+
 if (function_exists('my_cforms_filter')) {
     trigger_error('my_cforms_filter is useless since cformsII version 14.14.', E_USER_WARNING);
 }
@@ -86,4 +70,3 @@ if (function_exists('my_cforms_ajax_filter')) {
 if (function_exists('my_cforms_logic')) {
     trigger_error('my_cforms_logic is useless since cformsII version 14.14', E_USER_WARNING);
 }
-
