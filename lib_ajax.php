@@ -29,9 +29,6 @@ function cforms2_json_die($no, $result, $html, $hide = false, $redirection = nul
 
 }
 
-add_action('wp_ajax_submitcform', 'cforms2_submitcform');
-add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');
-
 /**
  * submit form
  */
@@ -41,7 +38,6 @@ function cforms2_submitcform() {
     $cformsSettings = get_option('cforms_settings');
     $no = $_POST['cforms_id'];
     $_POST['sendbutton' . $no] = true;
-    require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
     $validation_result = cforms2_validate($no);
     $hide = $validation_result['all_valid'] && $cformsSettings['form' . $no]['cforms' . $no . '_hide'];
     $cf_redirect = null;

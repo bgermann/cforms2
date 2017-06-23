@@ -17,6 +17,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function cforms2_localization() {
+    load_plugin_textdomain('cforms2');
+
+}
+
+function cforms2_settings_corrupted() {
+    $tmp = plugin_dir_path(__FILE__) . 'cforms-corrupted.php';
+
+    add_menu_page(__('cformsII', 'cforms2'), __('cformsII', 'cforms2'), 'manage_cforms', $tmp, '', plugin_dir_url(__FILE__) . 'images/cformsicon.png');
+    add_submenu_page($tmp, __('Corrupted Settings', 'cforms2'), __('Corrupted Settings', 'cforms2'), 'manage_cforms', $tmp);
+
+    add_action('admin_enqueue_scripts', 'cforms2_enqueue_style_admin');
+
+}
+
+function cforms2_start_session() {
+    session_cache_limiter('nocache');
+    $session_id = session_id();
+    if (empty($session_id)) {
+        session_start();
+    }
+
+}
+
+function cforms2_field() {
+    check_admin_referer('cforms2_field');
+
+    $type = $_REQUEST['type'];
+    $fields = cforms2_get_fieldtypes();
+    if (array_key_exists($type, $fields))
+        echo $fields[$type]->render_settings();
+
+    die();
+
+}
+
 function cforms2_delete_db_and_deactivate() {
     if (!isset($_POST['cfdeleteall']))
         return;
@@ -41,6 +77,48 @@ function cforms2_check_access_priv($r = 'manage_cforms') {
         $err = '<h2>' . __('cforms error', 'cforms2') . '</h2><div class="updated fade" id="message"><p>' . __('You do not have the proper privileges to access this page.', 'cforms2') . '</p></div></div>';
         die($err);
     }
+
+}
+
+/** some css for positioning the form elements */
+function cforms2_enqueue_scripts() {
+    global $wp_query, $cformsSettings;
+
+    // add content actions and filters
+    $page_obj = $wp_query->get_queried_object();
+
+    $exclude = ($cformsSettings['global']['cforms_inexclude']['ex'] == '1');
+    $onPages = str_replace(' ', '', stripslashes(htmlspecialchars($cformsSettings['global']['cforms_inexclude']['ids'])));
+    $onPagesA = explode(',', $onPages);
+
+    if ($onPages == '' || (in_array($page_obj->ID, $onPagesA) && !$exclude) || (!in_array($page_obj->ID, $onPagesA) && $exclude)) {
+
+        if ($cformsSettings['global']['cforms_no_css'] != '1') {
+            wp_register_style('cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION);
+            wp_enqueue_style('cforms2');
+        }
+
+        // add calendar
+        if ($cformsSettings['global']['cforms_datepicker'] == '1') {
+            cforms2_enqueue_script_datepicker(stripslashes($cformsSettings['global']['cforms_dp_date']));
+        }
+        wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION);
+        wp_localize_script('cforms2', 'cforms2_ajax', array(
+            'url' => admin_url('admin-ajax.php'),
+            'nonces' => array(
+                'submitcform' => wp_create_nonce('submitcform')
+            )
+        ));
+        wp_enqueue_script('cforms2');
+
+        wp_enqueue_style('dashicons');
+    }
+
+}
+
+function cforms2_is_table_present($table_name) {
+    global $wpdb;
+    return $wpdb->get_var("show tables like '$table_name'") == $table_name;
 
 }
 
@@ -201,6 +279,37 @@ function cforms2_add_admin_bar_item($admin_bar, $id, $ti, $hi, $p = 'cforms-bar'
     );
 
     $admin_bar->add_node($arr);
+
+}
+
+function cforms2_add_items_global($admin_bar) {
+
+    global $wpdb;
+
+    cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
+
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'));
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-deleteall', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'));
+
+    if ($wpdb->get_var("show tables like '{$wpdb->prefix}cformssubmissions'") == $wpdb->prefix . 'cformssubmissions')
+        cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'));
+
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
+
+}
+
+function cforms2_add_items_options($admin_bar) {
+
+    $cfo = get_option('cforms_settings');
+
+    cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
+
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'));
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'));
+    if ((int) $cfo['global']['cforms_formcount'] > 1)
+        cforms2_add_admin_bar_item($admin_bar, 'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'));
+
+    cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
 
 }
 

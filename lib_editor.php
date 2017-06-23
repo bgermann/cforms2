@@ -50,10 +50,14 @@ function cforms2_mce_script() {
 
 }
 
-// only insert buttons if enabled!
-if ($cformsSettings['global']['cforms_show_quicktag'] && is_admin()) {
-    add_filter('mce_external_plugins', 'cforms2_mce');
-    add_filter('wp_mce_translation', 'cforms2_mce_translation');
-    add_filter('mce_buttons', 'cforms2_mce_button');
-    add_action('admin_print_scripts', 'cforms2_mce_script');
+function cforms2_register_editor() {
+    // only insert buttons if enabled!
+    $cformsSettings = get_option('cforms_settings');
+    if ($cformsSettings['global']['cforms_show_quicktag'] && is_admin()) {
+        add_filter('mce_external_plugins', 'cforms2_mce');
+        add_filter('wp_mce_translation', 'cforms2_mce_translation');
+        add_filter('mce_buttons', 'cforms2_mce_button');
+        add_action('admin_print_scripts', 'cforms2_mce_script');
+    }
+
 }

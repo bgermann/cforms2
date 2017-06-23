@@ -99,3 +99,8 @@ class cforms2_widget extends WP_Widget {
     }
 
 }
+
+function cforms2_widget_init() {
+    register_widget('cforms2_widget');
+
+}

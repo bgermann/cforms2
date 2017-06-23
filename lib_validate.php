@@ -109,6 +109,7 @@ function cforms2_is_email($string) {
 }
 
 function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array()) {
+    require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
     global $cformsSettings;
 
     $validations = array();
