@@ -31,10 +31,6 @@ if (!defined('WP_DEBUG_CFORMS2')) {
     define('WP_DEBUG_CFORMS2', false);
 }
 
-global $wpdb;
-
-$cformsSettings = get_option('cforms_settings');
-
 require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 
@@ -57,7 +53,7 @@ add_action('activate_' . plugin_basename(__FILE__), 'cforms2_activate');
 
 
 // settings corrupted?
-if (!is_array($cformsSettings)) {
+if (!is_array(get_option('cforms_settings'))) {
     add_action('admin_menu', 'cforms2_settings_corrupted');
     return;
 }

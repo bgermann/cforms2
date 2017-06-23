@@ -405,7 +405,7 @@ function cforms_validate(no, directFormSubmission) {
                         newclass = newclass + ' fldrequired cf_error';
                         all_valid = false;
                         if (!last_one)
-                            last_one = objColl[i].name; // TODO fix?: if (!last_one && objColl[i].id != '') last_one=objColl[i].id;
+                            last_one = objColl[i].name;
 
                         custom_error = check_for_customerr(objColl[i].id);
 
