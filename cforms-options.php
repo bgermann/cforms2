@@ -19,8 +19,6 @@
 
 global $wpdb;
 
-require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
-
 $cformsSettings = get_option('cforms_settings');
 
 $plugindir = dirname(plugin_basename(__FILE__));
