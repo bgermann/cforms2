@@ -22,11 +22,7 @@
  */
 final class cforms2_question_and_answer extends cforms2_captcha {
 
-    private $cforms_settings;
-
     protected function __construct() {
-        $this->cforms_settings = get_option('cforms_settings');
-
     }
 
     public function get_id() {
@@ -40,7 +36,8 @@ final class cforms2_question_and_answer extends cforms2_captcha {
     }
 
     public function check_authn_users() {
-        return $this->cforms_settings['global']['cforms_captcha_def']['foqa'] == '1';
+        $cformsSettings = get_option('cforms_settings');
+        return $cformsSettings['global']['cforms_captcha_def']['foqa'] == '1';
 
     }
 
@@ -71,7 +68,8 @@ final class cforms2_question_and_answer extends cforms2_captcha {
      * @return array array(n, qestion, answer)
      */
     private function question_and_answer($n = -1) {
-        $qall = explode("\r\n", $this->cforms_settings['global']['cforms_sec_qa']);
+        $cformsSettings = get_option('cforms_settings');
+        $qall = explode("\r\n", $cformsSettings['global']['cforms_sec_qa']);
         if ($n < 0)
             $n = mt_rand(0, count($qall) - 1);
         $q = explode('=', $qall[$n]);

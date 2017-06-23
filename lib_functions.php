@@ -300,13 +300,13 @@ function cforms2_add_items_global($admin_bar) {
 
 function cforms2_add_items_options($admin_bar) {
 
-    $cfo = get_option('cforms_settings');
+    $cformsSettings = get_option('cforms_settings');
 
     cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'));
     cforms2_add_admin_bar_item($admin_bar, 'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'));
-    if ((int) $cfo['global']['cforms_formcount'] > 1)
+    if ((int) $cformsSettings['global']['cforms_formcount'] > 1)
         cforms2_add_admin_bar_item($admin_bar, 'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'));
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
