@@ -30,8 +30,8 @@ if (cforms2_check_erased())
     <h2><?php _e('Tracking Form Data', 'cforms2') ?></h2>
 
     <?php
+    echo '<p><strong>';
     if (class_exists('CF7DBPlugin')) {
-        echo '<p><strong>';
         if (isset($_GET['copytocfdb'])) {
             $db_entries = get_cforms_entries();
             $count_entries = 0;
@@ -71,11 +71,12 @@ if (cforms2_check_erased())
             _e('Copy all submissions to CFDB', 'cforms2');
             echo '</a>';
         }
-        echo '</strong></p>';
+    } else {
+        echo 'THIS DATABASE VIEW WILL BE REMOVED WITH CFORMSII VERSION 14.15! If you want to export your data, please install <a href="https://cfdbplugin.com">Contact Form DB</a>.';
     }
+    echo '</strong></p>';
     ?>
     <p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch. Attachments can be accessed in the details section. When deleting an entry, associated attachments will be removed, too! ', 'cforms2') ?></p>
-    <p><strong>THIS DATABASE VIEW WILL BE REMOVED WITH CFOMRSII VERSION 14.15!</strong></p>
 
     <table id="flex1" style="display:none"><tr><td></td></tr></table>
     <div id="entries"></div>
