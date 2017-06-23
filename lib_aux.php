@@ -379,7 +379,7 @@ if (!function_exists('insert_cform')) {
      * 1. Dynamic forms only work in non-AJAX mode.
      * 2. Each dynamic form references and thus requires a base form defined in the cformsII form settings.
      *    All its settings will be used, except the form (&field) definition.
-     * 3. Any of the form fields described in the plugins' HELP! section can be dynamically generated.
+     * 3. Any of the form fields described in the plugin's HELP! section can be dynamically generated.
      * 
      * @param string $no The numeric ID of the form that you want to render. '' for the first form.
      * @param array $customfields The fields to be used for the dynamic form:
