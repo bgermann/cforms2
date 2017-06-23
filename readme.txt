@@ -1,5 +1,5 @@
 === cformsII ===
-Contributors: bgermann, olivers, cbacchini, codifex, nb000
+Contributors: bgermann, olivers, cbacchini, codifex, nb000, wdfee
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 3.9
@@ -165,6 +165,7 @@ GPL compliance!
 * enhanced: for consistency, run JavaScript also for non-AJAX forms
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * bugfix:   reset multipart forms on every first form
+* bugfix:   checkboxes do not use right label if defined
 * added:    feature to copy old submission data to CFDB
 * added:    WordPress filters cforms2_admin_email_filter, cforms2_cc_me_email_filter, cforms2_auto_conf_email_filter, cforms2_usermessage_filter
 * other:    remove persistent file storage (please use CFDB)
