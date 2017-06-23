@@ -186,7 +186,7 @@ function cforms2_enqueue_script_datepicker($date_format) {
         'nextText' => __('Next Month', 'cforms2'),
         'closeText' => __('Close', 'cforms2'),
         'buttonText' => __('Choose Date', 'cforms2'),
-        'buttonImage' => plugin_dir_url(__FILE__) . 'images/calendar.gif'
+        'buttonImage' => plugin_dir_url(__FILE__) . 'images/calendar.png'
             ), $cformsSettings['global']['cforms_dp_nav']);
     $dp_options['dateFormat'] = $date_format;
     wp_localize_script('cforms-calendar', 'cforms2_cal', $dp_options);

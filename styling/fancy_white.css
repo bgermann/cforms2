@@ -126,7 +126,7 @@ label.cf-group-after span {
 .cform input {
     padding:2px 10px 12px;
     border-top: 1px solid #f0f0f0;
-    background:url(fancy_white_inp_bg.gif) no-repeat bottom left;
+    background:url(fancy_white_inp_bg.png) no-repeat bottom left;
     width:400px;
 }
 .cform select {
@@ -225,7 +225,7 @@ p.cf-sb {
     margin:5px 3px 4px 0pt;
     padding:0px 5px 5px 5px;
     width:144px;
-    background:url(fancy_white_submit.gif) no-repeat;
+    background:url(fancy_white_submit.png) no-repeat;
     border:none;
     cursor:pointer;
 }
