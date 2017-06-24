@@ -30,7 +30,7 @@ if (cforms2_check_erased())
     <h2><?php _e('Tracking Form Data', 'cforms2') ?></h2>
 
     <?php
-    echo '<p><strong>';
+    echo '<p><strong>THIS DATABASE VIEW WILL BE REMOVED WITH CFORMSII VERSION 14.15!<br />';
     if (class_exists('CF7DBPlugin')) {
         if (isset($_GET['copytocfdb'])) {
             $db_entries = get_cforms_entries();
@@ -64,15 +64,17 @@ if (cforms2_check_erased())
                 $count_entries++;
             }
             printf(__('%d submissions were copied to CFDB.', 'cforms2'), $count_entries);
-        } else {
+        } elseif ('true' === get_option('CF7DBPlugin_IntegrateWithCFormsII')) {
             echo '<a href="?page=';
             echo dirname(plugin_basename(__FILE__));
             echo '%2Fcforms-database.php&amp;copytocfdb">';
             _e('Copy all submissions to CFDB', 'cforms2');
-            echo '</a>';
+            echo '</a>.';
+        } else {
+            printf(__('If you want to export your data, please enable %sCformsII submission capture in Contact Form DB%s.', 'cforms2'), '<a href="?page=CF7DBPluginSettings#integrations">' , '</a>');
         }
     } else {
-        echo 'THIS DATABASE VIEW WILL BE REMOVED WITH CFORMSII VERSION 14.15! If you want to export your data, please install <a href="https://cfdbplugin.com">Contact Form DB</a>.';
+        printf(__('If you want to export your data, please install %sContact Form DB%s.', 'cforms2'), '<a href="https://cfdbplugin.com">' , '</a>');
     }
     echo '</strong></p>';
     ?>
