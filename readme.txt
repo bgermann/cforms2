@@ -105,7 +105,7 @@ These features were removed with version 14.12.
 
 = Does cformsII expose an API? =
 
-cformsII can be extended via WordPress actions and filters. You find their 'cforms2_' prefixed names and inline documentation at the apply_filters and do_action calls. Older cformsII versions had an API called my-functions, but that is removed as of version 14.14.
+cformsII can be extended via WordPress actions and filters. You find their 'cforms2_' prefixed names and inline documentation at the apply_filters and do_action calls. Additionally there is one API function that you can call directly: insert_cform. Please have a look at its PHPDoc. Older cformsII versions had an API called my-functions, but that is removed as of version 14.14.
 
 = Can I use cformsII with Content Security Policy enabled? =
 
