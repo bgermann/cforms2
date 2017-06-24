@@ -36,7 +36,7 @@ if (!function_exists('cf_extra_comment_data')) {
     /**
      * @deprecated since version 14.11.3
      */
-    function cf_extra_comment_data($id) {
+    function cf_extra_comment_data() {
         trigger_error('cf_extra_comment_data is useless', E_USER_WARNING);
 
     }
@@ -48,7 +48,7 @@ if (!function_exists('is_tellafriend')) {
     /**
      * @deprecated since version 14.12
      */
-    function is_tellafriend($pid) {
+    function is_tellafriend() {
         trigger_error('is_tellafriend is useless', E_USER_WARNING);
 
     }
