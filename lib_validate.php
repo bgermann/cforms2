@@ -698,7 +698,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $trackf = array();
         $trackf['id'] = $no;
         $trackf['data'] = $track;
-        $trackf['data']['Submitted From'] = cforms2_get_current_page();
+        $trackf['data']['page'] = cforms2_get_current_page();
         $trackf['title'] = $cformsSettings['form' . $no]['cforms' . $no . '_fname'];
 
         // ready to send email

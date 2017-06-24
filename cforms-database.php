@@ -41,15 +41,10 @@ if (cforms2_check_erased())
                 $no = cforms2_check_form_name($trackf['title']);
                 $trackf['id'] = $no;
                 $trackf['submit_time'] = (int) $db_entry['timestamp'];
-                // ip field is only set for copying old database entries
-                $trackf['ip'] = $db_entry['ip'];
                 $trackf['data'] = array();
+                $trackf['data']['Submitted From'] = $db_entry['ip'];
                 $trackf['uploaded_files'] = array();
                 foreach ($db_entry['data'] as $key => $value) {
-                    if ($key === 'page') {
-                        $trackf['data']['Submitted From'] = $value;
-                        continue;
-                    }
                     if (strpos($key, '[*') !== false) {
                         $temp = explode('$#$', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_dir'])));
                         $fileuploaddir = trailingslashit($temp[0]);
