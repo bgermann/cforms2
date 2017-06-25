@@ -50,7 +50,7 @@ if ($role != null) {
     $role->add_cap('track_cforms');
 }
 
-add_action('activate_' . plugin_basename(__FILE__), 'cforms2_setup_db');
+register_activation_hook(__FILE__, 'cforms2_setup_db');
 cforms2_fieldtype::register();
 
 // settings corrupted?
