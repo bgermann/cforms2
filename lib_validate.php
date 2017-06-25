@@ -730,10 +730,10 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         // HTML email
         if ($mail->html_show) {
             $mail->set_html(true);
-            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . $mail->eol . "<html xmlns=\"http://www.w3.org/1999/xhtml\">" . $mail->eol . "<head><title></title></head>" . $mail->eol . "<body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? $mail->eol . $htmlformdata : '') . $mail->eol . "</body></html>" . $mail->eol;
-            $mail->body_alt = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
+            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? "\n$htmlformdata" : '') . "\n</body></html>\n";
+            $mail->body_alt = $message . ($mail->f_txt ? "\n$formdata" : '');
         } else
-            $mail->body = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
+            $mail->body = $message . ($mail->f_txt ? "\n$formdata" : '');
 
         $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
         $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
@@ -854,10 +854,10 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         $mail->subj = $s[1];
                         if ($mail->html_show) {
                             $mail->set_html(true);
-                            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . $mail->eol . "<html xmlns=\"http://www.w3.org/1999/xhtml\">" . $mail->eol . "<head><title></title></head>" . $mail->eol . "<body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? $mail->eol . $htmlformdata : '') . $mail->eol . "</body></html>" . $mail->eol;
-                            $mail->body_alt = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
+                            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? "\n$htmlformdata" : '') . "\n</body></html>\n";
+                            $mail->body_alt = $message . ($mail->f_txt ? "\n$formdata" : '');
                         } else
-                            $mail->body = $message . ($mail->f_txt ? $mail->eol . $formdata : '');
+                            $mail->body = $message . ($mail->f_txt ? "\n$formdata" : '');
 
                         // This filter allows manipulation of the cc me email just before sending
                         $mail = apply_filters('cforms2_cc_me_email_filter', $mail, $no, $pid);
@@ -867,7 +867,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         $mail->subj = $s[0];
                         if ($mail->html_show_ac) {
                             $mail->set_html(true);
-                            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . $mail->eol . "<html xmlns=\"http://www.w3.org/1999/xhtml\">" . $mail->eol . "<head><title></title></head>" . $mail->eol . "<body {$cformsSettings['global']['cforms_style']['body']}>" . $cmsghtml . "</body></html>" . $mail->eol;
+                            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $cmsghtml . "</body></html>\n";
                             $mail->body_alt = $cmsg;
                         } else
                             $mail->body = $cmsg;

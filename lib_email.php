@@ -19,7 +19,6 @@
 
 class cforms2_mail {
 
-    public $eol;
     public $html_show;
     public $html_show_ac;
     public $f_txt;
@@ -30,6 +29,7 @@ class cforms2_mail {
     public $body_alt = '';
     public $to = array();
     private $content_type = 'text/plain';
+    private $eol;
     private $from = '';
     private $fname;
     private $cc = array();
@@ -170,8 +170,13 @@ class cforms2_mail {
 
     }
 
-    private function mail_body() {
-        return $this->err_count > 0 ? '' : $this->body;
+    private function mail_body($body) {
+        if ($this->err_count > 0)
+            return '';
+
+        $unix_line_body = str_replace('\r\n', '\n', $body);
+        $unix_line_body = str_replace('\r', '\n', $unix_line_body);
+        return str_replace('\n', $this->eol, $unix_line_body);
 
     }
 
@@ -184,7 +189,7 @@ class cforms2_mail {
         }
 
         $header = $this->mail_header();
-        $body = $this->mail_body();
+        $body = $this->mail_body($this->body);
 
         // bail out
         if ($body == '')
@@ -218,7 +223,7 @@ class cforms2_mail {
      */
     public function phpmailer_init($phpmailer) {
         $phpmailer->LE = $this->eol;
-        $phpmailer->AltBody = $this->body_alt;
+        $phpmailer->AltBody = $this->mail_body($this->body_alt);
 
     }
 
