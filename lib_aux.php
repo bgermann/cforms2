@@ -225,12 +225,12 @@ function cforms2_check_default_vars($m, $no) {
     $time = current_time(get_option('time_format'));
     $page = cforms2_get_current_page();
 
-    $find = get_post($pid);
-    if (!empty($find)) {
-        $user = get_user_by('id', $find->post_author);
+    $post = get_post($pid);
+    if (!empty($post)) {
+        $user = get_user_by('id', $post->post_author);
         $user_name = $user->display_name;
-        $post_title = $find->post_title;
-        $post_excerpt = $find->post_excerpt;
+        $post_title = $post->post_title;
+        $post_excerpt = $post->post_excerpt;
     } else {
         $user_name = $post_title = $post_excerpt = '';
     }
