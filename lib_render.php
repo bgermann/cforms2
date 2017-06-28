@@ -804,8 +804,8 @@ function cforms2($no = '', $customfields = array()) {
 
     // Extra Fields
     if (substr($cformsSettings['form' . $oldno]['cforms' . $oldno . '_tellafriend'], 0, 1) === '3') {
-        $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . ( isset($_GET['pid']) ? (int) $_GET['pid'] : get_the_ID() ) . '"/>' .
-                '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . ( isset($_GET['pid']) ? get_permalink($_GET['pid']) : get_permalink() ) . '"/>';
+        $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . get_the_ID() . '"/>' .
+                '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . get_permalink() . '"/>';
     }
 
 
