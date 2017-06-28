@@ -55,18 +55,25 @@ if (!function_exists('is_tellafriend')) {
 
 }
 
-if (function_exists('my_cforms_action')) {
-    trigger_error('my_cforms_action is useless since cformsII version 14.14.', E_USER_WARNING);
-}
+/**
+ * If one of the deprecated functions of the old my-functions API is declared, the user is warned.
+ */
+function cforms2_warn_on_existing_my_functions() {
 
-if (function_exists('my_cforms_filter')) {
-    trigger_error('my_cforms_filter is useless since cformsII version 14.14.', E_USER_WARNING);
-}
+    if (function_exists('my_cforms_action')) {
+        trigger_error('my_cforms_action is useless since cformsII version 14.14.', E_USER_WARNING);
+    }
 
-if (function_exists('my_cforms_ajax_filter')) {
-    trigger_error('my_cforms_ajax_filter is useless since cformsII version 14.14.', E_USER_WARNING);
-}
+    if (function_exists('my_cforms_filter')) {
+        trigger_error('my_cforms_filter is useless since cformsII version 14.14.', E_USER_WARNING);
+    }
 
-if (function_exists('my_cforms_logic')) {
-    trigger_error('my_cforms_logic is useless since cformsII version 14.14', E_USER_WARNING);
+    if (function_exists('my_cforms_ajax_filter')) {
+        trigger_error('my_cforms_ajax_filter is useless since cformsII version 14.14.', E_USER_WARNING);
+    }
+
+    if (function_exists('my_cforms_logic')) {
+        trigger_error('my_cforms_logic is useless since cformsII version 14.14', E_USER_WARNING);
+    }
+
 }

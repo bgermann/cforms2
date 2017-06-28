@@ -95,3 +95,5 @@ add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_action('wp_mail_failed', 'cforms2_wp_mail_failed');
 add_shortcode('cforms', 'cforms2_shortcode');
+
+cforms2_warn_on_existing_my_functions();
