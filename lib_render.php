@@ -45,18 +45,18 @@ function cforms2($no = '', $customfields = array()) {
 
     $moveBack = false;
     // multi-part form: reset button
-    if (isset($_REQUEST['resetbutton' . $no]) && is_array($_SESSION['cforms'])) {
+    if (isset($_POST['resetbutton' . $no]) && is_array($_SESSION['cforms'])) {
         $no = $oldno;
         unset($_SESSION['cforms']);
         $_SESSION['cforms']['current'] = 0;
         $_SESSION['cforms']['first'] = $oldno;
         $_SESSION['cforms']['pos'] = 1;
-        unset($_REQUEST);
+        unset($_POST);
 
         cforms2_dbg("Reset-Button pressed");
     }
     // multi-part form: back button
-    elseif (isset($_REQUEST['backbutton' . $no]) && isset($_SESSION['cforms']) && ($_SESSION['cforms']['pos'] - 1) >= 0) {
+    elseif (isset($_POST['backbutton' . $no]) && isset($_SESSION['cforms']) && ($_SESSION['cforms']['pos'] - 1) >= 0) {
         $no = $_SESSION['cforms']['list'][($_SESSION['cforms']['pos'] --) - 1];
         $_SESSION['cforms']['current'] = $no;
         $moveBack = true;
@@ -108,7 +108,7 @@ function cforms2($no = '', $customfields = array()) {
 
     // non-AJAX method
     $all_valid = true;
-    if (isset($_REQUEST['sendbutton' . $no]) || $server_upload_size_error) {
+    if (isset($_POST['sendbutton' . $no]) || $server_upload_size_error) {
         $validation_result = cforms2_validate($no, $isMPform, $custom, $customfields);
         $all_valid = $validation_result['all_valid'];
         $usermessage_text = $validation_result['text'];
@@ -142,7 +142,7 @@ function cforms2($no = '', $customfields = array()) {
 
     // multi-part form: overwrite $no, move on to next form
     $oldcurrent = $no;
-    if ($all_valid && isset($_REQUEST['sendbutton' . $no])) {
+    if ($all_valid && isset($_POST['sendbutton' . $no])) {
 
         $isMPformNext = false; // default
 
@@ -182,8 +182,8 @@ function cforms2($no = '', $customfields = array()) {
 
     // redirect == 2 : hide form? || or if max entries reached!
     if ($all_valid && (
-            ( $cformsSettings['form' . $no]['cforms' . $no . '_hide'] && isset($_REQUEST['sendbutton' . $no]) ) ||
-            ( $cformsSettings['form' . $oldcurrent]['cforms' . $oldcurrent . '_hide'] && isset($_REQUEST['sendbutton' . $oldcurrent]) )
+            ( $cformsSettings['form' . $no]['cforms' . $no . '_hide'] && isset($_POST['sendbutton' . $no]) ) ||
+            ( $cformsSettings['form' . $oldcurrent]['cforms' . $oldcurrent . '_hide'] && isset($_POST['sendbutton' . $oldcurrent]) )
             )
     )
         return $content;
@@ -223,10 +223,10 @@ function cforms2($no = '', $customfields = array()) {
     $inpFieldArr = array();
     for ($i = 1; $i <= $field_count; $i++) {
 
-        if (!$custom)
-            $field_stat = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $i]);
-        else
+        if ($custom)
             $field_stat = explode('$#$', $customfields[$i - 1]);
+        else
+            $field_stat = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $i]);
 
         $field_name = $field_stat[0];
         $field_type = $field_stat[1];
@@ -423,19 +423,19 @@ function cforms2($no = '', $customfields = array()) {
                     $insertErr = empty($fielderr) ? '' : '<ul class="cf_li_text_err"><li>' . stripslashes($fielderr) . '</li></ul>';
             }
 
-            if (!isset($_REQUEST[$input_name]))
-                $_REQUEST[$input_name] = ''; // the field could not be there at all
+            if (!isset($_POST[$input_name]))
+                $_POST[$input_name] = ''; // the field could not be there at all
             if ($field_type == 'multiselectbox' || $field_type == 'checkboxgroup')
-                $field_value = $_REQUEST[$input_name]; // In this case it's an array. We will do the stripping later.
+                $field_value = $_POST[$input_name]; // In this case it's an array. We will do the stripping later.
             else
-                $field_value = htmlspecialchars(stripslashes($_REQUEST[$input_name]));
-        } elseif ((!isset($_REQUEST['sendbutton' . $no]) && isset($_REQUEST[$input_name])) || $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) {
+                $field_value = htmlspecialchars(stripslashes($_POST[$input_name]));
+        } elseif ((!isset($_POST['sendbutton' . $no]) && isset($_POST[$input_name])) || $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) {
 
             // only pre-populating fields
             if ($field_type == 'multiselectbox' || $field_type == 'checkboxgroup')
-                $field_value = $_REQUEST[$input_name]; // In this case it's an array. We will do the stripping later.
+                $field_value = $_POST[$input_name]; // In this case it's an array. We will do the stripping later.
             else {
-                $field_value = htmlspecialchars(stripslashes($_REQUEST[$input_name]));
+                $field_value = htmlspecialchars(stripslashes($_POST[$input_name]));
             }
         }
 

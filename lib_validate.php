@@ -133,7 +133,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $fileerr = $cformsSettings['global']['cforms_upload_err3'];
     }
 
-    cforms2_dbg("REQUEST:" . print_r($_REQUEST, 1));
     cforms2_dbg("FILES:" . print_r($_FILES, 1));
     $off = 0;
     $c_errflag = false;
@@ -218,16 +217,16 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                       [4] => yy
                       )
                      */
-                    if (!isset($_REQUEST[$trackingID]))
-                        $_REQUEST[$trackingID] = "";
+                    if (!isset($_POST[$trackingID]))
+                        $_POST[$trackingID] = "";
                     if ($isFieldArray) {
 
                         if (!isset($inpFieldArr[$trackingID]) || !$inpFieldArr[$trackingID] || $inpFieldArr[$trackingID] == '')
                             $inpFieldArr[$trackingID] = 0;
 
-                        $current_field = $_REQUEST[$trackingID][$inpFieldArr[$trackingID] ++];
+                        $current_field = $_POST[$trackingID][$inpFieldArr[$trackingID] ++];
                     } else
-                        $current_field = $_REQUEST[$trackingID];
+                        $current_field = $_POST[$trackingID];
 
                     cforms2_dbg("\t\t\t ...currentField field_name = \"$field_name\", current_field = $current_field, request-id = $trackingID");
                 } else {
@@ -238,10 +237,10 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                         // just take front part
                         preg_match('/^([^#\|]*).*/', $field_name, $input_name);
                     }
-                    $current_field = isset($_REQUEST[cforms2_sanitize_ids($input_name[1])]) ? $_REQUEST[cforms2_sanitize_ids($input_name[1])] : "";
+                    $current_field = isset($_POST[cforms2_sanitize_ids($input_name[1])]) ? $_POST[cforms2_sanitize_ids($input_name[1])] : "";
                 }
             } else
-                $current_field = isset($_REQUEST['cf' . $no . '_field_' . ((int) $i + (int) $off)]) ? $_REQUEST['cf' . $no . '_field_' . ((int) $i + (int) $off)] : "";
+                $current_field = isset($_POST['cf' . $no . '_field_' . ((int) $i + (int) $off)]) ? $_POST['cf' . $no . '_field_' . ((int) $i + (int) $off)] : "";
 
             $current_field = is_array($current_field) ? $current_field : stripslashes($current_field);
 
@@ -256,7 +255,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             } elseif (array_key_exists($field_type, $captchas)) {
                 // pluggable captcha
                 $validations[$i + $off] = 1;
-                if (!$captchas[$field_type]->check_response($_REQUEST)) {
+                if (!$captchas[$field_type]->check_response($_POST)) {
                     $validations[$i + $off] = 0;
                     $err = $err ? $err : 2;
                 }
@@ -314,9 +313,9 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                 if (!empty($obj[2])) {
                     // check against other field!
-                    if (isset($_REQUEST[$obj[2]]) && !empty($_REQUEST[$obj[2]])) {
+                    if (isset($_POST[$obj[2]]) && !empty($_POST[$obj[2]])) {
 
-                        if ($current_field != $_REQUEST[$obj[2]])
+                        if ($current_field != $_POST[$obj[2]])
                             $validations[$i + $off] = false;
                     }
                     else {

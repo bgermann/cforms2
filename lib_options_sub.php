@@ -29,10 +29,10 @@ function cforms2_option_submission($no, &$cformsSettings) {
 
     for ($i = 1; $i <= $field_count; $i++) {
 
-        if (!empty($_REQUEST['field_' . $i . '_name'])) {
+        if (!empty($_POST['field_' . $i . '_name'])) {
             $allgood = true;
-            $name = str_replace('$#$', '$', $_REQUEST['field_' . $i . '_name']);
-            $type = $_REQUEST['field_' . $i . '_type'];
+            $name = str_replace('$#$', '$', $_POST['field_' . $i . '_name']);
+            $type = $_POST['field_' . $i . '_type'];
             $required = 0;
             $emailcheck = 0;
             $clear = 0;
@@ -53,23 +53,23 @@ function cforms2_option_submission($no, &$cformsSettings) {
                 $emailtobox = true;
             }
 
-            if (isset($_REQUEST['field_' . $i . '_required']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'datepicker', 'textarea', 'checkbox', 'multiselectbox', 'selectbox', 'emailtobox', 'upload', 'radiobuttons')))) {
+            if (isset($_POST['field_' . $i . '_required']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'datepicker', 'textarea', 'checkbox', 'multiselectbox', 'selectbox', 'emailtobox', 'upload', 'radiobuttons')))) {
                 $required = 1;
             }
 
-            if (isset($_REQUEST['field_' . $i . '_emailcheck']) && in_array($type, array('html5email', 'textfield', 'datepicker'))) {
+            if (isset($_POST['field_' . $i . '_emailcheck']) && in_array($type, array('html5email', 'textfield', 'datepicker'))) {
                 $emailcheck = 1;
             }
 
-            if (isset($_REQUEST['field_' . $i . '_clear']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'datepicker', 'textarea')))) {
+            if (isset($_POST['field_' . $i . '_clear']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'datepicker', 'textarea')))) {
                 $clear = 1;
             }
 
-            if (isset($_REQUEST['field_' . $i . '_disabled']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'datepicker', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
+            if (isset($_POST['field_' . $i . '_disabled']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'datepicker', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
                 $disabled = 1;
             }
 
-            if (isset($_REQUEST['field_' . $i . '_readonly']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'datepicker', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
+            if (isset($_POST['field_' . $i . '_readonly']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'datepicker', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
                 $readonly = 1;
             }
 
@@ -82,7 +82,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
 
 
     // update new settings container
-    $cformsSettings['form' . $no]['cforms' . $no . '_fname'] = preg_replace(array('/\\\+/', '/\//', '/"/'), array('\\', '-', '\''), $_REQUEST['cforms_fname']);
+    $cformsSettings['form' . $no]['cforms' . $no . '_fname'] = preg_replace(array('/\\\+/', '/\//', '/"/'), array('\\', '-', '\''), $_POST['cforms_fname']);
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'] = cforms2_get_from_request('cforms_upload_ext');
     $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] = cforms2_get_from_request('cforms_upload_size');
     $cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] = cforms2_get_boolean_from_request('cforms_noattachments');
@@ -108,13 +108,13 @@ function cforms2_option_submission($no, &$cformsSettings) {
     $enddate = cforms2_get_from_request('cforms_enddate');
     $endtime = cforms2_get_from_request('cforms_endtime');
     if (!empty($startdate) && empty($starttime))
-        $_REQUEST['cforms_starttime'] = '00:00';
+        $_POST['cforms_starttime'] = '00:00';
     if (!empty($starttime) && empty($startdate))
-        $_REQUEST['cforms_startdate'] = current_time('d/m/Y');
+        $_POST['cforms_startdate'] = current_time('d/m/Y');
     if (!empty($enddate) && empty($endtime))
-        $_REQUEST['cforms_endtime'] = '00:00';
+        $_POST['cforms_endtime'] = '00:00';
     if (!empty($endtime) && empty($enddate))
-        $_REQUEST['cforms_enddate'] = current_time('d/m/Y');
+        $_POST['cforms_enddate'] = current_time('d/m/Y');
     $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] = preg_replace("/\\\+/", "\\", $startdate) . ' ' .
             preg_replace("/\\\+/", "\\", $starttime);
     $cformsSettings['form' . $no]['cforms' . $no . '_enddate'] = preg_replace("/\\\+/", "\\", $enddate) . ' ' .
@@ -140,7 +140,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
     // quickly get old vals
     $t = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
 
-    if (isset($_REQUEST['cforms_confirm']) && $_REQUEST['cforms_confirm'] && $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == 1) {
+    if (isset($_POST['cforms_confirm']) && $_POST['cforms_confirm'] && $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == 1) {
         $t[0] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_csubject'));
         $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0] = cforms2_get_from_request('cforms_cattachment');
         $cformsSettings['form' . $no]['cforms' . $no . '_cmsg'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_cmsg'));
@@ -176,17 +176,17 @@ function cforms2_option_submission($no, &$cformsSettings) {
     // up to version 14.12 this option string had two characters, which is reflected in its usage
     $cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'] = '0';
 
-    if (isset($_REQUEST['cforms_taftrick']))
+    if (isset($_POST['cforms_taftrick']))
         $cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'] = '3';
 
 
     // reorder fields if order changed
-    if (isset($_REQUEST['field_order']) && !empty($_REQUEST['field_order'])) {
+    if (isset($_POST['field_order']) && !empty($_POST['field_order'])) {
         $j = 0;
 
-        preg_match_all('/allfields\[\]=f([^&]+)&?/', $_REQUEST['field_order'], $order);
+        preg_match_all('/allfields\[\]=f([^&]+)&?/', $_POST['field_order'], $order);
         $order = $order[1];
-        $tempcount = isset($_REQUEST['AddField']) ? ($field_count - $_POST['AddFieldNo']) : ($field_count);
+        $tempcount = isset($_POST['AddField']) ? ($field_count - $_POST['AddFieldNo']) : ($field_count);
         while ($j < $tempcount) {
             $new_f = $order[$j] - 1;
             if ($j != $new_f)
@@ -196,7 +196,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
     }
 
     // new field added (will actually be added below!)
-    if (isset($_REQUEST['AddField']) && isset($_REQUEST['field_count_submit'])) {
+    if (isset($_POST['AddField']) && isset($_POST['field_count_submit'])) {
 
         $field_count = (int) $_POST['field_count_submit'] + (int) $_POST['AddFieldNo'];
         $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'] = $field_count;

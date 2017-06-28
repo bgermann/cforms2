@@ -31,7 +31,7 @@ cforms2_check_access_priv();
 if (cforms2_check_erased())
     return;
 
-if (isset($_REQUEST['deletetables'])) {
+if (isset($_POST['deletetables'])) {
 
     $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformssubmissions');
     $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformsdata');
@@ -48,8 +48,8 @@ if (isset($_REQUEST['deletetables'])) {
 }
 
 // Update Settings
-if (isset($_REQUEST['SubmitOptions']))
-    if (isset($_REQUEST['raw_cforms_settings'])) {
+if (isset($_POST['SubmitOptions']))
+    if (isset($_POST['raw_cforms_settings'])) {
         $raw_cforms_settings = stripslashes(cforms2_get_from_request('raw_cforms_settings'));
         if (!empty($raw_cforms_settings)) {
             $raw_cforms_settings = json_decode($raw_cforms_settings, true);

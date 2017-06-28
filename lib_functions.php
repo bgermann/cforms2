@@ -44,7 +44,7 @@ function cforms2_start_session() {
 function cforms2_field() {
     check_admin_referer('cforms2_field');
 
-    $type = $_REQUEST['type'];
+    $type = $_POST['type'];
     $fields = cforms2_get_fieldtypes();
     if (array_key_exists($type, $fields))
         echo $fields[$type]->render_settings();
@@ -133,7 +133,7 @@ function cforms2_menu() {
 
     add_submenu_page($o, __('Form Settings', 'cforms2'), __('Form Settings', 'cforms2'), 'manage_cforms', $o);
     add_submenu_page($o, __('Global Settings', 'cforms2'), __('Global Settings', 'cforms2'), 'manage_cforms', $p . 'cforms-global-settings.php');
-    if (cforms2_is_table_present($wpdb->prefix . 'cformssubmissions') && !isset($_REQUEST['deletetables']))
+    if (cforms2_is_table_present($wpdb->prefix . 'cformssubmissions') && !isset($_POST['deletetables']))
         add_submenu_page($o, __('Tracking', 'cforms2'), __('Tracking', 'cforms2'), 'track_cforms', $p . 'cforms-database.php');
     add_submenu_page($o, __('Styling', 'cforms2'), __('Styling', 'cforms2'), 'manage_cforms', $p . 'cforms-css.php');
     add_submenu_page($o, __('Help!', 'cforms2'), __('Help!', 'cforms2'), 'manage_cforms', $p . 'cforms-help.php');
@@ -314,7 +314,7 @@ function cforms2_add_items_options($admin_bar) {
 }
 
 function cforms2_get_boolean_from_request($index) {
-    if (isset($_REQUEST[$index]) && $_REQUEST[$index])
+    if (isset($_POST[$index]) && $_POST[$index])
         return '1';
     else
         return '0';
@@ -322,8 +322,8 @@ function cforms2_get_boolean_from_request($index) {
 }
 
 function cforms2_get_from_request($index) {
-    if (isset($_REQUEST[$index]) && $_REQUEST[$index])
-        return $_REQUEST[$index];
+    if (isset($_POST[$index]) && $_POST[$index])
+        return $_POST[$index];
     else
         return '';
 
@@ -374,19 +374,6 @@ function cforms2_wp_mail_failed($wp_mail_failed_error) {
 function cforms2_insert_modal() {
     echo '<div id="cf_editbox" title="' . __('Input Field Settings', 'cforms2') . '">'
     . '<div class="cf_ed_main"><div id="cf_target"></div></div></div>';
-
-}
-
-function cforms2_showmessage($confirm, $text, $no, $userconfirm) {
-    global $cformsSettings;
-
-    $text = __('It seems that you have recently upgraded cforms', 'cforms2') . ' ' . $text;
-
-    if (isset($_GET['cf_confirm']) && $_GET['cf_confirm'] == 'confirm' . $confirm) {
-        $cformsSettings['form' . $no]['cforms' . $no . '_confirmerr'] = ($userconfirm | $confirm);
-        update_option('cforms_settings', $cformsSettings);
-    } else
-        echo '<div id="message' . $confirm . '" class="updated fade"><p>' . $text . '</p><p><a href="?page=' . plugin_dir_path(plugin_basename(__FILE__)) . 'cforms-options.php&cf_confirm=confirm' . $confirm . '" class="rm_button allbuttons">' . __('Remove Message', 'cforms2') . '</a></p></div>';
 
 }
 

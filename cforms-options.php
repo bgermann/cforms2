@@ -34,7 +34,7 @@ if (cforms2_check_erased())
 // default to 1 & get real #
 $formcount = $cformsSettings['global']['cforms_formcount'];
 
-if (isset($_REQUEST['addbutton'])) {
+if (isset($_POST['addbutton'])) {
     $formcount = $formcount + 1;
     $no = $no_disp = $formcount;
 
@@ -96,12 +96,12 @@ if (isset($_REQUEST['addbutton'])) {
 
     update_option('cforms_settings', $cformsSettings);
     echo '<div id="message" class="updated fade"><p>' . __('A new form with default fields has been added.', 'cforms2') . '</p></div>';
-} elseif (isset($_REQUEST['dupbutton'])) {
+} elseif (isset($_POST['dupbutton'])) {
     $no_disp = '1';
     $no = '';
-    if (isset($_REQUEST['no'])) {
-        if ($_REQUEST['no'] !== '1')
-            $no_disp = $no = (int) $_REQUEST['no'];
+    if (isset($_POST['no'])) {
+        if ($_POST['no'] !== '1')
+            $no_disp = $no = (int) $_POST['no'];
     }
 
     $formcount++;
@@ -122,11 +122,11 @@ if (isset($_REQUEST['addbutton'])) {
 
     //set $no afterwards: need it to duplicate fields
     $no = $no_disp = $formcount;
-} elseif (isset($_REQUEST['delbutton']) && $formcount > 1) {
+} elseif (isset($_POST['delbutton']) && $formcount > 1) {
     $no_disp = '1';
     $no = '';
-    if ($_REQUEST['no'] !== '1')
-        $no_disp = $no = (int) $_REQUEST['no'];
+    if ($_POST['no'] !== '1')
+        $no_disp = $no = (int) $_POST['no'];
 
     for ($i = (int) $no_disp; $i < $cformsSettings['global']['cforms_formcount']; $i++) {  // move all forms "to the left"
         $n = ($i == 1) ? '' : $i;
@@ -143,7 +143,7 @@ if (isset($_REQUEST['addbutton'])) {
     $formcount = $formcount - 1;
 
     if ($formcount > 1) {
-        if (isset($_REQUEST['no']) && (int) $_REQUEST['no'] > $formcount) // otherwise stick with the current form
+        if (isset($_POST['no']) && (int) $_POST['no'] > $formcount) // otherwise stick with the current form
             $no = $no_disp = $formcount;
     } else {
         $no_disp = '1';
@@ -159,21 +159,21 @@ if (isset($_REQUEST['addbutton'])) {
     // set parameters to default, if not exists
     $no_disp = '1';
     $no = '';
-    if (isset($_REQUEST['switchform'])) { // only set when hitting form chg buttons
-        if ($_REQUEST['switchform'] !== '1')
-            $no_disp = $no = (int) $_REQUEST['switchform'];
+    if (isset($_POST['switchform'])) { // only set when hitting form chg buttons
+        if ($_POST['switchform'] !== '1')
+            $no_disp = $no = (int) $_POST['switchform'];
     }
-    elseif (isset($_REQUEST['go'])) { // only set when hitting form chg buttons
-        if ($_REQUEST['pickform'] !== '1')
-            $no_disp = $no = (int) $_REQUEST['pickform'];
+    elseif (isset($_POST['go'])) { // only set when hitting form chg buttons
+        if ($_POST['pickform'] !== '1')
+            $no_disp = $no = (int) $_POST['pickform'];
     }
-    elseif (isset($_REQUEST['noSub']) && (int) $_REQUEST['noSub'] > 1) { // otherwise stick with the current form
-        $no_disp = $no = (int) $_REQUEST['noSub'];
+    elseif (isset($_POST['noSub']) && (int) $_POST['noSub'] > 1) { // otherwise stick with the current form
+        $no_disp = $no = (int) $_POST['noSub'];
     }
 }
 
-// Update Settings
-if (isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_search("X", $_REQUEST)) {
+// Update Settings TODO What is array_search("X", $_POST) for?
+if (isset($_POST['SubmitOptions']) || isset($_POST['AddField']) || array_search("X", $_POST)) {
     require_once(plugin_dir_path(__FILE__) . 'lib_options_sub.php');
     cforms2_option_submission($no, $cformsSettings);
 }
@@ -182,12 +182,12 @@ if (isset($_REQUEST['SubmitOptions']) || isset($_REQUEST['AddField']) || array_s
 $field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
 
 // Reset Admin and AutoConf messages
-if (isset($_REQUEST['cforms_resetAdminMsg'])) {
+if (isset($_POST['cforms_resetAdminMsg'])) {
     $cformsSettings['form' . $no]['cforms' . $no . '_header'] = __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n";
     $cformsSettings['form' . $no]['cforms' . $no . '_header_html'] = '<p ' . $cformsSettings['global']['cforms_style']['meta'] . '>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms2') . '</p>';
     update_option('cforms_settings', $cformsSettings);
 }
-if (isset($_REQUEST['cforms_resetAutoCMsg'])) {
+if (isset($_POST['cforms_resetAutoCMsg'])) {
     $cformsSettings['form' . $no]['cforms' . $no . '_cmsg'] = __('Dear {Your Name},', 'cforms2') . "\n" . __('Thank you for your note!', 'cforms2') . "\n" . __('We will get back to you as soon as possible.', 'cforms2') . "\n\n";
     $cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'] = '<div ' . $cformsSettings['global']['cforms_style']['autoconf'] . '><p ' . $cformsSettings['global']['cforms_style']['dear'] . '>' . __('Dear {Your Name},', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('Thank you for your note!', 'cforms2') . "</p>\n<p " . $cformsSettings['global']['cforms_style']['confp'] . '>' . __('We will get back to you as soon as possible.', 'cforms2') . "\n<div " . $cformsSettings['global']['cforms_style']['confirmationmsg'] . '>' . __('This is an automatic confirmation message.', 'cforms2') . " {Date}.</div></div>\n\n";
     update_option('cforms_settings', $cformsSettings);
@@ -200,7 +200,7 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $fie
     $temp_count = 1;
     while ($temp_count <= $field_count) {
 
-        if (isset($_REQUEST['DeleteField' . $temp_count])) {
+        if (isset($_POST['DeleteField' . $temp_count])) {
             $deletefound = 1;
             $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'] = ($field_count - 1);
         }
