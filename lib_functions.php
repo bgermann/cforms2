@@ -110,8 +110,6 @@ function cforms2_enqueue_scripts() {
             )
         ));
         wp_enqueue_script('cforms2');
-
-        wp_enqueue_style('dashicons');
     }
 
 }
