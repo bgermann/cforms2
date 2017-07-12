@@ -542,8 +542,11 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
 
             // find email address
-            if ($field_email == '' && $field_stat[3] == '1')
-                $field_email = $_POST[$current_field];
+            if ($field_stat[3] == '1') {
+                if (!empty($field_email))
+                    $field_email .= ', ';
+                $field_email .= $_POST[$current_field];
+            }
 
 
             // special case: select box and radio box

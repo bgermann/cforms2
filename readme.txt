@@ -163,6 +163,7 @@ GPL compliance!
 
 * enhanced: deprecate insert_custom_cform in favour of insert_cform
 * enhanced: for consistency, run JavaScript also for non-AJAX forms
+* enhanced: enable more than one CC me email addresses
 * bugfix:   do not mark all fields invalid if just one field is invalid for non-AJAX forms
 * bugfix:   reset multipart forms on every first form
 * bugfix:   checkboxes do not use right label if defined
