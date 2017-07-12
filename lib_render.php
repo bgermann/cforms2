@@ -749,10 +749,9 @@ function cforms2($no = '', $customfields = array()) {
 
                         if ($field_value == '') {
 
-                            if (strpos($radioPreset[1], 'true') !== false)
+                            if (isset($radioPreset[1]) && strpos($radioPreset[1], 'true') !== false)
                                 $checked = ' checked="checked"';
-                        } else
-                        if ($opt[1] == $field_value)
+                        } elseif ($opt[1] == $field_value)
                             $checked = ' checked="checked"';
 
                         if (!empty($labelID))
