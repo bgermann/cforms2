@@ -16,15 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// TODO when available: https://core.trac.wordpress.org/ticket/36561
-
 if (!function_exists('insert_custom_cform')) {
 
     /**
      * @deprecated since version 14.14
      */
     function insert_custom_cform($customfields = array(), $no = '') {
-        trigger_error('You should switch from using insert_custom_cform function to insert_cform.', E_USER_WARNING);
+        trigger_error('You should switch from using insert_custom_cform function to insert_cform.', E_USER_DEPRECATED);
         insert_cform($no, $customfields);
 
     }
@@ -37,7 +35,7 @@ if (!function_exists('cf_extra_comment_data')) {
      * @deprecated since version 14.11.3
      */
     function cf_extra_comment_data() {
-        trigger_error('cf_extra_comment_data is useless', E_USER_WARNING);
+        trigger_error('cf_extra_comment_data is useless', E_USER_DEPRECATED);
 
     }
 
@@ -49,7 +47,7 @@ if (!function_exists('is_tellafriend')) {
      * @deprecated since version 14.12
      */
     function is_tellafriend() {
-        trigger_error('is_tellafriend is useless', E_USER_WARNING);
+        trigger_error('is_tellafriend is useless', E_USER_DEPRECATED);
 
     }
 
@@ -61,19 +59,19 @@ if (!function_exists('is_tellafriend')) {
 function cforms2_warn_on_existing_my_functions() {
 
     if (function_exists('my_cforms_action')) {
-        trigger_error('my_cforms_action is useless since cformsII version 14.14.', E_USER_WARNING);
+        trigger_error('my_cforms_action is useless since cformsII version 14.14.', E_USER_DEPRECATED);
     }
 
     if (function_exists('my_cforms_filter')) {
-        trigger_error('my_cforms_filter is useless since cformsII version 14.14.', E_USER_WARNING);
+        trigger_error('my_cforms_filter is useless since cformsII version 14.14.', E_USER_DEPRECATED);
     }
 
     if (function_exists('my_cforms_ajax_filter')) {
-        trigger_error('my_cforms_ajax_filter is useless since cformsII version 14.14.', E_USER_WARNING);
+        trigger_error('my_cforms_ajax_filter is useless since cformsII version 14.14.', E_USER_DEPRECATED);
     }
 
     if (function_exists('my_cforms_logic')) {
-        trigger_error('my_cforms_logic is useless since cformsII version 14.14', E_USER_WARNING);
+        trigger_error('my_cforms_logic is useless since cformsII version 14.14', E_USER_DEPRECATED);
     }
 
 }
