@@ -784,6 +784,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
             $trackf['uploaded_files'] = $fdata;
             $trackf['submit_time'] = time();
+            $trackf['email'] = $field_email;
             try {
                 // This action is meant to enable you to implement additional features
                 // after validating and most other processing are done
