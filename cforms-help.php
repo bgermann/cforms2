@@ -905,7 +905,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <p class="ex"><strong><?php _e('Important Notes:', 'cforms2'); ?></strong></p>
         <ul style="margin-top:10px;">
-            <li><?php printf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for the first form of the series).', 'cforms2'), '<strong>', '</strong>'); ?></li>
+            <li><?php printf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for form 1) or %1$s{cf_formN_Email}%2$s (for form N).', 'cforms2'), '<strong>', '</strong>'); ?></li>
             <li><?php printf(__('Once the multi-part form support is enabled, %1$sAJAX is being disabled%2$s for this form.', 'cforms2'), '<strong>', '</strong>'); ?></li>
         </ul>
 
@@ -915,7 +915,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
     <h3 class="cflegend" id="css"><?php _e('Styling your forms', 'cforms2') ?></h3>
 
     <div class="cf-content">
-        <p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection and editing options.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></p>
+        <p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></p>
         <p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
         <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
         <p class="ex"><?php _e('Your form does not look like the preview image or your individual changes do not take effect? Check your global WP theme CSS! It may overwrite some or many cforms CSS declarations.', 'cforms2'); ?></p>

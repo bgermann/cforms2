@@ -86,7 +86,6 @@ if (isset($_POST['addbutton'])) {
             "mp_form" => false,
             "mp_next" => "",
             "mp_first" => false,
-            "mp_email" => false,
             "mp_reset" => false,
             "mp_resettext" => "",
             "mp_back" => false,
@@ -889,7 +888,7 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                                 <td class="obL"><label for="cforms_user_html"><strong><?php _e('Enable HTML', 'cforms2') ?></strong></label></td>
                                 <td class="obR"><input class="allchk" type="checkbox" id="cforms_user_html" name="cforms_user_html" <?php $o2 = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1'; if ($o2) echo "checked=\"checked\""; ?>/></td>
                             </tr>
-                            <tr class="ob">
+                            <tr class="ob <?php if (!$o2 == '1') echo "hidden"; ?>">
                                 <td class="obL"><label for="cforms_cmsg_html"><strong><?php _e('HTML message', 'cforms2') ?></strong></label></td>
                                 <td class="obR">
                                     <table><tr>
@@ -930,10 +929,6 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
         <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) { ?>
 
                     <table class="form-table">
-                        <tr class="ob">
-                            <td class="obL"><strong><?php _e('Email &amp; Tracking', 'cforms2') ?></strong></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_mp_email" name="cforms_mp_email" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_mp_email"><?php _e('Suppress admin email and DB tracking for *this* form', 'cforms2') ?></label></td>
-                        </tr>
 
                         <tr class="ob">
                             <td class="obL"><strong><?php _e('First Form', 'cforms2') ?></strong></td>

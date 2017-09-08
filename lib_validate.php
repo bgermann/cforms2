@@ -664,7 +664,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
         // assemble text and HTML email
         if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] &&
-                !$cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email'] &&
                 $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == -1 &&
                 is_array($_SESSION['cforms'])) {
             $track = cforms2_all_tracks($_SESSION['cforms']);
@@ -680,8 +679,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
 
         $noTracking = $cformsSettings['form' . $no]['cforms' . $no . '_notracking'];
-        $mpSession = $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email'];
-        if (!$noTracking && !$mpSession)
+        if (!$noTracking)
             cforms2_write_tracking_record($no, $field_email, $track);
 
         if (!($to_one != -1 && !empty($to))) {
@@ -691,7 +689,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
         // Files attached??
         if (is_array($file)) {
-            $inSession = $noTracking || $mpSession || $ongoingSession == '0';
+            $inSession = $noTracking || $ongoingSession == '0';
             cforms2_move_files($no, $inSession, $file);
         }
         // end of session
@@ -744,9 +742,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
 
         // Skip admin email if multi-part form
-        $MPok = !$cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] || ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] && !$cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email']);
-
-        if ($MPok) {
+        if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) {
 
             $fdata = array();
             $fpointer = 0;

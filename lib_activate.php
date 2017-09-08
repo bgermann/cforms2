@@ -114,7 +114,6 @@ function cforms2_setup_db() {
         "mp_form" => false,
         "mp_next" => "",
         "mp_first" => false,
-        "mp_email" => false,
         "mp_reset" => false,
         "mp_resettext" => "",
         "mp_back" => false,

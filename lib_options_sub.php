@@ -161,7 +161,6 @@ function cforms2_option_submission($no, &$cformsSettings) {
         $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] = cforms2_get_from_request('cforms_mp_next');
 
     $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_first'] = cforms2_get_from_request('cforms_mp_first') ? true : false;
-    $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_email'] = cforms2_get_from_request('cforms_mp_email') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_reset'] = cforms2_get_from_request('cforms_mp_reset') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_resettext'] = cforms2_get_from_request('cforms_mp_resettext');
     $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_back'] = cforms2_get_from_request('cforms_mp_back') ? true : false;
