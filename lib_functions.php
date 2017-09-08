@@ -114,9 +114,10 @@ function cforms2_enqueue_scripts() {
 
 }
 
-function cforms2_is_table_present($table_name) {
+function cforms2_is_table_present() {
     global $wpdb;
-    return $wpdb->get_var("show tables like '$table_name'") == $table_name;
+    $table_name = "{$wpdb->prefix}cformssubmissions";
+    return $wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name;
 
 }
 
@@ -131,7 +132,7 @@ function cforms2_menu() {
 
     add_submenu_page($o, __('Form Settings', 'cforms2'), __('Form Settings', 'cforms2'), 'manage_cforms', $o);
     add_submenu_page($o, __('Global Settings', 'cforms2'), __('Global Settings', 'cforms2'), 'manage_cforms', $p . 'cforms-global-settings.php');
-    if (cforms2_is_table_present($wpdb->prefix . 'cformssubmissions') && !isset($_POST['deletetables']))
+    if (cforms2_is_table_present() && !isset($_POST['deletetables']))
         add_submenu_page($o, __('Tracking', 'cforms2'), __('Tracking', 'cforms2'), 'track_cforms', $p . 'cforms-database.php');
     add_submenu_page($o, __('Styling', 'cforms2'), __('Styling', 'cforms2'), 'manage_cforms', $p . 'cforms-css.php');
     add_submenu_page($o, __('Help!', 'cforms2'), __('Help!', 'cforms2'), 'manage_cforms', $p . 'cforms-help.php');
@@ -289,7 +290,7 @@ function cforms2_add_items_global($admin_bar) {
     cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'));
     cforms2_add_admin_bar_item($admin_bar, 'cforms-deleteall', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'));
 
-    if ($wpdb->get_var("show tables like '{$wpdb->prefix}cformssubmissions'") == $wpdb->prefix . 'cformssubmissions')
+    if (cforms2_is_table_present())
         cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'));
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
