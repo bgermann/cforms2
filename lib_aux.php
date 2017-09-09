@@ -424,7 +424,7 @@ if (!function_exists('get_cforms_entries')) {
      * 
      * @return array a set of stored form submissions in a multi-dimensional array
      * 
-     * @deprecated since version 14.14
+     * @deprecated since version 14.14. Install cforms2-old-tracking-db plugin to continue using it.
      * 
      * Examples:
      * get_cforms_entries() => all data, no filters
