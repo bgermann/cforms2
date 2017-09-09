@@ -740,151 +740,146 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $usermessage_text = apply_filters('cforms2_usermessage_filter', $usermessage_text, $no, $pid);
 
 
+        $fdata = array();
+        $fpointer = 0;
 
-        // Skip admin email if multi-part form
-        if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) {
+        cforms2_dbg('File Attachments:');
 
-            $fdata = array();
-            $fpointer = 0;
+        // attachments wanted for current form? (tracking session form uploads handled above!)
+        $doAttach = !($cformsSettings['form' . $no]['cforms' . $no . '_noattachments']);
 
-            cforms2_dbg('File Attachments:');
+        // form with files, within session or single form
+        if ($ongoingSession != '0' && is_array($file) && !empty($file)) {
+            foreach ($file['tmp_name'] as $fn) {
+                cforms2_add_file($fn, $fdata, $fpointer, $doAttach);
+                cforms2_dbg("File = $fn, attach = $doAttach");
+            }
+        }
 
-            // attachments wanted for current form? (tracking session form uploads handled above!)
-            $doAttach = !($cformsSettings['form' . $no]['cforms' . $no . '_noattachments']);
+        // end of session with files
+        if ($ongoingSession == '0' && is_array($_SESSION['cforms']['upload'])) {
+            foreach (array_keys($_SESSION['cforms']['upload']) as $n) {
+                if ($_SESSION['cforms']['upload'][$n]['files'])
+                    foreach (array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m) {
+                        cforms2_add_file($_SESSION['cforms']['upload'][$n]['files'][$m], $fdata, $fpointer, $_SESSION['cforms']['upload'][$n]['doAttach']);
+                        cforms2_dbg("(end of session) File = " . $_SESSION['cforms']['upload'][$n]['files'][$m] . ", attach = " . $_SESSION['cforms']['upload'][$n]['doAttach']);
+                    }
+            }
+        }
+        // parse through all files (both single and multi-part forms)
+        foreach ($fdata as $file) {
+            if ($file['doAttach'] && !empty($file['name'])) {
+                $mail->add_file($file['name']); // optional name
+                cforms2_dbg('Attaching file (' . $file['name'] . ') to email');
+            }
+        }
 
-            // form with files, within session or single form
-            if ($ongoingSession != '0' && is_array($file) && !empty($file)) {
-                foreach ($file['tmp_name'] as $fn) {
-                    cforms2_add_file($fn, $fdata, $fpointer, $doAttach);
-                    cforms2_dbg("File = $fn, attach = $doAttach");
+        // end adding attachments
+
+
+
+        $trackf['uploaded_files'] = $fdata;
+        $trackf['submit_time'] = time();
+        $trackf['email'] = $field_email;
+        try {
+            // This action is meant to enable you to implement additional features
+            // after validating and most other processing are done
+            do_action('cforms2_after_processing_action', $trackf);
+        } catch (Exception $exc) {
+            $usermessage_text = $exc->getMessage();
+            $usermessage_class = ' failure';
+            $sentadmin = 1;
+        }
+
+        cforms2_dbg('TRACKF' . print_r($trackf, 1) . "\n");
+
+        if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') {
+            $sentadmin = 1;
+        } else {
+            // This filter allows manipulation of the admin email just before sending
+            $mail = apply_filters('cforms2_admin_email_filter', $mail, $no, $pid);
+            $sentadmin = $mail->send();
+        }
+
+        if ($sentadmin == 1) {
+
+            if (isset($trackf['data'][$ccme]))
+                cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
+
+            // send copy or notification?
+            // not if no email and already CC'ed
+            if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && !empty($field_email)) || $ccme && !empty($trackf['data'][$ccme])) {
+
+                $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fromemail']), $track);
+
+                // actual user message
+                $cmsg = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg']);
+                $cmsg = cforms2_check_default_vars($cmsg, $no);
+                $cmsg = cforms2_check_cust_vars($cmsg, $track);
+
+                // HTML text
+                $cmsghtml = '';
+                if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') {
+                    $cmsghtml = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html']);
+                    $cmsghtml = cforms2_check_default_vars($cmsghtml, $no);
+                    $cmsghtml = cforms2_check_cust_vars($cmsghtml, $track, true);
+                }
+
+                // subject
+                $subject2 = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
+                $subject2 = cforms2_check_default_vars($subject2, $no);
+                $subject2 = cforms2_check_cust_vars($subject2, $track);
+
+                // different cc and ac subjects?
+                $s = explode('$#$', $subject2);
+                $s[1] = empty($s[1]) ? $s[0] : $s[1];
+
+                $mail = new cforms2_mail($no, $frommail, $field_email, $replyto);
+
+                // auto conf attachment?
+                $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
+                if (!empty($a)) {
+                    $a = (substr($a, 0, 1) === '/') ? $a : plugin_dir_path(__FILE__) . $a;
+                    if (file_exists($a))
+                        $mail->add_file($a);
+                }
+
+                // CC or auto conf?
+                if ($ccme && !empty($trackf['data'][$ccme])) {
+                    $mail->subj = $s[1];
+                    if ($mail->html_show) {
+                        $mail->set_html(true);
+                        $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? "\n$htmlformdata" : '') . "\n</body></html>\n";
+                        $mail->body_alt = $message . ($mail->f_txt ? "\n$formdata" : '');
+                    } else
+                        $mail->body = $message . ($mail->f_txt ? "\n$formdata" : '');
+
+                    // This filter allows manipulation of the cc me email just before sending
+                    $mail = apply_filters('cforms2_cc_me_email_filter', $mail, $no, $pid);
+                    $sent = $mail->send();
+                }
+                else { // auto conf
+                    $mail->subj = $s[0];
+                    if ($mail->html_show_ac) {
+                        $mail->set_html(true);
+                        $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $cmsghtml . "</body></html>\n";
+                        $mail->body_alt = $cmsg;
+                    } else
+                        $mail->body = $cmsg;
+
+                    // This filter allows manipulation of the auto conf email just before sending
+                    $mail = apply_filters('cforms2_auto_conf_email_filter', $mail, $no, $pid);
+                    $sent = $mail->send();
+                }
+
+                if (!$sent) {
+                    $usermessage_text = __('Error occurred while sending the auto confirmation message: ', 'cforms2') . '<br />' . $mail->err;
+                    $usermessage_class = ' mailerr';
                 }
             }
-
-            // end of session with files
-            if ($ongoingSession == '0' && is_array($_SESSION['cforms']['upload'])) {
-                foreach (array_keys($_SESSION['cforms']['upload']) as $n) {
-                    if ($_SESSION['cforms']['upload'][$n]['files'])
-                        foreach (array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m) {
-                            cforms2_add_file($_SESSION['cforms']['upload'][$n]['files'][$m], $fdata, $fpointer, $_SESSION['cforms']['upload'][$n]['doAttach']);
-                            cforms2_dbg("(end of session) File = " . $_SESSION['cforms']['upload'][$n]['files'][$m] . ", attach = " . $_SESSION['cforms']['upload'][$n]['doAttach']);
-                        }
-                }
-            }
-            // parse through all files (both single and multi-part forms)
-            foreach ($fdata as $file) {
-                if ($file['doAttach'] && !empty($file['name'])) {
-                    $mail->add_file($file['name']); // optional name
-                    cforms2_dbg('Attaching file (' . $file['name'] . ') to email');
-                }
-            }
-
-            // end adding attachments
-
-
-
-            $trackf['uploaded_files'] = $fdata;
-            $trackf['submit_time'] = time();
-            $trackf['email'] = $field_email;
-            try {
-                // This action is meant to enable you to implement additional features
-                // after validating and most other processing are done
-                do_action('cforms2_after_processing_action', $trackf);
-            } catch (Exception $exc) {
-                $usermessage_text = $exc->getMessage();
-                $usermessage_class = ' failure';
-                $sentadmin = 1;
-            }
-
-            cforms2_dbg('TRACKF' . print_r($trackf, 1) . "\n");
-
-            if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') {
-                $sentadmin = 1;
-            } else {
-                // This filter allows manipulation of the admin email just before sending
-                $mail = apply_filters('cforms2_admin_email_filter', $mail, $no, $pid);
-                $sentadmin = $mail->send();
-            }
-
-            if ($sentadmin == 1) {
-
-                if (isset($trackf['data'][$ccme]))
-                    cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
-
-                // send copy or notification?
-                // not if no email and already CC'ed
-                if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && !empty($field_email)) || $ccme && !empty($trackf['data'][$ccme])) {
-
-                    $frommail = cforms2_check_cust_vars(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fromemail']), $track);
-
-                    // actual user message
-                    $cmsg = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg']);
-                    $cmsg = cforms2_check_default_vars($cmsg, $no);
-                    $cmsg = cforms2_check_cust_vars($cmsg, $track);
-
-                    // HTML text
-                    $cmsghtml = '';
-                    if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') {
-                        $cmsghtml = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html']);
-                        $cmsghtml = cforms2_check_default_vars($cmsghtml, $no);
-                        $cmsghtml = cforms2_check_cust_vars($cmsghtml, $track, true);
-                    }
-
-                    // subject
-                    $subject2 = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
-                    $subject2 = cforms2_check_default_vars($subject2, $no);
-                    $subject2 = cforms2_check_cust_vars($subject2, $track);
-
-                    // different cc and ac subjects?
-                    $s = explode('$#$', $subject2);
-                    $s[1] = empty($s[1]) ? $s[0] : $s[1];
-
-                    $mail = new cforms2_mail($no, $frommail, $field_email, $replyto);
-
-                    // auto conf attachment?
-                    $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
-                    if (!empty($a)) {
-                        $a = (substr($a, 0, 1) === '/') ? $a : plugin_dir_path(__FILE__) . $a;
-                        if (file_exists($a))
-                            $mail->add_file($a);
-                    }
-
-                    // CC or auto conf?
-                    if ($ccme && !empty($trackf['data'][$ccme])) {
-                        $mail->subj = $s[1];
-                        if ($mail->html_show) {
-                            $mail->set_html(true);
-                            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $htmlmessage . ( $mail->f_html ? "\n$htmlformdata" : '') . "\n</body></html>\n";
-                            $mail->body_alt = $message . ($mail->f_txt ? "\n$formdata" : '');
-                        } else
-                            $mail->body = $message . ($mail->f_txt ? "\n$formdata" : '');
-
-                        // This filter allows manipulation of the cc me email just before sending
-                        $mail = apply_filters('cforms2_cc_me_email_filter', $mail, $no, $pid);
-                        $sent = $mail->send();
-                    }
-                    else { // auto conf
-                        $mail->subj = $s[0];
-                        if ($mail->html_show_ac) {
-                            $mail->set_html(true);
-                            $mail->body = $cformsSettings['global']['cforms_style_doctype'] . "\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head><title></title></head><body {$cformsSettings['global']['cforms_style']['body']}>" . $cmsghtml . "</body></html>\n";
-                            $mail->body_alt = $cmsg;
-                        } else
-                            $mail->body = $cmsg;
-
-                        // This filter allows manipulation of the auto conf email just before sending
-                        $mail = apply_filters('cforms2_auto_conf_email_filter', $mail, $no, $pid);
-                        $sent = $mail->send();
-                    }
-
-                    if (!$sent) {
-                        $usermessage_text = __('Error occurred while sending the auto confirmation message: ', 'cforms2') . '<br />' . $mail->err;
-                        $usermessage_class = ' mailerr';
-                    }
-                }
-            } else {
-                $usermessage_text = __('Error occurred while sending the message: ', 'cforms2') . '<br />' . $mail->err;
-                $usermessage_class = ' mailerr';
-            }
+        } else {
+            $usermessage_text = __('Error occurred while sending the message: ', 'cforms2') . '<br />' . $mail->err;
+            $usermessage_class = ' mailerr';
         }
     }
 
