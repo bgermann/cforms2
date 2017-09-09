@@ -71,7 +71,7 @@ if (cforms2_check_erased())
     } else {
         printf(__('If you want to export your data, please install %sContact Form DB%s.', 'cforms2'), '<a href="https://cfdbplugin.com">' , '</a>');
     }
-    printf(__("CFDB 2.10.32 (the current version at release of cformsII 14.14) has some issues importing cformsII data. If you want the original submission date to be retained, file upload and multi-part form support, please use %sBastian Germann's version%s. Later official versions will probably include these changes.", 'cforms2'), '<a href="https://github.com/bgermann/contact-form-7-to-database-extension/archive/master.zip">' , '</a>');
+    printf(__("CFDB 2.10.32 (the current version at release of cformsII 14.14) has some issues importing cformsII data. If you want the original submission date to be retained, file upload and multi-part form support, please use %sBastian Germann's version%s. Later official versions will probably include its changes.", 'cforms2'), '<a href="https://github.com/bgermann/contact-form-7-to-database-extension/archive/master.zip">' , '</a>');
     echo '</strong></p>';
     ?>
     <p><?php _e('All your recorded form submissions are listed below. View individual entries or a whole bunch. Attachments can be accessed in the details section. When deleting an entry, associated attachments will be removed, too! ', 'cforms2') ?></p>
