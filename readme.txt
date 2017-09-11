@@ -46,8 +46,7 @@ Some things are to be done:
 
 * filter user input better
 * rework multi-part forms to be independent from PHP sessions
-* remove database tracking
-* long term: refactoring with object oriented approach
+* refactoring with object oriented approach
 * long term: unit tests and continuous integration
 
 
