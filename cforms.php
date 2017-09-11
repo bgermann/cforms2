@@ -18,7 +18,7 @@
  * 
  * Plugin Name: cforms2
  * Plugin URI: https://wordpress.org/plugins/cforms2/
- * Description: cformsII is a customizable, flexible and powerful form plugin including simple spam protection, multi-step forms, role manager support, submission database tracking and custom themes.
+ * Description: cformsII is a customizable, flexible and powerful form plugin including simple spam protection, multi-step forms, role manager support and custom themes.
  * Author: Oliver Seidel, Bastian Germann
  * Version: 14.14
  * Text Domain: cforms2
@@ -60,9 +60,6 @@ if (!is_array($cformsSettings)) {
 }
 
 if (is_admin()) {
-    require_once(plugin_dir_path(__FILE__) . 'include/lib_database_deleteentry.php');
-    require_once(plugin_dir_path(__FILE__) . 'include/lib_database_getentries.php');
-    require_once(plugin_dir_path(__FILE__) . 'include/lib_database_overview.php');
     require_once(plugin_dir_path(__FILE__) . 'lib_editor.php');
 
     cforms2_register_editor();

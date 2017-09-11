@@ -271,7 +271,7 @@ for ($i = 1; $i <= $formcount; $i++) {
         <input type="hidden" name="noSub" value="<?php echo $no_disp; ?>" />
 
         <p>
-                    <?php _e('cformsII allows you to insert one or more customly designed contact forms, which sends the visitor info via email and optionally stores the feedback in the database.', 'cforms2'); ?>
+                    <?php _e('cformsII allows you to insert one or more customly designed contact forms, which can send the submission via email.', 'cforms2'); ?>
                     <?php printf(__('<a href="%s" %s>Here</a> is a quick step by step quide to get you up and running quickly.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#guide', ''); ?>
         </p>
 
@@ -596,8 +596,6 @@ for ($i = 1; $i <= $field_count; $i++) {
             </div>
 
             <div class="cf-content" id="o2">
-                <p><?php printf(__('These settings determine basic cforms behaviour and the form email recipient(s). Both %s and %s formats are valid, but check if your mail server does accept the format of choice!', 'cforms2'), '"<strong>xx@yy.zz</strong>"', '"<strong>abc &lt;xx@yy.zz&gt;</strong>"') ?></p>
-                <p><?php _e('The default FROM: address is based on your blog\'s name and the WP default address. It can be changed, but I highly recommend you do not, as it may render the plugin useless. If you do change the FROM: address, triple check if all admin emails are being sent/received! ', 'cforms2') ?></p>
 
                 <table class="form-table">
 
@@ -619,13 +617,6 @@ if ($cformsSettings['form' . $no]['cforms' . $no . '_dontclear'])
 ?>/><label for="cforms_dontclear"><?php printf(__('%sDo not reset%s input fields after submission', 'cforms2'), '<strong>', '</strong>'); ?></label>
                         </td>
                     </tr>
-
-<?php if ($cformsSettings['global']['cforms_database'] == '1') { ?>
-                        <tr class="ob">
-                            <td class="obL"></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_notracking" name="cforms_notracking" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_notracking']) echo "checked=\"checked\""; ?>/><label for="cforms_notracking"><?php printf(__('%sExclude this form%s from database tracking', 'cforms2'), '<strong>', '</strong>') ?></label></td>
-                        </tr>
-                            <?php } ?>
 
                     <tr class="ob">
                         <td class="obL"></td>
@@ -717,7 +708,7 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                     </td>
                 </tr>
 
-                <tr id="it2" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('If you enable an alternative <strong>form action</strong> you <u>will loose any cforms application logic</u> (spam security, field validation, DB tracking etc.) in non-ajax mode! This setting is really only for developers that require additional capabilities around forwarding of form data and will turn cforms into a front-end only, a "form builder" so to speak.', 'cforms2') ?></td></tr>
+                <tr id="it2" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('If you enable an alternative <strong>form action</strong> you <u>will loose any cforms application logic</u> (spam security, field validation etc.) in non-ajax mode! This setting is really only for developers that require additional capabilities around forwarding of form data and will turn cforms into a front-end only, a "form builder" so to speak.', 'cforms2') ?></td></tr>
                 </table>
             </div>
         </fieldset>
@@ -729,6 +720,7 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
             </div>
 
             <div class="cf-content" id="o3">
+                <p><?php printf(__('These settings determine the form email recipient(s). Both %s and %s formats are valid, but check if your mail server does accept the format of choice!', 'cforms2'), '"<strong>xx@yy.zz</strong>"', '"<strong>abc &lt;xx@yy.zz&gt;</strong>"') ?></p>
                 <p><?php _e('Generally, emails sent to the admin and the submitting user can be both in plain text and HTML. The TXT part <strong>is required</strong>, HTML is <strong>optional</strong>.', 'cforms2'); ?></p>
                 <p><?php printf(__('Below you\'ll find the settings for both the <strong>TXT part</strong> of the admin email as well as the <strong>optional HTML part</strong> of the message. Both areas permit the use of any of the <strong>pre-defined variables</strong> or <strong>data from input fields</strong>. <a href="%s" %s>Please see the documentation on the HELP page</a> (including HTML message examples!).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></p>
 

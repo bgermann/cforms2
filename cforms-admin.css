@@ -214,10 +214,6 @@ input.stylebutton {
     width:158px;
 }
 
-.flexigrid {
-    margin:0 auto;
-}
-
 /****************************************************************
   form settings
 *****************************************************************/
@@ -662,10 +658,6 @@ tr.ob {
     vertical-align:middle;
 }
 
-input#cforms_fromemail {
-    background:#fdc4c4;
-}
-
 input#cforms_endtime,input#cforms_starttime {
     width:5em;
     margin-right:3px;
@@ -729,114 +721,6 @@ table.hf {
 }
 .cssStyles {
     width:100%;
-}
-/****************************************************************
-  TRACKING PAGE
-*****************************************************************/
-.showform {
-    width:90%;
-    margin:30px 5% 5px;
-    padding:0;
-    background:#EEE;
-    display:block;
-    color:#4F4F4F;
-    font-size:16px;
-    clear: both;
-}
-
-.dataheader {
-    width:auto;
-    padding:3px 10px;
-    background:#AAA;
-    margin-bottom:10px;
-    color:#444;
-    box-shadow:0 1px 1px #aaa;
-    border-bottom:1px solid #888;
-    text-shadow:#DDD 0 1px 0;
-}
-
-.dataheader td {
-    padding-top:3px;
-    vertical-align:middle;
-    white-space:nowrap;
-}
-
-.dataheader td.b {
-    font-weight:bold;
-    padding-left:30px;
-}
-
-.dataheader td.e {
-    font-size:12px;
-    vertical-align:bottom;
-    font-weight:bold;
-}
-
-.dataheader td.d {
-    font-size:12px;
-    padding-left:50px;
-    vertical-align:bottom;
-}
-
-.dataheader td.s {
-    width:100%;
-}
-
-a.cdatabutton {
-    height:20px;
-    width:20px;
-    overflow:hidden;
-    display:block;
-    margin-left:10px;
-    cursor:pointer;
-}
-
-.showformfield {
-    width:auto;
-    margin:0;
-    font-size:12px;
-    color:#999;
-}
-.showformfield.meta div {
-    color:#999!important;
-}
-
-.wrap p {
-    clear:both
-}
-
-.showformfield .R {
-    float:left;
-    width:55%;
-    margin:1px 0;
-    padding:3px 5px;
-    color:#111;
-}
-
-.showformfield .L {
-    float:left;
-    width:35%;
-    margin:1px 0;
-    padding:3px;
-    clear:both;
-}
-
-.showformfield .L {
-    text-align:right;
-    padding-right:15px;
-}
-
-.tfieldset {
-    margin:10px 5px;
-    font-size:15px;
-    text-shadow:#fff 0 1px 0;
-    font-weight:bold;
-    margin:5px 0 2px 0;
-}
-
-.dataheader,
-.showformfield {
-    display:block;
 }
 
 /****************************************************************

@@ -140,8 +140,6 @@ function cforms2_setup_db() {
     cforms2_set_ini('global', 'cforms_css', 'cforms2012.css');
     cforms2_set_ini('global', 'cforms_jqueryuitheme', 'smoothness');
 
-    cforms2_set_ini('global', 'cforms_database', '0');
-
     cforms2_set_ini('global', 'cforms_datepicker', '0');
     cforms2_set_ini('global', 'cforms_dp_date', 'mm/dd/yy');
 

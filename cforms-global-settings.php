@@ -31,22 +31,6 @@ cforms2_check_access_priv();
 if (cforms2_check_erased())
     return;
 
-if (isset($_POST['deletetables'])) {
-
-    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformssubmissions');
-    $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'cformsdata');
-
-    $cformsSettings['global']['cforms_database'] = '0';
-    update_option('cforms_settings', $cformsSettings);
-    ?>
-    <div id="message" class="updated fade">
-        <p>
-            <strong><?php printf(__('cforms tracking tables %s have been deleted.', 'cforms2'), '(<code>cformssubmissions</code> &amp; <code>cformsdata</code>)') ?></strong>
-        </p>
-    </div>
-    <?php
-}
-
 // Update Settings
 if (isset($_POST['SubmitOptions']))
     if (isset($_POST['raw_cforms_settings'])) {
@@ -305,7 +289,6 @@ if (isset($_POST['SubmitOptions']))
         <div class="cf_actions" id="cf_actions" style="display:none;">
             <input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
             <input id="cfbar-deleteall" class="allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
-            <input id="cfbar-deletetables" class="allbuttons deleteall" type="submit" name="deletetables" value=""/>
             <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
         </div>
 

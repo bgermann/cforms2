@@ -99,7 +99,6 @@ function cforms2_option_submission($no, &$cformsSettings) {
 
     $cformsSettings['form' . $no]['cforms' . $no . '_formaction'] = cforms2_get_from_request('cforms_formaction') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] = cforms2_get_from_request('cforms_dontclear') ? true : false;
-    $cformsSettings['form' . $no]['cforms' . $no . '_notracking'] = cforms2_get_from_request('cforms_notracking') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_customnames'] = cforms2_get_boolean_from_request('cforms_customnames');
     $cformsSettings['form' . $no]['cforms' . $no . '_hide'] = cforms2_get_from_request('cforms_hide') ? true : false;
 

@@ -114,17 +114,8 @@ function cforms2_enqueue_scripts() {
 
 }
 
-function cforms2_is_table_present() {
-    global $wpdb;
-    $table_name = "{$wpdb->prefix}cformssubmissions";
-    return $wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name;
-
-}
-
 /** add cforms menu */
 function cforms2_menu() {
-    global $wpdb;
-
     $p = plugin_dir_path(plugin_basename(__FILE__));
     $o = $p . 'cforms-options.php';
 
@@ -132,8 +123,6 @@ function cforms2_menu() {
 
     add_submenu_page($o, __('Form Settings', 'cforms2'), __('Form Settings', 'cforms2'), 'manage_cforms', $o);
     add_submenu_page($o, __('Global Settings', 'cforms2'), __('Global Settings', 'cforms2'), 'manage_cforms', $p . 'cforms-global-settings.php');
-    if (cforms2_is_table_present() && !isset($_POST['deletetables']))
-        add_submenu_page($o, __('Tracking', 'cforms2'), __('Tracking', 'cforms2'), 'track_cforms', $p . 'cforms-database.php');
     add_submenu_page($o, __('Styling', 'cforms2'), __('Styling', 'cforms2'), 'manage_cforms', $p . 'cforms-css.php');
     add_submenu_page($o, __('Help!', 'cforms2'), __('Help!', 'cforms2'), 'manage_cforms', $p . 'cforms-help.php');
 
@@ -211,19 +200,11 @@ function cforms2_admin_enqueue_scripts() {
 
     $r = plugin_dir_url(__FILE__);
 
-    wp_register_style('jquery-flexigrid', $r . 'js/css/flexigrid.css', false, '1.1');
-    wp_enqueue_style('jquery-flexigrid');
-
-    wp_register_script('jquery-flexigrid', $r . "js/jquery.flexigrid.js", array('jquery'), '1.1');
-    wp_enqueue_script('jquery-flexigrid');
-
     wp_register_script('cforms-admin', $r . 'js/cforms.admin.js', array(
         'jquery', 'jquery-ui-button', 'jquery-ui-dialog', 'jquery-ui-draggable', 'jquery-ui-sortable'
             ), CFORMS2_VERSION);
     wp_localize_script('cforms-admin', 'cforms2_nonces', array(
-        'cforms2_field' => wp_create_nonce('cforms2_field'),
-        'deleteentry' => wp_create_nonce('database_deleteentry'),
-        'getentries' => wp_create_nonce('database_getentries')
+        'cforms2_field' => wp_create_nonce('cforms2_field')
     ));
     wp_localize_script('cforms-admin', 'cforms2_i18n', array(
         'OK' => __('OK', 'cforms2'),
@@ -289,9 +270,6 @@ function cforms2_add_items_global($admin_bar) {
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'));
     cforms2_add_admin_bar_item($admin_bar, 'cforms-deleteall', __('Uninstalling / removing cforms', 'cforms2'), __('Be careful here...', 'cforms2'));
-
-    if (cforms2_is_table_present())
-        cforms2_add_admin_bar_item($admin_bar, 'cforms-deletetables', __('Delete cforms tracking tables', 'cforms2'), __('Be careful here...', 'cforms2'));
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');
 

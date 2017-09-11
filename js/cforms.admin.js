@@ -97,7 +97,6 @@ jQuery(function () {
     registerMenuAction('deleteall');
     registerMenuAction('addbutton');
     registerMenuAction('dupbutton');
-    registerMenuAction('deletetables', commonL10n.warnDelete);
     registerMenuAction('delbutton', commonL10n.warnDelete);
     registerMenuAction('SubmitOptions');
 
@@ -623,54 +622,3 @@ jQuery(function () {
     });
 
 });
-
-/* TRACKING RECORDS ROUTINES */
-function cf_tracking_view(com, grid) {
-    var getString = '';
-    jQuery('.trSelected', grid).each(function () {
-        getString = getString + jQuery('td:first > div', this).html() + ',';
-    });
-    if (getString == '')
-        getString = 'all';
-    var sortBy = jQuery('.sorted', grid).attr('abbr');
-    var sortOrder = jQuery('.sorted > div:first', grid).attr('class');
-    jQuery('#entries').load(
-            ajaxurl,
-            {
-                showids: getString,
-                sorted: sortBy,
-                sortorder: sortOrder,
-                action: 'database_getentries',
-                _wpnonce: cforms2_nonces.getentries
-            },
-            function () {
-                jQuery('.cdatabutton', '#entries').bind("click", function () {
-                    var eid = this.id.substr(7, this.id.length);
-                    jQuery('#entry' + eid).fadeOut(500, function () {
-                        jQuery(this).remove();
-                    });
-                    return false;
-                });
-                jQuery('.xdatabutton', '#entries').bind("click", function () {
-                    var eid = this.id.substr(7, this.id.length);
-                    jQuery('#entry' + eid).fadeOut(500, function () {
-                        jQuery(this).remove();
-                    });
-                    jQuery.post(
-                            ajaxurl,
-                            {
-                                id: eid,
-                                action: 'database_deleteentry',
-                                _wpnonce: cforms2_nonces.deleteentry
-                            },
-                            function () {
-                                jQuery('.pReload').trigger('click');
-                            }
-                    );
-                    return false;
-                });
-
-                location.href = '#entries';
-            }
-    );
-}

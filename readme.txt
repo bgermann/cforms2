@@ -65,7 +65,7 @@ Please note that cformsII depends on [PHP Session Extensions](http://php.net/man
 
 = Upgrading the plugin =
 
-If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin and install the current version of this fork.
+If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin. If you want to migrate your tracking database to CFDB, please install version 14.14 and migrate it. Then you can install the current version of this fork.
 
 The form inlusion does not work with HTML comments (<!--cforms name="..."-->) anymore. You have to use shortcodes [cforms name="..."] now. Please change the form calls accordingly.
 
@@ -161,6 +161,10 @@ GPL compliance!
 
 
 == Changelog ==
+
+= 15.0 =
+
+* other:    remove tracking database and its view
 
 = 14.14 =
 

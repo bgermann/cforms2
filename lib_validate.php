@@ -53,56 +53,6 @@ function cforms2_move_files($no, $inSession, &$file) {
 
 }
 
-/**
- * write DB record
- */
-function cforms2_write_tracking_record($no, $field_email, $track) {
-    global $wpdb, $cformsSettings;
-
-    if ($cformsSettings['global']['cforms_database'] == '1') {
-        cforms2_dbg('WRITING TRACKING RECORD');
-
-        // first process fields, perhaps need to bail out
-        $additional_fields = array();
-        $dosave = false;
-        foreach ($track as $key => $value) {
-
-            // clean up keys
-            if (preg_match('/\$\$\$/', $key) || strpos($key, '[*') !== false)
-                continue;
-
-            if (strpos($key, 'cf_form') !== false && preg_match('/^cf_form\d*_(.+)/', $key, $r))
-                $key = $r[1];
-
-            if (strpos($key, '___') !== false && preg_match('/^(.+)___\d+/', $key, $r))
-                $key = $r[1];
-
-
-            $additional_fields[$key] = $value;
-            $dosave = true;
-        }
-        if (!$dosave)
-            return;
-
-        $wpdb->insert($wpdb->prefix . 'cformssubmissions', array('form_id' => $no,
-            'email' => $field_email,
-            'ip' => cforms2_get_ip(),
-            'sub_date' => current_time('Y-m-d H:i:s')
-        ));
-
-        $subID = $wpdb->get_row("select LAST_INSERT_ID() as number from {$wpdb->prefix}cformssubmissions;");
-        $subID = ($subID->number == '') ? '1' : $subID->number;
-
-        $sql = $wpdb->prepare("INSERT INTO {$wpdb->prefix}cformsdata (sub_id,field_name,field_val) VALUES (%s,'page',%s)", $subID, cforms2_get_current_page());
-        foreach ($additional_fields as $key => $value) {
-            $sql .= ',' . $wpdb->prepare('(%s,%s,%s)', $subID, $key, $value);
-        }
-
-        $wpdb->query($sql);
-    }
-
-}
-
 function cforms2_is_email($string) {
     return preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,63})$/i", $string);
 
@@ -677,11 +627,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $formdata = $r['text'];
         $htmlformdata = $r['html'];
 
-
-        $noTracking = $cformsSettings['form' . $no]['cforms' . $no . '_notracking'];
-        if (!$noTracking)
-            cforms2_write_tracking_record($no, $field_email, $track);
-
         if (!($to_one != -1 && !empty($to))) {
             $to = $replyto = preg_replace(array('/;|#|\|/'), array(','), stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_email']));
         }
@@ -689,8 +634,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
         // Files attached??
         if (is_array($file)) {
-            $inSession = $noTracking || $ongoingSession == '0';
-            cforms2_move_files($no, $inSession, $file);
+            cforms2_move_files($no, $ongoingSession == '0', $file);
         }
         // end of session
 
