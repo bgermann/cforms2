@@ -29,30 +29,6 @@ if (!function_exists('insert_custom_cform')) {
 
 }
 
-if (!function_exists('cf_extra_comment_data')) {
-
-    /**
-     * @deprecated since version 14.11.3
-     */
-    function cf_extra_comment_data() {
-        trigger_error('cf_extra_comment_data is useless', E_USER_DEPRECATED);
-
-    }
-
-}
-
-if (!function_exists('is_tellafriend')) {
-
-    /**
-     * @deprecated since version 14.12
-     */
-    function is_tellafriend() {
-        trigger_error('is_tellafriend is useless', E_USER_DEPRECATED);
-
-    }
-
-}
-
 /**
  * If one of the deprecated functions of the old my-functions API is declared, the user is warned.
  */
