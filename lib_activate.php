@@ -122,7 +122,6 @@ function cforms2_setup_db() {
 
     // global file settings
 
-    cforms2_set_ini('global', 'cforms_formcount', '1');
     cforms2_set_ini('global', 'cforms_upload_err1', __('Generic file upload error. Please try again', 'cforms2'));
     cforms2_set_ini('global', 'cforms_upload_err2', __('File is empty. Please upload something more substantial.', 'cforms2'));
     cforms2_set_ini('global', 'cforms_upload_err3', __('Sorry, file is too large. You may try to zip your file.', 'cforms2'));
@@ -146,7 +145,7 @@ function cforms2_setup_db() {
     cforms2_set_ini('global', 'cforms_dp_nav', array('changeYear' => true));
 
     // migrate previous MP settings
-    for ($i = 1; $i <= $cformsSettings['global']['cforms_formcount']; $i++) {
+    for ($i = 1; $i <= count(Cforms2\FormSettings::forms()); $i++) {
 
         $no = ($i == '1') ? '' : $i;
         if (isset($cformsSettings['form' . $no]['mp']) && is_array($cformsSettings['form' . $no]['mp']) && !is_array($cformsSettings['form' . $no]['cforms' . $no . '_mp'])) {

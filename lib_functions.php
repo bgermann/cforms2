@@ -226,8 +226,7 @@ function cforms2_footer() {
 
 /** plugin uninstalled? */
 function cforms2_check_erased() {
-    global $cformsSettings;
-    if ($cformsSettings['global']['cforms_formcount'] == '') {
+    if (count(Cforms2\FormSettings::forms()) == '') {
         echo '<div class="wrap"><h2>'
         . __('All cforms data has been erased!', 'cforms2')
         . '</h2>'
@@ -264,8 +263,6 @@ function cforms2_add_admin_bar_item($admin_bar, $id, $ti, $hi, $p = 'cforms-bar'
 
 function cforms2_add_items_global($admin_bar) {
 
-    global $wpdb;
-
     cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-showinfo', __('Produce debug output', 'cforms2'), __('Outputs -for debug purposes- all cforms settings', 'cforms2'));
@@ -283,7 +280,7 @@ function cforms2_add_items_options($admin_bar) {
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'));
     cforms2_add_admin_bar_item($admin_bar, 'cforms-dupbutton', __('Duplicate current form', 'cforms2'), __('Clones the current form', 'cforms2'));
-    if ((int) $cformsSettings['global']['cforms_formcount'] > 1)
+    if (count(Cforms2\FormSettings::forms()) > 1)
         cforms2_add_admin_bar_item($admin_bar, 'cforms-delbutton', __('Delete current form (!)', 'cforms2'), __('Clicking this button WILL delete this form', 'cforms2'));
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-SubmitOptions', __('Save & update form settings', 'cforms2'), '', 'root-default');

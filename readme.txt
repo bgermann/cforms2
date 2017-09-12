@@ -164,7 +164,7 @@ GPL compliance!
 = 15.0 =
 
 * other:    remove tracking database and its view
-* other:    remove all deprecated features
+* other:    remove all deprecated features and warnings about their usage
 
 = 14.14 =
 

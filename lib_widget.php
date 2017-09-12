@@ -60,7 +60,7 @@ class cforms2_widget extends WP_Widget {
 
 
         $opt = '';
-        $forms = $cformsSettings['global']['cforms_formcount'];
+        $forms = count(Cforms2\FormSettings::forms());
         for ($i = 1; $i <= $forms; $i++) {
             $no = ($i == 1) ? '' : ($i);
             $selected = ( $i == $form ) ? ' selected="selected"' : '';

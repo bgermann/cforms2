@@ -27,7 +27,7 @@ $stylefile = plugin_dir_path(__FILE__) . "styling{$s}" . $style;
 cforms2_check_access_priv();
 
 // if all data has been erased quit
-if ($cformsSettings['global']['cforms_formcount'] == '') {
+if (empty(Cforms2\FormSettings::forms())) {
     ?>
     <div class="wrap">
         <h2><?php _e('Styling your forms', 'cforms2') ?></h2>

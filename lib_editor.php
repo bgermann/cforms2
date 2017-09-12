@@ -40,7 +40,7 @@ function cforms2_mce_translation($mce_translation) {
 function cforms2_mce_script() {
     $cformsSettings = get_option('cforms_settings');
     $fns = array();
-    $forms = $cformsSettings['global']['cforms_formcount'];
+    $forms = count(Cforms2\FormSettings::forms());
     for ($i = 0; $i < $forms; $i++) {
         $no = ($i == 0) ? '' : ($i + 1);
         $fns[] = $cformsSettings['form' . $no]['cforms' . $no . '_fname'];

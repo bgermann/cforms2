@@ -32,13 +32,11 @@ if (cforms2_check_erased())
 
 
 // default to 1 & get real #
-$formcount = $cformsSettings['global']['cforms_formcount'];
+$formcount = count(Cforms2\FormSettings::forms());
 
 if (isset($_POST['addbutton'])) {
     $formcount = $formcount + 1;
     $no = $no_disp = $formcount;
-
-    $cformsSettings['global']['cforms_formcount'] = (string) $formcount;
 
     // new settings container
     $cformsSettings['form' . $no] = array(
@@ -104,7 +102,6 @@ if (isset($_POST['addbutton'])) {
     }
 
     $formcount++;
-    $cformsSettings['global']['cforms_formcount'] = (string) ($formcount);
 
     // new settings container
     foreach (array_keys($cformsSettings['form' . $no]) as $k) {
@@ -127,7 +124,7 @@ if (isset($_POST['addbutton'])) {
     if ($_POST['no'] !== '1')
         $no_disp = $no = (int) $_POST['no'];
 
-    for ($i = (int) $no_disp; $i < $cformsSettings['global']['cforms_formcount']; $i++) {  // move all forms "to the left"
+    for ($i = (int) $no_disp; $i < count(Cforms2\FormSettings::forms()); $i++) {  // move all forms "to the left"
         $n = ($i == 1) ? '' : $i;
         unset($cformsSettings['form' . $n]);
 
@@ -137,7 +134,7 @@ if (isset($_POST['addbutton'])) {
         }
     }
 
-    unset($cformsSettings['form' . $cformsSettings['global']['cforms_formcount']]);
+    unset($cformsSettings['form' . count(Cforms2\FormSettings::forms())]);
 
     $formcount = $formcount - 1;
 
@@ -148,7 +145,6 @@ if (isset($_POST['addbutton'])) {
         $no_disp = '1';
         $no = '';
     }
-    $cformsSettings['global']['cforms_formcount'] = (string) ($formcount);
 
     update_option('cforms_settings', $cformsSettings);
 

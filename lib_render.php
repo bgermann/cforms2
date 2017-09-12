@@ -866,7 +866,7 @@ function cforms2_check_form_name($no) {
     if (is_numeric($no) || $no == '')
         return $no;
 
-    $forms = $cformsSettings['global']['cforms_formcount'];
+    $forms = count(Cforms2\FormSettings::forms());
 
     for ($i = 0; $i < $forms; $i++) {
         $no2 = ($i == 0) ? '' : ($i + 1);

@@ -31,6 +31,25 @@ if (!defined('WP_DEBUG_CFORMS2')) {
     define('WP_DEBUG_CFORMS2', false);
 }
 
+spl_autoload_register(function ($class) {
+
+    $prefix = 'Cforms2\\';
+
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
+        return;
+    }
+
+    $relative_class = substr($class, $len);
+
+    $file = plugin_dir_path(__FILE__) . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . '.php';
+
+    // if the file exists, require it
+    if (file_exists($file)) {
+        require $file;
+    }
+});
+
 require_once(plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_ajax.php');
@@ -91,5 +110,3 @@ add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_action('wp_mail_failed', 'cforms2_wp_mail_failed');
 add_shortcode('cforms', 'cforms2_shortcode');
-
-cforms2_warn_on_existing_my_functions();
