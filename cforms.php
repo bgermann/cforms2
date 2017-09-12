@@ -35,7 +35,6 @@ require_once(plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_ajax.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_deprecated.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_render.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');

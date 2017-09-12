@@ -26,7 +26,7 @@ The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is
 
 [Really Simple CAPTCHA for cformsII](https://wordpress.org/plugins/cforms2-really-simple-captcha) provides an image CAPTCHA via cformsII's pluggable CAPTCHA facility. To convert the old CAPTCHA fields to Really Simple CAPTCHA, please install the current version and activate the plugin.
 
-[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Therefore cformsII's Tracking Database will be removed in version 15.0. If you have CFDB installed, you will find an export tool at the Tracking DB site. Be sure to enable CFDB's capture submission support for cformsII. CFDB 2.10.32 (the current version at release of cformsII 14.14) has some issues importing cformsII data. If you want file upload and multi-part form support, please use [Bastian Germann's version](https://github.com/bgermann/contact-form-7-to-database-extension/archive/master.zip). Later official versions will probably include its changes.
+[Contact Form DB](https://cfdbplugin.com) has support for storing and exporting cformsII's submission data. Be sure to enable CFDB's capture submission support for cformsII. CFDB 2.10.32 has some issues importing cformsII data. If you want file upload and multi-part form support, please use [Bastian Germann's version](https://github.com/bgermann/contact-form-7-to-database-extension/archive/master.zip). Later official versions will probably include its changes.
 
 [Old Tracking DB for cformsII](https://wordpress.org/plugins/cforms2-old-tracking-db) is for those who do not want to switch from the built-in Tracking DB to CFDB. However it does not have any web interface.
 
@@ -66,7 +66,7 @@ Please note that cformsII depends on [PHP Session Extensions](http://php.net/man
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin. If you want to migrate your tracking database to CFDB, please install version 14.14 and migrate it. Then you can install the current version of this fork.
 
-The form inlusion does not work with HTML comments (<!--cforms name="..."-->) anymore. You have to use shortcodes [cforms name="..."] now. Please change the form calls accordingly.
+The form inclusion does not work with HTML comments (`<!--cforms name="..."-->`) anymore. You have to use shortcodes [cforms name="..."] now. Please change the form calls accordingly.
 
 If you want to delete the 14.6.0.5 version by deleting directory "cforms" and you have any cforms-uploaded files, make sure you do not delete your attachments directory, which is contained in the cforms directory by default.
 
@@ -164,6 +164,7 @@ GPL compliance!
 = 15.0 =
 
 * other:    remove tracking database and its view
+* other:    remove all deprecated features
 
 = 14.14 =
 
