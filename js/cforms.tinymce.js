@@ -2,7 +2,7 @@
  * @licstart  The following is the entire license notice for the 
  * JavaScript code in this page.
  * 
- * Copyright (c) 2014 Bastian Germann
+ * Copyright (c) 2014-2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
