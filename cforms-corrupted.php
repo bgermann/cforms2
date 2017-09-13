@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Check Whether User Can Manage Database
 cforms2_check_access_priv();
 ?>
 <div class="wrap">

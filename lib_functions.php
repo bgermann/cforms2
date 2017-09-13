@@ -72,8 +72,8 @@ function cforms2_delete_db_and_deactivate() {
 }
 
 /** check user access */
-function cforms2_check_access_priv($r = 'manage_cforms') {
-    if (!current_user_can($r)) {
+function cforms2_check_access_priv() {
+    if (!current_user_can('manage_cforms')) {
         $err = '<h2>' . __('cforms error', 'cforms2') . '</h2><div class="updated fade" id="message"><p>' . __('You do not have the proper privileges to access this page.', 'cforms2') . '</p></div></div>';
         die($err);
     }

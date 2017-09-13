@@ -23,7 +23,6 @@ $cformsSettings = get_option('cforms_settings');
 
 $plugindir = dirname(plugin_basename(__FILE__));
 
-// Check Whether User Can Manage Database
 cforms2_check_access_priv();
 
 // if all data has been erased quit

@@ -23,7 +23,6 @@ $s = DIRECTORY_SEPARATOR;
 $style = $cformsSettings['global']['cforms_css'];
 $stylefile = plugin_dir_path(__FILE__) . "styling{$s}" . $style;
 
-// Check Whether User Can Manage Database
 cforms2_check_access_priv();
 
 // if all data has been erased quit

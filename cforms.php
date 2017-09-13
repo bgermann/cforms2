@@ -65,7 +65,6 @@ $cformsSettings = get_option('cforms_settings');
 $role = get_role('administrator');
 if ($role != null) {
     $role->add_cap('manage_cforms');
-    $role->add_cap('track_cforms');
 }
 
 register_activation_hook(__FILE__, 'cforms2_setup_db');
