@@ -815,7 +815,7 @@ function cforms2($no = '', $customfields = array()) {
     $formcontent .= '</fieldset>';
 
     // start with form tag
-    $content .= '<form ' . $enctype . ' action="' . $action . '" method="post" class="cform ' . $direct_submission . sanitize_title_with_dashes($cformsSettings['form' . $no]['cforms' . $no . '_fname']) . ' ' . ( $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] ? ' cfnoreset' : '' ) . '" id="cforms' . $no . 'form">';
+    $content .= '<form ' . $enctype . ' action="' . $action . '" method="post" class="cform ' . $direct_submission . sanitize_title_with_dashes(Cforms2\FormSettings.form($no).name()) . ' ' . ( $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] ? ' cfnoreset' : '' ) . '" id="cforms' . $no . 'form">';
 
     // multi-part form: reset
     $reset = '';
@@ -870,7 +870,7 @@ function cforms2_check_form_name($no) {
 
     for ($i = 0; $i < $forms; $i++) {
         $no2 = ($i == 0) ? '' : ($i + 1);
-        if (stripslashes($cformsSettings['form' . $no2]['cforms' . $no2 . '_fname']) == $no)
+        if (stripslashes(Cforms2\FormSettings.form($no2).name()) == $no)
             return $no2;
     }
     return '';

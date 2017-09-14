@@ -52,8 +52,6 @@ class cforms2_widget extends WP_Widget {
      */
     public function form($instance) {
 
-        $cformsSettings = get_option('cforms_settings');
-
         // stored data
         $title = isset($instance['title']) ? $instance['title'] : '';
         $form = isset($instance['form']) ? $instance['form'] : null;
@@ -64,7 +62,7 @@ class cforms2_widget extends WP_Widget {
         for ($i = 1; $i <= $forms; $i++) {
             $no = ($i == 1) ? '' : ($i);
             $selected = ( $i == $form ) ? ' selected="selected"' : '';
-            $name = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fname']);
+            $name = stripslashes(Cforms2\FormSettings.form($no).name());
             $name = (strlen($name) > 40) ? substr($name, 0, 40) . '&#133' : $name;
             $opt .= '<option value="' . $i . '"' . $selected . '>' . $name . '</option>';
         }
@@ -83,7 +81,7 @@ class cforms2_widget extends WP_Widget {
      * @param array $new_instance The new options
      * @param array $old_instance The previous options
      */
-    public function update($new_instance, $old_instance) {
+    public function update($new_instance) {
         $check = array('title', 'form');
         $instance = array();
         foreach ($check as $value) {

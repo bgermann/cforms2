@@ -221,7 +221,7 @@ $formlistbox = ' <select id="pickform" name="pickform">';
 for ($i = 1; $i <= $formcount; $i++) {
     $j = ( $i > 1 ) ? $i : '';
     $sel = ($no_disp == $i) ? ' selected="selected"' : '';
-    $formlistbox .= '<option value="' . $i . '" ' . $sel . '>' . stripslashes($cformsSettings['form' . $j]['cforms' . $j . '_fname']) . '</option>';
+    $formlistbox .= '<option value="' . $i . '" ' . $sel . '>' . stripslashes(Cforms2\FormSettings.form($j).name()) . '</option>';
 }
 $formlistbox .= '</select>';
 
@@ -256,7 +256,7 @@ if (strlen($fd) <= 2) {
 <?php
 for ($i = 1; $i <= $formcount; $i++) {
     $j = ( $i > 1 ) ? $i : '';
-    echo '<input title="' . stripslashes($cformsSettings['form' . $j]['cforms' . $j . '_fname']) . '" class="allbuttons chgbutton' . (($i != $no_disp) ? '' : 'hi') . '" type="submit" name="switchform" value="' . $i . '"/>';
+    echo '<input title="' . stripslashes(Cforms2\FormSettings.form($j).name()) . '" class="allbuttons chgbutton' . (($i != $no_disp) ? '' : 'hi') . '" type="submit" name="switchform" value="' . $i . '"/>';
 }
 ?>
                 </td>
@@ -274,7 +274,7 @@ for ($i = 1; $i <= $formcount; $i++) {
             <tr>
                 <td class="chgL">
                     <label for="cforms_fname" class="bignumber"><?php _e('Form Name', 'cforms2') ?></label>
-                    <input id="cforms_fname" name="cforms_fname" class="cforms_fname" size="40" value="<?php echo stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_fname']); ?>" title="<?php _e('You may give each form an optional name to better identify incoming emails.', 'cforms2') ?>"/>
+                    <input id="cforms_fname" name="cforms_fname" class="cforms_fname" size="40" value="<?php echo stripslashes(Cforms2\FormSettings.form($no).name()); ?>" title="<?php _e('You may give each form an optional name to better identify incoming emails.', 'cforms2') ?>"/>
                     <input title="<?php _e('Enables or disables Ajax support for this form.', 'cforms2') ?>" id="cforms_ajax" type="checkbox" class="allchk cforms_ajax" name="cforms_ajax" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == "1") echo "checked=\"checked\""; ?>/>
                     <label title="<?php _e('Enables or disables Ajax support for this form.', 'cforms2') ?>" for="cforms_ajax" class="bignumber"><?php _e('Ajax enabled', 'cforms2') ?></label>
                 </td>
@@ -955,8 +955,8 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                 $formlistbox = ' <select id="picknextform" name="cforms_mp_next"' . ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_last'] == '1' ? ' disabled="disabled"' : '') . '>';
                 for ($i = 1; $i <= $formcount; $i++) {
                     $j = ( $i > 1 ) ? $i : '';
-                    $sel = ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == $cformsSettings['form' . $j]['cforms' . $j . '_fname']) ? ' selected="selected"' : '';
-                    $formlistbox .= '<option ' . $sel . '>' . $cformsSettings['form' . $j]['cforms' . $j . '_fname'] . '</option>';
+                    $sel = ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == Cforms2\FormSettings.form($j).name()) ? ' selected="selected"' : '';
+                    $formlistbox .= '<option ' . $sel . '>' . Cforms2\FormSettings.form($j).name() . '</option>';
                 }
                 $formlistbox .= '<option style="background:#F2D7E0;" value="-1" ' . (($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == '-1') ? ' selected="selected"' : '') . '>' . __('* stop here (last form) *', 'cforms2') . '</option>';
                 $formlistbox .= '</select>';
