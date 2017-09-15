@@ -18,7 +18,7 @@
  */
 namespace Cforms2\Fieldtypes;
 
-class Checkbox extends MultiId {
+class CheckBox extends MultiId {
 
     protected function __construct($id, $name, $special) {
         parent::__construct($id, $name, $special);
@@ -47,7 +47,7 @@ class Checkbox extends MultiId {
             'checkbox' => array(__('Check Box', 'cforms2'), false)
         );
         foreach ($types as $id => $label) {
-            $t = new Checkbox($id, $label[0], $label[1]);
+            $t = new CheckBox($id, $label[0], $label[1]);
             $t->register_at_filter();
         }
 

@@ -18,7 +18,7 @@
  */
 namespace Cforms2\Fieldtypes;
 
-class Checkboxgroup extends MultiId {
+class CheckBoxGroup extends MultiId {
 
     protected function __construct($id, $name) {
         parent::__construct($id, $name, false);
@@ -56,7 +56,7 @@ class Checkboxgroup extends MultiId {
             'radiobuttons' => __('Radio Buttons', 'cforms2')
         );
         foreach ($types as $id => $label) {
-            $t = new Checkboxgroup($id, $label);
+            $t = new CheckBoxGroup($id, $label);
             $t->register_at_filter();
         }
 

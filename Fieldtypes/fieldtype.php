@@ -114,9 +114,9 @@ abstract class cforms2_fieldtype {
 
         Cforms2\Fieldtypes\MultiId::register();
 
-        Cforms2\Fieldtypes\Checkbox::register();
+        Cforms2\Fieldtypes\CheckBox::register();
 
-        Cforms2\Fieldtypes\Checkboxgroup::register();
+        Cforms2\Fieldtypes\CheckBoxGroup::register();
 
         Cforms2\Fieldtypes\FieldsetStart::register();
 
