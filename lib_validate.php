@@ -643,7 +643,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $trackf['id'] = $no;
         $trackf['data'] = $track;
         $trackf['data']['page'] = cforms2_get_current_page();
-        $trackf['title'] = Cforms2\FormSettings.form($no).name();
+        $trackf['title'] = Cforms2\FormSettings::form($no).name();
 
         // ready to send email
 

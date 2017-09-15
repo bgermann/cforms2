@@ -38,12 +38,11 @@ function cforms2_mce_translation($mce_translation) {
 }
 
 function cforms2_mce_script() {
-    $cformsSettings = get_option('cforms_settings');
     $fns = array();
     $forms = count(Cforms2\FormSettings::forms());
     for ($i = 0; $i < $forms; $i++) {
         $no = ($i == 0) ? '' : ($i + 1);
-        $fns[] = Cforms2\FormSettings.form($no).name();
+        $fns[] = Cforms2\FormSettings::form($no).name();
     }
     echo '<script type="text/javascript">// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later'
     . "\ncforms2_formnames = " . json_encode($fns) . ";\n// @license-end</script>";

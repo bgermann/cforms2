@@ -274,8 +274,6 @@ function cforms2_add_items_global($admin_bar) {
 
 function cforms2_add_items_options($admin_bar) {
 
-    $cformsSettings = get_option('cforms_settings');
-
     cforms2_add_admin_bar_root($admin_bar, 'cforms-bar', 'cforms Admin');
 
     cforms2_add_admin_bar_item($admin_bar, 'cforms-addbutton', __('Add new form', 'cforms2'), __('Adds a new form with default values', 'cforms2'));

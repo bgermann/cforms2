@@ -62,7 +62,7 @@ class cforms2_widget extends WP_Widget {
         for ($i = 1; $i <= $forms; $i++) {
             $no = ($i == 1) ? '' : ($i);
             $selected = ( $i == $form ) ? ' selected="selected"' : '';
-            $name = stripslashes(Cforms2\FormSettings.form($no).name());
+            $name = stripslashes(Cforms2\FormSettings::form($no).name());
             $name = (strlen($name) > 40) ? substr($name, 0, 40) . '&#133' : $name;
             $opt .= '<option value="' . $i . '"' . $selected . '>' . $name . '</option>';
         }
