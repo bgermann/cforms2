@@ -166,7 +166,7 @@ if (isset($_POST['addbutton'])) {
 
 // Update Settings TODO What is array_search("X", $_POST) for?
 if (isset($_POST['SubmitOptions']) || isset($_POST['AddField']) || array_search("X", $_POST)) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_options_sub.php');
+    require_once plugin_dir_path(__FILE__) . 'lib_options_sub.php';
     cforms2_option_submission($no, $cformsSettings);
 }
 

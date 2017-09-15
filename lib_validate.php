@@ -58,7 +58,6 @@ function cforms2_is_email($string) {
 }
 
 function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array()) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
     $cformsSettings = get_option('cforms_settings');
 
     $validations = array();
@@ -667,7 +666,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             $htmlmessage = cforms2_check_cust_vars($htmlmessage, $track, true);
         }
 
-        $mail = new cforms2_mail($no, $frommail, $to, $field_email, true);
+        $mail = new Cforms2\Email($no, $frommail, $to, $field_email, true);
         $mail->subj = $vsubject;
 
         // HTML email
@@ -777,7 +776,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 $s = explode('$#$', $subject2);
                 $s[1] = empty($s[1]) ? $s[0] : $s[1];
 
-                $mail = new cforms2_mail($no, $frommail, $field_email, $replyto);
+                $mail = new Cforms2\Email($no, $frommail, $field_email, $replyto);
 
                 // auto conf attachment?
                 $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];

@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2;
 
-class cforms2_widget extends WP_Widget {
+class Widget extends \WP_Widget {
 
     public function __construct() {
         parent::__construct(
@@ -58,11 +59,11 @@ class cforms2_widget extends WP_Widget {
 
 
         $opt = '';
-        $forms = count(Cforms2\FormSettings::forms());
+        $forms = count(FormSettings::forms());
         for ($i = 1; $i <= $forms; $i++) {
             $no = ($i == 1) ? '' : ($i);
             $selected = ( $i == $form ) ? ' selected="selected"' : '';
-            $name = stripslashes(Cforms2\FormSettings::form($no)->name());
+            $name = stripslashes(FormSettings::form($no)->name());
             $name = (strlen($name) > 40) ? substr($name, 0, 40) . '&#133' : $name;
             $opt .= '<option value="' . $i . '"' . $selected . '>' . $name . '</option>';
         }
@@ -95,10 +96,5 @@ class cforms2_widget extends WP_Widget {
         return $instance;
 
     }
-
-}
-
-function cforms2_widget_init() {
-    register_widget('cforms2_widget');
 
 }

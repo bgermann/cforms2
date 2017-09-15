@@ -50,15 +50,14 @@ spl_autoload_register(function ($class) {
     }
 });
 
-require_once(plugin_dir_path(__FILE__) . 'Fieldtypes/fieldtype.php');
-require_once(plugin_dir_path(__FILE__) . 'Fieldtypes/captcha.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_ajax.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_functions.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_render.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
-require_once(plugin_dir_path(__FILE__) . 'lib_widget.php');
+require_once plugin_dir_path(__FILE__) . 'Fieldtypes/fieldtype.php';
+require_once plugin_dir_path(__FILE__) . 'Fieldtypes/captcha.php';
+require_once plugin_dir_path(__FILE__) . 'lib_activate.php';
+require_once plugin_dir_path(__FILE__) . 'lib_ajax.php';
+require_once plugin_dir_path(__FILE__) . 'lib_aux.php';
+require_once plugin_dir_path(__FILE__) . 'lib_functions.php';
+require_once plugin_dir_path(__FILE__) . 'lib_render.php';
+require_once plugin_dir_path(__FILE__) . 'lib_validate.php';
 
 $role = get_role('administrator');
 if ($role != null) {
@@ -75,7 +74,7 @@ if (!is_array(get_option('cforms_settings'))) {
 }
 
 if (is_admin()) {
-    require_once(plugin_dir_path(__FILE__) . 'lib_editor.php');
+    require_once plugin_dir_path(__FILE__) . 'lib_editor.php';
 
     cforms2_register_editor();
 
@@ -102,7 +101,9 @@ add_action('template_redirect', 'cforms2_start_session');
 add_action('wp_ajax_submitcform', 'cforms2_submitcform');
 add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');
 add_action('plugins_loaded', 'cforms2_localization');
-add_action('widgets_init', 'cforms2_widget_init');
+add_action('widgets_init', function() {
+    register_widget('\Cforms2\Widget');
+});
 add_action('init', 'cforms2_delete_db_and_deactivate');
 add_action('wp_enqueue_scripts', 'cforms2_enqueue_scripts');
 add_action('wp_mail_failed', 'cforms2_wp_mail_failed');

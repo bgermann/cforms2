@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2;
 
-class cforms2_mail {
+class Email {
 
     public $html_show;
     public $html_show_ac;

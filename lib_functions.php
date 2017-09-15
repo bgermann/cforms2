@@ -59,7 +59,7 @@ function cforms2_delete_db_and_deactivate() {
 
     if (is_user_logged_in() && current_user_can('manage_options')) {
         define('WP_UNINSTALL_PLUGIN', true);
-        require_once(plugin_dir_path(__FILE__) . 'uninstall.php');
+        require_once plugin_dir_path(__FILE__) . 'uninstall.php';
 
         // deactivate cforms plugin
         $curPlugs = get_option('active_plugins');
