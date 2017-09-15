@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
-class cforms2_fieldtype_checkbox extends cforms2_fieldtype_multi_id {
+class Text extends MultiId {
 
     protected function __construct($id, $name, $special) {
         parent::__construct($id, $name, $special);
@@ -26,27 +27,26 @@ class cforms2_fieldtype_checkbox extends cforms2_fieldtype_multi_id {
 
     protected function get_text_inputs() {
         return array(
-            "cf_edit_label" => __('Field label left of the checkbox...', 'cforms2'),
-            "cf_edit_label_right" => __('...or define a field label to the right of the checkbox', 'cforms2'),
-            "cf_edit_title" => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
-            "cf_edit_customerr" => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
+            'cf_edit_label' => __('Field label', 'cforms2'),
+            'cf_edit_default' => __('Default value', 'cforms2'),
+            'cf_edit_regexp' => sprintf(__('Regular expression for field validation (e.g. %s). See Help! for more examples.', 'cforms2'), '^[A-Za-z ]+$'),
+            'cf_edit_title' => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
+            'cf_edit_customerr' => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
         );
-
-    }
-
-    protected function render_additional_settings() {
-        return '<label for="cf_edit_checked">' . __('Set default state', 'cforms2')
-                . '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />';
 
     }
 
     public static function register() {
         $types = array(
-            'ccbox' => array(__('CC: option for user', 'cforms2'), true),
-            'checkbox' => array(__('Check Box', 'cforms2'), false)
+            'textfield' => array(__('Single line of text', 'cforms2'), false),
+            'upload' => array(__('File Upload Box', 'cforms2'), false),
+            'datepicker' => array(__('Date Entry/Dialog', 'cforms2'), true),
+            'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
+            'pwfield' => array(__('Password Field', 'cforms2'), false),
+            'hidden' => array(__('Hidden Field', 'cforms2'), false)
         );
         foreach ($types as $id => $label) {
-            $t = new cforms2_fieldtype_checkbox($id, $label[0], $label[1]);
+            $t = new Text($id, $label[0], $label[1]);
             $t->register_at_filter();
         }
 

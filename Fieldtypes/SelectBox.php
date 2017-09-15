@@ -16,17 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
-class cforms2_fieldtype_checkboxgroup extends cforms2_fieldtype_multi_id {
+class SelectBox extends MultiId {
 
-    protected function __construct($id, $name) {
-        parent::__construct($id, $name, false);
+    protected function __construct($id, $name, $special) {
+        parent::__construct($id, $name, $special);
 
     }
 
     protected function get_text_inputs() {
         return array(
-            "cf_edit_label_group" => __('Field label', 'cforms2'),
+            "cf_edit_label_select" => __('Field label', 'cforms2'),
             "cf_edit_title" => __('Input field title (displayed when mouse hovers over field)', 'cforms2'),
             "cf_edit_customerr" => __('Custom error message (make sure to enable custom, per field err messages!)', 'cforms2')
         );
@@ -34,28 +35,24 @@ class cforms2_fieldtype_checkboxgroup extends cforms2_fieldtype_multi_id {
     }
 
     protected function render_additional_settings() {
-        $out = '<div class="cf_edit_groups_header">'
-                . '<span class="cf_option">' . __('Check box/radio box option (displayed)', 'cforms2') . '</span>'
+        $out = '<div class="cf_edit_groups_header">';
+        $out .= '<span class="cf_option">' . __('Check box/radio box option (displayed)', 'cforms2') . '</span>'
                 . '<span class="cf_optVal">' . __('Optional value (transmitted)', 'cforms2') . '</span>'
-                . '<span class="cf_chked dashicons dashicons-yes" title="' . __('Set default state', 'cforms2') . '"></span>'
-                . '<span class="cf_br dashicons dashicons-editor-break" title="' . __('Carriage return / New Line', 'cforms2') . '"></span>'
-                . '</div>';
-
+                . '<span class="cf_chked dashicons dashicons-yes" title="' . __('Set default state', 'cforms2') . '"></span></div>';
         $out .= '<div id="cf_edit_groups"></div>';
-
         $out .= '<div class="add_group_item"><a href="#" id="add_group_button" class="cf_edit_plus dashicons dashicons-plus-alt"></a></div>';
-
         return $out;
 
     }
 
     public static function register() {
         $types = array(
-            'checkboxgroup' => __('Check Box Group', 'cforms2'),
-            'radiobuttons' => __('Radio Buttons', 'cforms2')
+            'emailtobox' => array(__('Multiple Recipients', 'cforms2'), true),
+            'selectbox' => array(__('Select Box', 'cforms2'), false),
+            'multiselectbox' => array(__('Multi Select Box', 'cforms2'), false)
         );
         foreach ($types as $id => $label) {
-            $t = new cforms2_fieldtype_checkboxgroup($id, $label);
+            $t = new SelectBox($id, $label[0], $label[1]);
             $t->register_at_filter();
         }
 

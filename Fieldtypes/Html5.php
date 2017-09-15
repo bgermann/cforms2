@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
-class cforms2_fieldtype_html5 extends cforms2_fieldtype_multi_id {
+class Html5 extends MultiId {
 
     protected function __construct($id, $name) {
         parent::__construct($id, $name, true);
@@ -93,7 +94,7 @@ class cforms2_fieldtype_html5 extends cforms2_fieldtype_multi_id {
             'html5tel' => 'HTML5 ' . __('Telephone Number Field', 'cforms2')
         );
         foreach ($types as $id => $label) {
-            $t = new cforms2_fieldtype_html5($id, $label);
+            $t = new Html5($id, $label);
             $t->register_at_filter();
         }
 

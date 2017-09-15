@@ -15,28 +15,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
-class cforms2_fieldtype_fieldsetstart extends cforms2_fieldtype {
+class MultiId extends cforms2_fieldtype {
+
+    private $id;
+    private $name;
+    private $special;
+
+    protected function __construct($id, $name, $special) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->special = $special;
+
+    }
 
     public function get_id() {
-        return 'fieldsetstart';
+        return $this->id;
 
     }
 
     public function get_name() {
-        return __('Begin Fieldset', 'cforms2');
+        return $this->name;
+
+    }
+
+    public function is_special() {
+        return $this->special;
 
     }
 
     public static function register() {
-        $t = new cforms2_fieldtype_fieldsetstart();
+        $t = new MultiId('fieldsetend', __('End Fieldset', 'cforms2'), false);
         $t->register_at_filter();
-
-    }
-
-    protected function render_additional_settings() {
-        return '<!--<label for="cf_edit_checked">' . __('Show this and following fieldsets only if all previous fields were filled out correctly.', 'cforms2')
-                . '</label><input type="checkbox" id="cf_edit_checked" name="cf_edit_checked" class="allchk chkBox" />-->';
 
     }
 

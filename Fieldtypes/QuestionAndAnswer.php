@@ -16,17 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
 /**
  * Replaces the old Q&A feature.
  */
-final class cforms2_question_and_answer extends cforms2_captcha {
+final class QuestionAndAnswer extends cforms2_captcha {
 
     protected function __construct() {
     }
 
     public function get_id() {
-        return get_class($this);
+        return "cforms2_question_and_answer";
 
     }
 
@@ -79,7 +80,7 @@ final class cforms2_question_and_answer extends cforms2_captcha {
     }
 
     public static function register() {
-        $t = new cforms2_question_and_answer();
+        $t = new QuestionAndAnswer();
         $t->register_at_filter();
 
     }

@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
-class cforms2_fieldtype_textonly extends cforms2_fieldtype {
+class TextOnly extends cforms2_fieldtype {
 
     public function get_id() {
         return 'textonly';
@@ -39,7 +40,7 @@ class cforms2_fieldtype_textonly extends cforms2_fieldtype {
     }
 
     public static function register() {
-        $t = new cforms2_fieldtype_textonly();
+        $t = new TextOnly();
         $t->register_at_filter();
 
     }

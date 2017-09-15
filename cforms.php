@@ -50,7 +50,8 @@ spl_autoload_register(function ($class) {
     }
 });
 
-require_once(plugin_dir_path(__FILE__) . 'fieldtypes/fieldtype.php');
+require_once(plugin_dir_path(__FILE__) . 'Fieldtypes/fieldtype.php');
+require_once(plugin_dir_path(__FILE__) . 'Fieldtypes/captcha.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_activate.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_ajax.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_aux.php');
