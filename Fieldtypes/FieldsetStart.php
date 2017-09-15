@@ -17,7 +17,7 @@
  */
 namespace Cforms2\Fieldtypes;
 
-class FieldsetStart extends cforms2_fieldtype {
+class FieldsetStart extends \cforms2_fieldtype {
 
     public function get_id() {
         return 'fieldsetstart';

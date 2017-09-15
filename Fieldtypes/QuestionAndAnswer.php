@@ -21,7 +21,7 @@ namespace Cforms2\Fieldtypes;
 /**
  * Replaces the old Q&A feature.
  */
-final class QuestionAndAnswer extends cforms2_captcha {
+final class QuestionAndAnswer extends \cforms2_captcha {
 
     protected function __construct() {
     }
