@@ -22,7 +22,7 @@
  */
 function cforms2($no = '', $customfields = array()) {
 
-    global $cformsSettings;
+    $cformsSettings = get_option('cforms_settings');
 
     // remember old value to reset session when in new multi-part form
     $oldno = ($no == '1') ? '' : $no;
@@ -116,8 +116,8 @@ function cforms2($no = '', $customfields = array()) {
         $track = $validation_result['track'];
         $validations = $validation_result['validations'];
 
-        if ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
-            $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
+        if ($all_valid && Cforms2\FormSettings::form($no)->getRedirect()) {
+            $cf_redirect = Cforms2\FormSettings::form($no)->getRedirectPage();
             if (!empty($cf_redirect)) { // TODO rework to do this via HTTP?
                 echo '<script type="text/javascript">'
                 . 'location.href = "' . $cf_redirect . '"</script>';
@@ -183,7 +183,7 @@ function cforms2($no = '', $customfields = array()) {
     // redirect == 2 : hide form? || or if max entries reached!
     if ($all_valid && (
             ( $cformsSettings['form' . $no]['cforms' . $no . '_hide'] && isset($_POST['sendbutton' . $no]) ) ||
-            ( $cformsSettings['form' . $oldcurrent]['cforms' . $oldcurrent . '_hide'] && isset($_POST['sendbutton' . $oldcurrent]) )
+            ( Cforms2\FormSettings::form($oldcurrent)->getHide() && isset($_POST['sendbutton' . $oldcurrent]) )
             )
     )
         return $content;
@@ -831,7 +831,7 @@ function cforms2($no = '', $customfields = array()) {
 
     $content .= $formcontent . '<p class="cf-sb">' . $reset . $back . '<input type="submit" name="sendbutton' . $no . '" id="sendbutton' . $no . '" class="sendbutton" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_submit_text'])) . '" /></p></form>';
 
-    if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y' && !($success && $cformsSettings['form' . $no]['cforms' . $no . '_hide']))
+    if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y' && !($success && Cforms2\FormSettings::form($no)->getHide()))
         $content .= '<div id="usermessage' . $no . 'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>';
 
     return $content;

@@ -33,16 +33,14 @@ function cforms2_json_die($no, $result, $html, $hide = false, $redirection = nul
  * submit form
  */
 function cforms2_submitcform() {
-    global $cformsSettings;
     check_admin_referer('submitcform');
-    $cformsSettings = get_option('cforms_settings');
     $no = $_POST['cforms_id'];
     $_POST['sendbutton' . $no] = true;
     $validation_result = cforms2_validate($no);
-    $hide = $validation_result['all_valid'] && $cformsSettings['form' . $no]['cforms' . $no . '_hide'];
+    $hide = $validation_result['all_valid'] && Cforms2\FormSettings::form($no)->getHide();
     $cf_redirect = null;
-    if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) {
-        $cf_redirect = $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'];
+    if (Cforms2\FormSettings::form($no)->getRedirect()) {
+        $cf_redirect = Cforms2\FormSettings::form($no)->getRedirectPage();
     }
     cforms2_json_die($no, $validation_result['class'], $validation_result['text'], $hide, $cf_redirect);
 

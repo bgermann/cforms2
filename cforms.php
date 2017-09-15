@@ -59,9 +59,6 @@ require_once(plugin_dir_path(__FILE__) . 'lib_render.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_validate.php');
 require_once(plugin_dir_path(__FILE__) . 'lib_widget.php');
 
-global $cformsSettings;
-$cformsSettings = get_option('cforms_settings');
-
 $role = get_role('administrator');
 if ($role != null) {
     $role->add_cap('manage_cforms');
@@ -71,7 +68,7 @@ register_activation_hook(__FILE__, 'cforms2_setup_db');
 cforms2_fieldtype::register();
 
 // settings corrupted?
-if (!is_array($cformsSettings)) {
+if (!is_array(get_option('cforms_settings'))) {
     add_action('admin_menu', 'cforms2_settings_corrupted');
     return;
 }

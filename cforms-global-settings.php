@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-global $wpdb;
-
 $cformsSettings = get_option('cforms_settings');
 
 $plugindir = dirname(plugin_basename(__FILE__));

@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-global $wpdb;
-
 $cformsSettings = get_option('cforms_settings');
 
 $plugindir = dirname(plugin_basename(__FILE__));
@@ -514,7 +512,7 @@ for ($i = 1; $i <= $field_count; $i++) {
 
                         <tr class="ob">
                             <td class="obL"><label for="cforms_noattachments"><strong><?php _e('Do not email attachments', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_noattachments'] == '1') echo "checked=\"checked\""; ?>/></td>
+                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if (Cforms2\FormSettings::form($no)->getNoAttachments() == '1') echo "checked=\"checked\""; ?>/></td>
                         </tr>
                     </table>
                 </div>
@@ -688,8 +686,8 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                 <tr class="ob">
                     <td class="obL"><label for="cforms_redirect"><?php _e('<strong>Redirect</strong><br />options:', 'cforms2'); ?></label></td>
                     <td class="obR">
-                        <input class="allchk" type="checkbox" id="cforms_redirect" name="cforms_redirect" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_redirect']) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Enable alternative success page (redirect)', 'cforms2'); ?></label><br />
-                        <input name="cforms_redirect_page" id="cforms_redirect_page" value="<?php echo ($cformsSettings['form' . $no]['cforms' . $no . '_redirect_page']); ?>" />
+                        <input class="allchk" type="checkbox" id="cforms_redirect" name="cforms_redirect" <?php if (Cforms2\FormSettings::form($no)->getRedirect()) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Enable alternative success page (redirect)', 'cforms2'); ?></label><br />
+                        <input name="cforms_redirect_page" id="cforms_redirect_page" value="<?php echo Cforms2\FormSettings::form($no)->getRedirectPage(); ?>" />
                     </td>
                 </tr>
 

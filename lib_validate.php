@@ -29,9 +29,8 @@ function cforms2_add_file($fn, &$fdata, &$fpointer, $attachFlag = false) {
 
 /** move uploaded files to local dir */
 function cforms2_move_files($no, $inSession, &$file) {
-    global $cformsSettings;
 
-    $_SESSION['cforms']['upload'][$no]['doAttach'] = !($cformsSettings['form' . $no]['cforms' . $no . '_noattachments']);
+    $_SESSION['cforms']['upload'][$no]['doAttach'] = !Cforms2\FormSettings::form($no)->getNoAttachments();
 
     if (is_array($file) && isset($file['tmp_name'])) {
         foreach ($file['tmp_name'] as $i => $tmpfile) {
@@ -60,7 +59,7 @@ function cforms2_is_email($string) {
 
 function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array()) {
     require_once(plugin_dir_path(__FILE__) . 'lib_email.php');
-    global $cformsSettings;
+    $cformsSettings = get_option('cforms_settings');
 
     $validations = array();
     $all_valid = true;
@@ -690,7 +689,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         cforms2_dbg('File Attachments:');
 
         // attachments wanted for current form? (tracking session form uploads handled above!)
-        $doAttach = !($cformsSettings['form' . $no]['cforms' . $no . '_noattachments']);
+        $doAttach = !Cforms2\FormSettings::form($no)->getNoAttachments();
 
         // form with files, within session or single form
         if ($ongoingSession != '0' && is_array($file) && !empty($file)) {

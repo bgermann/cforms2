@@ -43,17 +43,15 @@ function cforms2_make_time($t) {
 
 /** check time constraints */
 function cforms2_check_time($no) {
-    global $cformsSettings;
-
     $t1f = $t2f = false;
 
-    if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1)
-        $t1 = cforms2_make_time(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_startdate']));
+    if (strlen(Cforms2\FormSettings::form($no)->getStartDate()) > 1)
+        $t1 = cforms2_make_time(stripslashes(Cforms2\FormSettings::form($no)->getStartDate()));
     else
         $t1f = true;
 
-    if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_enddate']) > 1)
-        $t2 = cforms2_make_time(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_enddate']));
+    if (strlen(Cforms2\FormSettings::form($no)->getEndDate()) > 1)
+        $t2 = cforms2_make_time(stripslashes(Cforms2\FormSettings::form($no)->getEndDate()));
     else
         $t2f = true;
 
@@ -105,7 +103,7 @@ function cforms2_all_tracks($session) {
 }
 
 function cforms2_format_email($track, $no) {
-    global $cformsSettings;
+    $cformsSettings = get_option('cforms_settings');
     $customspace = (int) ($cformsSettings['form' . $no]['cforms' . $no . '_space'] > 0) ? $cformsSettings['form' . $no]['cforms' . $no . '_space'] : 30;
 
     $t = $h = '';
@@ -209,8 +207,8 @@ function cforms2_check_post_vars($fv) {
 
 /** look for default/system variables */
 function cforms2_check_default_vars($m, $no) {
-    global $cformsSettings;
 
+    $cformsSettings = get_option('cforms_settings');
     $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
     $pid = cforms2_get_the_id($no);
@@ -272,7 +270,7 @@ function cforms2_check_default_vars($m, $no) {
 /** look for custom variables */
 function cforms2_check_cust_vars($m, $track, $html = false) {
 
-    global $cformsSettings;
+    $cformsSettings = get_option('cforms_settings');
     $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
     preg_match_all('/\\{([^\\{]+)\\}/', $m, $findall);

@@ -82,7 +82,9 @@ function cforms2_check_access_priv() {
 
 /** some css for positioning the form elements */
 function cforms2_enqueue_scripts() {
-    global $wp_query, $cformsSettings;
+    global $wp_query;
+
+    $cformsSettings = get_option('cforms_settings');
 
     // add content actions and filters
     $page_obj = $wp_query->get_queried_object();

@@ -34,6 +34,36 @@ class FormSettings
         return Settings::instance()->get($this->ind, $this->pre . 'fname');
     }
 
+    public function getHide()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'hide');
+    }
+
+    public function getNoAttachments()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'noattachments');
+    }
+
+    public function getStartDate()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'startdate');
+    }
+
+    public function getEndDate()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'enddate');
+    }
+
+    public function getRedirect()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'redirect');
+    }
+
+    public function getRedirectPage()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'redirect_page');
+    }
+
     /**
      * Converts a natural number to the corresponding form ID.
      *
