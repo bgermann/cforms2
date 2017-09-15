@@ -862,7 +862,6 @@ function cforms2_build_fstat($f) {
 
 /** check form names/id's */
 function cforms2_check_form_name($no) {
-    $cformsSettings = get_option('cforms_settings');
     if (is_numeric($no) || $no == '')
         return $no;
 

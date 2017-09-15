@@ -31,7 +31,7 @@ class FormSettings
 
     public function name()
     {
-        Settings::instance()->get($this->ind, $this->pre . '_fname');
+        return Settings::instance()->get($this->ind, $this->pre . 'fname');
     }
 
     /**

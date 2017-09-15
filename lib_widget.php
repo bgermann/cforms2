@@ -81,7 +81,7 @@ class cforms2_widget extends WP_Widget {
      * @param array $new_instance The new options
      * @param array $old_instance The previous options
      */
-    public function update($new_instance) {
+    public function update($new_instance, $old_instance) {
         $check = array('title', 'form');
         $instance = array();
         foreach ($check as $value) {
