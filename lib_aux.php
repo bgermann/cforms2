@@ -177,7 +177,7 @@ function cforms2_format_email($track, $no) {
         $h .= '<tr><td ' . $cformsSettings['global']['cforms_style']['key_td'] . '>' . $hk . '</td><td ' . $cformsSettings['global']['cforms_style']['val_td'] . '>' . $hv . '</td></tr>' . $eol;
     }
     $r['text'] = $t;
-    $r['html'] = '<div ' . $cformsSettings['global']['cforms_style']['admin'] . '><span ' . $cformsSettings['global']['cforms_style']['title'] . '>' . stripslashes(Cforms2\FormSettings::form($no).name()) . '</span><table cellpadding="0" cellspacing="0" ' . $cformsSettings['global']['cforms_style']['table'] . '>' . stripslashes($h) . '</table></div>';
+    $r['html'] = '<div ' . $cformsSettings['global']['cforms_style']['admin'] . '><span ' . $cformsSettings['global']['cforms_style']['title'] . '>' . stripslashes(Cforms2\FormSettings::form($no)->name()) . '</span><table cellpadding="0" cellspacing="0" ' . $cformsSettings['global']['cforms_style']['table'] . '>' . stripslashes($h) . '</table></div>';
     return $r;
 
 }
@@ -240,7 +240,7 @@ function cforms2_check_default_vars($m, $no) {
     if (isset($_SERVER['HTTP_REFERER']))
         $m = str_replace('{Referer}', $_SERVER['HTTP_REFERER'], $m);
     $m = str_replace('{PostID}', $pid, $m);
-    $m = str_replace('{Form Name}', Cforms2\FormSettings::form($no).name(), $m);
+    $m = str_replace('{Form Name}', Cforms2\FormSettings::form($no)->name(), $m);
     $m = str_replace('{Page}', $page, $m);
     $m = str_replace('{Date}', $date, $m);
     $m = str_replace('{Author}', $user_name, $m);
