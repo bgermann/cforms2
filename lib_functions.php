@@ -144,10 +144,9 @@ function cforms2_get_request_uri() {
 }
 
 function cforms2_enqueue_script_datepicker() {
-    global $wp_scripts;
-    $suffix = SCRIPT_DEBUG ? '' : '.min';
-
     $cformsSettings = get_option('cforms_settings');
+
+    cforms2_enqueue_jq_ui_theme();
 
     wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), CFORMS2_VERSION);
     $day_names = explode(',', __('S,M,T,W,T,F,S', 'cforms2'));
@@ -182,6 +181,13 @@ function cforms2_enqueue_script_datepicker() {
     wp_localize_script('cforms-calendar', 'cforms2_cal', $dp_options);
     wp_enqueue_script('cforms-calendar');
 
+}
+
+function cforms2_enqueue_jq_ui_theme() {
+    global $wp_scripts;
+    $cformsSettings = get_option('cforms_settings');
+    $suffix = SCRIPT_DEBUG ? '' : '.min';
+
     $jqui = $wp_scripts->query('jquery-ui-datepicker');
     $theme = $cformsSettings['global']['cforms_jqueryuitheme'];
     if (empty($theme)) {
@@ -199,6 +205,7 @@ function cforms2_enqueue_style_admin() {
 }
 
 function cforms2_admin_enqueue_scripts() {
+    cforms2_enqueue_jq_ui_theme();
 
     $r = plugin_dir_url(__FILE__);
 
