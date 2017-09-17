@@ -171,5 +171,3 @@ if (isset($_POST['chg_css'])) {
         </fieldset>
     </form>
 </div>
-
-<?php cforms2_footer();

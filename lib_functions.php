@@ -219,13 +219,6 @@ function cforms2_admin_enqueue_scripts() {
 
 }
 
-function cforms2_footer() {
-    echo '<p style="padding-top:50px; font-size:11px; text-align:center;"><em>'
-    . sprintf(__('For more information and support, visit the <strong>cforms</strong> %s support forum %s. ', 'cforms2'), '<a href="http://wordpress.org/support/plugin/cforms2" title="cforms support forum">', '</a>')
-    . '</em><br />Version ' . CFORMS2_VERSION . '</p>';
-
-}
-
 /** plugin uninstalled? */
 function cforms2_check_erased() {
     if (count(Cforms2\FormSettings::forms()) == '') {

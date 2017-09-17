@@ -921,5 +921,4 @@ $plugindir = dirname(plugin_basename(__FILE__));
         <p class="ex"><?php _e('Your form does not look like the preview image or your individual changes do not take effect? Check your global WP theme CSS! It may overwrite some or many cforms CSS declarations.', 'cforms2'); ?></p>
     </div>
 
-    <?php cforms2_footer(); ?>
 </div>

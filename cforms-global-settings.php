@@ -291,7 +291,6 @@ if (isset($_POST['SubmitOptions']))
 
     </form>
 
-    <?php cforms2_footer(); ?>
 </div>
 
 <div title="<?php _e('Uninstalling / Removing cforms', 'cforms2'); ?>" id="cf_delall_dialog">

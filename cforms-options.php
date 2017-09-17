@@ -977,7 +977,6 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
 
     </form>
 
-            <?php cforms2_footer(); ?>
 </div>
 
 <?php
