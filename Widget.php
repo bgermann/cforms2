@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright (c) 2012      Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
  * Copyright (c) 2014-2017 Bastian Germann
  *

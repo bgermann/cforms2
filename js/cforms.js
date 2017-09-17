@@ -449,19 +449,19 @@ function cforms_validate(no, directFormSubmission) {
         if (objColl[i] && document.getElementById(objColl[i].id + '_regexp')) {
 
             var obj_regexp = document.getElementById(objColl[i].id + '_regexp');
-            var INPval = objColl[i].value;
+            var inpVal = objColl[i].value;
             if (typ == 'textarea')
-                INPval = INPval.replace(/\n\r?/g, ' ');
+                inpVal = inpVal.replace(/\n\r?/g, ' ');
 
             if (obj_regexp && obj_regexp.value != '') {
 
                 if (document.getElementById(obj_regexp.value)) {
-                    if (INPval != document.getElementById(obj_regexp.value).value)
+                    if (inpVal != document.getElementById(obj_regexp.value).value)
                         regexp = null;
                 } else {
-                    if (INPval != '') { // overrule: normal field, normal regexp, left empty
+                    if (inpVal != '') { // overrule: normal field, normal regexp, left empty
                         regexp = new RegExp(obj_regexp.value, ['g']);
-                        regexp = INPval.match(regexp);
+                        regexp = inpVal.match(regexp);
                     }
                 }
 

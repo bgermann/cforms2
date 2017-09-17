@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright (c) 2017 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
