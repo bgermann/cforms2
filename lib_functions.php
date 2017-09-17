@@ -102,7 +102,7 @@ function cforms2_enqueue_scripts() {
 
         // add calendar
         if ($cformsSettings['global']['cforms_datepicker'] == '1') {
-            cforms2_enqueue_script_datepicker(stripslashes($cformsSettings['global']['cforms_dp_date']));
+            cforms2_enqueue_script_datepicker();
         }
         wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION);
         wp_localize_script('cforms2', 'cforms2_ajax', array(
@@ -143,7 +143,7 @@ function cforms2_get_request_uri() {
 
 }
 
-function cforms2_enqueue_script_datepicker($date_format) {
+function cforms2_enqueue_script_datepicker() {
     global $wp_scripts;
     $suffix = SCRIPT_DEBUG ? '' : '.min';
 
@@ -178,7 +178,7 @@ function cforms2_enqueue_script_datepicker($date_format) {
         'buttonText' => __('Choose Date', 'cforms2'),
         'buttonImage' => plugin_dir_url(__FILE__) . 'images/calendar.png'
             ), $cformsSettings['global']['cforms_dp_nav']);
-    $dp_options['dateFormat'] = $date_format;
+    $dp_options['dateFormat'] = stripslashes($cformsSettings['global']['cforms_dp_date']);
     wp_localize_script('cforms-calendar', 'cforms2_cal', $dp_options);
     wp_enqueue_script('cforms-calendar');
 
@@ -215,7 +215,6 @@ function cforms2_admin_enqueue_scripts() {
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();
-    cforms2_enqueue_script_datepicker('dd/mm/yy');
 
 }
 

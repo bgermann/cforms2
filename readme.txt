@@ -163,6 +163,7 @@ GPL compliance!
 
 = 15.0 =
 
+* enhance:  use HTML5 date field on Form Settings page for the start and end dates
 * other:    remove tracking database and its view
 * other:    remove track_cforms capability
 * other:    remove all deprecated features and warnings about their usage

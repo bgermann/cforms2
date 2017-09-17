@@ -44,12 +44,35 @@ class FormSettings
         return Settings::instance()->get($this->ind, $this->pre . 'noattachments');
     }
 
-    public function getStartDate()
+    private function convertFormatToTime($formatted_date)
+    {
+        if (trim($formatted_date) === '') {
+            return 0;
+        }
+        $time = str_replace('/', '.', $formatted_date) . sprintf(' %+d', get_option('gmt_offset'));
+        $time = strtotime($time);
+        if ($time === false) {
+            return 0;
+        }
+        return $time;
+    }
+
+    public function getStartDateTime()
+    {
+        return $this->convertFormatToTime($this->getStartDate());
+    }
+
+    private function getStartDate()
     {
         return Settings::instance()->get($this->ind, $this->pre . 'startdate');
     }
 
-    public function getEndDate()
+    public function getEndDateTime()
+    {
+        return $this->convertFormatToTime($this->getEndDate());
+    }
+
+    private function getEndDate()
     {
         return Settings::instance()->get($this->ind, $this->pre . 'enddate');
     }
@@ -91,7 +114,7 @@ class FormSettings
         }
         if (isset(FormSettings::$forms[$id])) {
             return FormSettings::$forms[$id];
-        } elseif (!empty(Settings::instance()->get("form{$id}"))) {
+        } elseif (Settings::instance()->get("form{$id}")) {
             FormSettings::$forms[$id] = new FormSettings("form{$id}", "cforms{$id}_");
             return FormSettings::$forms[$id];
         }

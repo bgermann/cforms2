@@ -636,16 +636,14 @@ if ($cformsSettings['form' . $no]['cforms' . $no . '_dontclear'])
 
                     <tr class="ob">
                         <td class="obL" style="padding-top:7px"><strong><?php _e('Start Date', 'cforms2'); ?></strong></td>
-<?php $date = explode(' ', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_startdate']))); ?>
+                            <?php $start_date = Cforms2\FormSettings::form($no)->getStartDateTime(); ?>
                         <td class="obR">
-                            <input type="text" class="cf_date" id="cforms_startdate" name="cforms_startdate" placeholder="<?php echo cforms2_admin_date_format(); ?>" value="<?php echo $date[0]; ?>"/>
-                            <input type="text" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+                            <input type="date" id="cforms_startdate" name="cforms_startdate" value="<?php if ($start_date) echo date('Y-m-d', $start_date); ?>"/>
+                            <input type="text" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($start_date) echo date('h:i', $start_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
-$dt = 'x';
-if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
-    $dt = human_time_diff(cforms2_make_time(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_startdate'])));
-    if ($dt > 0) {
-        echo __('The form will be available in ', 'cforms2') . $dt;
+if ($start_date) {
+    if ($start_date > time()) {
+        echo __('The form will be available in ', 'cforms2') . human_time_diff($start_date);
     } else {
         echo __('The form is available now.', 'cforms2');
     }
@@ -657,15 +655,14 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
 
                     <tr class="ob">
                         <td class="obL" style="padding-top:7px"><strong><?php _e('End Date', 'cforms2'); ?></strong></td>
-                                <?php $date = explode(' ', stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_enddate']))); ?>
+                            <?php $end_date = Cforms2\FormSettings::form($no)->getEndDateTime(); ?>
                         <td class="obR">
-                            <input type="text" class="cf_date" id="cforms_enddate" name="cforms_enddate" placeholder="<?php echo cforms2_admin_date_format(); ?>" value="<?php echo $date[0]; ?>"/>
-                            <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $date[1]; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+                            <input type="date" id="cforms_enddate" name="cforms_enddate" value="<?php if ($end_date) echo date('Y-m-d', $end_date); ?>"/>
+                            <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($end_date) echo date('h:i', $end_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
-                                if ($dt == 'x' && strlen($cformsSettings['form' . $no]['cforms' . $no . '_enddate']) > 1) {
-                                    $dt = human_time_diff(cforms2_make_time(stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])));
-                                    if ($dt > 0) {
-                                        echo __('The form will be available for another ', 'cforms2') . $dt;
+                                if ($start_date && $end_date) {
+                                    if ($end_date > time()) {
+                                        echo __('The form will be available for another ', 'cforms2') . human_time_diff($end_date);
                                     } else {
                                         echo __('The form is not available anymore.', 'cforms2');
                                     }
@@ -674,7 +671,8 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) > 1) {
                         </td>
                     </tr>
 
-                    <?php if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_startdate']) || !empty($cformsSettings['form' . $no]['cforms' . $no . '_enddate'])) { ?>
+                    <?php
+                        if ($start_date || $end_date) { ?>
                         <tr class="ob">
                             <td class="obL"><label for="cforms_limittxt"><strong><?php _e('Limit text', 'cforms2'); ?></strong></label></td>
                             <td class="obR"><table><tr><td><textarea name="cforms_limittxt" id="cforms_limittxt"><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_limittxt'])); ?></textarea></td></tr></table></td>

@@ -31,27 +31,17 @@ function cforms2_get_the_id($no) {
 
 }
 
-/** make time */
-function cforms2_make_time($t) {
-    $time = str_replace('/', '.', $t) . sprintf(' %+d', get_option('gmt_offset'));
-    $time = strtotime($time);
-    if ($time === false)
-        return 0;
-    return $time;
-
-}
-
 /** check time constraints */
 function cforms2_check_time($no) {
     $t1f = $t2f = false;
 
-    if (strlen(Cforms2\FormSettings::form($no)->getStartDate()) > 1)
-        $t1 = cforms2_make_time(stripslashes(Cforms2\FormSettings::form($no)->getStartDate()));
+    if (Cforms2\FormSettings::form($no)->getStartDateTime())
+        $t1 = Cforms2\FormSettings::form($no)->getStartDateTime();
     else
         $t1f = true;
 
-    if (strlen(Cforms2\FormSettings::form($no)->getEndDate()) > 1)
-        $t2 = cforms2_make_time(stripslashes(Cforms2\FormSettings::form($no)->getEndDate()));
+    if (Cforms2\FormSettings::form($no)->getEndDateTime())
+        $t2 = Cforms2\FormSettings::form($no)->getEndDateTime();
     else
         $t2f = true;
 

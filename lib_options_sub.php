@@ -106,14 +106,18 @@ function cforms2_option_submission($no, &$cformsSettings) {
     $starttime = cforms2_get_from_request('cforms_starttime');
     $enddate = cforms2_get_from_request('cforms_enddate');
     $endtime = cforms2_get_from_request('cforms_endtime');
+    if (!empty($startdate))
+        $startdate = date('d/m/Y', strtotime($startdate));
+    if (!empty($enddate))
+        $enddate = date('d/m/Y', strtotime($enddate));
     if (!empty($startdate) && empty($starttime))
-        $_POST['cforms_starttime'] = '00:00';
+        $starttime = '00:00';
     if (!empty($starttime) && empty($startdate))
-        $_POST['cforms_startdate'] = current_time('d/m/Y');
+        $startdate = current_time('d/m/Y');
     if (!empty($enddate) && empty($endtime))
-        $_POST['cforms_endtime'] = '00:00';
+        $endtime = '00:00';
     if (!empty($endtime) && empty($enddate))
-        $_POST['cforms_enddate'] = current_time('d/m/Y');
+        $enddate = current_time('d/m/Y');
     $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] = preg_replace("/\\\+/", "\\", $startdate) . ' ' .
             preg_replace("/\\\+/", "\\", $starttime);
     $cformsSettings['form' . $no]['cforms' . $no . '_enddate'] = preg_replace("/\\\+/", "\\", $enddate) . ' ' .
