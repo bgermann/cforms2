@@ -18,7 +18,7 @@
  */
 namespace Cforms2\Fieldtypes;
 
-class TextOnly extends \cforms2_fieldtype {
+class TextOnly extends Fieldtype {
 
     public function get_id() {
         return 'textonly';

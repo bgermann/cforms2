@@ -21,7 +21,7 @@
  * Each implementation should be instantiated once and added to cformsII
  * by using the filter cforms2_add_captcha with the method add_instance.
  */
-abstract class cforms2_captcha extends cforms2_fieldtype {
+abstract class cforms2_captcha extends Cforms2\Fieldtypes\Fieldtype {
 
     /**
      * Returns an associative array consisting of

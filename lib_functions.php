@@ -319,7 +319,7 @@ function cforms2_get_pluggable_captchas() {
 function cforms2_get_fieldtypes() {
     static $fields = array();
     if (empty($fields)) {
-        // This filter is meant to add one element to the associative array per cforms2_fieldtype
+        // This filter is meant to add one element to the associative array per Fieldtype
         // implementation consisting of a unique identifier as key and object as value.
         $fields = apply_filters('cforms2_add_fieldtype', $fields);
     }

@@ -15,11 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace Cforms2\Fieldtypes;
 
 /**
  * The foundation for all field types.
  */
-abstract class cforms2_fieldtype {
+abstract class Fieldtype {
 
     /**
      * @return string A unique identifier for this field type.
@@ -112,23 +113,23 @@ abstract class cforms2_fieldtype {
      */
     public static function register() {
 
-        Cforms2\Fieldtypes\MultiId::register();
+        MultiId::register();
 
-        Cforms2\Fieldtypes\CheckBox::register();
+        CheckBox::register();
 
-        Cforms2\Fieldtypes\CheckBoxGroup::register();
+        CheckBoxGroup::register();
 
-        Cforms2\Fieldtypes\FieldsetStart::register();
+        FieldsetStart::register();
 
-        Cforms2\Fieldtypes\Html5::register();
+        Html5::register();
 
-        Cforms2\Fieldtypes\QuestionAndAnswer::register();
+        QuestionAndAnswer::register();
 
-        Cforms2\Fieldtypes\SelectBox::register();
+        SelectBox::register();
 
-        Cforms2\Fieldtypes\Text::register();
+        Text::register();
 
-        Cforms2\Fieldtypes\TextOnly::register();
+        TextOnly::register();
 
     }
 

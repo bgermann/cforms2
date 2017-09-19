@@ -23,6 +23,7 @@
  * Version: 14.14
  * Text Domain: cforms2
  */
+namespace Cforms2;
 
 define('CFORMS2_VERSION', '14.14');
 
@@ -50,7 +51,6 @@ spl_autoload_register(function ($class) {
     }
 });
 
-require_once plugin_dir_path(__FILE__) . 'Fieldtypes/fieldtype.php';
 require_once plugin_dir_path(__FILE__) . 'Fieldtypes/captcha.php';
 require_once plugin_dir_path(__FILE__) . 'lib_activate.php';
 require_once plugin_dir_path(__FILE__) . 'lib_ajax.php';
@@ -65,7 +65,7 @@ if ($role != null) {
 }
 
 register_activation_hook(__FILE__, 'cforms2_setup_db');
-cforms2_fieldtype::register();
+Fieldtypes\Fieldtype::register();
 
 // settings corrupted?
 if (!is_array(get_option('cforms_settings'))) {

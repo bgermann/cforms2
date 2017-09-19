@@ -346,7 +346,7 @@ if (!function_exists('insert_cform')) {
      *              $customfields['isreadonly'][n] : bool;                   default: false;
      * 
      *              for each form n. n = 0,1,2... and input field type is one of the values returned
-     *              by cforms2_fieldtype::get_id() and the overwriting methods in its subclasses.
+     *              by Fieldtype::get_id() and the overwriting methods in its subclasses.
      * 
      * @return void The form's HTML output will be printed. The output depends on the submission state.
      */

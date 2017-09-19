@@ -17,7 +17,7 @@
  */
 namespace Cforms2\Fieldtypes;
 
-class MultiId extends \cforms2_fieldtype {
+class MultiId extends Fieldtype {
 
     private $id;
     private $name;
