@@ -45,7 +45,6 @@ spl_autoload_register(function ($class) {
 
     $file = plugin_dir_path(__FILE__) . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . '.php';
 
-    // if the file exists, require it
     if (file_exists($file)) {
         require $file;
     }
@@ -100,7 +99,9 @@ if (is_admin()) {
 add_action('template_redirect', 'cforms2_start_session');
 add_action('wp_ajax_submitcform', 'cforms2_submitcform');
 add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');
-add_action('plugins_loaded', 'cforms2_localization');
+add_action('plugins_loaded', function() {
+    load_plugin_textdomain('cforms2');
+});
 add_action('widgets_init', function() {
     register_widget('\Cforms2\Widget');
 });

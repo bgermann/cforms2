@@ -17,11 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function cforms2_localization() {
-    load_plugin_textdomain('cforms2');
-
-}
-
 function cforms2_settings_corrupted() {
     $tmp = plugin_dir_path(__FILE__) . 'cforms-corrupted.php';
 
@@ -59,7 +54,7 @@ function cforms2_delete_db_and_deactivate() {
 
     if (is_user_logged_in() && current_user_can('manage_options')) {
         define('WP_UNINSTALL_PLUGIN', true);
-        require_once plugin_dir_path(__FILE__) . 'uninstall.php';
+        require plugin_dir_path(__FILE__) . 'uninstall.php';
 
         // deactivate cforms plugin
         $curPlugs = get_option('active_plugins');

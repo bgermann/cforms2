@@ -21,7 +21,6 @@ $cformsSettings = get_option('cforms_settings');
 $s = DIRECTORY_SEPARATOR;
 
 $style = $cformsSettings['global']['cforms_css'];
-$stylefile = plugin_dir_path(__FILE__) . "styling{$s}" . $style;
 
 cforms2_check_access_priv();
 
@@ -56,7 +55,6 @@ if (isset($_POST['chg_css'])) {
     update_option('cforms_settings', $cformsSettings);
 
     $style = $cformsSettings['global']['cforms_css'];
-    $stylefile = plugin_dir_path(__FILE__) . "styling{$s}" . $style;
     echo ' <div id="message" class="updated fade"><p><strong>' . __('New theme selected.', 'cforms2') . '</strong></p></div>' . "\n";
 }
 ?>

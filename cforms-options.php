@@ -502,12 +502,12 @@ for ($i = 1; $i <= $field_count; $i++) {
                     <table class="form-table">
                         <tr class="ob space15">
                             <td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'])); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
+                            <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" placeholder="txt,zip" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'])); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
                         </tr>
 
                         <tr class="ob">
                             <td class="obL"><label for="cforms_upload_size"><strong><?php _e('Maximum file size<br />in kilobyte', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input type="text" id="cforms_upload_size" name="cforms_upload_size" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_size'])); ?>"/></td>
+                            <td class="obR"><input type="number" id="cforms_upload_size" name="cforms_upload_size" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_size'])); ?>"/></td>
                         </tr>
 
                         <tr class="ob">
@@ -639,7 +639,7 @@ if ($cformsSettings['form' . $no]['cforms' . $no . '_dontclear'])
                             <?php $start_date = Cforms2\FormSettings::form($no)->getStartDateTime(); ?>
                         <td class="obR">
                             <input type="date" id="cforms_startdate" name="cforms_startdate" value="<?php if ($start_date) echo date('Y-m-d', $start_date); ?>"/>
-                            <input type="text" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($start_date) echo date('h:i', $start_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+                            <input type="time" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($start_date) echo date('h:i', $start_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
 if ($start_date) {
     if ($start_date > time()) {
@@ -658,7 +658,7 @@ if ($start_date) {
                             <?php $end_date = Cforms2\FormSettings::form($no)->getEndDateTime(); ?>
                         <td class="obR">
                             <input type="date" id="cforms_enddate" name="cforms_enddate" value="<?php if ($end_date) echo date('Y-m-d', $end_date); ?>"/>
-                            <input type="text" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($end_date) echo date('h:i', $end_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+                            <input type="time" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($end_date) echo date('h:i', $end_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
                                 if ($start_date && $end_date) {
                                     if ($end_date > time()) {
@@ -685,7 +685,7 @@ if ($start_date) {
                     <td class="obL"><label for="cforms_redirect"><?php _e('<strong>Redirect</strong><br />options:', 'cforms2'); ?></label></td>
                     <td class="obR">
                         <input class="allchk" type="checkbox" id="cforms_redirect" name="cforms_redirect" <?php if (Cforms2\FormSettings::form($no)->getRedirect()) echo "checked=\"checked\""; ?>/><label for="cforms_redirect"><?php _e('Enable alternative success page (redirect)', 'cforms2'); ?></label><br />
-                        <input name="cforms_redirect_page" id="cforms_redirect_page" value="<?php echo Cforms2\FormSettings::form($no)->getRedirectPage(); ?>" />
+                        <input type="url" placeholder="http://redirect.example" name="cforms_redirect_page" id="cforms_redirect_page" value="<?php echo Cforms2\FormSettings::form($no)->getRedirectPage(); ?>" />
                     </td>
                 </tr>
 
@@ -695,7 +695,7 @@ if ($start_date) {
                     <td class="obL"><label for="cforms_action"><?php _e('<strong>Send form data</strong><br /> to an alternative page:', 'cforms2'); ?></label></td>
                     <td class="obR">
                         <input class="allchk" type="checkbox" id="cforms_action" name="cforms_action" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_action']) echo "checked=\"checked\""; ?>/><label for="cforms_action"><?php _e('Enable alternative form action!', 'cforms2'); ?></label><br />
-                        <input name="cforms_action_page" id="cforms_action_page" value="<?php echo ($cformsSettings['form' . $no]['cforms' . $no . '_action_page']); ?>" /> <a class="infobutton" href="#" name="it2"><?php _e('Please read note &raquo;', 'cforms2'); ?></a>
+                        <input type="url" placeholder="http://form.target.example" name="cforms_action_page" id="cforms_action_page" value="<?php echo ($cformsSettings['form' . $no]['cforms' . $no . '_action_page']); ?>" /> <a class="infobutton" href="#" name="it2"><?php _e('Please read note &raquo;', 'cforms2'); ?></a>
                     </td>
                 </tr>
 
@@ -773,7 +773,7 @@ if ($start_date) {
                 </tr>
                 <tr class="ob">
                     <td class="obL" style="padding-top:0">&nbsp;</td>
-                    <td class="obR" style="padding-top:0"><input type="text" name="cforms_space" id="cforms_space" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_space'])); ?>" /><label for="cforms_space"><?php _e('(# characters) : spacing between labels &amp; data, for plain txt version only', 'cforms2') ?></label></td>
+                    <td class="obR" style="padding-top:0"><input type="number" name="cforms_space" id="cforms_space" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_space'])); ?>" /><label for="cforms_space"><?php _e('(# characters) : spacing between labels &amp; data, for plain txt version only', 'cforms2') ?></label></td>
                 </tr>
 
                 <tr class="ob space20">

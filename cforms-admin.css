@@ -544,11 +544,10 @@ fieldset.cformsoptions {
 }
 
 .cf-content {
-    background-color:whiteSmoke;
+    background-color:whitesmoke;
     padding:0 5px;
     margin-bottom:5px;
     border:1px solid #DFDFDF;
-    border-radius:0 0 3px 3px;
 }
 
 .cflegend {
@@ -598,9 +597,7 @@ tr.ob {
 .ob input[type=text], .ob input[type=text]:focus,
 .ob textarea:focus, .ob textarea {
     font-size:11px;
-    padding:2px 3px 3px;
     border:1px solid #ccc;
-    border-radius:0;
 }
 .ob input[type=text]:focus,
 .ob textarea:focus {
@@ -656,17 +653,6 @@ tr.ob {
     padding-left:3px;
     line-height:1.3em;
     vertical-align:middle;
-}
-
-input#cforms_endtime,input#cforms_starttime {
-    width:5em;
-    margin-right:3px;
-    text-align:center;
-}
-
-input#cforms_startdate,input#cforms_enddate {
-    width:10em;
-    text-align:center;
 }
 
 input#cforms_space {
