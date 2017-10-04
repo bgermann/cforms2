@@ -39,8 +39,6 @@ You can see the available languages and contribute via [GlotPress](https://trans
 
 If you want to install another language, please choose its cell in the Development column, export it as Machine Object Message Catalog (.mo) and put it in the wp-content/languages/plugins directory.
 
-If your language is not available, you can find a list of the [translations for the original cforms version](http://web.archive.org/web/20141103044209/http://www.deliciousdays.com/cforms-plugin/), which also work with this fork. To use one of those files, please rename the cforms-?.mo file to cforms2-?.mo and put it in the wp-content/languages/plugins directory.
-
 
 == Roadmap ==
 
