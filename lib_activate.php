@@ -109,7 +109,7 @@ function cforms2_setup_db() {
     cforms2_set_ini('form', 'cforms_redirect_page', __('http://redirect.to.this.page', 'cforms2'));
 
     cforms2_set_ini('form', 'cforms_action', '0');
-    cforms2_set_ini('form', 'cforms_action_page', 'http://');
+    cforms2_set_ini('form', 'cforms_action_page', '');
     cforms2_set_ini('form', 'cforms_mp', array(
         "mp_form" => false,
         "mp_next" => "",

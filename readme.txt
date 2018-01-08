@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0
 
 == Description ==
 
-This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features from attachments to multi-part form management.
+This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features.
 
 Oliver, the original author, discontinued developing the plugin. This fork is an effort to keep it up to date.
 
@@ -116,6 +116,9 @@ You can. Most of the JavaScript is included in the HTML head. The only form feat
 
 == Upgrade Notice ==
 
+= 15.0 =
+The tracking database and its view are removed. Please have a look at CFDB plugin as a replacement.
+
 = 14.13 =
 This release contains a security fix! Some features were removed for the fix. Please have a look at the changelog.
 
@@ -163,7 +166,7 @@ GPL compliance!
 
 = 15.0 =
 
-* enhanced:  use HTML5 date field on Form Settings page for the start and end dates
+* enhanced: use HTML5 date field on Form Settings page for the start and end dates
 * other:    remove tracking database and its view
 * other:    remove track_cforms capability
 * other:    remove all deprecated features and warnings about their usage

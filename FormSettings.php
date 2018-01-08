@@ -132,4 +132,13 @@ class FormSettings
         }
         return FormSettings::$forms;
     }
+
+    /**
+     * Resets the static fields.
+     */
+    public static function reset()
+    {
+        FormSettings::$forms = array();
+        Settings::reset();
+    }
 }

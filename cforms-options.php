@@ -28,7 +28,6 @@ if (cforms2_check_erased())
     return;
 
 
-// default to 1 & get real #
 $formcount = count(Cforms2\FormSettings::forms());
 
 if (isset($_POST['addbutton'])) {
@@ -74,7 +73,7 @@ if (isset($_POST['addbutton'])) {
         'cforms' . $no . '_redirect' => false,
         'cforms' . $no . '_redirect_page' => __('http://redirect.to.this.page', 'cforms2'),
         'cforms' . $no . '_action' => '0',
-        'cforms' . $no . '_action_page' => 'http://',
+        'cforms' . $no . '_action_page' => '',
         'cforms' . $no . '_upload_ext' => 'txt,zip',
         'cforms' . $no . '_upload_size' => '1024',
         'cforms' . $no . '_mp' => array(
@@ -126,7 +125,7 @@ if (isset($_POST['addbutton'])) {
         unset($cformsSettings['form' . $n]);
 
         foreach (array_keys($cformsSettings['form' . ($i + 1)]) as $key) {
-            $newkey = ( strpos($key, 'form2_') !== false ) ? str_replace('2_', '_', $key) : str_replace(($i + 1) . '_', $i . '_', $key);
+            $newkey = ( strpos($key, 'form2_') !== false ) ? str_replace('2_', '_', $key) : str_replace(($i + 1) . '_', $n . '_', $key);
             $cformsSettings['form' . $n][$newkey] = $cformsSettings['form' . ($i + 1)][$key];
         }
     }
@@ -163,6 +162,8 @@ if (isset($_POST['addbutton'])) {
         $no_disp = $no = (int) $_POST['noSub'];
     }
 }
+Cforms2\FormSettings::reset();
+$formcount = count(Cforms2\FormSettings::forms());
 
 // Update Settings TODO What is array_search("X", $_POST) for?
 if (isset($_POST['SubmitOptions']) || isset($_POST['AddField']) || array_search("X", $_POST)) {
@@ -272,7 +273,7 @@ for ($i = 1; $i <= $formcount; $i++) {
             <tr>
                 <td class="chgL">
                     <label for="cforms_fname" class="bignumber"><?php _e('Form Name', 'cforms2') ?></label>
-                    <input id="cforms_fname" name="cforms_fname" class="cforms_fname" size="40" value="<?php echo stripslashes(Cforms2\FormSettings::form($no)->name()); ?>" title="<?php _e('You may give each form an optional name to better identify incoming emails.', 'cforms2') ?>"/>
+                    <input id="cforms_fname" name="cforms_fname" class="cforms_fname" size="40" value="<?php echo stripslashes(Cforms2\FormSettings::form($no)->name()); ?>" />
                     <input title="<?php _e('Enables or disables Ajax support for this form.', 'cforms2') ?>" id="cforms_ajax" type="checkbox" class="allchk cforms_ajax" name="cforms_ajax" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_ajax'] == "1") echo "checked=\"checked\""; ?>/>
                     <label title="<?php _e('Enables or disables Ajax support for this form.', 'cforms2') ?>" for="cforms_ajax" class="bignumber"><?php _e('Ajax enabled', 'cforms2') ?></label>
                 </td>

@@ -58,4 +58,12 @@ class Settings
         }
         return Settings::$settings;
     }
+
+    /**
+     * Resets the static fields.
+     */
+    public static function reset()
+    {
+        Settings::$settings = new Settings();
+    }
 }
