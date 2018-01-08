@@ -320,7 +320,7 @@ function cforms2($no = '', $customfields = array()) {
                 $reg_exp = str_replace('"', '&quot;', stripslashes($obj[2]));
             else
                 $reg_exp = '';
-            if (!empty($obj[1]))
+            if ($obj[1] != '')
                 $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no));
 
             $field_name = $obj[0];
@@ -450,7 +450,7 @@ function cforms2($no = '', $customfields = array()) {
 
 
         // if not reloaded (due to error) then use default values
-        if ($field_value == '' && !empty($defaultvalue))
+        if ($field_value == '' && $defaultvalue != '')
             $field_value = $defaultvalue;
 
         // field disabled or readonly, greyed out?
