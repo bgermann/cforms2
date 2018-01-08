@@ -429,13 +429,13 @@ function cforms2($no = '', $customfields = array()) {
                 $field_value = $_POST[$input_name]; // In this case it's an array. We will do the stripping later.
             else
                 $field_value = htmlspecialchars(stripslashes($_POST[$input_name]));
-        } elseif ((!isset($_POST['sendbutton' . $no]) && isset($_POST[$input_name])) || $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) {
+        } elseif ((!isset($_POST['sendbutton' . $no]) && isset($_REQUEST[$input_name])) || $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) {
 
             // only pre-populating fields
             if ($field_type == 'multiselectbox' || $field_type == 'checkboxgroup')
-                $field_value = $_POST[$input_name]; // In this case it's an array. We will do the stripping later.
+                $field_value = $_REQUEST[$input_name]; // In this case it's an array. We will do the stripping later.
             else {
-                $field_value = htmlspecialchars(stripslashes($_POST[$input_name]));
+                $field_value = htmlspecialchars(stripslashes($_REQUEST[$input_name]));
             }
         }
 
