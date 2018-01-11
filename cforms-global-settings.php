@@ -177,7 +177,6 @@ if (isset($_POST['SubmitOptions']))
                 <div class="cf-content" id="o11">
                     <p>
                         <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
-                        <?php printf(__('Form specific settings (directory path etc.) have been moved to <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#fileupload', ''); ?>
                     </p>
 
                     <p class="ex">
@@ -203,7 +202,7 @@ if (isset($_POST['SubmitOptions']))
                         <tr class="ob">
                             <td class="obL"><label for="cforms_upload_err2"><strong><?php _e('File is empty', 'cforms2'); ?></strong></label></td>
                             <td class="obR">
-                                <table><tr><td><textarea  class="errmsgbox" name="cforms_upload_err2" id="cforms_upload_err2" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err2'])); ?></textarea></td></tr></table>
+                                <table><tr><td><textarea class="errmsgbox" name="cforms_upload_err2" id="cforms_upload_err2" ><?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_upload_err2'])); ?></textarea></td></tr></table>
                             </td>
                         </tr>
 
