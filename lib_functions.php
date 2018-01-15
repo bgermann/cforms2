@@ -200,7 +200,7 @@ function cforms2_enqueue_style_admin() {
 }
 
 function cforms2_admin_enqueue_scripts() {
-    cforms2_enqueue_jq_ui_theme();
+    wp_enqueue_style('wp-jquery-ui-dialog');
 
     $r = plugin_dir_url(__FILE__);
 

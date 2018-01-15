@@ -241,7 +241,7 @@ if (strlen($fd) <= 2) {
 }
 ?>
 
-<div class="wrap" id="top">
+<div class="wrap">
     <h2><?php _e('Form Settings', 'cforms2') ?></h2>
 
     <form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="#">
@@ -492,7 +492,7 @@ for ($i = 1; $i <= $field_count; $i++) {
                     <?php if ($fileupload) { ?>
             <fieldset id="fileupload" class="cformsoptions">
                 <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
+                    <div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
                 </div>
 
                 <div class="cf-content" id="o0">
@@ -523,7 +523,7 @@ for ($i = 1; $i <= $field_count; $i++) {
 
         <fieldset class="cformsoptions" id="anchormessage">
             <div class="cflegend op-closed" id="p1" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Messages, Text and Button Label', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('Form Messages', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o1">
@@ -586,7 +586,7 @@ for ($i = 1; $i <= $field_count; $i++) {
 
         <fieldset class="cformsoptions" id="anchoremail">
             <div class="cflegend op-closed" id="p2" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Core Form Admin / Email Options', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('Core Form', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o2">
@@ -708,7 +708,7 @@ if ($start_date) {
 
         <fieldset class="cformsoptions" id="emailoptions">
             <div class="cflegend op-closed" id="p3" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Admin Email Message Options', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('Admin Message', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o3">
@@ -805,7 +805,7 @@ if ($start_date) {
 
         <fieldset class="cformsoptions <?php if (!$ccboxused) echo "hidden"; ?>" id="cc">
             <div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('CC Settings', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('CC Settings', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o4">
@@ -827,7 +827,7 @@ if ($start_date) {
 
         <fieldset class="cformsoptions" id="autoconf">
             <div class="cflegend op-closed" id="p5" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Auto Confirmation', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('Auto Confirmation Message', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o5">
@@ -904,7 +904,7 @@ if ($start_date) {
 
         <fieldset class="cformsoptions" id="multipart">
             <div class="cflegend op-closed" id="p29" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Multi-part forms', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('Multi-Part Form', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o29">

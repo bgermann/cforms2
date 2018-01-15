@@ -84,7 +84,7 @@ if (isset($_POST['SubmitOptions']))
     }
 ?>
 
-<div class="wrap" id="top">
+<div class="wrap">
     <h2><?php _e('Global Settings', 'cforms2') ?></h2>
     <form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post">
         <?php
@@ -99,11 +99,9 @@ if (isset($_POST['SubmitOptions']))
             <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms2') ?></p>
 
             <fieldset id="inandexclude" class="cformsoptions">
-                <div class="cflegend op-closed" id="p27" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Include cforms header data only on specific pages', 'cforms2') ?>
-                </div>
+                <h3 class="cflegend"><?php _e('Include cforms header data only on specific pages', 'cforms2') ?></h3>
 
-                <div class="cf-content" id="o27">
+                <div class="cf-content">
                     <p><?php _e('Specify the ID(s) of <strong>pages or posts</strong> separated by comma on which you\'d like to show or not show cforms. The cforms header will only be included specifically on those pages, helping to maintain all other pages neat.', 'cforms2') ?></p>
 
                     <table class="form-table">
@@ -123,11 +121,9 @@ if (isset($_POST['SubmitOptions']))
             </fieldset>
 
             <fieldset id="popupdate" class="cformsoptions">
-                <div class="cflegend op-closed" id="p9" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Popup Date Picker', 'cforms2') ?>
-                </div>
+                <h3 class="cflegend"><?php _e('Popup Date Picker', 'cforms2') ?></h3>
 
-                <div class="cf-content" id="o9">
+                <div class="cf-content">
                     <p><?php printf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#datepicker', '') ?></p>
 
                     <table class="form-table">
@@ -151,11 +147,9 @@ if (isset($_POST['SubmitOptions']))
 
 
             <fieldset id="smtp" class="cformsoptions">
-                <div class="cflegend op-closed" id="p10" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Mail Server Settings', 'cforms2') ?>
-                </div>
+                <h3 class="cflegend"><?php _e('Mail Server Settings', 'cforms2') ?></h3>
 
-                <div class="cf-content" id="o10">
+                <div class="cf-content">
 
                     <p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you may want to try and turn on the below option.', 'cforms2') ?>
                     <table class="form-table">
@@ -170,11 +164,9 @@ if (isset($_POST['SubmitOptions']))
 
 
             <fieldset id="upload" class="cformsoptions">
-                <div class="cflegend op-closed" id="p11" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Global File Upload Settings', 'cforms2') ?>
-                </div>
+                <h3 class="cflegend"><?php _e('Global File Upload Settings', 'cforms2') ?></h3>
 
-                <div class="cf-content" id="o11">
+                <div class="cf-content">
                     <p>
                         <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
                     </p>
@@ -225,11 +217,9 @@ if (isset($_POST['SubmitOptions']))
 
 
             <fieldset id="wpeditor" class="cformsoptions">
-                <div class="cflegend op-closed" id="p12" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('WP Editor Button support', 'cforms2') ?>
-                </div>
+                <h3 class="cflegend"><?php _e('WP Editor Button support', 'cforms2') ?></h3>
 
-                <div class="cf-content" id="o12">
+                <div class="cf-content">
                     <p><?php _e('If you would like to use editor buttons to insert your cforms please enable them below.', 'cforms2') ?></p>
 
                     <table class="form-table">
@@ -241,11 +231,9 @@ if (isset($_POST['SubmitOptions']))
             </fieldset>
 
             <fieldset id="visitorv" class="cformsoptions">
-                <div class="cflegend op-closed" id="p13" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <a class="helptop" href="#top"><?php _e('top', 'cforms2'); ?></a><div class="blindminus"></div><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms2') ?>
-                </div>
+                <h3 class="cflegend"><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms2') ?></h3>
 
-                <div class="cf-content" id="o13">
+                <div class="cf-content">
                     <p><?php printf(__('Getting a lot of <strong>SPAM</strong>? Use these Q&amp;A\'s to counteract spam and ensure it\'s a human submitting the form. To use in your form, add the corresponding input field %s preferably in its own FIELDSET!', 'cforms2'), '<code>' . __('Visitor verification (Q&amp;A)', 'cforms2') . '</code>'); ?></p>
 
                     <table class="form-table">
