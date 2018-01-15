@@ -57,8 +57,8 @@ jQuery(function () {
     };
 
     var cookie = readcookie();
-    if (!cookie || cookie.length !== 35) {
-        document.cookie = nameEQ + "11111111111111111111111111111111111;";
+    if (!cookie || cookie.length !== 6) {
+        document.cookie = nameEQ + "111111;";
     }
 
     // moving dialog box options
@@ -590,7 +590,7 @@ jQuery(function () {
 
     jQuery('#anchorfields').show();
 
-    for (var i = 0; i < 35; i++) {
+    for (var i = 0; i < 6; i++) {
         var el = document.getElementById('o' + i);
         var elp = document.getElementById('p' + i);
         if (el && cookie.charAt(i) === '1') {

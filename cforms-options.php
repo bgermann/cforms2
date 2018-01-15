@@ -805,7 +805,7 @@ if ($start_date) {
 
         <fieldset class="cformsoptions <?php if (!$ccboxused) echo "hidden"; ?>" id="cc">
             <div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('CC Settings', 'cforms2') ?>
+                <div class="blindminus"></div><?php _e('CC Message', 'cforms2') ?>
             </div>
 
             <div class="cf-content" id="o4">
@@ -903,11 +903,11 @@ if ($start_date) {
 
 
         <fieldset class="cformsoptions" id="multipart">
-            <div class="cflegend op-closed" id="p29" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
                 <div class="blindminus"></div><?php _e('Multi-Part Form', 'cforms2') ?>
             </div>
 
-            <div class="cf-content" id="o29">
+            <div class="cf-content" id="o0">
                 <p><?php _e('If enabled, new options will be shown below.', 'cforms2'); ?> <label for="cforms_mp_form"><?php _e('Mark this form to belong to a series of forms:', 'cforms2') ?></label> <input class="allchk" type="checkbox" id="cforms_mp_form" name="cforms_mp_form" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] == '1') echo "checked=\"checked\""; ?>/></p>
 
         <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form']) { ?>
