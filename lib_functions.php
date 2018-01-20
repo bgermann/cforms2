@@ -95,10 +95,6 @@ function cforms2_enqueue_scripts() {
             wp_enqueue_style('cforms2');
         }
 
-        // add calendar
-        if ($cformsSettings['global']['cforms_datepicker'] == '1') {
-            cforms2_enqueue_script_datepicker();
-        }
         wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION);
         wp_localize_script('cforms2', 'cforms2_ajax', array(
             'url' => admin_url('admin-ajax.php'),
@@ -135,61 +131,6 @@ function cforms2_get_request_uri() {
             $request_uri = $_SERVER['PHP_SELF'];
     }
     return $request_uri;
-
-}
-
-function cforms2_enqueue_script_datepicker() {
-    $cformsSettings = get_option('cforms_settings');
-
-    cforms2_enqueue_jq_ui_theme();
-
-    wp_register_script('cforms-calendar', plugin_dir_url(__FILE__) . 'js/cforms.calendar.js', array('jquery', 'jquery-ui-datepicker'), CFORMS2_VERSION);
-    $day_names = explode(',', __('S,M,T,W,T,F,S', 'cforms2'));
-    $month_names = array(
-        __("January", 'cforms2'),
-        __("February", 'cforms2'),
-        __("March", 'cforms2'),
-        __("April", 'cforms2'),
-        __("May", 'cforms2'),
-        __("June", 'cforms2'),
-        __("July", 'cforms2'),
-        __("August", 'cforms2'),
-        __("September", 'cforms2'),
-        __("October", 'cforms2'),
-        __("November", 'cforms2'),
-        __("December", 'cforms2')
-    );
-    $dp_options = array_merge(array(
-        'buttonImageOnly' => true,
-        'showOn' => 'both',
-        'dayNamesMin' => $day_names,
-        'dayNamesShort' => $day_names,
-        'monthNames' => $month_names,
-        'firstDay' => get_option('start_of_week'),
-        'prevText' => __('Previous Month', 'cforms2'),
-        'nextText' => __('Next Month', 'cforms2'),
-        'closeText' => __('Close', 'cforms2'),
-        'buttonText' => __('Choose Date', 'cforms2'),
-        'buttonImage' => plugin_dir_url(__FILE__) . 'images/calendar.png'
-            ), $cformsSettings['global']['cforms_dp_nav']);
-    $dp_options['dateFormat'] = stripslashes($cformsSettings['global']['cforms_dp_date']);
-    wp_localize_script('cforms-calendar', 'cforms2_cal', $dp_options);
-    wp_enqueue_script('cforms-calendar');
-
-}
-
-function cforms2_enqueue_jq_ui_theme() {
-    global $wp_scripts;
-    $cformsSettings = get_option('cforms_settings');
-    $suffix = SCRIPT_DEBUG ? '' : '.min';
-
-    $jqui = $wp_scripts->query('jquery-ui-datepicker');
-    $theme = $cformsSettings['global']['cforms_jqueryuitheme'];
-    if (empty($theme)) {
-        $theme = 'smoothness';
-    }
-    wp_register_style('jquery-ui-theme', "https://ajax.googleapis.com/ajax/libs/jqueryui/$jqui->ver/themes/$theme/jquery-ui$suffix.css", false, $jqui->ver);
-    wp_enqueue_style('jquery-ui-theme');
 
 }
 

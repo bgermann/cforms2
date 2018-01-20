@@ -53,23 +53,23 @@ function cforms2_option_submission($no, &$cformsSettings) {
                 $emailtobox = true;
             }
 
-            if (isset($_POST['field_' . $i . '_required']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'datepicker', 'textarea', 'checkbox', 'multiselectbox', 'selectbox', 'emailtobox', 'upload', 'radiobuttons')))) {
+            if (isset($_POST['field_' . $i . '_required']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'textarea', 'checkbox', 'multiselectbox', 'selectbox', 'emailtobox', 'upload', 'radiobuttons')))) {
                 $required = 1;
             }
 
-            if (isset($_POST['field_' . $i . '_emailcheck']) && in_array($type, array('html5email', 'textfield', 'datepicker'))) {
+            if (isset($_POST['field_' . $i . '_emailcheck']) && in_array($type, array('html5email', 'textfield'))) {
                 $emailcheck = 1;
             }
 
-            if (isset($_POST['field_' . $i . '_clear']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'datepicker', 'textarea')))) {
+            if (isset($_POST['field_' . $i . '_clear']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textfield', 'textarea')))) {
                 $clear = 1;
             }
 
-            if (isset($_POST['field_' . $i . '_disabled']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'datepicker', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
+            if (isset($_POST['field_' . $i . '_disabled']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
                 $disabled = 1;
             }
 
-            if (isset($_POST['field_' . $i . '_readonly']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'datepicker', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
+            if (isset($_POST['field_' . $i . '_readonly']) && ((strpos($type, 'tml5') !== false) || in_array($type, array('pwfield', 'textarea', 'textfield', 'checkbox', 'checkboxgroup', 'multiselectbox', 'selectbox', 'radiobuttons', 'upload')))) {
                 $readonly = 1;
             }
 

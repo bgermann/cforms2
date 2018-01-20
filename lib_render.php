@@ -230,6 +230,8 @@ function cforms2($no = '', $customfields = array()) {
 
         $field_name = $field_stat[0];
         $field_type = $field_stat[1];
+        if ($field_type === 'datepicker')
+            $field_type = 'html5date';
         $field_required = $field_stat[2];
         $field_emailcheck = $field_stat[3];
         $field_clear = $field_stat[4];
@@ -377,7 +379,6 @@ function cforms2($no = '', $customfields = array()) {
                 $input_id = $input_name = 'cf_uploadfile' . $no . '-' . $i;
                 $field_class = 'upload';
                 break;
-            case "datepicker":
             case "textfield":
             case "pwfield":
                 $field_class = 'single';
@@ -509,7 +510,6 @@ function cforms2($no = '', $customfields = array()) {
                         $field = '';
                     break;
 
-                case "datepicker":
                 case "textfield":
                 case "pwfield":
                 case "html5color":
@@ -547,8 +547,6 @@ function cforms2($no = '', $customfields = array()) {
                         cforms2_dbg('......html5 attributes: ' . $h5);
                     } else
                         $type = ($field_type == 'pwfield') ? 'password' : 'text';
-
-                    $field_class = ($field_type == 'datepicker') ? $field_class . ' cf_date' : $field_class;
 
                     $onfocus = $field_clear ? ' onfocus="clearField(this)" onblur="setField(this)"' : '';
 

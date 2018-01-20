@@ -212,7 +212,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 cforms2_dbg("\t\t ...is required! check: current_field=$current_field");
 
                 if (in_array($field_type, array('html5color', 'html5date', 'html5datetime', 'html5datetime-local', 'html5email', 'html5month', 'html5number', 'html5range', 'html5search', 'html5tel', 'html5time', 'html5url', 'html5week',
-                            'pwfield', 'textfield', 'datepicker', 'textarea'))) {
+                            'pwfield', 'textfield', 'textarea'))) {
 
                     $validations[$i + $off] = $current_field != '';
                 } elseif ($field_type == "checkbox") {
@@ -252,7 +252,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             }
 
             // regexpression now outside of 'is required'
-            if (in_array($field_type, array('pwfield', 'textfield', 'datepicker', 'textarea'))) {
+            if (in_array($field_type, array('pwfield', 'textfield', 'textarea'))) {
 
                 // regexpression set for textfields?
                 $obj = explode('|', $c_title[0], 3);

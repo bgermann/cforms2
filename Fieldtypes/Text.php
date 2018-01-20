@@ -40,7 +40,6 @@ class Text extends MultiId {
         $types = array(
             'textfield' => array(__('Single line of text', 'cforms2'), false),
             'upload' => array(__('File Upload Box', 'cforms2'), false),
-            'datepicker' => array(__('Date Entry/Dialog', 'cforms2'), true),
             'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
             'pwfield' => array(__('Password Field', 'cforms2'), false),
             'hidden' => array(__('Hidden Field', 'cforms2'), false)

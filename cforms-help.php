@@ -101,32 +101,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
         <br style="clear:both;"/>
 
-        <p class="fieldtitle" id="datepicker">
-            <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
-            <?php _e('Javascript Date Picker', 'cforms2'); ?>
-        </p>
-        <table class="hf">
-            <tr>
-                <td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
-                <td class="bright"><?php printf(__('field name %1$s default value %1$s <a href="%2$s">regular expression</a>', 'cforms2'), '<span style="color:red; font-weight:bold;">|</span>', '#regexp'); ?></td>
-            </tr>
-            <tr>
-                <td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright">
-                    <code><?php
-                        _e('Arrival Date', 'cforms2');
-                        echo '|';
-                        echo cforms2_admin_date_format();
-                        ?>|^[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$</code></td>
-            </tr>
-            <tr>
-                <td class="ball" colspan="2">
-                    <?php printf(__('The example above will set a <em>default value</em> of "%s" so users know the expected format. The <strong>regexp</strong> at the end ensures that only this format is accepted. <strong>NOTE:</strong> You also need to <a href="%s" %s>configure the date picker options</a> to match the date format ("%s")!', 'cforms2'), cforms2_admin_date_format(), '?page=' . $plugindir . '/cforms-global-settings.php#datepicker', '', cforms2_admin_date_format()); ?>
-                </td>
-            </tr>
-        </table>
-
-        <br style="clear:both;"/>
-
         <p class="fieldtitle" id="single">
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
             <?php _e('Single, Password &amp; Multi line input fields', 'cforms2'); ?>

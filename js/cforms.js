@@ -325,8 +325,6 @@ function cforms_validate(no, directFormSubmission) {
             newclass = 'cformselect';
         else if (temp.match(/upload/))
             newclass = 'cf_upload';
-        else if (temp.match(/cf_date/))
-            newclass = 'single cf_date';
         else if (temp.match(/single/))
             newclass = 'single';
         else if (temp.match(/area/))

@@ -18,7 +18,6 @@
  */
 
 $cformsSettings = get_option('cforms_settings');
-$s = DIRECTORY_SEPARATOR;
 
 $style = $cformsSettings['global']['cforms_css'];
 
@@ -44,9 +43,6 @@ if (isset($_POST['no-css'])) {
 
 // Select new CSS?
 if (isset($_POST['chg_css'])) {
-
-    $uitheme = $_POST['jqueryuitheme'];
-    $cformsSettings['global']['cforms_jqueryuitheme'] = $uitheme;
 
     $newstyle = $_POST['style'];
     if (strpos($newstyle, 'cforms-custom/') !== false)
@@ -77,10 +73,9 @@ if (isset($_POST['chg_css'])) {
                                     <?php
                                     // include all css files
                                     $d = plugin_dir_path(__FILE__) . "styling";
-                                    $dCustom = plugin_dir_path(__FILE__) . "..{$s}cforms-custom";
+                                    $dCustom = plugin_dir_path(__FILE__) . ".." . DIRECTORY_SEPARATOR . "cforms-custom";
 
-                                    $exists = file_exists($d);
-                                    if ($exists == false)
+                                    if (!file_exists($d))
                                         echo '<p><strong>' . __('Please make sure that the <code>/styling</code> folder exists in the cforms plugin directory!', 'cforms2') . '</strong></p>';
 
                                     else {
@@ -130,10 +125,6 @@ if (isset($_POST['chg_css'])) {
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="jqueryuitheme"><a href="http://jqueryui.com/themeroller/#themeGallery"><?php _e('jQuery UI theme', 'cforms2'); ?> </a></label></td>
-                                <td><input type="text" name="jqueryuitheme" id="jqueryuitheme" value="<?php echo $cformsSettings['global']['cforms_jqueryuitheme']; ?>" /></td>
-                            </tr>
-                            <tr>
                                 <td></td>
                                 <td><input type="submit" name="chg_css" class="allbuttons stylebutton" value="<?php _e('Select Style &raquo;', 'cforms2'); ?>" /></td>
                             </tr>
@@ -151,17 +142,6 @@ if (isset($_POST['chg_css'])) {
                             </tr>
 
                         </table>
-                    </td>
-
-                    <td>
-                        <?php
-                        if ($exists) {
-
-                            $existsjpg = file_exists($d . '/' . $style . '.jpg');
-                            if ($existsjpg)
-                                echo __('PREVIEW:', 'cforms2') . '<br /><img height="228" width="300" src="' . plugin_dir_url(__FILE__) . 'styling/' . $style . '.jpg' . '" alt="' . __('Theme Preview', 'cforms2') . '" title="' . __('Theme Preview', 'cforms2') . ': ' . $style . '"/>';
-                        }
-                        ?>
                     </td>
 
                 </tr>

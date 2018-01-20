@@ -358,8 +358,10 @@ for ($i = 1; $i <= $field_count; $i++) {
 
 
     // convert old CAPTCHAs
-    if ($field_type == 'verification')
+    if ($field_type === 'verification')
         $field_type = 'cforms2_question_and_answer';
+    if ($field_type === 'datepicker')
+        $field_type = 'html5date';
 
     switch ($field_type) {
         case 'emailtobox':
@@ -407,7 +409,6 @@ for ($i = 1; $i <= $field_count; $i++) {
 
                     $out .= '<optgroup label="' . __('--------- Special ------------', 'cforms2') . '">';
 
-                    $out .= $field_types['datepicker']->render_form_option($field_type === 'datepicker', $cformsSettings['global']['cforms_datepicker'] != '1');
                     $out .= $field_types['ccbox']->render_form_option($field_type === 'ccbox', $ccboxused && $field_type !== 'ccbox');
                     $out .= $field_types['emailtobox']->render_form_option($field_type === 'emailtobox', $emailtoboxused && $field_type !== 'emailtobox');
 
@@ -442,19 +443,19 @@ for ($i = 1; $i <= $field_count; $i++) {
 
 
                     $out .= '<input tabindex="' . ($ti++) . '" class="allchk fieldclear chkfld" type="checkbox" title="' . __('clear field', 'cforms2') . '" name="field_' . ($i) . '_clear"' . ($field_clear == '1' ? ' checked="checked"' : '');
-                    if (!((strpos($field_type, 'tml5') !== false) || in_array($field_type, array('pwfield', 'textarea', 'textfield', 'datepicker'))))
+                    if (!((strpos($field_type, 'tml5') !== false) || in_array($field_type, array('pwfield', 'textarea', 'textfield'))))
                         $out .= ' disabled="disabled"';
                     $out .= '/>';
 
 
                     $out .= '<input tabindex="' . ($ti++) . '" class="allchk fielddisabled chkfld" type="checkbox" title="' . __('disabled', 'cforms2') . '" name="field_' . ($i) . '_disabled"' . ($field_disabled == '1' ? ' checked="checked"' : '');
-                    if (!((strpos($field_type, 'tml5') !== false) || in_array($field_type, array('pwfield', 'textarea', 'textfield', 'datepicker', 'checkbox', 'checkboxgroup', 'selectbox', 'multiselectbox', 'radiobuttons', 'upload'))))
+                    if (!((strpos($field_type, 'tml5') !== false) || in_array($field_type, array('pwfield', 'textarea', 'textfield', 'checkbox', 'checkboxgroup', 'selectbox', 'multiselectbox', 'radiobuttons', 'upload'))))
                         $out .= ' disabled="disabled"';
                     $out .= '/>';
 
 
                     $out .= '<input tabindex="' . ($ti++) . '" class="allchk fieldreadonly chkfld" type="checkbox" title="' . __('read-only', 'cforms2') . '" name="field_' . ($i) . '_readonly"' . ($field_readonly == '1' ? ' checked="checked"' : '');
-                    if (!((strpos($field_type, 'tml5') !== false) || in_array($field_type, array('pwfield', 'textarea', 'textfield', 'datepicker', 'checkbox', 'checkboxgroup', 'selectbox', 'multiselectbox', 'radiobuttons', 'upload'))))
+                    if (!((strpos($field_type, 'tml5') !== false) || in_array($field_type, array('pwfield', 'textarea', 'textfield', 'checkbox', 'checkboxgroup', 'selectbox', 'multiselectbox', 'radiobuttons', 'upload'))))
                         $out .= ' disabled="disabled"';
                     $out .= '/>';
 

@@ -44,23 +44,10 @@ if (isset($_POST['SubmitOptions']))
         }
     } else {
 
-        $cforms_dp_nav = stripslashes(cforms2_get_from_request('cforms_dp_nav'));
-        if (empty($cforms_dp_nav)) {
-            $cforms_dp_nav = array();
-        } else {
-            $cforms_dp_nav = json_decode($cforms_dp_nav, true);
-            if ($cforms_dp_nav === null) {
-                // As WordPress has a compatibility layer, json_last_error_msg (PHP >= 5.5) can be used
-                $cforms_dp_nav = array("ERROR" => json_last_error_msg());
-            }
-        }
-        $cformsSettings['global']['cforms_dp_nav'] = $cforms_dp_nav;
         $cformsSettings['global']['cforms_html5'] = cforms2_get_boolean_from_request('cforms_html5');
         $cformsSettings['global']['cforms_show_quicktag'] = cforms2_get_boolean_from_request('cforms_show_quicktag');
         $cformsSettings['global']['cforms_sec_qa'] = cforms2_get_from_request('cforms_sec_qa');
         $cformsSettings['global']['cforms_codeerr'] = cforms2_get_from_request('cforms_codeerr');
-        $cformsSettings['global']['cforms_datepicker'] = cforms2_get_boolean_from_request('cforms_datepicker');
-        $cformsSettings['global']['cforms_dp_date'] = cforms2_get_from_request('cforms_dp_date');
 
         $cformsSettings['global']['cforms_inexclude']['ex'] = '';
 
@@ -119,32 +106,6 @@ if (isset($_POST['SubmitOptions']))
                     </table>
                 </div>
             </fieldset>
-
-            <fieldset id="popupdate" class="cformsoptions">
-                <h3 class="cflegend"><?php _e('Popup Date Picker', 'cforms2') ?></h3>
-
-                <div class="cf-content">
-                    <p><?php printf(__('If you\'d like to offer a Javascript based date picker for more convenient date entry, enable this feature here. This will add a <strong>new input field</strong> for you to add to your form. See <a href="%s" %s>Help!</a> for more info and <strong>date formats</strong>.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#datepicker', '') ?></p>
-
-                    <table class="form-table">
-                        <tr class="ob">
-                            <td class="obL">&nbsp;</td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_datepicker" name="cforms_datepicker" <?php if ($cformsSettings['global']['cforms_datepicker'] == "1") echo "checked=\"checked\""; ?>/><label for="cforms_datepicker"><strong><?php _e('Enable Javascript date picker', 'cforms2') ?></strong></label> <a class="infobutton" href="#" name="it10"><?php _e('Note &raquo;', 'cforms2'); ?></a></td>
-                        </tr>
-                        <tr id="it10" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('Note that turning on this feature will result in loading an additional Javascript file to support the date picker.', 'cforms2') ?></td></tr>
-
-                        <tr class="ob space15">
-                            <td class="obL"><label for="cforms_dp_date"><strong><?php _e('Date Format', 'cforms2'); ?></strong></label></td>
-                            <td class="obR"><input type="text" id="cforms_dp_date" name="cforms_dp_date" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['global']['cforms_dp_date'])); ?>"/><a href="http://api.jqueryui.com/datepicker/#utility-formatDate"><?php _e('See supported date formats &raquo;', 'cforms2'); ?></a></td>
-                        </tr>
-                        <tr class="ob">
-                            <td class="obL"><label for="cforms_dp_nav"><strong><a href="http://api.jqueryui.com/datepicker/"><?php _e('Additional options (JSON)', 'cforms2') ?></a></strong></label></td>
-                            <td class="obR"><textarea name="cforms_dp_nav" id="cforms_dp_nav" placeholder="{ &quot;changeYear&quot; : true }"><?php echo htmlspecialchars(json_encode($cformsSettings['global']['cforms_dp_nav'], JSON_PRETTY_PRINT)) ?></textarea></td>
-                        </tr>
-                    </table>
-                </div>
-            </fieldset>
-
 
             <fieldset id="smtp" class="cformsoptions">
                 <h3 class="cflegend"><?php _e('Mail Server Settings', 'cforms2') ?></h3>

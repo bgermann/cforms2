@@ -111,7 +111,7 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 = Can I use cformsII with Content Security Policy enabled? =
 
-You can. Most of the JavaScript is included in the HTML head. The only form feature depending on inline scripting is redirection to an alternative success page. On the Dashboard there is an inline script for the WordPress editor button. If you have the JavaScript date picker enabled, some CSS is loaded from ajax.googleapis.com.
+You can. Most of the JavaScript is included in the HTML head. The only form feature depending on inline scripting is redirection to an alternative success page. On the Dashboard there is an inline script for the WordPress editor button.
 
 
 == Upgrade Notice ==
@@ -170,6 +170,7 @@ GPL compliance!
 * bugfix:   do not behave differently for 0 as for any other default value
 * other:    remove tracking database and its view
 * other:    remove track_cforms capability
+* other:    remove JavaScript date picker
 * other:    remove all deprecated features and warnings about their usage
 
 = 14.14 =
