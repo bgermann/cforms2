@@ -591,7 +591,7 @@ function cforms2($no = '', $customfields = array()) {
                     $opt[] = "";
                     if (!empty($options[1])) {
                         $before = '<li' . $liID . ' class="' . $liERR . '">' . $insertErr;
-                        $after = '<label' . $labelID . ' for="' . $input_id . '" class="cf-after' . $err . '"><span>' . $options[1] . '</span></label></li>';
+                        $after = '<label' . $labelID . ' for="' . $input_id . '" class="cf-after' . $err . '"><span>' . $opt[0] . '</span></label></li>';
                         $ba = 'a';
                     } else {
                         $before = '<li' . $liID . ' class="' . $liERR . '">' . $insertErr . '<label' . $labelID . ' for="' . $input_name . '" class="cf-before' . $err . '"><span>' . $opt[0] . '</span></label>';
