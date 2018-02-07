@@ -90,7 +90,7 @@ function cforms2_enqueue_scripts() {
 
     if ($onPages == '' || (in_array($page_obj->ID, $onPagesA) && !$exclude) || (!in_array($page_obj->ID, $onPagesA) && $exclude)) {
 
-        if ($cformsSettings['global']['cforms_no_css'] != '1') {
+        if ($cformsSettings['global']['cforms_css']) {
             wp_register_style('cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION);
             wp_enqueue_style('cforms2');
         }
@@ -116,7 +116,6 @@ function cforms2_menu() {
 
     add_submenu_page($o, __('Form Settings', 'cforms2'), __('Form Settings', 'cforms2'), 'manage_cforms', $o);
     add_submenu_page($o, __('Global Settings', 'cforms2'), __('Global Settings', 'cforms2'), 'manage_cforms', $p . 'cforms-global-settings.php');
-    add_submenu_page($o, __('Styling', 'cforms2'), __('Styling', 'cforms2'), 'manage_cforms', $p . 'cforms-css.php');
     add_submenu_page($o, __('Help!', 'cforms2'), __('Help!', 'cforms2'), 'manage_cforms', $p . 'cforms-help.php');
 
 }
@@ -163,12 +162,12 @@ function cforms2_admin_enqueue_scripts() {
 
 /** plugin uninstalled? */
 function cforms2_check_erased() {
-    if (count(Cforms2\FormSettings::forms()) == '') {
+    if (count(Cforms2\FormSettings::forms()) === 0) {
         echo '<div class="wrap"><h2>'
         . __('All cforms data has been erased!', 'cforms2')
         . '</h2>'
-        . '<p class="ex" style="padding:5px 35px 10px 41px;">' . __('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') . '</p>'
-        . '<p class="ex" style="padding:5px 35px 10px 41px;">' . __('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms2') . '</p>'
+        . '<p class="ex">' . __('Please go to your <strong>Plugins</strong> tab and either disable the plugin, or toggle its status (disable/enable) to revive cforms!', 'cforms2') . '</p>'
+        . '<p class="ex">' . __('In case disabling/enabling doesn\'t seem to properly set the plugin defaults, try login out and back in and <strong>don\'t select the checkbox for activation</strong> on the plugin page.', 'cforms2') . '</p>'
         . '</div>';
         return true;
     }

@@ -43,11 +43,11 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <div class="cf-content">
         <p><?php _e('Admittedly, <strong>cforms</strong> is not the easiest form mailer plugin but it may be the most flexible. The below outline should help you get started with the default form.', 'cforms2'); ?></p>
-        <ol style="margin:10px 0 0 100px;">
+        <ol>
             <li><?php printf(__('First take a look at the <a href="%s">default form</a>', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchorfields'); ?>
-                <ul style="margin:10px 0 0 30px;">
-                    <li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms2'); ?> <img style="vertical-align:middle;" src="<?php echo plugin_dir_url(__FILE__); ?>images/move.png" alt="" title=""/>?</li>
-                    <li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms2'); ?> &nbsp;<button type="button" name="wrench" style="vertical-align:middle;" disabled="disabled" class="wrench">&#xF111;</button> </li>
+                <ul style="margin-left:20px">
+                    <li><?php _e('Verify that it contains all the fields you need, are they in the right order', 'cforms2'); ?> <img src="<?php echo plugin_dir_url(__FILE__); ?>images/move.png" alt="" />?</li>
+                    <li><?php _e('Check the field labels (field names), if needed make your adjustments', 'cforms2'); ?> <button type="button" name="wrench" disabled="disabled" class="wrench">&#xF111;</button> </li>
                     <li><?php _e('Check the flags for each field (check boxes to the right).', 'cforms2'); ?></li>
                     <li><?php printf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'), '#qa', '', 'https://wordpress.org/plugins/cforms2-really-simple-captcha/', '', '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', ''); ?></li>
                 </ul>
@@ -86,16 +86,13 @@ $plugindir = dirname(plugin_basename(__FILE__));
                 <td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php _e('Please make sure...', 'cforms2'); ?>|mytextclass|font-size:9x; font-weight:bold;</code></td>
             </tr>
             <tr>
-                <td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php printf(__('Check %s here %s for more info. %s', 'cforms2'), '&lt;a href="http://mysite.com"&gt;', '&lt;/a&gt;', '||font-size:9x;'); ?></code></td>
+                <td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php printf(__('Check %s here %s for more info. %s', 'cforms2'), '&lt;a href="http://example.com"&gt;', '&lt;/a&gt;', '||font-size:9x;'); ?></code></td>
             </tr>
             <tr>
                 <td class="ball" colspan="2"><?php _e('HTML: the <code>text paragraph</code> supports HTML. If you need actual &lt;, &gt; in your text please use the proper HTML entity.', 'cforms2'); ?></td>
             </tr>
             <tr>
                 <td class="ball" colspan="2"><?php _e('The above expression applies the custom class "<code>mytextclass</code>" <strong>AND</strong> the specific styles "<code>font-size:9x; font-weight:bold;</code>" to the paragraph.', 'cforms2'); ?></td>
-            </tr>
-            <tr>
-                <td class="ball" colspan="2"><?php printf(__('If you specify a <code>css class</code>, you also need to define it in your current form theme file, <a href="%s">here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></td>
             </tr>
         </table>
 
@@ -787,7 +784,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <tr>
                 <td class="ball">
                     <strong><?php _e('Output:', 'cforms2'); ?></strong><br />
-                    <?php echo '<p>' . __('John Doe just submitted MY NEW FORM. You can get in touch with him/her via <a href="mailto:#">john.doe@doe.com</a> and might want to check out his/her web page at <a href="#">http://website.com</a>', 'cforms2') . '</p>'; ?>
+                    <?php echo '<p>' . __('John Doe just submitted MY NEW FORM. You can get in touch with him/her via <a href="mailto:#">john.doe@doe.com</a> and might want to check out his/her web page at <a href="#">http://example.com</a>', 'cforms2') . '</p>'; ?>
                     <?php echo '<p>' . __('The message is:', 'cforms2') . '<br />'; ?>
                     <?php echo __('Hey there! Just wanted to get in touch. Give me a ring at 555-...', 'cforms2') . '</p>'; ?>
                 </td>
@@ -849,7 +846,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
             </tr>
         </table>
 
-        <table class="hf" style="margin-top:10px;">
+        <table class="hf">
             <tr>
                 <td class="bright" colspan="2"><strong><?php _e('Example (eg. using 3 forms):', 'cforms2'); ?></strong></td>
             </tr>
@@ -878,7 +875,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
         </table>
 
         <p class="ex"><strong><?php _e('Important Notes:', 'cforms2'); ?></strong></p>
-        <ul style="margin-top:10px;">
+        <ul>
             <li><?php printf(__('Accessing %1$s {custom variables} %2$s in the final form differs from how you would reference these in individual forms; e.g. %1$s{Email}%2$s would become %1$s{cf_form_Email}%2$s (for form 1) or %1$s{cf_formN_Email}%2$s (for form N).', 'cforms2'), '<strong>', '</strong>'); ?></li>
             <li><?php printf(__('Once the multi-part form support is enabled, %1$sAJAX is being disabled%2$s for this form.', 'cforms2'), '<strong>', '</strong>'); ?></li>
         </ul>
@@ -889,7 +886,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
     <h3 class="cflegend" id="css"><?php _e('Styling your forms', 'cforms2') ?></h3>
 
     <div class="cf-content">
-        <p><?php printf(__('Please see the <a href="%s">Styling page</a> for theme selection.', 'cforms2'), '?page=' . $plugindir . '/cforms-css.php'); ?></p>
         <p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
         <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
         <p class="ex"><?php _e('Your form does not look like the preview image or your individual changes do not take effect? Check your global WP theme CSS! It may overwrite some or many cforms CSS declarations.', 'cforms2'); ?></p>

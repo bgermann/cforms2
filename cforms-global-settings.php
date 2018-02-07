@@ -23,10 +23,10 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
 cforms2_check_access_priv();
 
-
-// if all data has been erased quit
 if (cforms2_check_erased())
     return;
+
+$style = $cformsSettings['global']['cforms_css'];
 
 // Update Settings
 if (isset($_POST['SubmitOptions']))
@@ -67,6 +67,14 @@ if (isset($_POST['SubmitOptions']))
 
         $cformsSettings['global']['cforms_captcha_def']['foqa'] = cforms2_get_from_request('cforms_cap_foqa');
 
+        $newstyle = cforms2_get_from_request('style');
+        if ($newstyle === 'no-css')
+            $newstyle = null;
+        elseif (strpos($newstyle, 'cforms-custom/') !== false)
+            $newstyle = '../../' . $newstyle;
+        $cformsSettings['global']['cforms_css'] = $newstyle;
+        $style = $cformsSettings['global']['cforms_css'];
+
         update_option('cforms_settings', $cformsSettings);
     }
 ?>
@@ -85,7 +93,77 @@ if (isset($_POST['SubmitOptions']))
 
             <p><?php _e('All settings and configuration options on this page apply to all forms.', 'cforms2') ?></p>
 
-            <fieldset id="inandexclude" class="cformsoptions">
+            <fieldset class="cformsoptions" id="selectcss">
+                <h3 class="cflegend"><?php _e('Styling your forms', 'cforms2') ?></h3>
+
+                <div class="cf-content">
+                    <p><?php _e('Please select a theme file that comes closest to what you\'re looking for.', 'cforms2') ?></p>
+
+                    <table class="form-table">
+                        <tr class="ob">
+                            <td class="obL"><?php _e('Please choose a theme file to style your forms', 'cforms2') ?></td>
+                            <td class="obR">
+                                <?php
+                                // include all css files
+                                $d = plugin_dir_path(__FILE__) . "styling";
+                                $dCustom = plugin_dir_path(__FILE__) . ".." . DIRECTORY_SEPARATOR . "cforms-custom";
+
+                                if (!file_exists($d))
+                                    echo '<p><strong>' . __('Please make sure that the <code>/styling</code> folder exists in the cforms plugin directory!', 'cforms2') . '</strong></p>';
+
+                                else {
+                                    ?>
+                                <select name="style"><?php
+                                        $selected = $style ? '' : 'selected="selected" ';
+                                        echo '<option ' . $selected . 'value="no-css">' . __('Deactivate CSS styling altogether!', 'cforms2') . '</option>';
+                                        if (file_exists($dCustom)) {
+                                            echo '<option disabled="disabled">&nbsp;&nbsp;*** ' . __('custom css files', 'cforms2') . ' ***&nbsp;&nbsp;</option>';
+
+                                            // customer CSS files
+                                            $allcustomCSS = array();
+                                            $dir = opendir($dCustom);
+                                            while ($dir && ($f = readdir($dir))) {
+                                                if (preg_match("/\.css$/i", $f)) {
+
+                                                    array_push($allcustomCSS, $f);
+                                                }
+                                            }
+                                            sort($allcustomCSS);
+                                            foreach ($allcustomCSS as $f) {
+                                                if (strpos($style, $f) !== false)
+                                                    echo '<option selected="selected" value="cforms-custom/' . $f . '">' . $f . '</option>' . "\n";
+                                                else
+                                                    echo '<option value="cforms-custom/' . $f . '">' . $f . '</option>';
+                                            }
+
+                                            echo '<option disabled="disabled">&nbsp;&nbsp;*** ' . __('cform css files', 'cforms2') . ' ***&nbsp;&nbsp;</option>';
+                                        }
+
+                                        // core CSS files
+                                        $allCSS = array();
+                                        $dir = opendir($d);
+                                        while ($dir && ($f = readdir($dir))) {
+                                            if (preg_match("/\.css$/i", $f)) {
+                                                array_push($allCSS, $f);
+                                            }
+                                        }
+                                        sort($allCSS);
+                                        foreach ($allCSS as $f) {
+                                            if ($f == $style)
+                                                echo '<option selected="selected" value="' . $f . '">' . $f . '</option>' . "\n";
+                                            else
+                                                echo '<option value="' . $f . '">' . $f . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </fieldset>
+
+            <fieldset class="cformsoptions" id="inandexclude">
                 <h3 class="cflegend"><?php _e('Include cforms header data only on specific pages', 'cforms2') ?></h3>
 
                 <div class="cf-content">
@@ -107,7 +185,7 @@ if (isset($_POST['SubmitOptions']))
                 </div>
             </fieldset>
 
-            <fieldset id="smtp" class="cformsoptions">
+            <fieldset class="cformsoptions" id="smtp">
                 <h3 class="cflegend"><?php _e('Mail Server Settings', 'cforms2') ?></h3>
 
                 <div class="cf-content">
@@ -124,7 +202,7 @@ if (isset($_POST['SubmitOptions']))
             </fieldset>
 
 
-            <fieldset id="upload" class="cformsoptions">
+            <fieldset class="cformsoptions" id="upload">
                 <h3 class="cflegend"><?php _e('Global File Upload Settings', 'cforms2') ?></h3>
 
                 <div class="cf-content">
@@ -177,7 +255,7 @@ if (isset($_POST['SubmitOptions']))
             </fieldset>
 
 
-            <fieldset id="wpeditor" class="cformsoptions">
+            <fieldset class="cformsoptions" id="wpeditor">
                 <h3 class="cflegend"><?php _e('WP Editor Button support', 'cforms2') ?></h3>
 
                 <div class="cf-content">
@@ -191,7 +269,7 @@ if (isset($_POST['SubmitOptions']))
                 </div>
             </fieldset>
 
-            <fieldset id="visitorv" class="cformsoptions">
+            <fieldset class="cformsoptions" id="visitorv">
                 <h3 class="cflegend"><?php _e('Visitor Verification Settings (Q&amp;A)', 'cforms2') ?></h3>
 
                 <div class="cf-content">
@@ -231,10 +309,10 @@ if (isset($_POST['SubmitOptions']))
 
 <?php } ?>
 
-        <div class="cf_actions" id="cf_actions" style="display:none;">
+        <div id="cf_actions">
             <input id="cfbar-showinfo" class="allbuttons addbutton" type="submit" name="showinfo" value=""/>
             <input id="cfbar-deleteall" class="allbuttons deleteall" type="button" name="deleteallbutton" value=" "/>
-            <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
+            <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton" value="" />
         </div>
 
     </form>

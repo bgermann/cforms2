@@ -1,11 +1,11 @@
 /****************************************************************
-  menubar
+  MENUBAR
 *****************************************************************/
-
 #wpadminbar #wp-admin-bar-cforms-bar {
     margin-left:100px;
     border-left:1px solid #555;
 }
+
 #wpadminbar #wp-admin-bar-cforms-bar > .ab-item {
     background-repeat:no-repeat;
     background-image:url(images/cformsicon.png);
@@ -14,6 +14,7 @@
     border-left:1px solid #333;
     color:#f8f8f8;
 }
+
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions.hover > a,
 #wpadminbar #wp-admin-bar-cforms-bar.hover > .ab-item {
     color:#333;
@@ -22,22 +23,25 @@
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions {
     border-right:1px solid #555;
 }
+
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions > a {
     color:#f8f8f8;
     border-right:1px solid #333;
 }
+
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions.hiLightBar {
     background-color:#6a3737;
     background-color:rgba(255, 0, 0, 0.2);
 }
+
 #wpadminbar #wp-admin-bar-cforms-SubmitOptions.hiLightBar > a {
-    color:#E14040;
+    color:#e14040;
     font-weight:bold;
 }
+
 /****************************************************************
   GENERAL
 *****************************************************************/
-
 .wrap {
     font-size:12px;
     overflow:hidden;
@@ -45,17 +49,6 @@
 
 .corruptedsettings h3 {
     margin:2em 0 0;
-}
-
-a.helptop {
-    font-size:8px;
-    line-height:1em;
-    float:right;
-    margin-top:13px;
-    margin-right:8px;
-    color:#888;
-    text-decoration:none;
-    border-bottom:1px solid #2583AD;
 }
 
 .corruptedsettings textarea {
@@ -71,13 +64,13 @@ a.helptop {
     padding:2px 10px 4px;
 }
 
-ul.ex,p.ex,.form-table td.ex {
+ul.ex, p.ex, .form-table td.ex {
     padding:2px 35px 10px 0;
     font-size:11px;
     line-height:17px;
-    text-align:justify;
 }
-ul.ex:before,p.ex:before,.form-table td.ex:before {
+
+ul.ex:before, p.ex:before, .form-table td.ex:before {
     content:"\f348";
     font-family:dashicons;
     font-size:40px;
@@ -87,7 +80,7 @@ ul.ex:before,p.ex:before,.form-table td.ex:before {
 }
 
 span.abbr {
-    text-decoration:underline dotted;
+    text-decoration:underline;
     cursor:help;
 }
 
@@ -101,7 +94,7 @@ span.abbr {
 }
 
 /****************************************************************
-  buttons
+  BUTTONS
 *****************************************************************/
 input {
     line-height:1em;
@@ -112,7 +105,6 @@ input {
 a.allbuttons,
 input.allbuttons {
     color:#333;
-
     line-height:16px;
     padding:2px 8px;
     font-size:12px;
@@ -120,10 +112,10 @@ input.allbuttons {
     cursor:pointer;
     min-width:2em;
     text-decoration:none;
-
     background:#f7f7f7 linear-gradient(0deg, #f7f7f7, #e2e2e2);
     border:1px solid #cfcfcf;
 }
+
 .cf_ed_main .allbuttons:focus,
 a.allbuttons:focus,
 input.allbuttons:focus,
@@ -132,24 +124,24 @@ a.allbuttons:hover,
 input.allbuttons:hover {
     color:black;
     border-color:#999;
-    background:#fdfdfd linear-gradient(0deg, #ffffff, #e6e6e6);
+    background:#fdfdfd linear-gradient(0deg, white, #e6e6e6);
 }
 
-input.addbutton,input.dupbutton {
+input.addbutton, input.dupbutton {
     background:#cefcba linear-gradient(0deg, #cefcba, #b1f591);
-    border:1px solid #9CD37E;
-    text-shadow:#fff 0 1px 0;
+    border:1px solid #9cd37e;
 }
+
 input.addbutton:focus, input.dupbutton:focus,
 input.addbutton:hover, input.dupbutton:hover {
     background:#e6f9de linear-gradient(0deg, #f9f9f9, #b1f591);
     border:1px solid #82b06a;
 }
 
-a.deleteall ,
+a.deleteall,
 input.deleteall {
     background:#d47674 !important;
-    border:1px solid #963F43;
+    border:1px solid #963f43;
     color:#fafafa;
 }
 
@@ -158,48 +150,11 @@ input.deleteall {
     background:#f7f7f7 linear-gradient(0deg, #f7f7f7, #c1c1c1);
     border:1px solid #4a7581;
 }
+
 .chgformbox input.chgbutton:focus,
 .chgformbox input.chgbutton:hover {
-    border-color:#666;
+    border-color:#777;
     background:#f7f7f7;
-    box-shadow:0 0 2px #666;
-}
-.chgformbox input.chgbuttonhi {
-    color:#fff;
-    text-shadow:#000 0 -1px 0;
-    background:#31555e linear-gradient(0deg, #31555e, #40727c);
-    border:1px solid;
-}
-
-input.updbutton {
-}
-
-input.formupd {
-    margin-top:3px;
-}
-
-* html .wrap input {
-    padding:6px 3px 4px;
-}
-
-*+html .wrap input {
-    padding:6px 3px 4px;
-}
-
-* html .wrap input.allbuttons {
-    padding:2px 8px;
-}
-
-* html .wrap input.updbutton {
-    margin-top:4px;
-}
-
-*+html .wrap input.allbuttons {
-    padding:2px 8px;
-}
-
-*+html .wrap input.updbutton {
-    margin-top:4px;
 }
 
 .cf_ed_main input.allchk {
@@ -207,15 +162,12 @@ input.formupd {
     background:none;
 }
 
-/****************************************************************
-  styling options
-*****************************************************************/
 input.stylebutton {
     width:158px;
 }
 
 /****************************************************************
-  form settings
+  FORM SETTINGS
 *****************************************************************/
 .mainoptions, .chgformbox {
     margin:10px 0 0;
@@ -224,10 +176,8 @@ input.stylebutton {
     line-height:34px;
     margin:5px 0 0;
     padding:0;
-
     background:#87b9c6 linear-gradient(0deg, #87b9c6, #3d7b8e);
-
-    border:1px solid #28758C;
+    border:1px solid #28758c;
     border-radius:3px;
 }
 
@@ -247,10 +197,6 @@ input.stylebutton {
     width:100%;
 }
 
-.mainoptions label,.mainoptions input,.chgformbox select,.chgformbox input {
-    vertical-align:middle!important;
-}
-
 #anchorfields {
     border-top:0;
     padding-top:10px;
@@ -258,18 +204,18 @@ input.stylebutton {
 
 .bignumber {
     font-size:18px;
-    text-shadow:white 0 1px 0;
     color:#464646;
 }
+
 .navbar {
     color:white;
-    text-shadow:#555 0 -1px 0;
     font-size:20px;
 }
+
 #pickform {
     padding:0px 0 0 2px;
     height:2em;
-    border:1px solid #28758C;
+    border:1px solid #28758c;
 }
 
 #cforms_fname {
@@ -282,23 +228,12 @@ input.stylebutton {
     background:#fafafa;
 }
 
-.installNote {
-    color:#666;
-    font-size:11px;
-    margin:0;
-    padding:0 35px 2px 40px;
-}
-
 p.addfieldbox {
     margin:20px auto 10px;
     padding:5px;
     text-align:center;
     width:800px;
     clear:both;
-}
-
-p.addfieldbox input, #wpcontent p.addfieldbox select.addfieldno {
-    vertical-align:middle;
 }
 
 select.addfieldno,
@@ -309,7 +244,7 @@ input.addfieldno {
     margin:0 8px 0 5px;
     text-align:center;
     padding:2px 0;
-    background:#fff;
+    background:white;
     color:#111;
     font-size:11px;
 }
@@ -322,24 +257,24 @@ select.addfieldno {
 }
 
 input.addfieldno:active {
-    background:#aaa!important;
+    background:#aaa !important;
 }
 
 input.addfieldno:focus {
-    background:#fff!important;
+    background:white !important;
 }
 
 #cformswarning {
     font-size:11px;
     line-height:17px;
-
+    display:none;
     color:#b3424e;
     letter-spacing:2px;
     text-align:left;
 }
 
 /****************************************************************
-  HIDE blocks
+  HIDE BLOCKS
 *****************************************************************/
 .blindminus,.blindplus {
     overflow:hidden;
@@ -353,20 +288,21 @@ input.addfieldno:focus {
     border-right:1px solid gray;
     text-decoration:none;
 }
+
 .blindplus:before {
     content:"\f140";
 }
+
 .blindminus:before {
     content:"\f142";
 }
 
-#o0,#o1,#o2,#o3,#o4,#o5,#o6,#o7,#o8,#o9,#o10,#o11,#o12,#o13,#o14,#o15,#o16,
-#o17,#o18,#o19,#o20,#o20,#o21,#o22,#o23,#o24,#o25,#o26,#o27,#o28,#o29,#o30 {
-    padding-bottom:10px;
+#cf_actions {
+    display: none;
 }
 
 /****************************************************************
-  Docking Boxes core CSS: YOU MUST NOT CHANGE OR OVERRIDE THESE
+  DOCKING BOXES CORE
 *****************************************************************/
 .tableheader {
     margin:25px auto 2px;
@@ -375,7 +311,6 @@ input.addfieldno:focus {
 }
 
 .tableheader div {
-    vertical-align:bottom;
     text-align:center;
 }
 
@@ -410,16 +345,17 @@ input.addfieldno:focus {
     font-weight:normal;
     font-size:11px;
     width:300px;
-    background:#fff;
+    background:white;
     border:0;
     padding:5px;
     display:inline-block;
-    box-sizing:border-box!important;
+    box-sizing:border-box !important;
 }
+
 #pickform:focus,
 #cforms_fname:focus,
 #wpcontent select.fieldtype:focus, .itemContent input.inpfld:focus {
-    border-left:2px solid #2244ED;
+    border-left:2px solid #2244ed;
 }
 
 #wpcontent select.fieldtype {
@@ -467,8 +403,9 @@ option.disabled {
     background-color:#f0f0f0;
     color:#999;
 }
+
 option.disabled.title {
-    color:#666666;
+    color:#777;
     background-color:#ccc;
 }
 
@@ -479,26 +416,26 @@ input[type="checkbox"].fieldreadonly, input[type="checkbox"].fieldclear {
     height:13px;
     padding:0;
 }
+
 input[type="checkbox"]:focus, input[type="radio"]:focus {
-    outline:1px solid #2244ED;
+    outline:1px solid #2244ed;
 }
 
 .alternate, .rowalt, .rowalt input[type="checkbox"].fieldisreq,
 .rowalt input[type="checkbox"].fieldisemail, .rowalt input[type="checkbox"].fielddisabled,
 .rowalt input[type="checkbox"].fieldreadonly, .rowalt input[type="checkbox"].fieldclear {
-    background-color:#eee!important;
+    background-color:#eee !important;
 }
 
-.itemContent span,.itemContent strong,.itemContent a,.itemContent img,.itemContent input,.itemContent select {
-    vertical-align:middle!important;
+.itemContent * {
+    vertical-align:middle;
 }
 
 #dragHelper {
-    background:#fce0cf!important;
+    background:#fce0cf !important;
 }
 
 .itemContent {
-    vertical-align:top;
     overflow:hidden;
 }
 
@@ -512,17 +449,6 @@ input[type="checkbox"]:focus, input[type="radio"]:focus {
     margin:1px 0;
     padding:3px 0;
     background:#ddd;
-}
-
-* html .groupItem {
-    padding:2px 0;
-}
-
-*+html .groupItem {
-    padding:2px 0;
-}
-
-.altmove {
 }
 
 .groupItem .itemHeader {
@@ -540,36 +466,32 @@ input[type="checkbox"]:focus, input[type="radio"]:focus {
     padding:0;
 }
 
-fieldset.cformsoptions {
-}
-
 .cf-content {
-    background-color:whitesmoke;
+    background-color:#f5f5f5;
     padding:0 5px;
     margin-bottom:5px;
-    border:1px solid #DFDFDF;
+    border:1px solid #dfdfdf;
 }
 
 .cflegend {
     font-size:15px;
-    text-shadow:white 0 1px 0;
     color:#464646;
     overflow:hidden;
     line-height:34px;
     margin:5px 0 0;
     padding:0;
-
-    background:#F1F1F1 linear-gradient(0deg, #F9F9F9, #ECECEC);
-
+    background:#f1f1f1 linear-gradient(0deg, #f9f9f9, #ececec);
     border:1px solid #eee;
     border-bottom:none;
     border-radius:3px 3px 0 0;
 }
+
 div.cflegend {
     cursor:pointer;
 }
+
 h3.cflegend {
-    padding-left: 10px;
+    padding-left:10px;
 }
 
 .op-closed {
@@ -599,10 +521,11 @@ tr.ob {
     font-size:11px;
     border:1px solid #ccc;
 }
+
 .ob input[type=text]:focus,
 .ob textarea:focus {
     border:1px solid #aaa;
-    border-left:2px solid #2244ED;
+    border-left:2px solid #2244ed;
     outline:0;
 }
 
@@ -625,13 +548,6 @@ tr.ob {
     border-radius:2px;
 }
 
-
-
-* html .ob input {
-    padding-top:2px;
-    padding-bottom:4px;
-}
-
 .obL label {
     line-height:1.3em;
 }
@@ -646,13 +562,11 @@ tr.ob {
     text-align:left;
     padding:0;
     margin:0;
-    vertical-align:top;
 }
 
 .obR label,.obR input {
     padding-left:3px;
     line-height:1.3em;
-    vertical-align:middle;
 }
 
 input#cforms_space {
@@ -660,7 +574,7 @@ input#cforms_space {
     text-align:center;
 }
 
-input#cforms_mp_backtext,input#cforms_mp_resettext {
+input#cforms_mp_backtext, input#cforms_mp_resettext {
     width:15em;
 }
 
@@ -669,17 +583,7 @@ input#cforms_mp_backtext,input#cforms_mp_resettext {
 }
 
 .ob input.allchk:focus {
-    outline:1px solid #2244ED;
-}
-
-.inexclude td.obL {
-    vertical-align:top;
-}
-
-
-select#emailprio {
-    width:5em;
-    text-align:center;
+    outline:1px solid #2244ed;
 }
 
 .sub {
@@ -687,39 +591,20 @@ select#emailprio {
     margin:5px 6px 2px;
 }
 
-
 /****************************************************************
   GLOBAL SETTINGS
 *****************************************************************/
 .infotxt table.hf td {
     padding:0 10px;
 }
+
 table.hf {
     border:solid 4px;
 }
 
 /****************************************************************
-  STYLING PAGE
-*****************************************************************/
-.cssHint {
-    white-space:nowrap;
-}
-.cssStyles {
-    width:100%;
-}
-
-/****************************************************************
   HELP PAGE
 *****************************************************************/
-h4 a.helptop {
-    color:#fff!important;
-    border-bottom:1px solid #fff;
-}
-
-h3 a.helptop {
-    margin:10px 10px 0 0;
-}
-
 .helpimg {
     text-align:center;
     float:right;
@@ -727,7 +612,6 @@ h3 a.helptop {
     margin-left:20px;
     margin-right:30px;
 }
-
 
 .cftoctitle {
     font-size:18px;
@@ -757,44 +641,30 @@ table.hf ol li {
     list-style-position:inside;
 }
 
-#o22 ol li {
-    list-style-type:decimal;
-    list-style-position:inside;
-}
-
 .wrap table.hf {
     margin-left:30px;
-    background:#FFF;
+    background:white;
 }
 
 .wrap table.hf td {
     font-size:11px;
     padding:4px 10px;
     border-style:solid;
-    border-color:#C9D6ED;
+    border-color:#c9d6ed;
     line-height:1.3em;
-}
-
-.wrap table.hf tr {
-    vertical-align:middle;
 }
 
 .wrap table.hf td.bleft {
     width:80px;
-    background:#DFE8FF;
+    background:#dfe8ff;
     padding-right:8px;
     font-size:10px;
     font-weight:700;
     text-align:right;
 }
 
-.wrap table.hf td.apiH {
-    font-size:13px;
-    background:#d0f0ec;
-}
-
 .wrap table.hf td.bright {
-    background:#DFE8FF;
+    background:#dfe8ff;
 }
 
 .wrap table.hf td span.abbr {
@@ -802,27 +672,17 @@ table.hf ol li {
 }
 
 .wrap table.hf td.ball {
-    background:#F2DFFF;
+    background:#f2dfff;
 }
 
-.wrap table.dateinfo td {
-    font-size:10px;
-}
-
-.wrap table.dateinfo th {
-    font-size:10px;
-    font-weight:700;
-    background:#FFF;
-}
-
-code, pre code,table.hf code {
+code, pre code, table.hf code {
     padding:1px 6px;
     font-size:11px;
 }
 
 p.fieldtitle {
     background:#bbb;
-    color:#fff;
+    color:white;
     padding:2px 5px;
     font-size:18px;
     margin:20px 30px;
@@ -836,11 +696,6 @@ p.fieldtitle {
     font-weight:400;
 }
 
-p.fieldtitle a.helptop {
-    margin-top:8px;
-    color:#FFF;
-}
-
 table.cf_dyn_fields td {
     background:#f2f2f2;
     padding:2px 6px;
@@ -848,13 +703,12 @@ table.cf_dyn_fields td {
 }
 
 table.cf_dyn_fields td.cf-wh {
-    background:#FFF;
+    background:white;
 }
 
 /****************************************************************
   POPUP WINDOWS
 *****************************************************************/
-
 #cf_target_del {
     text-align:center;
     font-weight:bold;
@@ -880,9 +734,11 @@ table.cf_dyn_fields td.cf-wh {
     line-height:1em;
     background:#fbfbfb;
 }
+
 .cf_multi_data1 td {
     padding-right:10px;
 }
+
 .cf_multi_data2 input {
     min-width:8em;
     width:auto;

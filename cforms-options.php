@@ -23,7 +23,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
 cforms2_check_access_priv();
 
-// if all data has been erased quit
 if (cforms2_check_erased())
     return;
 
@@ -292,7 +291,7 @@ echo sprintf(__('Please see the <strong>Help!</strong> section for information o
             </div>
 
             <div class="tableheader">
-                <div id="cformswarning" class="dashicons-before dashicons-info" style="display:none"><?php _e('Please save the new order of fields (<em>Update Settings</em>)!', 'cforms2'); ?></div>
+                <div id="cformswarning" class="dashicons-before dashicons-info"><?php _e('Please save the new order of fields (<em>Update Settings</em>)!', 'cforms2'); ?></div>
                 <div>
                     <div class="fh1" title="<?php _e('Can be a simple label or a more complex expression. See Help!', 'cforms2'); ?>"><br /><span class="abbr"><?php _e('Field Name', 'cforms2'); ?></span></div>
                     <div class="fh2" title="<?php _e('Pick one of the supported input field types.', 'cforms2'); ?>"><br /><span class="abbr"><?php _e('Type', 'cforms2'); ?></span></div>
@@ -491,7 +490,7 @@ for ($i = 1; $i <= $field_count; $i++) {
 
 
                     <?php if ($fileupload) { ?>
-            <fieldset id="fileupload" class="cformsoptions">
+            <fieldset class="cformsoptions" id="fileupload">
                 <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
                     <div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
                 </div>
@@ -637,7 +636,7 @@ if ($cformsSettings['form' . $no]['cforms' . $no . '_dontclear'])
                     <tr class="obSEP"><td colspan="2"></td></tr>
 
                     <tr class="ob">
-                        <td class="obL" style="padding-top:7px"><strong><?php _e('Start Date', 'cforms2'); ?></strong></td>
+                        <td class="obL"><strong><?php _e('Start Date', 'cforms2'); ?></strong></td>
                             <?php $start_date = Cforms2\FormSettings::form($no)->getStartDateTime(); ?>
                         <td class="obR">
                             <input type="date" id="cforms_startdate" name="cforms_startdate" value="<?php if ($start_date) echo date('Y-m-d', $start_date); ?>"/>
@@ -656,7 +655,7 @@ if ($start_date) {
                     </tr>
 
                     <tr class="ob">
-                        <td class="obL" style="padding-top:7px"><strong><?php _e('End Date', 'cforms2'); ?></strong></td>
+                        <td class="obL"><strong><?php _e('End Date', 'cforms2'); ?></strong></td>
                             <?php $end_date = Cforms2\FormSettings::form($no)->getEndDateTime(); ?>
                         <td class="obR">
                             <input type="date" id="cforms_enddate" name="cforms_enddate" value="<?php if ($end_date) echo date('Y-m-d', $end_date); ?>"/>
@@ -752,17 +751,17 @@ if ($start_date) {
                 </tr>
 
                 <tr class="ob space20">
-                    <td class="obL" style="padding-bottom:0">&nbsp;</td>
-                    <td class="obR" style="padding-bottom:0">
+                    <td class="obL"></td>
+                    <td class="obR">
                         <input type="submit" class="allbuttons" name="cforms_resetAdminMsg" id="cforms_resetAdminMsg" value="<?php _e('Reset admin message to default', 'cforms2') ?>" />
                     </td>
                 </tr>
 
                 <tr class="ob">
-                    <td class="obL" style="padding-bottom:0">
+                    <td class="obL">
                         <label for="cforms_header"><?php _e('<strong>Admin TEXT message</strong><br />(Header)', 'cforms2') ?></label>
                     </td>
-                    <td class="obR" style="padding-bottom:0">
+                    <td class="obR">
                         <table><tr>
                         <td><textarea name="cforms_header" id="cforms_header" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_header'])); ?></textarea></td>
                         <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
@@ -770,12 +769,12 @@ if ($start_date) {
                     </td>
                 </tr>
                 <tr class="ob">
-                    <td class="obL" style="padding-top:0"><?php _e('(Footer)', 'cforms2') ?></td>
-                    <td class="obR" style="padding-top:0"><input class="allchk" type="checkbox" id="cforms_formdata_txt" name="cforms_formdata_txt" <?php if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 0, 1) == '1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_txt"><?php _e('<strong>Include</strong> user input at the bottom of the admin email', 'cforms2') ?></label></td>
+                    <td class="obL"><?php _e('(Footer)', 'cforms2') ?></td>
+                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_formdata_txt" name="cforms_formdata_txt" <?php if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 0, 1) == '1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_txt"><?php _e('<strong>Include</strong> user input at the bottom of the admin email', 'cforms2') ?></label></td>
                 </tr>
                 <tr class="ob">
-                    <td class="obL" style="padding-top:0">&nbsp;</td>
-                    <td class="obR" style="padding-top:0"><input type="number" name="cforms_space" id="cforms_space" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_space'])); ?>" /><label for="cforms_space"><?php _e('(# characters) : spacing between labels &amp; data, for plain txt version only', 'cforms2') ?></label></td>
+                    <td class="obL"></td>
+                    <td class="obR"><input type="number" name="cforms_space" id="cforms_space" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_space'])); ?>" /><label for="cforms_space"><?php _e('(# characters) : spacing between labels &amp; data, for plain txt version only', 'cforms2') ?></label></td>
                 </tr>
 
                 <tr class="ob space20">
@@ -785,8 +784,8 @@ if ($start_date) {
                 </tr>
 
                 <tr class="ob <?php if (!$o == '1') echo "hidden"; ?>">
-                    <td class="obL" style="padding-bottom:0"><label for="cforms_header_html"><?php _e('<strong>Admin HTML message</strong><br />(Header)', 'cforms2') ?></label></td>
-                    <td class="obR" style="padding-bottom:0">
+                    <td class="obL"><label for="cforms_header_html"><?php _e('<strong>Admin HTML message</strong><br />(Header)', 'cforms2') ?></label></td>
+                    <td class="obR">
                         <table><tr>
                         <td><textarea name="cforms_header_html" id="cforms_header_html" ><?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_header_html'])); ?></textarea></td>
                         <td><?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
@@ -794,10 +793,10 @@ if ($start_date) {
                     </td>
                 </tr>
                 <tr class="ob <?php if (!$o == '1') echo "hidden"; ?>">
-                    <td class="obL" style="padding-top:0"><?php _e('(Footer)', 'cforms2') ?></td>
-                    <td class="obR" style="padding-top:0"><input class="allchk" type="checkbox" id="cforms_formdata_html" name="cforms_formdata_html" <?php if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 1, 1) == '1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_html"><?php _e('<strong>Include</strong> user input at the bottom of the admin email', 'cforms2') ?></label></td>
+                    <td class="obL"><?php _e('(Footer)', 'cforms2') ?></td>
+                    <td class="obR"><input class="allchk" type="checkbox" id="cforms_formdata_html" name="cforms_formdata_html" <?php if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 1, 1) == '1') echo "checked=\"checked\""; ?>/><label for="cforms_formdata_html"><?php _e('<strong>Include</strong> user input at the bottom of the admin email', 'cforms2') ?></label></td>
                 </tr>
-                <tr><td>&nbsp;</td><td><a class="infobutton" href="#" name="it3"><?php _e('\'Don\'t like the default form data block in your admin email?  &raquo;', 'cforms2'); ?></a></td></tr>
+                <tr><td></td><td><a class="infobutton" href="#" name="it3"><?php _e('\'Don\'t like the default form data block in your admin email?  &raquo;', 'cforms2'); ?></a></td></tr>
                 <tr id="it3" class="infotxt"><td>&nbsp;</td><td class="ex"><strong><u><?php _e('Note:', 'cforms2') ?></u></strong> <?php _e('To avoid sending ALL of the submitted user data (especially for very long forms) to the form admin simply <strong>uncheck</strong> "<em>Include user input ...</em>" and instead specify the fields you\'d like to receive via the use of <strong>custom variables</strong>.', 'cforms2'); ?></td></tr>
                 </table>
             </div>
@@ -836,7 +835,7 @@ if ($start_date) {
 
                 <table class="form-table">
                 <tr class="ob">
-                    <td class="obL">&nbsp;</td>
+                    <td class="obL"></td>
                     <td class="obR">
                         <input class="allchk" type="checkbox" id="cforms_confirm" name="cforms_confirm" <?php $o = $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == "1";
             if ($o) echo "checked=\"checked\""; ?>/><label for="cforms_confirm"><strong><?php _e('Activate auto confirmation', 'cforms2') ?></strong></label><br />
@@ -855,8 +854,8 @@ if ($start_date) {
                             ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
                             </tr>
                             <tr class="ob space20">
-                                <td class="obL" style="padding-bottom:0">&nbsp;</td>
-                                <td class="obR" style="padding-bottom:0">
+                                <td class="obL"></td>
+                                <td class="obR">
                                     <input type="submit" class="allbuttons" name="cforms_resetAutoCMsg" id="cforms_resetAutoCMsg" value="<?php _e('Reset auto confirmation message to default', 'cforms2') ?>" />
                                 </td>
                             </tr>
@@ -947,7 +946,7 @@ if ($start_date) {
                         <tr class="obSEP"><td colspan="2"></td></tr>
 
                         <tr class="ob">
-                            <td class="obL">&nbsp;</td>
+                            <td class="obL"></td>
                             <td class="obR">
                     <?php
                 $formlistbox = ' <select id="picknextform" name="cforms_mp_next"' . ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_last'] == '1' ? ' disabled="disabled"' : '') . '>';
@@ -968,11 +967,11 @@ if ($start_date) {
             </div>
         </fieldset>
 
-        <div class="cf_actions" id="cf_actions" style="display:none;">
+        <div id="cf_actions">
             <input id="cfbar-addbutton" class="allbuttons addbutton" type="submit" name="addbutton" value=""/>
             <input id="cfbar-dupbutton" class="allbuttons dupbutton" type="submit" name="dupbutton" value=""/>
             <input id="cfbar-delbutton" class="allbuttons deleteall" type="submit" name="delbutton" value=""/>
-            <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton formupd" value="" />
+            <input id="cfbar-SubmitOptions" type="submit" name="SubmitOptions" class="allbuttons updbutton" value="" />
         </div>
 
     </form>

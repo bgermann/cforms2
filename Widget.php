@@ -72,7 +72,7 @@ class Widget extends \WP_Widget {
         '<input type="text" id="' . $this->get_field_id('title') . '" name="' . $this->get_field_name('title') . '" value="' . esc_attr($title) . '" /><br />';
 
         echo '<label for="' . $this->get_field_id('form') . '">' . __('Form', 'cforms2') . ':</label>' .
-        '<select id="' . $this->get_field_id('form') . '" name="' . $this->get_field_name('form') . '" style="width:220px; font-size:10px;">' . $opt . '</select>';
+        '<select id="' . $this->get_field_id('form') . '" name="' . $this->get_field_name('form') . '">' . $opt . '</select>';
 
     }
 

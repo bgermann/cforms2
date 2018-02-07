@@ -122,7 +122,7 @@ label.cf-group-after span {
 .cform input:focus,
 .cform textarea:focus,
 .cform select:focus {
-    color:#666;
+    color:#666666;
 }
 
 .cform textarea,

@@ -72,7 +72,7 @@ If you want to delete the 14.6.0.5 version by deleting directory "cforms" and yo
 
 = Custom theme (CSS) files =
 
-Create a folder under your WordPress plugin directory and call it "cforms-custom". Move all your custom theme files into it. This folder will protect your changes going forward.
+Create a folder in your WordPress plugins directory and call it "cforms-custom". Move all your custom theme files into it. This folder will protect your changes going forward.
 
 Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf) on layout customization.
 
@@ -167,6 +167,7 @@ GPL compliance!
 = 15.0 =
 
 * enhanced: use HTML5 date field on Form Settings page for the start and end dates
+* enhanced: move style settings to Global Settings
 * bugfix:   do not behave differently for 0 as for any other default value
 * other:    remove tracking database and its view
 * other:    remove track_cforms capability

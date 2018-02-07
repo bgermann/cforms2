@@ -120,7 +120,7 @@ function cforms2_format_email($track, $no) {
         // fieldsets
         if (strpos($k, 'FieldsetEnd') !== false) {
             $t .= $eol;
-            $h .= '<tr><td style="" colspan="2">&nbsp;</td></tr>' . $eol;
+            $h .= '<tr><td colspan="2">&nbsp;</td></tr>' . $eol;
             continue;
         } elseif (strpos($k, 'Fieldset') !== false) {
             $space = '-';
