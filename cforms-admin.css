@@ -409,8 +409,11 @@ option.disabled.title {
     background-color:#ccc;
 }
 
-input[type="checkbox"].fieldisreq, input[type="checkbox"].fieldisemail, input[type="checkbox"].fielddisabled,
-input[type="checkbox"].fieldreadonly, input[type="checkbox"].fieldclear {
+input[type="checkbox"].fieldisreq,
+input[type="checkbox"].fieldisemail,
+input[type="checkbox"].fielddisabled,
+input[type="checkbox"].fieldreadonly,
+input[type="checkbox"].fieldclear {
     margin:0 10px 0 15px;
     width:13px;
     height:13px;
@@ -421,9 +424,12 @@ input[type="checkbox"]:focus, input[type="radio"]:focus {
     outline:1px solid #2244ed;
 }
 
-.alternate, .rowalt, .rowalt input[type="checkbox"].fieldisreq,
-.rowalt input[type="checkbox"].fieldisemail, .rowalt input[type="checkbox"].fielddisabled,
-.rowalt input[type="checkbox"].fieldreadonly, .rowalt input[type="checkbox"].fieldclear {
+.alternate, .rowalt,
+.rowalt input[type="checkbox"].fieldisreq,
+.rowalt input[type="checkbox"].fieldisemail,
+.rowalt input[type="checkbox"].fielddisabled,
+.rowalt input[type="checkbox"].fieldreadonly,
+.rowalt input[type="checkbox"].fieldclear {
     background-color:#eee !important;
 }
 
@@ -830,7 +836,9 @@ table.cf_dyn_fields td.cf-wh {
     clear:both;
 }
 
-.cf_ed_main .cf_edit_move_up, .cf_ed_main .cf_edit_move_down, .cf_ed_main .cf_edit_minus {
+.cf_ed_main .cf_edit_move_up,
+.cf_ed_main .cf_edit_move_down,
+.cf_ed_main .cf_edit_minus {
     border:none;
     color:red;
     float:left;
