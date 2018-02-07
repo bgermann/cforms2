@@ -888,7 +888,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
     <div class="cf-content">
         <p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
         <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
-        <p class="ex"><?php _e('Your form does not look like the preview image or your individual changes do not take effect? Check your global WP theme CSS! It may overwrite some or many cforms CSS declarations.', 'cforms2'); ?></p>
     </div>
 
 </div>
