@@ -171,6 +171,7 @@ GPL compliance!
 * bugfix:   do not behave differently for 0 as for any other default value
 * other:    remove tracking database and its view
 * other:    remove track_cforms capability
+* other:    remove confirmation email attachment
 * other:    remove JavaScript date picker
 * other:    remove all deprecated features and warnings about their usage
 

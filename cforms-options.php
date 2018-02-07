@@ -882,20 +882,7 @@ if ($start_date) {
                                 </td>
                             </tr>
 
-                            <?php
-                                $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
-                                $err = '';
-                                $t = (substr($a, 0, 1) == '/') ? $a : plugin_dir_path(__FILE__) . $a;
-                                if (!empty($t) && !file_exists($t)) {
-                                    $err = '<br /><p class="error">' . sprintf(__('Can\'t find the specified <strong>Attachment</strong> (%s)! Please verify the server path!', 'cforms2'), $t) . '</p>';
-                                }
-                                ?>
-
-                            <tr class="ob">
-                                <td class="obL"><label for="cforms_cattachment"><strong><?php _e('Attachment', 'cforms2') ?></strong></label></td>
-                                <td class="obR"><input type="text" name="cforms_cattachment" id="cforms_cattachment" value="<?php echo stripslashes(htmlspecialchars($a)); ?>" /> <?php printf(__('File path: relative to the cforms plugin folder or an absolute path.', 'cforms2')); ?><?php echo $err; ?></td>
-                            </tr>
-                    <?php } ?>
+                        <?php } ?>
 
                 </table>
             </div>
@@ -949,7 +936,7 @@ if ($start_date) {
                             <td class="obL"></td>
                             <td class="obR">
                     <?php
-                $formlistbox = ' <select id="picknextform" name="cforms_mp_next"' . ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_last'] == '1' ? ' disabled="disabled"' : '') . '>';
+                $formlistbox = ' <select id="picknextform" name="cforms_mp_next">';
                 for ($i = 1; $i <= $formcount; $i++) {
                     $j = ( $i > 1 ) ? $i : '';
                     $sel = ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == Cforms2\FormSettings::form($j)->name()) ? ' selected="selected"' : '';

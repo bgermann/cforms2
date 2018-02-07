@@ -145,7 +145,6 @@ function cforms2_option_submission($no, &$cformsSettings) {
 
     if (isset($_POST['cforms_confirm']) && $_POST['cforms_confirm'] && $cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == 1) {
         $t[0] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_csubject'));
-        $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0] = cforms2_get_from_request('cforms_cattachment');
         $cformsSettings['form' . $no]['cforms' . $no . '_cmsg'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_cmsg'));
         $cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_cmsg_html'));
     }

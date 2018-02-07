@@ -778,14 +778,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                 $mail = new Cforms2\Email($no, $frommail, $field_email, $replyto);
 
-                // auto conf attachment?
-                $a = $cformsSettings['form' . $no]['cforms' . $no . '_cattachment'][0];
-                if (!empty($a)) {
-                    $a = (substr($a, 0, 1) === '/') ? $a : plugin_dir_path(__FILE__) . $a;
-                    if (file_exists($a))
-                        $mail->add_file($a);
-                }
-
                 // CC or auto conf?
                 if ($ccme && !empty($trackf['data'][$ccme])) {
                     $mail->subj = $s[1];
