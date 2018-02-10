@@ -44,7 +44,6 @@ if (isset($_POST['SubmitOptions']))
         }
     } else {
 
-        $cformsSettings['global']['cforms_html5'] = cforms2_get_boolean_from_request('cforms_html5');
         $cformsSettings['global']['cforms_show_quicktag'] = cforms2_get_boolean_from_request('cforms_show_quicktag');
         $cformsSettings['global']['cforms_sec_qa'] = cforms2_get_from_request('cforms_sec_qa');
         $cformsSettings['global']['cforms_codeerr'] = cforms2_get_from_request('cforms_codeerr');
@@ -86,7 +85,7 @@ if (isset($_POST['SubmitOptions']))
         if (isset($_POST['showinfo'])) {
             echo '<p>' . __('All the global and per form settings are listed here as JSON. You can use this as a backup tool if you like.', 'cforms2') . '</p>';
             echo '<h2>' . __('Warning!', 'cforms2') . '</h2><p>' . __('Please do not change anything here unless you know what you are doing!', 'cforms2') . '</p>';
-            echo '<textarea style="resize:both;" cols="100" rows="100" name="raw_cforms_settings">' . htmlspecialchars(json_encode($cformsSettings, JSON_PRETTY_PRINT)) . '</textarea>';
+            echo '<textarea style="resize:both;" cols="100" rows="30" name="raw_cforms_settings">' . htmlspecialchars(json_encode($cformsSettings, JSON_PRETTY_PRINT)) . '</textarea>';
             echo '<input type="hidden" name="showinfo" value="" />';
         } else {
             ?>

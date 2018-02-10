@@ -49,7 +49,7 @@ if (isset($_POST['addbutton'])) {
         'cforms' . $no . '_emailoff' => '0',
         'cforms' . $no . '_emptyoff' => '0',
         'cforms' . $no . '_tellafriend' => '0',
-        'cforms' . $no . '_customnames' => '0',
+        'cforms' . $no . '_customnames' => false,
         'cforms' . $no . '_startdate' => ' ',
         'cforms' . $no . '_enddate' => ' ',
         'cforms' . $no . '_formaction' => false,
@@ -70,10 +70,10 @@ if (isset($_POST['addbutton'])) {
         'cforms' . $no . '_showpos' => 'ynyy',
         'cforms' . $no . '_hide' => false,
         'cforms' . $no . '_redirect' => false,
-        'cforms' . $no . '_redirect_page' => __('http://redirect.to.this.page', 'cforms2'),
-        'cforms' . $no . '_action' => '0',
+        'cforms' . $no . '_redirect_page' => '',
+        'cforms' . $no . '_action' => false,
         'cforms' . $no . '_action_page' => '',
-        'cforms' . $no . '_upload_ext' => 'txt,zip',
+        'cforms' . $no . '_upload_ext' => '',
         'cforms' . $no . '_upload_size' => '1024',
         'cforms' . $no . '_mp' => array(
             "mp_form" => false,
@@ -238,6 +238,8 @@ if (strlen($fd) <= 2) {
     $cformsSettings['form' . $no]['cforms' . $no . '_formdata'] = $fd;
     update_option('cforms_settings', $cformsSettings);
 }
+
+Cforms2\FormSettings::reset();
 ?>
 
 <div class="wrap">
@@ -489,39 +491,7 @@ for ($i = 1; $i <= $field_count; $i++) {
         </fieldset>
 
 
-                    <?php if ($fileupload) { ?>
-            <fieldset class="cformsoptions" id="fileupload">
-                <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                    <div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
-                </div>
-
-                <div class="cf-content" id="o0">
-                    <p>
-    <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
-    <?php printf(__('You may also want to verify the global, file upload specific  <a href="%s" %s>error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', ''); ?>
-                    </p>
-                    <table class="form-table">
-                        <tr class="ob space15">
-                            <td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" placeholder="txt,zip" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'])); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
-                        </tr>
-
-                        <tr class="ob">
-                            <td class="obL"><label for="cforms_upload_size"><strong><?php _e('Maximum file size<br />in kilobyte', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input type="number" id="cforms_upload_size" name="cforms_upload_size" value="<?php echo stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_upload_size'])); ?>"/></td>
-                        </tr>
-
-                        <tr class="ob">
-                            <td class="obL"><label for="cforms_noattachments"><strong><?php _e('Do not email attachments', 'cforms2') ?></strong></label></td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if (Cforms2\FormSettings::form($no)->getNoAttachments() == '1') echo "checked=\"checked\""; ?>/></td>
-                        </tr>
-                    </table>
-                </div>
-            </fieldset>
-<?php } ?>
-
-
-        <fieldset class="cformsoptions" id="anchormessage">
+        <fieldset class="cformsoptions" id="formmessage">
             <div class="cflegend op-closed" id="p1" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
                 <div class="blindminus"></div><?php _e('Form Messages', 'cforms2') ?>
             </div>
@@ -584,7 +554,7 @@ for ($i = 1; $i <= $field_count; $i++) {
         </fieldset>
 
 
-        <fieldset class="cformsoptions" id="anchoremail">
+        <fieldset class="cformsoptions" id="core">
             <div class="cflegend op-closed" id="p2" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
                 <div class="blindminus"></div><?php _e('Core Form', 'cforms2') ?>
             </div>
@@ -593,35 +563,35 @@ for ($i = 1; $i <= $field_count; $i++) {
 
                 <table class="form-table">
 
-                    <tr class="ob">
+                    <tr class="ob <?php if ($fileupload) echo 'hidden'; ?>">
                         <td class="obL"><strong><?php _e('Core options', 'cforms2') ?></strong></td>
                         <td class="obR">
-                            <input class="allchk" type="checkbox" id="cforms_formaction" name="cforms_formaction" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_formaction']) echo "checked=\"checked\""; ?>/><label for="cforms_formaction"><?php printf(__('Disable %s multipart/form-data enctype %s, e.g. to enable salesforce.com', 'cforms2'), '<strong>', '</strong>'); ?></label>
+                            <input class="allchk" type="checkbox" id="cforms_formaction" name="cforms_formaction" <?php if (Cforms2\FormSettings::form($no)->getDefaultEnctype()) echo "checked=\"checked\""; ?>/><label for="cforms_formaction"><?php printf(__('Disable %s multipart/form-data enctype %s, e.g. to enable salesforce.com', 'cforms2'), '<strong>', '</strong>'); ?></label>
                         </td>
                     </tr>
 
-                    <tr class="ob space10">
+                    <tr class="ob">
                         <td class="obL"></td>
                         <td class="obR">
                             <input class="allchk" type="checkbox" id="cforms_dontclear" name="cforms_dontclear" <?php
 if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'])
-    echo 'disabled="disabled"';
-if ($cformsSettings['form' . $no]['cforms' . $no . '_dontclear'])
-    echo "checked=\"checked\"";
+    echo 'disabled="disabled" ';
+elseif (Cforms2\FormSettings::form($no)->getDontClear())
+    echo 'checked="checked" ';
 ?>/><label for="cforms_dontclear"><?php printf(__('%sDo not reset%s input fields after submission', 'cforms2'), '<strong>', '</strong>'); ?></label>
                         </td>
                     </tr>
 
                     <tr class="ob">
                         <td class="obL"></td>
-                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_customnames" name="cforms_customnames" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_customnames'] == '1') echo "checked=\"checked\""; ?>/><label for="cforms_customnames"><?php printf(__('Use %scustom input field NAMES &amp; ID\'s%s', 'cforms2'), '<strong>', '</strong>') ?></label> <a class="infobutton" href="#" name="it4"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
+                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_customnames" name="cforms_customnames" <?php if (Cforms2\FormSettings::form($no)->getCustomNames()) echo "checked=\"checked\""; ?>/><label for="cforms_customnames"><?php printf(__('Use %scustom input field NAMES &amp; ID\'s%s', 'cforms2'), '<strong>', '</strong>') ?></label> <a class="infobutton" href="#" name="it4"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
                     </tr>
 
                     <tr id="it4" class="infotxt"><td>&nbsp;</td><td class="ex"><?php _e('This feature replaces the default NAMEs/IDs (e.g. <strong>cf_field_12</strong>) with <em>custom ones</em>, either derived from the field label you have provided or by specifically declaring it via <strong>[id:XYZ]</strong>,e.g. <em>Your Name[id:the-name]</em>. This will for instance help to feed data to third party systems (requiring certain input field names in the $_POST variable).', 'cforms2') ?></td></tr>
 
                     <tr class="ob">
                         <td class="obL"></td>
-                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_taftrick" name="cforms_taftrick" <?php if (substr($cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'], 0, 1) === '3') echo "checked=\"checked\""; ?>/><label for="cforms_taftrick"><?php printf(__('%sExtra variables%s e.g. {Title}', 'cforms2'), '<strong>', '</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
+                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_extravar" name="cforms_extravar" <?php if (Cforms2\FormSettings::form($no)->getExtraVar()) echo "checked=\"checked\""; ?>/><label for="cforms_extravar"><?php printf(__('%sExtra variables%s e.g. {Title}', 'cforms2'), '<strong>', '</strong>') ?></label> <a class="infobutton" href="#" name="it5"><?php _e('Read note &raquo;', 'cforms2'); ?></a></td>
                     </tr>
 
                     <tr id="it5" class="infotxt"><td>&nbsp;</td><td class="ex"><?php printf(__('There are <a href="%s" %s>three additional</a>, <em>predefined variables</em> that can be enabled here.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#extravariables', ''); ?> <strong><u><?php _e('Note:', 'cforms2') ?></u></strong> <?php _e('This will add two more hidden fields to your form to ensure that all data is available also in AJAX mode.', 'cforms2') ?></td></tr>
@@ -695,8 +665,8 @@ if ($start_date) {
                 <tr class="ob">
                     <td class="obL"><label for="cforms_action"><?php _e('<strong>Send form data</strong><br /> to an alternative page:', 'cforms2'); ?></label></td>
                     <td class="obR">
-                        <input class="allchk" type="checkbox" id="cforms_action" name="cforms_action" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_action']) echo "checked=\"checked\""; ?>/><label for="cforms_action"><?php _e('Enable alternative form action!', 'cforms2'); ?></label><br />
-                        <input type="url" placeholder="http://form.target.example" name="cforms_action_page" id="cforms_action_page" value="<?php echo ($cformsSettings['form' . $no]['cforms' . $no . '_action_page']); ?>" /> <a class="infobutton" href="#" name="it2"><?php _e('Please read note &raquo;', 'cforms2'); ?></a>
+                        <input class="allchk" type="checkbox" id="cforms_action" name="cforms_action" <?php if (Cforms2\FormSettings::form($no)->getAction()) echo "checked=\"checked\""; ?>/><label for="cforms_action"><?php _e('Enable alternative form action!', 'cforms2'); ?></label><br />
+                        <input type="url" placeholder="http://form.target.example" name="cforms_action_page" id="cforms_action_page" value="<?php echo Cforms2\FormSettings::form($no)->getActionPage(); ?>" /> <a class="infobutton" href="#" name="it2"><?php _e('Please read note &raquo;', 'cforms2'); ?></a>
                     </td>
                 </tr>
 
@@ -803,34 +773,12 @@ if ($start_date) {
         </fieldset>
 
 
-        <fieldset class="cformsoptions <?php if (!$ccboxused) echo "hidden"; ?>" id="cc">
-            <div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('CC Message', 'cforms2') ?>
-            </div>
-
-            <div class="cf-content" id="o4">
-                <p><?php _e('This is the subject of the CC email that goes out the user submitting the form and as such requires the <strong>CC:</strong> field in your form definition above.', 'cforms2') ?></p>
-
-                <table class="form-table">
-                <tr class="ob">
-                    <td class="obL"><label for="cforms_ccsubject"><strong><?php _e('Subject CC', 'cforms2') ?></strong></label></td>
-                    <td class="obR"><input type="text" name="cforms_ccsubject" id="cforms_ccsubject" value="<?php
-                $t = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
-                echo stripslashes(htmlspecialchars($t[1]));
-                ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
-                </tr>
-                </table>
-
-            </div>
-        </fieldset>
-
-
         <fieldset class="cformsoptions" id="autoconf">
-            <div class="cflegend op-closed" id="p5" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+            <div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
                 <div class="blindminus"></div><?php _e('Auto Confirmation Message', 'cforms2') ?>
             </div>
 
-            <div class="cf-content" id="o5">
+            <div class="cf-content" id="o4">
                 <p><?php _e('These settings apply to an auto response/confirmation sent to the visitor. If enabled AND your form contains a "<code>CC me</code>" field <strong>AND</strong> the visitor selected it, no extra confirmation email is sent!', 'cforms2') ?></p>
 
                 <table class="form-table">
@@ -951,6 +899,58 @@ if ($start_date) {
                         </tr>
                     </table>
                         <?php } ?>
+            </div>
+        </fieldset>
+
+
+        <fieldset class="cformsoptions <?php if (!$ccboxused) echo "hidden"; ?>" id="cc">
+            <div class="cflegend op-closed" id="p5" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+                <div class="blindminus"></div><?php _e('CC Message', 'cforms2') ?>
+            </div>
+
+            <div class="cf-content" id="o5">
+                <p><?php _e('This is the subject of the CC email that goes out the user submitting the form and as such requires the <strong>CC:</strong> field in your form definition above.', 'cforms2') ?></p>
+
+                <table class="form-table">
+                <tr class="ob">
+                    <td class="obL"><label for="cforms_ccsubject"><strong><?php _e('Subject CC', 'cforms2') ?></strong></label></td>
+                    <td class="obR"><input type="text" name="cforms_ccsubject" id="cforms_ccsubject" value="<?php
+                $t = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_csubject']);
+                echo stripslashes(htmlspecialchars($t[1]));
+                ?>" /> <?php printf(__('<a href="%s" %s>Variables</a> allowed.', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#variables', ''); ?></td>
+                </tr>
+                </table>
+
+            </div>
+        </fieldset>
+
+
+        <fieldset class="cformsoptions <?php if (!$fileupload) echo 'hidden'; ?>" id="fileupload">
+            <div class="cflegend op-closed" id="p6" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
+                <div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
+            </div>
+
+            <div class="cf-content" id="o6">
+                <p>
+                    <?php printf(__('Configure and double-check these settings in case you are adding a "<code>File Upload Box</code>" to your form (also see the <a href="%s" %s>Help!</a> for further information).', 'cforms2'), '?page=' . $plugindir . '/cforms-help.php#upload', ''); ?>
+                    <?php printf(__('You may also want to verify the global, file upload specific  <a href="%s" %s>error messages</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#upload', ''); ?>
+                </p>
+                <table class="form-table">
+                    <tr class="ob space15">
+                        <td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms2') ?></strong></label></td>
+                        <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" placeholder="txt,zip" value="<?php echo stripslashes(htmlspecialchars(Cforms2\FormSettings::form($no)->getUploadExtensions())); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
+                    </tr>
+
+                    <tr class="ob">
+                        <td class="obL"><label for="cforms_upload_size"><strong><?php _e('Maximum file size<br />in kilobyte', 'cforms2') ?></strong></label></td>
+                        <td class="obR"><input type="number" id="cforms_upload_size" name="cforms_upload_size" value="<?php echo stripslashes(htmlspecialchars(Cforms2\FormSettings::form($no)->getUploadSize())); ?>"/></td>
+                    </tr>
+
+                    <tr class="ob">
+                        <td class="obL"><label for="cforms_noattachments"><strong><?php _e('Do not email attachments', 'cforms2') ?></strong></label></td>
+                        <td class="obR"><input class="allchk" type="checkbox" id="cforms_noattachments" name="cforms_noattachments" <?php if (Cforms2\FormSettings::form($no)->getNoAttachments()) echo "checked=\"checked\""; ?>/></td>
+                    </tr>
+                </table>
             </div>
         </fieldset>
 

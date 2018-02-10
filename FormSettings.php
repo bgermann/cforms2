@@ -34,14 +34,31 @@ class FormSettings
         return Settings::instance()->get($this->ind, $this->pre . 'fname');
     }
 
+    // core
+
+    public function getDefaultEnctype()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'formaction');
+    }
+
+    public function getDontClear()
+    {
+        return !Settings::instance()->get($this->ind, $this->pre . 'dontclear');
+    }
+
+    public function getCustomNames()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'customnames');
+    }
+
+    public function getExtraVar()
+    {
+        return substr(Settings::instance()->get($this->ind, $this->pre . 'tellafriend'), 0, 1) === '3';
+    }
+
     public function getHide()
     {
         return Settings::instance()->get($this->ind, $this->pre . 'hide');
-    }
-
-    public function getNoAttachments()
-    {
-        return Settings::instance()->get($this->ind, $this->pre . 'noattachments');
     }
 
     private function convertFormatToTime($formatted_date)
@@ -85,6 +102,33 @@ class FormSettings
     public function getRedirectPage()
     {
         return Settings::instance()->get($this->ind, $this->pre . 'redirect_page');
+    }
+
+    public function getAction()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'action');
+    }
+
+    public function getActionPage()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'action_page');
+    }
+
+    // fileupload
+
+    public function getUploadExtensions()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'upload_ext');
+    }
+
+    public function getUploadSize()
+    {
+        return (int) Settings::instance()->get($this->ind, $this->pre . 'upload_size');
+    }
+
+    public function getNoAttachments()
+    {
+        return Settings::instance()->get($this->ind, $this->pre . 'noattachments');
     }
 
     /**

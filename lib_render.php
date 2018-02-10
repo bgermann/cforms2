@@ -199,14 +199,12 @@ function cforms2($no = '', $customfields = array()) {
 
     // alternative form action
     $alt_action = false;
-    if ($cformsSettings['form' . $no]['cforms' . $no . '_action'] == '1') {
-        $action = $cformsSettings['form' . $no]['cforms' . $no . '_action_page'];
+    if (Cforms2\FormSettings::form($no)->getAction()) {
+        $action = Cforms2\FormSettings::form($no)->getActionPage();
         $alt_action = true;
     } else
         $action = cforms2_get_current_page() . '#usermessage' . $no . $actiontarget;
 
-
-    $enctype = $cformsSettings['form' . $no]['cforms' . $no . '_formaction'] ? 'enctype="application/x-www-form-urlencoded"' : 'enctype="multipart/form-data"';
 
     // session item counter (for default values)
     $sItem = 1;
@@ -264,7 +262,7 @@ function cforms2($no = '', $customfields = array()) {
                     if (strpos($input_name[1], '[id:') > 0)
                         preg_match('/\[id:(.+)\]/', $input_name[1], $input_name);
 
-                    $custom_error .= ($cformsSettings['form' . $no]['cforms' . $no . '_customnames'] == '1') ? cforms2_sanitize_ids($input_name[1]) : 'cf' . $no . '_field_' . $i;
+                    $custom_error .= Cforms2\FormSettings::form($no)->getCustomNames() ? cforms2_sanitize_ids($input_name[1]) : 'cf' . $no . '_field_' . $i;
                     $custom_error .= '$#$' . $fielderr . '|';
             }
         }
@@ -338,7 +336,7 @@ function cforms2($no = '', $customfields = array()) {
 
         // input field names and label
         $isFieldArray = false;
-        if ($cformsSettings['form' . $no]['cforms' . $no . '_customnames'] == '1') {
+        if (Cforms2\FormSettings::form($no)->getCustomNames()) {
 
             if (strpos($field_name, '[id:') !== false) {
                 $isFieldArray = strpos($field_name, '[]');
@@ -430,7 +428,7 @@ function cforms2($no = '', $customfields = array()) {
                 $field_value = $_POST[$input_name]; // In this case it's an array. We will do the stripping later.
             else
                 $field_value = htmlspecialchars(stripslashes($_POST[$input_name]));
-        } elseif ((!isset($_POST['sendbutton' . $no]) && isset($_REQUEST[$input_name])) || $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) {
+        } elseif ((!isset($_POST['sendbutton' . $no]) && isset($_REQUEST[$input_name])) || Cforms2\FormSettings::form($no)->getDontClear()) {
 
             // only pre-populating fields
             if ($field_type == 'multiselectbox' || $field_type == 'checkboxgroup')
@@ -578,7 +576,7 @@ function cforms2($no = '', $customfields = array()) {
 
                 case "ccbox":
                 case "checkbox":
-                    if (!$all_valid || ($all_valid && $cformsSettings['form' . $no]['cforms' . $no . '_dontclear']) || ($isMPform && is_array($_SESSION['cforms']['cf_form' . $no]))) // exclude MP! if first time on the form = array = null
+                    if (!$all_valid || ($all_valid && Cforms2\FormSettings::form($no)->getDontClear()) || ($isMPform && is_array($_SESSION['cforms']['cf_form' . $no]))) // exclude MP! if first time on the form = array = null
                         $preChecked = ( $field_value && !empty($field_value) ) ? ' checked="checked"' : '';  // for MPs
                     else
                         $preChecked = ( strpos($chkboxClicked[1], 'true') !== false ) ? ' checked="checked"' : '';  // $all_valid = user choice prevails
@@ -800,7 +798,7 @@ function cforms2($no = '', $customfields = array()) {
 
 
     // Extra Fields
-    if (substr($cformsSettings['form' . $oldno]['cforms' . $oldno . '_tellafriend'], 0, 1) === '3') {
+    if (Cforms2\FormSettings::form($no)->getExtraVar()) {
         $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . get_the_ID() . '"/>' .
                 '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . get_permalink() . '"/>';
     }
@@ -813,7 +811,8 @@ function cforms2($no = '', $customfields = array()) {
     $formcontent .= '</fieldset>';
 
     // start with form tag
-    $content .= '<form ' . $enctype . ' action="' . $action . '" method="post" class="cform ' . $direct_submission . sanitize_title_with_dashes(Cforms2\FormSettings::form($no)->name()) . ' ' . ( $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] ? ' cfnoreset' : '' ) . '" id="cforms' . $no . 'form">';
+    $enctype = !$upload && Cforms2\FormSettings::form($no)->getDefaultEnctype() ? '' : ' enctype="multipart/form-data"';
+    $content .= '<form' . $enctype . ' action="' . $action . '" method="post" class="cform ' . $direct_submission . sanitize_title_with_dashes(Cforms2\FormSettings::form($no)->name()) . ' ' . ( Cforms2\FormSettings::form($no)->getDontClear() ? ' cfnoreset' : '' ) . '" id="cforms' . $no . 'form">';
 
     // multi-part form: reset
     $reset = '';

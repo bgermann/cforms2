@@ -138,11 +138,9 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             if (cforms2_check_pluggable_captchas_authn_users($field_stat[1]))
                 continue;
 
-            // input field names and label
-            $custom_names = $cformsSettings['form' . $no]['cforms' . $no . '_customnames'] == '1';
             $isFieldArray = false;
 
-            if ($custom_names) {
+            if (Cforms2\FormSettings::form($no)->getCustomNames()) {
 
                 // hardcoded for now
                 $tmpName = $field_name;
@@ -324,7 +322,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                 // A successful upload will pass this test. It makes no sense to override this one.
                 $fileext[$i] = strtolower(substr($value, strrpos($value, '.') + 1, strlen($value)));
-                $allextensions = explode(',', preg_replace('/\s/', '', strtolower($cformsSettings['form' . $no]['cforms' . $no . '_upload_ext'])));
+                $allextensions = explode(',', preg_replace('/\s/', '', Cforms2\FormSettings::form($no)->getUploadExtensions()));
 
                 if (!in_array($fileext[$i], $allextensions) && $allextensions[0] !== "*")
                     $fileerr = $cformsSettings['global']['cforms_upload_err5'];
@@ -334,8 +332,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     $fileerr = $cformsSettings['global']['cforms_upload_err2'];
 
                 // A non-empty file will pass this test.
-                if ((int) $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] > 0) {
-                    if ($file['size'][$i] >= (int) $cformsSettings['form' . $no]['cforms' . $no . '_upload_size'] * 1024)
+                if (Cforms2\FormSettings::form($no)->getUploadSize() > 0) {
+                    if ($file['size'][$i] >= Cforms2\FormSettings::form($no)->getUploadSize() * 1024)
                         $fileerr = $cformsSettings['global']['cforms_upload_err3'];
                 }
 
@@ -448,9 +446,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             $field_name = $field_stat[0];
             $field_type = $field_stat[1];
 
-            $custom_names = $cformsSettings['form' . $no]['cforms' . $no . '_customnames'] == '1';
-
-            if ($custom_names) {
+            if (Cforms2\FormSettings::form($no)->getCustomNames()) {
 
                 // hardcoded for now
                 $tmpName = $field_name;

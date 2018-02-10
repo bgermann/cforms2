@@ -52,7 +52,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
                     <li><?php printf(__('Want to include SPAM protection? Choose between <a href="%s" %s>Q&amp;A</a>, <a href="%s" %s>captcha</a> add an input field accordingly and configure <a href="%s" %s>here</a>.', 'cforms2'), '#qa', '', 'https://wordpress.org/plugins/cforms2-really-simple-captcha/', '', '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', ''); ?></li>
                 </ul>
             </li>
-            <li><?php printf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', ''); ?></li>
+            <li><?php printf(__('Check if the <a href="%s" %s>email admin</a> for your form is configured correctly.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#core', ''); ?></li>
             <li><?php printf(__('Decide if you want the visitor to receive an <a href="%s" %s>auto confirmation message</a> upon form submission.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?></li>
             <li><?php printf(__('<a href="%s" %s>Add the default form</a> to a post or page.', 'cforms2'), '#inserting', ''); ?></li>
         </ol>
@@ -588,7 +588,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <div class="cf-content">
         <p>
-            <?php printf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#anchoremail', '', '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?>
+            <?php printf(__('<strong>Subjects and messages</strong> for emails both to the <a href="%s" %s>form admin</a> as well as to the <a href="%s" %s>visitor</a> (auto confirmation, CC:) support insertion of pre-defined variables and/or any of the form input fields.', 'cforms2'), '?page=' . $plugindir . '/cforms-options.php#core', '', '?page=' . $plugindir . '/cforms-options.php#autoconf', ''); ?>
         </p>
         <p class="ex"><?php _e('Note that the variable names are case sensitive!', 'cforms2'); ?></p>
 

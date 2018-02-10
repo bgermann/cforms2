@@ -99,7 +99,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
 
     $cformsSettings['form' . $no]['cforms' . $no . '_formaction'] = cforms2_get_from_request('cforms_formaction') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_dontclear'] = cforms2_get_from_request('cforms_dontclear') ? true : false;
-    $cformsSettings['form' . $no]['cforms' . $no . '_customnames'] = cforms2_get_boolean_from_request('cforms_customnames');
+    $cformsSettings['form' . $no]['cforms' . $no . '_customnames'] = cforms2_get_from_request('cforms_customnames') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_hide'] = cforms2_get_from_request('cforms_hide') ? true : false;
 
     $startdate = cforms2_get_from_request('cforms_startdate');
@@ -126,7 +126,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
 
     $cformsSettings['form' . $no]['cforms' . $no . '_redirect'] = cforms2_get_from_request('cforms_redirect') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_redirect_page'));
-    $cformsSettings['form' . $no]['cforms' . $no . '_action'] = cforms2_get_boolean_from_request('cforms_action');
+    $cformsSettings['form' . $no]['cforms' . $no . '_action'] = cforms2_get_from_request('cforms_action') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_action_page'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_action_page'));
 
     $cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] = cforms2_get_boolean_from_request('cforms_emailoff');
@@ -177,7 +177,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
     // up to version 14.12 this option string had two characters, which is reflected in its usage
     $cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'] = '0';
 
-    if (isset($_POST['cforms_taftrick']))
+    if (isset($_POST['cforms_extravar']))
         $cformsSettings['form' . $no]['cforms' . $no . '_tellafriend'] = '3';
 
 

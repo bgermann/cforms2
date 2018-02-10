@@ -57,7 +57,7 @@ jQuery(function () {
     };
 
     var cookie = readcookie();
-    if (!cookie || cookie.length !== 6) {
+    if (!cookie || cookie.length !== 7) {
         document.cookie = nameEQ + "111111;";
     }
 
@@ -590,7 +590,7 @@ jQuery(function () {
 
     jQuery('#anchorfields').show();
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
         var el = document.getElementById('o' + i);
         var elp = document.getElementById('p' + i);
         if (el && cookie.charAt(i) === '1') {
