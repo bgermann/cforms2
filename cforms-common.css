@@ -1,0 +1,24 @@
+.cform {
+    margin:10px auto 0 auto;
+}
+
+.cform .cf_hidden {
+    display:none;
+    border:none!important;
+    background:none!important;
+    padding:0!important;
+    margin:0!important;
+}
+
+div.cf_info {
+    display:none;
+    padding:10px 15px!important;
+    line-height:1.3em;
+    margin:10px auto;
+}
+
+[disabled] {
+    color:#dddddd;
+    border-color:#dddddd!important;
+    background:none!important;
+}

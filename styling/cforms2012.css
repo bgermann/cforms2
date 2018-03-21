@@ -1,10 +1,11 @@
+@import url(../cforms-common.css);
+
 /*                                                    */
 /*  main 'top-level' form elements                    */
 /*                                                    */
 
 .cform {
     background: none repeat scroll 0 0 #f9f9f9;
-    margin: 10px auto 0;
     width: 510px;
     border: 1px solid #eee;
     border-radius: 3px;
@@ -14,14 +15,6 @@
     margin-top:0;
     padding:5px 0 15px 0;
     border:0;
-}
-
-.cform .cf_hidden {
-    display:none;
-    border:none !important;
-    background:none !important;
-    padding:0 !important;
-    margin:0 !important;
 }
 
 .cform legend {
@@ -210,7 +203,6 @@ span.emailreqtxt {
     margin: 0 0 0 22%;
     padding: 0 0 0 20px;
     text-align: right;
-    vertical-align: top;
     width: 65%;
 }
 
@@ -344,11 +336,7 @@ img.imgcalendar {
 div.cf_info {
     font-size:0.8em;
     color:#333;
-    display:none;
-    padding:10px 15px !important;
     width:480px;
-    line-height:1.3em;
-    margin:10px auto;
 }
 
 div.cf_info > span{
@@ -407,21 +395,6 @@ div.mailerr {
 .cform .cf_errortxt {
     color:#ad2929;
 }
-
-
-/*                                                    */
-/* disabled fields [disabled] does not work on IE!    */
-/*                                                    */
-
-.disabled,
-.disabled:hover,
-[disabled]:hover,
-[disabled] {
-    color:#aaa !important;
-    border-color:#ddd !important;
-    background:none !important;
-}
-
 
 /*                                                    */
 /* upload box styling                                 */

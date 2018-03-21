@@ -393,8 +393,6 @@ function cforms2($no = '', $customfields = array()) {
 
 
         // additional field classes
-        if ($field_disabled)
-            $field_class .= ' disabled';
         if ($field_readonly)
             $field_class .= ' readonly';
         if ($field_emailcheck)

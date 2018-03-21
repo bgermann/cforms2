@@ -1,9 +1,10 @@
+@import url(../cforms-common.css);
+
 /*                                                    */
 /*  main 'top-level' form elements                    */
 /*                                                    */
 
 .cform {
-    margin:10px auto 0 auto;
     width: 410px;
 }
 
@@ -14,14 +15,6 @@
     border-left-color:#ececec;
     border-top-color:#ececec;
     background:#f7f7f7;
-}
-
-.cform .cf_hidden {
-    display:none;
-    border:none!important;
-    background:none!important;
-    padding:0!important;
-    margin:0!important;
 }
 
 .cform legend {
@@ -309,11 +302,7 @@ img.imgcalendar {
 
 div.cf_info {
     color:#333;
-    display:none;
-    padding:10px 15px!important;
     width:380px;
-    line-height:1.3em;
-    margin:10px auto;
 }
 div.cf_info ol {
     margin:0;
@@ -357,19 +346,6 @@ div.mailerr {
 .mailerr,
 .cform .cf_errortxt {
     color:#ad2929;
-}
-
-/*                                                    */
-/* disabled fields [disabled] does not work on IE!    */
-/*                                                    */
-
-[disabled] {
-    color:#dddddd;
-    border-color:#dddddd!important;
-    background:none!important;
-}
-.disabled {
-    border-color:#dddddd!important;
 }
 
 /*                                                    */

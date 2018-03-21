@@ -64,7 +64,7 @@ abstract class Fieldtype {
         if ($selected)
             $out .= ' selected="selected"';
         elseif ($disabled)
-            $out .= ' disabled="disabled" class="disabled"';
+            $out .= ' disabled="disabled"';
         $out .= ' value="' . $this->get_id() . '">';
         $out .= $this->get_name();
         $out .= '</option>';

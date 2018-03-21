@@ -1,9 +1,10 @@
+@import url(../cforms-common.css);
+
 /*                                                    */
 /*  main 'top-level' form elements                    */
 /*                                                    */
 
 .cform {
-    margin:10px auto 0 auto;
     width: 450px;
 }
 
@@ -11,14 +12,6 @@
     margin-top:10px;
     padding:10px 0 2px 0;
     border:none;
-}
-
-.cform .cf_hidden {
-    display:none;
-    border:none!important;
-    background:none!important;
-    padding:0!important;
-    margin:0!important;
 }
 
 .cform legend {
@@ -34,7 +27,7 @@ ol.cf-ol {
 }
 ol.cf-ol li {
     background:none!important;
-    margin:0 10px!important; /*some themes may interfere otherwise*/
+    margin:0 10px!important;
     padding:0;
     list-style:none!important;
     text-align:left;
@@ -190,13 +183,12 @@ ol.cf-ol li.cf-box-group {
 
 span.reqtxt,
 span.emailreqtxt {
-    display:block; /*for mozilla*/
+    display:block;
     color:#888888;
     font-size:9px;
     letter-spacing:3px;
     margin:0pt 3px 0pt 0pt;
     text-align:right;
-    vertical-align:top;
     height:13px;
     line-height:13px;
     width:421px;
@@ -335,11 +327,7 @@ img.imgcalendar {
 
 div.cf_info {
     color:#333;
-    display:none;
-    padding:10px 15px!important;
     width:420px;
-    line-height:1.3em;
-    margin:10px auto;
 }
 div.cf_info ol {
     margin:0;
@@ -384,19 +372,6 @@ div.mailerr {
 .mailerr,
 .cform .cf_errortxt {
     color:#ad2929;
-}
-
-/*                                                    */
-/* disabled fields [disabled] does not work on IE!    */
-/*                                                    */
-
-[disabled] {
-    color:#dddddd;
-    border-color:#dddddd!important;
-    background:none!important;
-}
-.disabled {
-    border-color:#dddddd!important;
 }
 
 /*                                                    */

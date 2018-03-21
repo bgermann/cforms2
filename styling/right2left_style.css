@@ -1,9 +1,8 @@
+@import url(../cforms-common.css);
+
 /*                                                    */
 /*  this custom example should help for RTL           */
 /*  right to left type form                           */
-/*                                                    */
-/*  not sure if it's 100% RTL yet, let me know if     */
-/*  when find a bug!                                  */
 /*                                                    */
 
 ol.cf-ol li.infotext { font-size:0.9em; color:#de8a0c; }
@@ -14,7 +13,6 @@ ol.cf-ol li.infotext { font-size:0.9em; color:#de8a0c; }
 .cform {
     direction:rtl;
     text-align:right;
-    margin:10px auto 0 auto;
     width: 410px;
 }
 
@@ -23,14 +21,6 @@ ol.cf-ol li.infotext { font-size:0.9em; color:#de8a0c; }
     padding:5px 0 15px 0;
     border:none;
     background:white;
-}
-
-.cform .cf_hidden {
-    display:none;
-    border:none!important;
-    background:none!important;
-    padding:0!important;
-    margin:0!important;
 }
 
 .cform legend {
@@ -47,7 +37,7 @@ ol.cf-ol {
 }
 ol.cf-ol li {
     background:none!important;
-    margin:5px 0!important; /*some themes may interfere otherwise*/
+    margin:5px 0!important;
     padding:0;
     list-style:none!important;
     text-align:right;
@@ -235,10 +225,6 @@ p.cf-sb {
     border-left-color:#ececec!important;
     border-top-color:#ececec!important;
 }
-.cform input.resetbutton {
-}
-.cform input.backbutton {
-}
 
 
 
@@ -326,11 +312,7 @@ img.imgcalendar {
 
 div.cf_info {
     color:#333;
-    display:none;
-    padding:10px 15px!important;
     width:380px;
-    line-height:1.3em;
-    margin:10px auto;
     direction:rtl;
 }
 div.cf_info ol {
@@ -375,19 +357,6 @@ div.mailerr {
 .mailerr,
 .cform .cf_errortxt {
     color:#ad2929;
-}
-
-/*                                                    */
-/* disabled fields [disabled] does not work on IE!    */
-/*                                                    */
-
-[disabled] {
-    color:#dddddd;
-    border-color:#dddddd!important;
-    background:none!important;
-}
-.disabled {
-    border-color:#dddddd!important;
 }
 
 /*                                                    */
