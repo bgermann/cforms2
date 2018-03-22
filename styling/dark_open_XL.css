@@ -129,7 +129,7 @@ label.cf-group-after span {
     width:270px;
 }
 .cform select {
-    width:278px; /* attempt to have equal length */
+    width:278px;
 }
 
 .cform select.cfselectmulti {
@@ -244,9 +244,6 @@ ol.cf-ol ul.cf_li_text_err li {
     margin:0 0 2px!important;
     padding-left:15px;
 }
-ol.cf-ol ul.cf_li_text_err li:before {
-    content:'';
-}
 
 /*                                                    */
 /* 'visitor verification' related styles              */
@@ -269,39 +266,9 @@ input.secinput {
     vertical-align:middle;
 }
 
-#cforms_captcha6,
-#cforms_captcha5,
-#cforms_captcha4,
-#cforms_captcha3,
-#cforms_captcha2,
-#cforms_captcha {
-    height:15px;
-    width:50px;
-    padding: 4px 4px 5px;
-    margin: 0;
-    vertical-align:middle;
-}
-
-img.captcha {
-    vertical-align:top;
-    margin:0 0 0 10px!important;
-    padding:0!important;
-    border:none!important;
-    float:none!important;
-}
-
 .captcha-reset {
     vertical-align:top;
     color:white;
-    border:none!important;
-    margin-left:3px;
-    width:21px;
-    height:21px;
-    cursor: pointer;
-}
-
-img.imgcalendar {
-    border:none;
 }
 
 /*                                                    */
@@ -309,14 +276,9 @@ img.imgcalendar {
 /*                                                    */
 
 .cform .cf_error {
-    color:#ad2929;
     border:5px solid #BAC4D8;
     padding:3px;
     width:262px;
-}
-.cform .cf_errortxt,
-div.mailerr {
-    color:#ad2929;
 }
 div.mailerr {
     display:block;
@@ -329,14 +291,6 @@ div.mailerr {
 div.cf_info {
     color:#f8f1f1;
     width:420px;
-}
-div.cf_info ol {
-    margin:0;
-    padding:5px 15px 0 30px;
-}
-div.cf_info ol li {
-    padding:1px 0;
-    margin:2px 0;
 }
 div.cf_info a {
     color:white!important;
@@ -358,14 +312,4 @@ div.waiting {
     background:#F9F9F9;
     color:#AAAAAA;
     display:block;
-}
-
-/*                                                    */
-/* upload box styling                                 */
-/*                                                    */
-
-.cform input.cf_upload  {
-    width:220px;
-    background: #f9f9f9;
-    border:1px solid #888888;
 }

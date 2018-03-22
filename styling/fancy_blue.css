@@ -136,7 +136,7 @@ label.cf-group-after span {
 }
 .cform select {
     border:none;
-    width:408px; /* attempt to have equal length */
+    width:408px;
 }
 
 .cform select.cfselectmulti {
@@ -266,9 +266,6 @@ ol.cf-ol ul.cf_li_text_err li {
     margin:0 0 2px!important;
     padding-left:15px;
 }
-ol.cf-ol ul.cf_li_text_err li:before {
-    content:'';
-}
 
 
 /*                                                    */
@@ -289,41 +286,13 @@ label.secq span {
     width:auto;
 }
 
-input.secinput {
-    vertical-align:text-bottom;
-}
-
-#cforms_captcha6,
-#cforms_captcha5,
-#cforms_captcha4,
-#cforms_captcha3,
-#cforms_captcha2,
-#cforms_captcha {
-    width:196px;
-    vertical-align:top;
-}
-
 img.captcha {
     vertical-align:top;
-    margin:0 0 8px 10px!important;
-    padding:0!important;
-    border:none!important;
-    float:none!important;
 }
 
 .captcha-reset {
     vertical-align:top;
     color:#679EF1;
-    margin:0pt 0pt 2px 3px;
-    margin-left:3px;
-    width:21px;
-    height:21px;
-    border:none!important;
-    cursor: pointer;
-}
-
-img.imgcalendar {
-    border:none!important;
 }
 
 /*                                                    */
@@ -333,14 +302,6 @@ img.imgcalendar {
 div.cf_info {
     color:#333;
     width:420px;
-}
-div.cf_info ol {
-    margin:0;
-    padding:5px 15px 0 30px;
-}
-div.cf_info ol li {
-    padding:1px 0;
-    margin:2px 0;
 }
 div.cf_info a {
     color:#7C292C!important;
@@ -360,28 +321,11 @@ div.waiting {
     color:#AAAAAA;
     display:block;
 }
+
 /*                                                    */
 /*   formatting for invalid user inputs               */
 /*                                                    */
-.cform .cf_error {
-    color:#ad2929;
-}
+
 div.mailerr {
     display:block;
-}
-.mailerr,
-.cform .cf_errortxt {
-    color:#ad2929;
-}
-
-/*                                                    */
-/* upload box styling                                 */
-/*                                                    */
-
-.cform input.cf_upload  {
-    width:220px;
-    background: #f9f9f9;
-    border:1px solid #888888;
-    height:24px;
-    margin-left:2px;
 }

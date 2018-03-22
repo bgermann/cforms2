@@ -137,7 +137,7 @@ label.cf-group-after span {
 }
 .cform select {
     height:27px;
-    width:250px; /* attempt to have equal length */
+    width:250px;
 }
 
 .cform select.cfselectmulti {
@@ -251,9 +251,6 @@ ol.cf-ol ul.cf_li_text_err li {
     margin:0 0 2px!important;
     padding:0 0 0 20px;
 }
-ol.cf-ol ul.cf_li_text_err li:before {
-    content:'';
-}
 
 
 /*                                                    */
@@ -270,7 +267,6 @@ label.secq {
 
 input.secinput {
     width:50px;
-    vertical-align:text-bottom;
 }
 
 label.seccap {
@@ -278,40 +274,9 @@ label.seccap {
     vertical-align:text-bottom;
 }
 
-#cforms_captcha6,
-#cforms_captcha5,
-#cforms_captcha4,
-#cforms_captcha3,
-#cforms_captcha2,
-#cforms_captcha {
-    vertical-align:text-bottom;
-    height:21px;
-    width:70px;
-    margin: 0;
-}
-
-img.captcha {
-    vertical-align:text-bottom;
-    margin:0 0 0 10px!important;
-    padding:0!important;
-    border:none!important;
-    float:none!important;
-}
-
 .captcha-reset {
-    vertical-align:text-bottom;
     color:white;
-    margin:0 0 2px 3px;
-    width:21px;
-    height:21px;
-    border:none;
-    cursor: pointer;
 }
-
-img.imgcalendar {
-    border:none;
-}
-
 
 /*                                                    */
 /* change formatting of response msgs here            */
@@ -320,14 +285,6 @@ img.imgcalendar {
 div.cf_info {
     color:#333;
     width:380px;
-}
-div.cf_info ol {
-    margin:0;
-    padding:5px 15px 0 30px;
-}
-div.cf_info ol li {
-    padding:1px 0;
-    margin:2px 0;
 }
 div.cf_info a {
     color:white!important;
@@ -355,23 +312,8 @@ div.waiting {
 /*                                                    */
 
 .cform .cf_error {
-    color:#ad2929;
     border:1px solid #ad2929;
 }
 div.mailerr {
     display:block;
-}
-.mailerr,
-.cform .cf_errortxt {
-    color:#ad2929;
-}
-
-/*                                                    */
-/* upload box styling                                 */
-/*                                                    */
-
-.cform input.cf_upload  {
-    width:220px;
-    background: white;
-    border:0;
 }

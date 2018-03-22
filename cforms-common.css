@@ -4,21 +4,54 @@
 
 .cform .cf_hidden {
     display:none;
-    border:none!important;
-    background:none!important;
-    padding:0!important;
-    margin:0!important;
+    border:none;
+    background:none;
+    padding:0;
+    margin:0;
+}
+
+img.captcha {
+    vertical-align:text-bottom;
+    margin:0 0 0 10px;
+    padding:0;
+    border:none;
+    float:none;
+}
+
+.captcha-reset {
+    vertical-align:text-bottom;
+    margin:0 0 2px 3px;
+    width:21px;
+    height:21px;
+    border:none;
+    cursor:pointer;
 }
 
 div.cf_info {
     display:none;
-    padding:10px 15px!important;
+    padding:10px 15px;
     line-height:1.3em;
     margin:10px auto;
 }
 
+div.cf_info ol {
+    margin:0;
+    padding:5px 15px 0 30px;
+}
+
+div.cf_info ol li {
+    padding:1px 0;
+    margin:2px 0;
+}
+
+.mailerr,
+.cform .cf_error,
+.cform .cf_errortxt {
+    color:#ad2929;
+}
+
 [disabled] {
     color:#dddddd;
-    border-color:#dddddd!important;
-    background:none!important;
+    border-color:#dddddd;
+    background:none;
 }

@@ -5,8 +5,6 @@
 /*  right to left type form                           */
 /*                                                    */
 
-ol.cf-ol li.infotext { font-size:0.9em; color:#de8a0c; }
-
 /*                                                    */
 /*  main 'top-level' form elements                    */
 /*                                                    */
@@ -136,7 +134,7 @@ label.cf-group-after span {
     width:150px;
 }
 .cform select {
-    width:158px; /* attempt to have equal length */
+    width:158px;
 }
 
 .cform select.cfselectmulti {
@@ -254,9 +252,6 @@ ol.cf-ol ul.cf_li_text_err li {
     margin:0 0 2px!important;
     padding-right:15px;
 }
-ol.cf-ol ul.cf_li_text_err li:before {
-    content:'';
-}
 
 /*                                                    */
 /* 'visitor verification' related styles              */
@@ -268,42 +263,9 @@ label.seccap {
     margin-bottom:4px;
 }
 
-input.secinput {
-    vertical-align:text-bottom;
-}
-
-#cforms_captcha6,
-#cforms_captcha5,
-#cforms_captcha4,
-#cforms_captcha3,
-#cforms_captcha2,
-#cforms_captcha {
-    height:15px;
-    width:80px;
-    padding: 4px 4px;
-    margin: 0 0 0 10px;
-    vertical-align:text-bottom;
-}
-
-img.captcha {
-    vertical-align:text-bottom;
-    margin:0!important;
-    padding:0 10px 0 0!important;
-    border:none!important;
-    float:none!important;
-}
-
 .captcha-reset {
-    vertical-align:text-bottom;
     color:#C66300;
-    margin-bottom:2px;
     padding-right:5px;
-    width:21px;
-    height:21px;
-    cursor: pointer;
-}
-img.imgcalendar {
-    border:none;
 }
 
 /*                                                    */
@@ -314,14 +276,6 @@ div.cf_info {
     color:#333;
     width:380px;
     direction:rtl;
-}
-div.cf_info ol {
-    margin:0;
-    padding:5px 15px 0 30px;
-}
-div.cf_info ol li {
-    padding:1px 0;
-    margin:2px 0;
 }
 div.cf_info a {
     color:#ad2929!important;
@@ -348,23 +302,8 @@ div.waiting {
 /*   formatting for invalid user inputs               */
 /*                                                    */
 .cform .cf_error {
-    color:#ad2929;
     border:1px solid #ad2929;
 }
 div.mailerr {
     display:block;
-}
-.mailerr,
-.cform .cf_errortxt {
-    color:#ad2929;
-}
-
-/*                                                    */
-/* upload box styling                                 */
-/*                                                    */
-
-.cform input.cf_upload  {
-    width:260px;
-    background: #f9f9f9;
-    border:1px solid #888888;
 }
