@@ -11,7 +11,7 @@
 .cform fieldset {
     margin-top:10px;
     padding:4px 0 10px 0;
-    border:0px solid #adadad;
+    border:0 solid #adadad;
     border-left-color:#ececec;
     border-top-color:#ececec;
     background:none;
@@ -27,8 +27,8 @@
 
 ol.cf-ol {
     border-top:2px dashed #e5e5e5;
-    margin:0pt!important;
-    padding:20px 0pt 0pt!important;
+    margin:0!important;
+    padding:20px 0 0!important;
 }
 ol.cf-ol li {
     background:none!important;
@@ -47,7 +47,7 @@ ol.cf-ol li {
 
 ol.cf-ol li.textonly {
     letter-spacing:2px;
-    margin:6px 0pt !important;
+    margin:6px 0 !important;
     padding:3px 0;
     text-align:center;
 }
@@ -59,7 +59,7 @@ ol.cf-ol li.textonly {
 
 .cform label {
     width:200px;
-    margin:0px 10px 0 0;
+    margin:0 10px 0 0;
     text-align:left;
     font-size: 10px;
     display:block;
@@ -156,7 +156,7 @@ label.cf-group-after span {
 
 ol.cf-ol li.cf-box-title {
     letter-spacing:2px;
-    margin:12px 0pt 4px 10px!important;
+    margin:12px 0 4px 10px!important;
     color:#888888;
 }
 
@@ -220,7 +220,7 @@ p.cf-sb {
 .cform input.sendbutton {
     width:150px;
     padding:5px;
-    margin: 5px 3px 4px 0pt;
+    margin: 5px 3px 4px 0;
     background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x;
     border:1px solid #adadad!important;
     border-left-color:#ececec!important;
@@ -245,7 +245,7 @@ ol.cf-ol li.cf_li_err {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
     padding:5px 10px!important;
     margin:5px 0!important;
 }
@@ -314,7 +314,7 @@ div.failure {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
 }
 div.waiting {
     background:#F9F9F9;

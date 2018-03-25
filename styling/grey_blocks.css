@@ -74,7 +74,7 @@ label.cf-before {
 }
 
 label.cf-after {
-    margin:2px 1px 0pt 3px !important;
+    margin:2px 1px 0 3px !important;
     width:90px;
     text-align:left;
     background:none;
@@ -166,7 +166,7 @@ span.emailreqtxt {
 
 ol.cf-ol li.cf-box-title {
     font-weight:bold;
-    margin:8px 0pt 0pt !important;
+    margin:8px 0 0 !important;
     padding-left:160px; /* check with label 'width' incl. */
 }
 
@@ -196,7 +196,7 @@ ol.cf-ol li.cf-box-title {
 
 ol.cf-ol li.cf-box-group {
     font-weight:bold;
-    margin:10px 0pt 0px !important;
+    margin:10px 0 0 !important;
     padding-left:160px;
 }
 
@@ -220,7 +220,7 @@ p.cf-sb {
     font-size:14px;
     height:31px;
     line-height:31px;
-    margin: 0px 7px 10px 0px;
+    margin: 0 7px 10px 0;
     padding: 0 0 5px;
     width:72px;
 }
@@ -233,7 +233,7 @@ ol.cf-ol li.cf_li_err {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
     padding:10px 0!important;
     margin:5px 0!important;
 }
@@ -283,7 +283,7 @@ div.failure {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
 }
 div.waiting {
     background:#F9F9F9;

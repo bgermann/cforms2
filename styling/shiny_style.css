@@ -200,7 +200,7 @@ input.cf-box-a {
 /*                                                    */
 
 ol.cf-ol li.cf-box-group {
-    margin:0pt !important;
+    margin:0 !important;
     padding: 0 0 5px 100px;
 }
 
@@ -224,7 +224,7 @@ p.cf-sb {
     font-size:14px;
     height:31px;
     line-height:31px;
-    margin: 0px 10px 10px 0px;
+    margin: 0 10px 10px 0;
     padding: 0 0 5px;
     width:120px;
     background: #777 linear-gradient(0deg, #777 30%, #ccc 70%);
@@ -242,7 +242,7 @@ ol.cf-ol li.cf_li_err {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
     padding:5px 0!important;
     margin:5px 0!important;
 }
@@ -300,7 +300,7 @@ div.failure {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
 }
 div.waiting {
     background:#F9F9F9;

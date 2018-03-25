@@ -17,8 +17,8 @@
 }
 
 .cform fieldset {
-    margin:0px;
-    padding:0px;
+    margin:0;
+    padding:0;
     border:none;
     background:#CAE4A7;
 }
@@ -79,7 +79,7 @@ label.cf-before {
 }
 
 label.cf-after {
-    margin:4px 5px 0pt 6px;
+    margin:4px 5px 0 6px;
     text-align:left;
     width:115px;
 }
@@ -160,7 +160,7 @@ span.emailreqtxt {
     display:block;
     font-size:9px;
     letter-spacing:2px;
-    margin:-1px 0pt 0pt 120px;
+    margin:-1px 0 0 120px;
     line-height:15px;
 }
 
@@ -173,7 +173,7 @@ ol.cf-ol li.cf-box-title {
     color:white;
     font-size:14px;
     letter-spacing:2px;
-    margin:6px 0pt !important;
+    margin:6px 0 !important;
     padding-left:120px; /* check with label 'width' incl. */
 }
 
@@ -225,7 +225,7 @@ p.cf-sb {
     font-size:1.2em;
     font-weight:bold;
     background: white;
-    margin:5px 0px 20px 0;
+    margin:5px 0 20px 0;
     padding:0 1em;
 }
 
@@ -303,7 +303,7 @@ div.failure {
     background:#FFDFDF repeating-linear-gradient(135deg, #CAE4A7, #D4EABA 1%, #CAE4A7 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
 }
 div.waiting {
     background:#F9F9F9;

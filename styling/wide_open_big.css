@@ -15,7 +15,7 @@
 }
 
 .cform legend {
-    margin-left:0px;
+    margin-left:0;
     padding:0;
     font-weight:bold;
     font-size:20px;
@@ -44,7 +44,7 @@ ol.cf-ol li {
 ol.cf-ol li.textonly {
     color:#AAAAAA;
     letter-spacing:3px;
-    padding:3px 0pt;
+    padding:3px 0;
     text-align:center;
 }
 
@@ -86,7 +86,7 @@ label.cf-after span {
 
 label.cf-group-after {
     display:inline-block;
-    margin:1px 5px 0pt 4px;;
+    margin:1px 5px 0 4px;;
     width:190px;
     text-align:left;
 }
@@ -150,7 +150,7 @@ ol.cf-ol li.cf-box-title {
     font-size:16px;
     color:#888888;
     letter-spacing:2px;
-    margin:20px 0pt 0pt !important;
+    margin:20px 0 0 !important;
 }
 
 /*                                                    */
@@ -186,7 +186,7 @@ span.emailreqtxt {
     font-size:9px;
     color:#888888;
     text-align:right;
-    margin:0 0px 0 0;
+    margin:0 0 0 0;
     line-height:13px;
     letter-spacing:3px;
     width:420px;
@@ -206,7 +206,7 @@ p.cf-sb {
 .cform input.sendbutton {
     width:140px;
     padding:5px;
-    margin: 0px 28px 4px 0pt;
+    margin: 0 28px 4px 0;
     font-size:0.8em;
     background:#ddd linear-gradient(0deg, #ddd, #fff) repeat-x;
     border:1px solid #adadad!important;
@@ -231,8 +231,8 @@ ol.cf-ol li.cf_li_err {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
-    padding:5px 0px 5px 10px!important;
+    border-width:1px 0;
+    padding:5px 0 5px 10px!important;
     margin:5px 0!important;
 }
 
@@ -298,7 +298,7 @@ div.failure {
     background:#FFDFDF repeating-linear-gradient(135deg, #FCEBED, white 1%, #FCEBED 2%) !important;
     border-color:#DF7D7D;
     border-style:solid;
-    border-width:1px 0pt;
+    border-width:1px 0;
 }
 div.waiting {
     background:#F9F9F9;
