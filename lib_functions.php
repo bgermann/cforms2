@@ -28,9 +28,9 @@ function cforms2_settings_corrupted() {
 }
 
 function cforms2_start_session() {
-    session_cache_limiter('nocache');
     $session_id = session_id();
     if (empty($session_id)) {
+        session_cache_limiter('nocache');
         session_start();
     }
 
