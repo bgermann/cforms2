@@ -295,8 +295,6 @@ function cforms2($no = '', $customfields = array()) {
                 $field_name = ( $options[0] == '' ) ? $options[1] : $options[0];
             else
                 $field_name = $options[0];
-
-            cforms2_dbg("\t\t left from '#' (=field_name) = " . $options[0] . ", right from '#': " . $options[1] . "  -> field_name= $field_name");
         }
 
 
