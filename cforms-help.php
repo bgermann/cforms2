@@ -102,7 +102,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
             <?php _e('Single, Password &amp; Multi line input fields', 'cforms2'); ?>
         </p>
-        <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-single.png"  alt=""/>
         <table class="hf">
             <tr>
                 <td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
@@ -218,7 +217,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
             <?php _e('Check boxes', 'cforms2'); ?>
         </p>
-        <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-checkbox.png"  alt=""/>
         <table class="hf">
             <tr>
                 <td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
@@ -293,7 +291,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
             <?php _e('CC: option for visitors', 'cforms2'); ?>
         </p>
-        <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-cc.png"  alt=""/>
         <table class="hf">
             <tr>
                 <td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
@@ -381,7 +378,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
             <?php _e('Visitor verification (Q&amp;A)', 'cforms2'); ?>
         </p>
-        <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-vv.png"  alt=""/>
         <table class="hf">
             <tr>
                 <td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
@@ -416,7 +412,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <span class="h4ff"><?php _e('form<br />field', 'cforms2'); ?></span>
             <?php _e('Attachments / File Upload Box', 'cforms2'); ?>
         </p>
-        <img class="helpimg" src="<?php echo plugin_dir_url(__FILE__); ?>images/example-upload.png"  alt=""/>
         <table class="hf">
             <tr>
                 <td class="bleft"><span class="abbr" title="<?php _e('Entry format for Field Name', 'cforms2'); ?>"><?php _e('Format:', 'cforms2'); ?></span></td>
