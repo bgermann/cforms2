@@ -136,8 +136,10 @@ function cforms2($no = '', $customfields = array()) {
     if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 0, 1) == 'y') {
         $content .= '<div id="usermessage' . $no . 'a" class="cf_info' . $usermessage_class . $umc . ' ">' . $usermessage_text . '</div>';
         $actiontarget = 'a';
-    } elseif (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y')
+    } elseif (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 1, 1) == 'y') {
         $actiontarget = 'b';
+    } else
+        $actiontarget = '';
 
 
     // multi-part form: overwrite $no, move on to next form

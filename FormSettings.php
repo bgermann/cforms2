@@ -43,7 +43,7 @@ class FormSettings
 
     public function getDontClear()
     {
-        return !Settings::instance()->get($this->ind, $this->pre . 'dontclear');
+        return Settings::instance()->get($this->ind, $this->pre . 'dontclear');
     }
 
     public function getCustomNames()
