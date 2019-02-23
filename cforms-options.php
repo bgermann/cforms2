@@ -938,7 +938,7 @@ if ($start_date) {
                 <table class="form-table">
                     <tr class="ob space15">
                         <td class="obL"><label for="cforms_upload_ext"><strong><?php _e('Allowed file extensions', 'cforms2') ?></strong></label></td>
-                        <td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" placeholder="txt,zip" value="<?php echo stripslashes(htmlspecialchars(Cforms2\FormSettings::form($no)->getUploadExtensions())); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
+			<td class="obR"><input type="text" id="cforms_upload_ext" name="cforms_upload_ext" placeholder="txt,zip" value="<?php echo stripslashes(htmlspecialchars(Cforms2\FormSettings::form($no)->getUploadExtensions())); ?>" title="<?php _e('Use commas as separator. Do not use include the dots in the extension.', 'cforms2'); ?>"/> <?php _e('[empty=no files are allowed]', 'cforms2') ?></td>
                     </tr>
 
                     <tr class="ob">
