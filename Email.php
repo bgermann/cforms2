@@ -55,10 +55,10 @@ class Email {
 
         $fe = array();
         $f = array();
-        if (preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,63})/', $from, $fe))
+        if (preg_match('/([\w\-\+\.]+@([\w\-]+\.)+[\w\-]{2,63})/', $from, $fe))
             $this->from = $fe[0];
 
-        if (preg_match('/(.*)\s+(([\w-\.]+@|<)).*/', $from, $f))
+        if (preg_match('/(.*)\s+(([\w\-\.]+@|<)).*/', $from, $f))
             $this->fname = str_replace('"', '', $f[1]);
         else
             $this->fname = $fe[0];
@@ -66,8 +66,8 @@ class Email {
         // reply-to
         $te = array();
         $t = array();
-        if (preg_match('/([\w-\+\.]+@([\w-]+\.)+[\w-]{2,63})/', $replyto, $te)) {
-            if (preg_match('/(.*)\s+(([\w-\+\.]+@|<)).*/', $replyto, $t))
+        if (preg_match('/([\w\-\+\.]+@([\w\-]+\.)+[\w\-]{2,63})/', $replyto, $te)) {
+            if (preg_match('/(.*)\s+(([\w\-\+\.]+@|<)).*/', $replyto, $t))
                 $this->add_reply($te[0], str_replace('"', '', $t[1]));
             else
                 $this->add_reply($te[0]);
@@ -79,8 +79,8 @@ class Email {
 
         $addresses = explode(',', stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_bcc']));
         foreach ($addresses as $a) {
-            if (preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,63})/', $a, $te) && $adminEmail) {
-                if (preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/', $a, $t))
+            if (preg_match('/([\w\-+\.]+@([\w\-]+\.)+[\w\-]{2,63})/', $a, $te) && $adminEmail) {
+                if (preg_match('/(.*)\s+(([\w\-+\.]+@|<)).*/', $a, $t))
                     $this->add_bcc($te[0], str_replace('"', '', $t[1]));
                 else
                     $this->add_bcc($te[0]);
@@ -94,8 +94,8 @@ class Email {
         $addresses = explode(',', $to);
 
         foreach ($addresses as $a) {
-            if (preg_match('/([\w-+\.]+@([\w-]+\.)+[\w-]{2,63})/', $a, $te)) {
-                if (preg_match('/(.*)\s+(([\w-+\.]+@|<)).*/', $a, $t))
+            if (preg_match('/([\w\-+\.]+@([\w\-]+\.)+[\w\-]{2,63})/', $a, $te)) {
+                if (preg_match('/(.*)\s+(([\w\-+\.]+@|<)).*/', $a, $t))
                     $this->add_addr($te[0], str_replace('"', '', $t[1]));
                 else
                     $this->add_addr($te[0]);
