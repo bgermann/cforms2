@@ -716,6 +716,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
 
 
+        $sendmail = true;
         $trackf['uploaded_files'] = $fdata;
         $trackf['submit_time'] = time();
         $trackf['email'] = $field_email;
@@ -726,21 +727,20 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         } catch (Exception $exc) {
             $usermessage_text = $exc->getMessage();
             $usermessage_class = ' failure';
-            $sentadmin = 1;
+            $sendmail = false;
         }
 
-        cforms2_dbg('TRACKF' . print_r($trackf, 1) . "\n");
-
-        if ($cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') {
-            $sentadmin = 1;
-        } else {
+        if ($sendmail && !$cformsSettings['form' . $no]['cforms' . $no . '_emailoff'] == '1') {
             // This filter allows manipulation of the admin email just before sending
             $mail = apply_filters('cforms2_admin_email_filter', $mail, $no, $pid);
-            $sentadmin = $mail->send();
+            $sendmail = $mail->send();
+            if (!$sendmail) {
+                $usermessage_text = __('Error occurred while sending the message: ', 'cforms2') . '<br />' . $mail->err;
+                $usermessage_class = ' mailerr';
+            }
         }
 
-        if ($sentadmin == 1) {
-
+        if ($sendmail) {
             if (isset($trackf['data'][$ccme]))
                 cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
 
@@ -807,9 +807,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     $usermessage_class = ' mailerr';
                 }
             }
-        } else {
-            $usermessage_text = __('Error occurred while sending the message: ', 'cforms2') . '<br />' . $mail->err;
-            $usermessage_class = ' mailerr';
         }
     }
 
