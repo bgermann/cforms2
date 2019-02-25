@@ -802,9 +802,9 @@ function cforms2($no = '', $customfields = array()) {
     }
 
 
-    $formcontent .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="<span>' . rawurlencode($cformsSettings['form' . $no]['cforms' . $no . '_working']) . '</span>"/>' .
-            '<input type="hidden" name="cf_failure' . $no . '" id="cf_failure' . $no . '" value="<span>' . rawurlencode($cformsSettings['form' . $no]['cforms' . $no . '_failure']) . '</span>"/>' .
-            '<input type="hidden" name="cf_customerr' . $no . '" id="cf_customerr' . $no . '" value="' . rawurlencode($custom_error) . '"/>';
+    $formcontent .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="<span>' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_working'])) . '</span>"/>' .
+            '<input type="hidden" name="cf_failure' . $no . '" id="cf_failure' . $no . '" value="<span>' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_failure'])) . '</span>"/>' .
+            '<input type="hidden" name="cf_customerr' . $no . '" id="cf_customerr' . $no . '" value="' . htmlspecialchars($custom_error) . '"/>';
 
     $formcontent .= '</fieldset>';
 
