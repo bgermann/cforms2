@@ -35,7 +35,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
         <li><a href="#customerr"><?php _e('Custom error messages &amp; input field titles', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#variables"><?php _e('Using variables in email subject and messages', 'cforms2'); ?></a> &raquo;</li>
         <li><a href="#multipart"><?php _e('Multi-part forms', 'cforms2'); ?></a> &raquo;</li>
-        <li><a href="#css"><?php _e('Styling your forms', 'cforms2'); ?></a> &raquo;</li>
     </ul>
 
 
@@ -875,14 +874,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
             <li><?php printf(__('Once the multi-part form support is enabled, %1$sAJAX is being disabled%2$s for this form.', 'cforms2'), '<strong>', '</strong>'); ?></li>
         </ul>
 
-    </div>
-
-
-    <h3 class="cflegend" id="css"><?php _e('Styling your forms', 'cforms2') ?></h3>
-
-    <div class="cf-content">
-        <p><?php printf(__('cforms comes with a few theme examples (some of them may require adjustments to work with <strong>your</strong> forms!) but you can of course create your own theme file -based on the default <strong>cforms.css</strong> file- and put it in the %s directory.', 'cforms2'), '<strong>WP_PLUGIN_DIR/cforms-custom</strong>'); ?></p>
-        <p><?php printf(__('You might also want to study <a href="%s">A Brief cforms CSS Guide</a>.', 'cforms2'), 'http://www.deliciousdays.com/download/cforms-css-guide.pdf'); ?></p>
     </div>
 
 </div>
