@@ -42,6 +42,7 @@ If you want to install another language, please choose its cell in the Developme
 
 Some things are to be done:
 
+* add a Gutenberg equivalent of the editor plugin
 * filter user input better
 * rework multi-part forms to be independent from PHP sessions
 * refactoring with object oriented approach
@@ -77,7 +78,7 @@ Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-cs
 
 == Frequently Asked Questions ==
 
-= I do not get any emails from my form. Why? =
+= Why do I not get any emails from my form? =
 
 Most probably this is not cformsII's fault. Please check your WordPress mail configuration with a plugin like [Check Email](https://wordpress.org/plugins/check-email/). If that reports not to work, you don't have a mail server running or its settings are broken. Please fix it yourself, tell your hosting provider or use an external SMTP plugin (see the next question).
 
@@ -91,10 +92,6 @@ If wp_mail is replaced by some plugin, multipart/alternative emails may not be s
 
 This is an incompatibility with WordPress 4.2+ that was fixed with cformsII 14.9.3. Be sure to use a current version.
 
-= I upgraded and lost my widgets. What can I do? =
-
-Beginning with 14.6.10 WordPress 2.8 Widget API is used for cforms widgets. You have to recreate your widgets. You can find your old settings in debug output on the Global Settings Admin menu. Just search for widgets with your browser's search.
-
 = How can I contribute code? =
 
 Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
@@ -103,61 +100,19 @@ Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 These features were removed with version 14.12.
 
+= Where is my database view? =
+
+This feature was removed with version 15.0.
+
 = Does cformsII expose an API? =
 
 cformsII can be extended via WordPress actions and filters. You find their 'cforms2_' prefixed names and inline documentation at the apply_filters and do_action calls. Additionally there is one API function that you can call directly: insert_cform. Please have a look at its PHPDoc. Older cformsII versions had an API called my-functions, but that is removed as of version 14.14.
-
-= Can I use cformsII with Content Security Policy enabled? =
-
-You can. Most of the JavaScript is included in the HTML head. The only form feature depending on inline scripting is redirection to an alternative success page. On the Dashboard there is an inline script for the WordPress editor button.
 
 
 == Upgrade Notice ==
 
 = 15.0 =
-The tracking database and its view are removed. Please have a look at CFDB plugin as a replacement.
-
-= 14.13 =
-This release contains a security fix! Some features were removed for the fix. Please have a look at the changelog.
-
-= 14.12 =
-RSS support is removed. If you depend on it, please try Contact Form DB's RSS support. WordPress comment support and Tell-a-Friend support is removed, too.
-
-= 14.11 =
-CAPTCHA support is handled by the new plugin Really Simple CAPTCHA for cformsII. If you depend on CAPTCHAs, please install this plugin. Additionally, if you use my_cforms_ajax_filter(), you get a new data structure there.
-
-= 14.9.12 =
-If you run a custom css and depend on a CAPTCHA reset image, you have to remove it.
-
-= 14.9 =
-If you use my-functions.php, you have to take action (see my-functions.php.txt).
-
-= 14.8 =
-This is only compatible with Wordpress 3.9+. Version 3.5 to 3.8 support is dropped.
-
-= 14.7 =
-Explicit Subscribe To Comments support is removed. Please delete all the remaining input elements from your forms. Also check the styling on comment forms!
-
-= 14.6.10 =
-Wordpress 2.8 Widget API is now used for cforms widgets. You have to recreate your widgets.
-
-= 14.6.8 =
-There are full German and Italian translations available now.
-
-= 14.6.7 =
-This is only compatible with Wordpress 3.5+. Version 3.3 and 3.4 support is dropped.
-
-= 14.6.3 =
-The Wordpress function wp_mail is now used for mails, which makes use of built-in PHPMailer. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
-
-= 14.5 =
-v14.5+ is only compatible with WP 3.3+
-
-= 10.6 =
-WP 2.8 compliance
-
-= 10.2 =
-GPL compliance!
+The tracking database feature and its view are removed. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
@@ -167,6 +122,7 @@ GPL compliance!
 * enhanced: use HTML5 date field on Form Settings page for the start and end dates
 * enhanced: move style settings to Global Settings
 * bugfix:   do not behave differently for 0 as for any other default value
+* bugfix:   compatibility with PCRE2 evaluating regex character classes differently
 * other:    remove tracking database and its view
 * other:    remove track_cforms capability
 * other:    remove confirmation email attachment
