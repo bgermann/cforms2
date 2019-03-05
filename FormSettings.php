@@ -111,7 +111,8 @@ class FormSettings
 
     public function getActionPage()
     {
-        return Settings::instance()->get($this->ind, $this->pre . 'action_page');
+        $url = Settings::instance()->get($this->ind, $this->pre . 'action_page');
+        return $url === 'http://' ? '' : $url;
     }
 
     // fileupload
