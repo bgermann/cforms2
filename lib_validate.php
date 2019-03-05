@@ -72,7 +72,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
     $pid = cforms2_get_the_id($no);
 
-    cforms2_dbg("lib_validate.php: validating fields for form no. $no");
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
             empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0) {
 
@@ -81,7 +80,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $fileerr = $cformsSettings['global']['cforms_upload_err3'];
     }
 
-    cforms2_dbg("FILES:" . print_r($_FILES, 1));
     $off = 0;
     $c_errflag = false;
 
@@ -130,8 +128,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             $field_required = $field_stat[2];
             $field_emailcheck = $field_stat[3];
 
-            cforms2_dbg("\t ...validating field $field_name");
-
             $captchas = cforms2_get_pluggable_captchas();
 
             // captcha not for logged in users
@@ -144,7 +140,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
                 // hardcoded for now
                 $tmpName = $field_name;
-                cforms2_dbg("\t\t ...custom names/id's...($tmpName)");
 
                 if (strpos($tmpName, '[id:') !== false) {
 
@@ -174,7 +169,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     } else
                         $current_field = $_POST[$trackingID];
 
-                    cforms2_dbg("\t\t\t ...currentField field_name = \"$field_name\", current_field = $current_field, request-id = $trackingID");
                 } else {
                     if (strpos($tmpName, '#') !== false && strpos($tmpName, '#') == 0) {
                         // special case with checkboxes with right label only and no ID
@@ -192,8 +186,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
 
             if ($field_emailcheck) {
 
-                cforms2_dbg("\t\t ...found email field ($current_field) is_email = " . cforms2_is_email($current_field));
-
                 $validations[$i + $off] = cforms2_is_email($current_field) || (!$field_required && $current_field == '');
 
                 if (!$validations[$i + $off] && $err == 0)
@@ -206,8 +198,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     $err = $err ? $err : 2;
                 }
             } elseif ($field_required) {
-
-                cforms2_dbg("\t\t ...is required! check: current_field=$current_field");
 
                 if (in_array($field_type, array('html5color', 'html5date', 'html5datetime', 'html5datetime-local', 'html5email', 'html5month', 'html5number', 'html5range', 'html5search', 'html5tel', 'html5time', 'html5url', 'html5week',
                             'pwfield', 'textfield', 'textarea'))) {
@@ -267,8 +257,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                     else {
                         // classic regexpression
                         $reg_exp = str_replace('/', '\/', stripslashes($obj[2]));
-
-                        cforms2_dbg("\t\t ...REGEXP check content: $current_field =? $reg_exp");
 
                         // multi-line textarea regexp trick
                         if ($field_type == 'textarea')
@@ -473,8 +461,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             } else
                 $current_field = 'cf' . $no . '_field_' . $i;
 
-            cforms2_dbg("(lib_validate) looking at field: $current_field");
-
             // dissect field
             $obj = explode('|', $field_name, 3);
             $obj[] = "";
@@ -596,8 +582,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             $_SESSION['cforms']['current'] = $no == '' ? 1 : $no;
             $_SESSION['cforms']['cf_form' . $no] = $track;
 
-            cforms2_dbg("(lib_validate) In Session tracking for ($no)..." . print_r($_SESSION, 1));
-
             // fetch from prev. def
             $field_email = $_SESSION['cforms']['email'];
 
@@ -613,9 +597,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
             $track = cforms2_all_tracks($_SESSION['cforms']);
             $ongoingSession = '0';
         }
-
-        cforms2_dbg('$track = ' . print_r($track, 1));
-
 
         $r = cforms2_format_email($track, $no);
         $formdata = $r['text'];
@@ -681,8 +662,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $fdata = array();
         $fpointer = 0;
 
-        cforms2_dbg('File Attachments:');
-
         // attachments wanted for current form? (tracking session form uploads handled above!)
         $doAttach = !Cforms2\FormSettings::form($no)->getNoAttachments();
 
@@ -690,7 +669,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         if ($ongoingSession != '0' && is_array($file) && !empty($file)) {
             foreach ($file['tmp_name'] as $fn) {
                 cforms2_add_file($fn, $fdata, $fpointer, $doAttach);
-                cforms2_dbg("File = $fn, attach = $doAttach");
             }
         }
 
@@ -700,7 +678,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 if ($_SESSION['cforms']['upload'][$n]['files'])
                     foreach (array_keys($_SESSION['cforms']['upload'][$n]['files']) as $m) {
                         cforms2_add_file($_SESSION['cforms']['upload'][$n]['files'][$m], $fdata, $fpointer, $_SESSION['cforms']['upload'][$n]['doAttach']);
-                        cforms2_dbg("(end of session) File = " . $_SESSION['cforms']['upload'][$n]['files'][$m] . ", attach = " . $_SESSION['cforms']['upload'][$n]['doAttach']);
                     }
             }
         }
@@ -708,7 +685,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         foreach ($fdata as $file) {
             if ($file['doAttach'] && !empty($file['name'])) {
                 $mail->add_file($file['name']); // optional name
-                cforms2_dbg('Attaching file (' . $file['name'] . ') to email');
             }
         }
 
@@ -741,9 +717,6 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         }
 
         if ($sendmail) {
-            if (isset($trackf['data'][$ccme]))
-                cforms2_dbg("is CC: = $ccme, active = {$trackf['data'][$ccme]} | ");
-
             // send copy or notification?
             // not if no email and already CC'ed
             if (($cformsSettings['form' . $no]['cforms' . $no . '_confirm'] == '1' && !empty($field_email)) || $ccme && !empty($trackf['data'][$ccme])) {

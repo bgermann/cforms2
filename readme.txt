@@ -128,6 +128,7 @@ The tracking database feature and its view are removed. Your data still exists i
 * other:    remove confirmation email attachment
 * other:    remove JavaScript date picker
 * other:    remove all deprecated features and warnings about their usage
+* other:    remove debugging cruft
 
 = 14.14 =
 

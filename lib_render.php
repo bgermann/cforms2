@@ -27,12 +27,8 @@ function cforms2($no = '', $customfields = array()) {
     // remember old value to reset session when in new multi-part form
     $oldno = ($no == '1') ? '' : $no;
 
-    cforms2_dbg("Original form on page #$oldno");
-
     // multi-part form: overwrite $no
     $isMPform = $cformsSettings['form' . $oldno]['cforms' . $oldno . '_mp']['mp_form'];
-
-    cforms2_dbg("Multi-part form = $isMPform");
 
     if ($isMPform && is_array($_SESSION['cforms']) && $_SESSION['cforms']['current'] > 0) {
         $no = $_SESSION['cforms']['current'];
@@ -40,8 +36,6 @@ function cforms2($no = '', $customfields = array()) {
 
     // Safety, in case someone uses '1' for the default form
     $no = ($no == '1') ? '' : $no;
-
-    cforms2_dbg("Switch to form #$no");
 
     $moveBack = false;
     // multi-part form: reset button
@@ -52,16 +46,12 @@ function cforms2($no = '', $customfields = array()) {
         $_SESSION['cforms']['first'] = $oldno;
         $_SESSION['cforms']['pos'] = 1;
         unset($_POST);
-
-        cforms2_dbg("Reset-Button pressed");
     }
     // multi-part form: back button
     elseif (isset($_POST['backbutton' . $no]) && isset($_SESSION['cforms']) && ($_SESSION['cforms']['pos'] - 1) >= 0) {
         $no = $_SESSION['cforms']['list'][($_SESSION['cforms']['pos'] --) - 1];
         $_SESSION['cforms']['current'] = $no;
         $moveBack = true;
-
-        cforms2_dbg("Back-Button pressed");
     }
     // multi-part form init: must be multi-part, first and not submitted!
     elseif ($isMPform && (!is_array($_SESSION['cforms']) || $_SESSION['cforms']['first'] !== $oldno) && $cformsSettings['form' . $oldno]['cforms' . $oldno . '_mp']['mp_first']) {
@@ -70,8 +60,6 @@ function cforms2($no = '', $customfields = array()) {
         $_SESSION['cforms']['current'] = 0;
         $_SESSION['cforms']['first'] = $no;
         $_SESSION['cforms']['pos'] = 1;
-
-        cforms2_dbg("Session found, you're on the first form and session is reset!");
     }
 
 
@@ -130,8 +118,6 @@ function cforms2($no = '', $customfields = array()) {
 
     $umc = (!empty($usermessage_class) && $no > 1) ? ' ' . $usermessage_class . $no : '';
 
-    cforms2_dbg("User info for form #$no");
-
     // where to show message
     if (substr($cformsSettings['form' . $no]['cforms' . $no . '_showpos'], 0, 1) == 'y') {
         $content .= '<div id="usermessage' . $no . 'a" class="cf_info' . $usermessage_class . $umc . ' ">' . $usermessage_text . '</div>';
@@ -148,22 +134,16 @@ function cforms2($no = '', $customfields = array()) {
 
         $isMPformNext = false; // default
 
-        cforms2_dbg("Form is all valid & sendbutton pressed.");
-
         if ($isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current'] > 0 && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] != -1) {
 
             $isMPformNext = true;
             $no = cforms2_check_form_name($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next']);
-
-            cforms2_dbg("Session active and now moving on to form #$no");
 
             $oldcurrent = $_SESSION['cforms']['current'];
             $_SESSION['cforms']['current'] = ($no == '') ? 1 : $no;
 
             $field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
         } elseif ($isMPform && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == -1) {
-
-            cforms2_dbg("Session was active but is being reset now");
 
             $oldcurrent = $no;
 
@@ -178,9 +158,6 @@ function cforms2($no = '', $customfields = array()) {
         }
     }
 
-
-    cforms2_dbg("All good, currently on form #$no");
-    cforms2_dbg(print_r($track, 1));
 
     // redirect == 2 : hide form? || or if max entries reached!
     if ($all_valid && (
@@ -244,14 +221,10 @@ function cforms2($no = '', $customfields = array()) {
         $obj[] = "";
         $html5 = empty($obj[1]) ? '' : preg_split('/\x{00A4}/u', $obj[1], -1);
 
-        cforms2_dbg("\t\t html5 check, settings = " . print_r($html5, 1));
-
         // check for custom error message and split field_name
         $obj = explode('|err:', $obj[0], 2);
         $obj[] = "";
         $fielderr = $obj[1];
-
-        cforms2_dbg("\t adding $field_type field: $field_name");
 
         if (!empty($fielderr)) {
             switch ($field_type) {
@@ -275,8 +248,6 @@ function cforms2($no = '', $customfields = array()) {
         $obj[] = "";
         $fieldTitle = empty($obj[1]) ? '' : str_replace('"', '&quot;', stripslashes($obj[1]));
 
-        cforms2_dbg("\t\t title check, obj[0] = " . $obj[0]);
-
 
         // special treatment for selectboxes
         if (in_array($field_type, array('multiselectbox', 'selectbox', 'radiobuttons', 'checkbox', 'checkboxgroup', 'ccbox', 'emailtobox'))) {
@@ -288,8 +259,6 @@ function cforms2($no = '', $customfields = array()) {
             }
             $chkboxClicked[] = "";
             $chkboxClicked[] = "";
-
-            cforms2_dbg("\t\t found checkbox:, obj[0] = " . $obj[0]);
 
             $options = explode('#', stripslashes($obj[0]));
 
@@ -358,7 +327,6 @@ function cforms2($no = '', $customfields = array()) {
 
                 $field_name = substr_replace($field_name, '', $idPartA, ($idPartB - $idPartA) + 1);
 
-                cforms2_dbg("\t\t parsing custom ID/NAME...new field_name = $field_name, ID=$input_id");
             } else
                 $input_id = $input_name = cforms2_sanitize_ids(stripslashes($field_name));
         } else
@@ -408,7 +376,6 @@ function cforms2($no = '', $customfields = array()) {
         // only for multi-part forms
         if ($moveBack || $isMPform) {  // $isMPformNext
             $field_value = htmlspecialchars(stripslashes($_SESSION['cforms']['cf_form' . $no][$_SESSION['cforms']['cf_form' . $no]['$$$' . ($sItem++)]]));
-            cforms2_dbg('retrieving session values to pre-fill...' . $field_value);
         }
 
         if (!$all_valid) {
@@ -539,8 +506,6 @@ function cforms2($no = '', $customfields = array()) {
                         }
                         $h5_7 = ( $field_required ) ? ' required="required"' : '';
                         $h5 .= $h5_7 . ' ';
-
-                        cforms2_dbg('......html5 attributes: ' . $h5);
                     } else
                         $type = ($field_type == 'pwfield') ? 'password' : 'text';
 
@@ -760,8 +725,6 @@ function cforms2($no = '', $customfields = array()) {
                     $field .= '</li>';
                     break;
             }
-
-        cforms2_dbg("Form setup: $field_type, val=$field_value, default=$defaultvalue");
 
         // add new field
         $formcontent .= $field;

@@ -17,12 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function cforms2_dbg($m) {
-    if (WP_DEBUG_CFORMS2)
-        trigger_error('DEBUG cforms2: ' . $m);
-
-}
-
 function cforms2_get_the_id($no) {
     if (isset($_POST['comment_post_ID' . $no]) && $_POST['comment_post_ID' . $no])
         return (int) $_POST['comment_post_ID' . $no];
