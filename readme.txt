@@ -117,6 +117,10 @@ The tracking database feature and its view are removed. Your data still exists i
 
 == Changelog ==
 
+= 15.1 =
+
+* enhanced: remove deprecated html5datetime field type
+
 = 15.0 =
 
 * enhanced: use HTML5 date field on Form Settings page for the start and end dates

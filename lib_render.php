@@ -209,6 +209,8 @@ function cforms2($no = '', $customfields = array()) {
         $field_type = $field_stat[1];
         if ($field_type === 'datepicker')
             $field_type = 'html5date';
+        if ($field_type === 'html5datetime')
+            $field_type = 'html5datetime-local';
         $field_required = $field_stat[2];
         $field_emailcheck = $field_stat[3];
         $field_clear = $field_stat[4];
@@ -477,7 +479,6 @@ function cforms2($no = '', $customfields = array()) {
                 case "pwfield":
                 case "html5color":
                 case "html5date":
-                case "html5datetime":
                 case "html5datetime-local":
                 case "html5email":
                 case "html5month":

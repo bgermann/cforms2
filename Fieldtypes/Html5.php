@@ -37,7 +37,7 @@ class Html5 extends MultiId {
     protected function render_additional_settings() {
         $out = '';
 
-        if (in_array($_POST['type'], array('html5color', 'html5range', 'html5date', 'html5datetime', 'html5datetime-local', 'html5time', 'html5week', 'html5month', 'html5email', 'html5tel', 'html5url', 'html5search', 'html5number'))) {
+        if (in_array($_POST['type'], array('html5color', 'html5range', 'html5date', 'html5datetime-local', 'html5time', 'html5week', 'html5month', 'html5email', 'html5tel', 'html5url', 'html5search', 'html5number'))) {
             $out .= '<table class="cf_multi_data1" border="0"><tr>';
             $out .= '<td><label for="cf_edit_checked_autocomplete">'
                     . __('Autocomplete flag', 'cforms2')
@@ -51,7 +51,7 @@ class Html5 extends MultiId {
             $out .= '</tr></table>';
         }
 
-        if (in_array($_POST['type'], array('html5range', 'html5date', 'html5datetime', 'html5datetime-local', 'html5time', 'html5week', 'html5month', 'html5number'))) {
+        if (in_array($_POST['type'], array('html5range', 'html5date', 'html5datetime-local', 'html5time', 'html5week', 'html5month', 'html5number'))) {
             $out .= '<table class="cf_multi_data2" border="0"><tr>'
                     . '<td><label for="cf_edit_min">' . __('Min value', 'cforms2') . '</label></td>'
                     . '<td><label for="cf_edit_max">' . __('Max value', 'cforms2') . '</label></td>'
@@ -81,7 +81,6 @@ class Html5 extends MultiId {
         $types = array(
             'html5color' => 'HTML5 ' . __('Color Field', 'cforms2'),
             'html5date' => 'HTML5 ' . __('Date Field', 'cforms2'),
-            'html5datetime' => 'HTML5 ' . __('Date/Time Field', 'cforms2'),
             'html5datetime-local' => 'HTML5 ' . __('Date/Time (local) Field', 'cforms2'),
             'html5email' => 'HTML5 ' . __('Email Field', 'cforms2'),
             'html5month' => 'HTML5 ' . __('Month Field', 'cforms2'),

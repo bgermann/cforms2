@@ -199,7 +199,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 }
             } elseif ($field_required) {
 
-                if (in_array($field_type, array('html5color', 'html5date', 'html5datetime', 'html5datetime-local', 'html5email', 'html5month', 'html5number', 'html5range', 'html5search', 'html5tel', 'html5time', 'html5url', 'html5week',
+                if (in_array($field_type, array('html5color', 'html5date', 'html5datetime-local', 'html5email', 'html5month', 'html5number', 'html5range', 'html5search', 'html5tel', 'html5time', 'html5url', 'html5week',
                             'pwfield', 'textfield', 'textarea'))) {
 
                     $validations[$i + $off] = $current_field != '';

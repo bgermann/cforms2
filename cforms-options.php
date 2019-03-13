@@ -358,11 +358,13 @@ for ($i = 1; $i <= $field_count; $i++) {
     }
 
 
-    // convert old CAPTCHAs
+    // convert old field types
     if ($field_type === 'verification')
         $field_type = 'cforms2_question_and_answer';
     if ($field_type === 'datepicker')
         $field_type = 'html5date';
+    if ($field_type === 'html5datetime')
+        $field_type = 'html5datetime-local';
 
     switch ($field_type) {
         case 'emailtobox':
