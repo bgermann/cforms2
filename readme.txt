@@ -111,13 +111,13 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.0 =
-The tracking database feature and its view are removed. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
+= 15.0.1 =
+The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
 
-= 15.1 =
+= 15.0.1 =
 
 * enhanced: remove deprecated html5datetime field type
 * bugfix:   write html5 attributes to field name (long-standing since 14.12.2)
