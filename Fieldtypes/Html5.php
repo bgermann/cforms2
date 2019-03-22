@@ -35,21 +35,17 @@ class Html5 extends MultiId {
     }
 
     protected function render_additional_settings() {
-        $out = '';
-
-        if (in_array($_POST['type'], array('html5color', 'html5range', 'html5date', 'html5datetime-local', 'html5time', 'html5week', 'html5month', 'html5email', 'html5tel', 'html5url', 'html5search', 'html5number'))) {
-            $out .= '<table class="cf_multi_data1" border="0"><tr>';
-            $out .= '<td><label for="cf_edit_checked_autocomplete">'
-                    . __('Autocomplete flag', 'cforms2')
-                    . '</label></td>';
-            $out .= '<td><label for="cf_edit_checked_autofocus">'
-                    . __('Autofocus flag', 'cforms2')
-                    . '</label></td>';
-            $out .= '</tr><tr>';
-            $out .= '<td><input type="checkbox" id="cf_edit_checked_autocomplete" name="cf_edit_checked_autocomplete" class="allchk chkBox" /></td>';
-            $out .= '<td><input type="checkbox" id="cf_edit_checked_autofocus" name="cf_edit_checked_autofocus" class="allchk chkBox" /></td>';
-            $out .= '</tr></table>';
-        }
+        $out = '<table class="cf_multi_data1" border="0"><tr>';
+        $out .= '<td><label for="cf_edit_checked_autocomplete">'
+                . __('Autocomplete flag', 'cforms2')
+                . '</label></td>';
+        $out .= '<td><label for="cf_edit_checked_autofocus">'
+                . __('Autofocus flag', 'cforms2')
+                . '</label></td>';
+        $out .= '</tr><tr>';
+        $out .= '<td><input type="checkbox" id="cf_edit_checked_autocomplete" name="cf_edit_checked_autocomplete" class="allchk chkBox" /></td>';
+        $out .= '<td><input type="checkbox" id="cf_edit_checked_autofocus" name="cf_edit_checked_autofocus" class="allchk chkBox" /></td>';
+        $out .= '</tr></table>';
 
         if (in_array($_POST['type'], array('html5range', 'html5date', 'html5datetime-local', 'html5time', 'html5week', 'html5month', 'html5number'))) {
             $out .= '<table class="cf_multi_data2" border="0"><tr>'

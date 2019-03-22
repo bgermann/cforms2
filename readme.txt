@@ -120,6 +120,7 @@ The tracking database feature and its view are removed. Your data still exists i
 = 15.1 =
 
 * enhanced: remove deprecated html5datetime field type
+* bugfix:   write html5 attributes to field name (long-standing since 14.12.2)
 
 = 15.0 =
 

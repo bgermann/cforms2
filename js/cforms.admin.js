@@ -189,19 +189,18 @@ jQuery(function () {
                 l_cerr = '|err:' + l_cerr;
         }
 
-        var autocomplete = jQuery('#cf_edit_checked_autocomplete').is(':checked') ? '1' : '0';
-        var autofocus = jQuery('#cf_edit_checked_autofocus').is(':checked') ? '1' : '0';
-        var min = jQuery('#cf_edit_min').length ? jQuery('#cf_edit_min').val() : '';
-        var max = jQuery('#cf_edit_max').length ? jQuery('#cf_edit_max').val() : '';
-        var pattern = jQuery('#cf_edit_pattern').length ? jQuery('#cf_edit_pattern').val() : '';
-        var step = jQuery('#cf_edit_step').length ? jQuery('#cf_edit_step').val() : '';
-        var placeholder = jQuery('#cf_edit_placeholder').length ? jQuery('#cf_edit_placeholder').val() : '';
-        var sep = '\u00A4';
-        var l_html5;
-        if (jQuery('#html5formfields').length)
+        var l_html5 = '';
+        if (jQuery('#cf_edit_checked_autocomplete').length) {
+            var autocomplete = jQuery('#cf_edit_checked_autocomplete').is(':checked') ? '1' : '0';
+            var autofocus = jQuery('#cf_edit_checked_autofocus').is(':checked') ? '1' : '0';
+            var min = jQuery('#cf_edit_min').length ? jQuery('#cf_edit_min').val() : '';
+            var max = jQuery('#cf_edit_max').length ? jQuery('#cf_edit_max').val() : '';
+            var pattern = jQuery('#cf_edit_pattern').length ? jQuery('#cf_edit_pattern').val() : '';
+            var step = jQuery('#cf_edit_step').length ? jQuery('#cf_edit_step').val() : '';
+            var placeholder = jQuery('#cf_edit_placeholder').length ? jQuery('#cf_edit_placeholder').val() : '';
+            var sep = '\u00A4';
             l_html5 = '|html5:' + autocomplete + sep + autofocus + sep + min + sep + max + sep + pattern + sep + step + sep + placeholder;
-        else
-            l_html5 = '';
+        }
 
         jQuery('.cf_edit_group_new').each(function (index, domEle) {
             var temp_o = jQuery('#cf_edit_group_o' + domEle.id.substr(10)).val();
