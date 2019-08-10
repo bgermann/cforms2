@@ -603,10 +603,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
                 <td class="bright"><?php _e('Inserts the ID of the post the form is shown in.', 'cforms2'); ?></td>
             </tr>
             <tr>
-                <td class="bleft"><code>{Referer}</code></td>
-                <td class="bright"><?php _e('Inserts the HTTP referer information (if available).', 'cforms2'); ?></td>
-            </tr>
-            <tr>
                 <td class="bleft"><code>{Page}</code></td>
                 <td class="bright"><?php _e('Inserts the WP page the form was submitted from.', 'cforms2'); ?></td>
             </tr>

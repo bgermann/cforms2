@@ -219,8 +219,6 @@ function cforms2_check_default_vars($m, $no) {
 
     $current_user = wp_get_current_user();
 
-    if (isset($_SERVER['HTTP_REFERER']))
-        $m = str_replace('{Referer}', $_SERVER['HTTP_REFERER'], $m);
     $m = str_replace('{PostID}', $pid, $m);
     $m = str_replace('{Form Name}', Cforms2\FormSettings::form($no)->name(), $m);
     $m = str_replace('{Page}', $page, $m);
@@ -311,7 +309,8 @@ function cforms2_get_ip() {
         else
             $ip_addr = getenv('REMOTE_ADDR');
     }
-    return $ip_addr;
+    $ip_addr = filter_var($ip_addr, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE);
+    return $ip_addr ? $ip_addr : '';
 
 }
 
