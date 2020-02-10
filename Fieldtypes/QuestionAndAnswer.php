@@ -65,15 +65,15 @@ final class QuestionAndAnswer extends \cforms2_captcha {
     /**
      * Returns the nth question & answer pair.
      * 
-     * @param int $n The nth pair. If negative, $n is random.
+     * @param int $n The nth pair. If there is no nth pair, $n is random.
      * @return array array(n, qestion, answer)
      */
     private function question_and_answer($n = -1) {
         $cformsSettings = get_option('cforms_settings');
         $qall = explode("\r\n", $cformsSettings['global']['cforms_sec_qa']);
-        if ($n < 0)
+        if (!array_key_exists($n, $qall))
             $n = mt_rand(0, count($qall) - 1);
-        $q = explode('=', $qall[$n]);
+        $q = explode('=', $qall[$n], 2);
         array_unshift($q, $n);
         return $q;
 
