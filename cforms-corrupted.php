@@ -70,7 +70,7 @@ cforms2_check_access_priv();
         <h3><?php _e('Corrupted cforms settings array (raw code)', 'cforms2'); ?></h3>
         <table class="form-table">
             <tr>
-                <td><?php _e('Depending on your Wordpress/PHP skills you may want to try and fix the serialized data below, then hit the fix button or try just like that, cforms may magically fix it for you.', 'cforms2'); ?></td>
+                <td><?php _e('Depending on your WordPress/PHP skills you may want to try and fix the serialized data below, then hit the fix button or try just like that, cforms may magically fix it for you.', 'cforms2'); ?></td>
             </tr>
             <tr>
                 <td><textarea rows="16" cols="10" name="currentsettings" id="currentsettings"><?php echo $c; ?></textarea></td>

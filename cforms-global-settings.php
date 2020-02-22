@@ -28,7 +28,7 @@ if (cforms2_check_erased())
 
 $style = $cformsSettings['global']['cforms_css'];
 
-// Update Settings
+// Update Settings.
 if (isset($_POST['SubmitOptions']))
     if (isset($_POST['raw_cforms_settings'])) {
         $raw_cforms_settings = stripslashes(cforms2_get_from_request('raw_cforms_settings'));
@@ -36,7 +36,7 @@ if (isset($_POST['SubmitOptions']))
             $raw_cforms_settings = json_decode($raw_cforms_settings, true);
             if ($raw_cforms_settings === null) {
                 echo '<div id="message" class="updated fade"><p>' . __('Error:', 'cforms2') . ' ';
-                // As WordPress has a compatibility layer, json_last_error_msg (PHP >= 5.5) can be used
+                // As WordPress has a compatibility layer, json_last_error_msg (PHP >= 5.5) can be used.
                 echo json_last_error_msg() . '</p></div>';
             } elseif (is_array($raw_cforms_settings)) {
                 update_option('cforms_settings', $raw_cforms_settings);
@@ -103,7 +103,7 @@ if (isset($_POST['SubmitOptions']))
                             <td class="obL"><?php _e('Please choose a theme file to style your forms', 'cforms2') ?></td>
                             <td class="obR">
                                 <?php
-                                // include all css files
+                                // Include all css files.
                                 $d = plugin_dir_path(__FILE__) . "styling";
                                 $dCustom = plugin_dir_path(__FILE__) . ".." . DIRECTORY_SEPARATOR . "cforms-custom";
 
@@ -118,7 +118,7 @@ if (isset($_POST['SubmitOptions']))
                                         if (file_exists($dCustom)) {
                                             echo '<option disabled="disabled">&nbsp;&nbsp;*** ' . __('custom css files', 'cforms2') . ' ***&nbsp;&nbsp;</option>';
 
-                                            // customer CSS files
+                                            // Customer CSS files.
                                             $allcustomCSS = array();
                                             $dir = opendir($dCustom);
                                             while ($dir && ($f = readdir($dir))) {
@@ -138,7 +138,7 @@ if (isset($_POST['SubmitOptions']))
                                             echo '<option disabled="disabled">&nbsp;&nbsp;*** ' . __('cform css files', 'cforms2') . ' ***&nbsp;&nbsp;</option>';
                                         }
 
-                                        // core CSS files
+                                        // Core CSS files.
                                         $allCSS = array();
                                         $dir = opendir($d);
                                         while ($dir && ($f = readdir($dir))) {

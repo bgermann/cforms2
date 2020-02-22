@@ -27,7 +27,7 @@ namespace Cforms2;
 
 define('CFORMS2_VERSION', '15.0.3');
 
-// debug message handling
+// Debug message handling.
 if (!defined('WP_DEBUG_CFORMS2')) {
     define('WP_DEBUG_CFORMS2', false);
 }
@@ -84,7 +84,7 @@ if (is_admin()) {
     add_action('admin_menu', 'cforms2_menu');
     add_action('wp_ajax_cforms2_field', 'cforms2_field');
 
-    // admin bar
+    // Admin bar.
     if (isset($_GET['page'])) {
         $plugin_page = stripslashes($_GET['page']);
         $plugin_page = plugin_basename($plugin_page);
@@ -95,7 +95,7 @@ if (is_admin()) {
     }
 }
 
-// attaching to hooks
+// Attaching to hooks.
 add_action('template_redirect', 'cforms2_start_session');
 add_action('wp_ajax_submitcform', 'cforms2_submitcform');
 add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');

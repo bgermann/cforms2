@@ -1,5 +1,5 @@
 === cformsII ===
-Contributors: bgermann, olivers, cbacchini, codifex, nb000, wdfee
+Contributors: bgermann, olivers, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 3.9
@@ -597,7 +597,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   fixed double quote "" issue in XML tracking downloads
 * bugfix:   fixed loading issues of the TRACKING page
 * bugfix:   fixed deletion of ATTACHMENTS on server when deleting tracked submission
-* bugfix:   form names for recent submissions show accuratly now on WP DASHBOARD
+* bugfix:   form names for recent submissions show accurately now on WP DASHBOARD
 * enhanced: added security around "remove/delete plugin" function
 
 = 11.3 =
@@ -750,7 +750,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 = 10.3 =
 
-* feature:  RSS feed: revised and enhanced feeds (all & indivudal form feeds)
+* feature:  RSS feed: revised and enhanced feeds (all & individual form feeds)
             supporting inclusion of form fields in the feed
 * feature:  new API function: cf_extra_comment_data( $id )
             will retrieve all extra fields per given comment ID in a data [array]
@@ -786,13 +786,13 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   added UI CSS mods to accomodate pre WP2.7 admin interface
 * bugfix:   wrong dashboard icon extension (png vs gif)
 * bugfix:   hover text over AJAX option on 'form settings'
-* bugfix:   multi-page forms: after final submission, form #1 on occcasion would render only partly
+* bugfix:   multi-page forms: after final submission, form #1 on occasion would render only partly
 * bugfix:   multi-page forms: if used with "WP comment form feature" at the same time, comment form would also be replaced with the current multi-part form
 * bugfix:   multi-page forms: when deploying several MP form series the SESSION would in some cases not be reset
 * bugfix:   in v10.0 access priviliges for tracking required to be "manage_cforms"
 * other:    fixed CommentLuv support
 * other:    WP2.7+ fixed admin UI : support for removeable top err/warning messages
-* other:    a few minor UI adjustments to accomodate 1024px wide screens a tad better
+* other:    a few minor UI adjustments to accommodate 1024px wide screens a tad better
 * other:    some cosmetic icon adjustments
 
 = 10.0 =
@@ -864,7 +864,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   fixed issue with cforms WP comment feature and additional fields (on top of the default comment fields) not showing up in notification email
 * bugfix:   fixed CC:me field bug (for Ajax submission)
 * bugfix:   form submission tracking : fixed dashboard & RSS link to actual form details
-* bugfix:   fixed RSS support (mime types and general compatiblity issues)
+* bugfix:   fixed RSS support (mime types and general compatibility issues)
 * bugfix:   JS bug could have caused hiccups when refreshing CAPTCHA image
 * bugfix:   fixed restore bug "Error: Specified file failed upload test."
 * other:    added delete warning when deleting a form
@@ -959,7 +959,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   fixed some annoying MSXML IE specific errors...
 * bugfix:   custom files had to be all lowercase, now case insensitive
 * bugfix:   custom CSS file would not be pre-selected in Styling/drop-down
-* other:    added a patch to manage Wordpress annoying wp_autop 'feature' and thus fix XHTML validation (this should really be WP's task ;-)
+* other:    added a patch to manage WordPress annoying wp_autop 'feature' and thus fix XHTML validation (this should really be WP's task ;-)
 
 = 8.5 =
 
@@ -1146,7 +1146,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   fixed upload path config error (upload was still working though)
 * bugfix:   fixed possible issues with existing WP jQuery (1.1.4) library
 * other:    more CSS theme enhancements
-* other:    WP 2.3.2 certififed
+* other:    WP 2.3.2 certified
 * other:    Turkish language pack available
 
 = 7.0 =
@@ -1210,11 +1210,11 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * feature:  added detection for typical errors
 * feature:  added fieldset information in tracking display to maintain context of input fields
 * bugfix:   fixed the T-A-F preset
-* bugfix:   fixed TinyMCE compatiblity issues with WP2.0.2
+* bugfix:   fixed TinyMCE compatibility issues with WP2.0.2
 * bugfix:   fixed wp_get_current_user() issue with WP2.0.2
 * bugfix:   fixed tracking issue and {variable} bug when using fields with the same field label now
 * other:    reimplemented 'dashboard" support using activity box hook (no more JS)
-* other:    changed behaviour of an email field. The "Email" flag doesn't anmore imply "Required"
+* other:    changed behavior of an email field. The "Email" flag doesn't anymore imply "Required"
 * other:    Danish translation available!
 * other:    Russian translation available!
 
@@ -1263,7 +1263,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   fixed admin menu for Windows IIS web server
 * bugfix:   minor version display fix
 * other:    JS file for "popup date picker" now only loaded when feature is enabled
-* other:    renamed JS functions in "popup date picker" code (to avoid possible incompatiblities)
+* other:    renamed JS functions in "popup date picker" code (to avoid possible incompatibilities)
 * other:    select boxes & upload fields now also show a "required" txt label
 
 = 5.5 =
@@ -1305,7 +1305,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 = 5.3 =
 
 * bugfix:   admin HTML with non auto conf. TXT email would cause flawed HTML CC email
-* bugfix:   fixed mailer error messsages for ajax (they would not show)
+* bugfix:   fixed mailer error messages for ajax (they would not show)
 * other:    improved/simplified UI
 * other:    lots of clean up and making UI around email messaging more obvious, hopefully
 
@@ -1368,7 +1368,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * bugfix:   DB Tracking: multi-line fields are now consistently stored (no extra <br/>)
 * other:    a few more form themes (wide & big, no border)
 * other:    slightly enhanced email formatting
-* other:    added seperate USER CAPability for tracking only! (use w/ Role Manager plugin!)
+* other:    added separate USER CAPability for tracking only! (use w/ Role Manager plugin!)
 
 = 4.7 =
 
@@ -1453,7 +1453,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 * feature:  file upload; only works with non-ajax send method (chosen autoamtically) due to HTML constraints. ajax support does NOT need to be explicitly disabled
 * feature:  select boxes (drop downs) now can be "required" -> to support situations, where you don't want a default value to kick in, but want the visito to make a choice! See HELP! section for more info on how to use this new feature
-* feature:  checkboxes : now can be "required" -> for "I have read the above" type scenarious, where the user has to comply/agree to a statement
+* feature:  checkboxes : now can be "required" -> for "I have read the above" type scenarios, where the user has to comply/agree to a statement
 * feature:  radio buttons, you can now click on the labels to toggle the selection
 * feature:  radio & select boxes (drop down): now accept a "display value" & a "submit value". See HELP! section for more info
 * feature:  "submit button" is now disabled after sending to prevent multiple submissions in case the web servers response is delayed (Ajax!)
@@ -1498,7 +1498,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * feature:  CC optional for visitor / if CC'ed not auto confirmatin will be sent add'l
 * feature:  enhanced email layout - supporting defined fieldset
 * feature:  REPLY-TO set for emails to both form admins & visitors (CC'ed)
-* enhanced: non ajax form submisssion: page reloads and now jumps directly to form (& success msg)
+* enhanced: non ajax form submission: page reloads and now jumps directly to form (& success msg)
 * enhanced: code clean up and a handful of minor big fixes
 
 = 2.1.1 =
@@ -1518,7 +1518,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 * feature:  additional form fields: checkboxes, radio buttons and select fields. Please note the expected "Field Name" entry format, separating input field items form the field name: i.e. radio buttons: field-name#button1#button2#button3#...
 * enhanced: ajax support can be optionally turned off
 * enhanced: a form can now have as few input fields as two
-* enhanced: more flexibilty in choosing email entry field. NOTE: if you have multiple email fields in your form, only the first will be used for sending the auto confirmation to
+* enhanced: more flexibility in choosing email entry field. NOTE: if you have multiple email fields in your form, only the first will be used for sending the auto confirmation to
 * feature:  "valid email required" placeholder added to indicate required input format for email fields
 * feature:  optional popup window for user messages (may be helpful for very long forms)
 * other:    code cleanup
