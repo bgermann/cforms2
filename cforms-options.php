@@ -98,7 +98,7 @@ if (isset($_POST['addbutton'])) {
 
     $formcount++;
 
-    // new settings container
+    // New settings container.
     foreach (array_keys($cformsSettings['form' . $no]) as $k) {
         $tmp = preg_match('/cforms\d*_(.*)/', $k, $kk);
         if (strpos($k, '_fname') !== false)
@@ -111,7 +111,7 @@ if (isset($_POST['addbutton'])) {
 
     update_option('cforms_settings', $cformsSettings);
 
-    //set $no afterwards: need it to duplicate fields
+    // Set $no afterwards: need it to duplicate fields.
     $no = $no_disp = $formcount;
 } elseif (isset($_POST['delbutton']) && $formcount > 1) {
     $no_disp = '1';
@@ -119,7 +119,7 @@ if (isset($_POST['addbutton'])) {
     if ($_POST['no'] !== '1')
         $no_disp = $no = (int) $_POST['no'];
 
-    for ($i = (int) $no_disp; $i < count(Cforms2\FormSettings::forms()); $i++) {  // move all forms "to the left"
+    for ($i = (int) $no_disp; $i < count(Cforms2\FormSettings::forms()); $i++) {  // Move all forms "to the left".
         $n = ($i == 1) ? '' : $i;
         unset($cformsSettings['form' . $n]);
 
@@ -134,7 +134,7 @@ if (isset($_POST['addbutton'])) {
     $formcount = $formcount - 1;
 
     if ($formcount > 1) {
-        if (isset($_POST['no']) && (int) $_POST['no'] > $formcount) // otherwise stick with the current form
+        if (isset($_POST['no']) && (int) $_POST['no'] > $formcount) // Otherwise stick with the current form.
             $no = $no_disp = $formcount;
     } else {
         $no_disp = '1';
@@ -146,18 +146,18 @@ if (isset($_POST['addbutton'])) {
     echo '<div id="message" class="updated fade"><p>' . __('Form deleted', 'cforms2') . '.</p></div>';
 } else {
 
-    // set parameters to default, if not exists
+    // Set parameters to default, if not exists.
     $no_disp = '1';
     $no = '';
-    if (isset($_POST['switchform'])) { // only set when hitting form chg buttons
+    if (isset($_POST['switchform'])) { // Only set when hitting form chg buttons.
         if ($_POST['switchform'] !== '1')
             $no_disp = $no = (int) $_POST['switchform'];
     }
-    elseif (isset($_POST['go'])) { // only set when hitting form chg buttons
+    elseif (isset($_POST['go'])) { // Only set when hitting form chg buttons.
         if ($_POST['pickform'] !== '1')
             $no_disp = $no = (int) $_POST['pickform'];
     }
-    elseif (isset($_POST['noSub']) && (int) $_POST['noSub'] > 1) { // otherwise stick with the current form
+    elseif (isset($_POST['noSub']) && (int) $_POST['noSub'] > 1) { // Otherwise stick with the current form.
         $no_disp = $no = (int) $_POST['noSub'];
     }
 }
@@ -170,10 +170,10 @@ if (isset($_POST['SubmitOptions']) || isset($_POST['AddField']) || array_search(
     cforms2_option_submission($no, $cformsSettings);
 }
 
-// default: $field_count = what's in the DB
+// Default: $field_count = what's in the DB.
 $field_count = $cformsSettings['form' . $no]['cforms' . $no . '_count_fields'];
 
-// Reset Admin and AutoConf messages
+// Reset Admin and AutoConf messages.
 if (isset($_POST['cforms_resetAdminMsg'])) {
     $cformsSettings['form' . $no]['cforms' . $no . '_header'] = __('A new submission (form: "{Form Name}")', 'cforms2') . "\r\n============================================\r\n" . __('Submitted on: {Date}', 'cforms2') . "\r\n" . __('Via: {Page}', 'cforms2') . "\r\n" . __('By {IP} (visitor IP)', 'cforms2') . ".\r\n" . ".\r\n";
     $cformsSettings['form' . $no]['cforms' . $no . '_header_html'] = '<p ' . $cformsSettings['global']['cforms_style']['meta'] . '>' . __('A form has been submitted on {Date}, via: {Page} [IP {IP}]', 'cforms2') . '</p>';
@@ -185,7 +185,7 @@ if (isset($_POST['cforms_resetAutoCMsg'])) {
     update_option('cforms_settings', $cformsSettings);
 }
 
-// delete field if we find one and move the rest up
+// Delete field if we find one and move the rest up.
 $deletefound = 0;
 if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $field_count]) > 0) {
 
@@ -206,7 +206,7 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $fie
     }
 
     if ($deletefound == 1) {
-        // now delete
+        // Now delete.
         unset($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $field_count]);
         $field_count--;
     }
@@ -214,7 +214,7 @@ if (strlen($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $fie
 }
 
 
-// prepare dropdown box for form selection
+// Prepare dropdown box for form selection.
 $formlistbox = ' <select id="pickform" name="pickform">';
 for ($i = 1; $i <= $formcount; $i++) {
     $j = ( $i > 1 ) ? $i : '';
@@ -224,13 +224,13 @@ for ($i = 1; $i <= $formcount; $i++) {
 $formlistbox .= '</select>';
 
 
-// make sure at least the default FROM address is set
+// Make sure at least the default FROM address is set.
 if ($cformsSettings['form' . $no]['cforms' . $no . '_fromemail'] == '') {
     $cformsSettings['form' . $no]['cforms' . $no . '_fromemail'] = '"' . get_option('blogname') . '" <wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME'])) . '>';
     update_option('cforms_settings', $cformsSettings);
 }
 
-// check if HTML needs to be enabled
+// Check if HTML needs to be enabled.
 $fd = $cformsSettings['form' . $no]['cforms' . $no . '_formdata'];
 if (strlen($fd) <= 2) {
     $fd .= empty($cformsSettings['form' . $no]['cforms' . $no . '_header_html']) ? '0' : '1';

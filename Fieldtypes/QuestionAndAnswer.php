@@ -66,7 +66,7 @@ final class QuestionAndAnswer extends \cforms2_captcha {
      * Returns the nth question & answer pair.
      * 
      * @param int $n The nth pair. If there is no nth pair, $n is random.
-     * @return array array(n, qestion, answer)
+     * @return array array(n, question, answer)
      */
     private function question_and_answer($n = -1) {
         $cformsSettings = get_option('cforms_settings');
