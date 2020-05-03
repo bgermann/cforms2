@@ -97,7 +97,7 @@ function cforms2($no = '', $customfields = array()) {
     // non-AJAX method
     $all_valid = true;
     if (isset($_POST['sendbutton' . $no]) || $server_upload_size_error) {
-        $validation_result = cforms2_validate($no, $isMPform, $custom, $customfields);
+        $validation_result = cforms2_validate($no, $isMPform, $custom, $customfields, $custom_error);
         $all_valid = $validation_result['all_valid'];
         $usermessage_text = $validation_result['text'];
         $usermessage_class = $validation_result['class'];

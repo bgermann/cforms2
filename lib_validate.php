@@ -57,7 +57,7 @@ function cforms2_is_email($string) {
 
 }
 
-function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array()) {
+function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array(), $custom_error = '') {
     $cformsSettings = get_option('cforms_settings');
 
     $validations = array();
