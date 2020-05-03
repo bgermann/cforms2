@@ -88,7 +88,7 @@ function cforms2_enqueue_scripts() {
     $onPages = str_replace(' ', '', stripslashes(htmlspecialchars($cformsSettings['global']['cforms_inexclude']['ids'])));
     $onPagesA = explode(',', $onPages);
 
-    if ($onPages == '' || (in_array($page_obj->ID, $onPagesA) && !$exclude) || (!in_array($page_obj->ID, $onPagesA) && $exclude)) {
+    if ($onPages == '' || ($page_obj instanceof WP_POST && in_array($page_obj->ID, $onPagesA) && !$exclude) || ($page_obj instanceof WP_POST && !in_array($page_obj->ID, $onPagesA) && $exclude)) {
 
         if ($cformsSettings['global']['cforms_css']) {
             wp_register_style('cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION);
