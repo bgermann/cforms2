@@ -28,7 +28,7 @@ The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is
 
 [Old Tracking DB for cformsII](https://wordpress.org/plugins/cforms2-old-tracking-db) is for those who do not want to switch from the built-in Tracking DB to CFDB. However it does not have any web interface.
 
-[WordPress ReCaptcha Integration](https://wordpress.org/plugins/wp-recaptcha-integration) provides a reCAPTCHA implementation for cformsII.
+[ReCaptcha Integration for WordPress](https://wordpress.org/plugins/wp-recaptcha-integration) provides a reCAPTCHA implementation for cformsII.
 
 
 == Localization ==
