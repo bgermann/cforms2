@@ -1,5 +1,5 @@
 === cformsII ===
-Contributors: bgermann, olivers, cbacchini, codifex, nb000, wdfee, passoniate
+Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 3.9
