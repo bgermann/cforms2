@@ -30,6 +30,8 @@ The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is
 
 [ReCaptcha Integration for WordPress](https://wordpress.org/plugins/wp-recaptcha-integration) provides a reCAPTCHA implementation for cformsII.
 
+[UpiCRM](https://wordpress.org/plugins/upi-crm-universal-crm-solution) provides lead management with cformsII as a data source.
+
 
 == Localization ==
 
