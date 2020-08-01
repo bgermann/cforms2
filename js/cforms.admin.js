@@ -77,10 +77,8 @@ jQuery(function () {
         return false;
     };
 
-    var registerMenuAction = function (clickIdSuffix, confirmMessage) {
+    var registerMenuAction = function (clickIdSuffix) {
         jQuery('#wp-admin-bar-cforms-' + clickIdSuffix).click(function () {
-            if (confirmMessage && !confirm(confirmMessage))
-                return false;
             jQuery("#cfbar-" + clickIdSuffix).trigger("click");
             return false;
         });
