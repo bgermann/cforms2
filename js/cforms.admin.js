@@ -97,7 +97,7 @@ jQuery(function () {
     registerMenuAction('deleteall');
     registerMenuAction('addbutton');
     registerMenuAction('dupbutton');
-    registerMenuAction('delbutton', commonL10n.warnDelete);
+    registerMenuAction('delbutton');
     registerMenuAction('SubmitOptions');
 
     /* INFO BUTTONS */
