@@ -276,27 +276,6 @@ input.addfieldno:focus {
 /****************************************************************
   HIDE BLOCKS
 *****************************************************************/
-.blindminus,.blindplus {
-    overflow:hidden;
-    width:20px;
-    height:34px;
-    margin:0 6px 0 0;
-    display:block;
-    float:left;
-    font-family:dashicons;
-    color:gray;
-    border-right:1px solid gray;
-    text-decoration:none;
-}
-
-.blindplus:before {
-    content:"\f140";
-}
-
-.blindminus:before {
-    content:"\f142";
-}
-
 #cf_actions {
     display:none;
 }
@@ -486,22 +465,10 @@ input[type="checkbox"]:focus, input[type="radio"]:focus {
     line-height:34px;
     margin:5px 0 0;
     padding:0;
+    padding-left:10px;
     background:#f1f1f1 linear-gradient(0deg, #f9f9f9, #ececec);
     border:1px solid #eee;
     border-bottom:none;
-    border-radius:3px 3px 0 0;
-}
-
-div.cflegend {
-    cursor:pointer;
-}
-
-h3.cflegend {
-    padding-left:10px;
-}
-
-.op-closed {
-    border:1px solid #eee;
     border-radius:3px;
 }
 

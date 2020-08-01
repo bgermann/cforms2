@@ -494,9 +494,9 @@ for ($i = 1; $i <= $field_count; $i++) {
 
 
         <fieldset class="cformsoptions" id="formmessage">
-            <div class="cflegend op-closed" id="p1" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('Form Messages', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('Form Messages', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o1">
                 <p><?php printf(__('These are the messages displayed to the user on successful (or failed) form submission. These messages are form specific, a general message for entering a wrong <strong>visitor verification code</strong> can be found <a href="%s" %s>here</a>.', 'cforms2'), '?page=' . $plugindir . '/cforms-global-settings.php#visitorv', ''); ?></p>
@@ -557,9 +557,9 @@ for ($i = 1; $i <= $field_count; $i++) {
 
 
         <fieldset class="cformsoptions" id="core">
-            <div class="cflegend op-closed" id="p2" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('Core Form', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('Core Form', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o2">
 
@@ -679,9 +679,9 @@ if ($start_date) {
 
 
         <fieldset class="cformsoptions" id="emailoptions">
-            <div class="cflegend op-closed" id="p3" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('Admin Message', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('Admin Message', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o3">
                 <p><?php printf(__('These settings determine the form email recipient(s). Both %s and %s formats are valid, but check if your mail server does accept the format of choice!', 'cforms2'), '"<strong>xx@yy.zz</strong>"', '"<strong>abc &lt;xx@yy.zz&gt;</strong>"') ?></p>
@@ -776,9 +776,9 @@ if ($start_date) {
 
 
         <fieldset class="cformsoptions" id="autoconf">
-            <div class="cflegend op-closed" id="p4" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('Auto Confirmation Message', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('Auto Confirmation Message', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o4">
                 <p><?php _e('These settings apply to an auto response/confirmation sent to the visitor. If enabled AND your form contains a "<code>CC me</code>" field <strong>AND</strong> the visitor selected it, no extra confirmation email is sent!', 'cforms2') ?></p>
@@ -840,9 +840,9 @@ if ($start_date) {
 
 
         <fieldset class="cformsoptions" id="multipart">
-            <div class="cflegend op-closed" id="p0" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('Multi-Part Form', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('Multi-Part Form', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o0">
                 <p><?php _e('If enabled, new options will be shown below.', 'cforms2'); ?> <label for="cforms_mp_form"><?php _e('Mark this form to belong to a series of forms:', 'cforms2') ?></label> <input class="allchk" type="checkbox" id="cforms_mp_form" name="cforms_mp_form" <?php if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] == '1') echo "checked=\"checked\""; ?>/></p>
@@ -906,9 +906,9 @@ if ($start_date) {
 
 
         <fieldset class="cformsoptions <?php if (!$ccboxused) echo "hidden"; ?>" id="cc">
-            <div class="cflegend op-closed" id="p5" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('CC Message', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('CC Message', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o5">
                 <p><?php _e('This is the subject of the CC email that goes out the user submitting the form and as such requires the <strong>CC:</strong> field in your form definition above.', 'cforms2') ?></p>
@@ -928,9 +928,9 @@ if ($start_date) {
 
 
         <fieldset class="cformsoptions <?php if (!$fileupload) echo 'hidden'; ?>" id="fileupload">
-            <div class="cflegend op-closed" id="p6" title="<?php _e('Expand/Collapse', 'cforms2') ?>">
-                <div class="blindminus"></div><?php _e('File Upload Settings', 'cforms2') ?>
-            </div>
+            <h3 class="cflegend">
+                <?php _e('File Upload Settings', 'cforms2') ?>
+            </h3>
 
             <div class="cf-content" id="o6">
                 <p>

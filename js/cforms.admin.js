@@ -24,43 +24,6 @@
 
 jQuery(function () {
 
-    var nameEQ = "cformsshowui=";
-    var setshow = function (el) {
-        var val = readcookie();
-        var x = val.charAt(el) === '0';
-        jQuery("#p" + el).attr("class", x ? 'cflegend op-closed' : 'cflegend');
-        jQuery("div", "#p" + el).attr("class", x ? 'blindplus' : 'blindminus');
-        var elo = jQuery("#o" + el);
-        x ? elo.hide() : elo.show();
-
-        var a, b;
-        if (el > 0)
-            a = val.slice(0, el);
-        else
-            a = '';
-        if (el < val.length)
-            b = val.slice((el + 1), val.length);
-        else
-            b = '';
-        document.cookie = nameEQ + a + (x ? '1' : '0') + b + ";";
-        return false;
-    };
-
-    var readcookie = function () {
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i].trim();
-            if (c.indexOf(nameEQ) === 0)
-                return c.substr(nameEQ.length);
-        }
-        return null;
-    };
-
-    var cookie = readcookie();
-    if (!cookie || cookie.length !== 7) {
-        document.cookie = nameEQ + "111111;";
-    }
-
     // moving dialog box options
     var cfmoveup = function () {
         var prevEl = jQuery(this).parent().prev();
@@ -586,21 +549,6 @@ jQuery(function () {
     }
 
     jQuery('#anchorfields').show();
-
-    for (var i = 0; i < 7; i++) {
-        var el = document.getElementById('o' + i);
-        var elp = document.getElementById('p' + i);
-        if (el && cookie.charAt(i) === '1') {
-            jQuery(el).hide();
-            if (elp) {
-                jQuery("div", elp).attr('class', 'blindplus');
-            }
-        }
-        if (elp)
-            jQuery(elp).click(function () {
-                setshow(parseInt(jQuery(this).attr("id").substr(1)));
-            });
-    }
 
     if (this.location.href.indexOf('#') > 0)
         this.location.href = this.location.href.substr(this.location.href.indexOf('#'));
