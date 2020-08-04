@@ -90,9 +90,8 @@ function cforms2_format_email($track, $no) {
     $cformsSettings = get_option('cforms_settings');
     $customspace = (int) ($cformsSettings['form' . $no]['cforms' . $no . '_space'] > 0) ? $cformsSettings['form' . $no]['cforms' . $no . '_space'] : 30;
 
+    $eol = "\r\n";
     $t = $h = '';
-
-    $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
     foreach (array_keys($track) as $k) {
 
@@ -192,9 +191,6 @@ function cforms2_check_post_vars($fv) {
 /** look for default/system variables */
 function cforms2_check_default_vars($m, $no) {
 
-    $cformsSettings = get_option('cforms_settings');
-    $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
-
     $pid = cforms2_get_the_id($no);
 
     if (isset($_POST['cforms_pl' . $no]) && $_POST['cforms_pl' . $no])
@@ -240,20 +236,12 @@ function cforms2_check_default_vars($m, $no) {
 
     $m = preg_replace("/\r\n\./", "\n", $m);
 
-    // normalize
-    $m = str_replace("\r\n", "\n", $m);
-    $m = str_replace("\r", "\n", $m);
-    $m = str_replace("\n", $eol, $m);
-
     return $m;
 
 }
 
 /** look for custom variables */
 function cforms2_check_cust_vars($m, $track, $html = false) {
-
-    $cformsSettings = get_option('cforms_settings');
-    $eol = ($cformsSettings['global']['cforms_crlf']['b'] != 1) ? "\r\n" : "\n";
 
     preg_match_all('/\\{([^\\{]+)\\}/', $m, $findall);
     if (count($findall[1]) > 0) {
@@ -283,7 +271,7 @@ function cforms2_check_cust_vars($m, $track, $html = false) {
 
                 // CRs for textareas \r\n user input hardcoded!
                 if ($html && strpos($v, "\n") !== false)
-                    $v = str_replace("\n", '<br />' . $eol, $v);
+                    $v = str_replace("\n", '<br />' . "\r\n", $v);
 
                 $m = str_replace('{' . $fvar . '}', $v, $m);
             }

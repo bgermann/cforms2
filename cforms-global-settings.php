@@ -55,7 +55,6 @@ if (isset($_POST['SubmitOptions']))
 
         $cformsSettings['global']['cforms_inexclude']['ids'] = cforms2_get_from_request('cforms_include');
 
-        $cformsSettings['global']['cforms_crlf']['b'] = cforms2_get_boolean_from_request('cforms_crlf') ? '1' : '0';
         unset($cformsSettings['global']['cforms_smtp']);
 
         $cformsSettings['global']['cforms_upload_err1'] = cforms2_get_from_request('cforms_upload_err1');
@@ -183,23 +182,6 @@ if (isset($_POST['SubmitOptions']))
                     </table>
                 </div>
             </fieldset>
-
-            <fieldset class="cformsoptions" id="smtp">
-                <h3 class="cflegend"><?php _e('Mail Server Settings', 'cforms2') ?></h3>
-
-                <div class="cf-content">
-
-                    <p><?php _e('cforms produces RFC compliant emails with CRLF (carriage-return/line-feed) as line separators. If your mail server adds additional line breaks to the email, you may want to try and turn on the below option.', 'cforms2') ?>
-                    <table class="form-table">
-                        <tr class="ob">
-                            <td class="obL">&nbsp;</td>
-                            <td class="obR"><input class="allchk" type="checkbox" id="cforms_crlf" name="cforms_crlf" <?php if ($cformsSettings['global']['cforms_crlf']['b'] == "1") echo "checked=\"checked\""; ?>/><label for="cforms_crlf"><?php printf(__('Separate lines in email %sbody%s with LF only (CR suppressed)', 'cforms2'), '<strong>', '</strong>') ?></label></td>
-                        </tr>
-                    </table>
-
-                </div>
-            </fieldset>
-
 
             <fieldset class="cformsoptions" id="upload">
                 <h3 class="cflegend"><?php _e('Global File Upload Settings', 'cforms2') ?></h3>

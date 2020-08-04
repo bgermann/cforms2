@@ -133,8 +133,6 @@ function cforms2_setup_db() {
 
     cforms2_set_ini('global', 'cforms_show_quicktag', '1');
 
-    cforms2_set_ini('global', 'cforms_crlf', array('b' => '0'));
-
     cforms2_set_ini('global', 'cforms_css', 'cforms2012.css');
 
     // migrate previous MP settings

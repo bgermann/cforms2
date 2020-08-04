@@ -30,7 +30,6 @@ class Email {
     public $body_alt = '';
     public $to = array();
     private $content_type = 'text/plain';
-    private $eol;
     private $from = '';
     private $fname;
     private $cc = array();
@@ -41,8 +40,6 @@ class Email {
 
     public function __construct($no, $from, $to, $replyto = '', $adminEmail = false) {
         $cformsSettings = get_option('cforms_settings');
-
-        $this->eol = $cformsSettings['global']['cforms_crlf']['b'] != 1 ? "\r\n" : "\n";
 
         $this->html_show = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 2, 1) == '1';
         $this->html_show_ac = substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1';
@@ -175,9 +172,7 @@ class Email {
         if ($this->err_count > 0)
             return '';
 
-        $unix_line_body = str_replace('\r\n', '\n', $body);
-        $unix_line_body = str_replace('\r', '\n', $unix_line_body);
-        return str_replace('\n', $this->eol, $unix_line_body);
+        return $body;
 
     }
 
@@ -223,7 +218,6 @@ class Email {
      * @param PHPMailer $phpmailer the object in use
      */
     public function phpmailer_init($phpmailer) {
-        $phpmailer->LE = $this->eol;
         $phpmailer->AltBody = $this->mail_body($this->body_alt);
 
     }

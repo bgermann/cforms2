@@ -121,6 +121,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 * enhanced: make session extension optional
 * other:    remove cookie-based content hiding
+* other:    remove custom email line ending
 
 = 15.0.3 =
 
