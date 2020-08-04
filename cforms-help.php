@@ -817,6 +817,7 @@ $plugindir = dirname(plugin_basename(__FILE__));
 
     <div class="cf-content">
         <p><?php printf(__('Multi-part forms support chaining of several forms and gather user input across all linked forms. Inserting a multi-part form is easy, simply insert the %s first form %s of the series into your post or page.', 'cforms2'), '<strong>', '</strong>'); ?></p>
+	<p><?php printf(__('Please note that they depend on %sPHP Session Extensions%s, which are enabled by default.', 'cforms2'), '<a href="http://php.net/manual/book.session.php">', '</a>'); ?></p>
 
         <table class="hf">
             <tr>

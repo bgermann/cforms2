@@ -839,7 +839,7 @@ if ($start_date) {
         </fieldset>
 
 
-        <fieldset class="cformsoptions" id="multipart">
+	<fieldset class="cformsoptions <?php if (!function_exists('session_id')) echo 'hidden'; ?>" id="multipart">
             <h3 class="cflegend">
                 <?php _e('Multi-Part Form', 'cforms2') ?>
             </h3>

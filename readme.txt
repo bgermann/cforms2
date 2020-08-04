@@ -61,8 +61,6 @@ If you want to install manually, please upload the complete plugin folder "cform
 
 If you want to check integrity of the download, please use the cforms2.*.sig GPG signature files that are published via [GitHub releases](https://github.com/bgermann/cforms2/releases). The [key used for signing](https://pgp.mit.edu/pks/lookup?op=vindex&fingerprint=on&search=0x2626D16964438E53) has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`. The git tags themselves are also signed beginning with version 14.8.
 
-Please note that cformsII depends on [PHP Session Extensions](http://php.net/manual/book.session.php), which are enabled by default.
-
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin. If you want to migrate your tracking database to CFDB, please install version 14.14 and migrate it. Then you can install the current version of this fork.
@@ -121,6 +119,7 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 = 15.0.4 =
 
+* enhanced: make session extension optional
 * other:    remove cookie-based content hiding
 
 = 15.0.3 =
