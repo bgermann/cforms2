@@ -225,7 +225,6 @@ class cforms2_mail {
 	}
 	
 	public function phpmailer_init($phpmailer) {
-		$phpmailer->LE = $this->eol;
 		$phpmailer->AltBody = $this->body_alt;
 	}
 
