@@ -255,6 +255,11 @@ GPL compliance!
 
 == Changelog ==
 
+= 14.12.4 =
+
+* bugfix:   backport regex character class fix
+* other:    ignore custom email line ending
+
 = 14.12.3 =
 
 * bugfix:   repair wrong cforms2_fieldtype_multi_id construction
