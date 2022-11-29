@@ -419,13 +419,13 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 // get next in line...
                 $i++;
 
-                if (!$custom)
+                if (!$custom && isset($cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $i])) {
                     $field_stat = explode('$#$', $cformsSettings['form' . $no]['cforms' . $no . '_count_field_' . $i]);
-                else
+                    $field_stat[] = "";
+                } elseif (isset($customfields[$i - 1])) {
                     $field_stat = explode('$#$', $customfields[$i - 1]);
-                $field_stat[] = "";
-
-                if ($field_stat[1] == '') {
+                    $field_stat[] = "";
+                } else {
                     // all fields searched, break both while & for
                     break 2;
                 }
