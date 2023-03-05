@@ -18,6 +18,11 @@
  */
 
 cforms2_check_access_priv();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!check_admin_referer("corruptedsettings"))
+        return;
+}
 ?>
 <div class="wrap">
     <h2><?php _e('cforms error', 'cforms2') ?></h2>
@@ -62,6 +67,7 @@ cforms2_check_access_priv();
 
     <form name="corruptedsettings" class="corruptedsettings" method="POST">
 
+        <?php wp_nonce_field("corruptedsettings"); ?>
         <h3><?php _e('Corrupted cforms settings detected', 'cforms2'); ?></h3>
         <table class="form-table">
             <tr><td><?php _e('You can either try and fix the settings array or reset it and start from scratch.', 'cforms2'); ?> &nbsp;<input class="allbuttons deleteall" type="submit" name="resetsettings" id="resetsettings" value="<?php _e('RESET', 'cforms2'); ?>"/></td></tr>

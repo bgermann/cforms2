@@ -26,6 +26,11 @@ cforms2_check_access_priv();
 if (cforms2_check_erased())
     return;
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!check_admin_referer("cformsglobal"))
+        return;
+}
+
 $style = $cformsSettings['global']['cforms_css'];
 
 // Update Settings.
@@ -81,6 +86,7 @@ if (isset($_POST['SubmitOptions']))
     <h2><?php _e('Global Settings', 'cforms2') ?></h2>
     <form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post">
         <?php
+        wp_nonce_field("cformsglobal");
         if (isset($_POST['showinfo'])) {
             echo '<p>' . __('All the global and per form settings are listed here as JSON. You can use this as a backup tool if you like.', 'cforms2') . '</p>';
             echo '<h2>' . __('Warning!', 'cforms2') . '</h2><p>' . __('Please do not change anything here unless you know what you are doing!', 'cforms2') . '</p>';
@@ -303,6 +309,7 @@ if (isset($_POST['SubmitOptions']))
 <div title="<?php _e('Uninstalling / Removing cforms', 'cforms2'); ?>" id="cf_delall_dialog">
     <fieldset class="cf_ed_main">
         <form name="deleteform" method="post">
+            <?php wp_nonce_field("cformsglobal"); ?>
             <div id="cf_target_del"><?php _e('Warning!', 'cforms2'); ?></div>
             <div class="controls">
                 <p><?php _e('Generally, simple deactivation of cforms does <strong>not</strong> erase any of its data. If you like to quit using cforms for good, please erase all data before deactivating the plugin.', 'cforms2') ?></p>

@@ -26,6 +26,10 @@ cforms2_check_access_priv();
 if (cforms2_check_erased())
     return;
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!check_admin_referer("cformsdata"))
+        return;
+}
 
 $formcount = count(Cforms2\FormSettings::forms());
 
@@ -264,6 +268,7 @@ for ($i = 1; $i <= $formcount; $i++) {
         </table>
         <input type="hidden" name="no" value="<?php echo $no_disp; ?>"/>
         <input type="hidden" name="noSub" value="<?php echo $no_disp; ?>" />
+        <?php wp_nonce_field("cformsdata"); ?>
 
         <p>
                     <?php _e('cformsII allows you to insert one or more customly designed contact forms, which can send the submission via email.', 'cforms2'); ?>
