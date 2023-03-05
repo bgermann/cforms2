@@ -17,7 +17,7 @@ Oliver, the original author, discontinued developing the plugin. This fork is an
 
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms". But bear in mind that old versions should not be used in public systems, because they contain [known serious vulnerabilities](https://wpvulndb.com/plugins/cforms) that are exploited in the wild.
 
-The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 15.0.3.
+The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 15.0.5.
 
 
 == Related Plugins ==
@@ -111,11 +111,15 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.0.4 =
+= 15.0.5 =
 The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
+
+= 15.0.5 =
+
+* Fix CSRF by introducing nonces to admin forms (CVE-2023-25449)
 
 = 15.0.4 =
 
