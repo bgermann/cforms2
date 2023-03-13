@@ -73,7 +73,7 @@ If you want to delete the 14.6.0.5 version by deleting directory "cforms" and yo
 
 Create a folder in your WordPress plugins directory and call it "cforms-custom". Move all your custom theme files into it. This folder will protect your changes going forward.
 
-Check out the [cforms CSS Guide](http://www.deliciousdays.com/download/cforms-css-guide.pdf) on layout customization.
+Check out the [cforms CSS Guide](https://web.archive.org/web/20220516192303/https://www.deliciousdays.com/download/cforms-css-guide.pdf) on layout customization.
 
 
 == Frequently Asked Questions ==
