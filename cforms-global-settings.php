@@ -41,7 +41,6 @@ if (isset($_POST['SubmitOptions']))
             $raw_cforms_settings = json_decode($raw_cforms_settings, true);
             if ($raw_cforms_settings === null) {
                 echo '<div id="message" class="updated fade"><p>' . __('Error:', 'cforms2') . ' ';
-                // As WordPress has a compatibility layer, json_last_error_msg (PHP >= 5.5) can be used.
                 echo json_last_error_msg() . '</p></div>';
             } elseif (is_array($raw_cforms_settings)) {
                 update_option('cforms_settings', $raw_cforms_settings);
