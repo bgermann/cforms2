@@ -3,7 +3,7 @@ Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: contact form, contact, form, post, sidebar, multi step, api exposed, fork
 Requires at least: 5.2
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
@@ -16,7 +16,7 @@ Oliver, the original author, discontinued developing the plugin. This fork is an
 
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms". But bear in mind that old versions should not be used in public systems, because they contain [known serious vulnerabilities](https://wpvulndb.com/plugins/cforms) that are exploited in the wild.
 
-The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 15.0.5.
+The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 15.0.6.
 
 
 == Related Plugins ==
@@ -108,11 +108,15 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.0.5 =
+= 15.0.6 =
 The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
+
+= 15.0.6 =
+
+* bugfix:   prevent XSS by output sanitization: CVE-2023-52203 and CVE-2024-22149
 
 = 15.0.5 =
 
