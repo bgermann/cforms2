@@ -411,7 +411,7 @@ function cforms2($no = '', $customfields = array()) {
         if ($standard_field) {
             $formcontent .= '<li' . $liID . ' class="' . $liERR . '">' . $insertErr;
             if (!in_array($field_type, array_keys($captchas)))
-                $formcontent .= '<label' . $labelID . ' for="' . $input_id . '"' . ($field_type == 'captcha' ? ' class="seccap"' : '') . '><span>' . sanitize_text_field(stripslashes($field_name)) . '</span></label>';
+                $formcontent .= '<label' . $labelID . ' for="' . $input_id . '"' . ($field_type == 'captcha' ? ' class="seccap"' : '') . '><span>' . esc_html(stripslashes($field_name)) . '</span></label>';
         }
 
 
@@ -441,7 +441,7 @@ function cforms2($no = '', $customfields = array()) {
                     break;
 
                 case "textonly":
-                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . $reg_exp . '" ') . '>' . sanitize_text_field(stripslashes($field_name)) . '</li>';
+                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . $reg_exp . '" ') . '>' . esc_html(stripslashes($field_name)) . '</li>';
                     break;
 
                 case "fieldsetstart":
@@ -459,7 +459,7 @@ function cforms2($no = '', $customfields = array()) {
                             $field = '</ol>';
 
                         $field .= '<fieldset class="cf-fs' . $fscount++ . '" style="' . $fieldsethide[1] . '">'
-                                . '<legend>' . sanitize_text_field(stripslashes($fieldsethide[0])) . '</legend>'
+                                . '<legend>' . esc_html(stripslashes($fieldsethide[0])) . '</legend>'
                                 . '<ol class="cf-ol">';
                         $fieldsetopen = true;
                         $ol = true;
@@ -553,10 +553,10 @@ function cforms2($no = '', $customfields = array()) {
                     $opt[] = "";
                     if (!empty($options[1])) {
                         $before = '<li' . $liID . ' class="' . $liERR . '">' . $insertErr;
-                        $after = '<label' . $labelID . ' for="' . $input_id . '" class="cf-after' . $err . '"><span>' . sanitize_text_field($opt[0]) . '</span></label></li>';
+                        $after = '<label' . $labelID . ' for="' . $input_id . '" class="cf-after' . $err . '"><span>' . esc_html($opt[0]) . '</span></label></li>';
                         $ba = 'a';
                     } else {
-                        $before = '<li' . $liID . ' class="' . $liERR . '">' . sanitize_text_field($insertErr) . '<label' . $labelID . ' for="' . sanitize_text_field($input_name) . '" class="cf-before' . $err . '"><span>' . $opt[0] . '</span></label>';
+                        $before = '<li' . $liID . ' class="' . $liERR . '">' . esc_html($insertErr) . '<label' . $labelID . ' for="' . esc_attr($input_name) . '" class="cf-before' . $err . '"><span>' . $opt[0] . '</span></label>';
                         $after = '</li>';
                         $ba = 'b';
                     }
@@ -572,7 +572,7 @@ function cforms2($no = '', $customfields = array()) {
                 case "checkboxgroup":
                     $liID_b = empty($liID) ? '' : substr($liID, 0, -1) . 'items"';
                     array_shift($options);
-                    $field .= '<li' . $liID . ' class="cf-box-title">' . sanitize_text_field($field_name) . '</li>' .
+                    $field .= '<li' . $liID . ' class="cf-box-title">' . esc_html($field_name) . '</li>' .
                             '<li' . $liID_b . ' class="cf-box-group">';
                     $id = 1;
                     $j = 0;
@@ -693,7 +693,7 @@ function cforms2($no = '', $customfields = array()) {
                     $liID_b = empty($liID) ? '' : substr($liID, 0, -1) . 'items"'; // only if label IDs active
 
                     array_shift($options);
-                    $field .= '<li' . $liID . ' class="' . $liERR . ' cf-box-title">' . $insertErr . sanitize_text_field($field_name) . '</li>' .
+                    $field .= '<li' . $liID . ' class="' . $liERR . ' cf-box-title">' . $insertErr . esc_html($field_name) . '</li>' .
                             '<li' . $liID_b . ' class="cf-box-group">';
 
                     $id = 1;
