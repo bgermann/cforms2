@@ -2,7 +2,6 @@
 Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: form, contact, sidebar, multi step, fork
-Requires at least: 5.2
 Tested up to: 6.5
 Stable tag: trunk
 License: GPLv3 or later
