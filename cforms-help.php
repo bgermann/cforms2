@@ -88,9 +88,6 @@ $plugindir = dirname(plugin_basename(__FILE__));
                 <td class="bleft"><?php _e('Example:', 'cforms2'); ?></td><td class="bright"><code><?php printf(__('Check %s here %s for more info. %s', 'cforms2'), '&lt;a href="http://example.com"&gt;', '&lt;/a&gt;', '||font-size:9x;'); ?></code></td>
             </tr>
             <tr>
-                <td class="ball" colspan="2"><?php _e('HTML: the <code>text paragraph</code> supports HTML. If you need actual &lt;, &gt; in your text please use the proper HTML entity.', 'cforms2'); ?></td>
-            </tr>
-            <tr>
                 <td class="ball" colspan="2"><?php _e('The above expression applies the custom class "<code>mytextclass</code>" <strong>AND</strong> the specific styles "<code>font-size:9x; font-weight:bold;</code>" to the paragraph.', 'cforms2'); ?></td>
             </tr>
         </table>
