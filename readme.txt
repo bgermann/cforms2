@@ -113,6 +113,10 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 == Changelog ==
 
+= 15.0.8 =
+
+* bugfix:   remove unnecessary span elements from HTML attribute values
+
 = 15.0.7 =
 
 * bugfix:   prevent XSS by escaping output: CVE-2023-52203 and CVE-2024-22149

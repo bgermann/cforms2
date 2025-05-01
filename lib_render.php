@@ -766,8 +766,8 @@ function cforms2($no = '', $customfields = array()) {
     }
 
 
-    $formcontent .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="<span>' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_working'])) . '</span>"/>' .
-            '<input type="hidden" name="cf_failure' . $no . '" id="cf_failure' . $no . '" value="<span>' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_failure'])) . '</span>"/>' .
+    $formcontent .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_working'])) . '"/>' .
+            '<input type="hidden" name="cf_failure' . $no . '" id="cf_failure' . $no . '" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_failure'])) . '"/>' .
             '<input type="hidden" name="cf_customerr' . $no . '" id="cf_customerr' . $no . '" value="' . htmlspecialchars($custom_error) . '"/>';
 
     $formcontent .= '</fieldset>';
