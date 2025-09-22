@@ -209,6 +209,9 @@ function cforms2_get_request_uri() {
 function cforms2_enqueue_style_admin() {
     wp_register_style('cforms-admin', plugin_dir_url(__FILE__) . 'cforms-admin.css', false, CFORMS2_VERSION);
     wp_enqueue_style('cforms-admin');
+    
+    // Always load modern admin styles for cforms admin pages
+    wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array('cforms-admin'), CFORMS2_VERSION);
 
 }
 
@@ -230,6 +233,9 @@ function cforms2_admin_enqueue_scripts() {
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();
+    
+    // Always load modern admin styles in admin area
+    wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array(), CFORMS2_VERSION);
 
 }
 
