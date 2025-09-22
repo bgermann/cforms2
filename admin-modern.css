@@ -1,0 +1,437 @@
+/**
+ * Modern Admin Interface for cforms2
+ * Responsive, accessible, and user-friendly design
+ */
+
+/* Modern Color Palette */
+:root {
+    --cforms-primary: #0073aa;
+    --cforms-primary-hover: #005a87;
+    --cforms-secondary: #646970;
+    --cforms-success: #00a32a;
+    --cforms-warning: #dba617;
+    --cforms-error: #d63638;
+    --cforms-light: #f6f7f7;
+    --cforms-border: #c3c4c7;
+    --cforms-text: #1d2327;
+    --cforms-text-light: #646970;
+    --cforms-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --cforms-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.15);
+    --cforms-radius: 4px;
+    --cforms-spacing: 16px;
+}
+
+/* Modern Form Layout */
+.cforms-modern-admin {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: var(--cforms-text);
+}
+
+/* Card-based Layout */
+.cforms-card {
+    background: #fff;
+    border: 1px solid var(--cforms-border);
+    border-radius: var(--cforms-radius);
+    box-shadow: var(--cforms-shadow);
+    margin-bottom: var(--cforms-spacing);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.cforms-card:hover {
+    box-shadow: var(--cforms-shadow-hover);
+}
+
+.cforms-card-header {
+    background: var(--cforms-light);
+    border-bottom: 1px solid var(--cforms-border);
+    padding: var(--cforms-spacing);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cforms-card-body {
+    padding: var(--cforms-spacing);
+}
+
+/* Modern Form Controls */
+.cforms-form-group {
+    margin-bottom: var(--cforms-spacing);
+}
+
+.cforms-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--cforms-text);
+}
+
+.cforms-input,
+.cforms-select,
+.cforms-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--cforms-border);
+    border-radius: var(--cforms-radius);
+    font-size: 14px;
+    line-height: 1.4;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+}
+
+.cforms-input:focus,
+.cforms-select:focus,
+.cforms-textarea:focus {
+    outline: none;
+    border-color: var(--cforms-primary);
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+/* Modern Buttons */
+.cforms-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--cforms-radius);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 44px; /* Touch-friendly */
+    gap: 8px;
+}
+
+.cforms-btn-primary {
+    background: var(--cforms-primary);
+    color: #fff;
+}
+
+.cforms-btn-primary:hover {
+    background: var(--cforms-primary-hover);
+    transform: translateY(-1px);
+}
+
+.cforms-btn-secondary {
+    background: #fff;
+    color: var(--cforms-secondary);
+    border: 1px solid var(--cforms-border);
+}
+
+.cforms-btn-secondary:hover {
+    background: var(--cforms-light);
+    border-color: var(--cforms-secondary);
+}
+
+.cforms-btn-success {
+    background: var(--cforms-success);
+    color: #fff;
+}
+
+.cforms-btn-warning {
+    background: var(--cforms-warning);
+    color: #fff;
+}
+
+.cforms-btn-error {
+    background: var(--cforms-error);
+    color: #fff;
+}
+
+/* Modern Notifications */
+.cforms-notice {
+    padding: var(--cforms-spacing);
+    border-radius: var(--cforms-radius);
+    margin-bottom: var(--cforms-spacing);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.cforms-notice-success {
+    background: #d7f3e3;
+    border-left: 4px solid var(--cforms-success);
+    color: #155724;
+}
+
+.cforms-notice-warning {
+    background: #fff3cd;
+    border-left: 4px solid var(--cforms-warning);
+    color: #856404;
+}
+
+.cforms-notice-error {
+    background: #f8d7da;
+    border-left: 4px solid var(--cforms-error);
+    color: #721c24;
+}
+
+.cforms-notice-info {
+    background: #d1ecf1;
+    border-left: 4px solid var(--cforms-primary);
+    color: #0c5460;
+}
+
+/* Modern Tables */
+.cforms-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--cforms-radius);
+    overflow: hidden;
+    box-shadow: var(--cforms-shadow);
+}
+
+.cforms-table th,
+.cforms-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--cforms-border);
+}
+
+.cforms-table th {
+    background: var(--cforms-light);
+    font-weight: 600;
+    color: var(--cforms-text);
+}
+
+.cforms-table tr:hover {
+    background: rgba(0, 115, 170, 0.05);
+}
+
+/* Modern Tabs */
+.cforms-tabs {
+    border-bottom: 1px solid var(--cforms-border);
+    margin-bottom: var(--cforms-spacing);
+}
+
+.cforms-tab-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+}
+
+.cforms-tab-item {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--cforms-text-light);
+    transition: all 0.2s ease;
+}
+
+.cforms-tab-item:hover {
+    color: var(--cforms-text);
+    background: var(--cforms-light);
+}
+
+.cforms-tab-item.active {
+    color: var(--cforms-primary);
+    border-bottom-color: var(--cforms-primary);
+}
+
+/* Modern Toggle Switches */
+.cforms-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.cforms-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cforms-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cforms-border);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.cforms-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.cforms-toggle input:checked + .cforms-toggle-slider {
+    background-color: var(--cforms-primary);
+}
+
+.cforms-toggle input:checked + .cforms-toggle-slider:before {
+    transform: translateX(26px);
+}
+
+/* Responsive Design */
+@media (max-width: 782px) {
+    .cforms-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .cforms-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .cforms-tab-nav {
+        flex-wrap: wrap;
+    }
+    
+    .cforms-tab-item {
+        flex: 1;
+        text-align: center;
+        min-width: 120px;
+    }
+    
+    .cforms-table {
+        font-size: 14px;
+    }
+    
+    .cforms-table th,
+    .cforms-table td {
+        padding: 8px 12px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cforms-text: #f0f0f1;
+        --cforms-text-light: #a7aaad;
+        --cforms-light: #2c3338;
+        --cforms-border: #3c434a;
+    }
+    
+    .cforms-card,
+    .cforms-input,
+    .cforms-select,
+    .cforms-textarea,
+    .cforms-table {
+        background: #1d2327;
+        color: var(--cforms-text);
+    }
+    
+    .cforms-btn-secondary {
+        background: #2c3338;
+        color: var(--cforms-text);
+    }
+}
+
+/* Accessibility Improvements */
+.cforms-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.cforms-focus-visible:focus-visible {
+    outline: 2px solid var(--cforms-primary);
+    outline-offset: 2px;
+}
+
+/* Loading States */
+.cforms-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.cforms-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--cforms-border);
+    border-top: 2px solid var(--cforms-primary);
+    border-radius: 50%;
+    animation: cforms-spin 1s linear infinite;
+}
+
+@keyframes cforms-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Modern Form Field Groups */
+.cforms-field-group {
+    display: grid;
+    gap: var(--cforms-spacing);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.cforms-field-group.cforms-field-group-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cforms-field-group.cforms-field-group-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 782px) {
+    .cforms-field-group,
+    .cforms-field-group.cforms-field-group-2,
+    .cforms-field-group.cforms-field-group-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Modern Help Text */
+.cforms-help-text {
+    font-size: 13px;
+    color: var(--cforms-text-light);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* Modern Icons */
+.cforms-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+.cforms-icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+.cforms-icon-large {
+    width: 24px;
+    height: 24px;
+}
