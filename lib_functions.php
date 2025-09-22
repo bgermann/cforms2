@@ -35,7 +35,36 @@ function cforms2_start_session() {
             session_start();
         }
     }
+}
 
+/**
+ * Optimized session handling - only start sessions when cforms is actually used
+ * Improves performance by avoiding unnecessary session starts on all pages
+ */
+function cforms2_conditional_start_session() {
+    global $post;
+    
+    // Check if current page/post contains cforms shortcode
+    $needs_session = false;
+    
+    if ($post && has_shortcode($post->post_content, 'cforms')) {
+        $needs_session = true;
+    }
+    
+    // Check for multi-part forms or AJAX submissions
+    if (isset($_POST['cforms_form']) || isset($_GET['cforms_form'])) {
+        $needs_session = true;
+    }
+    
+    // Check for widget usage (simplified check)
+    if (is_active_widget(false, false, 'cforms2_widget')) {
+        $needs_session = true;
+    }
+    
+    // Only start session if actually needed
+    if ($needs_session) {
+        cforms2_start_session();
+    }
 }
 
 function cforms2_field() {
@@ -77,27 +106,65 @@ function cforms2_check_access_priv() {
 
 }
 
-/** some css for positioning the form elements */
+/** 
+ * Optimized asset loading - only load CSS/JS when cforms is actually used
+ * Improves performance by avoiding unnecessary asset loading on all pages
+ */
 function cforms2_enqueue_scripts() {
-    global $wp_query;
+    global $wp_query, $post;
 
     $cformsSettings = get_option('cforms_settings');
-
-    // add content actions and filters
     $page_obj = $wp_query->get_queried_object();
 
+    // Check if cforms should be loaded on this page
     $exclude = ($cformsSettings['global']['cforms_inexclude']['ex'] == '1');
     $onPages = str_replace(' ', '', stripslashes(htmlspecialchars($cformsSettings['global']['cforms_inexclude']['ids'])));
     $onPagesA = explode(',', $onPages);
 
-    if ($onPages == '' || ($page_obj instanceof WP_POST && in_array($page_obj->ID, $onPagesA) && !$exclude) || ($page_obj instanceof WP_POST && !in_array($page_obj->ID, $onPagesA) && $exclude)) {
+    $page_allowed = ($onPages == '' || 
+        ($page_obj instanceof WP_POST && in_array($page_obj->ID, $onPagesA) && !$exclude) || 
+        ($page_obj instanceof WP_POST && !in_array($page_obj->ID, $onPagesA) && $exclude));
 
+    if (!$page_allowed) {
+        return;
+    }
+
+    // Check if cforms is actually needed on this page
+    $needs_cforms = false;
+    
+    // Check for shortcode in post content
+    if ($post && has_shortcode($post->post_content, 'cforms')) {
+        $needs_cforms = true;
+    }
+    
+    // Check for widget usage
+    if (is_active_widget(false, false, 'cforms2_widget')) {
+        $needs_cforms = true;
+    }
+    
+    // Check for form submissions or AJAX calls
+    if (isset($_POST['cforms_form']) || isset($_GET['cforms_form']) || 
+        (defined('DOING_AJAX') && DOING_AJAX && isset($_POST['action']) && $_POST['action'] === 'submitcform')) {
+        $needs_cforms = true;
+    }
+
+    // Only load assets if cforms is actually needed
+    if ($needs_cforms) {
+        // Load CSS
         if ($cformsSettings['global']['cforms_css']) {
             wp_register_style('cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION);
             wp_enqueue_style('cforms2');
         }
+        
+        // Load modern admin styles in admin area
+        if (is_admin()) {
+            wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array(), CFORMS2_VERSION);
+        }
+        
+        // Frontend mobile styles removed per user request - only admin changes wanted
 
-        wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION);
+        // Load JavaScript
+        wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION, true);
         wp_localize_script('cforms2', 'cforms2_ajax', array(
             'url' => admin_url('admin-ajax.php'),
             'nonces' => array(
@@ -106,7 +173,6 @@ function cforms2_enqueue_scripts() {
         ));
         wp_enqueue_script('cforms2');
     }
-
 }
 
 /** add cforms menu */
@@ -138,6 +204,9 @@ function cforms2_get_request_uri() {
 function cforms2_enqueue_style_admin() {
     wp_register_style('cforms-admin', plugin_dir_url(__FILE__) . 'cforms-admin.css', false, CFORMS2_VERSION);
     wp_enqueue_style('cforms-admin');
+    
+    // Always load modern admin styles for cforms admin pages
+    wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array('cforms-admin'), CFORMS2_VERSION);
 
 }
 
@@ -159,6 +228,12 @@ function cforms2_admin_enqueue_scripts() {
     wp_enqueue_script('cforms-admin');
 
     cforms2_enqueue_style_admin();
+    
+    // Always load modern admin styles in admin area
+    wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array(), CFORMS2_VERSION);
+    
+    // Load mobile admin styles only for actual mobile devices
+    wp_enqueue_style('cforms2-mobile-admin', plugin_dir_url(__FILE__) . 'mobile-admin.css', array('cforms2-admin-modern'), CFORMS2_VERSION);
 
 }
 
