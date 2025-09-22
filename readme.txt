@@ -40,11 +40,13 @@ If you want to install another language, please choose its cell in the Developme
 
 Some things are to be done:
 
-* add a Gutenberg equivalent of the editor plugin
-* filter user input better
+* ✅ add a Gutenberg equivalent of the editor plugin (completed in v16.0.0)
+* ✅ enhanced security and input filtering (completed in v16.0.0)
 * rework multi-part forms to be independent from PHP sessions
 * refactoring with object oriented approach
 * long term: unit tests and continuous integration
+* modernize CSS and responsive design (partially completed in v16.0.0)
+* improve mobile admin interface (completed in v16.0.0)
 
 
 == Installation ==
