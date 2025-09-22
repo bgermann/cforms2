@@ -159,6 +159,14 @@ function cforms2_enqueue_scripts() {
             wp_register_style('cforms2', plugin_dir_url(__FILE__) . 'styling/' . $cformsSettings['global']['cforms_css'], array(), CFORMS2_VERSION);
             wp_enqueue_style('cforms2');
         }
+        
+        // Load modern admin styles in admin area
+        if (is_admin()) {
+            wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array(), CFORMS2_VERSION);
+        }
+        
+        // Load mobile responsive styles
+        wp_enqueue_style('cforms2-mobile', plugin_dir_url(__FILE__) . 'mobile-responsive.css', array(), CFORMS2_VERSION);
 
         // Load JavaScript
         wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION, true);

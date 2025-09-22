@@ -57,6 +57,7 @@ require_once plugin_dir_path(__FILE__) . 'lib_ajax.php';
 require_once plugin_dir_path(__FILE__) . 'lib_aux.php';
 require_once plugin_dir_path(__FILE__) . 'lib_blocks.php';
 require_once plugin_dir_path(__FILE__) . 'lib_functions.php';
+require_once plugin_dir_path(__FILE__) . 'lib_i18n.php';
 require_once plugin_dir_path(__FILE__) . 'lib_render.php';
 require_once plugin_dir_path(__FILE__) . 'lib_security.php';
 require_once plugin_dir_path(__FILE__) . 'lib_validate.php';
