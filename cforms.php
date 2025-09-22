@@ -55,6 +55,7 @@ require_once plugin_dir_path(__FILE__) . 'Fieldtypes/captcha.php';
 require_once plugin_dir_path(__FILE__) . 'lib_activate.php';
 require_once plugin_dir_path(__FILE__) . 'lib_ajax.php';
 require_once plugin_dir_path(__FILE__) . 'lib_aux.php';
+require_once plugin_dir_path(__FILE__) . 'lib_blocks.php';
 require_once plugin_dir_path(__FILE__) . 'lib_functions.php';
 require_once plugin_dir_path(__FILE__) . 'lib_render.php';
 require_once plugin_dir_path(__FILE__) . 'lib_validate.php';
@@ -96,8 +97,8 @@ if (is_admin()) {
     }
 }
 
-// Attaching to hooks.
-add_action('template_redirect', 'cforms2_start_session');
+// Attaching to hooks - optimized session handling.
+add_action('template_redirect', 'cforms2_conditional_start_session');
 add_action('wp_ajax_submitcform', 'cforms2_submitcform');
 add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');
 add_action('plugins_loaded', function() {

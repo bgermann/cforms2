@@ -1,0 +1,159 @@
+/**
+ * Mobile Admin Styles for cforms2
+ * Only optimize form navigation, leave table as desktop version
+ */
+
+/* Apply on narrow screens (including desktop browser testing) */
+@media (max-width: 782px) {
+    /* Form Navigation - Mobile optimized (keep the good version) */
+    .chgformbox {
+        display: block !important;
+        width: 100% !important;
+        background-color: #f8f9fa !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        margin-bottom: 16px !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    }
+    
+    .chgformbox td {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .chgformbox .chgL {
+        margin-bottom: 12px !important;
+        text-align: center !important;
+    }
+    
+    .chgformbox .chgL select {
+        width: 100% !important;
+        min-height: 44px !important;
+        font-size: 16px !important;
+        padding: 10px !important;
+        border-radius: 6px !important;
+        border: 1px solid #ddd !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .chgformbox .chgL .go {
+        width: 100% !important;
+        min-height: 44px !important;
+        font-size: 16px !important;
+        padding: 10px 16px !important;
+        border-radius: 6px !important;
+        background-color: #0073aa !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    .chgformbox .chgM {
+        text-align: center !important;
+        margin-top: 12px !important;
+    }
+    
+    .chgformbox .chgM input {
+        margin: 4px 2px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        padding: 8px !important;
+        font-size: 14px !important;
+        border-radius: 6px !important;
+        border: 1px solid #ddd !important;
+        background-color: white !important;
+    }
+    
+    .chgformbox .chgM input.chgbuttonhi {
+        background-color: #0073aa !important;
+        color: white !important;
+        border-color: #0073aa !important;
+    }
+    
+    /* Leave the table area completely alone - no changes */
+    /* Users can zoom in/out or rotate device to see full table */
+    
+    /* Just add a helpful message */
+    .cf-content::before {
+        content: "💡 Tipp: Gerät drehen (Querformat) oder herauszoomen für vollständige Tabelle" !important;
+        display: block !important;
+        background: #e7f3ff !important;
+        border: 1px solid #b3d9ff !important;
+        padding: 12px !important;
+        text-align: center !important;
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+        border-radius: 6px !important;
+        color: #0066cc !important;
+        font-weight: normal !important;
+    }
+    
+    /* Action buttons - make them smaller but keep functionality */
+    #cf_actions {
+        position: sticky !important;
+        bottom: 0 !important;
+        background-color: white !important;
+        border-top: 1px solid #ddd !important;
+        padding: 8px !important;
+        z-index: 100 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    #cf_actions input {
+        margin: 2px !important;
+        font-size: 12px !important;
+        padding: 6px 8px !important;
+    }
+    
+    /* Form options - force all tables to full width */
+    .form-table,
+    table.form-table,
+    .cformsoptions table,
+    .cf-content table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Force table rows and cells to full width */
+    .form-table tr,
+    .form-table td,
+    .form-table th {
+        width: 100% !important;
+        display: block !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Left align field labels */
+    .form-table .obL,
+    .form-table th {
+        text-align: left !important;
+        font-weight: bold !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Full width form inputs */
+    .form-table input[type="text"],
+    .form-table input[type="email"],
+    .form-table input[type="url"],
+    .form-table input[type="number"],
+    .form-table input[type="date"],
+    .form-table input[type="time"],
+    .form-table select,
+    .form-table textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: 44px !important;
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+    
+    /* Specific textarea styling */
+    .form-table textarea {
+        min-height: 120px !important;
+        resize: vertical !important;
+    }
+}
