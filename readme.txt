@@ -85,11 +85,18 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.1.4 =
-The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
+= 16.0.0 =
+The cforms2 development transitions from bgermann to woltis.
 
 
 == Changelog ==
+
+= 16.0.0 =
+
+* feature:  Modern responsive admin interface with mobile optimization
+* feature:  Gutenberg block editor integration
+* feature:  Mobile-responsive CSS themes (mobile-admin.css, mobile-responsive.css)
+* feature:  Modern admin styling (admin-modern.css)
 
 = 15.1.4 =
 
