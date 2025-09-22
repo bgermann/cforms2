@@ -37,31 +37,23 @@ function cforms2_start_session() {
     }
 }
 
-/**
- * Optimized session handling - only start sessions when cforms is actually used
- * Improves performance by avoiding unnecessary session starts on all pages
- */
 function cforms2_conditional_start_session() {
     global $post;
     
-    // Check if current page/post contains cforms shortcode
     $needs_session = false;
     
     if ($post && has_shortcode($post->post_content, 'cforms')) {
         $needs_session = true;
     }
     
-    // Check for multi-part forms or AJAX submissions
     if (isset($_POST['cforms_form']) || isset($_GET['cforms_form'])) {
         $needs_session = true;
     }
     
-    // Check for widget usage (simplified check)
     if (is_active_widget(false, false, 'cforms2_widget')) {
         $needs_session = true;
     }
     
-    // Only start session if actually needed
     if ($needs_session) {
         cforms2_start_session();
     }
@@ -107,7 +99,6 @@ function cforms2_check_access_priv() {
         $err = '<h2>' . __('cforms error', 'cforms2') . '</h2><div class="updated fade" id="message"><p>' . __('You do not have the proper privileges to access this page.', 'cforms2') . '</p></div></div>';
         die($err);
     }
-
 }
 
 /** 
@@ -165,8 +156,7 @@ function cforms2_enqueue_scripts() {
             wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array(), CFORMS2_VERSION);
         }
         
-        // Load mobile responsive styles
-        wp_enqueue_style('cforms2-mobile', plugin_dir_url(__FILE__) . 'mobile-responsive.css', array(), CFORMS2_VERSION);
+        // Frontend mobile styles removed per user request - only admin changes wanted
 
         // Load JavaScript
         wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION, true);
@@ -236,6 +226,9 @@ function cforms2_admin_enqueue_scripts() {
     
     // Always load modern admin styles in admin area
     wp_enqueue_style('cforms2-admin-modern', plugin_dir_url(__FILE__) . 'admin-modern.css', array(), CFORMS2_VERSION);
+    
+    // Load mobile admin styles only for actual mobile devices
+    wp_enqueue_style('cforms2-mobile-admin', plugin_dir_url(__FILE__) . 'mobile-admin.css', array('cforms2-admin-modern'), CFORMS2_VERSION);
 
 }
 
