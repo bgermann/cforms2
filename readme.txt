@@ -3,7 +3,7 @@ Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: form, contact, sidebar, multi step, fork
 Tested up to: 6.8
-Stable tag: trunk
+Stable tag: 16.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -112,6 +112,27 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 
 == Changelog ==
+
+= 16.0.0 =
+
+* feature:  MAJOR RELEASE - Complete timezone handling overhaul
+* feature:  Fixed timezone shift problem in form start/end dates
+* feature:  WordPress timezone integration for correct local time display
+* feature:  Consistent DateTime handling across all form operations
+* feature:  Modern responsive admin interface with mobile optimization
+* feature:  Complete Gutenberg block editor integration
+* feature:  Enhanced security library (lib_security.php)
+* feature:  Improved internationalization support (lib_i18n.php)
+* feature:  Extended block functionality (lib_blocks.php)
+* feature:  Mobile-responsive CSS themes (mobile-admin.css, mobile-responsive.css)
+* feature:  Modern admin styling (admin-modern.css)
+* enhanced: Optimized FormSettings.php with extended capabilities
+* enhanced: Improved cforms.php core functionality
+* enhanced: Enhanced lib_functions.php with additional features
+* enhanced: Overhauled lib_options_sub.php with proper timezone handling
+* other:    Brings cforms2 to modern WordPress development standards
+* other:    Resolves long-standing timezone issues reported by users
+* other:    Full compatibility with current WordPress versions
 
 = 15.0.8 =
 
