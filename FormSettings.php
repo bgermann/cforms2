@@ -67,32 +67,20 @@ class FormSettings
             return 0;
         }
         
-        // WordPress-Zeitzone verwenden
-        $timezone_string = get_option('timezone_string');
-        if (empty($timezone_string)) {
-            // Fallback für manuelle UTC-Offsets
-            $gmt_offset = get_option('gmt_offset');
-            $timezone_string = timezone_name_from_abbr('', $gmt_offset * 3600, 0);
-            if ($timezone_string === false) {
-                // Weitere Fallback-Option
-                $timezone_string = $gmt_offset >= 0 ? '+' . $gmt_offset : $gmt_offset;
-                $timezone_string = 'Etc/GMT' . $timezone_string;
-            }
-        }
-        
         try {
-            $timezone = new \DateTimeZone($timezone_string);
+            // WordPress-Zeitzone verwenden
+            $timezone = new \DateTimeZone(get_option('timezone_string') ?: 'UTC');
             $dt = \DateTime::createFromFormat('d/m/Y H:i', $formatted_date, $timezone);
             if ($dt !== false) {
                 return $dt->getTimestamp();
             }
         } catch (\Exception $e) {
-            // Fallback zur alten Methode bei Fehlern, aber mit current_time
+            // Fallback: Parse als lokale Zeit und konvertiere zu UTC
             $time = str_replace('/', '.', $formatted_date);
-            $time = strtotime($time);
-            if ($time !== false) {
-                // Konvertierung von lokaler Zeit zu UTC-Timestamp
-                return $time - (get_option('gmt_offset') * 3600) + (current_time('timestamp') - time());
+            $timestamp = strtotime($time);
+            if ($timestamp !== false) {
+                // Korrigiere für WordPress-Zeitzone
+                return $timestamp - (get_option('gmt_offset') * 3600);
             }
         }
         
