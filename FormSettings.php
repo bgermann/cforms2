@@ -66,12 +66,37 @@ class FormSettings
         if (trim($formatted_date) === '') {
             return 0;
         }
-        $time = str_replace('/', '.', $formatted_date) . sprintf(' %+d', get_option('gmt_offset'));
-        $time = strtotime($time);
-        if ($time === false) {
-            return 0;
+        
+        // WordPress-Zeitzone verwenden
+        $timezone_string = get_option('timezone_string');
+        if (empty($timezone_string)) {
+            // Fallback für manuelle UTC-Offsets
+            $gmt_offset = get_option('gmt_offset');
+            $timezone_string = timezone_name_from_abbr('', $gmt_offset * 3600, 0);
+            if ($timezone_string === false) {
+                // Weitere Fallback-Option
+                $timezone_string = $gmt_offset >= 0 ? '+' . $gmt_offset : $gmt_offset;
+                $timezone_string = 'Etc/GMT' . $timezone_string;
+            }
         }
-        return $time;
+        
+        try {
+            $timezone = new \DateTimeZone($timezone_string);
+            $dt = \DateTime::createFromFormat('d/m/Y H:i', $formatted_date, $timezone);
+            if ($dt !== false) {
+                return $dt->getTimestamp();
+            }
+        } catch (\Exception $e) {
+            // Fallback zur alten Methode bei Fehlern, aber mit current_time
+            $time = str_replace('/', '.', $formatted_date);
+            $time = strtotime($time);
+            if ($time !== false) {
+                // Konvertierung von lokaler Zeit zu UTC-Timestamp
+                return $time - (get_option('gmt_offset') * 3600) + (current_time('timestamp') - time());
+            }
+        }
+        
+        return 0;
     }
 
     public function getStartDateTime()
