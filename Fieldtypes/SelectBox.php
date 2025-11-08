@@ -46,16 +46,17 @@ class SelectBox extends MultiId {
     }
 
     public static function register() {
-        $types = array(
-            'emailtobox' => array(__('Multiple Recipients', 'cforms2'), true),
-            'selectbox' => array(__('Select Box', 'cforms2'), false),
-            'multiselectbox' => array(__('Multi Select Box', 'cforms2'), false)
-        );
-        foreach ($types as $id => $label) {
-            $t = new SelectBox($id, $label[0], $label[1]);
-            $t->register_at_filter();
-        }
-
+   		add_action('init', function() {
+            $types = array(
+                'emailtobox' => array(__('Multiple Recipients', 'cforms2'), true),
+                'selectbox' => array(__('Select Box', 'cforms2'), false),
+                'multiselectbox' => array(__('Multi Select Box', 'cforms2'), false)
+            );
+            foreach ($types as $id => $label) {
+                $t = new SelectBox($id, $label[0], $label[1]);
+                $t->register_at_filter();
+            }
+        });
     }
 
 }
