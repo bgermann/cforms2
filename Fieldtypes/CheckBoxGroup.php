@@ -51,15 +51,16 @@ class CheckBoxGroup extends MultiId {
     }
 
     public static function register() {
-        $types = array(
-            'checkboxgroup' => __('Check Box Group', 'cforms2'),
-            'radiobuttons' => __('Radio Buttons', 'cforms2')
-        );
-        foreach ($types as $id => $label) {
-            $t = new CheckBoxGroup($id, $label);
-            $t->register_at_filter();
-        }
-
+     	add_action('init', function() {
+            $types = array(
+                'checkboxgroup' => __('Check Box Group', 'cforms2'),
+                'radiobuttons' => __('Radio Buttons', 'cforms2')
+            );
+            foreach ($types as $id => $label) {
+                $t = new CheckBoxGroup($id, $label);
+                $t->register_at_filter();
+            }
+        });
     }
 
 }
