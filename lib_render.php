@@ -441,7 +441,7 @@ function cforms2($no = '', $customfields = array()) {
                     break;
 
                 case "textonly":
-                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . $reg_exp . '" ') . '>' . esc_html(stripslashes($field_name)) . '</li>';
+                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . $reg_exp . '" ') . '>' . stripslashes($field_name) . '</li>';
                     break;
 
                 case "fieldsetstart":
