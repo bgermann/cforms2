@@ -32,7 +32,7 @@ class TextOnly extends Fieldtype {
 
     protected function get_text_inputs() {
         return array(
-            "cf_edit_label" => __('Text (HTML is supported)', 'cforms2'),
+            "cf_edit_label" => __('Text', 'cforms2'),
             "cf_edit_css" => __('CSS (assigns class to this form element)', 'cforms2'),
             "cf_edit_style" => sprintf(__('Inline style (e.g. %s)', 'cforms2'), '<strong>color:red; font-size:11px;</strong>')
         );
