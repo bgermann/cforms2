@@ -103,26 +103,44 @@ function cforms2_option_submission($no, &$cformsSettings) {
     $cformsSettings['form' . $no]['cforms' . $no . '_hide'] = cforms2_get_from_request('cforms_hide') ? true : false;
 
     $startdate = cforms2_get_from_request('cforms_startdate');
-    $starttime = cforms2_get_from_request('cforms_starttime');
-    $enddate = cforms2_get_from_request('cforms_enddate');
-    $endtime = cforms2_get_from_request('cforms_endtime');
-    if (!empty($startdate))
-        $startdate = date('d/m/Y', strtotime($startdate));
-    if (!empty($enddate))
-        $enddate = date('d/m/Y', strtotime($enddate));
-    if (!empty($startdate) && empty($starttime))
-        $starttime = '00:00';
-    if (!empty($starttime) && empty($startdate))
-        $startdate = current_time('d/m/Y');
-    if (!empty($enddate) && empty($endtime))
-        $endtime = '00:00';
-    if (!empty($endtime) && empty($enddate))
-        $enddate = current_time('d/m/Y');
-    $cformsSettings['form' . $no]['cforms' . $no . '_startdate'] = preg_replace("/\\\+/", "\\", $startdate) . ' ' .
-            preg_replace("/\\\+/", "\\", $starttime);
-    $cformsSettings['form' . $no]['cforms' . $no . '_enddate'] = preg_replace("/\\\+/", "\\", $enddate) . ' ' .
-            preg_replace("/\\\+/", "\\", $endtime);
-    $cformsSettings['form' . $no]['cforms' . $no . '_limittxt'] = cforms2_get_from_request('cforms_limittxt');
+$starttime = cforms2_get_from_request('cforms_starttime');
+$enddate = cforms2_get_from_request('cforms_enddate');
+$endtime = cforms2_get_from_request('cforms_endtime');
+
+$timezone = new \DateTimeZone(get_option('timezone_string'));
+
+// Startdatum korrekt formatieren
+if (!empty($startdate)) {
+    $dt = \DateTime::createFromFormat('Y-m-d', $startdate, $timezone);
+    if ($dt !== false) {
+        $startdate = $dt->format('d/m/Y');
+    }
+}
+
+// Enddatum korrekt formatieren
+if (!empty($enddate)) {
+    $dt = \DateTime::createFromFormat('Y-m-d', $enddate, $timezone);
+    if ($dt !== false) {
+        $enddate = $dt->format('d/m/Y');
+    }
+}
+
+// Zeit-Vorgaben bei fehlenden Angaben setzen
+if (!empty($startdate) && empty($starttime))
+    $starttime = '00:00';
+if (!empty($starttime) && empty($startdate))
+    $startdate = current_time('d/m/Y');
+if (!empty($enddate) && empty($endtime))
+    $endtime = '00:00';
+if (!empty($endtime) && empty($enddate))
+    $enddate = current_time('d/m/Y');
+
+// Speicherung der kombinierten Datums-/Zeitwerte
+$cformsSettings['form' . $no]['cforms' . $no . '_startdate'] = preg_replace("/\\\+/", "\\", $startdate) . ' ' .
+        preg_replace("/\\\+/", "\\", $starttime);
+$cformsSettings['form' . $no]['cforms' . $no . '_enddate'] = preg_replace("/\\\+/", "\\", $enddate) . ' ' .
+        preg_replace("/\\\+/", "\\", $endtime);
+$cformsSettings['form' . $no]['cforms' . $no . '_limittxt'] = cforms2_get_from_request('cforms_limittxt');
 
     $cformsSettings['form' . $no]['cforms' . $no . '_redirect'] = cforms2_get_from_request('cforms_redirect') ? true : false;
     $cformsSettings['form' . $no]['cforms' . $no . '_redirect_page'] = preg_replace("/\\\+/", "\\", cforms2_get_from_request('cforms_redirect_page'));
