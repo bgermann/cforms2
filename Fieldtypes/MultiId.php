@@ -46,9 +46,9 @@ class MultiId extends Fieldtype {
     }
 
     public static function register() {
-        $t = new MultiId('fieldsetend', __('End Fieldset', 'cforms2'), false);
-        $t->register_at_filter();
-
+        add_action('init', function() {
+            $t = new MultiId('fieldsetend', __('End Fieldset', 'cforms2'), false);
+            $t->register_at_filter();    
+        });
     }
-
 }

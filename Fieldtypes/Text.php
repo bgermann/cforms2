@@ -37,18 +37,19 @@ class Text extends MultiId {
     }
 
     public static function register() {
-        $types = array(
-            'textfield' => array(__('Single line of text', 'cforms2'), false),
-            'upload' => array(__('File Upload Box', 'cforms2'), false),
-            'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
-            'pwfield' => array(__('Password Field', 'cforms2'), false),
-            'hidden' => array(__('Hidden Field', 'cforms2'), false)
-        );
-        foreach ($types as $id => $label) {
-            $t = new Text($id, $label[0], $label[1]);
-            $t->register_at_filter();
-        }
-
+  		add_action('init', function() {
+            $types = array(
+                'textfield' => array(__('Single line of text', 'cforms2'), false),
+                'upload' => array(__('File Upload Box', 'cforms2'), false),
+                'textarea' => array(__('Multiple lines of text', 'cforms2'), false),
+                'pwfield' => array(__('Password Field', 'cforms2'), false),
+                'hidden' => array(__('Hidden Field', 'cforms2'), false)
+            );
+            foreach ($types as $id => $label) {
+                $t = new Text($id, $label[0], $label[1]);
+                $t->register_at_filter();
+            }
+        });
     }
 
 }

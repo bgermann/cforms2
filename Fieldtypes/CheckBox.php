@@ -42,15 +42,16 @@ class CheckBox extends MultiId {
     }
 
     public static function register() {
-        $types = array(
-            'ccbox' => array(__('CC: option for user', 'cforms2'), true),
-            'checkbox' => array(__('Check Box', 'cforms2'), false)
-        );
-        foreach ($types as $id => $label) {
-            $t = new CheckBox($id, $label[0], $label[1]);
-            $t->register_at_filter();
-        }
-
+  		add_action('init', function() {
+            $types = array(
+                'ccbox' => array(__('CC: option for user', 'cforms2'), true),
+                'checkbox' => array(__('Check Box', 'cforms2'), false)
+            );
+            foreach ($types as $id => $label) {
+                $t = new CheckBox($id, $label[0], $label[1]);
+                $t->register_at_filter();
+            }
+        });
     }
 
 }
