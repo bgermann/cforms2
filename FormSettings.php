@@ -66,12 +66,17 @@ class FormSettings
         if (trim($formatted_date) === '') {
             return 0;
         }
-        $time = str_replace('/', '.', $formatted_date) . sprintf(' %+d', get_option('gmt_offset'));
-        $time = strtotime($time);
-        if ($time === false) {
-            return 0;
+        
+        // Einfache Lösung: Verwende strtotime direkt mit lokaler Zeit
+        $time = str_replace('/', '.', $formatted_date);
+        $timestamp = strtotime($time);
+        
+        if ($timestamp !== false) {
+            // Gib lokalen Timestamp zurück - wird mit current_time('timestamp') verglichen
+            return $timestamp;
         }
-        return $time;
+        
+        return 0;
     }
 
     public function getStartDateTime()

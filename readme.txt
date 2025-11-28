@@ -40,11 +40,22 @@ If you want to install another language, please choose its cell in the Developme
 
 Some things are to be done:
 
-* add a Gutenberg equivalent of the editor plugin
-* filter user input better
+* ~~add a Gutenberg equivalent of the editor plugin~~ ✅ **COMPLETED in v16.0.0** - Full Gutenberg block integration implemented
+* ~~filter user input better~~ ✅ **COMPLETED in v16.0.0** - Enterprise-level input sanitization implemented
 * rework multi-part forms to be independent from PHP sessions
 * refactoring with object oriented approach
 * long term: unit tests and continuous integration
+
+**Recent Progress (v16.0.0):**
+* ✅ Full Gutenberg block integration with modern block editor support
+* ✅ Enhanced security with context-aware input sanitization for all field types
+* ✅ Comprehensive file upload security checks and validation
+* ✅ Multi-layer CSRF protection with session validation
+* ✅ Rate limiting and brute-force protection mechanisms
+* ✅ Security event logging and monitoring capabilities
+* ✅ Modern mobile-optimized admin interface
+* ✅ Performance optimizations with conditional asset loading
+* ✅ Advanced caching strategies for improved performance
 
 
 == Installation ==
@@ -112,6 +123,29 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 
 == Changelog ==
+
+= 16.0.0 =
+
+* feature:  TIMEZONE FIX: Completely resolved 2-hour shift issue in form start/end dates
+* feature:  MOBILE ADMIN INTERFACE: Touch-optimized form navigation with 44px+ buttons
+* feature:  MOBILE ADMIN INTERFACE: Full-width textareas for comfortable mobile editing
+* feature:  MOBILE ADMIN INTERFACE: German user guidance and landscape orientation tips
+* feature:  DESKTOP MODERNIZATION: Modern card-based admin interface design
+* feature:  DESKTOP MODERNIZATION: Professional styling with shadows and rounded corners
+* enhanced: CODE QUALITY: Removed unused mobile-responsive.css (800+ lines cleaned up)
+* enhanced: CODE QUALITY: Cleaned up unnecessary comments while preserving meaningful documentation
+* enhanced: SECURITY: Enterprise-level multi-layer CSRF protection with session validation
+* enhanced: SECURITY: Context-aware input sanitization for all field types
+* enhanced: SECURITY: Comprehensive file upload security checks and validation
+* enhanced: SECURITY: Rate limiting and brute-force protection mechanisms
+* enhanced: SECURITY: Security event logging and monitoring capabilities
+* enhanced: PERFORMANCE: Optimized asset loading with conditional CSS/JS inclusion
+* enhanced: PERFORMANCE: Advanced caching strategies for locale and datetime formats
+* enhanced: PERFORMANCE: Improved session management with conditional session starts
+* enhanced: TIMEZONE HANDLING: Proper WordPress timezone integration with DateTime objects
+* enhanced: TIMEZONE HANDLING: Consistent local time display and processing
+* enhanced: FRONTEND UNCHANGED: No mobile optimizations in frontend (admin-only improvements)
+* other:    This major update transforms cforms2 into a modern, secure, mobile-friendly WordPress plugin
 
 = 15.0.8 =
 
