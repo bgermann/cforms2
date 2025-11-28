@@ -74,25 +74,26 @@ class Html5 extends MultiId {
     }
 
     public static function register() {
-        $types = array(
-            'html5color' => 'HTML5 ' . __('Color Field', 'cforms2'),
-            'html5date' => 'HTML5 ' . __('Date Field', 'cforms2'),
-            'html5datetime-local' => 'HTML5 ' . __('Date/Time (local) Field', 'cforms2'),
-            'html5email' => 'HTML5 ' . __('Email Field', 'cforms2'),
-            'html5month' => 'HTML5 ' . __('Month Field', 'cforms2'),
-            'html5number' => 'HTML5 ' . __('Number Field', 'cforms2'),
-            'html5range' => 'HTML5 ' . __('Range Field', 'cforms2'),
-            'html5search' => 'HTML5 ' . __('Search Field', 'cforms2'),
-            'html5time' => 'HTML5 ' . __('Time Field', 'cforms2'),
-            'html5url' => 'HTML5 ' . __('URL Field', 'cforms2'),
-            'html5week' => 'HTML5 ' . __('Week Field', 'cforms2'),
-            'html5tel' => 'HTML5 ' . __('Telephone Number Field', 'cforms2')
-        );
-        foreach ($types as $id => $label) {
-            $t = new Html5($id, $label);
-            $t->register_at_filter();
-        }
-
+        add_action('init', function() {
+            $types = array(
+                'html5color' => 'HTML5 ' . __('Color Field', 'cforms2'),
+                'html5date' => 'HTML5 ' . __('Date Field', 'cforms2'),
+                'html5datetime-local' => 'HTML5 ' . __('Date/Time (local) Field', 'cforms2'),
+                'html5email' => 'HTML5 ' . __('Email Field', 'cforms2'),
+                'html5month' => 'HTML5 ' . __('Month Field', 'cforms2'),
+                'html5number' => 'HTML5 ' . __('Number Field', 'cforms2'),
+                'html5range' => 'HTML5 ' . __('Range Field', 'cforms2'),
+                'html5search' => 'HTML5 ' . __('Search Field', 'cforms2'),
+                'html5time' => 'HTML5 ' . __('Time Field', 'cforms2'),
+                'html5url' => 'HTML5 ' . __('URL Field', 'cforms2'),
+                'html5week' => 'HTML5 ' . __('Week Field', 'cforms2'),
+                'html5tel' => 'HTML5 ' . __('Telephone Number Field', 'cforms2')
+            );
+            foreach ($types as $id => $label) {
+                $t = new Html5($id, $label);
+                $t->register_at_filter();
+            }
+        });
     }
 
 }
