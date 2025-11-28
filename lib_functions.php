@@ -50,6 +50,10 @@ function cforms2_field() {
 
 }
 
+function cforms2_fieldtypes_register() {
+    Cforms2\Fieldtypes\Fieldtype::register();
+}
+
 function cforms2_delete_db_and_deactivate() {
     if (!isset($_POST['cfdeleteall']))
         return;

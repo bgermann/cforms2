@@ -65,7 +65,7 @@ if ($role != null) {
 }
 
 register_activation_hook(__FILE__, 'cforms2_setup_db');
-Fieldtypes\Fieldtype::register();
+add_action('init', 'cforms2_fieldtypes_register');
 
 // settings corrupted?
 if (!is_array(get_option('cforms_settings'))) {
