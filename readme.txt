@@ -2,7 +2,7 @@
 Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: form, contact, sidebar, multi step, fork
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: trunk
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
@@ -96,11 +96,16 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.0.8 =
+= 15.0.9 =
 The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
+
+= 15.0.9 =
+
+* enhanced: register Fieldtypes on init (PHP 8.4 warnings)
+* bugfix:   fix start date and end date
 
 = 15.0.8 =
 
