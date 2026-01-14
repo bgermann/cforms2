@@ -36,17 +36,6 @@ You can see the available languages and contribute via [GlotPress](https://trans
 If you want to install another language, please choose its cell in the Development column, export it as Machine Object Message Catalog (.mo) and put it in the wp-content/languages/plugins directory.
 
 
-== Roadmap ==
-
-Some things are to be done:
-
-* add a Gutenberg equivalent of the editor plugin
-* filter user input better
-* rework multi-part forms to be independent from PHP sessions
-* refactoring with object oriented approach
-* long term: unit tests and continuous integration
-
-
 == Installation ==
 
 = Installing the plugin =
