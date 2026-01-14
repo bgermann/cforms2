@@ -106,10 +106,17 @@ function cforms2_option_submission($no, &$cformsSettings) {
     $starttime = cforms2_get_from_request('cforms_starttime');
     $enddate = cforms2_get_from_request('cforms_enddate');
     $endtime = cforms2_get_from_request('cforms_endtime');
-    if (!empty($startdate))
-        $startdate = date('d/m/Y', strtotime($startdate));
-    if (!empty($enddate))
-        $enddate = date('d/m/Y', strtotime($enddate));
+    $timezone = new DateTimeZone(get_option('timezone_string'));
+    if (!empty($startdate)) {
+        $dt = DateTime::createFromFormat('Y-m-d', $startdate, $timezone);
+        if ($dt !== false)
+            $startdate = $dt->format('d/m/Y');
+    }
+    if (!empty($enddate)) {
+        $dt = DateTime::createFromFormat('Y-m-d', $enddate, $timezone);
+        if ($dt !== false)
+            $enddate = $dt->format('d/m/Y');
+    }
     if (!empty($startdate) && empty($starttime))
         $starttime = '00:00';
     if (!empty($starttime) && empty($startdate))
