@@ -186,6 +186,7 @@ class Email {
 
         $header = $this->mail_header();
         $body = $this->mail_body($this->body);
+        $body_alt = $this->mail_body($this->body_alt);
 
         // bail out
         if ($body == '')
@@ -195,9 +196,11 @@ class Email {
         for ($i = 0; $i < count($this->to); $i++) {
             $to .= (($i != 0) ? ', ' : '' ) . $this->addr_fmt($this->to[$i]);
         }
-        add_action('phpmailer_init', array($this, 'phpmailer_init'));
+        // Use multipart/alternative format if both HTML and plain text are available
+        if ($body_alt !== '') {
+            $body = array('html' => $body, 'text' => $body_alt);
+        }
         $rt = wp_mail($to, $this->fix_header($this->subj), $body, $header, $this->up);
-        remove_action('phpmailer_init', array($this, 'phpmailer_init'));
 
         if (!$rt) {
             $this->set_err(__('Could not successfully run wp_mail function. There may be a warning in the PHP error log with more information.', 'cforms2'));
@@ -205,20 +208,6 @@ class Email {
         }
 
         return true;
-
-    }
-
-    /**
-     * Sets the line ending and the multipart/alternative text/plain part.
-     * This is only functional if the built-in wp_mail function is not replaced.
-     * 
-     * TODO When https://core.trac.wordpress.org/ticket/15448 is resolved,
-     * use wp_mail's new multipart detection and do not depend on PHPMailer.
-     * 
-     * @param PHPMailer $phpmailer the object in use
-     */
-    public function phpmailer_init($phpmailer) {
-        $phpmailer->AltBody = $this->mail_body($this->body_alt);
 
     }
 

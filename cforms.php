@@ -21,7 +21,7 @@
  * Description: cformsII is a customizable, flexible and powerful form plugin including simple spam protection, multi-step forms, role manager support and custom themes.
  * Author: Oliver Seidel, Bastian Germann
  * Version: 15.0.10
- * Requires at least: 5.2
+ * Requires at least: 6.9
  * Text Domain: cforms2
  */
 namespace Cforms2;
