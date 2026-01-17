@@ -90,11 +90,15 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.0.9 =
+= 15.0.10 =
 The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
+
+= 15.0.10 =
+
+* bugfix:   Use wp_timezone_string over get_option
 
 = 15.0.9 =
 
