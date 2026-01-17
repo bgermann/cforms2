@@ -44,8 +44,6 @@ You can install the plugin via WordPress Dashboard. It should show up by searchi
 
 If you want to install manually, please upload the complete plugin folder "cforms2", contained in the zip file, to your WordPress plugin directory!
 
-If you want to check integrity of the download, please use the cforms2.*.sig GPG signature files that are published via [GitHub releases](https://github.com/bgermann/cforms2/releases). The [key used for signing](https://keys.openpgp.org/vks/v1/by-fingerprint/D9426F9637DCA799FF0F9AF22626D16964438E53) has the fingerprint `D942 6F96 37DC A799 FF0F  9AF2 2626 D169 6443 8E53`. The git tags themselves are also signed beginning with version 14.8.
-
 = Upgrading the plugin =
 
 If you want to upgrade from the original cformsII from deliciousdays.com, please upgrade to [version 14.6.0.5](https://plugins.svn.wordpress.org/cforms2/assets/cforms2.14.6.0.5.zip) first, make sure you upgraded your settings (resave your global settings and every form) and [backup your database](https://codex.wordpress.org/Backing_Up_Your_Database). Then deactivate the original plugin. If you want to migrate your tracking database to CFDB, please install version 14.14 and migrate it. Then you can install the current version of this fork.
@@ -76,10 +74,6 @@ If wp_mail is replaced by some plugin, multipart/alternative emails may not be s
 = Why is the Form Settings page broken? =
 
 This is an incompatibility with WordPress 4.2+ that was fixed with cformsII 14.9.3. Be sure to use a current version.
-
-= How can I contribute code? =
-
-Please use [GitHub pull requests](https://github.com/bgermann/cforms2/pulls).
 
 = Where are comment and Tell-a-Friend fields? =
 
