@@ -615,7 +615,7 @@ elseif (Cforms2\FormSettings::form($no)->getDontClear())
                     <tr class="ob">
                         <td class="obL"><strong><?php _e('Start Date', 'cforms2'); ?></strong></td>
                         <?php
-                            $tz = new DateTimeZone(get_option('timezone_string'));
+                            $tz = new \DateTimeZone(wp_timezone_string());
                             $start_date = Cforms2\FormSettings::form($no)->getStartDateTime();
                             $dt = $start_date ? (new DateTime('@' . $start_date))->setTimezone($tz) : null;
                         ?>
