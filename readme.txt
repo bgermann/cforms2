@@ -11,8 +11,6 @@ License URI: http://www.gnu.org/licenses/gpl-3.0
 
 This is a fork of cformsII, a highly customizable, flexible and powerful form builder plugin, covering a variety of use cases and features.
 
-Oliver, the original author, discontinued developing the plugin. This fork is an effort to keep it up to date.
-
 If you want to use plugin versions older than 14.6.3, you should rename the directory containing the plugin from "cforms2" to "cforms". But bear in mind that old versions should not be used in public systems, because they contain [known serious vulnerabilities](https://wpvulndb.com/plugins/cforms) that are exploited in the wild.
 
 The [current security baseline version](https://wpvulndb.com/plugins/cforms2) is 15.0.7.
