@@ -20,13 +20,13 @@
  * Plugin URI: https://wordpress.org/plugins/cforms2/
  * Description: cformsII is a customizable, flexible and powerful form plugin including simple spam protection, multi-step forms, role manager support and custom themes.
  * Author: Oliver Seidel, Bastian Germann
- * Version: 15.0.10
+ * Version: 15.1
  * Requires at least: 6.9
  * Text Domain: cforms2
  */
 namespace Cforms2;
 
-define('CFORMS2_VERSION', '15.0.10');
+define('CFORMS2_VERSION', '15.1');
 
 // Debug message handling.
 if (!defined('WP_DEBUG_CFORMS2')) {

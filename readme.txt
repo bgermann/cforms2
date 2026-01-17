@@ -67,8 +67,6 @@ Most probably this is not cformsII's fault. Please check your WordPress mail con
 
 That function was removed. The WordPress function [wp_mail](https://codex.wordpress.org/Function_Reference/wp_mail) is used for mails now, which makes use of built-in PHPMailer by default. If you want to configure it to use an external SMTP server, use an appropriate plugin, e.g. [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/).
 
-If wp_mail is replaced by some plugin, multipart/alternative emails may not be sent properly, which is the case with e.g. Postman SMTP Mailer/Email Log.
-
 = Why is the Form Settings page broken? =
 
 This is an incompatibility with WordPress 4.2+ that was fixed with cformsII 14.9.3. Be sure to use a current version.
@@ -88,11 +86,15 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.0.10 =
+= 15.1 =
 The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
+
+= 15.1 =
+
+* bugfix:   get rid of wp_mail workaround
 
 = 15.0.10 =
 
