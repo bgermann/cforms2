@@ -106,7 +106,7 @@ function cforms2_option_submission($no, &$cformsSettings) {
     $starttime = cforms2_get_from_request('cforms_starttime');
     $enddate = cforms2_get_from_request('cforms_enddate');
     $endtime = cforms2_get_from_request('cforms_endtime');
-    $timezone = new DateTimeZone(get_option('timezone_string'));
+    $timezone = new \DateTimeZone(wp_timezone_string());
     if (!empty($startdate)) {
         $dt = DateTime::createFromFormat('Y-m-d', $startdate, $timezone);
         if ($dt !== false)
