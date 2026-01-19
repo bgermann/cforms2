@@ -113,6 +113,15 @@ function cforms2($no = '', $customfields = array()) {
         }
     }
 
+    // Check time constraints BEFORE creating any HTML elements
+    // This prevents creating message boxes for forms that won't be displayed
+    if (!cforms2_check_time($no)) {
+        if (isset($validation_result['limit_reached']) && $validation_result['limit_reached'])
+            return stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
+        else
+            return stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
+    }
+
     // paint form
     $success = false;
 
@@ -166,13 +175,6 @@ function cforms2($no = '', $customfields = array()) {
             )
     )
         return $content;
-    elseif (!cforms2_check_time($no)) {
-
-        if ($validation_result['limit_reached'])
-            return stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
-        else
-            return $content . stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_limittxt']);
-    }
 
 
 

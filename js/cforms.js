@@ -182,13 +182,24 @@ function cforms_validate(no, directFormSubmission) {
         var post_data = 'action=submitcform&_wpnonce='
                 + cforms2_ajax.nonces['submitcform']
                 + '&cforms_id=' + no + '&' + params;
-        jQuery.post(
-                cforms2_ajax.url,
-                post_data,
-                function (data) {
+        jQuery.ajax({
+            url: cforms2_ajax.url,
+            type: 'POST',
+            data: post_data,
+            dataType: 'json',
+            success: function(data) {
+                if (data && typeof data === 'object' && data.no !== undefined) {
                     cforms_setsuccessmessage(data);
+                } else {
+                    // Invalid response format - use configured failure message
+                    call_err(no, document.getElementById('cf_failure' + no).value, '');
                 }
-        );
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Handle AJAX errors - use configured failure message
+                call_err(no, document.getElementById('cf_failure' + no).value, '');
+            }
+        });
     };
 
     var cforms_setsuccessmessage = function (message) {

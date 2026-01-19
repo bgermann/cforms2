@@ -17,6 +17,11 @@
  */
 
 function cforms2_json_die($no, $result, $html, $hide = false, $redirection = null) {
+    // Clear any previous output to ensure clean JSON
+    if (ob_get_length()) {
+        ob_clean();
+    }
+
     header('Content-Type: application/json');
     echo json_encode(array(
         'no' => $no,
