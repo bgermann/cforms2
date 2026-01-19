@@ -151,7 +151,7 @@ class Email {
 
     }
 
-    private function mail_header() {
+    private function mail_header($boundary = '') {
         $r = array();
 
         $from = array();
@@ -163,7 +163,11 @@ class Email {
         $r[] = (count($this->bcc) > 0) ? $this->addr_add('Bcc', $this->bcc) : '';
         $r[] = (count($this->replyto) > 0) ? $this->addr_add('Reply-to', $this->replyto) : '';
 
-        $r[] = sprintf("Content-Type: %s", $this->content_type);
+        if ($boundary !== '') {
+            $r[] = sprintf('Content-Type: multipart/alternative; boundary="%s"', $boundary);
+        } else {
+            $r[] = sprintf('Content-Type: %s', $this->content_type);
+        }
         return $r;
 
     }
@@ -184,7 +188,6 @@ class Email {
             return false;
         }
 
-        $header = $this->mail_header();
         $body = $this->mail_body($this->body);
         $body_alt = $this->mail_body($this->body_alt);
 
@@ -198,9 +201,22 @@ class Email {
         }
         // Use multipart/alternative format if both HTML and plain text are available
         if ($body_alt !== '') {
-            $body = array('html' => $body, 'text' => $body_alt);
+            $boundary = 'cforms2_' . md5(uniqid());
+
+            $header = $this->mail_header($boundary);
+            $mimebody = "--$boundary\r\n";
+            $mimebody .= "Content-Type: text/plain; charset=" . get_bloginfo('charset') . "\r\n\r\n";
+            $mimebody .= $body_alt . "\r\n\r\n";
+            $mimebody .= "--$boundary\r\n";
+            $mimebody .= "Content-Type: text/html; charset=" . get_bloginfo('charset') . "\r\n\r\n";
+            $mimebody .= $body . "\r\n\r\n";
+            $mimebody .= "--$boundary--";
+        } else {
+            $header = $this->mail_header();
+            $mimebody = $body;
         }
-        $rt = wp_mail($to, $this->fix_header($this->subj), $body, $header, $this->up);
+
+        $rt = wp_mail($to, $this->fix_header($this->subj), $mimebody, $header, $this->up);
 
         if (!$rt) {
             $this->set_err(__('Could not successfully run wp_mail function. There may be a warning in the PHP error log with more information.', 'cforms2'));
