@@ -117,7 +117,7 @@ function cforms2_format_email($track, $no) {
             continue;
         } elseif (strpos($k, 'Fieldset') !== false) {
             $space = '-';
-            $n = ((($customspace * 2) + 2) - strlen(strip_tags($v))) / 2;
+            $n = (int) (((($customspace * 2) + 2) - strlen(strip_tags($v))) / 2);
             $n = ($n < 0) ? 0 : $n;
             if (strlen(strip_tags($v)) < (($customspace * 2) - 2))
                 $space = str_repeat("-", $n);
