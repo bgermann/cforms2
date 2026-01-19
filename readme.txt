@@ -86,11 +86,15 @@ cformsII can be extended via WordPress actions and filters. You find their 'cfor
 
 == Upgrade Notice ==
 
-= 15.1.1 =
+= 15.1.2 =
 The tracking database feature and its view are removed with cformsII 15.0+. Your data still exists in the database. Please have a look at CFDB plugin as a replacement.
 
 
 == Changelog ==
+
+= 15.1.2 =
+
+* bugfix:   Construct multipart/alternative emails
 
 = 15.1.1 =
 
