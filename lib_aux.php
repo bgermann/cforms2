@@ -52,7 +52,7 @@ function cforms2_sanitize_ids($t) {
     $t = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $t);
 
     $t = remove_accents($t);
-    if (seems_utf8($t)) {
+    if (wp_is_valid_utf8($t)) {
         $t = utf8_uri_encode($t, 200);
     }
 
