@@ -246,10 +246,14 @@ if (strlen($fd) <= 2) {
 Cforms2\FormSettings::reset();
 ?>
 
-<div class="wrap">
-    <h2><?php _e('Form Settings', 'cforms2') ?></h2>
+<div class="wrap cforms-modern-admin">
+    <div class="cforms-card">
+        <div class="cforms-card-header">
+            <h2><?php _e('Form Settings', 'cforms2') ?></h2>
+        </div>
+        <div class="cforms-card-body">
 
-    <form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="#">
+    <form enctype="multipart/form-data" id="cformsdata" name="mainform" method="post" action="#" class="cforms-form">
         <table class="chgformbox" title="<?php _e('Navigate to your other forms.', 'cforms2') ?>">
             <tr>
                 <td class="chgL">
@@ -977,6 +981,8 @@ if ($start_date) {
 
     </form>
 
+        </div>
+    </div>
 </div>
 
 <?php
