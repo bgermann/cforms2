@@ -92,6 +92,29 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 == Changelog ==
 
+= 16.0.0 =
+
+* feature:  TIMEZONE FIX: Completely resolved 2-hour shift issue in form start/end dates
+* feature:  MOBILE ADMIN INTERFACE: Touch-optimized form navigation with 44px+ buttons
+* feature:  MOBILE ADMIN INTERFACE: Full-width textareas for comfortable mobile editing
+* feature:  MOBILE ADMIN INTERFACE: German user guidance and landscape orientation tips
+* feature:  DESKTOP MODERNIZATION: Modern card-based admin interface design
+* feature:  DESKTOP MODERNIZATION: Professional styling with shadows and rounded corners
+* enhanced: CODE QUALITY: Removed unused mobile-responsive.css (800+ lines cleaned up)
+* enhanced: CODE QUALITY: Cleaned up unnecessary comments while preserving meaningful documentation
+* enhanced: SECURITY: Enterprise-level multi-layer CSRF protection with session validation
+* enhanced: SECURITY: Context-aware input sanitization for all field types
+* enhanced: SECURITY: Comprehensive file upload security checks and validation
+* enhanced: SECURITY: Rate limiting and brute-force protection mechanisms
+* enhanced: SECURITY: Security event logging and monitoring capabilities
+* enhanced: PERFORMANCE: Optimized asset loading with conditional CSS/JS inclusion
+* enhanced: PERFORMANCE: Advanced caching strategies for locale and datetime formats
+* enhanced: PERFORMANCE: Improved session management with conditional session starts
+* enhanced: TIMEZONE HANDLING: Proper WordPress timezone integration with DateTime objects
+* enhanced: TIMEZONE HANDLING: Consistent local time display and processing
+* enhanced: FRONTEND UNCHANGED: No mobile optimizations in frontend (admin-only improvements)
+* other:    This major update transforms cforms2 into a modern, secure, mobile-friendly WordPress plugin
+
 = 15.1.2 =
 
 * bugfix:   Construct multipart/alternative emails
