@@ -180,6 +180,13 @@ class Email {
 
     }
 
+    /**
+     * Workaround for wp_mail setting PHPMailer's CharSet to an empty string on multipart emails
+     */
+    public function mail_charset() {
+        return get_bloginfo('charset');
+    }
+
     public function send() {
         $this->err_count = 0;
 
@@ -216,7 +223,9 @@ class Email {
             $mimebody = $body;
         }
 
+        add_filter('wp_mail_charset', array($this, 'mail_charset'));
         $rt = wp_mail($to, $this->fix_header($this->subj), $mimebody, $header, $this->up);
+        remove_filter('wp_mail_charset', array($this, 'mail_charset'));
 
         if (!$rt) {
             $this->set_err(__('Could not successfully run wp_mail function. There may be a warning in the PHP error log with more information.', 'cforms2'));
