@@ -525,7 +525,7 @@ function cforms2($no = '', $customfields = array()) {
                     $field_value = cforms2_check_default_vars($field_value, $no);
 
                     if (preg_match('/^<([a-zA-Z0-9]+)>$/', $field_value, $getkey))
-                        $field_value = $_GET[$getkey[1]];
+                        $field_value = esc_html($_GET[$getkey[1]]);
 
                     $field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="' . $input_name . '" id="' . $input_id . '" value="' . $field_value . '" title="' . $fieldTitle . '"/></li>';
                     break;
