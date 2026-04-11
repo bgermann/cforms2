@@ -55,7 +55,7 @@ function cforms2_fieldtypes_register() {
 }
 
 function cforms2_delete_db_and_deactivate() {
-    if (!isset($_POST['cfdeleteall']))
+    if (!isset($_POST['cfdeleteall']) || !check_admin_referer("cformsglobal"))
         return;
 
     if (is_user_logged_in() && current_user_can('manage_options')) {
