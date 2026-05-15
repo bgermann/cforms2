@@ -1,6 +1,5 @@
 === cformsII ===
 Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
-Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: form, contact, sidebar, multi step, fork
 Tested up to: 6.9
 Stable tag: trunk
