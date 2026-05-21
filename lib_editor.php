@@ -1,7 +1,6 @@
 <?php
 /*
- * Copyright (c) 2006-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2017 Bastian Germann
+ * Copyright (c) 2026 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,46 +16,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/** used to insert button in editor */
-function cforms2_mce_button($buttons) {
-    array_push($buttons, "separator", "cforms");
-    return $buttons;
-
-}
-
-/** adding to TinyMCE */
-function cforms2_mce($plugins) {
-    $plugins['cforms'] = plugin_dir_url(__FILE__) . 'js/cforms.tinymce.js';
-    return $plugins;
-
-}
-
-function cforms2_mce_translation($mce_translation) {
-    $mce_translation['Insert a form'] = __('Insert a form', 'cforms2');
-    return $mce_translation;
-
-}
-
-function cforms2_mce_script() {
-    $fns = array();
-    $forms = count(Cforms2\FormSettings::forms());
-    for ($i = 0; $i < $forms; $i++) {
-        $no = ($i == 0) ? '' : ($i + 1);
-        $fns[] = Cforms2\FormSettings::form($no)->name();
-    }
-    echo '<script type="text/javascript">// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later'
-    . "\ncforms2_formnames = " . json_encode($fns) . ";\n// @license-end</script>";
-
-}
-
-function cforms2_register_editor() {
-    // only insert buttons if enabled!
-    $cformsSettings = get_option('cforms_settings');
-    if ($cformsSettings['global']['cforms_show_quicktag'] && is_admin()) {
-        add_filter('mce_external_plugins', 'cforms2_mce');
-        add_filter('wp_mce_translation', 'cforms2_mce_translation');
-        add_filter('mce_buttons', 'cforms2_mce_button');
-        add_action('admin_print_scripts', 'cforms2_mce_script');
+/** Registers the cforms2/form Gutenberg block using PHP-only block registration (requires WordPress 7.0+). */
+function cforms2_register_block() {
+    $forms = Cforms2\FormSettings::forms();
+    $form_names = array();
+    foreach ( $forms as $form ) {
+        $name = stripslashes( $form->name() );
+        if ( $name !== '' ) {
+            $form_names[] = $name;
+        }
     }
 
+    if ( empty( $form_names ) ) {
+        return;
+    }
+
+    register_block_type(
+        'cforms2/form',
+        array(
+            'title'           => __( 'cformsII Form', 'cforms2' ),
+            'attributes'      => array(
+                'form_name' => array(
+                    'label'   => __( 'Form', 'cforms2' ),
+                    'type'    => 'string',
+                    'enum'    => $form_names,
+                    'default' => $form_names[0],
+                ),
+            ),
+            'render_callback' => function ( $attributes ) {
+                if ( empty( $attributes['form_name'] ) ) {
+                    return '';
+                }
+                return cforms2( cforms2_check_form_name( $attributes['form_name'] ) );
+            },
+            'supports'        => array(
+                'autoRegister' => true,
+            ),
+        )
+    );
 }
+
+add_action( 'init', 'cforms2_register_block' );
