@@ -87,11 +87,14 @@ function cforms2($no = '', $customfields = array()) {
     // TODO integrate this check better
     $server_upload_size_error = false;
     $displayMaxSize = ini_get('post_max_size');
+    // Do not run this check on REST API requests. Gutenberg's JSON saves are
+    // also POST requests with an empty $_POST, which would falsely trigger the
+    // check and corrupt the response with stray output.
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST) &&
-            empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0) {
+            empty($_FILES) && $_SERVER['CONTENT_LENGTH'] > 0 && !defined('REST_REQUEST')) {
         $server_upload_size_error = true;
         $msgSize = $_SERVER['CONTENT_LENGTH'] / 1048576;
-        echo ("<pre>Maximum size allowed:" . $displayMaxSize . "; size of your message:" . number_format((float) $msgSize, 2, '.', '') . "M</pre>");
+        $content .= "<pre>Maximum size allowed:" . $displayMaxSize . "; size of your message:" . number_format((float) $msgSize, 2, '.', '') . "M</pre>";
     }
 
     // non-AJAX method
