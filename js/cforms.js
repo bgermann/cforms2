@@ -32,6 +32,49 @@ function setField(thefield) {
         thefield.value = thefield.defaultValue;
 }
 
+// Serialize a form's successful controls into a URL-encoded string
+var serializeForm = function (form) {
+
+    var isDisabled = function (el) {
+        if (el.disabled)
+            return true;
+        // Controls within a disabled fieldset are disabled as well
+        var node = el.parentNode;
+        while (node && node.nodeType === 1) {
+            if (node.tagName.toLowerCase() == 'fieldset' && node.disabled)
+                return true;
+            node = node.parentNode;
+        }
+        return false;
+    };
+
+    var parts = [];
+    for (var i = 0, elements = form.elements, j = elements.length; i < j; i++) {
+        var el = elements[i];
+        var name = el.name;
+        if (!name || isDisabled(el))
+            continue;
+
+        var tag = el.tagName.toLowerCase();
+        var type = (typeof el.type == 'string') ? el.type.toLowerCase() : '';
+
+        if (tag == 'input' && (type == 'checkbox' || type == 'radio')) {
+            if (el.checked)
+                parts.push(encodeURIComponent(name) + '=' + encodeURIComponent(el.value));
+        } else if (tag == 'select') {
+            for (var s = 0; s < el.options.length; s++) {
+                if (el.options[s].selected)
+                    parts.push(encodeURIComponent(name) + '=' + encodeURIComponent(el.options[s].value));
+            }
+        } else if (tag == 'textarea' || tag == 'input') {
+            if (type != 'submit' && type != 'button' && type != 'reset' && type != 'image' && type != 'file')
+                parts.push(encodeURIComponent(name) + '=' + encodeURIComponent(el.value));
+        }
+    }
+    return parts.join('&');
+
+};
+
 
 function cforms_validate(no, directFormSubmission) {
 
@@ -178,17 +221,27 @@ function cforms_validate(no, directFormSubmission) {
         }
 
         // Overwrite params with generic form
-        params = jQuery('#cforms' + no + 'form').serialize();
+        params = serializeForm(document.getElementById('cforms' + no + 'form'));
         var post_data = 'action=submitcform&_wpnonce='
                 + cforms2_ajax.nonces['submitcform']
                 + '&cforms_id=' + no + '&' + params;
-        jQuery.post(
-                cforms2_ajax.url,
-                post_data,
-                function (data) {
-                    cforms_setsuccessmessage(data);
-                }
-        );
+        fetch(cforms2_ajax.url, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            body: post_data
+        })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (message) {
+                    cforms_setsuccessmessage(message);
+                })
+                .catch(function () {
+                    call_err(no, '', '');
+                });
     };
 
     var cforms_setsuccessmessage = function (message) {
@@ -523,11 +576,15 @@ function cforms_validate(no, directFormSubmission) {
 
 }
 
-jQuery(function () {
-    jQuery('form.cform[id^="cforms"][id$="form"]').submit(function (ev) {
-        var id = jQuery(ev.target).attr('id');
-        var no = /^cforms(\d*)form$/.exec(id)[1];
-        var direct = jQuery(ev.target).hasClass('cformsdirect');
-        return cforms_validate(no, direct);
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    var forms = document.querySelectorAll('form.cform[id^="cforms"][id$="form"]');
+    for (var i = 0; i < forms.length; i++) {
+        forms[i].addEventListener('submit', function (ev) {
+            var id = this.id;
+            var no = /^cforms(\d*)form$/.exec(id)[1];
+            var direct = this.classList.contains('cformsdirect');
+            if (cforms_validate(no, direct) === false)
+                ev.preventDefault();
+        });
+    }
 });

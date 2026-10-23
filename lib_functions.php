@@ -101,7 +101,7 @@ function cforms2_enqueue_scripts() {
             wp_enqueue_style('cforms2');
         }
 
-        wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array('jquery'), CFORMS2_VERSION);
+        wp_register_script('cforms2', plugin_dir_url(__FILE__) . 'js/cforms.js', array(), CFORMS2_VERSION);
         wp_localize_script('cforms2', 'cforms2_ajax', array(
             'url' => admin_url('admin-ajax.php'),
             'nonces' => array(
