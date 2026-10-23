@@ -52,6 +52,20 @@ function cforms2_move_files($no, $inSession, &$file) {
 
 }
 
+/** remove uploaded file copies once they are no longer needed */
+function cforms2_delete_files($fdata) {
+    $tmpdir = get_temp_dir();
+    foreach ((array) $fdata as $f) {
+        $file = isset($f['name']) ? $f['name'] : '';
+        // Only remove files we placed in the temporary directory; never
+        // unlink arbitrary paths.
+        if (!is_string($file) || $file === '' || strpos($file, $tmpdir) !== 0)
+            continue;
+        wp_delete_file($file);
+    }
+
+}
+
 function cforms2_is_email($string) {
     return preg_match("/^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,63})$/i", $string);
 
@@ -781,6 +795,11 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 }
             }
         }
+
+        // The uploaded files have been sent as attachments; remove the
+        // temporary copies so they do not accumulate in the temp directory.
+        cforms2_delete_files($fdata);
+        unset($_SESSION['cforms']['upload']);
     }
 
     return array(
