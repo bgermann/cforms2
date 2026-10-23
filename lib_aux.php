@@ -299,24 +299,24 @@ function cforms2_check_cust_vars($m, $track, $html = false) {
 
 }
 
+/**
+ * Returns the visitor's IP address as reported by the web server.
+ *
+ * Forwarding headers (X-Forwarded-For, Client-IP, ...) are sent by the client
+ * and can be spoofed, so they are deliberately ignored here. Sites behind a
+ * reverse proxy that need the original client address should have the proxy
+ * set REMOTE_ADDR (or configure PHP-FPM/real_ip accordingly).
+ */
 function cforms2_get_ip() {
-    if (isset($_SERVER)) {
-        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
-            $ip_addr = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        elseif (isset($_SERVER["HTTP_CLIENT_IP"]))
-            $ip_addr = $_SERVER["HTTP_CLIENT_IP"];
-        else
-            $ip_addr = $_SERVER["REMOTE_ADDR"];
-    } else {
-        if (getenv('HTTP_X_FORWARDED_FOR'))
-            $ip_addr = getenv('HTTP_X_FORWARDED_FOR');
-        elseif (getenv('HTTP_CLIENT_IP'))
-            $ip_addr = getenv('HTTP_CLIENT_IP');
-        else
-            $ip_addr = getenv('REMOTE_ADDR');
-    }
-    $ip_addr = filter_var($ip_addr, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE);
-    return $ip_addr ? $ip_addr : '';
+    if (empty($_SERVER['REMOTE_ADDR']))
+        return '';
+
+    $ip_addr = rest_is_ip_address($_SERVER['REMOTE_ADDR']);
+    if ($ip_addr === false)
+        return '';
+
+    // Still reject reserved ranges, as the plugin did before.
+    return filter_var($ip_addr, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE) ? $ip_addr : '';
 
 }
 
