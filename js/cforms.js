@@ -22,15 +22,35 @@
  * for the JavaScript code in this page.
  */
 
-function clearField(thefield) {
+// "Clear on focus" fields are marked with data-cf-clear. Using event
+// delegation with the bubbling focusin/focusout events keeps JavaScript out
+// of the HTML attributes.
+var clearField = function (thefield) {
     if (thefield.defaultValue == thefield.value)
         thefield.value = '';
-}
+};
 
-function setField(thefield) {
+var setField = function (thefield) {
     if (thefield.value == '')
         thefield.value = thefield.defaultValue;
-}
+};
+
+document.addEventListener('focusin', function (event) {
+    if (event.target.getAttribute && event.target.getAttribute('data-cf-clear') !== null)
+        clearField(event.target);
+});
+
+document.addEventListener('focusout', function (event) {
+    if (event.target.getAttribute && event.target.getAttribute('data-cf-clear') !== null)
+        setField(event.target);
+});
+
+// Confirmation for the multi-part form reset button.
+document.addEventListener('click', function (event) {
+    var message = event.target.getAttribute && event.target.getAttribute('data-cf-reset-confirm');
+    if (message !== null && !confirm(message))
+        event.preventDefault();
+});
 
 // Serialize a form's successful controls into a URL-encoded string
 var serializeForm = function (form) {

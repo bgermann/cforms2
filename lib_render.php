@@ -505,9 +505,9 @@ function cforms2($no = '', $customfields = array()) {
                     } else
                         $type = ($field_type == 'pwfield') ? 'password' : 'text';
 
-                    $onfocus = $field_clear ? ' onfocus="clearField(this)" onblur="setField(this)"' : '';
+                    $clear = $field_clear ? ' data-cf-clear="1"' : '';
 
-                    $field = '<input' . $h5 . $readonly . $disabled . ' type="' . $type . '" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '" value="' . $field_value . '"' . $onfocus . ' title="' . $fieldTitle . '"/>';
+                    $field = '<input' . $h5 . $readonly . $disabled . ' type="' . $type . '" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '" value="' . $field_value . '"' . $clear . ' title="' . $fieldTitle . '"/>';
                     if (!empty($reg_exp))
                         $field .= '<input type="hidden" name="' . $input_name . '_regexp" id="' . $input_id . '_regexp" value="' . $reg_exp . '" title="' . $fieldTitle . '"/>';
 
@@ -526,9 +526,9 @@ function cforms2($no = '', $customfields = array()) {
                     break;
 
                 case "textarea":
-                    $onfocus = $field_clear ? ' onfocus="clearField(this)" onblur="setField(this)"' : '';
+                    $clear = $field_clear ? ' data-cf-clear="1"' : '';
 
-                    $field = '<textarea' . $readonly . $disabled . ' cols="30" rows="8" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '"' . $onfocus . ' title="' . $fieldTitle . '">' . $field_value . '</textarea>';
+                    $field = '<textarea' . $readonly . $disabled . ' cols="30" rows="8" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '"' . $clear . ' title="' . $fieldTitle . '">' . $field_value . '</textarea>';
                     if (!empty($reg_exp))
                         $field .= '<input type="hidden" name="' . $input_name . '_regexp" id="' . $input_id . '_regexp" value="' . $reg_exp . '" title="' . $fieldTitle . '"/>';
                     break;
@@ -774,7 +774,7 @@ function cforms2($no = '', $customfields = array()) {
     // multi-part form: reset
     $reset = '';
     if ($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'] && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_reset'])
-        $reset = '<input tabindex="999" type="submit" name="resetbutton' . $no . '" id="resetbutton' . $no . '" class="resetbutton" value="' . $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_resettext'] . '" onclick="return confirm(\'' . __('Note: This will reset all your input!', 'cforms2') . '\')">';
+        $reset = '<input tabindex="999" type="submit" name="resetbutton' . $no . '" id="resetbutton' . $no . '" class="resetbutton" value="' . $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_resettext'] . '" data-cf-reset-confirm="' . esc_attr(__('Note: This will reset all your input!', 'cforms2')) . '">';
 
 
     // multi-part form: back
