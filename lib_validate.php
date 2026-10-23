@@ -653,7 +653,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         $htmlmessage = '';
         if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 2, 1) == '1') {
             $htmlmessage = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_header_html']);
-            $htmlmessage = cforms2_check_default_vars($htmlmessage, $no);
+            $htmlmessage = cforms2_check_default_vars($htmlmessage, $no, true);
             $htmlmessage = cforms2_check_cust_vars($htmlmessage, $track, true);
         }
 
@@ -668,8 +668,8 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
         } else
             $mail->body = $message . ($mail->f_txt ? "\n$formdata" : '');
 
-        $usermessage_text = cforms2_check_default_vars($usermessage_text, $no);
-        $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track);
+        $usermessage_text = cforms2_check_default_vars($usermessage_text, $no, true);
+        $usermessage_text = cforms2_check_cust_vars($usermessage_text, $track, true);
         $usermessage_text = apply_filters('cforms2_usermessage_filter', $usermessage_text, $no, $pid);
 
 
@@ -746,7 +746,7 @@ function cforms2_validate($no, $isMPform = false, $custom = false, $customfields
                 $cmsghtml = '';
                 if (substr($cformsSettings['form' . $no]['cforms' . $no . '_formdata'], 3, 1) == '1') {
                     $cmsghtml = stripslashes($cformsSettings['form' . $no]['cforms' . $no . '_cmsg_html']);
-                    $cmsghtml = cforms2_check_default_vars($cmsghtml, $no);
+                    $cmsghtml = cforms2_check_default_vars($cmsghtml, $no, true);
                     $cmsghtml = cforms2_check_cust_vars($cmsghtml, $track, true);
                 }
 
