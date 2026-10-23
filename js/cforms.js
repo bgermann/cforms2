@@ -3,7 +3,7 @@
  * JavaScript code in this page.
  * 
  * Copyright (c) 2007-2012 Oliver Seidel (email : oliver.seidel @ deliciousdays.com)
- * Copyright (c) 2014-2017 Bastian Germann
+ * Copyright (c) 2014-2026 Bastian Germann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -142,86 +142,8 @@ function cforms_validate(no, directFormSubmission) {
         return set_customerr(cerr, parent_el);
     };
 
-    var isParentChkBoxGroup = function (el) {
-        while (el.parentNode) {
-            if (el.parentNode.className === 'cf-box-group')
-                return true;
-            else
-                el = el.parentNode;
-        }
-        return false;
-    };
-
     var cforms_submitform = function (no) {
-        var regexp = new RegExp('[$][#][$]', ['g']);
-        var prefix = '\n';
-
-        var params = '';
-
-        var objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('*');
-
-        for (var i = 0, j = objColl.length; i < j; i++) {
-
-            var fld = objColl[i].nodeName.toLowerCase();
-            var typ = objColl[i].type;
-
-            if (fld == "input" || fld == "textarea" || fld == "select") {
-
-                if (typ == "checkbox") {
-
-                    if (objColl[i].name.match(/\[\]/)) {
-                        var group = '';
-
-                        while (i < j && isParentChkBoxGroup(objColl[i])) {
-                            if (objColl[i].type == 'checkbox' && objColl[i].name.match(/\[\]/) && objColl[i].checked) {
-                                group = group + objColl[i].value + ',';
-                            }
-                            i++;
-                        }
-
-                        if (group.length > 1)
-                            params = params + prefix + group.substring(0, group.length - 1);
-                        else
-                            params = params + prefix + "";
-                    } else
-                        params = params + prefix + (objColl[i].checked ? ((objColl[i].value != "") ? objColl[i].value : "X") : "");
-
-                } else if (typ == "radio") {
-
-                    var group = objColl[i].checked ? ((objColl[i].value != "") ? objColl[i].value : "X") : '';
-
-                    while (i < j && isParentChkBoxGroup(objColl[i + 1])) {
-
-                        if (objColl[i + 1].type == 'radio' && objColl[i + 1].checked) {
-                            group = group + ',' + objColl[i + 1].value;
-                        }
-
-                        i++;
-                    }
-                    if (group.charAt(0) == ',')
-                        params = params + prefix + group.substring(1, group.length);
-                    else
-                        params = params + prefix + group;
-
-
-                } else if (typ == "select-multiple") {
-                    var all_child_obj = '';
-                    for (var z = 0; z < objColl[i].childNodes.length; z++) {
-                        if (objColl[i].childNodes[z].nodeName.toLowerCase() == 'option' && objColl[i].childNodes[z].selected) {
-                            all_child_obj = all_child_obj + objColl[i].childNodes[z].value.replace(regexp, '$') + ',';
-                        }
-                    }
-                    params = params + prefix + all_child_obj.substring(0, all_child_obj.length - 1);
-                } else if (typ == "hidden" && objColl[i].className.match(/cfhidden/)) {
-                    params = params + prefix + objColl[i].value;
-                } else if (typ != "hidden" && typ != "submit") {
-                    params = params + prefix + objColl[i].value.replace(regexp, '$');
-                }
-            }
-        }
-
-        // Overwrite params with generic form
-        params = serializeForm(document.getElementById('cforms' + no + 'form'));
+        var params = serializeForm(document.getElementById('cforms' + no + 'form'));
         var post_data = 'action=submitcform&_wpnonce='
                 + cforms2_ajax.nonces['submitcform']
                 + '&cforms_id=' + no + '&' + params;
@@ -363,7 +285,6 @@ function cforms_validate(no, directFormSubmission) {
 
 
     objColl = document.getElementById('cforms' + no + 'form').getElementsByTagName('*');
-    var last_one = false;
 
     for (var i = 0, j = objColl.length; i < j; i++) {
 
@@ -413,8 +334,6 @@ function cforms_validate(no, directFormSubmission) {
 
 
                         all_valid = false;
-                        if (!last_one && objColl[i].id != '')
-                            last_one = objColl[i].id;
                     } else {
                         // we can't change the checkbox much but the text on the side!
                         if (n && n.nodeName.toLowerCase() == "label" && n.className.match(/cf_errortxt/))
@@ -429,8 +348,6 @@ function cforms_validate(no, directFormSubmission) {
                     if (objColl[i].value == '' || objColl[i].value == '-') {
                         newclass = newclass + ' cf_error';
                         all_valid = false;
-                        if (!last_one && objColl[i].id != '')
-                            last_one = objColl[i].id;
 
                         custom_error = check_for_customerr(objColl[i].id);
 
@@ -440,8 +357,6 @@ function cforms_validate(no, directFormSubmission) {
 
                     newclass = newclass + ' cf_error';
                     all_valid = false;
-                    if (!last_one && objColl[i].id != '')
-                        last_one = objColl[i].id;
 
                     custom_error = check_for_customerr(objColl[i].id);
 
@@ -455,8 +370,6 @@ function cforms_validate(no, directFormSubmission) {
                     if (!regexp_e.test(objColl[i].value)) {
                         newclass = newclass + ' fldrequired cf_error';
                         all_valid = false;
-                        if (!last_one)
-                            last_one = objColl[i].name;
 
                         custom_error = check_for_customerr(objColl[i].id);
 
@@ -481,8 +394,6 @@ function cforms_validate(no, directFormSubmission) {
 
                 if (!radio_valid) {
                     all_valid = false;
-                    if (!last_one)
-                        last_one = objColl[temp_i].parentNode.id;
                     custom_error = check_for_customerr_radio(
                             objColl[temp_i].parentNode.id,
                             objColl[temp_i].id.substr(0, objColl[temp_i].id.length - 2)
@@ -519,8 +430,6 @@ function cforms_validate(no, directFormSubmission) {
                 if (regexp == null) {
                     newclass = newclass + ' cf_error';
                     all_valid = false;
-                    if (!last_one && objColl[i].id != '')
-                        last_one = objColl[i].id;
                     custom_error = check_for_customerr(objColl[i].id);
                 }
 
