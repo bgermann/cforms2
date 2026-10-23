@@ -40,8 +40,9 @@ function cforms2_start_session() {
 
 function cforms2_field() {
     check_admin_referer('cforms2_field');
+    cforms2_check_access_priv();
 
-    $type = $_POST['type'];
+    $type = isset($_POST['type']) ? $_POST['type'] : '';
     $fields = cforms2_get_fieldtypes();
     if (array_key_exists($type, $fields))
         echo $fields[$type]->render_settings();
