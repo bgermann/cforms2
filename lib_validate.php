@@ -74,6 +74,21 @@ function cforms2_is_email($string) {
 function cforms2_validate($no, $isMPform = false, $custom = false, $customfields = array(), $custom_error = '') {
     $cformsSettings = get_option('cforms_settings');
 
+    // CSRF protection for direct (non-AJAX) submissions. AJAX submissions go
+    // through cforms2_submitcform(), which verifies the same nonce before
+    // this function is called, so this check is safe for both paths.
+    $nonce = isset($_POST['_wpnonce']) && is_string($_POST['_wpnonce']) ? $_POST['_wpnonce'] : '';
+    if (isset($_POST['sendbutton' . $no]) && !wp_verify_nonce($nonce, 'submitcform')) {
+        return array(
+            'text' => '<span>' . __('Your session has expired. Please reload the page and try again.', 'cforms2') . '</span>',
+            'class' => ' failure',
+            'all_valid' => false,
+            'track' => array(),
+            'limit_reached' => false,
+            'validations' => array()
+        );
+    }
+
     $validations = array();
     $all_valid = true;
 

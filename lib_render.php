@@ -761,6 +761,10 @@ function cforms2($no = '', $customfields = array()) {
     }
 
 
+    // CSRF token for direct (non-AJAX) submissions. AJAX submissions carry
+    // the same nonce, which cforms2_submitcform() verifies.
+    $formcontent .= '<input type="hidden" name="_wpnonce" id="cforms2_nonce' . $no . '" value="' . esc_attr(wp_create_nonce('submitcform')) . '"/>';
+
     $formcontent .= '<input type="hidden" name="cf_working' . $no . '" id="cf_working' . $no . '" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_working'])) . '"/>' .
             '<input type="hidden" name="cf_failure' . $no . '" id="cf_failure' . $no . '" value="' . stripslashes(htmlspecialchars($cformsSettings['form' . $no]['cforms' . $no . '_failure'])) . '"/>' .
             '<input type="hidden" name="cf_customerr' . $no . '" id="cf_customerr' . $no . '" value="' . htmlspecialchars($custom_error) . '"/>';
