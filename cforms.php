@@ -95,6 +95,8 @@ if (is_admin()) {
 
 // Attaching to hooks.
 add_action('template_redirect', 'cforms2_start_session');
+// Run after the session is started (priority 10) so validation can use it.
+add_action('template_redirect', 'cforms2_maybe_redirect', 20);
 add_action('wp_ajax_submitcform', 'cforms2_submitcform');
 add_action('wp_ajax_nopriv_submitcform', 'cforms2_submitcform');
 add_action('plugins_loaded', function() {

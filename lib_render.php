@@ -106,14 +106,6 @@ function cforms2($no = '', $customfields = array()) {
         $usermessage_class = $validation_result['class'];
         $track = $validation_result['track'];
         $validations = $validation_result['validations'];
-
-        if ($all_valid && Cforms2\FormSettings::form($no)->getRedirect()) {
-            $cf_redirect = Cforms2\FormSettings::form($no)->getRedirectPage();
-            if (!empty($cf_redirect)) { // TODO rework to do this via HTTP?
-                echo '<script type="text/javascript">'
-                . 'location.href = "' . $cf_redirect . '"</script>';
-            }
-        }
     }
 
     // paint form
@@ -797,6 +789,71 @@ function cforms2($no = '', $customfields = array()) {
         $content .= '<div id="usermessage' . $no . 'b" class="cf_info ' . $usermessage_class . $umc . '" >' . $usermessage_text . '</div>';
 
     return $content;
+
+}
+
+/**
+ * Redirect the browser after a successful non-AJAX submission via an HTTP
+ * header.
+ *
+ * Non-AJAX ("cformsdirect") forms perform a full page POST. Handling the
+ * redirect here, on template_redirect before any output is sent, allows the
+ * redirect to be issued with an HTTP Location header instead of printing a
+ * location.href script into the page body.
+ */
+function cforms2_maybe_redirect() {
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        return;
+    }
+
+    // Find the submitted form. Form 1 posts a "sendbutton" field, all later
+    // forms post "sendbutton<n>".
+    $no = null;
+    foreach (array_keys($_POST) as $key) {
+        if (preg_match('/^sendbutton(\d*)$/', $key, $m)) {
+            $no = $m[1];
+            break;
+        }
+    }
+    if ($no === null) {
+        return;
+    }
+
+    $cformsSettings = get_option('cforms_settings');
+    if (!isset($cformsSettings['form' . $no]) || !Cforms2\FormSettings::form($no)->getRedirect()) {
+        return;
+    }
+
+    $cf_redirect = Cforms2\FormSettings::form($no)->getRedirectPage();
+    if (empty($cf_redirect)) {
+        return;
+    }
+
+    $isMPform = $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'];
+    $validation_result = cforms2_validate($no, $isMPform, false, array(), '');
+
+    if (!$validation_result['all_valid']) {
+        return;
+    }
+
+    // Keep the multi-part form session state in sync, as the renderer would
+    // for a full page POST.
+    if ($isMPform && isset($_SESSION['cforms']) && $_SESSION['cforms']['current'] > 0
+            && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] != -1) {
+        $next = cforms2_check_form_name($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next']);
+        $_SESSION['cforms']['current'] = ($next == '') ? 1 : $next;
+    } elseif ($isMPform && $cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_next'] == -1
+            && isset($_SESSION['cforms'])) {
+        $no = $_SESSION['cforms']['first'];
+        unset($_SESSION['cforms']);
+        $_SESSION['cforms']['current'] = 0;
+        $_SESSION['cforms']['first'] = $no;
+        $_SESSION['cforms']['pos'] = 1;
+    }
+
+    wp_redirect($cf_redirect);
+    exit;
 
 }
 
