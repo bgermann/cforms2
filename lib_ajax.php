@@ -34,7 +34,17 @@ function cforms2_json_die($no, $result, $html, $hide = false, $redirection = nul
  */
 function cforms2_submitcform() {
     check_admin_referer('submitcform');
-    $no = $_POST['cforms_id'];
+
+    // The form ID is either the empty string (default form) or a natural
+    // number. Anything else has no matching settings and would otherwise
+    // trigger PHP warnings/fatals in the settings lookups below, so reject
+    // it early with a clean JSON error.
+    $no = isset($_POST['cforms_id']) ? $_POST['cforms_id'] : '';
+    if (!is_string($no) || ($no !== '' && !preg_match('/^\d+$/', $no)) || Cforms2\FormSettings::form($no) == null) {
+        cforms2_json_die('', ' failure', __('The form you submitted is not valid.', 'cforms2'));
+        return;
+    }
+
     $_POST['sendbutton' . $no] = true;
     $validation_result = cforms2_validate($no);
     $hide = $validation_result['all_valid'] && Cforms2\FormSettings::form($no)->getHide();
