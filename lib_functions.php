@@ -31,10 +31,115 @@ function cforms2_start_session() {
     if (function_exists('session_id')) {
         $session_id = session_id();
         if (empty($session_id)) {
-            session_cache_limiter('nocache');
+            session_cache_limiter(cforms2_session_cache_limiter());
             session_start();
         }
     }
+
+}
+
+/**
+ * Returns the session cache limiter to use for the current request.
+ *
+ * Only responses that can carry multi-part (MP) form state need to be
+ * uncacheable: such forms embed per-visitor state from the session (current
+ * step, values entered in earlier steps, pending uploads), so storing the
+ * response in a browser or shared cache could serve a stale or even another
+ * visitor's step. All other responses should be cached normally, so no cache
+ * limiting is applied to them at all.
+ *
+ * @return string '' to disable cache limiting, 'nocache' to keep the
+ *                response uncacheable.
+ */
+function cforms2_session_cache_limiter() {
+    return cforms2_handles_multipart_request() ? 'nocache' : '';
+}
+
+/**
+ * Whether the current request may deliver multi-part form state.
+ *
+ * @return bool
+ */
+function cforms2_handles_multipart_request() {
+    // A submitted form step stores/updates multi-part state.
+    foreach (array_keys($_POST) as $key) {
+        if (preg_match('/^(sendbutton|backbutton|resetbutton)\d*$/', $key)) {
+            return true;
+        }
+    }
+
+    // The AJAX submit endpoint may store multi-part state as well.
+    if (defined('DOING_AJAX') && DOING_AJAX
+            && isset($_POST['action']) && $_POST['action'] === 'submitcform') {
+        return true;
+    }
+
+    // Rendering: a page that embeds a form of a multi-part series.
+    return cforms2_page_embeds_multipart_form();
+}
+
+/**
+ * Whether the current page embeds a form that belongs to a multi-part series.
+ *
+ * @return bool
+ */
+function cforms2_page_embeds_multipart_form() {
+    global $wp_query;
+    $cformsSettings = get_option('cforms_settings');
+
+    $numbers = array();
+
+    foreach ((array) $wp_query->posts as $post) {
+        $numbers = array_merge($numbers, cforms2_shortcode_forms($post->post_content));
+    }
+
+    // Sidebar widgets can embed forms as well.
+    $widgets = get_option('widget_cforms');
+    if (is_array($widgets)) {
+        foreach ($widgets as $instance) {
+            if (is_array($instance) && isset($instance['form']) && is_numeric($instance['form'])) {
+                $numbers[] = $instance['form'] == '1' ? '' : $instance['form'];
+            }
+        }
+    }
+
+    foreach (array_unique($numbers) as $no) {
+        if (!empty($cformsSettings['form' . $no]['cforms' . $no . '_mp']['mp_form'])) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+/**
+ * Collects the form numbers referenced by [cforms] shortcodes in $content,
+ * mirroring the lookup performed by cforms2_shortcode().
+ *
+ * @param string $content Post content.
+ * @return array Form numbers ('' for the default form).
+ */
+function cforms2_shortcode_forms($content) {
+    $forms = array();
+    if (!preg_match_all('/\[cforms\b([^\]]*)\](?:([^\[\]]*)\[\/cforms\])?/i', $content, $matches)) {
+        return $forms;
+    }
+
+    foreach ($matches[1] as $i => $attrText) {
+        $atts = shortcode_parse_atts($attrText);
+        if ($atts) {
+            $callform = array_pop($atts);
+        } else {
+            $callform = trim($matches[2][$i]);
+        }
+        if ($callform == '') {
+            continue;
+        }
+        $forms[] = cforms2_check_form_name($callform);
+    }
+
+    return $forms;
 
 }
 
