@@ -193,10 +193,11 @@ function cforms2_check_default_vars($m, $no, $html = false) {
 
     $pid = cforms2_get_the_id($no);
 
-    if (isset($_POST['cforms_pl' . $no]) && $_POST['cforms_pl' . $no])
-        $permalink = $_POST['cforms_pl' . $no];
-    else
-        $permalink = get_permalink($pid);
+    // cforms_pl used to be taken from the request. It is a hidden form field,
+    // so an unauthenticated visitor could set it to arbitrary markup which
+    // was then expanded into {Permalink}. Always derive the URL from the
+    // post the form belongs to instead.
+    $permalink = get_permalink($pid);
 
     $date = current_time(get_option('date_format'));
 

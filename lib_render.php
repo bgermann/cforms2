@@ -206,6 +206,16 @@ function cforms2($no = '', $customfields = array()) {
             $field_type = 'html5date';
         if ($field_type === 'html5datetime')
             $field_type = 'html5datetime-local';
+
+        // Values of these fields are escaped once, when the markup is built.
+        // Keeping them raw until then avoids double-encoding request data.
+        $field_escaped_at_output = in_array($field_type, array(
+            'hidden', 'textfield', 'pwfield', 'textarea', 'html5color',
+            'html5date', 'html5datetime-local', 'html5email', 'html5month',
+            'html5number', 'html5range', 'html5search', 'html5tel',
+            'html5time', 'html5url', 'html5week'
+        ));
+
         $field_required = $field_stat[2];
         $field_emailcheck = $field_stat[3];
         $field_clear = $field_stat[4];
@@ -243,7 +253,7 @@ function cforms2($no = '', $customfields = array()) {
         // check for title attribute
         $obj = explode('|title:', $obj[0], 2);
         $obj[] = "";
-        $fieldTitle = empty($obj[1]) ? '' : str_replace('"', '&quot;', stripslashes($obj[1]));
+        $fieldTitle = empty($obj[1]) ? '' : stripslashes($obj[1]);
 
 
         // special treatment for selectboxes
@@ -283,11 +293,17 @@ function cforms2($no = '', $customfields = array()) {
             $obj[] = "";
 
             if (!empty($obj[2]))
-                $reg_exp = str_replace('"', '&quot;', stripslashes($obj[2]));
+                $reg_exp = stripslashes($obj[2]);
             else
                 $reg_exp = '';
-            if ($obj[1] != '')
-                $defaultvalue = str_replace(array('"', '\n'), array('&quot;', "\r"), cforms2_check_default_vars(stripslashes(($obj[1])), $no));
+            if ($obj[1] != '') {
+                $defaultvalue = cforms2_check_default_vars(stripslashes($obj[1]), $no);
+                $defaultvalue = str_replace('\n', "\r", $defaultvalue);
+                // Text-like fields escape their value when the markup is
+                // built. Escaping here as well would double-encode it.
+                if (!$field_escaped_at_output)
+                    $defaultvalue = str_replace('"', '&quot;', $defaultvalue);
+            }
 
             $field_name = $obj[0];
         }
@@ -372,7 +388,11 @@ function cforms2($no = '', $customfields = array()) {
 
         // only for multi-part forms
         if ($moveBack || $isMPform) {  // $isMPformNext
-            $field_value = htmlspecialchars(stripslashes($_SESSION['cforms']['cf_form' . $no][$_SESSION['cforms']['cf_form' . $no]['$$$' . ($sItem++)]]));
+            $session_value = $_SESSION['cforms']['cf_form' . $no][$_SESSION['cforms']['cf_form' . $no]['$$$' . ($sItem++)]];
+            if ($field_escaped_at_output)
+                $field_value = is_string($session_value) ? stripslashes($session_value) : '';
+            else
+                $field_value = htmlspecialchars(stripslashes($session_value));
         }
 
         if (!$all_valid) {
@@ -388,6 +408,8 @@ function cforms2($no = '', $customfields = array()) {
                 $_POST[$input_name] = ''; // the field could not be there at all
             if ($field_type == 'multiselectbox' || $field_type == 'checkboxgroup')
                 $field_value = $_POST[$input_name]; // In this case it's an array. We will do the stripping later.
+            elseif ($field_escaped_at_output)
+                $field_value = is_string($_POST[$input_name]) ? stripslashes($_POST[$input_name]) : '';
             else
                 $field_value = htmlspecialchars(stripslashes($_POST[$input_name]));
         } elseif (isset($_REQUEST[$input_name]) && (!isset($_POST['sendbutton' . $no]) || Cforms2\FormSettings::form($no)->getDontClear())) {
@@ -395,9 +417,10 @@ function cforms2($no = '', $customfields = array()) {
             // only pre-populating fields
             if ($field_type == 'multiselectbox' || $field_type == 'checkboxgroup')
                 $field_value = $_REQUEST[$input_name]; // In this case it's an array. We will do the stripping later.
-            else {
+            elseif ($field_escaped_at_output)
+                $field_value = is_string($_REQUEST[$input_name]) ? stripslashes($_REQUEST[$input_name]) : '';
+            else
                 $field_value = htmlspecialchars(stripslashes($_REQUEST[$input_name]));
-            }
         }
 
 
@@ -424,7 +447,7 @@ function cforms2($no = '', $customfields = array()) {
         $field = '';
         $val = '';
         if (array_key_exists($field_type, $captchas)) {
-            $html = $captchas[$field_type]->get_request($input_id, 'secinput fldrequired ' . $field_class, $fieldTitle);
+            $html = $captchas[$field_type]->get_request($input_id, 'secinput fldrequired ' . $field_class, esc_attr($fieldTitle));
             $field = $html;
         } else
             switch ($field_type) {
@@ -432,11 +455,11 @@ function cforms2($no = '', $customfields = array()) {
                 case "upload":
                     // set upload flag for ajax suppression!
                     $upload = true;
-                    $field = '<input' . $readonly . $disabled . ' type="file" name="cf_uploadfile' . $no . '[]" id="cf_uploadfile' . $no . '-' . $i . '" class="cf_upload ' . $field_class . '" title="' . $fieldTitle . '"/>';
+                    $field = '<input' . $readonly . $disabled . ' type="file" name="cf_uploadfile' . $no . '[]" id="cf_uploadfile' . $no . '-' . $i . '" class="cf_upload ' . $field_class . '" title="' . esc_attr($fieldTitle) . '"/>';
                     break;
 
                 case "textonly":
-                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . $reg_exp . '" ') . '>' . esc_html(stripslashes($field_name)) . '</li>';
+                    $field .= '<li' . $liID . ' class="textonly' . (empty($defaultvalue) ? '' : ' ' . $defaultvalue) . '"' . (empty($reg_exp) ? '' : ' style="' . esc_attr($reg_exp) . '" ') . '>' . esc_html(stripslashes($field_name)) . '</li>';
                     break;
 
                 case "fieldsetstart":
@@ -493,11 +516,11 @@ function cforms2($no = '', $customfields = array()) {
                         if (is_array($html5)) {
                             $h5_0 = ( $html5[0] == '1' ) ? ' autocomplete="on"' : '';
                             $h5_1 = ( $html5[1] == '1' ) ? ' autofocus ="autofocus"' : '';
-                            $h5_2 = ( $html5[2] != '' ) ? ' min="' . $html5[2] . '"' : '';
-                            $h5_3 = ( $html5[3] != '' ) ? ' max="' . $html5[3] . '"' : '';
-                            $h5_4 = ( $html5[4] != '' ) ? ' pattern="' . $html5[4] . '"' : '';
-                            $h5_5 = ( $html5[5] != '' ) ? ' step="' . $html5[5] . '"' : '';
-                            $h5_6 = ( $html5[6] != '' ) ? ' placeholder="' . $html5[6] . '"' : '';
+                            $h5_2 = ( $html5[2] != '' ) ? ' min="' . esc_attr($html5[2]) . '"' : '';
+                            $h5_3 = ( $html5[3] != '' ) ? ' max="' . esc_attr($html5[3]) . '"' : '';
+                            $h5_4 = ( $html5[4] != '' ) ? ' pattern="' . esc_attr($html5[4]) . '"' : '';
+                            $h5_5 = ( $html5[5] != '' ) ? ' step="' . esc_attr($html5[5]) . '"' : '';
+                            $h5_6 = ( $html5[6] != '' ) ? ' placeholder="' . esc_attr($html5[6]) . '"' : '';
                             $h5 = $h5_0 . $h5_1 . $h5_2 . $h5_3 . $h5_4 . $h5_5 . $h5_6;
                         }
                         $h5_7 = ( $field_required ) ? ' required="required"' : '';
@@ -507,30 +530,35 @@ function cforms2($no = '', $customfields = array()) {
 
                     $clear = $field_clear ? ' data-cf-clear="1"' : '';
 
-                    $field = '<input' . $h5 . $readonly . $disabled . ' type="' . $type . '" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '" value="' . $field_value . '"' . $clear . ' title="' . $fieldTitle . '"/>';
+                    $field = '<input' . $h5 . $readonly . $disabled . ' type="' . $type . '" name="' . esc_attr($input_name) . '" id="' . esc_attr($input_id) . '" class="' . $field_class . '" value="' . esc_attr($field_value) . '"' . $clear . ' title="' . esc_attr($fieldTitle) . '"/>';
                     if (!empty($reg_exp))
-                        $field .= '<input type="hidden" name="' . $input_name . '_regexp" id="' . $input_id . '_regexp" value="' . $reg_exp . '" title="' . $fieldTitle . '"/>';
+                        $field .= '<input type="hidden" name="' . esc_attr($input_name) . '_regexp" id="' . esc_attr($input_id) . '_regexp" value="' . esc_attr($reg_exp) . '" title="' . esc_attr($fieldTitle) . '"/>';
 
                     $field .= $dp;
                     break;
 
                 case "hidden":
 
+                    // Expand template variables on the raw value and escape
+                    // the result only once, when the attribute is built.
+                    // Expanding after escaping (or printing the expansion
+                    // unescaped) lets a value such as {Permalink} inject
+                    // markup into the hidden input's value attribute.
                     $field_value = cforms2_check_post_vars($field_value);
                     $field_value = cforms2_check_default_vars($field_value, $no);
 
                     if (preg_match('/^<([a-zA-Z0-9]+)>$/', $field_value, $getkey))
-                        $field_value = esc_html($_GET[$getkey[1]]);
+                        $field_value = isset($_GET[$getkey[1]]) && is_string($_GET[$getkey[1]]) ? $_GET[$getkey[1]] : '';
 
-                    $field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="' . $input_name . '" id="' . $input_id . '" value="' . $field_value . '" title="' . $fieldTitle . '"/></li>';
+                    $field .= '<li class="cf_hidden"><input type="hidden" class="cfhidden" name="' . esc_attr($input_name) . '" id="' . esc_attr($input_id) . '" value="' . esc_attr($field_value) . '" title="' . esc_attr($fieldTitle) . '"/></li>';
                     break;
 
                 case "textarea":
                     $clear = $field_clear ? ' data-cf-clear="1"' : '';
 
-                    $field = '<textarea' . $readonly . $disabled . ' cols="30" rows="8" name="' . $input_name . '" id="' . $input_id . '" class="' . $field_class . '"' . $clear . ' title="' . $fieldTitle . '">' . $field_value . '</textarea>';
+                    $field = '<textarea' . $readonly . $disabled . ' cols="30" rows="8" name="' . esc_attr($input_name) . '" id="' . esc_attr($input_id) . '" class="' . $field_class . '"' . $clear . ' title="' . esc_attr($fieldTitle) . '">' . esc_textarea($field_value) . '</textarea>';
                     if (!empty($reg_exp))
-                        $field .= '<input type="hidden" name="' . $input_name . '_regexp" id="' . $input_id . '_regexp" value="' . $reg_exp . '" title="' . $fieldTitle . '"/>';
+                        $field .= '<input type="hidden" name="' . esc_attr($input_name) . '_regexp" id="' . esc_attr($input_id) . '_regexp" value="' . esc_attr($reg_exp) . '" title="' . esc_attr($fieldTitle) . '"/>';
                     break;
 
                 case "ccbox":
@@ -559,7 +587,7 @@ function cforms2($no = '', $customfields = array()) {
                     if ($val == '')
                         $val = empty($opt[1]) ? '' : ' value="' . $opt[1] . '"';
 
-                    $field = $before . '<input' . $readonly . $disabled . ' type="checkbox" name="' . $input_name . '" id="' . $input_id . '" class="cf-box-' . $ba . $field_class . '"' . $val . ' title="' . $fieldTitle . '"' . $preChecked . '/>' . $after;
+                    $field = $before . '<input' . $readonly . $disabled . ' type="checkbox" name="' . $input_name . '" id="' . $input_id . '" class="cf-box-' . $ba . $field_class . '"' . $val . ' title="' . esc_attr($fieldTitle) . '"' . $preChecked . '/>' . $after;
 
                     break;
 
@@ -606,7 +634,7 @@ function cforms2($no = '', $customfields = array()) {
                         if ($opt[0] == '')
                             $field .= '<br />';
                         else
-                            $field .= '<input' . $readonly . $disabled . ' type="checkbox" id="' . $input_id . '-' . $id . '" name="' . $input_name . $brackets . '" value="' . $opt[1] . '" ' . $checked . ' class="cf-box-b" title="' . $fieldTitle . '"/>' .
+                            $field .= '<input' . $readonly . $disabled . ' type="checkbox" id="' . $input_id . '-' . $id . '" name="' . $input_name . $brackets . '" value="' . $opt[1] . '" ' . $checked . ' class="cf-box-b" title="' . esc_attr($fieldTitle) . '"/>' .
                                     '<label' . $labelIDx . ' for="' . $input_id . '-' . ($id++) . '" class="cf-group-after"><span>' . $opt[0] . "</span></label>";
                     }
                     $field .= '</li>';
@@ -614,7 +642,7 @@ function cforms2($no = '', $customfields = array()) {
 
 
                 case "multiselectbox":
-                    $field .= '<select' . $readonly . $disabled . ' multiple="multiple" name="' . $input_name . '[]" id="' . $input_id . '" class="cfselectmulti ' . $field_class . '" title="' . $fieldTitle . '">';
+                    $field .= '<select' . $readonly . $disabled . ' multiple="multiple" name="' . $input_name . '[]" id="' . $input_id . '" class="cfselectmulti ' . $field_class . '" title="' . esc_attr($fieldTitle) . '">';
                     array_shift($options);
                     $j = 0;
 
@@ -649,7 +677,7 @@ function cforms2($no = '', $customfields = array()) {
 
                 case "emailtobox":
                 case "selectbox":
-                    $field = '<select' . $readonly . $disabled . ' name="' . $input_name . '" id="' . $input_id . '" class="cformselect' . $field_class . '" title="' . $fieldTitle . '">';
+                    $field = '<select' . $readonly . $disabled . ' name="' . $input_name . '" id="' . $input_id . '" class="cformselect' . $field_class . '" title="' . esc_attr($fieldTitle) . '">';
                     array_shift($options);
                     $jj = $j = 0;
 
@@ -715,7 +743,7 @@ function cforms2($no = '', $customfields = array()) {
                         if ($opt[0] == '')
                             $field .= '<br />';
                         else
-                            $field .= '<input' . $readonly . $disabled . ' type="radio" id="' . $input_id . '-' . $id . '" name="' . $input_name . '" value="' . $opt[1] . '"' . $checked . ' class="cf-box-b' . ($field_required ? ' fldrequired' : '') . '" title="' . $fieldTitle . '"/>' .
+                            $field .= '<input' . $readonly . $disabled . ' type="radio" id="' . $input_id . '-' . $id . '" name="' . $input_name . '" value="' . $opt[1] . '"' . $checked . ' class="cf-box-b' . ($field_required ? ' fldrequired' : '') . '" title="' . esc_attr($fieldTitle) . '"/>' .
                                     '<label' . $labelIDx . ' for="' . $input_id . '-' . ($id++) . '" class="cf-after"><span>' . $opt[0] . "</span></label>";
                     }
                     $field .= '</li>';
@@ -757,7 +785,7 @@ function cforms2($no = '', $customfields = array()) {
     // Extra Fields
     if (Cforms2\FormSettings::form($no)->getExtraVar()) {
         $formcontent .= '<input type="hidden" name="comment_post_ID' . $no . '" id="comment_post_ID' . $no . '" value="' . get_the_ID() . '"/>' .
-                '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . get_permalink() . '"/>';
+                '<input type="hidden" name="cforms_pl' . $no . '" id="cforms_pl' . $no . '" value="' . esc_url(get_permalink()) . '"/>';
     }
 
 
